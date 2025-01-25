@@ -1,0 +1,1744 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Assassin Analysis Report</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+        h1 { color: #333; }
+        h2 { color: #555; margin-top: 20px; clear: both; }
+        p { clear: both; }
+        .character-info { display: flex; margin-bottom: 10px; }
+        .character-info div { flex: 1; padding: 5px; }
+        .character-link { flex: 1; }
+    .collapsible {
+        background-color: #f1f1f1; /* Green background */
+        color: black; /* White text */
+        cursor: pointer;
+        padding: 10px; /* Increase padding */
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px; /* Increase font size */
+        border-radius: 5px; /* Rounded corners */
+        transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
+        display: flex;
+        align-items: center;
+    }
+    .collapsible img.icon {
+        margin-right: 10px; /* Spacing between icon and text */
+        width: 20px; /* Icon size */
+        height: 20px; /* Icon size */
+    }
+    .collapsible img.icon.hidden {
+        display: none; /* Hide by default */
+    }
+    .collapsible:hover {
+        background-color: #45a049; /* Darker green on hover */
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Add shadow on hover */
+    }
+    .active, .collapsible:focus {
+        background-color: #45a049; /* Darker green when active or focused */
+    }
+        
+    .content {
+        padding: 0 18px;
+        display: none;
+        overflow: hidden;
+        background-color: #f9f9f9;
+        }
+    iframe {
+        width: 100%;
+        height: 600px; /* Adjust height as needed */
+        border: none;
+    }
+    </style>
+</head>
+<body>
+    <h1>Assassin Analysis </h1>
+
+    <!-- Embed the Plotly pie chart -->
+    <iframe src="Assassin-clusters_distribution_pie.html"></iframe>
+
+    
+    <h2>69.39%  of Assassin's Main Skills:<br><img src='icons/Wake of Fire.png' alt='Wake of Fire' width='20' height='20'> Wake of Fire 100.00% (2720)<br><img src='icons/Wake of Inferno.png' alt='Wake of Inferno' width='20' height='20'> Wake of Inferno 100.00% (2715)<br><img src='icons/Fire Blast.png' alt='Fire Blast' width='20' height='20'> Fire Blast 100.00% (2635)</h2>
+    <p><strong>Other Skills:<br></strong> <img src='icons/Blade Shield.png' alt='Blade Shield' width='20' height='20'> Blade Shield 78.68% (1964.0)<br><img src='icons/Blade Fury.png' alt='Blade Fury' width='20' height='20'> Blade Fury 79.41% (803.0)<br><img src='icons/Burst of Speed.png' alt='Burst of Speed' width='20' height='20'> Burst of Speed 99.26% (530.0)<br><img src='icons/Blade Throw.png' alt='Blade Throw' width='20' height='20'> Blade Throw 80.15% (406.0)<br><img src='icons/Death Sentry.png' alt='Death Sentry' width='20' height='20'> Death Sentry 27.94% (341.0)<br><img src='icons/Lightning Sentry.png' alt='Lightning Sentry' width='20' height='20'> Lightning Sentry 28.68% (253.0)</p>
+
+    <button class="collapsible">
+        <img src="icons/closed.png" alt="Open" class="icon">
+        <img src="icons/open.png" alt="Close" class="icon hidden">
+        <strong>Most Common Equipment:</strong></button>
+        <div class="content">
+            <div><strong>Amulet</strong>: <br>Cunning Amulet 31.62%<br>Mara's Kaleidoscope 11.03%<br>Highlord's Wrath 10.29%<br>Cunning Amulet of Craftmanship 2.21%<br>Cunning Amulet of the Mind 1.47%<br><strong>Gloves</strong>: <br>Magefist 45.59%<br>Laying of Hands 34.56%<br>Chance Guards 5.15%<br>Dracul's Grasp 2.94%<br>Soul Drainer 1.47%<br><strong>Ring</strong>: <br>Raven Frost 50.00%<br>Wisp Projector 32.35%<br>Bul-Kathos' Wedding Band 24.26%<br>Nagelring 8.82%<br>Carrion Wind 8.09%<br><strong>Belt</strong>: <br>Arachnid Mesh 36.03%<br>Verdungo's Hearty Cord 18.38%<br>Goldwrap 11.03%<br>String of Ears 10.29%<br>Credendum 4.41%<br><strong>Left hand</strong>: <br>Natalya's Mark 44.85%<br>Silence 22.06%<br>Plague 18.38%<br>Call to Arms 11.03%<br>Phoenix 10.29%<br><strong>Offhand</strong>: <br>Phoenix 36.76%<br>Spirit 34.56%<br>Plague 16.18%<br>Medusa's Gaze 9.56%<br>Stormshield 9.56%<br><strong>Boots</strong>: <br>Natalya's Soul 54.41%<br>War Traveler 16.91%<br>Aldur's Advance 7.35%<br>Shadow Dancer 2.21%<br>Sandstorm Trek 2.21%<br><strong>Body</strong>: <br>Natalya's Shadow 45.59%<br>Enigma 24.26%<br>Treachery 8.82%<br>Skin of the Vipermagi 4.41%<br>Chains of Honor 2.21%<br><strong>Helmet</strong>: <br>Natalya's Totem 44.85%<br>Harlequin Crest 26.47%<br>Andariel's Visage 8.82%<br>Kira's Guardian 1.47%<br>Crown of Ages 0.74%</div>
+        </div>
+    
+    <button class="collapsible">
+        <img src="icons/closed.png" alt="Open" class="icon">
+        <img src="icons/open.png" alt="Close" class="icon hidden">
+        <strong>ALL Equipment:</strong></button>
+        <div class="content">
+            <div><strong>Amulet</strong>: Cunning Amulet of the Mind 1.47%, Death Emblem 0.74%, Cunning Amulet of Craftmanship 2.21%, Cunning Amulet of Regrowth 0.74%, Cunning Amulet 31.62%, Mara's Kaleidoscope 11.03%, Grim Clasp 1.47%, Highlord's Wrath 10.29%, Cunning Amulet of the Colossus 0.74%, Cunning Amulet of Holy Bolt 0.74%, Havoc Clasp 0.74%, Bone Heart 0.74%, Wraithra Torc 0.74%, Cunning Amulet of the Titan 1.47%, Corruption Beads 0.74%, Corruption Heart 0.74%, Cunning Amulet of Fortune 1.47%, Cunning Amulet of Perfection 0.74%, Metalgrid 0.74%, Doom Emblem 0.74%, Viper Gorget 0.74%, Cunning Amulet of the Ox 0.74%, Raven Eye 0.74%, Cunning Amulet of Nirvana 0.74%, Cunning Amulet of the Tiger 0.74%, Rune Necklace 0.74%, Cunning Amulet of the Sentinel 0.74%, Cunning Amulet of Warding 0.74%, The Rising Sun 0.74%, Cunning Amulet of Chain Lightning 0.74%, Seraph's Hymn 0.74%, Storm Mark 0.74%, Wraithra Mark 0.74%, Cunning Amulet of the Wolf 0.74%, Cunning Amulet of Regeneration 0.74%, Cunning Amulet of the Giant 0.74%, Cunning Amulet of Control 0.74%, Cunning Amulet of Frost Shield 0.74%, Cunning Amulet of the Mammoth 1.47%, Cunning Amulet of Measure 0.74%, Cunning Amulet of the Apprentice 1.47%, Cunning Amulet of the Jackal 0.74%, Cunning Amulet of Worth 0.74%, Cunning Amulet of Might 0.74%, Cunning Amulet of the Fox 0.74%, Cunning Amulet of Memory 0.74%, Cunning Amulet of Enlightenment 0.74%, PlagueRI Mark 0.74%, Cunning Amulet of Greed 0.74%, Cunning Amulet of the Vampire 0.74%, Amulet of Craftmanship 0.74%, Blood Beads 0.74%<br><strong>Gloves</strong>: Laying of Hands 34.56%, Chance Guards 5.15%, Magefist 45.59%, Dracul's Grasp 2.94%, Spirit Grasp 0.74%, Brimstone Hand 0.74%, Soul Drainer 1.47%, Demon Hold 0.74%, Gale Hand 0.74%, Bloodfist 0.74%, Demon Fist 0.74%, Bramble Claw 0.74%<br><strong>Ring</strong>: Raven Frost 50.00%, Wisp Projector 32.35%, Bul-Kathos' Wedding Band 24.26%, Carrion Wind 8.09%, Scintillating Ring of Fortune 0.74%, Bitter Hold 0.74%, Stone Grip 0.74%, The Stone of Jordan 5.88%, Bitter Loop 0.74%, Nagelring 8.82%, Death Circle 0.74%, Havoc Knot 0.74%, Havoc Gyre 0.74%, Corruption Coil 0.74%, Blood Gyre 0.74%, Havoc Coil 1.47%, Blood Coil 1.47%, Death Loop 0.74%, Entropy Spiral 0.74%, Scintillating Ring 0.74%, Eagle Circle 0.74%, Dwarf Star 5.88%, Nature's Peace 1.47%, Entropy Whorl 0.74%, Shadow Master 0.74%, Cathan's Seal 0.74%, Rune Gyre 0.74%, Blood Band 0.74%, Raven Band 0.74%, Blood Hold 0.74%, Dread Coil 0.74%, PlagueRI Hold 1.47%, Stone Gyre 0.74%, Shadow Eye 0.74%, Rune Turn 0.74%, Beast Turn 0.74%, Storm Circle 1.47%, Beast Grip 0.74%, Blood Touch 0.74%, Corruption Band 0.74%, Skull Spiral 0.74%, GhoulRI Hold 0.74%, Manald Heal 2.21%, Corruption Loop 1.47%, Bitter Finger 0.74%, Entropy Grip 0.74%, Dread Whorl 0.74%, Raven Gyre 0.74%, Chaos Hold 0.74%, Bone Grip 1.47%, Wraithra Gyre 0.74%, Skull Finger 0.74%, Scintillating Ring of Regeneration 0.74%, Shimmering Ring of Fortune 0.74%, Viper Eye 0.74%, Rune Grip 0.74%, Death Eye 0.74%, Felicitous Ring 0.74%, Stone Grasp 0.74%, Felicitous Ring of Fortune 0.74%, Shadow Grip 0.74%<br><strong>Belt</strong>: Arachnid Mesh 36.03%, Verdungo's Hearty Cord 18.38%, String of Ears 10.29%, Thundergod's Vigor 2.21%, Goldwrap 11.03%, Immortal King's Detail 2.21%, Bladebuckle 0.74%, Lenymo 0.74%, Credendum 4.41%, M'avina's Tenet 1.47%, Nosferatu's Coil 1.47%, Tal Rasha's Fine-Spun Cloth 0.74%, Corpse Cord 0.74%, Gloom's Trap 0.74%, Plated Belt 0.74%<br><strong>Left hand</strong>: Plague 18.38%, Phoenix 10.29%, Spirit 8.09%, Silence 22.06%, Call to Arms 11.03%, Natalya's Mark 44.85%, Edge 4.41%, Death Cleaver 0.74%, Death Thirst 0.74%, Crystal Sword 1.47%, Holy Thunder 3.68%, Stormshield 0.74%, Mechanist's Bone Wand of Lower Resistance 0.74%, Heart of the Oak 3.68%, Cunning Blade Talons 0.74%, Lidless Wall 0.74%, Wyrm's Lich Wand of Lower Resistance 0.74%, Flamebellow 0.74%, Greater Talons 0.74%, Hellrack 0.74%, Gnarled Staff of Teleportation 2.21%, Noxious Bone Wand of Lower Resistance 0.74%, Hellplague 0.74%, Bone Wand of Lower Resistance 2.21%, Naj's Puzzler 3.68%, Golemlord's Bone Wand of Lower Resistance 0.74%, Cunning Scissors Katar 1.47%, Hexfire 0.74%, Havoc Bite 0.74%, Bartuc's Cut-Throat 4.41%, Demon Limb 0.74%, GhoulRI Bite 0.74%, Scissors Quhab 0.74%, Cobalt Bone Wand of Lower Resistance 0.74%, Tomb Wand of Lower Resistance 0.74%, Skull Collector 0.74%, Cunning Scissors Katar of Carnage 0.74%, Hibernal War Staff of Teleportation 0.74%, Runic Talons 0.74%, Battle Staff of Teleportation 0.74%, Cunning Blade Talons of Carnage 0.74%, Hand Scythe 0.74%, Cunning Blade Talons of Maiming 0.74%, Wrist Sword 0.74%, Angel's Battle Staff of Teleportation 0.74%, Gull 0.74%, Flaming Grim Wand of Lower Resistance 0.74%, War Staff of Teleportation 0.74%, Harmony 0.74%, Dragon's Yew Wand of Lower Resistance 0.74%, Shadow Scissors Quhab 0.74%, Oath 0.74%, Greater Claws 0.74%, Leaf 0.74%, Frostwind 0.74%, Screaming War Staff of Teleportation 0.74%, Suwayyah 0.74%, Crimson War Staff of Teleportation 0.74%, Pain Bite 0.74%, Grim Wand of Lower Resistance 0.74%<br><strong>Offhand</strong>: Plague 16.18%, Cranebeak 0.74%, Medusa's Gaze 9.56%, Phoenix 36.76%, Spirit 34.56%, Stormshield 9.56%, Suwayyah 2.94%, Mosaic 0.74%, Lidless Wall 2.21%, Blade of Ali Baba 0.74%, Cunning Claws 0.74%, Rhyme 1.47%, Cunning Scissors Katar of the Lamprey 0.74%, Jade Talon 0.74%, Greater Talons 1.47%, Ancients' Pledge 3.68%, Swiftheart 0.74%, Bartuc's Cut-Throat 8.09%, Sigon's Guard 0.74%, Radament's Sphere 0.74%, Cunning Scissors Katar of Performance 0.74%, Natalya's Mark 1.47%, Corpse Guard 0.74%, Cunning Scissors Katar of the Giant 0.74%, Moser's Blessed Circle 0.74%, Blood Claw 0.74%, Cunning Scissors Katar 2.94%, Dragonbreath 0.74%, Cunning Blade Talons of Readiness 0.74%, Cunning Scissors Quhab 0.74%, Scissors Quhab 0.74%, PlagueRI Fist 0.74%, Feral Claws 0.74%, Cunning Blade Talons 0.74%, Monarch 0.74%, Witch-hunter's Blade Talons of Readiness 0.74%, Greater Claws 0.74%, Gerke's Sanctuary 0.74%<br><strong>Boots</strong>: Waterwalk 0.74%, War Traveler 16.91%, Natalya's Soul 54.41%, Aldur's Advance 7.35%, Death Nails 0.74%, Shadow Dancer 2.21%, Sandstorm Trek 2.21%, Skull Track 0.74%, Gore Rider 2.21%, Skull Stalker 0.74%, Beast Greaves 0.74%, Grim Spur 0.74%, Stone Shank 0.74%, Raven Tread 0.74%, Storm Trample 0.74%, Soul Brogues 0.74%, Tancred's Hobnails 0.74%, Immortal King's Pillar 0.74%, GhoulRI Shank 0.74%<br><strong>Body</strong>: Enigma 24.26%, Natalya's Shadow 45.59%, Chains of Honor 2.21%, Treachery 8.82%, Skullder's Ire 1.47%, Skin of the Vipermagi 4.41%, Naj's Light Plate 0.74%, Arkaine's Valor 0.74%, Duriel's Shell 0.74%, Ormus' Robes 0.74%<br><strong>Helmet</strong>: Harlequin Crest 26.47%, Andariel's Visage 8.82%, Crown of Ages 0.74%, Natalya's Totem 44.85%, Guillaume's Face 0.74%, PlagueRI Visage 0.74%, Kira's Guardian 1.47%, Raven Casque 0.74%, Death Horn 0.74%, Death Casque 0.74%, Pain Mask 0.74%, Hailstone Cowl 0.74%, Wraithra Hood 0.74%, Skull Brow 0.74%, Spirit Circlet 0.74%, Fiendra Mask 0.74%, Raven Visage 0.74%, Wraithra Visor 0.74%</div>
+        </div>
+
+    <button class="collapsible">
+        <img src="icons/closed.png" alt="Open" class="icon">
+        <img src="icons/open.png" alt="Close" class="icon hidden">
+        <strong>136 Characters in this cluster:</strong></button>
+        <div class="content">
+            
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=baleiteASS">baleiteASS</a></div>
+                <div>99</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Blade Fury:20, Wake of Inferno:20, Blade Shield:20, Blade Throw:7, Claw Mastery:1, Burst of Speed:1, Fade:1</p>
+        <p><strong>Equipment:</strong> amulet: Cunning Amulet of the Mind x1, gloves: Laying of Hands x1, ring: Raven Frost x1, ring: Wisp Projector x1, belt: Arachnid Mesh x1, Left hand: Plague x1, Left hand: Phoenix x1, Offhand: Plague x1, boots: Waterwalk x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=citadel-enjoyer">citadel-enjoyer</a></div>
+                <div>99</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Blade Throw:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Burst of Speed:5, Blade Fury:1, Claw Mastery:1, Fade:1, Venom:1</p>
+        <p><strong>Equipment:</strong> body: Enigma x1, amulet: Death Emblem x1, boots: War Traveler x1, gloves: Chance Guards x1, helmet: Harlequin Crest x1, belt: Arachnid Mesh x1, ring: Wisp Projector x1, ring: Bul-Kathos' Wedding Band x1, Left hand: Phoenix x1, Left hand: Plague x1, Offhand: Cranebeak x1, Offhand: Plague x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=SCplebsDj">SCplebsDj</a></div>
+                <div>99</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Fury:7, Blade Throw:6, Shock Web:1, Charged Bolt Sentry:1, Lightning Sentry:1, Death Sentry:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1, Venom:1</p>
+        <p><strong>Equipment:</strong> boots: War Traveler x1, gloves: Magefist x1, amulet: Cunning Amulet of Craftmanship x1, ring: Bul-Kathos' Wedding Band x2, body: Enigma x1, belt: Arachnid Mesh x1, helmet: Andariel's Visage x1, Left hand: Spirit x1, Left hand: Silence x1, Offhand: Medusa's Gaze x1, Offhand: Phoenix x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=SCplebsMagikarp">SCplebsMagikarp</a></div>
+                <div>98</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Burst of Speed:20, Shock Web:1, Blade Throw:1, Blade Fury:1, Claw Mastery:1, Psychic Hammer:1, Weapon Block:1, Cloak of Shadows:1, Shadow Warrior:1, Shadow Master:1</p>
+        <p><strong>Equipment:</strong> body: Enigma x1, amulet: Cunning Amulet of Regrowth x1, gloves: Magefist x1, boots: War Traveler x1, helmet: Andariel's Visage x1, ring: Wisp Projector x1, ring: Raven Frost x1, belt: Arachnid Mesh x1, Left hand: Call to Arms x1, Left hand: Silence x1, Offhand: Medusa's Gaze x1, Offhand: Phoenix x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Step-up">Step-up</a></div>
+                <div>98</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Blade Fury:20, Wake of Inferno:20, Blade Shield:20, Burst of Speed:7, Blade Throw:1, Claw Mastery:1</p>
+        <p><strong>Equipment:</strong> gloves: Laying of Hands x1, amulet: Cunning Amulet x1, ring: Wisp Projector x1, ring: Bul-Kathos' Wedding Band x1, helmet: Harlequin Crest x1, boots: War Traveler x1, body: Enigma x1, belt: Arachnid Mesh x1, Left hand: Silence x1, Left hand: Phoenix x1, Offhand: Spirit x1, Offhand: Stormshield x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=KR_GRA">KR_GRA</a></div>
+                <div>97</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Lightning Sentry:20, Wake of Inferno:20, Death Sentry:20, Charged Bolt Sentry:7, Shock Web:1</p>
+        <p><strong>Equipment:</strong> ring: Raven Frost x1, ring: Wisp Projector x1, body: Enigma x1, amulet: Mara's Kaleidoscope x1, belt: Arachnid Mesh x1, boots: War Traveler x1, helmet: Crown of Ages x1, gloves: Magefist x1, Left hand: Spirit x1, Left hand: Phoenix x1, Offhand: Suwayyah x1, Offhand: Plague x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=GothGirlfriend">GothGirlfriend</a></div>
+                <div>97</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Fury:19, Blade Throw:1, Claw Mastery:1, Burst of Speed:1, Dragon Talon:1, Fists of Fire:1, Dragon Claw:1, Claws of Thunder:1, Blades of Ice:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> ring: Wisp Projector x1, ring: Bul-Kathos' Wedding Band x1, helmet: Natalya's Totem x1, boots: Natalya's Soul x1, body: Natalya's Shadow x1, gloves: Magefist x1, belt: Arachnid Mesh x1, amulet: Cunning Amulet x1, Left hand: Plague x1, Left hand: Natalya's Mark x1, Offhand: Plague x1, Offhand: Phoenix x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=During">During</a></div>
+                <div>97</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Fury:12, Burst of Speed:3, Shock Web:1, Blade Throw:1, Charged Bolt Sentry:1, Lightning Sentry:1, Death Sentry:1, Claw Mastery:1, Psychic Hammer:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1, Venom:1, Shadow Master:1</p>
+        <p><strong>Equipment:</strong> body: Enigma x1, amulet: Grim Clasp x1, ring: Wisp Projector x1, ring: Bul-Kathos' Wedding Band x1, helmet: Andariel's Visage x1, belt: Arachnid Mesh x1, boots: War Traveler x1, gloves: Magefist x1, Left hand: Call to Arms x1, Left hand: Silence x1, Offhand: Spirit x1, Offhand: Phoenix x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Beevis">Beevis</a></div>
+                <div>97</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Burst of Speed:15, Shock Web:1, Blade Throw:1, Charged Bolt Sentry:1, Blade Fury:1, Lightning Sentry:1, Death Sentry:1, Claw Mastery:1, Dragon Talon:1, Fists of Fire:1, Dragon Claw:1, Claws of Thunder:1, Blades of Ice:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> ring: Bul-Kathos' Wedding Band x1, ring: Raven Frost x1, boots: Natalya's Soul x1, helmet: Natalya's Totem x1, body: Natalya's Shadow x1, belt: Arachnid Mesh x1, amulet: Highlord's Wrath x1, gloves: Laying of Hands x1, Left hand: Plague x1, Left hand: Natalya's Mark x1, Offhand: Plague x1, Offhand: Phoenix x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=HyTheBruxo">HyTheBruxo</a></div>
+                <div>97</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Burst of Speed:20, Shadow Master:20, Claw Mastery:1, Psychic Hammer:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1, Mind Blast:1, Venom:1</p>
+        <p><strong>Equipment:</strong> ring: Bul-Kathos' Wedding Band x1, ring: Wisp Projector x1, gloves: Magefist x1, amulet: Cunning Amulet of the Colossus x1, body: Enigma x1, helmet: Harlequin Crest x1, boots: Aldur's Advance x1, belt: Arachnid Mesh x1, Left hand: Edge x1, Left hand: Phoenix x1, Offhand: Stormshield x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Rommikola">Rommikola</a></div>
+                <div>96</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Blade Throw:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Fury:2, Claw Mastery:1, Burst of Speed:1, Dragon Talon:1, Dragon Claw:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> ring: Wisp Projector x1, ring: Bul-Kathos' Wedding Band x1, amulet: Cunning Amulet of Holy Bolt x1, gloves: Laying of Hands x1, belt: Arachnid Mesh x1, helmet: Harlequin Crest x1, body: Chains of Honor x1, boots: War Traveler x1, Left hand: Plague x1, Left hand: Death Cleaver x1, Offhand: Plague x1, Offhand: Phoenix x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Blake-Sin">Blake-Sin</a></div>
+                <div>96</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Blade Throw:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Fury:3, Claw Mastery:1, Burst of Speed:1, Fade:1, Venom:1</p>
+        <p><strong>Equipment:</strong> gloves: Laying of Hands x1, boots: Natalya's Soul x1, body: Natalya's Shadow x1, ring: Carrion Wind x1, ring: Raven Frost x1, helmet: Natalya's Totem x1, belt: Verdungo's Hearty Cord x1, amulet: Highlord's Wrath x1, Left hand: Death Thirst x1, Left hand: Natalya's Mark x1, Offhand: Spirit x1, Offhand: Phoenix x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Baby">Baby</a></div>
+                <div>96</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Burst of Speed:20, Blade Fury:3, Blade Throw:1, Claw Mastery:1, Fade:1, Venom:1</p>
+        <p><strong>Equipment:</strong> </p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=robowarrior">robowarrior</a></div>
+                <div>96</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Fury:18, Shock Web:1, Blade Throw:1, Charged Bolt Sentry:1, Lightning Sentry:1, Death Sentry:1, Claw Mastery:1, Burst of Speed:1, Fade:1, Venom:1</p>
+        <p><strong>Equipment:</strong> amulet: Cunning Amulet x1, boots: War Traveler x1, ring: Scintillating Ring of Fortune x1, ring: Wisp Projector x1, helmet: Harlequin Crest x1, body: Enigma x1, belt: Arachnid Mesh x1, gloves: Magefist x1, Left hand: Plague x2, Offhand: Plague x1, Offhand: Phoenix x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Red">Red</a></div>
+                <div>96</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Venom:20, Burst of Speed:3, Blade Throw:1, Blade Fury:1, Claw Mastery:1, Fade:1</p>
+        <p><strong>Equipment:</strong> belt: Arachnid Mesh x1, boots: War Traveler x1, amulet: Highlord's Wrath x1, gloves: Laying of Hands x1, ring: Carrion Wind x1, ring: Wisp Projector x1, helmet: Harlequin Crest x1, Left hand: Plague x1, Left hand: Phoenix x1, Offhand: Plague x1, Offhand: Stormshield x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=wTc_Striga">wTc_Striga</a></div>
+                <div>96</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Fury:12, Blade Throw:1, Claw Mastery:1, Burst of Speed:1, Weapon Block:1, Fade:1, Venom:1, Tiger Strike:1, Dragon Talon:1, Fists of Fire:1, Dragon Claw:1, Cobra Strike:1, Claws of Thunder:1, Blades of Ice:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> boots: Natalya's Soul x1, ring: Bul-Kathos' Wedding Band x1, ring: Wisp Projector x1, amulet: Cunning Amulet x1, belt: String of Ears x1, helmet: Natalya's Totem x1, gloves: Laying of Hands x1, body: Natalya's Shadow x1, Left hand: Call to Arms x1, Left hand: Natalya's Mark x1, Offhand: Medusa's Gaze x1, Offhand: Mosaic x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=DaD-Goose">DaD-Goose</a></div>
+                <div>96</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Blade Fury:20, Wake of Inferno:20, Blade Shield:20, Blade Throw:2, Claw Mastery:1, Burst of Speed:1, Fade:1, Dragon Claw:1</p>
+        <p><strong>Equipment:</strong> ring: Wisp Projector x1, ring: Bul-Kathos' Wedding Band x1, gloves: Magefist x1, helmet: Andariel's Visage x1, belt: Arachnid Mesh x1, amulet: Cunning Amulet x1, body: Enigma x1, boots: Death Nails x1, Left hand: Call to Arms x1, Left hand: Silence x1, Offhand: Spirit x1, Offhand: Phoenix x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Ghostin">Ghostin</a></div>
+                <div>96</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Burst of Speed:20, Blade Throw:3, Blade Fury:1, Claw Mastery:1, Fade:1, Venom:1</p>
+        <p><strong>Equipment:</strong> boots: War Traveler x1, amulet: Highlord's Wrath x1, ring: Wisp Projector x1, ring: Raven Frost x1, belt: Arachnid Mesh x1, helmet: Harlequin Crest x1, gloves: Magefist x1, body: Enigma x1, Left hand: Crystal Sword x1, Left hand: Silence x1, Offhand: Medusa's Gaze x1, Offhand: Phoenix x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Kekimon">Kekimon</a></div>
+                <div>96</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Blade Fury:20, Wake of Inferno:20, Blade Shield:20, Burst of Speed:4, Claw Mastery:2, Blade Throw:1</p>
+        <p><strong>Equipment:</strong> gloves: Laying of Hands x1, boots: Natalya's Soul x1, helmet: Natalya's Totem x1, body: Natalya's Shadow x1, amulet: Cunning Amulet x1, belt: Arachnid Mesh x1, Left hand: Call to Arms x1, Left hand: Natalya's Mark x1, Offhand: Medusa's Gaze x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=FrierenFern">FrierenFern</a></div>
+                <div>95</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Claw Mastery:20, Blades of Ice:17, Burst of Speed:1, Weapon Block:1, Tiger Strike:1, Dragon Talon:1, Fists of Fire:1, Dragon Claw:1, Cobra Strike:1, Claws of Thunder:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> gloves: Laying of Hands x1, ring: Raven Frost x1, ring: Wisp Projector x1, amulet: Highlord's Wrath x1, body: Natalya's Shadow x1, belt: Arachnid Mesh x1, helmet: Natalya's Totem x1, boots: Natalya's Soul x1, Left hand: Holy Thunder x1, Left hand: Natalya's Mark x1, Offhand: Lidless Wall x1, Offhand: Phoenix x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=IIwinterII">IIwinterII</a></div>
+                <div>95</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Claw Mastery:8, Blade Throw:6, Blades of Ice:5, Blade Fury:1, Burst of Speed:1, Dragon Talon:1, Fists of Fire:1, Dragon Claw:1, Claws of Thunder:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> body: Natalya's Shadow x1, helmet: Natalya's Totem x1, ring: Wisp Projector x1, ring: Raven Frost x1, gloves: Dracul's Grasp x1, amulet: Cunning Amulet x1, belt: Verdungo's Hearty Cord x1, boots: Natalya's Soul x1, Left hand: Call to Arms x1, Left hand: Natalya's Mark x1, Offhand: Spirit x1, Offhand: Phoenix x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=el_ass">el_ass</a></div>
+                <div>95</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Blade Fury:20, Wake of Inferno:20, Blade Shield:20, Burst of Speed:3, Blade Throw:1, Claw Mastery:1</p>
+        <p><strong>Equipment:</strong> amulet: Cunning Amulet x1, belt: Arachnid Mesh x1, boots: War Traveler x1, Left hand: Silence x1, Offhand: Medusa's Gaze x1, Offhand: Phoenix x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Sythra">Sythra</a></div>
+                <div>95</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Blade Throw:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Burst of Speed:3, Blade Fury:1, Claw Mastery:1</p>
+        <p><strong>Equipment:</strong> boots: Natalya's Soul x1, gloves: Laying of Hands x1, amulet: Highlord's Wrath x1, helmet: Natalya's Totem x1, body: Natalya's Shadow x1, ring: Wisp Projector x1, belt: Arachnid Mesh x1, Left hand: Plague x1, Left hand: Natalya's Mark x1, Offhand: Plague x1, Offhand: Phoenix x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=chupa_chups">chupa_chups</a></div>
+                <div>95</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blades of Ice:20, Blade Shield:10, Burst of Speed:3, Weapon Block:3, Blade Throw:1, Blade Fury:1, Claw Mastery:1, Fade:1, Tiger Strike:1, Dragon Talon:1, Fists of Fire:1, Dragon Claw:1, Claws of Thunder:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> gloves: Magefist x1, boots: Natalya's Soul x1, ring: Wisp Projector x1, ring: Bul-Kathos' Wedding Band x1, helmet: Natalya's Totem x1, body: Natalya's Shadow x1, amulet: Havoc Clasp x1, belt: Thundergod's Vigor x1, Left hand: Natalya's Mark x2, Offhand: Phoenix x1, Offhand: Plague x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=z_n">z_n</a></div>
+                <div>95</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Shadow Master:20, Blade Shield:5, Shock Web:1, Blade Throw:1, Charged Bolt Sentry:1, Blade Fury:1, Lightning Sentry:1, Death Sentry:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1, Mind Blast:1, Venom:1, Dragon Talon:1, Fists of Fire:1, Dragon Claw:1, Claws of Thunder:1, Blades of Ice:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> amulet: Bone Heart x1, belt: Arachnid Mesh x1, body: Treachery x1, ring: Wisp Projector x1, ring: Bul-Kathos' Wedding Band x1, gloves: Magefist x1, helmet: Harlequin Crest x1, boots: Shadow Dancer x1, Left hand: Call to Arms x1, Left hand: Stormshield x1, Offhand: Medusa's Gaze x1, Offhand: Blade of Ali Baba x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Skytech">Skytech</a></div>
+                <div>95</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Blade Throw:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Fury:2, Claw Mastery:1, Burst of Speed:1, Fade:1, Venom:1</p>
+        <p><strong>Equipment:</strong> gloves: Magefist x1, ring: Raven Frost x1, ring: Bitter Hold x1, amulet: Cunning Amulet x1, body: Enigma x1, Left hand: Plague x1, Left hand: Silence x1, Offhand: Cunning Claws x1, Offhand: Phoenix x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Fifteen">Fifteen</a></div>
+                <div>95</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Blade Fury:20, Wake of Inferno:20, Blade Shield:20, Blade Throw:4, Claw Mastery:1, Burst of Speed:1</p>
+        <p><strong>Equipment:</strong> boots: War Traveler x1, body: Enigma x1, gloves: Magefist x1, helmet: Harlequin Crest x1, amulet: Mara's Kaleidoscope x1, belt: Arachnid Mesh x1, ring: Wisp Projector x1, ring: Bul-Kathos' Wedding Band x1, Left hand: Mechanist's Bone Wand of Lower Resistance x1, Left hand: Silence x1, Offhand: Lidless Wall x1, Offhand: Phoenix x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Dimok">Dimok</a></div>
+                <div>95</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Blade Fury:20, Wake of Inferno:20, Blade Shield:20, Blade Throw:1, Claw Mastery:1, Burst of Speed:1, Dragon Talon:1, Dragon Claw:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> amulet: Mara's Kaleidoscope x1, ring: Raven Frost x1, ring: Wisp Projector x1, gloves: Chance Guards x1, boots: Sandstorm Trek x1, helmet: Andariel's Visage x1, body: Skullder's Ire x1, belt: Thundergod's Vigor x1, Left hand: Plague x1, Left hand: Phoenix x1, Offhand: Plague x1, Offhand: Phoenix x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=PoDTrapsin">PoDTrapsin</a></div>
+                <div>95</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Blade Fury:20, Wake of Inferno:20, Blade Shield:20, Blade Throw:4, Claw Mastery:1, Burst of Speed:1</p>
+        <p><strong>Equipment:</strong> body: Natalya's Shadow x1, boots: Natalya's Soul x1, ring: Bul-Kathos' Wedding Band x1, ring: Wisp Projector x1, helmet: Natalya's Totem x1, gloves: Laying of Hands x1, belt: Verdungo's Hearty Cord x1, amulet: Highlord's Wrath x1, Left hand: Plague x1, Left hand: Natalya's Mark x1, Offhand: Plague x1, Offhand: Phoenix x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=NyssaRaatko">NyssaRaatko</a></div>
+                <div>95</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Blade Fury:20, Wake of Inferno:20, Blade Shield:20, Blade Throw:3, Burst of Speed:2, Claw Mastery:1</p>
+        <p><strong>Equipment:</strong> gloves: Chance Guards x1, boots: Skull Track x1, amulet: Wraithra Torc x1, ring: Wisp Projector x1, ring: Stone Grip x1, body: Enigma x1, helmet: Harlequin Crest x1, belt: Verdungo's Hearty Cord x1, Left hand: Plague x1, Left hand: Phoenix x1, Offhand: Plague x1, Offhand: Stormshield x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=AccaBkace">AccaBkace</a></div>
+                <div>94</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Blade Fury:20, Wake of Inferno:20, Blade Shield:20, Blade Throw:1, Claw Mastery:1, Burst of Speed:1, Fade:1, Venom:1</p>
+        <p><strong>Equipment:</strong> ring: Raven Frost x1, ring: Wisp Projector x1, amulet: Cunning Amulet of the Titan x1, body: Chains of Honor x1, boots: War Traveler x1, helmet: Andariel's Visage x1, belt: Arachnid Mesh x1, gloves: Laying of Hands x1, Left hand: Plague x1, Left hand: Phoenix x1, Offhand: Plague x1, Offhand: Spirit x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Xhux">Xhux</a></div>
+                <div>94</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Burst of Speed:20, Fade:20, Claw Mastery:1, Psychic Hammer:1, Weapon Block:1, Cloak of Shadows:1, Shadow Warrior:1</p>
+        <p><strong>Equipment:</strong> belt: Arachnid Mesh x1, gloves: Magefist x1, amulet: Mara's Kaleidoscope x1, ring: The Stone of Jordan x1, ring: Wisp Projector x1, body: Enigma x1, boots: War Traveler x1, helmet: Harlequin Crest x1, Left hand: Heart of the Oak x1, Offhand: Phoenix x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Save_Unique">Save_Unique</a></div>
+                <div>94</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:19, Venom:18, Blade Throw:1, Blade Fury:1, Claw Mastery:1, Burst of Speed:1, Weapon Block:1, Fade:1, Fists of Fire:1, Claws of Thunder:1</p>
+        <p><strong>Equipment:</strong> helmet: Natalya's Totem x1, boots: Natalya's Soul x1, amulet: Corruption Beads x1, gloves: Laying of Hands x1, ring: Raven Frost x1, ring: Wisp Projector x1, belt: String of Ears x1, Left hand: Holy Thunder x1, Left hand: Natalya's Mark x1, Offhand: Rhyme x1, Offhand: Plague x1, body: Natalya's Shadow x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Sin_Fer">Sin_Fer</a></div>
+                <div>94</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Fury:19, Blade Throw:1, Claw Mastery:1, Burst of Speed:1, Weapon Block:1, Fade:1, Venom:1</p>
+        <p><strong>Equipment:</strong> belt: Arachnid Mesh x1, amulet: Cunning Amulet x1, ring: Wisp Projector x1, ring: Raven Frost x1, gloves: Laying of Hands x1, helmet: Natalya's Totem x1, body: Natalya's Shadow x1, boots: Natalya's Soul x1, Left hand: Plague x1, Left hand: Natalya's Mark x1, Offhand: Plague x1, Offhand: Phoenix x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Iora">Iora</a></div>
+                <div>94</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Blade Throw:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Fire Blast:15, Blade Fury:7, Claw Mastery:1, Burst of Speed:1</p>
+        <p><strong>Equipment:</strong> amulet: Highlord's Wrath x1, ring: Wisp Projector x1, ring: Raven Frost x1, body: Chains of Honor x1, helmet: Guillaume's Face x1, boots: Gore Rider x1, belt: String of Ears x1, gloves: Laying of Hands x1, Left hand: Cunning Blade Talons x1, Left hand: Natalya's Mark x1, Offhand: Cunning Scissors Katar of the Lamprey x1, Offhand: Phoenix x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=DieByFire">DieByFire</a></div>
+                <div>94</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Blade Fury:20, Wake of Inferno:20, Blade Shield:20, Blade Throw:3, Claw Mastery:1, Burst of Speed:1</p>
+        <p><strong>Equipment:</strong> belt: Arachnid Mesh x1, helmet: Harlequin Crest x1, ring: Carrion Wind x1, ring: Raven Frost x1, body: Enigma x1, gloves: Chance Guards x1, boots: Skull Stalker x1, amulet: Mara's Kaleidoscope x1, Left hand: Lidless Wall x1, Left hand: Phoenix x1, Offhand: Jade Talon x1, Offhand: Stormshield x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=DoBadoo">DoBadoo</a></div>
+                <div>94</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Shadow Master:20, Burst of Speed:12, Fade:3, Claw Mastery:1, Psychic Hammer:1, Weapon Block:1, Cloak of Shadows:1, Shadow Warrior:1, Dragon Talon:1, Dragon Claw:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> ring: Raven Frost x2, amulet: Cunning Amulet x1, body: Enigma x1, gloves: Laying of Hands x1, boots: War Traveler x1, helmet: Harlequin Crest x1, belt: Arachnid Mesh x1, Offhand: Medusa's Gaze x1, Offhand: Phoenix x1, Left hand: Heart of the Oak x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=aristotle">aristotle</a></div>
+                <div>94</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Lightning Sentry:20, Wake of Inferno:20, Death Sentry:20, Charged Bolt Sentry:2, Shock Web:1, Claw Mastery:1, Burst of Speed:1</p>
+        <p><strong>Equipment:</strong> body: Enigma x1, gloves: Chance Guards x1, amulet: Cunning Amulet x1, helmet: Harlequin Crest x1, ring: Wisp Projector x1, ring: Bitter Loop x1, belt: Goldwrap x1, boots: Beast Greaves x1, Left hand: Wyrm's Lich Wand of Lower Resistance x1, Left hand: Silence x1, Offhand: Medusa's Gaze x1, Offhand: Phoenix x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=SpiritTraps_a">SpiritTraps_a</a></div>
+                <div>94</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Burst of Speed:7, Shock Web:1, Blade Throw:1, Charged Bolt Sentry:1, Blade Fury:1, Lightning Sentry:1, Death Sentry:1, Claw Mastery:1, Fade:1, Dragon Talon:1, Fists of Fire:1, Dragon Claw:1, Claws of Thunder:1, Blades of Ice:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> belt: Goldwrap x1, boots: Natalya's Soul x1, gloves: Laying of Hands x1, ring: Wisp Projector x1, ring: Raven Frost x1, body: Natalya's Shadow x1, helmet: Natalya's Totem x1, amulet: Corruption Heart x1, Left hand: Silence x1, Left hand: Natalya's Mark x1, Offhand: Stormshield x1, Offhand: Phoenix x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Jiayuan">Jiayuan</a></div>
+                <div>94</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Fury:16, Blade Throw:1, Claw Mastery:1, Burst of Speed:1, Dragon Talon:1, Fists of Fire:1, Dragon Claw:1, Claws of Thunder:1, Blades of Ice:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> body: Natalya's Shadow x1, boots: Natalya's Soul x1, ring: Nagelring x2, helmet: Natalya's Totem x1, amulet: Cunning Amulet of Fortune x1, belt: Goldwrap x1, gloves: Chance Guards x1, Left hand: Flamebellow x1, Left hand: Natalya's Mark x1, Offhand: Phoenix x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=vendettalol">vendettalol</a></div>
+                <div>94</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Throw:19, Blade Fury:4, Claw Mastery:1, Burst of Speed:1</p>
+        <p><strong>Equipment:</strong> helmet: Harlequin Crest x1, amulet: Highlord's Wrath x1, boots: Natalya's Soul x1, ring: Raven Frost x1, ring: Death Circle x1, gloves: Laying of Hands x1, belt: Verdungo's Hearty Cord x1, body: Skin of the Vipermagi x1, Left hand: Greater Talons x1, Left hand: Phoenix x1, Offhand: Greater Talons x1, Offhand: Stormshield x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Ryzara_Trapsin">Ryzara_Trapsin</a></div>
+                <div>93</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Death Sentry:20, Shadow Master:14, Shock Web:1, Charged Bolt Sentry:1, Lightning Sentry:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1</p>
+        <p><strong>Equipment:</strong> ring: Raven Frost x1, ring: Bul-Kathos' Wedding Band x1, helmet: Harlequin Crest x1, gloves: Magefist x1, body: Naj's Light Plate x1, amulet: Cunning Amulet of Perfection x1, belt: Arachnid Mesh x1, boots: War Traveler x1, Left hand: Holy Thunder x1, Left hand: Silence x1, Offhand: Ancients' Pledge x1, Offhand: Phoenix x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=LE_ASSA">LE_ASSA</a></div>
+                <div>93</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Charged Bolt Sentry:20, Wake of Fire:20, Lightning Sentry:20, Wake of Inferno:20, Shock Web:1, Blade Throw:1, Claw Mastery:1, Burst of Speed:1</p>
+        <p><strong>Equipment:</strong> gloves: Magefist x1, belt: Arachnid Mesh x1, boots: Natalya's Soul x1, helmet: Natalya's Totem x1, body: Natalya's Shadow x1, Left hand: Silence x1, Left hand: Natalya's Mark x1, amulet: Mara's Kaleidoscope x1, ring: Raven Frost x1, ring: Bul-Kathos' Wedding Band x1, Offhand: Phoenix x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=poulkrads">poulkrads</a></div>
+                <div>93</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Burst of Speed:16, Blade Throw:1, Blade Fury:1, Claw Mastery:1, Psychic Hammer:1, Weapon Block:1, Cloak of Shadows:1, Shadow Warrior:1, Shadow Master:1</p>
+        <p><strong>Equipment:</strong> amulet: Cunning Amulet x1, ring: Raven Frost x1, ring: Havoc Knot x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=DeathBySneak">DeathBySneak</a></div>
+                <div>93</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Fury:15, Blade Throw:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1, Venom:1</p>
+        <p><strong>Equipment:</strong> boots: Natalya's Soul x1, ring: Raven Frost x1, ring: Havoc Gyre x1, amulet: Metalgrid x1, belt: String of Ears x1, helmet: Natalya's Totem x1, body: Natalya's Shadow x1, gloves: Laying of Hands x1, Left hand: Hellrack x1, Left hand: Natalya's Mark x1, Offhand: Swiftheart x1, Offhand: Bartuc's Cut-Throat x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Tainted">Tainted</a></div>
+                <div>93</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Burst of Speed:14, Blade Fury:8, Blade Throw:1, Claw Mastery:1</p>
+        <p><strong>Equipment:</strong> gloves: Laying of Hands x1, body: Natalya's Shadow x1, helmet: Natalya's Totem x1, ring: Corruption Coil x1, ring: Raven Frost x1, boots: Natalya's Soul x1, belt: Verdungo's Hearty Cord x1, amulet: Doom Emblem x1, Left hand: Plague x1, Left hand: Natalya's Mark x1, Offhand: Medusa's Gaze x1, Offhand: Phoenix x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Sooco">Sooco</a></div>
+                <div>93</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Blade Fury:20, Wake of Inferno:20, Blade Shield:20, Blade Throw:1, Claw Mastery:1, Burst of Speed:1, Fade:1</p>
+        <p><strong>Equipment:</strong> amulet: Viper Gorget x1, body: Natalya's Shadow x1, gloves: Magefist x1, boots: Natalya's Soul x1, helmet: Natalya's Totem x1, ring: Blood Gyre x1, ring: Havoc Coil x1, belt: Verdungo's Hearty Cord x1, Left hand: Gnarled Staff of Teleportation x1, Left hand: Natalya's Mark x1, Offhand: Plague x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=EhvanTrap">EhvanTrap</a></div>
+                <div>93</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Throw:16, Blade Fury:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Shadow Warrior:1, Shadow Master:1</p>
+        <p><strong>Equipment:</strong> amulet: Cunning Amulet x1, body: Enigma x1, belt: Arachnid Mesh x1, boots: Aldur's Advance x1, gloves: Magefist x1, ring: Wisp Projector x1, ring: Bul-Kathos' Wedding Band x1, helmet: Harlequin Crest x1, Left hand: Call to Arms x1, Left hand: Silence x1, Offhand: Lidless Wall x1, Offhand: Phoenix x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=KICKGOMAL">KICKGOMAL</a></div>
+                <div>93</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blades of Ice:20, Claws of Thunder:16, Claw Mastery:1, Burst of Speed:1, Fade:1, Venom:1, Dragon Talon:1, Fists of Fire:1, Dragon Claw:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> boots: Natalya's Soul x1, amulet: Mara's Kaleidoscope x1, body: Natalya's Shadow x1, helmet: Natalya's Totem x1, belt: Verdungo's Hearty Cord x1, gloves: Magefist x1, Left hand: Noxious Bone Wand of Lower Resistance x1, Left hand: Natalya's Mark x1, ring: Raven Frost x1, ring: Blood Coil x1, Offhand: Phoenix x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=DDAAAAACC">DDAAAAACC</a></div>
+                <div>93</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Lightning Sentry:20, Wake of Inferno:20, Death Sentry:20, Shock Web:1, Charged Bolt Sentry:1, Claw Mastery:1, Burst of Speed:1</p>
+        <p><strong>Equipment:</strong> gloves: Magefist x1, amulet: Mara's Kaleidoscope x1, body: Enigma x1, ring: The Stone of Jordan x1, ring: Wisp Projector x1, boots: Sandstorm Trek x1, belt: Arachnid Mesh x1, helmet: Harlequin Crest x1, Left hand: Call to Arms x1, Left hand: Silence x1, Offhand: Spirit x1, Offhand: Stormshield x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=rip_ley">rip_ley</a></div>
+                <div>92</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Burst of Speed:20, Shadow Master:18, Claw Mastery:1, Psychic Hammer:1, Weapon Block:1, Cloak of Shadows:1, Shadow Warrior:1</p>
+        <p><strong>Equipment:</strong> gloves: Magefist x1, body: Enigma x1, ring: The Stone of Jordan x2, helmet: PlagueRI Visage x1, boots: Grim Spur x1, amulet: Mara's Kaleidoscope x1, Left hand: Call to Arms x1, Left hand: Hellplague x1, Offhand: Spirit x1, Offhand: Phoenix x1, belt: Arachnid Mesh x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=zillah">zillah</a></div>
+                <div>92</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Fury:15, Shock Web:1, Blade Throw:1, Charged Bolt Sentry:1, Lightning Sentry:1, Death Sentry:1, Claw Mastery:1, Burst of Speed:1, Fade:1</p>
+        <p><strong>Equipment:</strong> belt: Arachnid Mesh x1, boots: Natalya's Soul x1, body: Enigma x1, gloves: Magefist x1, amulet: Cunning Amulet of the Ox x1, ring: Bul-Kathos' Wedding Band x1, ring: Wisp Projector x1, helmet: Andariel's Visage x1, Left hand: Plague x1, Left hand: Phoenix x1, Offhand: Plague x1, Offhand: Stormshield x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=breadx">breadx</a></div>
+                <div>92</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Shadow Master:20, Burst of Speed:17, Claw Mastery:1, Psychic Hammer:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1</p>
+        <p><strong>Equipment:</strong> gloves: Magefist x1, body: Enigma x1, ring: Bul-Kathos' Wedding Band x2, helmet: Harlequin Crest x1, amulet: Mara's Kaleidoscope x1, belt: Arachnid Mesh x1, boots: Natalya's Soul x1, Left hand: Call to Arms x1, Left hand: Silence x1, Offhand: Spirit x1, Offhand: Phoenix x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=TKey">TKey</a></div>
+                <div>92</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:18, Burst of Speed:10, Blade Fury:2, Shock Web:1, Blade Throw:1, Charged Bolt Sentry:1, Lightning Sentry:1, Death Sentry:1, Claw Mastery:1, Psychic Hammer:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1, Venom:1</p>
+        <p><strong>Equipment:</strong> ring: Wisp Projector x1, ring: Raven Frost x1, belt: Arachnid Mesh x1, Left hand: Call to Arms x1, Left hand: Silence x1, Offhand: Medusa's Gaze x1, Offhand: Phoenix x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=aloesoothe">aloesoothe</a></div>
+                <div>92</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Venom:15, Blade Fury:3, Blade Throw:1, Claw Mastery:1, Burst of Speed:1, Weapon Block:1, Fade:1</p>
+        <p><strong>Equipment:</strong> boots: Natalya's Soul x1, amulet: Cunning Amulet x1, helmet: Natalya's Totem x1, Left hand: Bone Wand of Lower Resistance x1, Left hand: Natalya's Mark x1, Offhand: Sigon's Guard x1, Offhand: Plague x1, body: Natalya's Shadow x1, gloves: Magefist x1, ring: Death Loop x1, ring: Entropy Spiral x1, belt: Verdungo's Hearty Cord x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=XYZ_Trapssin">XYZ_Trapssin</a></div>
+                <div>92</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Death Sentry:20, Blade Shield:6, Lightning Sentry:4, Burst of Speed:2, Shock Web:1, Blade Throw:1, Charged Bolt Sentry:1, Blade Fury:1, Claw Mastery:1, Psychic Hammer:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1, Shadow Master:1</p>
+        <p><strong>Equipment:</strong> gloves: Magefist x1, boots: Shadow Dancer x1, ring: Bul-Kathos' Wedding Band x1, ring: Wisp Projector x1, helmet: Harlequin Crest x1, body: Enigma x1, belt: Arachnid Mesh x1, amulet: Raven Eye x1, Offhand: Radament's Sphere x1, Offhand: Phoenix x1, Left hand: Heart of the Oak x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=ZenTaC">ZenTaC</a></div>
+                <div>92</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Fury:12, Blade Throw:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Cloak of Shadows:1, Fade:1, Mind Blast:1, Venom:1, Dragon Talon:1, Dragon Claw:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> amulet: Cunning Amulet x1, body: Natalya's Shadow x1, gloves: Laying of Hands x1, ring: Raven Frost x2, belt: String of Ears x1, boots: Natalya's Soul x1, helmet: Natalya's Totem x1, Offhand: Medusa's Gaze x1, Offhand: Spirit x1, Left hand: Natalya's Mark x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=day_zod">day_zod</a></div>
+                <div>92</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Throw:14, Shock Web:1, Blade Fury:1, Claw Mastery:1, Burst of Speed:1, Dragon Talon:1, Fists of Fire:1, Dragon Claw:1, Claws of Thunder:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> gloves: Dracul's Grasp x1, helmet: Harlequin Crest x1, boots: Gore Rider x1, ring: Raven Frost x1, ring: Wisp Projector x1, belt: Verdungo's Hearty Cord x1, body: Enigma x1, Left hand: Silence x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=TeddySinner">TeddySinner</a></div>
+                <div>92</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Fury:18, Blade Throw:1, Claw Mastery:1, Burst of Speed:1, Fade:1, Venom:1</p>
+        <p><strong>Equipment:</strong> body: Natalya's Shadow x1, boots: Natalya's Soul x1, belt: Verdungo's Hearty Cord x1, ring: Bul-Kathos' Wedding Band x1, ring: Wisp Projector x1, amulet: Cunning Amulet of Nirvana x1, gloves: Laying of Hands x1, helmet: Natalya's Totem x1, Left hand: Plague x1, Left hand: Natalya's Mark x1, Offhand: Plague x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=BulaKane">BulaKane</a></div>
+                <div>92</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blades of Ice:20, Claws of Thunder:16, Claw Mastery:1, Burst of Speed:1, Dragon Talon:1, Fists of Fire:1, Dragon Claw:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> amulet: Cunning Amulet x1, body: Natalya's Shadow x1, boots: Natalya's Soul x1, helmet: Natalya's Totem x1, gloves: Laying of Hands x1, Left hand: Naj's Puzzler x1, Left hand: Natalya's Mark x1, belt: String of Ears x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Beth_Smith">Beth_Smith</a></div>
+                <div>92</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Blade Fury:20, Wake of Inferno:20, Blade Shield:20, Blade Throw:1, Claw Mastery:1, Burst of Speed:1</p>
+        <p><strong>Equipment:</strong> gloves: Magefist x1, amulet: Cunning Amulet of the Tiger x1, body: Natalya's Shadow x1, boots: Natalya's Soul x1, belt: Immortal King's Detail x1, helmet: Natalya's Totem x1, ring: Wisp Projector x1, ring: Scintillating Ring x1, Left hand: Natalya's Mark x2, Offhand: Spirit x1, Offhand: Phoenix x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=MizzuSTA">MizzuSTA</a></div>
+                <div>91</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Lightning Sentry:20, Wake of Inferno:20, Charged Bolt Sentry:18, Shock Web:1, Death Sentry:1, Claw Mastery:1, Burst of Speed:1</p>
+        <p><strong>Equipment:</strong> body: Enigma x1, boots: War Traveler x1, belt: Verdungo's Hearty Cord x1, gloves: Magefist x1, amulet: Mara's Kaleidoscope x1, ring: Eagle Circle x1, ring: Nagelring x1, helmet: Kira's Guardian x1, Left hand: Plague x1, Offhand: Phoenix x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=TRI_Rikku">TRI_Rikku</a></div>
+                <div>91</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Shadow Master:3, Death Sentry:2, Shock Web:1, Blade Throw:1, Charged Bolt Sentry:1, Blade Fury:1, Lightning Sentry:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1, Venom:1</p>
+        <p><strong>Equipment:</strong> helmet: Harlequin Crest x1, amulet: Mara's Kaleidoscope x1, body: Treachery x1, ring: Bul-Kathos' Wedding Band x1, ring: The Stone of Jordan x1, belt: Arachnid Mesh x1, gloves: Laying of Hands x1, boots: Aldur's Advance x1, Left hand: Plague x1, Left hand: Silence x1, Offhand: Spirit x1, Offhand: Phoenix x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=RunSin">RunSin</a></div>
+                <div>91</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Fury:17, Blade Throw:1, Claw Mastery:1, Burst of Speed:1</p>
+        <p><strong>Equipment:</strong> ring: Dwarf Star x1, ring: Raven Frost x1, gloves: Magefist x1, belt: Arachnid Mesh x1, body: Enigma x1, helmet: Andariel's Visage x1, amulet: Cunning Amulet x1, boots: Aldur's Advance x1, Left hand: Silence x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Pitanga">Pitanga</a></div>
+                <div>91</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Shadow Master:9, Shock Web:1, Blade Throw:1, Charged Bolt Sentry:1, Blade Fury:1, Lightning Sentry:1, Death Sentry:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1</p>
+        <p><strong>Equipment:</strong> belt: Arachnid Mesh x1, Left hand: Edge x1, boots: Natalya's Soul x1, helmet: Natalya's Totem x1, body: Natalya's Shadow x1, gloves: Magefist x1, amulet: Mara's Kaleidoscope x1, ring: Dwarf Star x1, ring: Nature's Peace x1, Offhand: Cunning Scissors Katar of Performance x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Txiki">Txiki</a></div>
+                <div>91</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Wake of Fire:20, Lightning Sentry:20, Wake of Inferno:20, Death Sentry:20, Blade Fury:15, Fire Blast:2, Shock Web:1, Blade Throw:1, Charged Bolt Sentry:1, Claw Mastery:1, Burst of Speed:1</p>
+        <p><strong>Equipment:</strong> boots: Natalya's Soul x1, ring: Entropy Whorl x1, ring: Shadow Master x1, gloves: Laying of Hands x1, body: Natalya's Shadow x1, helmet: Natalya's Totem x1, amulet: Rune Necklace x1, belt: Verdungo's Hearty Cord x1, Left hand: Silence x1, Left hand: Natalya's Mark x1, Offhand: Spirit x1, Offhand: Bartuc's Cut-Throat x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=MOON_D">MOON_D</a></div>
+                <div>91</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Fury:13, Blade Throw:1, Claw Mastery:1, Burst of Speed:1, Dragon Talon:1, Fists of Fire:1, Dragon Claw:1, Claws of Thunder:1, Blades of Ice:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> boots: Natalya's Soul x1, belt: Verdungo's Hearty Cord x1, helmet: Natalya's Totem x1, ring: Blood Coil x1, ring: Raven Frost x1, body: Natalya's Shadow x1, amulet: Cunning Amulet of the Sentinel x1, gloves: Laying of Hands x1, Left hand: Spirit x1, Left hand: Phoenix x1, Offhand: Spirit x1, Offhand: Natalya's Mark x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Kraptrap">Kraptrap</a></div>
+                <div>91</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Fury:14, Burst of Speed:6, Blade Throw:1, Claw Mastery:1</p>
+        <p><strong>Equipment:</strong> ring: Raven Frost x1, ring: Bul-Kathos' Wedding Band x1, boots: Natalya's Soul x1, body: Natalya's Shadow x1, belt: Arachnid Mesh x1, helmet: Natalya's Totem x1, amulet: Highlord's Wrath x1, gloves: Magefist x1, Left hand: Golemlord's Bone Wand of Lower Resistance x1, Left hand: Natalya's Mark x1, Offhand: Plague x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=jimy-sin">jimy-sin</a></div>
+                <div>91</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Fury:5, Blade Throw:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1, Venom:1, Shadow Master:1, Dragon Talon:1, Fists of Fire:1, Dragon Claw:1, Claws of Thunder:1, Blades of Ice:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> ring: Cathan's Seal x1, ring: Dwarf Star x1, amulet: Cunning Amulet x1, boots: Natalya's Soul x1, gloves: Magefist x1, helmet: Natalya's Totem x1, body: Natalya's Shadow x1, belt: Bladebuckle x1, Left hand: Bone Wand of Lower Resistance x1, Left hand: Natalya's Mark x1, Offhand: Corpse Guard x1, Offhand: Spirit x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=MontySin">MontySin</a></div>
+                <div>91</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Fury:13, Shock Web:1, Blade Throw:1, Charged Bolt Sentry:1, Lightning Sentry:1, Death Sentry:1, Claw Mastery:1, Burst of Speed:1, Fade:1, Venom:1</p>
+        <p><strong>Equipment:</strong> amulet: Cunning Amulet x1, ring: Bul-Kathos' Wedding Band x1, ring: Raven Frost x1, boots: Natalya's Soul x1, body: Natalya's Shadow x1, gloves: Laying of Hands x1, helmet: Natalya's Totem x1, Left hand: Crystal Sword x1, Left hand: Natalya's Mark x1, belt: Goldwrap x1, Offhand: Spirit x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=ineedakey">ineedakey</a></div>
+                <div>90</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Fury:7, Burst of Speed:7, Blade Throw:6, Claw Mastery:1</p>
+        <p><strong>Equipment:</strong> amulet: Cunning Amulet of Warding x1, gloves: Magefist x1, ring: Raven Frost x1, ring: Dwarf Star x1, boots: Natalya's Soul x1, body: Enigma x1, belt: Arachnid Mesh x1, helmet: Andariel's Visage x1, Left hand: Call to Arms x1, Left hand: Silence x1, Offhand: Spirit x1, Offhand: Phoenix x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=asmoyy">asmoyy</a></div>
+                <div>90</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Burst of Speed:7, Blade Throw:1, Blade Fury:1, Claw Mastery:1, Psychic Hammer:1, Weapon Block:1, Cloak of Shadows:1, Shadow Warrior:1, Shadow Master:1, Dragon Talon:1, Fists of Fire:1, Dragon Claw:1, Claws of Thunder:1, Blades of Ice:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> boots: Natalya's Soul x1, ring: Raven Frost x1, ring: Carrion Wind x1, body: Natalya's Shadow x1, helmet: Natalya's Totem x1, gloves: Laying of Hands x1, belt: Thundergod's Vigor x1, amulet: The Rising Sun x1, Left hand: Holy Thunder x1, Left hand: Natalya's Mark x1, Offhand: Ancients' Pledge x1, Offhand: Phoenix x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Evanigh">Evanigh</a></div>
+                <div>90</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Fury:8, Blade Throw:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Cloak of Shadows:1, Fade:1, Venom:1, Dragon Talon:1, Fists of Fire:1, Dragon Claw:1, Claws of Thunder:1, Blades of Ice:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> gloves: Magefist x1, body: Natalya's Shadow x1, amulet: Cunning Amulet x1, ring: Rune Gyre x1, ring: Nagelring x1, belt: Goldwrap x1, helmet: Natalya's Totem x1, boots: Natalya's Soul x1, Left hand: Edge x1, Left hand: Natalya's Mark x1, Offhand: Spirit x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=dluFSin">dluFSin</a></div>
+                <div>90</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Fury:13, Blade Throw:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Cloak of Shadows:1, Fade:1, Mind Blast:1, Venom:1</p>
+        <p><strong>Equipment:</strong> boots: Natalya's Soul x1, amulet: Cunning Amulet x1, ring: The Stone of Jordan x1, ring: Blood Band x1, gloves: Laying of Hands x1, helmet: Natalya's Totem x1, Left hand: Cunning Scissors Katar x1, Left hand: Natalya's Mark x1, Offhand: Cunning Scissors Katar of the Giant x1, Offhand: Spirit x1, body: Natalya's Shadow x1, belt: Goldwrap x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=ing_ass">ing_ass</a></div>
+                <div>90</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Throw:17, Blade Fury:1, Claw Mastery:1, Burst of Speed:1, Fade:1</p>
+        <p><strong>Equipment:</strong> ring: Raven Frost x1, ring: The Stone of Jordan x1, boots: War Traveler x1, helmet: Harlequin Crest x1, belt: Arachnid Mesh x1, amulet: Cunning Amulet x1, Left hand: Plague x1, Left hand: Silence x1, gloves: Laying of Hands x1, body: Enigma x1, Offhand: Phoenix x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Alexx-assa">Alexx-assa</a></div>
+                <div>90</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Burst of Speed:20, Weapon Block:6, Claw Mastery:1, Psychic Hammer:1, Cloak of Shadows:1, Shadow Warrior:1</p>
+        <p><strong>Equipment:</strong> gloves: Magefist x1, ring: Raven Band x1, ring: Raven Frost x1, body: Skin of the Vipermagi x1, helmet: Harlequin Crest x1, belt: Arachnid Mesh x1, boots: Aldur's Advance x1, amulet: Cunning Amulet of Chain Lightning x1, Left hand: Spirit x1, Offhand: Moser's Blessed Circle x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Trap_God">Trap_God</a></div>
+                <div>90</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Shadow Master:15, Burst of Speed:9, Blade Shield:4, Shock Web:1, Blade Throw:1, Charged Bolt Sentry:1, Blade Fury:1, Lightning Sentry:1, Death Sentry:1, Claw Mastery:1, Psychic Hammer:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1</p>
+        <p><strong>Equipment:</strong> belt: Goldwrap x1, body: Treachery x1, amulet: Cunning Amulet x1, helmet: Raven Casque x1, gloves: Magefist x1, ring: Blood Hold x1, ring: Dread Coil x1, boots: Stone Shank x1, Left hand: Call to Arms x1, Left hand: Hexfire x1, Offhand: Spirit x1, Offhand: Phoenix x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=TPAAA">TPAAA</a></div>
+                <div>90</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Fury:11, Shock Web:1, Blade Throw:1, Charged Bolt Sentry:1, Lightning Sentry:1, Death Sentry:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Cloak of Shadows:1, Mind Blast:1</p>
+        <p><strong>Equipment:</strong> ring: Bul-Kathos' Wedding Band x1, ring: Raven Frost x1, amulet: Seraph's Hymn x1, gloves: Magefist x1, belt: Arachnid Mesh x1, boots: Raven Tread x1, body: Treachery x1, helmet: Death Horn x1, Left hand: Gnarled Staff of Teleportation x1, Left hand: Silence x1, Offhand: Phoenix x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Kungfool">Kungfool</a></div>
+                <div>90</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Death Sentry:20, Lightning Sentry:7, Shadow Warrior:6, Burst of Speed:2, Shock Web:1, Charged Bolt Sentry:1, Claw Mastery:1, Psychic Hammer:1, Weapon Block:1, Cloak of Shadows:1</p>
+        <p><strong>Equipment:</strong> ring: PlagueRI Hold x1, ring: Stone Gyre x1, body: Treachery x1, helmet: Death Casque x1, gloves: Spirit Grasp x1, amulet: Storm Mark x1, boots: Aldur's Advance x1, Left hand: Spirit x1, Left hand: Havoc Bite x1, Offhand: Ancients' Pledge x1, Offhand: Blood Claw x1, belt: Lenymo x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Mab_three">Mab_three</a></div>
+                <div>90</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Fury:17, Blade Throw:1, Claw Mastery:1, Burst of Speed:1, Fade:1</p>
+        <p><strong>Equipment:</strong> gloves: Magefist x1, helmet: Harlequin Crest x1, ring: Bul-Kathos' Wedding Band x1, boots: War Traveler x1, amulet: Wraithra Mark x1, Left hand: Bartuc's Cut-Throat x1, Offhand: Bartuc's Cut-Throat x1, Offhand: Phoenix x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Elesa">Elesa</a></div>
+                <div>90</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:17, Claws of Thunder:8, Fists of Fire:7, Blades of Ice:7, Shock Web:1, Blade Throw:1, Charged Bolt Sentry:1, Blade Fury:1, Lightning Sentry:1, Death Sentry:1, Blade Shield:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1, Mind Blast:1, Venom:1, Shadow Master:1, Tiger Strike:1, Dragon Talon:1, Dragon Claw:1, Cobra Strike:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> gloves: Brimstone Hand x1, ring: Raven Frost x1, boots: War Traveler x1, belt: String of Ears x1, Left hand: Demon Limb x1, Left hand: Bartuc's Cut-Throat x1, Offhand: Medusa's Gaze x1, Offhand: Bartuc's Cut-Throat x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=HaveISinned">HaveISinned</a></div>
+                <div>90</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Fury:14, Blade Throw:1, Claw Mastery:1, Burst of Speed:1, Fade:1, Venom:1</p>
+        <p><strong>Equipment:</strong> ring: Nagelring x1, ring: Raven Frost x1, boots: Natalya's Soul x1, body: Natalya's Shadow x1, belt: Verdungo's Hearty Cord x1, gloves: Laying of Hands x1, helmet: Natalya's Totem x1, Left hand: GhoulRI Bite x1, Left hand: Natalya's Mark x1, Offhand: Cunning Scissors Katar x1, Offhand: Spirit x1, amulet: Cunning Amulet x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=ddagger">ddagger</a></div>
+                <div>90</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Fury:8, Shock Web:1, Blade Throw:1, Charged Bolt Sentry:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1, Mind Blast:1, Venom:1, Shadow Master:1</p>
+        <p><strong>Equipment:</strong> boots: Gore Rider x1, belt: Verdungo's Hearty Cord x1, amulet: Cunning Amulet of the Wolf x1, helmet: Kira's Guardian x1, ring: Wisp Projector x1, ring: Carrion Wind x1, body: Enigma x1, gloves: Laying of Hands x1, Left hand: Scissors Quhab x1, Left hand: Plague x1, Offhand: Suwayyah x1, Offhand: Phoenix x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=konkittttt">konkittttt</a></div>
+                <div>90</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blades of Ice:12, Blade Throw:1, Blade Fury:1, Claw Mastery:1, Burst of Speed:1, Dragon Talon:1, Fists of Fire:1, Dragon Claw:1, Claws of Thunder:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> ring: Raven Frost x1, ring: Carrion Wind x1, boots: Natalya's Soul x1, helmet: Natalya's Totem x1, body: Natalya's Shadow x1, belt: Verdungo's Hearty Cord x1, gloves: Magefist x1, amulet: Highlord's Wrath x1, Left hand: Natalya's Mark x1, Offhand: Phoenix x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=PIG_ASN">PIG_ASN</a></div>
+                <div>90</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Lightning Sentry:20, Wake of Inferno:20, Death Sentry:14, Shock Web:1, Charged Bolt Sentry:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Cloak of Shadows:1, Mind Blast:1</p>
+        <p><strong>Equipment:</strong> amulet: Grim Clasp x1, gloves: Magefist x1, Left hand: Edge x1, Left hand: Plague x1, Offhand: Dragonbreath x1, Offhand: Natalya's Mark x1, helmet: Natalya's Totem x1, boots: Natalya's Soul x1, body: Natalya's Shadow x1, ring: Shadow Eye x1, ring: Rune Turn x1, belt: Credendum x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Lucydia">Lucydia</a></div>
+                <div>90</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Weapon Block:6, Burst of Speed:4, Shock Web:1, Blade Throw:1, Charged Bolt Sentry:1, Blade Fury:1, Lightning Sentry:1, Death Sentry:1, Claw Mastery:1, Psychic Hammer:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1</p>
+        <p><strong>Equipment:</strong> amulet: Cunning Amulet x1, boots: Natalya's Soul x1, ring: Raven Frost x1, ring: Nature's Peace x1, helmet: Natalya's Totem x1, body: Natalya's Shadow x1, gloves: Soul Drainer x1, belt: String of Ears x1, Left hand: Cobalt Bone Wand of Lower Resistance x1, Left hand: Natalya's Mark x1, Offhand: Cunning Scissors Katar x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=SKOTER_SIN">SKOTER_SIN</a></div>
+                <div>90</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Death Sentry:20, Lightning Sentry:13, Burst of Speed:5, Shock Web:1, Charged Bolt Sentry:1, Claw Mastery:1</p>
+        <p><strong>Equipment:</strong> ring: Nagelring x1, ring: Beast Turn x1, belt: M'avina's Tenet x1, amulet: Cunning Amulet x1, gloves: Magefist x1, helmet: Harlequin Crest x1, boots: Natalya's Soul x1, Left hand: Naj's Puzzler x1, Left hand: Heart of the Oak x1, body: Arkaine's Valor x1, Offhand: Spirit x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=hihihaha">hihihaha</a></div>
+                <div>89</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Burst of Speed:20, Blade Shield:14, Blade Throw:1, Blade Fury:1, Claw Mastery:1</p>
+        <p><strong>Equipment:</strong> amulet: Cunning Amulet x1, helmet: Andariel's Visage x1, gloves: Magefist x1, boots: Aldur's Advance x1, belt: Goldwrap x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Choi_a">Choi_a</a></div>
+                <div>89</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Death Sentry:20, Lightning Sentry:14, Shock Web:1, Charged Bolt Sentry:1, Claw Mastery:1, Burst of Speed:1, Fade:1</p>
+        <p><strong>Equipment:</strong> ring: Raven Frost x1, ring: Storm Circle x1, belt: Goldwrap x1, boots: Natalya's Soul x1, gloves: Chance Guards x1, body: Skin of the Vipermagi x1, amulet: Highlord's Wrath x1, helmet: Harlequin Crest x1, Left hand: Tomb Wand of Lower Resistance x1, Left hand: Spirit x1, Offhand: Spirit x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=DIDITAN">DIDITAN</a></div>
+                <div>89</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blades of Ice:20, Blade Shield:11, Blade Throw:1, Blade Fury:1, Claw Mastery:1, Burst of Speed:1, Dragon Talon:1, Fists of Fire:1, Dragon Claw:1, Claws of Thunder:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> boots: Natalya's Soul x1, ring: Beast Grip x1, ring: Raven Frost x1, belt: Nosferatu's Coil x1, helmet: Natalya's Totem x1, body: Natalya's Shadow x1, gloves: Soul Drainer x1, amulet: Mara's Kaleidoscope x1, Left hand: Call to Arms x1, Left hand: Natalya's Mark x1, Offhand: Spirit x1, Offhand: Stormshield x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=bachavole">bachavole</a></div>
+                <div>89</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Burst of Speed:20, Shadow Master:10, Claw Mastery:1, Psychic Hammer:1, Weapon Block:1, Cloak of Shadows:1, Shadow Warrior:1, Mind Blast:1</p>
+        <p><strong>Equipment:</strong> </p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=CaptainKungFury">CaptainKungFury</a></div>
+                <div>89</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Burst of Speed:16, Shadow Master:14, Weapon Block:4, Fade:2, Claw Mastery:1, Psychic Hammer:1, Cloak of Shadows:1, Shadow Warrior:1</p>
+        <p><strong>Equipment:</strong> boots: Storm Trample x1, body: Treachery x1, belt: Goldwrap x1, amulet: Cunning Amulet x1, ring: Nagelring x1, ring: Blood Touch x1, helmet: Pain Mask x1, Left hand: Skull Collector x1, Left hand: Cunning Scissors Katar of Carnage x1, gloves: Magefist x1, Offhand: Cunning Blade Talons of Readiness x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Selexus">Selexus</a></div>
+                <div>89</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Lightning Sentry:20, Wake of Inferno:20, Death Sentry:15, Shock Web:1, Charged Bolt Sentry:1, Claw Mastery:1, Burst of Speed:1, Fade:1</p>
+        <p><strong>Equipment:</strong> amulet: Cunning Amulet of Regeneration x1, helmet: Hailstone Cowl x1, gloves: Magefist x1, ring: Nagelring x1, ring: Bul-Kathos' Wedding Band x1, body: Duriel's Shell x1, boots: War Traveler x1, belt: Arachnid Mesh x1, Left hand: Hibernal War Staff of Teleportation x1, Left hand: Heart of the Oak x1, Offhand: Spirit x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=jelly_traps">jelly_traps</a></div>
+                <div>89</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Burst of Speed:6, Blade Throw:1, Blade Fury:1, Claw Mastery:1, Psychic Hammer:1, Cloak of Shadows:1, Fade:1, Mind Blast:1, Venom:1</p>
+        <p><strong>Equipment:</strong> body: Skin of the Vipermagi x1, ring: Wisp Projector x1, ring: Raven Frost x1, boots: Soul Brogues x1, belt: Arachnid Mesh x1, gloves: Magefist x1, helmet: Andariel's Visage x1, amulet: Cunning Amulet of the Giant x1, Left hand: Runic Talons x1, Left hand: Silence x1, Offhand: Suwayyah x1, Offhand: Phoenix x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Assasinnnnn">Assasinnnnn</a></div>
+                <div>88</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Fury:15, Blade Shield:11, Blade Throw:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1, Shadow Master:1</p>
+        <p><strong>Equipment:</strong> amulet: Cunning Amulet of Control x1, ring: Nagelring x2, gloves: Magefist x1, boots: Natalya's Soul x1, belt: Verdungo's Hearty Cord x1, helmet: Harlequin Crest x1, body: Skin of the Vipermagi x1, Left hand: Battle Staff of Teleportation x1, Left hand: Spirit x1, Offhand: Spirit x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Ganx_Ass">Ganx_Ass</a></div>
+                <div>88</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:10, Blades of Ice:9, Shock Web:1, Blade Throw:1, Charged Bolt Sentry:1, Blade Fury:1, Lightning Sentry:1, Death Sentry:1, Claw Mastery:1, Burst of Speed:1, Dragon Talon:1, Fists of Fire:1, Dragon Claw:1, Claws of Thunder:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> ring: Dwarf Star x1, ring: Corruption Band x1, helmet: Natalya's Totem x1, boots: Natalya's Soul x1, body: Natalya's Shadow x1, belt: Goldwrap x1, gloves: Laying of Hands x1, amulet: Cunning Amulet of Frost Shield x1, Left hand: Natalya's Mark x1, Offhand: Spirit x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=SivQ">SivQ</a></div>
+                <div>88</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Death Sentry:20, Weapon Block:8, Shock Web:1, Charged Bolt Sentry:1, Lightning Sentry:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1, Shadow Master:1</p>
+        <p><strong>Equipment:</strong> boots: Natalya's Soul x1, belt: Immortal King's Detail x1, gloves: Laying of Hands x1, ring: Raven Frost x1, ring: Bul-Kathos' Wedding Band x1, amulet: Cunning Amulet of the Mammoth x1, body: Ormus' Robes x1, helmet: Harlequin Crest x1, Left hand: Naj's Puzzler x1, Left hand: Cunning Blade Talons of Carnage x1, Offhand: Cunning Scissors Quhab x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Moisturized">Moisturized</a></div>
+                <div>88</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Fury:6, Blade Throw:1, Claw Mastery:1, Burst of Speed:1, Fade:1</p>
+        <p><strong>Equipment:</strong> gloves: Laying of Hands x1, belt: Verdungo's Hearty Cord x1, amulet: Cunning Amulet of Measure x1, ring: Bul-Kathos' Wedding Band x1, ring: Raven Frost x1, body: Natalya's Shadow x1, helmet: Natalya's Totem x1, boots: Natalya's Soul x1, Left hand: Hand Scythe x1, Left hand: Natalya's Mark x1, Offhand: Scissors Quhab x1, Offhand: Spirit x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Cryptik">Cryptik</a></div>
+                <div>87</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Fire Blast:19, Blade Throw:10, Blade Fury:1, Claw Mastery:1, Burst of Speed:1, Dragon Talon:1, Fists of Fire:1, Dragon Claw:1, Claws of Thunder:1, Blades of Ice:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> body: Natalya's Shadow x1, belt: String of Ears x1, boots: Natalya's Soul x1, gloves: Laying of Hands x1, helmet: Natalya's Totem x1, amulet: Cunning Amulet of the Apprentice x1, ring: Raven Frost x1, Left hand: Natalya's Mark x2, Offhand: Greater Talons x1, Offhand: Phoenix x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Ifrit_theSinner">Ifrit_theSinner</a></div>
+                <div>87</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Fury:11, Blade Throw:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Cloak of Shadows:1, Fade:1, Venom:1</p>
+        <p><strong>Equipment:</strong> ring: Raven Frost x1, ring: Skull Spiral x1, helmet: Wraithra Hood x1, gloves: Dracul's Grasp x1, boots: War Traveler x1, body: Treachery x1, belt: M'avina's Tenet x1, Left hand: Holy Thunder x1, Left hand: Bartuc's Cut-Throat x1, Offhand: Rhyme x1, Offhand: Bartuc's Cut-Throat x1, amulet: Cunning Amulet x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=woup">woup</a></div>
+                <div>87</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Throw:1, Blade Fury:1, Claw Mastery:1, Burst of Speed:1, Weapon Block:1, Fade:1</p>
+        <p><strong>Equipment:</strong> gloves: Magefist x1, ring: Raven Frost x1, ring: GhoulRI Hold x1, belt: Arachnid Mesh x1, amulet: Mara's Kaleidoscope x1, body: Natalya's Shadow x1, boots: Natalya's Soul x1, helmet: Harlequin Crest x1, Left hand: Plague x1, Left hand: Spirit x1, Offhand: PlagueRI Fist x1, Offhand: Spirit x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=FastEddie">FastEddie</a></div>
+                <div>87</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Throw:10, Blade Fury:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Cloak of Shadows:1, Fade:1, Mind Blast:1, Venom:1</p>
+        <p><strong>Equipment:</strong> amulet: Cunning Amulet x1, helmet: Natalya's Totem x1, body: Natalya's Shadow x1, ring: Raven Frost x1, ring: Carrion Wind x1, boots: Natalya's Soul x1, belt: Credendum x1, gloves: Laying of Hands x1, Left hand: Cunning Blade Talons of Maiming x1, Left hand: Natalya's Mark x1, Offhand: Cunning Scissors Katar x1, Offhand: Spirit x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=IFirstTimeBNice">IFirstTimeBNice</a></div>
+                <div>87</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Burst of Speed:5, Blade Throw:2, Blade Fury:1, Claw Mastery:1, Weapon Block:1, Fade:1, Venom:1, Dragon Talon:1, Fists of Fire:1, Dragon Claw:1, Claws of Thunder:1, Blades of Ice:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> helmet: Natalya's Totem x1, boots: Natalya's Soul x1, ring: Raven Frost x1, ring: Manald Heal x1, belt: Verdungo's Hearty Cord x1, gloves: Laying of Hands x1, amulet: Cunning Amulet x1, Left hand: Bartuc's Cut-Throat x1, Left hand: Natalya's Mark x1, body: Natalya's Shadow x1, Offhand: Bartuc's Cut-Throat x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=So">So</a></div>
+                <div>87</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Throw:1, Blade Fury:1, Claw Mastery:1, Burst of Speed:1, Weapon Block:1, Fade:1, Venom:1, Dragon Talon:1, Fists of Fire:1, Dragon Claw:1, Claws of Thunder:1, Blades of Ice:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> gloves: Magefist x1, belt: String of Ears x1, amulet: Cunning Amulet of the Titan x1, ring: Raven Frost x1, ring: Wisp Projector x1, helmet: Natalya's Totem x1, body: Natalya's Shadow x1, boots: Natalya's Soul x1, Left hand: Wrist Sword x1, Left hand: Natalya's Mark x1, Offhand: Feral Claws x1, Offhand: Plague x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=jooak-ass">jooak-ass</a></div>
+                <div>87</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Venom:4, Blades of Ice:3, Blade Throw:1, Blade Fury:1, Claw Mastery:1, Burst of Speed:1, Fade:1, Dragon Talon:1, Fists of Fire:1, Dragon Claw:1, Claws of Thunder:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> ring: Manald Heal x1, ring: Storm Circle x1, helmet: Natalya's Totem x1, boots: Natalya's Soul x1, body: Natalya's Shadow x1, amulet: Cunning Amulet of the Jackal x1, gloves: Laying of Hands x1, belt: String of Ears x1, Left hand: Natalya's Mark x1, Offhand: Spirit x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=zay_ass">zay_ass</a></div>
+                <div>87</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Burst of Speed:20, Death Sentry:10, Shock Web:1, Charged Bolt Sentry:1, Lightning Sentry:1, Claw Mastery:1, Psychic Hammer:1, Weapon Block:1, Cloak of Shadows:1, Shadow Warrior:1</p>
+        <p><strong>Equipment:</strong> amulet: Cunning Amulet of Craftmanship x1, gloves: Magefist x1, Left hand: Angel's Battle Staff of Teleportation x1, Left hand: Gull x1, boots: Aldur's Advance x1, Offhand: Spirit x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=nokkjj">nokkjj</a></div>
+                <div>87</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Blade Throw:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:14, Blade Fury:1, Claw Mastery:1, Burst of Speed:1, Fade:1</p>
+        <p><strong>Equipment:</strong> helmet: Skull Brow x1, gloves: Laying of Hands x1, ring: Raven Frost x1, ring: Manald Heal x1, body: Treachery x1, amulet: Cunning Amulet of Worth x1, boots: Aldur's Advance x1, belt: Arachnid Mesh x1, Left hand: Silence x1, Left hand: Phoenix x1, Offhand: Spirit x2</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Priscent">Priscent</a></div>
+                <div>87</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Death Sentry:20, Shadow Master:8, Shock Web:1, Charged Bolt Sentry:1, Lightning Sentry:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1</p>
+        <p><strong>Equipment:</strong> amulet: Cunning Amulet x1, helmet: Spirit Circlet x1, gloves: Magefist x1, ring: Dwarf Star x1, boots: Natalya's Soul x1, Left hand: Flaming Grim Wand of Lower Resistance x1, Left hand: Spirit x1, Offhand: Ancients' Pledge x1, Offhand: Spirit x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=cphk_trap">cphk_trap</a></div>
+                <div>87</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blades of Ice:5, Claw Mastery:2, Blade Throw:1, Blade Fury:1, Burst of Speed:1, Weapon Block:1, Fade:1, Tiger Strike:1, Dragon Talon:1, Fists of Fire:1, Dragon Claw:1, Claws of Thunder:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> belt: Goldwrap x1, ring: Raven Frost x1, ring: Carrion Wind x1, amulet: Cunning Amulet x1, helmet: Natalya's Totem x1, gloves: Magefist x1, Left hand: War Staff of Teleportation x1, Left hand: Natalya's Mark x1, boots: Natalya's Soul x1, body: Natalya's Shadow x1, Offhand: Cunning Blade Talons x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=BunteSinn">BunteSinn</a></div>
+                <div>87</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Fury:8, Blade Throw:1, Claw Mastery:1, Burst of Speed:1</p>
+        <p><strong>Equipment:</strong> gloves: Magefist x1, ring: Raven Frost x1, boots: War Traveler x1, amulet: Cunning Amulet of Might x1, helmet: Harlequin Crest x1, body: Enigma x1, Left hand: Harmony x1, Left hand: Silence x1, Offhand: Phoenix x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=ToeLicker">ToeLicker</a></div>
+                <div>86</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Burst of Speed:20, Shadow Master:3, Shock Web:1, Blade Throw:1, Charged Bolt Sentry:1, Blade Fury:1, Lightning Sentry:1, Death Sentry:1, Blade Shield:1, Claw Mastery:1, Psychic Hammer:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1, Mind Blast:1</p>
+        <p><strong>Equipment:</strong> gloves: Magefist x1, boots: Natalya's Soul x1, body: Enigma x1, ring: Corruption Loop x1, ring: Raven Frost x1, belt: Credendum x1, helmet: Harlequin Crest x1, Left hand: Naj's Puzzler x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=clamydia">clamydia</a></div>
+                <div>86</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:17, Blade Fury:13, Blade Throw:1, Claw Mastery:1, Burst of Speed:1, Dragon Talon:1, Dragon Claw:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> body: Natalya's Shadow x1, boots: Natalya's Soul x1, gloves: Magefist x1, belt: Tal Rasha's Fine-Spun Cloth x1, helmet: Natalya's Totem x1, amulet: Cunning Amulet x1, ring: Bitter Finger x1, ring: Entropy Grip x1, Left hand: Natalya's Mark x1, Offhand: Spirit x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=LinearB">LinearB</a></div>
+                <div>86</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Fury:13, Blade Throw:1, Claw Mastery:1, Burst of Speed:1</p>
+        <p><strong>Equipment:</strong> amulet: Cunning Amulet of the Fox x1, boots: Natalya's Soul x1, gloves: Magefist x1, belt: Verdungo's Hearty Cord x1, ring: Raven Frost x1, ring: Nagelring x1, helmet: Natalya's Totem x1, body: Natalya's Shadow x1, Left hand: Dragon's Yew Wand of Lower Resistance x1, Left hand: Natalya's Mark x1, Offhand: Monarch x1, Offhand: Spirit x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Honey-Tavern">Honey-Tavern</a></div>
+                <div>86</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Shadow Master:20, Blade Shield:7, Blade Throw:1, Blade Fury:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1, Venom:1</p>
+        <p><strong>Equipment:</strong> ring: Corruption Loop x1, ring: Raven Frost x1, helmet: Fiendra Mask x1, body: Treachery x1, boots: Tancred's Hobnails x1, gloves: Magefist x1, belt: Credendum x1, amulet: Cunning Amulet of Memory x1, Left hand: Shadow Scissors Quhab x1, Left hand: Oath x1, Offhand: Witch-hunter's Blade Talons of Readiness x1, Offhand: Spirit x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=WTF_Ok">WTF_Ok</a></div>
+                <div>86</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:17, Burst of Speed:6, Shock Web:1, Blade Throw:1, Charged Bolt Sentry:1, Blade Fury:1, Lightning Sentry:1, Death Sentry:1, Claw Mastery:1, Psychic Hammer:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1, Venom:1, Shadow Master:1</p>
+        <p><strong>Equipment:</strong> ring: Dread Whorl x1, ring: Raven Frost x1, belt: Immortal King's Detail x1, boots: Immortal King's Pillar x1, gloves: Magefist x1, helmet: Harlequin Crest x1, amulet: Cunning Amulet x1, body: Skullder's Ire x1, Left hand: Spirit x1, Offhand: Spirit x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Devoraan">Devoraan</a></div>
+                <div>86</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Blade Throw:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Fury:10, Fire Blast:3, Claw Mastery:1, Burst of Speed:1, Fade:1, Venom:1</p>
+        <p><strong>Equipment:</strong> gloves: Laying of Hands x1, boots: Shadow Dancer x1, belt: Nosferatu's Coil x1, ring: Raven Frost x1, ring: Wisp Projector x1, body: Skin of the Vipermagi x1, amulet: Cunning Amulet of the Mammoth x1, Left hand: Greater Claws x1, Left hand: Bartuc's Cut-Throat x1, Offhand: Greater Claws x1, Offhand: Spirit x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=FireMoiLsac">FireMoiLsac</a></div>
+                <div>85</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Fury:2, Shock Web:1, Blade Throw:1, Charged Bolt Sentry:1, Lightning Sentry:1, Death Sentry:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1, Venom:1, Shadow Master:1</p>
+        <p><strong>Equipment:</strong> ring: Raven Gyre x1, ring: Dwarf Star x1, amulet: Cunning Amulet of the Mind x1, Left hand: Leaf x1, Left hand: Natalya's Mark x1, body: Natalya's Shadow x1, boots: Natalya's Soul x1, gloves: Magefist x1, belt: Goldwrap x1, helmet: Natalya's Totem x1, Offhand: Spirit x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Kashik">Kashik</a></div>
+                <div>85</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Fury:3, Burst of Speed:3, Claw Mastery:2, Blade Throw:1, Weapon Block:1, Dragon Talon:1, Fists of Fire:1, Dragon Claw:1, Claws of Thunder:1, Blades of Ice:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> boots: Natalya's Soul x1, ring: Chaos Hold x1, ring: Nagelring x1, helmet: Natalya's Totem x1, body: Natalya's Shadow x1, amulet: Cunning Amulet of Enlightenment x1, gloves: Laying of Hands x1, Left hand: Edge x1, Left hand: Natalya's Mark x1, belt: Goldwrap x1, Offhand: Bartuc's Cut-Throat x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=daossin">daossin</a></div>
+                <div>85</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Wake of Fire:20, Wake of Inferno:20, Death Sentry:20, Blade Shield:20, Blade Fury:2, Fire Blast:1, Shock Web:1, Blade Throw:1, Charged Bolt Sentry:1, Lightning Sentry:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1, Venom:1, Shadow Master:1</p>
+        <p><strong>Equipment:</strong> belt: String of Ears x1, ring: Raven Frost x1, ring: Carrion Wind x1, helmet: Natalya's Totem x1, body: Natalya's Shadow x1, boots: Natalya's Soul x1, amulet: PlagueRI Mark x1, gloves: Dracul's Grasp x1, Left hand: Frostwind x1, Left hand: Natalya's Mark x1, Offhand: Spirit x1, Offhand: Stormshield x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Cigankata">Cigankata</a></div>
+                <div>85</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Throw:11, Blade Fury:1, Claw Mastery:1, Burst of Speed:1, Fade:1, Venom:1</p>
+        <p><strong>Equipment:</strong> gloves: Magefist x1, ring: Raven Frost x1, ring: Bul-Kathos' Wedding Band x1, boots: Aldur's Advance x1, amulet: Cunning Amulet x1, helmet: Andariel's Visage x1, belt: Arachnid Mesh x1, body: Enigma x1, Left hand: Plague x1, Left hand: Silence x1, Offhand: Suwayyah x1, Offhand: Phoenix x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=AngelBoI">AngelBoI</a></div>
+                <div>85</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Fury:10, Blade Throw:1, Claw Mastery:1, Burst of Speed:1, Weapon Block:1, Fade:1, Venom:1</p>
+        <p><strong>Equipment:</strong> amulet: Cunning Amulet x1, gloves: Magefist x1, helmet: Natalya's Totem x1, body: Natalya's Shadow x1, boots: Natalya's Soul x1, belt: Verdungo's Hearty Cord x1, Left hand: Bone Wand of Lower Resistance x1, Left hand: Natalya's Mark x1, ring: Carrion Wind x1, ring: Raven Frost x1, Offhand: Bartuc's Cut-Throat x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=TaintedXFlames">TaintedXFlames</a></div>
+                <div>85</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Fury:9, Blade Throw:1, Claw Mastery:1, Burst of Speed:1, Weapon Block:1, Fade:1, Venom:1</p>
+        <p><strong>Equipment:</strong> ring: Bone Grip x1, ring: Wraithra Gyre x1, amulet: Cunning Amulet x1, body: Natalya's Shadow x1, boots: Natalya's Soul x1, gloves: Demon Hold x1, belt: Credendum x1, helmet: Natalya's Totem x1, Left hand: Screaming War Staff of Teleportation x1, Left hand: Natalya's Mark x1, Offhand: Spirit x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Saal">Saal</a></div>
+                <div>85</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blades of Ice:18, Burst of Speed:7, Claw Mastery:1, Weapon Block:1, Fade:1, Venom:1, Dragon Talon:1, Fists of Fire:1, Dragon Claw:1, Claws of Thunder:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> ring: Havoc Coil x1, ring: Skull Finger x1, amulet: Cunning Amulet x1, belt: String of Ears x1, gloves: Magefist x1, body: Natalya's Shadow x1, helmet: Natalya's Totem x1, boots: Natalya's Soul x1, Left hand: Suwayyah x1, Left hand: Natalya's Mark x1, Offhand: Bartuc's Cut-Throat x1, Offhand: Spirit x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=KritZii">KritZii</a></div>
+                <div>85</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Wake of Fire:20, Blade Fury:20, Wake of Inferno:20, Blade Shield:20, Blade Throw:8, Fire Blast:6, Claw Mastery:1, Burst of Speed:1</p>
+        <p><strong>Equipment:</strong> boots: Natalya's Soul x1, helmet: Natalya's Totem x1, ring: Raven Frost x1, ring: Carrion Wind x1, amulet: Highlord's Wrath x1, body: Natalya's Shadow x1, gloves: Magefist x1, Left hand: Naj's Puzzler x1, Left hand: Natalya's Mark x1, belt: Verdungo's Hearty Cord x1, Offhand: Spirit x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Sddrffe">Sddrffe</a></div>
+                <div>85</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Fury:8, Blade Throw:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Cloak of Shadows:1, Fade:1, Mind Blast:1, Venom:1</p>
+        <p><strong>Equipment:</strong> amulet: Cunning Amulet of the Apprentice x1, boots: Natalya's Soul x1, gloves: Laying of Hands x1, body: Natalya's Shadow x1, belt: Corpse Cord x1, ring: Wisp Projector x1, helmet: Natalya's Totem x1, Left hand: Natalya's Mark x1, Offhand: Spirit x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Pooters">Pooters</a></div>
+                <div>85</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:18, Shock Web:1, Blade Throw:1, Charged Bolt Sentry:1, Blade Fury:1, Lightning Sentry:1, Death Sentry:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1, Shadow Master:1</p>
+        <p><strong>Equipment:</strong> </p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=wewea">wewea</a></div>
+                <div>85</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Wake of Fire:20, Lightning Sentry:20, Death Sentry:20, Wake of Inferno:19, Fire Blast:9, Burst of Speed:5, Shock Web:1, Charged Bolt Sentry:1, Claw Mastery:1</p>
+        <p><strong>Equipment:</strong> belt: Gloom's Trap x1, ring: Scintillating Ring of Regeneration x1, ring: Shimmering Ring of Fortune x1, body: Treachery x1, gloves: Gale Hand x1, helmet: Raven Visage x1, boots: GhoulRI Shank x1, amulet: Cunning Amulet of Greed x1, Left hand: Gnarled Staff of Teleportation x1, Left hand: Edge x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Nadragh">Nadragh</a></div>
+                <div>84</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Fury:6, Blade Throw:5, Claw Mastery:1, Burst of Speed:1, Fade:1, Venom:1</p>
+        <p><strong>Equipment:</strong> ring: Viper Eye x1, ring: Rune Grip x1, belt: Goldwrap x1, amulet: Cunning Amulet x1, boots: Natalya's Soul x1, helmet: Natalya's Totem x1, body: Natalya's Shadow x1, gloves: Bloodfist x1, Left hand: Cunning Scissors Katar x1, Left hand: Natalya's Mark x1, Offhand: Cunning Scissors Katar x1, Offhand: Ancients' Pledge x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=HB_AAS">HB_AAS</a></div>
+                <div>84</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Throw:8, Burst of Speed:4, Blade Fury:1, Claw Mastery:1, Fade:1</p>
+        <p><strong>Equipment:</strong> belt: Arachnid Mesh x1, amulet: Cunning Amulet x1, ring: Wisp Projector x1, ring: Dwarf Star x1, gloves: Laying of Hands x1, helmet: Harlequin Crest x1, body: Enigma x1, boots: Sandstorm Trek x1, Left hand: Silence x1, Offhand: Stormshield x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=oyster-t">oyster-t</a></div>
+                <div>84</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Throw:3, Blade Fury:2, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1, Venom:1, Shadow Master:1</p>
+        <p><strong>Equipment:</strong> boots: Natalya's Soul x1, ring: Raven Frost x1, ring: The Stone of Jordan x1, body: Treachery x1, helmet: Harlequin Crest x1, belt: Verdungo's Hearty Cord x1, gloves: Laying of Hands x1, amulet: Cunning Amulet x1, Left hand: Crimson War Staff of Teleportation x1, Left hand: Silence x1, Offhand: Spirit x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=TibbySin">TibbySin</a></div>
+                <div>84</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blades of Ice:3, Blade Throw:1, Blade Fury:1, Claw Mastery:1, Burst of Speed:1, Fade:1, Venom:1, Dragon Talon:1, Fists of Fire:1, Dragon Claw:1, Claws of Thunder:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> ring: Bone Grip x1, ring: Death Eye x1, helmet: Natalya's Totem x1, amulet: Cunning Amulet of the Vampire x1, body: Natalya's Shadow x1, boots: Natalya's Soul x1, gloves: Magefist x1, belt: Verdungo's Hearty Cord x1, Left hand: Pain Bite x1, Left hand: Natalya's Mark x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Zennira">Zennira</a></div>
+                <div>84</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Throw:1, Blade Fury:1, Blade Shield:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1, Mind Blast:1, Shadow Master:1, Dragon Claw:1</p>
+        <p><strong>Equipment:</strong> ring: Felicitous Ring x1, ring: Stone Grasp x1, belt: Plated Belt x1, amulet: Amulet of Craftmanship x1, gloves: Demon Fist x1, helmet: Natalya's Totem x1, body: Natalya's Shadow x1, boots: Natalya's Soul x1, Left hand: Natalya's Mark x1, Offhand: Gerke's Sanctuary x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Epicass">Epicass</a></div>
+                <div>84</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Fury:5, Blade Throw:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1, Venom:1, Shadow Master:1</p>
+        <p><strong>Equipment:</strong> amulet: Cunning Amulet of Fortune x1, boots: Natalya's Soul x1, ring: Felicitous Ring of Fortune x1, helmet: Wraithra Visor x1, body: Treachery x1, Offhand: Bartuc's Cut-Throat x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Astros-FireTrap">Astros-FireTrap</a></div>
+                <div>84</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Fury:4, Blade Throw:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Shadow Warrior:1</p>
+        <p><strong>Equipment:</strong> boots: Natalya's Soul x1, amulet: Cunning Amulet of Craftmanship x1, body: Natalya's Shadow x1, helmet: Natalya's Totem x1, belt: Credendum x1, gloves: Laying of Hands x1, ring: Raven Frost x1, ring: PlagueRI Hold x1, Left hand: Natalya's Mark x1, Offhand: Stormshield x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=nasolZZICO">nasolZZICO</a></div>
+                <div>83</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Death Sentry:20, Lightning Sentry:10, Shock Web:1, Charged Bolt Sentry:1, Claw Mastery:1, Burst of Speed:1</p>
+        <p><strong>Equipment:</strong> gloves: Bramble Claw x1, ring: Shadow Grip x1, amulet: Blood Beads x1, helmet: Harlequin Crest x1, Left hand: Grim Wand of Lower Resistance x1, Left hand: Spirit x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Breakfast_taco">Breakfast_taco</a></div>
+                <div>83</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Throw:1, Blade Fury:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Shadow Warrior:1, Mind Blast:1, Shadow Master:1</p>
+        <p><strong>Equipment:</strong> belt: String of Ears x1, ring: Raven Frost x1, ring: Bul-Kathos' Wedding Band x1, amulet: Highlord's Wrath x1, boots: Natalya's Soul x1, gloves: Laying of Hands x1, body: Natalya's Shadow x1, helmet: Natalya's Totem x1, Left hand: Bartuc's Cut-Throat x1, Offhand: Bartuc's Cut-Throat x1</p>
+    
+    </div>
+
+    
+    <h2>16.33%  of Assassin's Main Skills:<br><img src='icons/Shadow Master.png' alt='Shadow Master' width='20' height='20'> Shadow Master 62.50% (319)<br><img src='icons/Death Sentry.png' alt='Death Sentry' width='20' height='20'> Death Sentry 65.62% (287)<br><img src='icons/Blade Shield.png' alt='Blade Shield' width='20' height='20'> Blade Shield 46.88% (238)</h2>
+    <p><strong>Other Skills:<br></strong> <img src='icons/Lightning Sentry.png' alt='Lightning Sentry' width='20' height='20'> Lightning Sentry 65.62% (230.0)<br><img src='icons/Cloak of Shadows.png' alt='Cloak of Shadows' width='20' height='20'> Cloak of Shadows 81.25% (216.0)<br><img src='icons/Psychic Hammer.png' alt='Psychic Hammer' width='20' height='20'> Psychic Hammer 81.25% (213.0)<br><img src='icons/Charged Bolt Sentry.png' alt='Charged Bolt Sentry' width='20' height='20'> Charged Bolt Sentry 65.62% (211.0)<br><img src='icons/Mind Blast.png' alt='Mind Blast' width='20' height='20'> Mind Blast 50.0% (206.0)<br><img src='icons/Shock Web.png' alt='Shock Web' width='20' height='20'> Shock Web 65.62% (191.0)</p>
+
+    <button class="collapsible">
+        <img src="icons/closed.png" alt="Open" class="icon">
+        <img src="icons/open.png" alt="Close" class="icon hidden">
+        <strong>Most Common Equipment:</strong></button>
+        <div class="content">
+            <div><strong>Amulet</strong>: <br>Mara's Kaleidoscope 12.50%<br>Shadow Amulet 12.50%<br>Highlord's Wrath 6.25%<br>Viper Mark 3.12%<br>Atma's Scarab 3.12%<br><strong>Boots</strong>: <br>Natalya's Soul 31.25%<br>Shadow Dancer 28.12%<br>Aldur's Advance 12.50%<br>Gore Rider 6.25%<br>War Traveler 6.25%<br><strong>Body</strong>: <br>Treachery 34.38%<br>Natalya's Shadow 21.88%<br>Fortitude 6.25%<br>Stealth 6.25%<br>Tyrael's Might 3.12%<br><strong>Gloves</strong>: <br>Laying of Hands 15.62%<br>Magefist 12.50%<br>Trang-Oul's Claws 9.38%<br>Lava Gout 9.38%<br>Chance Guards 6.25%<br><strong>Belt</strong>: <br>Arachnid Mesh 34.38%<br>String of Ears 15.62%<br>Thundergod's Vigor 6.25%<br>Nosferatu's Coil 6.25%<br>M'avina's Tenet 3.12%<br><strong>Ring</strong>: <br>Raven Frost 37.50%<br>Wisp Projector 12.50%<br>Nagelring 12.50%<br>Bul-Kathos' Wedding Band 9.38%<br>The Stone of Jordan 6.25%<br><strong>Helmet</strong>: <br>Harlequin Crest 31.25%<br>Natalya's Totem 15.62%<br>Tarnhelm 6.25%<br>Grim Shell 3.12%<br>Naj's Circlet 3.12%<br><strong>Left hand</strong>: <br>Plague 15.62%<br>Spirit 15.62%<br>Bartuc's Cut-Throat 15.62%<br>Call to Arms 12.50%<br>Natalya's Mark 12.50%<br><strong>Offhand</strong>: <br>Spirit 53.12%<br>Plague 25.00%<br>Lidless Wall 6.25%<br>Bartuc's Cut-Throat 6.25%<br>Ancients' Pledge 6.25%</div>
+        </div>
+    
+    <button class="collapsible">
+        <img src="icons/closed.png" alt="Open" class="icon">
+        <img src="icons/open.png" alt="Close" class="icon hidden">
+        <strong>ALL Equipment:</strong></button>
+        <div class="content">
+            <div><strong>Amulet</strong>: Viper Mark 3.12%, Atma's Scarab 3.12%, Shadow Amulet of Strength 3.12%, Shadow Necklace 3.12%, Mara's Kaleidoscope 12.50%, The Cat's Eye 3.12%, Wraithra Wing 3.12%, GhoulRI Mark 3.12%, Havoc Mark 3.12%, Highlord's Wrath 6.25%, Rune Mark 3.12%, Blood Torc 3.12%, Seraph's Hymn 3.12%, Shadow Amulet 12.50%, Angelic Wings 3.12%, Cunning Amulet of Wizardry 3.12%, Entrapping Amulet of Luck 3.12%, Cunning Amulet 3.12%, Storm Noose 3.12%, Shadow Amulet of Memory 3.12%, Chaos Heart 3.12%, Shadow Amulet of the Apprentice 3.12%, Shadow Amulet of Wealth 3.12%, Trickster's Amulet of Energy 3.12%<br><strong>Boots</strong>: Shadow Dancer 28.12%, Gore Rider 6.25%, Natalya's Soul 31.25%, Aldur's Advance 12.50%, Strong Chain Boots of Luck 3.12%, War Traveler 6.25%, Gale Tread 3.12%<br><strong>Body</strong>: Treachery 34.38%, Fortitude 6.25%, Natalya's Shadow 21.88%, Tyrael's Might 3.12%, Stealth 6.25%, Enigma 3.12%, Smoke 3.12%, Silks of the Victor 3.12%<br><strong>Gloves</strong>: Carrion Grasp 3.12%, Laying of Hands 15.62%, Trang-Oul's Claws 9.38%, Dracul's Grasp 3.12%, Imp Finger 3.12%, Steelrend 3.12%, Bitter Touch 3.12%, Lava Gout 9.38%, PlagueRI Hand 3.12%, Chance Guards 6.25%, Soul Drainer 3.12%, Magefist 12.50%, Venom Grip 3.12%, Bone Hold 3.12%, Leather Gloves of Fortune 3.12%, Storm Finger 3.12%, Bloodfist 3.12%, Cruel Knuckle 3.12%, Death Touch 3.12%<br><strong>Belt</strong>: Arachnid Mesh 34.38%, M'avina's Tenet 3.12%, Doom Clasp 3.12%, String of Ears 15.62%, Thundergod's Vigor 6.25%, Wraithra Clasp 3.12%, Verdungo's Hearty Cord 3.12%, Goldwrap 3.12%, Death's Guard 3.12%, Nosferatu's Coil 6.25%, Lenymo 3.12%, Rune Cord 3.12%, Eagle Buckle 3.12%<br><strong>Ring</strong>: Bul-Kathos' Wedding Band 9.38%, Wisp Projector 12.50%, Stone Spiral 3.12%, Raven Frost 37.50%, Order Knot 3.12%, The Stone of Jordan 6.25%, Nagelring 12.50%, Bone Grasp 3.12%, Dread Grip 3.12%, Nature's Peace 3.12%, PlagueRI Loop 3.12%, Storm Grip 3.12%, Eagle Band 3.12%, Beast Band 3.12%, Shadow Gyre 3.12%, Grim Knot 3.12%, Chaos Loop 3.12%, PlagueRI Spiral 3.12%, Wraithra Spiral 3.12%, Angelic Halo 6.25%, Order Turn 6.25%, Order Master 3.12%, Carrion Wind 3.12%, Havoc Eye 3.12%, Fortuitous Ring of the Apprentice 3.12%, Blood Finger 3.12%, Havoc Circle 3.12%, Death Hold 3.12%, Skull Finger 3.12%, Tangerine Ring of the Apprentice 3.12%, Skull Band 3.12%, Dread Touch 3.12%, Bone Band 3.12%, Eagle Circle 3.12%, Order Hold 3.12%<br><strong>Helmet</strong>: Grim Shell 3.12%, Naj's Circlet 3.12%, Bramble Casque 3.12%, Natalya's Totem 15.62%, Harlequin Crest 31.25%, Jalal's Mane 3.12%, Havoc Shell 3.12%, Dire Shell 3.12%, Guillaume's Face 3.12%, Tarnhelm 6.25%, Corpse Brow 3.12%, Witch-hunter's Coronet of Speed 3.12%, Shadow Casque 3.12%, Storm Visor 3.12%, Mask 3.12%, Shadow Tiara 3.12%<br><strong>Left hand</strong>: Plague 15.62%, Jade Talon 3.12%, Death 3.12%, Call to Arms 12.50%, Natalya's Mark 12.50%, Silence 3.12%, Trickster's Suwayyah of the Lamprey 3.12%, Lance Guard 3.12%, Spirit 15.62%, Bartuc's Cut-Throat 15.62%, Eternity 3.12%, Beast 3.12%, Pompeii's Wrath 3.12%, Holy Thunder 6.25%, Heart of the Oak 12.50%, Gnarled Staff of Teleportation 6.25%, Doom Song 3.12%, Lawbringer 3.12%, Chaos 3.12%, Shillelagh of Teleportation 3.12%, Bone Wand of Lower Resistance 6.25%, Emerald Bone Wand of Lower Resistance 3.12%, Crescent Moon 3.12%, Frostwind 3.12%, Battle Staff of Teleportation 3.12%, War Staff of Teleportation 6.25%, Jade Bone Wand of Lower Resistance 3.12%, Cunning Scissors Katar of Winter 3.12%<br><strong>Offhand</strong>: Plague 25.00%, Phoenix 3.12%, Lance Guard 3.12%, Spirit 53.12%, Stormshield 3.12%, Cunning Blade Talons of Readiness 3.12%, Death Cleaver 3.12%, Heart of the Oak 3.12%, Viper Barb 3.12%, Radament's Sphere 3.12%, Lidless Wall 6.25%, Natalya's Mark 3.12%, Bartuc's Cut-Throat 6.25%, Ancients' Pledge 6.25%, Rhyme 3.12%, Chaos 3.12%, Cunning Blade Talons 3.12%</div>
+        </div>
+
+    <button class="collapsible">
+        <img src="icons/closed.png" alt="Open" class="icon">
+        <img src="icons/open.png" alt="Close" class="icon hidden">
+        <strong>32 Characters in this cluster:</strong></button>
+        <div class="content">
+            
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Triada">Triada</a></div>
+                <div>96</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Blade Shield:20, Fade:20, Shadow Master:20, Death Sentry:19, Weapon Block:13, Fire Blast:1, Shock Web:1, Blade Throw:1, Charged Bolt Sentry:1, Wake of Fire:1, Blade Fury:1, Lightning Sentry:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Cloak of Shadows:1, Shadow Warrior:1, Dragon Talon:1, Dragon Claw:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> amulet: Viper Mark x1, boots: Shadow Dancer x1, body: Treachery x1, gloves: Carrion Grasp x1, belt: Arachnid Mesh x1, ring: Bul-Kathos' Wedding Band x1, ring: Wisp Projector x1, helmet: Grim Shell x1, Left hand: Plague x1, Left hand: Jade Talon x1, Offhand: Plague x2</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Blade_Wind">Blade_Wind</a></div>
+                <div>93</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fade:20, Shadow Master:20, Dragon Talon:20, Dragon Flight:20, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Shadow Warrior:1, Dragon Claw:1</p>
+        <p><strong>Equipment:</strong> ring: Stone Spiral x1, gloves: Laying of Hands x1, helmet: Naj's Circlet x1, Offhand: Phoenix x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Sevenspades">Sevenspades</a></div>
+                <div>92</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Blade Throw:20, Blade Fury:20, Lightning Sentry:20, Blade Shield:20, Death Sentry:14, Fire Blast:1, Shock Web:1, Charged Bolt Sentry:1, Wake of Fire:1, Psychic Hammer:1, Cloak of Shadows:1, Dragon Talon:1, Dragon Claw:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> gloves: Laying of Hands x1, amulet: Atma's Scarab x1, body: Fortitude x1, ring: Raven Frost x1, ring: Order Knot x1, belt: Arachnid Mesh x1, helmet: Bramble Casque x1, boots: Gore Rider x1, Left hand: Plague x1, Left hand: Death x1, Offhand: Plague x1, Offhand: Lance Guard x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Kushiine">Kushiine</a></div>
+                <div>92</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Blade Shield:20, Psychic Hammer:20, Cloak of Shadows:20, Mind Blast:20, Shadow Master:13, Fire Blast:1, Blade Throw:1, Wake of Fire:1, Blade Fury:1, Claw Mastery:1, Burst of Speed:1, Weapon Block:1, Fade:1, Shadow Warrior:1, Venom:1</p>
+        <p><strong>Equipment:</strong> body: Natalya's Shadow x1, amulet: Shadow Amulet of Strength x1, ring: Raven Frost x1, boots: Natalya's Soul x1, gloves: Trang-Oul's Claws x1, helmet: Natalya's Totem x1, belt: Arachnid Mesh x1, Left hand: Call to Arms x1, Left hand: Natalya's Mark x1, Offhand: Spirit x2</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=wTc_OldBoi">wTc_OldBoi</a></div>
+                <div>92</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Death Sentry:20, Blade Shield:20, Shadow Master:20, Fire Blast:1, Shock Web:1, Blade Throw:1, Charged Bolt Sentry:1, Wake of Fire:1, Blade Fury:1, Lightning Sentry:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1, Venom:1, Dragon Talon:1, Dragon Claw:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> ring: The Stone of Jordan x1, ring: Wisp Projector x1, amulet: Shadow Necklace x1, boots: Shadow Dancer x1, belt: Arachnid Mesh x1, helmet: Harlequin Crest x1, gloves: Dracul's Grasp x1, body: Treachery x1, Left hand: Plague x1, Left hand: Silence x1, Offhand: Plague x1, Offhand: Stormshield x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=AtmtA">AtmtA</a></div>
+                <div>91</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Shock Web:20, Charged Bolt Sentry:20, Lightning Sentry:20, Death Sentry:20, Shadow Master:13, Fire Blast:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1, Mind Blast:1</p>
+        <p><strong>Equipment:</strong> gloves: Imp Finger x1, body: Treachery x1, ring: Nagelring x1, ring: Bul-Kathos' Wedding Band x1, boots: Natalya's Soul x1, amulet: Mara's Kaleidoscope x1, belt: Arachnid Mesh x1, helmet: Harlequin Crest x1, Offhand: Cunning Blade Talons of Readiness x1, Left hand: Trickster's Suwayyah of the Lamprey x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=ExceI">ExceI</a></div>
+                <div>91</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fire Claws:20, Molten Boulder:20, Volcano:20, Armageddon:20, Firestorm:11, Raven:1, Summon Spirit Wolf:1, Heart of Wolverine:1, Summon Dire Wolf:1, Summon Grizzly:1, Werewolf:1, Lycanthropy:1, Werebear:1, Feral Rage:1, Maul:1, Fissure:1</p>
+        <p><strong>Equipment:</strong> ring: Raven Frost x1, ring: Bul-Kathos' Wedding Band x1, boots: Gore Rider x1, body: Fortitude x1, amulet: The Cat's Eye x1, helmet: Jalal's Mane x1, gloves: Steelrend x1, belt: M'avina's Tenet x1, Left hand: Lance Guard x1, Left hand: Spirit x1, Offhand: Death Cleaver x1, Offhand: Heart of the Oak x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=XChameleos">XChameleos</a></div>
+                <div>91</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Blade Shield:20, Shadow Master:20, Blades of Ice:20, Dragon Flight:20, Claw Mastery:4, Fire Blast:1, Shock Web:1, Blade Throw:1, Charged Bolt Sentry:1, Wake of Fire:1, Blade Fury:1, Lightning Sentry:1, Death Sentry:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1, Dragon Talon:1, Fists of Fire:1, Dragon Claw:1, Claws of Thunder:1</p>
+        <p><strong>Equipment:</strong> body: Treachery x1, ring: Bone Grasp x1, ring: Dread Grip x1, belt: Doom Clasp x1, boots: Shadow Dancer x1, helmet: Havoc Shell x1, gloves: Bitter Touch x1, amulet: Wraithra Wing x1, Left hand: Bartuc's Cut-Throat x1, Left hand: Eternity x1, Offhand: Viper Barb x1, Offhand: Radament's Sphere x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=MeatPocket">MeatPocket</a></div>
+                <div>91</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Blade Shield:20, Venom:20, Shadow Master:20, Claw Mastery:18, Fire Blast:1, Shock Web:1, Blade Throw:1, Charged Bolt Sentry:1, Wake of Fire:1, Blade Fury:1, Lightning Sentry:1, Wake of Inferno:1, Death Sentry:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1, Mind Blast:1, Tiger Strike:1, Dragon Talon:1, Fists of Fire:1, Dragon Claw:1, Cobra Strike:1, Claws of Thunder:1, Blades of Ice:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> ring: Wisp Projector x1, ring: Raven Frost x1, belt: Arachnid Mesh x1, boots: Shadow Dancer x1, gloves: Lava Gout x1, body: Treachery x1, amulet: GhoulRI Mark x1, helmet: Dire Shell x1, Left hand: Beast x1, Left hand: Plague x1, Offhand: Spirit x1, Offhand: Plague x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=blackmyth">blackmyth</a></div>
+                <div>90</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Cloak of Shadows:20, Mind Blast:20, Shadow Master:20, Psychic Hammer:17, Fire Blast:1, Shock Web:1, Blade Throw:1, Charged Bolt Sentry:1, Wake of Fire:1, Blade Fury:1, Lightning Sentry:1, Wake of Inferno:1, Death Sentry:1, Blade Shield:1, Claw Mastery:1, Burst of Speed:1, Weapon Block:1, Fade:1, Shadow Warrior:1, Venom:1, Tiger Strike:1, Dragon Talon:1, Fists of Fire:1, Dragon Claw:1, Cobra Strike:1, Claws of Thunder:1, Blades of Ice:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> amulet: Havoc Mark x1, gloves: Laying of Hands x1, helmet: Harlequin Crest x1, ring: Raven Frost x1, ring: Nature's Peace x1, belt: String of Ears x1, Left hand: Plague x1, Offhand: Plague x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=moomoo_A">moomoo_A</a></div>
+                <div>90</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fade:20, Venom:20, Dragon Talon:20, Dragon Flight:20, Blade Shield:14, Fire Blast:1, Blade Throw:1, Wake of Fire:1, Blade Fury:1, Claw Mastery:1, Burst of Speed:1, Dragon Claw:1</p>
+        <p><strong>Equipment:</strong> belt: Thundergod's Vigor x1, amulet: Highlord's Wrath x1, gloves: Laying of Hands x1, ring: Raven Frost x1, boots: Shadow Dancer x1, helmet: Guillaume's Face x1, body: Tyrael's Might x1, Left hand: Pompeii's Wrath x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Jega">Jega</a></div>
+                <div>90</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Shock Web:20, Charged Bolt Sentry:20, Lightning Sentry:20, Death Sentry:20, Fire Blast:11, Wake of Fire:1, Wake of Inferno:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Shadow Warrior:1</p>
+        <p><strong>Equipment:</strong> gloves: PlagueRI Hand x1, ring: PlagueRI Loop x1, ring: Storm Grip x1, belt: Wraithra Clasp x1, body: Treachery x1, boots: Aldur's Advance x1, amulet: Mara's Kaleidoscope x1, helmet: Harlequin Crest x1, Left hand: Holy Thunder x1, Left hand: Heart of the Oak x1, Offhand: Spirit x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=GermanicPoocci">GermanicPoocci</a></div>
+                <div>90</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Psychic Hammer:20, Cloak of Shadows:20, Mind Blast:20, Shadow Master:20, Burst of Speed:6, Fade:3, Fire Blast:1, Blade Throw:1, Wake of Fire:1, Blade Fury:1, Blade Shield:1, Claw Mastery:1, Weapon Block:1, Shadow Warrior:1, Tiger Strike:1, Dragon Talon:1, Dragon Claw:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> ring: Eagle Band x1, ring: Beast Band x1, amulet: Rune Mark x1, belt: Arachnid Mesh x1, body: Treachery x1, gloves: Chance Guards x1, boots: Aldur's Advance x1, helmet: Tarnhelm x1, Left hand: Gnarled Staff of Teleportation x1, Left hand: Heart of the Oak x1, Offhand: Spirit x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Saka">Saka</a></div>
+                <div>90</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Blade Throw:20, Blade Fury:20, Blade Shield:20, Shadow Master:20, Fire Blast:1, Shock Web:1, Charged Bolt Sentry:1, Wake of Fire:1, Lightning Sentry:1, Death Sentry:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1, Mind Blast:1, Venom:1, Dragon Talon:1, Fists of Fire:1, Dragon Claw:1, Claws of Thunder:1, Blades of Ice:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> ring: Shadow Gyre x1, ring: Grim Knot x1, amulet: Blood Torc x1, belt: Arachnid Mesh x1, boots: Natalya's Soul x1, body: Treachery x1, gloves: Soul Drainer x1, helmet: Harlequin Crest x1, Left hand: Doom Song x1, Left hand: Natalya's Mark x1, Offhand: Plague x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=pyllyt">pyllyt</a></div>
+                <div>90</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Blade Shield:20, Venom:20, Shadow Master:20, Claw Mastery:18, Fire Blast:1, Shock Web:1, Blade Throw:1, Charged Bolt Sentry:1, Wake of Fire:1, Blade Fury:1, Lightning Sentry:1, Death Sentry:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1, Mind Blast:1, Tiger Strike:1, Dragon Talon:1, Fists of Fire:1, Dragon Claw:1, Cobra Strike:1, Claws of Thunder:1, Blades of Ice:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> ring: Raven Frost x1, ring: Chaos Loop x1, body: Treachery x1, belt: Verdungo's Hearty Cord x1, helmet: Corpse Brow x1, gloves: Lava Gout x1, amulet: Seraph's Hymn x1, boots: Shadow Dancer x1, Left hand: Bartuc's Cut-Throat x2, Offhand: Spirit x1, Offhand: Plague x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Unseeen_Ass">Unseeen_Ass</a></div>
+                <div>90</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Blade Shield:20, Psychic Hammer:20, Cloak of Shadows:20, Mind Blast:20, Shadow Master:9, Fire Blast:1, Blade Throw:1, Wake of Fire:1, Blade Fury:1, Claw Mastery:1, Burst of Speed:1, Weapon Block:1, Fade:1, Shadow Warrior:1, Dragon Talon:1, Dragon Claw:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> ring: PlagueRI Spiral x1, ring: Wraithra Spiral x1, belt: Arachnid Mesh x1, boots: Shadow Dancer x1, helmet: Harlequin Crest x1, body: Natalya's Shadow x1, gloves: Magefist x1, amulet: Shadow Amulet x1, Left hand: Call to Arms x1, Left hand: Lawbringer x1, Offhand: Spirit x2</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Muder">Muder</a></div>
+                <div>89</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Blade Shield:20, Claw Mastery:20, Venom:20, Tiger Strike:20, Weapon Block:6, Fire Blast:1, Blade Throw:1, Wake of Fire:1, Blade Fury:1, Burst of Speed:1, Fade:1, Dragon Talon:1, Fists of Fire:1, Dragon Claw:1, Claws of Thunder:1, Blades of Ice:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> boots: Natalya's Soul x1, belt: String of Ears x1, helmet: Natalya's Totem x1, body: Natalya's Shadow x1, ring: Angelic Halo x2, gloves: Venom Grip x1, amulet: Angelic Wings x1, Left hand: Call to Arms x1, Left hand: Chaos x1, Offhand: Lidless Wall x1, Offhand: Natalya's Mark x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Kit_Carson">Kit_Carson</a></div>
+                <div>89</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Shock Web:20, Charged Bolt Sentry:20, Lightning Sentry:20, Death Sentry:20, Blades of Ice:3, Blade Shield:2, Fire Blast:1, Blade Throw:1, Wake of Fire:1, Blade Fury:1, Claw Mastery:1, Burst of Speed:1, Weapon Block:1, Fade:1, Tiger Strike:1, Dragon Talon:1, Fists of Fire:1, Dragon Claw:1, Cobra Strike:1, Claws of Thunder:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> boots: Natalya's Soul x1, helmet: Natalya's Totem x1, gloves: Bone Hold x1, ring: Raven Frost x1, ring: Order Turn x1, belt: Goldwrap x1, amulet: Cunning Amulet of Wizardry x1, body: Natalya's Shadow x1, Offhand: Bartuc's Cut-Throat x1, Left hand: Natalya's Mark x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=ColdBloodedAss">ColdBloodedAss</a></div>
+                <div>89</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Shock Web:20, Charged Bolt Sentry:20, Lightning Sentry:20, Death Sentry:20, Fire Blast:13, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Shadow Warrior:1, Shadow Master:1</p>
+        <p><strong>Equipment:</strong> boots: Strong Chain Boots of Luck x1, amulet: Entrapping Amulet of Luck x1, gloves: Leather Gloves of Fortune x1, helmet: Witch-hunter's Coronet of Speed x1, Left hand: Shillelagh of Teleportation x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=SonicFarm">SonicFarm</a></div>
+                <div>88</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Charged Bolt Sentry:20, Lightning Sentry:20, Wake of Inferno:20, Death Sentry:20, Shock Web:11, Fire Blast:1, Wake of Fire:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Cloak of Shadows:1, Mind Blast:1</p>
+        <p><strong>Equipment:</strong> ring: Order Master x1, ring: Nagelring x1, gloves: Storm Finger x1, belt: Death's Guard x1, amulet: Cunning Amulet x1, body: Stealth x1, boots: War Traveler x1, helmet: Harlequin Crest x1, Left hand: Bone Wand of Lower Resistance x1, Left hand: Spirit x1, Offhand: Ancients' Pledge x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=nihujasebe">nihujasebe</a></div>
+                <div>88</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Shock Web:20, Charged Bolt Sentry:20, Lightning Sentry:20, Death Sentry:20, Fire Blast:6, Wake of Fire:1, Wake of Inferno:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Cloak of Shadows:1, Fade:1, Mind Blast:1</p>
+        <p><strong>Equipment:</strong> body: Enigma x1, helmet: Harlequin Crest x1, boots: Aldur's Advance x1, gloves: Trang-Oul's Claws x1, belt: Arachnid Mesh x1, amulet: Mara's Kaleidoscope x1, ring: The Stone of Jordan x1, ring: Raven Frost x1, Left hand: Bone Wand of Lower Resistance x1, Left hand: Heart of the Oak x1, Offhand: Rhyme x1, Offhand: Spirit x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=SlowCheetah">SlowCheetah</a></div>
+                <div>87</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Shock Web:20, Charged Bolt Sentry:20, Lightning Sentry:20, Death Sentry:20, Claw Mastery:6, Burst of Speed:4, Fire Blast:1, Weapon Block:1, Dragon Talon:1, Fists of Fire:1, Dragon Claw:1, Claws of Thunder:1, Blades of Ice:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> gloves: Lava Gout x1, belt: String of Ears x1, body: Natalya's Shadow x1, ring: Wisp Projector x1, ring: Raven Frost x1, helmet: Natalya's Totem x1, boots: Natalya's Soul x1, amulet: Mara's Kaleidoscope x1, Left hand: Call to Arms x1, Left hand: Natalya's Mark x1, Offhand: Spirit x2</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=TrapShein">TrapShein</a></div>
+                <div>87</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Shock Web:20, Charged Bolt Sentry:20, Lightning Sentry:20, Death Sentry:20, Fire Blast:12, Burst of Speed:2, Claw Mastery:1, Dragon Talon:1, Dragon Claw:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> ring: Raven Frost x1, ring: Nagelring x1, body: Smoke x1, helmet: Shadow Casque x1, belt: Nosferatu's Coil x1, amulet: Storm Noose x1, gloves: Chance Guards x1, boots: Natalya's Soul x1, Left hand: Emerald Bone Wand of Lower Resistance x1, Left hand: Crescent Moon x1, Offhand: Spirit x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Grietje">Grietje</a></div>
+                <div>86</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Death Sentry:20, Claw Mastery:20, Fade:20, Fire Blast:19, Shock Web:1, Charged Bolt Sentry:1, Lightning Sentry:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Shadow Warrior:1, Shadow Master:1, Dragon Talon:1, Fists of Fire:1, Dragon Claw:1, Claws of Thunder:1, Blades of Ice:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> ring: Carrion Wind x1, boots: Natalya's Soul x1, body: Natalya's Shadow x1, helmet: Natalya's Totem x1, gloves: Laying of Hands x1, belt: Nosferatu's Coil x1, Left hand: Frostwind x1, Left hand: Bartuc's Cut-Throat x1, Offhand: Lidless Wall x1, Offhand: Chaos x1, amulet: Highlord's Wrath x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Rainyo">Rainyo</a></div>
+                <div>86</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Psychic Hammer:20, Cloak of Shadows:20, Mind Blast:20, Shadow Master:20, Fade:13, Claw Mastery:1, Burst of Speed:1, Weapon Block:1, Shadow Warrior:1</p>
+        <p><strong>Equipment:</strong> ring: Havoc Eye x1, ring: Fortuitous Ring of the Apprentice x1, body: Treachery x1, amulet: Shadow Amulet of Memory x1, gloves: Magefist x1, Left hand: Battle Staff of Teleportation x1, Left hand: Spirit x1, helmet: Harlequin Crest x1, belt: Thundergod's Vigor x1, boots: Shadow Dancer x1, Offhand: Spirit x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Darkest_Templar">Darkest_Templar</a></div>
+                <div>86</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Psychic Hammer:20, Cloak of Shadows:20, Mind Blast:20, Shadow Master:20, Death Sentry:8, Fire Blast:1, Shock Web:1, Charged Bolt Sentry:1, Lightning Sentry:1, Claw Mastery:1, Burst of Speed:1, Weapon Block:1, Fade:1, Shadow Warrior:1</p>
+        <p><strong>Equipment:</strong> belt: Lenymo x1, gloves: Magefist x1, boots: Shadow Dancer x1, amulet: Shadow Amulet x1, ring: Blood Finger x1, ring: Havoc Circle x1, Offhand: Spirit x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=TRAPS_ASSASSIN">TRAPS_ASSASSIN</a></div>
+                <div>86</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Charged Bolt Sentry:20, Lightning Sentry:20, Death Sentry:20, Shadow Master:20, Shock Web:9, Fire Blast:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1</p>
+        <p><strong>Equipment:</strong> amulet: Chaos Heart x1, belt: Rune Cord x1, gloves: Bloodfist x1, boots: Natalya's Soul x1, body: Treachery x1, helmet: Storm Visor x1, ring: Death Hold x1, ring: Skull Finger x1, Left hand: Holy Thunder x1, Left hand: Bartuc's Cut-Throat x1, Offhand: Ancients' Pledge x1, Offhand: Bartuc's Cut-Throat x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Nilahee">Nilahee</a></div>
+                <div>85</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Psychic Hammer:20, Cloak of Shadows:20, Mind Blast:20, Shadow Master:20, Fire Blast:1, Wake of Fire:1, Claw Mastery:1, Burst of Speed:1, Weapon Block:1, Shadow Warrior:1</p>
+        <p><strong>Equipment:</strong> ring: Tangerine Ring of the Apprentice x1, ring: Skull Band x1, gloves: Cruel Knuckle x1, body: Stealth x1, belt: Eagle Buckle x1, amulet: Shadow Amulet x1, boots: Gale Tread x1, Left hand: War Staff of Teleportation x1, Left hand: Spirit x1, helmet: Mask x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=MittMitt">MittMitt</a></div>
+                <div>85</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Psychic Hammer:20, Cloak of Shadows:20, Mind Blast:20, Shadow Master:20, Fire Blast:1, Shock Web:1, Blade Throw:1, Charged Bolt Sentry:1, Wake of Fire:1, Lightning Sentry:1, Death Sentry:1, Claw Mastery:1, Burst of Speed:1, Weapon Block:1, Fade:1, Shadow Warrior:1</p>
+        <p><strong>Equipment:</strong> amulet: Shadow Amulet x1, gloves: Death Touch x1, ring: Nagelring x1, ring: Raven Frost x1, belt: Arachnid Mesh x1, boots: War Traveler x1, helmet: Shadow Tiara x1, body: Silks of the Victor x1, Left hand: War Staff of Teleportation x1, Left hand: Heart of the Oak x1, Offhand: Spirit x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=pab_assa">pab_assa</a></div>
+                <div>85</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Psychic Hammer:20, Cloak of Shadows:20, Mind Blast:20, Shadow Warrior:18, Fade:15, Claw Mastery:1, Burst of Speed:1, Weapon Block:1</p>
+        <p><strong>Equipment:</strong> ring: Order Turn x1, ring: Dread Touch x1, gloves: Trang-Oul's Claws x1, amulet: Shadow Amulet of the Apprentice x1, boots: Aldur's Advance x1, helmet: Harlequin Crest x1, body: Natalya's Shadow x1, belt: String of Ears x1, Left hand: Gnarled Staff of Teleportation x1, Left hand: Spirit x1, Offhand: Spirit x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=CuckforCalvin">CuckforCalvin</a></div>
+                <div>84</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Blade Shield:20, Psychic Hammer:20, Cloak of Shadows:20, Mind Blast:20, Fade:6, Fire Blast:1, Blade Throw:1, Wake of Fire:1, Blade Fury:1, Claw Mastery:1, Burst of Speed:1, Weapon Block:1, Shadow Warrior:1</p>
+        <p><strong>Equipment:</strong> ring: Bone Band x1, ring: Eagle Circle x1, belt: String of Ears x1, amulet: Shadow Amulet of Wealth x1, Offhand: Spirit x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=RB_TaM">RB_TaM</a></div>
+                <div>84</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Shock Web:20, Charged Bolt Sentry:20, Lightning Sentry:20, Death Sentry:20, Fire Blast:3, Shadow Master:2, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1</p>
+        <p><strong>Equipment:</strong> amulet: Trickster's Amulet of Energy x1, ring: Order Hold x1, gloves: Magefist x1, helmet: Tarnhelm x1, Left hand: Jade Bone Wand of Lower Resistance x1, Left hand: Cunning Scissors Katar of Winter x1, boots: Natalya's Soul x1, Offhand: Cunning Blade Talons x1</p>
+    
+    </div>
+
+    
+    <h2>14.29%  of Assassin's Main Skills:<br><img src='icons/Blades of Ice.png' alt='Blades of Ice' width='20' height='20'> Blades of Ice 96.43% (537)<br><img src='icons/Claws of Thunder.png' alt='Claws of Thunder' width='20' height='20'> Claws of Thunder 100.00% (498)<br><img src='icons/Fists of Fire.png' alt='Fists of Fire' width='20' height='20'> Fists of Fire 100.00% (484)</h2>
+    <p><strong>Other Skills:<br></strong> <img src='icons/Claw Mastery.png' alt='Claw Mastery' width='20' height='20'> Claw Mastery 100.0% (268.0)<br><img src='icons/Cobra Strike.png' alt='Cobra Strike' width='20' height='20'> Cobra Strike 67.86% (217.0)<br><img src='icons/Blade Shield.png' alt='Blade Shield' width='20' height='20'> Blade Shield 39.29% (139.0)<br><img src='icons/Weapon Block.png' alt='Weapon Block' width='20' height='20'> Weapon Block 92.86% (119.0)<br><img src='icons/Tiger Strike.png' alt='Tiger Strike' width='20' height='20'> Tiger Strike 82.14% (115.0)<br><img src='icons/Fade.png' alt='Fade' width='20' height='20'> Fade 57.14% (92.0)</p>
+
+    <button class="collapsible">
+        <img src="icons/closed.png" alt="Open" class="icon">
+        <img src="icons/open.png" alt="Close" class="icon hidden">
+        <strong>Most Common Equipment:</strong></button>
+        <div class="content">
+            <div><strong>Belt</strong>: <br>Verdungo's Hearty Cord 39.29%<br>String of Ears 39.29%<br>Arachnid Mesh 3.57%<br>Bladebuckle 3.57%<br>Trang-Oul's Girth 3.57%<br><strong>Amulet</strong>: <br>Mara's Kaleidoscope 14.29%<br>Highlord's Wrath 14.29%<br>Angelic Wings 14.29%<br>Metalgrid 10.71%<br>The Cat's Eye 7.14%<br><strong>Body</strong>: <br>Natalya's Shadow 46.43%<br>Chains of Honor 25.00%<br>Fortitude 7.14%<br>Treachery 3.57%<br>Guardian Angel 3.57%<br><strong>Ring</strong>: <br>Raven Frost 64.29%<br>Carrion Wind 35.71%<br>Angelic Halo 21.43%<br>Wisp Projector 17.86%<br>Bul-Kathos' Wedding Band 7.14%<br><strong>Boots</strong>: <br>Natalya's Soul 50.00%<br>Shadow Dancer 32.14%<br>Gore Rider 3.57%<br>Corpse Shank 3.57%<br>Brimstone Brogues 3.57%<br><strong>Helmet</strong>: <br>Natalya's Totem 46.43%<br>Crown of Ages 14.29%<br>Andariel's Visage 7.14%<br>Dread Hood 3.57%<br>Vampire Gaze 3.57%<br><strong>Left hand</strong>: <br>Natalya's Mark 53.57%<br>Demon Limb 28.57%<br>Mosaic 25.00%<br>Naj's Puzzler 7.14%<br>Bartuc's Cut-Throat 7.14%<br><strong>Offhand</strong>: <br>Mosaic 28.57%<br>Medusa's Gaze 25.00%<br>Bartuc's Cut-Throat 25.00%<br>Chaos 10.71%<br>Shadow Killer 7.14%<br><strong>Gloves</strong>: <br>Dracul's Grasp 28.57%<br>Laying of Hands 14.29%<br>Steelrend 7.14%<br>Kenshi's Chain Gloves of Alacrity 3.57%<br>Kenshi's Heavy Bracers of Poison Nova 3.57%</div>
+        </div>
+    
+    <button class="collapsible">
+        <img src="icons/closed.png" alt="Open" class="icon">
+        <img src="icons/open.png" alt="Close" class="icon hidden">
+        <strong>ALL Equipment:</strong></button>
+        <div class="content">
+            <div><strong>Belt</strong>: Verdungo's Hearty Cord 39.29%, Arachnid Mesh 3.57%, String of Ears 39.29%, Bladebuckle 3.57%, Trang-Oul's Girth 3.57%, Immortal King's Detail 3.57%<br><strong>Amulet</strong>: Bone Torc 3.57%, Mara's Kaleidoscope 14.29%, Metalgrid 10.71%, Chaos Necklace 3.57%, Highlord's Wrath 14.29%, Angelic Wings 14.29%, The Cat's Eye 7.14%, Kenshi's Amulet 3.57%, Kenshi's Amulet of the Squid 3.57%, PlagueRI Emblem 3.57%, Viper Scarab 3.57%, Saracen's Chance 3.57%, GhoulRI Eye 3.57%<br><strong>Body</strong>: Chains of Honor 25.00%, Treachery 3.57%, Fortitude 7.14%, Natalya's Shadow 46.43%, Guardian Angel 3.57%, Smoke 3.57%<br><strong>Ring</strong>: Blood Gyre 3.57%, Raven Frost 64.29%, Carrion Wind 35.71%, Bul-Kathos' Wedding Band 7.14%, Dwarf Star 7.14%, Havoc Band 3.57%, Wisp Projector 17.86%, Angelic Halo 21.43%, Viper Grip 3.57%, Shadow Gyre 3.57%, Corruption Knot 3.57%, Wraithra Grip 3.57%, GhoulRI Gyre 3.57%, Cathan's Seal 3.57%<br><strong>Boots</strong>: Shadow Dancer 32.14%, Gore Rider 3.57%, Natalya's Soul 50.00%, Corpse Shank 3.57%, Brimstone Brogues 3.57%, Hailstone Spur 3.57%<br><strong>Helmet</strong>: Dread Hood 3.57%, Vampire Gaze 3.57%, Crown of Ages 14.29%, Andariel's Visage 7.14%, Nightwing's Veil 3.57%, Guillaume's Face 3.57%, Natalya's Totem 46.43%, PlagueRI Visage 3.57%, Rockstopper 3.57%, Tal Rasha's Horadric Crest 3.57%<br><strong>Left hand</strong>: Demon Limb 28.57%, Mosaic 25.00%, Shadow Killer 3.57%, Frostwind 3.57%, Jade Talon 3.57%, Naj's Puzzler 7.14%, Natalya's Mark 53.57%, Shadow Greater Talons 3.57%, Glyph Thirst 3.57%, Gnarled Staff of Teleportation 3.57%, Greater Talons 3.57%, Pattern 3.57%, Bartuc's Cut-Throat 7.14%, Edge 7.14%, Greater Claws 3.57%, Holy Thunder 7.14%, Firelizard's Talons 3.57%, Call to Arms 3.57%, Skull Collector 3.57%<br><strong>Offhand</strong>: Medusa's Gaze 25.00%, Chaos 10.71%, Mosaic 28.57%, Bartuc's Cut-Throat 25.00%, Shadow Suwayyah of Flame 3.57%, Suwayyah 3.57%, Pattern 3.57%, Plague 3.57%, Shadow Killer 7.14%, Scissors Quhab 3.57%, Shadow Blade Talons of Transcendence 3.57%, Spike Thorn 3.57%, Spirit 3.57%, Firelizard's Talons 3.57%, The Ward 3.57%, -26 7.14%, Jade Talon 7.14%<br><strong>Gloves</strong>: Kenshi's Chain Gloves of Alacrity 3.57%, Steelrend 7.14%, Kenshi's Heavy Bracers of Poison Nova 3.57%, Bitter Knuckle 3.57%, Storm Grip 3.57%, Laying of Hands 14.29%, Fiendra Claw 3.57%, Dracul's Grasp 28.57%, Demon Finger 3.57%, Stone Touch 3.57%, Death Touch 3.57%, Kenshi's Gauntlets of Alacrity 3.57%, Doom Finger 3.57%, Glyph Clutches 3.57%, Kenshi's Gauntlets of Frost Shield 3.57%</div>
+        </div>
+
+    <button class="collapsible">
+        <img src="icons/closed.png" alt="Open" class="icon">
+        <img src="icons/open.png" alt="Close" class="icon hidden">
+        <strong>28 Characters in this cluster:</strong></button>
+        <div class="content">
+            
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Kablamofist">Kablamofist</a></div>
+                <div>97</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fists of Fire:20, Claws of Thunder:20, Blades of Ice:20, Blade Shield:16, Cobra Strike:14, Claw Mastery:5, Fire Blast:1, Blade Throw:1, Wake of Fire:1, Blade Fury:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Tiger Strike:1, Dragon Talon:1, Dragon Claw:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> belt: Verdungo's Hearty Cord x1, amulet: Bone Torc x1, body: Chains of Honor x1, ring: Blood Gyre x1, ring: Raven Frost x1, boots: Shadow Dancer x1, helmet: Dread Hood x1, Left hand: Demon Limb x1, Left hand: Mosaic x1, Offhand: Medusa's Gaze x1, Offhand: Chaos x1, gloves: Kenshi's Chain Gloves of Alacrity x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=CATTT">CATTT</a></div>
+                <div>96</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Claw Mastery:20, Shadow Master:20, Claws of Thunder:20, Blades of Ice:20, Fists of Fire:10, Weapon Block:7, Cobra Strike:3, Psychic Hammer:1, Cloak of Shadows:1, Shadow Warrior:1, Tiger Strike:1, Dragon Talon:1, Dragon Claw:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> boots: Shadow Dancer x1, amulet: Mara's Kaleidoscope x1, gloves: Steelrend x1, helmet: Vampire Gaze x1, body: Treachery x1, belt: Verdungo's Hearty Cord x1, ring: Raven Frost x1, ring: Carrion Wind x1, Left hand: Demon Limb x1, Left hand: Shadow Killer x1, Offhand: Medusa's Gaze x1, Offhand: Chaos x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=jcyrus">jcyrus</a></div>
+                <div>95</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fists of Fire:20, Claws of Thunder:20, Blades of Ice:20, Cobra Strike:16, Blade Shield:10, Weapon Block:3, Fire Blast:1, Blade Throw:1, Wake of Fire:1, Blade Fury:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1, Venom:1, Tiger Strike:1, Dragon Talon:1, Dragon Claw:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> gloves: Kenshi's Heavy Bracers of Poison Nova x1, amulet: Metalgrid x1, belt: Verdungo's Hearty Cord x1, body: Chains of Honor x1, boots: Shadow Dancer x1, ring: Bul-Kathos' Wedding Band x1, ring: Raven Frost x1, helmet: Crown of Ages x1, Left hand: Demon Limb x1, Left hand: Mosaic x1, Offhand: Medusa's Gaze x1, Offhand: Mosaic x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Tanamaree">Tanamaree</a></div>
+                <div>94</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Claw Mastery:20, Fade:20, Fists of Fire:20, Claws of Thunder:20, Cobra Strike:19, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Tiger Strike:1, Dragon Claw:1</p>
+        <p><strong>Equipment:</strong> amulet: Chaos Necklace x1, ring: Raven Frost x1, ring: Dwarf Star x1, helmet: Andariel's Visage x1, body: Chains of Honor x1, boots: Shadow Dancer x1, belt: Arachnid Mesh x1, gloves: Bitter Knuckle x1, Left hand: Frostwind x1, Left hand: Jade Talon x1, Offhand: Medusa's Gaze x1, Offhand: Bartuc's Cut-Throat x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=JeyAssa">JeyAssa</a></div>
+                <div>93</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Claw Mastery:20, Fists of Fire:20, Cobra Strike:20, Claws of Thunder:20, Blades of Ice:20, Tiger Strike:1, Dragon Talon:1, Dragon Claw:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> gloves: Storm Grip x1, boots: Shadow Dancer x1, belt: Verdungo's Hearty Cord x1, helmet: Nightwing's Veil x1, Left hand: Naj's Puzzler x1, Left hand: Natalya's Mark x1, Offhand: Mosaic x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Sirens">Sirens</a></div>
+                <div>93</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fists of Fire:20, Claws of Thunder:20, Blades of Ice:20, Claw Mastery:14, Fade:13, Shadow Warrior:10, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Dragon Talon:1, Dragon Claw:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> ring: Raven Frost x1, ring: Havoc Band x1, boots: Gore Rider x1, body: Fortitude x1, gloves: Laying of Hands x1, helmet: Guillaume's Face x1, belt: String of Ears x1, amulet: Highlord's Wrath x1, Left hand: Shadow Greater Talons x1, Left hand: Glyph Thirst x1, Offhand: Shadow Suwayyah of Flame x1, Offhand: Bartuc's Cut-Throat x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=EveIyn">EveIyn</a></div>
+                <div>92</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fists of Fire:20, Cobra Strike:20, Claws of Thunder:20, Blades of Ice:20, Tiger Strike:17, Claw Mastery:1, Burst of Speed:1, Weapon Block:1, Dragon Talon:1, Dragon Claw:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> gloves: Fiendra Claw x1, helmet: Crown of Ages x1, amulet: Metalgrid x1, belt: Verdungo's Hearty Cord x1, body: Chains of Honor x1, boots: Shadow Dancer x1, ring: Wisp Projector x1, ring: Raven Frost x1, Left hand: Mosaic x1, Offhand: Mosaic x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Cameroonskii">Cameroonskii</a></div>
+                <div>92</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Claw Mastery:20, Fists of Fire:20, Claws of Thunder:20, Blades of Ice:20, Weapon Block:15, Burst of Speed:1, Fade:1, Venom:1, Dragon Talon:1, Dragon Claw:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> amulet: Highlord's Wrath x1, ring: Raven Frost x1, ring: Bul-Kathos' Wedding Band x1, belt: Verdungo's Hearty Cord x1, gloves: Dracul's Grasp x1, helmet: Natalya's Totem x1, body: Natalya's Shadow x1, Left hand: Naj's Puzzler x1, Left hand: Natalya's Mark x1, boots: Natalya's Soul x1, Offhand: Chaos x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Faile-Bashere">Faile-Bashere</a></div>
+                <div>91</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fists of Fire:20, Cobra Strike:20, Claws of Thunder:20, Blades of Ice:20, Claw Mastery:16, Burst of Speed:1, Weapon Block:1, Tiger Strike:1, Dragon Talon:1, Dragon Claw:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> amulet: Angelic Wings x1, boots: Natalya's Soul x1, body: Natalya's Shadow x1, ring: Wisp Projector x1, ring: Angelic Halo x1, helmet: Natalya's Totem x1, belt: String of Ears x1, gloves: Demon Finger x1, Left hand: Natalya's Mark x1, Offhand: Bartuc's Cut-Throat x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=BetterBalance">BetterBalance</a></div>
+                <div>91</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Claw Mastery:20, Venom:20, Blades of Ice:20, Blade Shield:18, Weapon Block:13, Fire Blast:1, Blade Throw:1, Wake of Fire:1, Blade Fury:1, Burst of Speed:1, Fade:1, Dragon Talon:1, Fists of Fire:1, Dragon Claw:1, Claws of Thunder:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> Left hand: Gnarled Staff of Teleportation x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=frankklam">frankklam</a></div>
+                <div>91</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fade:20, Fists of Fire:20, Claws of Thunder:20, Blades of Ice:20, Blade Shield:8, Fire Blast:1, Blade Throw:1, Wake of Fire:1, Blade Fury:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Tiger Strike:1, Dragon Talon:1, Dragon Claw:1, Cobra Strike:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> ring: Carrion Wind x1, ring: Angelic Halo x1, belt: Verdungo's Hearty Cord x1, gloves: Stone Touch x1, amulet: Angelic Wings x1, helmet: PlagueRI Visage x1, body: Guardian Angel x1, boots: Corpse Shank x1, Left hand: Greater Talons x1, Left hand: Mosaic x1, Offhand: Suwayyah x1, Offhand: Mosaic x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Malantar">Malantar</a></div>
+                <div>91</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fists of Fire:20, Cobra Strike:20, Claws of Thunder:20, Blades of Ice:20, Weapon Block:14, Claw Mastery:1, Burst of Speed:1, Tiger Strike:1, Dragon Talon:1, Dragon Claw:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> gloves: Laying of Hands x1, boots: Brimstone Brogues x1, ring: Angelic Halo x2, belt: String of Ears x1, helmet: Rockstopper x1, amulet: Angelic Wings x1, body: Smoke x1, Left hand: Pattern x1, Offhand: Pattern x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Options-asn">Options-asn</a></div>
+                <div>91</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fists of Fire:20, Claws of Thunder:20, Blades of Ice:20, Blade Shield:17, Claw Mastery:8, Cobra Strike:4, Weapon Block:2, Fire Blast:1, Blade Throw:1, Wake of Fire:1, Blade Fury:1, Psychic Hammer:1, Burst of Speed:1, Cloak of Shadows:1, Tiger Strike:1, Dragon Talon:1, Dragon Claw:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> ring: Raven Frost x1, ring: Carrion Wind x1, gloves: Death Touch x1, amulet: Mara's Kaleidoscope x1, boots: Natalya's Soul x1, belt: Verdungo's Hearty Cord x1, Left hand: Bartuc's Cut-Throat x1, Left hand: Mosaic x1, body: Chains of Honor x1, helmet: Crown of Ages x1, Offhand: Plague x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=The_Luggage">The_Luggage</a></div>
+                <div>90</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Claw Mastery:20, Tiger Strike:20, Dragon Claw:20, Blades of Ice:20, Weapon Block:13, Burst of Speed:3, Claws of Thunder:2, Dragon Talon:1, Fists of Fire:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> boots: Natalya's Soul x1, ring: Raven Frost x1, ring: Carrion Wind x1, body: Natalya's Shadow x1, helmet: Natalya's Totem x1, gloves: Dracul's Grasp x1, amulet: The Cat's Eye x1, belt: Bladebuckle x1, Left hand: Edge x1, Left hand: Natalya's Mark x1, Offhand: Shadow Killer x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Touuka">Touuka</a></div>
+                <div>90</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Claw Mastery:20, Claws of Thunder:20, Blades of Ice:20, Weapon Block:16, Fists of Fire:12, Fire Blast:1, Blade Throw:1, Wake of Fire:1, Blade Fury:1, Blade Shield:1, Burst of Speed:1, Fade:1, Venom:1, Tiger Strike:1, Dragon Talon:1, Dragon Claw:1, Cobra Strike:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> ring: Raven Frost x1, ring: Wisp Projector x1, boots: Natalya's Soul x1, amulet: Kenshi's Amulet x1, helmet: Natalya's Totem x1, belt: Verdungo's Hearty Cord x1, gloves: Kenshi's Gauntlets of Alacrity x1, body: Natalya's Shadow x1, Left hand: Greater Claws x1, Left hand: Natalya's Mark x1, Offhand: Scissors Quhab x1, Offhand: Mosaic x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=paddd">paddd</a></div>
+                <div>90</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Shadow Master:20, Fists of Fire:20, Claws of Thunder:20, Blades of Ice:20, Claw Mastery:8, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1, Tiger Strike:1, Dragon Talon:1, Dragon Claw:1, Cobra Strike:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> belt: Verdungo's Hearty Cord x1, boots: Natalya's Soul x1, ring: Carrion Wind x1, ring: Raven Frost x1, gloves: Laying of Hands x1, amulet: The Cat's Eye x1, body: Natalya's Shadow x1, helmet: Natalya's Totem x1, Left hand: Natalya's Mark x2, Offhand: Shadow Blade Talons of Transcendence x1, Offhand: Bartuc's Cut-Throat x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Beatboxxin">Beatboxxin</a></div>
+                <div>89</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fists of Fire:20, Cobra Strike:20, Claws of Thunder:20, Blades of Ice:20, Blade Shield:2, Fire Blast:1, Shock Web:1, Blade Throw:1, Charged Bolt Sentry:1, Wake of Fire:1, Blade Fury:1, Lightning Sentry:1, Death Sentry:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Tiger Strike:1, Dragon Talon:1, Dragon Claw:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> ring: Carrion Wind x1, ring: Raven Frost x1, amulet: Mara's Kaleidoscope x1, gloves: Dracul's Grasp x1, Offhand: Medusa's Gaze x1, Offhand: Bartuc's Cut-Throat x1, helmet: Crown of Ages x1, body: Chains of Honor x1, boots: Shadow Dancer x1, belt: Verdungo's Hearty Cord x1, Left hand: Mosaic x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=AliceNakiri">AliceNakiri</a></div>
+                <div>89</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Tiger Strike:20, Fists of Fire:20, Claws of Thunder:20, Blades of Ice:20, Cobra Strike:15, Claw Mastery:1, Burst of Speed:1, Dragon Talon:1, Dragon Claw:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> gloves: Dracul's Grasp x1, body: Natalya's Shadow x1, belt: String of Ears x1, helmet: Natalya's Totem x1, boots: Natalya's Soul x1, ring: Angelic Halo x2, amulet: Angelic Wings x1, Left hand: Holy Thunder x1, Left hand: Natalya's Mark x1, Offhand: Spike Thorn x1, Offhand: Mosaic x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=duckASS">duckASS</a></div>
+                <div>89</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fade:20, Tiger Strike:20, Fists of Fire:20, Blades of Ice:20, Claws of Thunder:14, Claw Mastery:1, Burst of Speed:1, Weapon Block:1, Dragon Talon:1, Dragon Claw:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> gloves: Doom Finger x1, amulet: Kenshi's Amulet of the Squid x1, belt: String of Ears x1, body: Chains of Honor x1, boots: Hailstone Spur x1, ring: Raven Frost x1, ring: Wisp Projector x1, helmet: Tal Rasha's Horadric Crest x1, Left hand: Demon Limb x1, Left hand: Firelizard's Talons x1, Offhand: Mosaic x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=SinSlap">SinSlap</a></div>
+                <div>88</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fists of Fire:20, Claws of Thunder:20, Blades of Ice:20, Weapon Block:19, Claw Mastery:13, Fade:3, Burst of Speed:1, Dragon Talon:1, Dragon Claw:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> boots: Natalya's Soul x1, amulet: Highlord's Wrath x1, ring: Raven Frost x1, ring: Carrion Wind x1, body: Natalya's Shadow x1, gloves: Dracul's Grasp x1, helmet: Natalya's Totem x1, belt: String of Ears x1, Left hand: Call to Arms x1, Left hand: Natalya's Mark x1, Offhand: Spirit x1, Offhand: Firelizard's Talons x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=jojolo">jojolo</a></div>
+                <div>88</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fists of Fire:20, Claws of Thunder:20, Blades of Ice:20, Shadow Master:19, Burst of Speed:8, Claw Mastery:2, Psychic Hammer:1, Weapon Block:1, Cloak of Shadows:1, Shadow Warrior:1, Tiger Strike:1, Dragon Talon:1, Dragon Claw:1, Cobra Strike:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> gloves: Laying of Hands x1, belt: String of Ears x1, boots: Natalya's Soul x1, amulet: PlagueRI Emblem x1, ring: Raven Frost x1, ring: Dwarf Star x1, body: Natalya's Shadow x1, helmet: Natalya's Totem x1, Left hand: Demon Limb x1, Left hand: Natalya's Mark x1, Offhand: Medusa's Gaze x1, Offhand: Bartuc's Cut-Throat x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Morttttty">Morttttty</a></div>
+                <div>88</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fists of Fire:20, Cobra Strike:20, Claws of Thunder:20, Blades of Ice:20, Claw Mastery:9, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Shadow Warrior:1, Shadow Master:1, Tiger Strike:1, Dragon Talon:1, Dragon Claw:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> belt: Trang-Oul's Girth x1, helmet: Natalya's Totem x1, gloves: Steelrend x1, body: Natalya's Shadow x1, ring: Wisp Projector x1, ring: Carrion Wind x1, Left hand: Demon Limb x1, Left hand: Natalya's Mark x1, Offhand: Medusa's Gaze x1, Offhand: Mosaic x1, amulet: Mara's Kaleidoscope x1, boots: Natalya's Soul x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=JacquelineChan">JacquelineChan</a></div>
+                <div>88</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Fists of Fire:20, Cobra Strike:20, Claws of Thunder:20, Blades of Ice:20, Claw Mastery:1, Burst of Speed:1, Weapon Block:1, Fade:1, Venom:1, Tiger Strike:1, Dragon Talon:1, Dragon Claw:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> helmet: Natalya's Totem x1, gloves: Glyph Clutches x1, boots: Natalya's Soul x1, belt: String of Ears x1, ring: Raven Frost x1, ring: Carrion Wind x1, body: Natalya's Shadow x1, amulet: Metalgrid x1, Left hand: Demon Limb x1, Left hand: Mosaic x1, Offhand: The Ward x1, Offhand: Bartuc's Cut-Throat x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=DrCumLord">DrCumLord</a></div>
+                <div>88</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Blade Shield:20, Fists of Fire:20, Claws of Thunder:20, Blades of Ice:20, Claw Mastery:3, Fire Blast:1, Blade Throw:1, Wake of Fire:1, Blade Fury:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1, Shadow Master:1, Tiger Strike:1, Dragon Talon:1, Dragon Claw:1, Cobra Strike:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> belt: String of Ears x1, ring: Raven Frost x1, ring: Carrion Wind x1, boots: Natalya's Soul x1, amulet: Viper Scarab x1, helmet: Natalya's Totem x1, body: Natalya's Shadow x1, gloves: Dracul's Grasp x1, Left hand: Demon Limb x1, Left hand: Natalya's Mark x1, Offhand: -26 x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=MinervaW">MinervaW</a></div>
+                <div>86</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Blade Shield:20, Claw Mastery:20, Blades of Ice:20, Shadow Master:7, Fade:6, Venom:6, Burst of Speed:4, Fire Blast:1, Blade Throw:1, Wake of Fire:1, Blade Fury:1, Psychic Hammer:1, Weapon Block:1, Cloak of Shadows:1, Shadow Warrior:1, Tiger Strike:1, Dragon Talon:1, Fists of Fire:1, Dragon Claw:1, Claws of Thunder:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> Left hand: Skull Collector x1, Left hand: Natalya's Mark x1, belt: String of Ears x1, amulet: Saracen's Chance x1, ring: Viper Grip x1, ring: Shadow Gyre x1, helmet: Natalya's Totem x1, body: Natalya's Shadow x1, boots: Natalya's Soul x1, gloves: Dracul's Grasp x1, Offhand: Jade Talon x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Kalixy">Kalixy</a></div>
+                <div>86</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Tiger Strike:20, Fists of Fire:20, Claws of Thunder:20, Blades of Ice:20, Blade Shield:7, Fire Blast:1, Blade Throw:1, Wake of Fire:1, Blade Fury:1, Claw Mastery:1, Burst of Speed:1, Weapon Block:1, Dragon Talon:1, Dragon Claw:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> gloves: Kenshi's Gauntlets of Frost Shield x1, helmet: Natalya's Totem x1, amulet: GhoulRI Eye x1, body: Natalya's Shadow x1, ring: Corruption Knot x1, ring: Wraithra Grip x1, boots: Natalya's Soul x1, Left hand: Edge x1, Left hand: Natalya's Mark x1, belt: Immortal King's Detail x1, Offhand: Shadow Killer x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Yaguarundi">Yaguarundi</a></div>
+                <div>86</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Blade Shield:20, Fists of Fire:20, Claws of Thunder:20, Blades of Ice:20, Shadow Master:3, Fire Blast:1, Blade Throw:1, Wake of Fire:1, Blade Fury:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1, Dragon Talon:1, Dragon Claw:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> amulet: Highlord's Wrath x1, ring: GhoulRI Gyre x1, ring: Raven Frost x1, body: Fortitude x1, helmet: Andariel's Visage x1, gloves: Dracul's Grasp x1, boots: Shadow Dancer x1, belt: String of Ears x1, Left hand: Natalya's Mark x1, Offhand: -26 x1</p>
+    
+            <div class="character-info">
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=SupaSin">SupaSin</a></div>
+                <div>85</div>
+                <div>Placeholder</div>
+            </div>
+        <p><strong>Skills:</strong> Claw Mastery:20, Fists of Fire:20, Claws of Thunder:20, Blades of Ice:17, Burst of Speed:11, Psychic Hammer:1, Weapon Block:1, Cloak of Shadows:1, Tiger Strike:1, Dragon Talon:1, Dragon Claw:1, Cobra Strike:1, Dragon Flight:1</p>
+        <p><strong>Equipment:</strong> boots: Shadow Dancer x1, ring: Cathan's Seal x1, Left hand: Holy Thunder x1, Left hand: Bartuc's Cut-Throat x1, Offhand: Jade Talon x1</p>
+    
+    </div>
+
+    
+
+    <!-- Embed the Plotly scatter plot at the bottom -->
+    <iframe src="Assassin-clusters_with_avg_points.html"></iframe>
+    
+
+    <script>
+        var coll = document.getElementsByClassName("collapsible");
+        for (var i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                var openIcon = this.querySelector("img.icon[alt='Open']");
+                var closeIcon = this.querySelector("img.icon[alt='Close']");
+
+                if (content.style.display === "block") {
+                    content.style.display = "none";
+                    openIcon.classList.remove("hidden");
+                    closeIcon.classList.add("hidden");
+                } else {
+                    content.style.display = "block";
+                    openIcon.classList.add("hidden");
+                    closeIcon.classList.remove("hidden");
+                }
+            });
+        }
+    </script>
+</body>
+</html>
