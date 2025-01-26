@@ -1,0 +1,1358 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Assassin Hardcore Analysis Report</title>
+        <style>
+            body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+            h1 { color: #333; }
+            h2 { color: #555; margin-top: 20px; clear: both; }
+            p { clear: both; }
+            .character-info { display: flex; margin-bottom: 10px; }
+            .character-info div { flex: 1; padding: 5px; }
+            .character-link { flex: 1; }
+        .collapsible {
+            background-color: #f1f1f1; /* Green background */
+            color: black; /* White text */
+            cursor: pointer;
+            padding: 10px; /* Increase padding */
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px; /* Increase font size */
+            border-radius: 5px; /* Rounded corners */
+            transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
+            display: flex;
+            align-items: center;
+        }
+        .collapsible img.icon {
+            margin-right: 10px; /* Spacing between icon and text */
+            width: 20px; /* Icon size */
+            height: 20px; /* Icon size */
+        }
+        .collapsible img.icon.hidden {
+            display: none; /* Hide by default */
+        }
+        .collapsible:hover {
+            background-color: #45a049; /* Darker green on hover */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Add shadow on hover */
+        }
+        .active, .collapsible:focus {
+            background-color: #45a049; /* Darker green when active or focused */
+        }
+            
+        .content {
+            padding: 0 18px;
+            display: none;
+            overflow: hidden;
+            background-color: #f9f9f9;
+            }
+        iframe {
+            width: 100%;
+            height: 600px; /* Adjust height as needed */
+            border: none;
+        }
+
+        .top-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px; /* Space between buttons and the rest of the page */
+        }
+        .top-button {
+            background-color: #f1f1f1; /* Green background */
+            color: black; /* White text */
+            cursor: pointer;
+            padding: 10px 15px; /* Adjust padding to fit side by side */
+            border: none;
+            text-align: center;
+            outline: none;
+            font-size: 16px; /* Adjust font size */
+            border-radius: 5px; /* Rounded corners */
+            transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
+            text-decoration: none; /* Remove underline */
+            flex: 1; /* Equal space for each button */
+            margin-right: 10px; /* Space between buttons */
+            height: 30px; /* Ensure height is adjusted based on content */
+        }
+        .top-button:last-child {
+            margin-right: 0; /* Remove right margin for the last button */
+        }
+        .top-button:hover {
+            background-color: #45a049; /* Darker green on hover */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Add shadow on hover */
+        }
+
+        .back-to-top {
+            display: none; /* Hidden by default */
+            position: fixed; /* Fixed/sticky position */
+            bottom: 20px; /* Place the button 20px from the bottom */
+            right: 30px; /* Place the button 30px from the right */
+            z-index: 99; /* Make sure it does not overlap */
+            border: none; /* Remove borders */
+            outline: none; /* Remove outline */
+            background-color: #4CAF50; /* Set background color */
+            color: white; /* Set text color */
+            cursor: pointer; /* Add a mouse pointer on hover */
+            padding: 15px; /* Some padding */
+            border-radius: 10px; /* Rounded corners */
+            font-size: 18px; /* Increase font size */
+        }
+        .back-to-top:hover {
+            background-color: #45a049; /* Darker background on hover */
+        }
+
+            .split-button {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px; /* Space between buttons and the rest of the page */
+        }
+        .split-button-option {
+            background-color: #4CAF50; /* Green background */
+            color: white; /* White text */
+            cursor: pointer;
+            padding: 10px 15px; /* Adjust padding */
+            border: none;
+            text-align: center;
+            outline: none;
+            font-size: 16px; /* Adjust font size */
+            border-radius: 0; /* No rounded corners */
+            transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
+            flex: 1; /* Equal space for each button */
+        }
+        .split-button-option:first-child {
+            border-top-left-radius: 5px; /* Rounded left corners */
+            border-bottom-left-radius: 5px; /* Rounded left corners */
+        }
+        .split-button-option:last-child {
+            border-top-right-radius: 5px; /* Rounded right corners */
+            border-bottom-right-radius: 5px; /* Rounded right corners */
+        }
+        .split-button-option:hover {
+            background-color: #45a049; /* Darker green on hover */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Add shadow on hover */
+        }
+        .split-button-option.active {
+            background-color: #2E7D32; /* Different color for active state */
+        }
+
+        </style>
+    </head>
+    <body>
+        <div class="top-buttons">
+            <a href="Home.html" class="top-button">Home</a>
+            <a href="Amazon.html" class="top-button">Amazon</a>
+            <a href="Assassin.html" class="top-button">Assassin</a>
+            <a href="Barbarian.html" class="top-button">Barbarian</a>
+            <a href="Druid.html" class="top-button">Druid</a>
+            <a href="Necromancer.html" class="top-button">Necromancer</a>
+            <a href="Paladin.html" class="top-button">Paladin</a>
+            <a href="Sorceress.html" class="top-button">Sorceress</a>
+            <div class="split-button">
+                <button id="SC" class="split-button-option" onclick="setActive('SC')">SC</button>
+                <button id="HC" class="split-button-option" onclick="setActive('HC')">HC</button>
+            </div>
+        </div>
+
+        <h1>Assassin Hardcore Skill Distribution </h1>
+        <hr>
+        
+        <h2>45.63%  of Assassin's Main Skills:<br><img src='icons/Fire Blast.png' alt='Fire Blast' width='20' height='20'> Fire Blast 68.09% (174)<br><img src='icons/Wake of Fire.png' alt='Wake of Fire' width='20' height='20'> Wake of Fire 44.68% (112)<br><img src='icons/Claw Mastery.png' alt='Claw Mastery' width='20' height='20'> Claw Mastery 68.09% (63)</h2>
+        <p><strong>Other Skills:<br></strong> <img src='icons/Fists of Fire.png' alt='Fists of Fire' width='20' height='20'> Fists of Fire 21.28% (46.0)<br><img src='icons/Shadow Master.png' alt='Shadow Master' width='20' height='20'> Shadow Master 8.51% (42.0)<br><img src='icons/Claws of Thunder.png' alt='Claws of Thunder' width='20' height='20'> Claws of Thunder 14.89% (41.0)<br><img src='icons/Psychic Hammer.png' alt='Psychic Hammer' width='20' height='20'> Psychic Hammer 34.04% (40.0)<br><img src='icons/Burst of Speed.png' alt='Burst of Speed' width='20' height='20'> Burst of Speed 61.7% (40.0)<br><img src='icons/Blade Throw.png' alt='Blade Throw' width='20' height='20'> Blade Throw 19.15% (40.0)</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>All Skills</strong></button>
+            <div class="content">
+                <div><img src='icons/Fire Blast.png' alt='Fire Blast' width='20' height='20'> Fire Blast 68.09% (175.0)<br><img src='icons/Wake of Fire.png' alt='Wake of Fire' width='20' height='20'> Wake of Fire 44.68% (113.0)<br><img src='icons/Claw Mastery.png' alt='Claw Mastery' width='20' height='20'> Claw Mastery 68.09% (64.0)<br><img src='icons/Fists of Fire.png' alt='Fists of Fire' width='20' height='20'> Fists of Fire 21.28% (46.0)<br><img src='icons/Shadow Master.png' alt='Shadow Master' width='20' height='20'> Shadow Master 8.51% (42.0)<br><img src='icons/Claws of Thunder.png' alt='Claws of Thunder' width='20' height='20'> Claws of Thunder 14.89% (41.0)<br><img src='icons/Burst of Speed.png' alt='Burst of Speed' width='20' height='20'> Burst of Speed 61.7% (40.0)<br><img src='icons/Psychic Hammer.png' alt='Psychic Hammer' width='20' height='20'> Psychic Hammer 34.04% (40.0)<br><img src='icons/Blade Throw.png' alt='Blade Throw' width='20' height='20'> Blade Throw 19.15% (40.0)<br><img src='icons/Venom.png' alt='Venom' width='20' height='20'> Venom 8.51% (36.0)<br><img src='icons/Blades of Ice.png' alt='Blades of Ice' width='20' height='20'> Blades of Ice 10.64% (34.0)<br><img src='icons/Blade Shield.png' alt='Blade Shield' width='20' height='20'> Blade Shield 10.64% (25.0)<br><img src='icons/Tiger Strike.png' alt='Tiger Strike' width='20' height='20'> Tiger Strike 10.64% (20.0)<br><img src='icons/Dragon Talon.png' alt='Dragon Talon' width='20' height='20'> Dragon Talon 19.15% (18.0)<br><img src='icons/Cloak of Shadows.png' alt='Cloak of Shadows' width='20' height='20'> Cloak of Shadows 27.66% (18.0)<br><img src='icons/Blade Fury.png' alt='Blade Fury' width='20' height='20'> Blade Fury 17.02% (17.0)<br><img src='icons/Dragon Flight.png' alt='Dragon Flight' width='20' height='20'> Dragon Flight 17.02% (16.0)<br><img src='icons/Weapon Block.png' alt='Weapon Block' width='20' height='20'> Weapon Block 34.04% (16.0)<br><img src='icons/Shadow Warrior.png' alt='Shadow Warrior' width='20' height='20'> Shadow Warrior 21.28% (16.0)<br><img src='icons/Dragon Claw.png' alt='Dragon Claw' width='20' height='20'> Dragon Claw 27.66% (16.0)<br><img src='icons/Fade.png' alt='Fade' width='20' height='20'> Fade 25.53% (12.0)<br><img src='icons/Wake of Inferno.png' alt='Wake of Inferno' width='20' height='20'> Wake of Inferno 8.51% (10.0)<br><img src='icons/Shock Web.png' alt='Shock Web' width='20' height='20'> Shock Web 8.51% (7.0)<br><img src='icons/Charged Bolt Sentry.png' alt='Charged Bolt Sentry' width='20' height='20'> Charged Bolt Sentry 6.38% (5.0)<br><img src='icons/Cobra Strike.png' alt='Cobra Strike' width='20' height='20'> Cobra Strike 8.51% (4.0)<br><img src='icons/Mind Blast.png' alt='Mind Blast' width='20' height='20'> Mind Blast 6.38% (3.0)<br><img src='icons/Lightning Sentry.png' alt='Lightning Sentry' width='20' height='20'> Lightning Sentry 2.13% (1.0)<br><img src='icons/Death Sentry.png' alt='Death Sentry' width='20' height='20'> Death Sentry 2.13% (1.0)</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>Most Common Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Boots</strong>: <br>Hsarus' Iron Heel 8.51%<br>Boots 8.51%<br>Natalya's Soul 4.26%<br>Sigon's Sabot 4.26%<br>Fiendra Track 2.13%<br><strong>Ring</strong>: <br>Angelic Halo 10.64%<br>Nagelring 6.38%<br>Manald Heal 6.38%<br>Ring of Light 4.26%<br>Ring of the Apprentice 4.26%<br><strong>Gloves</strong>: <br>Leather Gloves 12.77%<br>Sigon's Gage 6.38%<br>Death's Hand 4.26%<br>Bloodfist 4.26%<br>Trang-Oul's Claws 2.13%<br><strong>Helmet</strong>: <br>Cap 12.77%<br>Skull Cap 6.38%<br>Bone Helm 4.26%<br>Peasant Crown 4.26%<br>Sigon's Visor 4.26%<br><strong>Amulet</strong>: <br>Angelic Wings 6.38%<br>Magekiller's Amulet of the Titan 2.13%<br>Shadow Gorget 2.13%<br>Amulet of Luck 2.13%<br>Magekiller's Amulet 2.13%<br><strong>Belt</strong>: <br>Sash 19.15%<br>Sigon's Wrap 6.38%<br>Iratha's Cord 4.26%<br>Light Belt 4.26%<br>Arctic Binding 4.26%<br><strong>Body</strong>: <br>Leather Armor 17.02%<br>Stealth 14.89%<br>Arctic Furs 6.38%<br>Darkglow 4.26%<br>Treachery 2.13%<br><strong>Left hand</strong>: <br>Katar 38.30%<br>Spirit 6.38%<br>Javelin 4.26%<br>Holy Thunder 2.13%<br>Jade Talon 2.13%<br><strong>Offhand</strong>: <br>Katar 31.91%<br>Ancients' Pledge 8.51%<br>Large Shield 6.38%<br>Small Shield 6.38%<br>Sigon's Guard 4.26%</div>
+            </div>
+        
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Boots</strong>: Natalya's Soul 4.26%, Fiendra Track 2.13%, Hsarus' Iron Heel 8.51%, Tearhaunch 2.13%, Sigon's Sabot 4.26%, Sander's Riprap 2.13%, Corpse Shank 2.13%, Rugged Heavy Boots of Pacing 2.13%, Fiendra Shank 2.13%, Viper Shank 2.13%, Doom Slippers 2.13%, Carrion Stalker 2.13%, Heavy Boots of Pacing 2.13%, Tangerine Heavy Boots of Remedy 2.13%, Viper Trample 2.13%, Spirit Track 2.13%, Boots of Dexterity 2.13%, Crimson Heavy Boots of Dexterity 2.13%, Tangerine Boots of Dexterity 2.13%, Boots 8.51%, Sturdy Heavy Boots of Charged Bolt 2.13%, Skull Stalker 2.13%<br><strong>Ring</strong>: Nagelring 6.38%, Dwarf Star 2.13%, Viper Eye 2.13%, Manald Heal 6.38%, Grim Touch 2.13%, Angelic Halo 10.64%, Dread Circle 2.13%, Corruption Circle 2.13%, Viper Grasp 2.13%, Ring of Light 4.26%, Shadow Hold 2.13%, Grim Finger 2.13%, Entropy Loop 2.13%, Bone Turn 2.13%, Bitter Grip 2.13%, Doom Circle 2.13%, Bone Eye 2.13%, Rune Grasp 2.13%, Grim Coil 2.13%, Viridian Ring 2.13%, Crimson Ring of Chance 2.13%, Cathan's Seal 2.13%, Felicitous Ring 2.13%, Lapis Ring of Greed 2.13%, Ring of the Apprentice 4.26%, Rugged Ring of the Apprentice 2.13%, Ring of Strength 2.13%, Iron Ring 2.13%, Crimson Ring 4.26%, Bronze Ring of the Apprentice 2.13%, Ring of Craftmanship 2.13%, Bronze Ring of Greed 4.26%, Ring of Warding 2.13%, Azure Ring 2.13%, Beryl Ring of the Apprentice 2.13%, Lizard's Ring 2.13%, Ring of Health 2.13%, Beast Gyre 2.13%, Bronze Ring of Dexterity 2.13%, Crimson Ring of Dexterity 2.13%, Tangerine Ring of Craftmanship 2.13%, Ring of Charged Bolt 2.13%, Felicitous Ring of Craftmanship 2.13%, Glimmering Ring of Craftmanship 2.13%, Chaos Master 2.13%, Triumphant Ring of the Apprentice 2.13%, Ring of Greed 2.13%<br><strong>Gloves</strong>: Trang-Oul's Claws 2.13%, Death's Hand 4.26%, Frostburn 2.13%, Sigon's Gage 6.38%, Sander's Taboo 2.13%, Bloodfist 4.26%, Magefist 2.13%, Chain Gloves of Self-Repair 2.13%, Dire Knuckle 2.13%, PlagueRI Grip 2.13%, Corpse Grasp 2.13%, Fiendra Claw 2.13%, Cleglaw's Pincers 2.13%, Eagle Claw 2.13%, Eagle Grip 2.13%, Beryl Leather Gloves of Dexterity 2.13%, Leather Gloves 12.77%, Havoc Clutches 2.13%, Ocher Chain Gloves 2.13%, Glimmering Leather Gloves of Dexterity 2.13%, Beast Claw 2.13%, Heavy Gloves 2.13%<br><strong>Helmet</strong>: Harlequin Crest 2.13%, Bone Helm 4.26%, Peasant Crown 4.26%, Naj's Circlet 2.13%, Infernal Cranium 2.13%, Lore 2.13%, Cruel Cowl 2.13%, Iratha's Coil 2.13%, Skull Cap 6.38%, Beryl Skull Cap 2.13%, Sigon's Visor 4.26%, Berserker's Headgear 4.26%, Cap 12.77%, Loath Crest 2.13%, Lizard's Skull Cap of Balance 2.13%, Dread Brow 2.13%, Corpse Visage 2.13%, Hailstone Casque 2.13%, Biggin's Bonnet 2.13%, Tangerine Skull Cap of Balance 2.13%, Beryl Cap 2.13%<br><strong>Amulet</strong>: Magekiller's Amulet of the Titan 2.13%, Shadow Gorget 2.13%, Amulet of Luck 2.13%, Magekiller's Amulet 2.13%, Angelic Wings 6.38%, Tangerine Amulet of Fortune 2.13%, The Eye of Etlich 2.13%, Beast Talisman 2.13%, Iratha's Collar 2.13%, Shimmering Amulet of Regeneration 2.13%, Shimmering Amulet of Dexterity 2.13%, Amulet of Greed 2.13%, Blood Mark 2.13%, Vidala's Snare 2.13%, Rugged Amulet of the Apprentice 2.13%, Ocher Amulet 2.13%, Felicitous Amulet of the Apprentice 2.13%, Felicitous Amulet of Greed 2.13%, Amulet of the Fox 2.13%, Amulet of the Jackal 2.13%, Viper Beads 2.13%, Amulet of Energy 2.13%, Amulet of Regeneration 2.13%, Bronze Amulet of Craftmanship 2.13%, Bronze Amulet of Strength 2.13%, Shimmering Amulet of Energy 2.13%, Tangerine Amulet 2.13%<br><strong>Belt</strong>: Thundergod's Vigor 2.13%, Death's Guard 2.13%, String of Ears 2.13%, Sigon's Wrap 6.38%, GhoulRI Strap 2.13%, Corpse Lash 2.13%, Glyph Lash 2.13%, Hailstone Buckle 2.13%, Iratha's Cord 4.26%, PlagueRI Harness 2.13%, Belt of Equilibrium 2.13%, Glyph Strap 2.13%, Sash 19.15%, Crimson Belt of Balance 2.13%, Light Belt 4.26%, Bone Chain 2.13%, Tangerine Sash of Remedy 2.13%, Crimson Sash 2.13%, Bone Buckle 2.13%, Arctic Binding 4.26%, Tangerine Sash 2.13%, Azure Sash of Strength 2.13%, Hailstone Cord 2.13%<br><strong>Body</strong>: Treachery 2.13%, Breast Plate 2.13%, Stealth 14.89%, Boneflesh 2.13%, Sigon's Shelter 2.13%, Darkglow 4.26%, Beast Suit 2.13%, Leather Armor 17.02%, Ring Mail of Health 2.13%, Havoc Shroud 2.13%, Hailstone Shroud 2.13%, Arctic Furs 6.38%, Hard Leather Armor 2.13%, Quilted Armor 2.13%, Sturdy Studded Leather of Self-Repair 2.13%, Angelic Mantle 2.13%, Azure Quilted Armor 2.13%, Beast Hide 2.13%, Sturdy Hard Leather Armor of Charged Bolt 2.13%, Skull Shell 2.13%, Storm Hide 2.13%<br><strong>Left hand</strong>: Holy Thunder 2.13%, Jade Talon 2.13%, Trickster's Scissors Katar 2.13%, The Jade Tan Do 2.13%, Leaf 2.13%, Spirit 6.38%, Bonesnap 2.13%, Corpse Scratch 2.13%, Sacred Scissors Katar of Piercing 2.13%, Javelin 4.26%, Sander's Superstition 2.13%, Wraithra Fist 2.13%, Short Bow 2.13%, Storm Razor 2.13%, Strength 2.13%, Deadly Javelin of Quality 2.13%, Katar 38.30%, Stoutnail 2.13%, Sharp Katar of Readiness 2.13%, Pain Fang 2.13%, Doom Spike 2.13%, Katar of Readiness 2.13%, Skewer of Krintiz 2.13%, Demon Scratch 2.13%, Snake's Yew Wand of Brilliance 2.13%, GhoulRI Bite 2.13%, Angelic Sickle 2.13%, Small Shield 2.13%, Dagger 2.13%, Jagged Dagger 2.13%, Strangling Gas Potion 2.13%, Havoc Branch 2.13%, Rixot's Keen 2.13%, Jagged Katar of Craftmanship 2.13%, Hand Axe 2.13%<br><strong>Offhand</strong>: Head Hunter's Glory 2.13%, Spirit 2.13%, Cunning Scissors Katar of the Ox 2.13%, Milabrega's Orb 2.13%, Ancients' Pledge 8.51%, Sigon's Guard 4.26%, Rhyme 4.26%, Large Shield 6.38%, Cleglaw's Claw 2.13%, Bronze Katar of Slaying 2.13%, Bramble Guard 2.13%, Katar 31.91%, Steelclash 2.13%, Katar of the Bat 2.13%, Bronze Katar of Measure 2.13%, Lizard's Small Shield of Balance 2.13%, Jagged Katar of Shock 2.13%, Fulminating Potion 2.13%, Small Shield 6.38%, Brimstone Tower 2.13%, Buckler 2.13%, Hand Axe 2.13%</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>47 Characters in this cluster:</strong></button>
+            <div class="content">
+                
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=neLowara">neLowara</a></div>
+                    <div>81</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Blade Shield:20, Shadow Master:20, Blades of Ice:20, Venom:16, Fire Blast:1, Blade Throw:1, Wake of Fire:1, Blade Fury:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1, Dragon Talon:1, Fists of Fire:1, Dragon Claw:1, Claws of Thunder:1, Dragon Flight:1</p>
+            <p><strong>Equipment:</strong> boots: Natalya's Soul x1, ring: Nagelring x1, ring: Dwarf Star x1, gloves: Trang-Oul's Claws x1, helmet: Harlequin Crest x1, amulet: Magekiller's Amulet of the Titan x1, belt: Thundergod's Vigor x1, body: Treachery x1, Left hand: Holy Thunder x1, Left hand: Jade Talon x1, Offhand: Head Hunter's Glory x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=hhhhg">hhhhg</a></div>
+                    <div>73</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Claw Mastery:20, Shadow Master:20, Venom:18, Fire Blast:1, Shock Web:1, Blade Throw:1, Charged Bolt Sentry:1, Wake of Fire:1, Blade Fury:1, Lightning Sentry:1, Wake of Inferno:1, Death Sentry:1, Blade Shield:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1, Mind Blast:1, Tiger Strike:1, Dragon Talon:1, Fists of Fire:1, Dragon Claw:1, Claws of Thunder:1, Blades of Ice:1, Dragon Flight:1</p>
+            <p><strong>Equipment:</strong> Left hand: Trickster's Scissors Katar x1, Offhand: Cunning Scissors Katar of the Ox x1, amulet: Shadow Gorget x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Armakiller">Armakiller</a></div>
+                    <div>38</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Tiger Strike:16, Blades of Ice:9, Burst of Speed:2, Fire Blast:1, Blade Throw:1, Wake of Fire:1, Blade Fury:1, Blade Shield:1, Claw Mastery:1, Weapon Block:1, Fade:1, Venom:1, Dragon Talon:1, Fists of Fire:1, Dragon Claw:1, Cobra Strike:1, Claws of Thunder:1, Dragon Flight:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=KickMaster">KickMaster</a></div>
+                    <div>34</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Dragon Talon:10, Dragon Flight:9, Fire Blast:1, Blade Throw:1, Wake of Fire:1, Blade Fury:1, Claw Mastery:1, Burst of Speed:1, Fade:1, Venom:1, Dragon Claw:1</p>
+            <p><strong>Equipment:</strong> belt: Death's Guard x1, gloves: Death's Hand x1, boots: Fiendra Track x1, amulet: Amulet of Luck x1, ring: Viper Eye x1, ring: Manald Heal x1, body: Breast Plate x1, helmet: Bone Helm x1, Left hand: The Jade Tan Do x1, Offhand: Milabrega's Orb x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=ChLaNinJa">ChLaNinJa</a></div>
+                    <div>33</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Claws of Thunder:13, Fists of Fire:8, Claw Mastery:3, Burst of Speed:3, Blades of Ice:3, Weapon Block:1, Fade:1, Tiger Strike:1, Dragon Talon:1, Dragon Claw:1, Cobra Strike:1, Dragon Flight:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Koh">Koh</a></div>
+                    <div>31</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Wake of Fire:11, Fire Blast:9, Burst of Speed:3, Wake of Inferno:2, Shock Web:1, Charged Bolt Sentry:1, Claw Mastery:1, Psychic Hammer:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1, Shadow Master:1</p>
+            <p><strong>Equipment:</strong> ring: Nagelring x1, ring: Grim Touch x1, body: Stealth x1, boots: Hsarus' Iron Heel x1, helmet: Peasant Crown x1, belt: String of Ears x1, gloves: Frostburn x1, amulet: Magekiller's Amulet x1, Left hand: Leaf x1, Left hand: Spirit x1, Offhand: Ancients' Pledge x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Jadeye">Jadeye</a></div>
+                    <div>31</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Blade Shield:2, Fire Blast:1, Blade Throw:1, Wake of Fire:1, Blade Fury:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Shadow Warrior:1, Mind Blast:1, Shadow Master:1</p>
+            <p><strong>Equipment:</strong> belt: Sigon's Wrap x1, gloves: Sigon's Gage x1, amulet: Angelic Wings x1, ring: Angelic Halo x1, ring: Manald Heal x1, body: Boneflesh x1, boots: Tearhaunch x1, helmet: Naj's Circlet x1, Left hand: Spirit x1, Left hand: Bonesnap x1, Offhand: Sigon's Guard x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=BladeJosten">BladeJosten</a></div>
+                    <div>30</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Fists of Fire:8, Claws of Thunder:6, Burst of Speed:2, Fire Blast:1, Blade Throw:1, Wake of Fire:1, Blade Fury:1, Claw Mastery:1, Psychic Hammer:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1, Mind Blast:1, Tiger Strike:1, Dragon Talon:1, Dragon Claw:1, Cobra Strike:1, Dragon Flight:1</p>
+            <p><strong>Equipment:</strong> helmet: Bone Helm x1, gloves: Sigon's Gage x1, body: Sigon's Shelter x1, belt: Sigon's Wrap x1, boots: Sigon's Sabot x1, ring: Dread Circle x1, ring: Corruption Circle x1, Left hand: Corpse Scratch x1, Left hand: Sacred Scissors Katar of Piercing x1, Offhand: Rhyme x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=DarkMind_PS">DarkMind_PS</a></div>
+                    <div>30</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Blade Throw:20, Blade Fury:10, Fire Blast:1, Wake of Fire:1, Blade Shield:1</p>
+            <p><strong>Equipment:</strong> ring: Viper Grasp x1, ring: Ring of Light x1, belt: GhoulRI Strap x1, Left hand: Javelin x1, Left hand: Sander's Superstition x1, amulet: Tangerine Amulet of Fortune x1, body: Darkglow x1, helmet: Infernal Cranium x1, boots: Sander's Riprap x1, gloves: Sander's Taboo x1, Offhand: Large Shield x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=SlappingYaSilly">SlappingYaSilly</a></div>
+                    <div>30</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Claws of Thunder:11, Fists of Fire:10, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Tiger Strike:1, Dragon Talon:1, Dragon Claw:1, Cobra Strike:1, Blades of Ice:1, Dragon Flight:1</p>
+            <p><strong>Equipment:</strong> amulet: Angelic Wings x1, ring: Angelic Halo x1, ring: Shadow Hold x1, helmet: Lore x1, belt: Corpse Lash x1, gloves: Bloodfist x1, boots: Corpse Shank x1, body: Stealth x1, Left hand: Wraithra Fist x1, Offhand: Rhyme x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=podsosinka">podsosinka</a></div>
+                    <div>30</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Wake of Fire:15, Fire Blast:10, Wake of Inferno:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1</p>
+            <p><strong>Equipment:</strong> Left hand: Short Bow x1, Left hand: Spirit x1, ring: Grim Finger x1, ring: Entropy Loop x1, belt: Glyph Lash x1, boots: Natalya's Soul x1, gloves: Magefist x1, helmet: Peasant Crown x1, body: Darkglow x1, amulet: The Eye of Etlich x1, Offhand: Large Shield x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=LORDMIKI">LORDMIKI</a></div>
+                    <div>29</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Wake of Fire:12, Wake of Inferno:6, Charged Bolt Sentry:3, Fire Blast:1, Shock Web:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1</p>
+            <p><strong>Equipment:</strong> belt: Hailstone Buckle x1, gloves: Chain Gloves of Self-Repair x1, boots: Rugged Heavy Boots of Pacing x1, body: Beast Suit x1, helmet: Cruel Cowl x1, ring: Bone Turn x1, ring: Bitter Grip x1, amulet: Beast Talisman x1, Left hand: Storm Razor x1, Offhand: Ancients' Pledge x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Nothx">Nothx</a></div>
+                    <div>27</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Claws of Thunder:8, Shadow Warrior:7, Fists of Fire:6, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Dragon Talon:1, Dragon Claw:1, Dragon Flight:1</p>
+            <p><strong>Equipment:</strong> ring: Doom Circle x1, ring: Bone Eye x1, boots: Fiendra Shank x1, body: Stealth x1, helmet: Iratha's Coil x1, amulet: Iratha's Collar x1, gloves: Dire Knuckle x1, belt: Iratha's Cord x1, Left hand: Strength x1, Offhand: Ancients' Pledge x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Elcadia_PS">Elcadia_PS</a></div>
+                    <div>23</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Fire Blast:14, Wake of Fire:12</p>
+            <p><strong>Equipment:</strong> helmet: Skull Cap x1, gloves: PlagueRI Grip x1, Left hand: Deadly Javelin of Quality x1, Left hand: Katar x1, ring: Rune Grasp x1, ring: Grim Coil x1, body: Leather Armor x1, amulet: Shimmering Amulet of Regeneration x1, boots: Viper Shank x1, belt: PlagueRI Harness x1, Offhand: Cleglaw's Claw x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=SentateYCallaTE">SentateYCallaTE</a></div>
+                    <div>23</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Wake of Fire:12, Fire Blast:10, Claw Mastery:1, Burst of Speed:1</p>
+            <p><strong>Equipment:</strong> helmet: Beryl Skull Cap x1, boots: Doom Slippers x1, ring: Viridian Ring x1, ring: Crimson Ring of Chance x1, belt: Belt of Equilibrium x1, gloves: Corpse Grasp x1, amulet: Shimmering Amulet of Dexterity x1, body: Stealth x1, Left hand: Stoutnail x1, Offhand: Large Shield x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=SoNiiceWOF">SoNiiceWOF</a></div>
+                    <div>22</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Fire Blast:14, Wake of Fire:11</p>
+            <p><strong>Equipment:</strong> amulet: Amulet of Greed x1, body: Ring Mail of Health x1, belt: Glyph Strap x1, ring: Cathan's Seal x1, Left hand: Sharp Katar of Readiness x1, Offhand: Bronze Katar of Slaying x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=EvaElfie">EvaElfie</a></div>
+                    <div>21</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Fire Blast:11, Wake of Fire:10</p>
+            <p><strong>Equipment:</strong> belt: Sash x1, boots: Carrion Stalker x1, ring: Felicitous Ring x1, ring: Manald Heal x1, helmet: Sigon's Visor x1, body: Stealth x1, gloves: Fiendra Claw x1, amulet: Blood Mark x1, Left hand: Pain Fang x1, Offhand: Ancients' Pledge x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Shurikenz">Shurikenz</a></div>
+                    <div>20</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Blade Throw:11, Fire Blast:1, Wake of Fire:1, Blade Fury:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1</p>
+            <p><strong>Equipment:</strong> body: Havoc Shroud x1, ring: Nagelring x1, ring: Lapis Ring of Greed x1, helmet: Berserker's Headgear x1, boots: Heavy Boots of Pacing x1, amulet: Vidala's Snare x1, belt: Iratha's Cord x1, gloves: Cleglaw's Pincers x1, Left hand: Doom Spike x1, Offhand: Bramble Guard x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=GANGMA">GANGMA</a></div>
+                    <div>20</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Fire Blast:9, Wake of Fire:9, Claw Mastery:1, Burst of Speed:1</p>
+            <p><strong>Equipment:</strong> ring: Ring of the Apprentice x2, amulet: Rugged Amulet of the Apprentice x1, gloves: Eagle Claw x1, helmet: Cap x1, boots: Hsarus' Iron Heel x1, body: Stealth x1, belt: Sash x1, Left hand: Katar of Readiness x1, Left hand: Skewer of Krintiz x1, Offhand: Katar x1, Offhand: Steelclash x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=JAM-ASS">JAM-ASS</a></div>
+                    <div>19</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Psychic Hammer:9, Cloak of Shadows:6, Claw Mastery:1, Burst of Speed:1, Weapon Block:1, Fade:1, Shadow Warrior:1</p>
+            <p><strong>Equipment:</strong> boots: Tangerine Heavy Boots of Remedy x1, gloves: Eagle Grip x1, ring: Rugged Ring of the Apprentice x1, ring: Angelic Halo x1, belt: Crimson Belt of Balance x1, helmet: Loath Crest x1, amulet: Ocher Amulet x1, body: Hailstone Shroud x1, Left hand: Demon Scratch x1, Offhand: Katar of the Bat x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Valtieal">Valtieal</a></div>
+                    <div>17</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Fire Blast:7, Wake of Fire:6, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1</p>
+            <p><strong>Equipment:</strong> ring: Ring of Strength x1, belt: Light Belt x1, helmet: Skull Cap x1, amulet: Felicitous Amulet of the Apprentice x1, gloves: Beryl Leather Gloves of Dexterity x1, body: Stealth x1, Left hand: Katar x1, Offhand: Bronze Katar of Measure x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=sertghh">sertghh</a></div>
+                    <div>16</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Claw Mastery:10, Burst of Speed:1, Weapon Block:1, Fists of Fire:1, Dragon Claw:1</p>
+            <p><strong>Equipment:</strong> gloves: Leather Gloves x1, belt: Bone Chain x1, ring: Iron Ring x1, helmet: Cap x1, amulet: Felicitous Amulet of Greed x1, body: Arctic Furs x1, boots: Viper Trample x1, Left hand: Katar x1, Offhand: Katar x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=ZeeHammer">ZeeHammer</a></div>
+                    <div>15</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Fire Blast:9, Wake of Fire:4, Claw Mastery:1, Burst of Speed:1</p>
+            <p><strong>Equipment:</strong> body: Hard Leather Armor x1, ring: Crimson Ring x1, ring: Bronze Ring of the Apprentice x1, helmet: Lizard's Skull Cap of Balance x1, belt: Tangerine Sash of Remedy x1, amulet: Amulet of the Fox x1, Left hand: Snake's Yew Wand of Brilliance x1, Offhand: Lizard's Small Shield of Balance x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Second_hero">Second_hero</a></div>
+                    <div>14</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Psychic Hammer:13</p>
+            <p><strong>Equipment:</strong> body: Quilted Armor x1, helmet: Dread Brow x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Benhavingfun">Benhavingfun</a></div>
+                    <div>14</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Fists of Fire:7, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Dragon Talon:1, Dragon Claw:1</p>
+            <p><strong>Equipment:</strong> body: Sturdy Studded Leather of Self-Repair x1, ring: Ring of Light x1, ring: Ring of Craftmanship x1, helmet: Corpse Visage x1, belt: Sash x1, amulet: Amulet of the Jackal x1, boots: Spirit Track x1, Left hand: GhoulRI Bite x1, Offhand: Jagged Katar of Shock x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=sinsitty">sinsitty</a></div>
+                    <div>13</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Fire Blast:9, Wake of Fire:1, Claw Mastery:1, Burst of Speed:1</p>
+            <p><strong>Equipment:</strong> ring: Angelic Halo x2, amulet: Angelic Wings x1, body: Angelic Mantle x1, gloves: Sigon's Gage x1, helmet: Sigon's Visor x1, boots: Sigon's Sabot x1, belt: Sigon's Wrap x1, Left hand: Katar x1, Left hand: Angelic Sickle x1, Offhand: Katar x1, Offhand: Sigon's Guard x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Vakation">Vakation</a></div>
+                    <div>12</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Fire Blast:8, Wake of Fire:1, Claw Mastery:1, Burst of Speed:1</p>
+            <p><strong>Equipment:</strong> belt: Sash x1, body: Leather Armor x1, ring: Bronze Ring of Greed x1, ring: Ring of Warding x1, helmet: Cap x1, Left hand: Small Shield x1, Left hand: Dagger x1, Offhand: Fulminating Potion x1, Offhand: Small Shield x1, gloves: Havoc Clutches x1, amulet: Viper Beads x1, boots: Boots of Dexterity x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=ImaTrapIRLhahah">ImaTrapIRLhahah</a></div>
+                    <div>12</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Fire Blast:5, Burst of Speed:5, Wake of Fire:1, Claw Mastery:1</p>
+            <p><strong>Equipment:</strong> boots: Crimson Heavy Boots of Dexterity x1, body: Azure Quilted Armor x1, amulet: Amulet of Energy x1, helmet: Hailstone Casque x1, gloves: Ocher Chain Gloves x1, belt: Crimson Sash x1, ring: Azure Ring x1, ring: Beryl Ring of the Apprentice x1, Left hand: Jagged Dagger x1, Offhand: Brimstone Tower x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Mirassa">Mirassa</a></div>
+                    <div>11</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Fire Blast:9, Claw Mastery:1, Burst of Speed:1</p>
+            <p><strong>Equipment:</strong> body: Leather Armor x1, helmet: Skull Cap x1, ring: Crimson Ring x1, ring: Lizard's Ring x1, amulet: Amulet of Regeneration x1, boots: Tangerine Boots of Dexterity x1, gloves: Bloodfist x1, belt: Bone Buckle x1, Left hand: Katar x1, Offhand: Katar x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=aevt">aevt</a></div>
+                    <div>10</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Dragon Claw:4, Fists of Fire:3, Burst of Speed:2, Claw Mastery:1</p>
+            <p><strong>Equipment:</strong> boots: Boots x1, belt: Sash x1, gloves: Leather Gloves x1, ring: Ring of Health x1, body: Beast Hide x1, Left hand: Katar x1, Offhand: Katar x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=SWST">SWST</a></div>
+                    <div>9</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Shock Web:4, Fire Blast:1, Claw Mastery:1, Burst of Speed:1</p>
+            <p><strong>Equipment:</strong> boots: Hsarus' Iron Heel x1, helmet: Berserker's Headgear x1, body: Arctic Furs x1, belt: Arctic Binding x1, gloves: Glimmering Leather Gloves of Dexterity x1, amulet: Bronze Amulet of Craftmanship x1, Left hand: Strangling Gas Potion x1, Left hand: Katar x1, ring: Beast Gyre x1, Offhand: Katar x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=kepStab">kepStab</a></div>
+                    <div>8</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Fire Blast:6, Claw Mastery:1, Burst of Speed:1</p>
+            <p><strong>Equipment:</strong> belt: Sash x1, body: Arctic Furs x1, helmet: Biggin's Bonnet x1, amulet: Bronze Amulet of Strength x1, ring: Bronze Ring of Dexterity x1, Left hand: Katar x1, Offhand: Katar x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=woodcuttingGuy">woodcuttingGuy</a></div>
+                    <div>8</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Fire Blast:5, Blade Throw:3</p>
+            <p><strong>Equipment:</strong> ring: Crimson Ring of Dexterity x1, ring: Tangerine Ring of Craftmanship x1, helmet: Cap x1, boots: Sturdy Heavy Boots of Charged Bolt x1, body: Leather Armor x1, gloves: Beast Claw x1, belt: Tangerine Sash x1, amulet: Shimmering Amulet of Energy x1, Left hand: Katar x1, Offhand: Small Shield x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=rrrqqwwwqq">rrrqqwwwqq</a></div>
+                    <div>7</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Fire Blast:5, Claw Mastery:1, Burst of Speed:1</p>
+            <p><strong>Equipment:</strong> belt: Sash x1, helmet: Cap x1, body: Leather Armor x1, amulet: Tangerine Amulet x1, ring: Ring of Charged Bolt x1, ring: Felicitous Ring of Craftmanship x1, Left hand: Katar x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Ai">Ai</a></div>
+                    <div>6</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Fire Blast:4, Claw Mastery:1, Burst of Speed:1</p>
+            <p><strong>Equipment:</strong> helmet: Tangerine Skull Cap of Balance x1, body: Sturdy Hard Leather Armor of Charged Bolt x1, belt: Arctic Binding x1, gloves: Death's Hand x1, Left hand: Katar x1, Offhand: Katar x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Opoka">Opoka</a></div>
+                    <div>6</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Fire Blast:5, Claw Mastery:1</p>
+            <p><strong>Equipment:</strong> belt: Sash x1, gloves: Leather Gloves x1, ring: Glimmering Ring of Craftmanship x1, ring: Chaos Master x1, body: Skull Shell x1, boots: Hsarus' Iron Heel x1, Left hand: Katar x1, Offhand: Katar x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Sinfire">Sinfire</a></div>
+                    <div>5</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Fire Blast:4, Claw Mastery:1</p>
+            <p><strong>Equipment:</strong> Left hand: Havoc Branch x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=WEEKENDWARRIOR">WEEKENDWARRIOR</a></div>
+                    <div>5</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Fire Blast:4</p>
+            <p><strong>Equipment:</strong> ring: Triumphant Ring of the Apprentice x1, Left hand: Rixot's Keen x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=godofdog">godofdog</a></div>
+                    <div>5</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Fire Blast:5</p>
+            <p><strong>Equipment:</strong> helmet: Cap x1, boots: Boots x1, body: Leather Armor x1, gloves: Leather Gloves x1, Left hand: Javelin x1, Offhand: Small Shield x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Rounddos">Rounddos</a></div>
+                    <div>4</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> </p>
+            <p><strong>Equipment:</strong> Left hand: Katar x1, Offhand: Katar x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=HMS_Doge">HMS_Doge</a></div>
+                    <div>4</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Claw Mastery:3, Dragon Claw:1</p>
+            <p><strong>Equipment:</strong> body: Leather Armor x1, Left hand: Katar x1, Offhand: Katar x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Imsassina">Imsassina</a></div>
+                    <div>4</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Psychic Hammer:4</p>
+            <p><strong>Equipment:</strong> gloves: Leather Gloves x1, boots: Skull Stalker x1, helmet: Beryl Cap x1, belt: Azure Sash of Strength x1, Left hand: Katar x1, Offhand: Katar x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=The-Assassin">The-Assassin</a></div>
+                    <div>4</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Fire Blast:3</p>
+            <p><strong>Equipment:</strong> Left hand: Katar x1, Offhand: Katar x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Pro_He">Pro_He</a></div>
+                    <div>4</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> </p>
+            <p><strong>Equipment:</strong> belt: Hailstone Cord x1, boots: Boots x1, Offhand: Katar x1, Left hand: Jagged Katar of Craftmanship x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=KherHerd">KherHerd</a></div>
+                    <div>3</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Dragon Claw:1</p>
+            <p><strong>Equipment:</strong> ring: Bronze Ring of Greed x1, ring: Ring of Greed x1, gloves: Leather Gloves x1, belt: Sash x1, body: Leather Armor x1, boots: Boots x1, Left hand: Katar x1, Offhand: Buckler x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Androidasa">Androidasa</a></div>
+                    <div>3</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Psychic Hammer:2</p>
+            <p><strong>Equipment:</strong> body: Storm Hide x1, Left hand: Katar x1, Offhand: Katar x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=GANGBOY">GANGBOY</a></div>
+                    <div>1</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> </p>
+            <p><strong>Equipment:</strong> gloves: Heavy Gloves x1, belt: Light Belt x1, Left hand: Hand Axe x1, Offhand: Hand Axe x1</p>
+        
+        </div>
+        <hr>
+        
+        <h2>13.59%  of Assassin's Main Skills:<br><img src='icons/Fire Blast.png' alt='Fire Blast' width='20' height='20'> Fire Blast 100.00% (280)<br><img src='icons/Wake of Fire.png' alt='Wake of Fire' width='20' height='20'> Wake of Fire 100.00% (280)<br><img src='icons/Wake of Inferno.png' alt='Wake of Inferno' width='20' height='20'> Wake of Inferno 100.00% (280)</h2>
+        <p><strong>Other Skills:<br></strong> <img src='icons/Blade Shield.png' alt='Blade Shield' width='20' height='20'> Blade Shield 100.0% (270.0)<br><img src='icons/Blade Fury.png' alt='Blade Fury' width='20' height='20'> Blade Fury 100.0% (77.0)<br><img src='icons/Burst of Speed.png' alt='Burst of Speed' width='20' height='20'> Burst of Speed 100.0% (69.0)<br><img src='icons/Blade Throw.png' alt='Blade Throw' width='20' height='20'> Blade Throw 100.0% (53.0)<br><img src='icons/Venom.png' alt='Venom' width='20' height='20'> Venom 35.71% (23.0)<br><img src='icons/Charged Bolt Sentry.png' alt='Charged Bolt Sentry' width='20' height='20'> Charged Bolt Sentry 21.43% (18.0)</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>All Skills</strong></button>
+            <div class="content">
+                <div><img src='icons/Fire Blast.png' alt='Fire Blast' width='20' height='20'> Fire Blast 100.0% (280.0)<br><img src='icons/Wake of Fire.png' alt='Wake of Fire' width='20' height='20'> Wake of Fire 100.0% (280.0)<br><img src='icons/Wake of Inferno.png' alt='Wake of Inferno' width='20' height='20'> Wake of Inferno 100.0% (280.0)<br><img src='icons/Blade Shield.png' alt='Blade Shield' width='20' height='20'> Blade Shield 100.0% (270.0)<br><img src='icons/Blade Fury.png' alt='Blade Fury' width='20' height='20'> Blade Fury 100.0% (77.0)<br><img src='icons/Burst of Speed.png' alt='Burst of Speed' width='20' height='20'> Burst of Speed 100.0% (69.0)<br><img src='icons/Blade Throw.png' alt='Blade Throw' width='20' height='20'> Blade Throw 100.0% (53.0)<br><img src='icons/Venom.png' alt='Venom' width='20' height='20'> Venom 35.71% (23.0)<br><img src='icons/Charged Bolt Sentry.png' alt='Charged Bolt Sentry' width='20' height='20'> Charged Bolt Sentry 21.43% (18.0)<br><img src='icons/Claw Mastery.png' alt='Claw Mastery' width='20' height='20'> Claw Mastery 100.0% (14.0)<br><img src='icons/Fade.png' alt='Fade' width='20' height='20'> Fade 64.29% (9.0)<br><img src='icons/Shock Web.png' alt='Shock Web' width='20' height='20'> Shock Web 21.43% (3.0)<br><img src='icons/Lightning Sentry.png' alt='Lightning Sentry' width='20' height='20'> Lightning Sentry 21.43% (3.0)<br><img src='icons/Weapon Block.png' alt='Weapon Block' width='20' height='20'> Weapon Block 21.43% (3.0)<br><img src='icons/Death Sentry.png' alt='Death Sentry' width='20' height='20'> Death Sentry 14.29% (2.0)<br><img src='icons/Psychic Hammer.png' alt='Psychic Hammer' width='20' height='20'> Psychic Hammer 14.29% (2.0)<br><img src='icons/Cloak of Shadows.png' alt='Cloak of Shadows' width='20' height='20'> Cloak of Shadows 14.29% (2.0)<br><img src='icons/Shadow Warrior.png' alt='Shadow Warrior' width='20' height='20'> Shadow Warrior 14.29% (2.0)<br><img src='icons/Fists of Fire.png' alt='Fists of Fire' width='20' height='20'> Fists of Fire 7.14% (1.0)<br><img src='icons/Shadow Master.png' alt='Shadow Master' width='20' height='20'> Shadow Master 7.14% (1.0)<br><img src='icons/Dragon Claw.png' alt='Dragon Claw' width='20' height='20'> Dragon Claw 7.14% (1.0)<br><img src='icons/Dragon Talon.png' alt='Dragon Talon' width='20' height='20'> Dragon Talon 7.14% (1.0)<br><img src='icons/Blades of Ice.png' alt='Blades of Ice' width='20' height='20'> Blades of Ice 7.14% (1.0)<br><img src='icons/Claws of Thunder.png' alt='Claws of Thunder' width='20' height='20'> Claws of Thunder 7.14% (1.0)<br><img src='icons/Dragon Flight.png' alt='Dragon Flight' width='20' height='20'> Dragon Flight 7.14% (1.0)<br><img src='icons/Tiger Strike.png' alt='Tiger Strike' width='20' height='20'> Tiger Strike 0.0% (0.0)<br><img src='icons/Mind Blast.png' alt='Mind Blast' width='20' height='20'> Mind Blast 0.0% (0.0)<br><img src='icons/Cobra Strike.png' alt='Cobra Strike' width='20' height='20'> Cobra Strike 0.0% (0.0)</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>Most Common Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Body</strong>: <br>Enigma 42.86%<br>Natalya's Shadow 42.86%<br>Stealth 7.14%<br><strong>Ring</strong>: <br>Raven Frost 35.71%<br>Wisp Projector 28.57%<br>Bul-Kathos' Wedding Band 14.29%<br>Skull Coil 7.14%<br>Nature's Peace 7.14%<br><strong>Belt</strong>: <br>Arachnid Mesh 35.71%<br>Verdungo's Hearty Cord 21.43%<br>String of Ears 14.29%<br>Thundergod's Vigor 7.14%<br>Immortal King's Detail 7.14%<br><strong>Helmet</strong>: <br>Harlequin Crest 50.00%<br>Natalya's Totem 35.71%<br>Cunning Coronet of Protection 7.14%<br><strong>Amulet</strong>: <br>Mara's Kaleidoscope 28.57%<br>Cunning Amulet 28.57%<br>Cunning Amulet of Enlightenment 7.14%<br>Cunning Amulet of the Titan 7.14%<br>Cunning Amulet of Nirvana 7.14%<br><strong>Boots</strong>: <br>Natalya's Soul 50.00%<br>War Traveler 21.43%<br>Aldur's Advance 14.29%<br>GhoulRI Slippers 7.14%<br><strong>Gloves</strong>: <br>Magefist 42.86%<br>Laying of Hands 28.57%<br>Immortal King's Forge 7.14%<br>Dracul's Grasp 7.14%<br>Imp Grip 7.14%<br><strong>Left hand</strong>: <br>Silence 35.71%<br>Natalya's Mark 35.71%<br>Call to Arms 21.43%<br>Phoenix 14.29%<br>Medusa's Gaze 7.14%<br><strong>Offhand</strong>: <br>Phoenix 28.57%<br>Stormshield 28.57%<br>Spirit 28.57%<br>Medusa's Gaze 21.43%<br>Call to Arms 7.14%</div>
+            </div>
+        
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Body</strong>: Enigma 42.86%, Natalya's Shadow 42.86%, Stealth 7.14%<br><strong>Ring</strong>: Bul-Kathos' Wedding Band 14.29%, Raven Frost 35.71%, Skull Coil 7.14%, Wisp Projector 28.57%, Nature's Peace 7.14%, Nagelring 7.14%, Shadow Touch 7.14%, Skull Master 7.14%, Death Circle 7.14%, Raven Hold 7.14%, Storm Coil 7.14%, Shadow Knot 7.14%, Russet Ring of Warding 7.14%, Stone Coil 7.14%, Doom Finger 7.14%, PlagueRI Touch 7.14%, Scintillating Ring of Dim Vision 7.14%, Chaos Band 7.14%<br><strong>Belt</strong>: Arachnid Mesh 35.71%, String of Ears 14.29%, Thundergod's Vigor 7.14%, Verdungo's Hearty Cord 21.43%, Immortal King's Detail 7.14%, Skull Fringe 7.14%<br><strong>Helmet</strong>: Harlequin Crest 50.00%, Natalya's Totem 35.71%, Cunning Coronet of Protection 7.14%<br><strong>Amulet</strong>: Mara's Kaleidoscope 28.57%, Cunning Amulet 28.57%, Cunning Amulet of Enlightenment 7.14%, Cunning Amulet of the Titan 7.14%, Cunning Amulet of Nirvana 7.14%, Cunning Amulet of Revivification 7.14%, Chromatic Amulet 7.14%<br><strong>Boots</strong>: Aldur's Advance 14.29%, War Traveler 21.43%, GhoulRI Slippers 7.14%, Natalya's Soul 50.00%<br><strong>Gloves</strong>: Magefist 42.86%, Laying of Hands 28.57%, Immortal King's Forge 7.14%, Dracul's Grasp 7.14%, Imp Grip 7.14%<br><strong>Left hand</strong>: Medusa's Gaze 7.14%, Silence 35.71%, Phoenix 14.29%, Plague 7.14%, Spirit 7.14%, Call to Arms 21.43%, Flail 7.14%, Naj's Puzzler 7.14%, Natalya's Mark 35.71%, Cunning Blade Talons 7.14%, Bone Wand of Lower Resistance 7.14%, Accursed Grim Wand of Lower Resistance 7.14%, Cunning Scissors Katar 7.14%<br><strong>Offhand</strong>: Call to Arms 7.14%, Phoenix 28.57%, Stormshield 28.57%, Plague 7.14%, Medusa's Gaze 21.43%, Spirit 28.57%, Chaos 7.14%, Cunning Scissors Katar of Carnage 7.14%, Cunning Blade Talons 7.14%</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>14 Characters in this cluster:</strong></button>
+            <div class="content">
+                
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=SCplebsKhiiaar">SCplebsKhiiaar</a></div>
+                    <div>96</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Blade Fury:20, Wake of Inferno:20, Blade Shield:20, Shock Web:1, Blade Throw:1, Charged Bolt Sentry:1, Lightning Sentry:1, Death Sentry:1, Claw Mastery:1, Burst of Speed:1</p>
+            <p><strong>Equipment:</strong> body: Enigma x1, ring: Bul-Kathos' Wedding Band x1, ring: Raven Frost x1, belt: Arachnid Mesh x1, helmet: Harlequin Crest x1, amulet: Mara's Kaleidoscope x1, boots: Aldur's Advance x1, gloves: Magefist x1, Left hand: Medusa's Gaze x1, Left hand: Silence x1, Offhand: Call to Arms x1, Offhand: Phoenix x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=SCplebsHC">SCplebsHC</a></div>
+                    <div>95</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Fire Blast:20, Blade Throw:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Burst of Speed:2, Blade Fury:1, Claw Mastery:1, Fade:1, Venom:1</p>
+            <p><strong>Equipment:</strong> amulet: Mara's Kaleidoscope x1, body: Enigma x1, ring: Skull Coil x1, ring: Wisp Projector x1, belt: Arachnid Mesh x1, helmet: Harlequin Crest x1, boots: War Traveler x1, gloves: Magefist x1, Left hand: Phoenix x1, Left hand: Plague x1, Offhand: Stormshield x1, Offhand: Plague x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Vileskin">Vileskin</a></div>
+                    <div>95</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Blade Fury:20, Wake of Inferno:20, Blade Shield:20, Blade Throw:3, Claw Mastery:1, Burst of Speed:1</p>
+            <p><strong>Equipment:</strong> body: Enigma x1, helmet: Harlequin Crest x1, belt: String of Ears x1, gloves: Magefist x1, amulet: Cunning Amulet x1, ring: Raven Frost x1, ring: Wisp Projector x1, boots: Aldur's Advance x1, Left hand: Spirit x1, Left hand: Silence x1, Offhand: Medusa's Gaze x1, Offhand: Phoenix x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=FAJAAAA">FAJAAAA</a></div>
+                    <div>95</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Burst of Speed:20, Blade Throw:3, Blade Fury:1, Claw Mastery:1, Fade:1</p>
+            <p><strong>Equipment:</strong> gloves: Magefist x1, body: Enigma x1, boots: War Traveler x1, helmet: Harlequin Crest x1, ring: Wisp Projector x1, ring: Bul-Kathos' Wedding Band x1, belt: Arachnid Mesh x1, amulet: Mara's Kaleidoscope x1, Left hand: Call to Arms x1, Left hand: Silence x1, Offhand: Medusa's Gaze x1, Offhand: Phoenix x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Anidalla">Anidalla</a></div>
+                    <div>94</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Burst of Speed:20, Blade Fury:3, Blade Throw:1, Claw Mastery:1</p>
+            <p><strong>Equipment:</strong> body: Enigma x1, helmet: Harlequin Crest x1, boots: War Traveler x1, belt: Arachnid Mesh x1, gloves: Magefist x1, amulet: Cunning Amulet of Enlightenment x1, ring: Nature's Peace x1, ring: Nagelring x1, Left hand: Call to Arms x1, Left hand: Phoenix x1, Offhand: Spirit x1, Offhand: Stormshield x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=NoRipTime">NoRipTime</a></div>
+                    <div>94</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Charged Bolt Sentry:16, Burst of Speed:4, Shock Web:1, Blade Throw:1, Blade Fury:1, Lightning Sentry:1, Claw Mastery:1</p>
+            <p><strong>Equipment:</strong> gloves: Magefist x1, belt: Thundergod's Vigor x1, amulet: Cunning Amulet x1, boots: GhoulRI Slippers x1, helmet: Harlequin Crest x1, body: Enigma x1, ring: Raven Frost x1, ring: Wisp Projector x1, Left hand: Call to Arms x1, Left hand: Silence x1, Offhand: Medusa's Gaze x1, Offhand: Stormshield x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=MunchiS">MunchiS</a></div>
+                    <div>93</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Venom:19, Blade Throw:1, Blade Fury:1, Claw Mastery:1, Burst of Speed:1, Fade:1</p>
+            <p><strong>Equipment:</strong> body: Natalya's Shadow x1, ring: Raven Frost x1, ring: Shadow Touch x1, amulet: Cunning Amulet of the Titan x1, helmet: Harlequin Crest x1, boots: Natalya's Soul x1, Left hand: Flail x1, Left hand: Silence x1, gloves: Laying of Hands x1, belt: Verdungo's Hearty Cord x1, Offhand: Phoenix x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=MoziDaSin">MoziDaSin</a></div>
+                    <div>92</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Fury:17, Blade Throw:2, Claw Mastery:1, Burst of Speed:1, Weapon Block:1, Fade:1</p>
+            <p><strong>Equipment:</strong> helmet: Natalya's Totem x1, body: Natalya's Shadow x1, boots: Natalya's Soul x1, amulet: Mara's Kaleidoscope x1, gloves: Immortal King's Forge x1, ring: Skull Master x1, ring: Death Circle x1, Left hand: Naj's Puzzler x1, Left hand: Natalya's Mark x1, belt: Arachnid Mesh x1, Offhand: Chaos x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=SinIsGoodChoise">SinIsGoodChoise</a></div>
+                    <div>90</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Fury:5, Blade Throw:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1, Venom:1, Shadow Master:1, Dragon Talon:1, Fists of Fire:1, Dragon Claw:1, Claws of Thunder:1, Blades of Ice:1, Dragon Flight:1</p>
+            <p><strong>Equipment:</strong> boots: Natalya's Soul x1, ring: Raven Hold x1, ring: Raven Frost x1, helmet: Natalya's Totem x1, gloves: Dracul's Grasp x1, amulet: Cunning Amulet x1, belt: Verdungo's Hearty Cord x1, body: Natalya's Shadow x1, Left hand: Natalya's Mark x1, Offhand: Stormshield x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=SofiaGigante">SofiaGigante</a></div>
+                    <div>89</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Throw:16, Blade Fury:1, Claw Mastery:1, Burst of Speed:1, Fade:1</p>
+            <p><strong>Equipment:</strong> ring: Storm Coil x1, ring: Shadow Knot x1, belt: Immortal King's Detail x1, helmet: Natalya's Totem x1, boots: Natalya's Soul x1, gloves: Laying of Hands x1, amulet: Cunning Amulet of Nirvana x1, Left hand: Cunning Blade Talons x1, Left hand: Natalya's Mark x1, Offhand: Cunning Scissors Katar of Carnage x1, Offhand: Spirit x1, body: Natalya's Shadow x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Alhoon">Alhoon</a></div>
+                    <div>88</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Burst of Speed:14, Blade Throw:1, Blade Fury:1, Claw Mastery:1, Fade:1, Venom:1</p>
+            <p><strong>Equipment:</strong> ring: Russet Ring of Warding x1, ring: Stone Coil x1, amulet: Cunning Amulet of Revivification x1, helmet: Natalya's Totem x1, boots: Natalya's Soul x1, body: Natalya's Shadow x1, belt: Verdungo's Hearty Cord x1, gloves: Laying of Hands x1, Left hand: Natalya's Mark x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=AssEatingPro">AssEatingPro</a></div>
+                    <div>85</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Fury:4, Blade Throw:1, Claw Mastery:1, Burst of Speed:1, Fade:1, Venom:1</p>
+            <p><strong>Equipment:</strong> ring: Doom Finger x1, ring: PlagueRI Touch x1, belt: String of Ears x1, boots: Natalya's Soul x1, helmet: Natalya's Totem x1, Left hand: Bone Wand of Lower Resistance x1, Left hand: Natalya's Mark x1, amulet: Cunning Amulet x1, body: Natalya's Shadow x1, gloves: Laying of Hands x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=AintNoBich">AintNoBich</a></div>
+                    <div>74</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:17, Blade Throw:1, Blade Fury:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Shadow Warrior:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=BlazeRunner">BlazeRunner</a></div>
+                    <div>73</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:13, Shock Web:1, Blade Throw:1, Charged Bolt Sentry:1, Blade Fury:1, Lightning Sentry:1, Death Sentry:1, Claw Mastery:1, Burst of Speed:1, Fade:1</p>
+            <p><strong>Equipment:</strong> body: Stealth x1, helmet: Cunning Coronet of Protection x1, Left hand: Accursed Grim Wand of Lower Resistance x1, Left hand: Cunning Scissors Katar x1, amulet: Chromatic Amulet x1, ring: Scintillating Ring of Dim Vision x1, ring: Chaos Band x1, gloves: Imp Grip x1, belt: Skull Fringe x1, boots: Natalya's Soul x1, Offhand: Cunning Blade Talons x1</p>
+        
+        </div>
+        <hr>
+        
+        <h2>11.65%  of Assassin's Main Skills:<br><img src='icons/Wake of Fire.png' alt='Wake of Fire' width='20' height='20'> Wake of Fire 100.00% (240)<br><img src='icons/Wake of Inferno.png' alt='Wake of Inferno' width='20' height='20'> Wake of Inferno 100.00% (188)<br><img src='icons/Fire Blast.png' alt='Fire Blast' width='20' height='20'> Fire Blast 100.00% (153)</h2>
+        <p><strong>Other Skills:<br></strong> <img src='icons/Death Sentry.png' alt='Death Sentry' width='20' height='20'> Death Sentry 33.33% (34.0)<br><img src='icons/Burst of Speed.png' alt='Burst of Speed' width='20' height='20'> Burst of Speed 100.0% (25.0)<br><img src='icons/Blade Fury.png' alt='Blade Fury' width='20' height='20'> Blade Fury 41.67% (24.0)<br><img src='icons/Lightning Sentry.png' alt='Lightning Sentry' width='20' height='20'> Lightning Sentry 33.33% (23.0)<br><img src='icons/Blade Throw.png' alt='Blade Throw' width='20' height='20'> Blade Throw 50.0% (16.0)<br><img src='icons/Blade Shield.png' alt='Blade Shield' width='20' height='20'> Blade Shield 33.33% (14.0)</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>All Skills</strong></button>
+            <div class="content">
+                <div><img src='icons/Wake of Fire.png' alt='Wake of Fire' width='20' height='20'> Wake of Fire 100.0% (240.0)<br><img src='icons/Wake of Inferno.png' alt='Wake of Inferno' width='20' height='20'> Wake of Inferno 100.0% (188.0)<br><img src='icons/Fire Blast.png' alt='Fire Blast' width='20' height='20'> Fire Blast 100.0% (154.0)<br><img src='icons/Death Sentry.png' alt='Death Sentry' width='20' height='20'> Death Sentry 33.33% (34.0)<br><img src='icons/Burst of Speed.png' alt='Burst of Speed' width='20' height='20'> Burst of Speed 100.0% (25.0)<br><img src='icons/Blade Fury.png' alt='Blade Fury' width='20' height='20'> Blade Fury 41.67% (24.0)<br><img src='icons/Lightning Sentry.png' alt='Lightning Sentry' width='20' height='20'> Lightning Sentry 33.33% (23.0)<br><img src='icons/Blade Throw.png' alt='Blade Throw' width='20' height='20'> Blade Throw 50.0% (16.0)<br><img src='icons/Blade Shield.png' alt='Blade Shield' width='20' height='20'> Blade Shield 33.33% (14.0)<br><img src='icons/Claw Mastery.png' alt='Claw Mastery' width='20' height='20'> Claw Mastery 100.0% (12.0)<br><img src='icons/Shadow Master.png' alt='Shadow Master' width='20' height='20'> Shadow Master 25.0% (9.0)<br><img src='icons/Psychic Hammer.png' alt='Psychic Hammer' width='20' height='20'> Psychic Hammer 50.0% (6.0)<br><img src='icons/Fade.png' alt='Fade' width='20' height='20'> Fade 50.0% (6.0)<br><img src='icons/Shadow Warrior.png' alt='Shadow Warrior' width='20' height='20'> Shadow Warrior 50.0% (6.0)<br><img src='icons/Cloak of Shadows.png' alt='Cloak of Shadows' width='20' height='20'> Cloak of Shadows 50.0% (6.0)<br><img src='icons/Weapon Block.png' alt='Weapon Block' width='20' height='20'> Weapon Block 50.0% (6.0)<br><img src='icons/Shock Web.png' alt='Shock Web' width='20' height='20'> Shock Web 33.33% (4.0)<br><img src='icons/Charged Bolt Sentry.png' alt='Charged Bolt Sentry' width='20' height='20'> Charged Bolt Sentry 33.33% (4.0)<br><img src='icons/Fists of Fire.png' alt='Fists of Fire' width='20' height='20'> Fists of Fire 0.0% (0.0)<br><img src='icons/Dragon Claw.png' alt='Dragon Claw' width='20' height='20'> Dragon Claw 0.0% (0.0)<br><img src='icons/Tiger Strike.png' alt='Tiger Strike' width='20' height='20'> Tiger Strike 0.0% (0.0)<br><img src='icons/Dragon Talon.png' alt='Dragon Talon' width='20' height='20'> Dragon Talon 0.0% (0.0)<br><img src='icons/Claws of Thunder.png' alt='Claws of Thunder' width='20' height='20'> Claws of Thunder 0.0% (0.0)<br><img src='icons/Blades of Ice.png' alt='Blades of Ice' width='20' height='20'> Blades of Ice 0.0% (0.0)<br><img src='icons/Dragon Flight.png' alt='Dragon Flight' width='20' height='20'> Dragon Flight 0.0% (0.0)<br><img src='icons/Mind Blast.png' alt='Mind Blast' width='20' height='20'> Mind Blast 0.0% (0.0)<br><img src='icons/Cobra Strike.png' alt='Cobra Strike' width='20' height='20'> Cobra Strike 0.0% (0.0)<br><img src='icons/Venom.png' alt='Venom' width='20' height='20'> Venom 0.0% (0.0)</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>Most Common Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Ring</strong>: <br>Nagelring 8.33%<br>Nature's Peace 8.33%<br>Jade Ring of the Lamprey 8.33%<br>Dread Gyre 8.33%<br>Stone Eye 8.33%<br><strong>Belt</strong>: <br>Nightsmoke 8.33%<br>Credendum 8.33%<br>Goldwrap 8.33%<br>Hailstone Lash 8.33%<br>Hsarus' Iron Stay 8.33%<br><strong>Helmet</strong>: <br>Lore 16.67%<br>Rockstopper 8.33%<br>Dire Mask 8.33%<br>Pain Brow 8.33%<br>Spirit Veil 8.33%<br><strong>Boots</strong>: <br>War Traveler 8.33%<br>Fiendra Trample 8.33%<br>Storm Stalker 8.33%<br>Raven Greaves 8.33%<br>Hsarus' Iron Heel 8.33%<br><strong>Gloves</strong>: <br>Laying of Hands 8.33%<br>Bramble Knuckle 8.33%<br>Sander's Taboo 8.33%<br>Eagle Clutches 8.33%<br>Corpse Finger 8.33%<br><strong>Amulet</strong>: <br>Storm Torc 8.33%<br>Cunning Amulet 8.33%<br>Cunning Amulet of the Jackal 8.33%<br>Grim Gorget 8.33%<br>Trickster's Amulet of Fortune 8.33%<br><strong>Body</strong>: <br>Stealth 16.67%<br>Smoke 8.33%<br>The Spirit Shroud 8.33%<br>Treachery 8.33%<br>Skin of the Vipermagi 8.33%<br><strong>Left hand</strong>: <br>Spirit 25.00%<br>Bartuc's Cut-Throat 16.67%<br>Greater Claws 8.33%<br>Bitter Razor 8.33%<br>Lapis Battle Staff of Teleportation 8.33%<br><strong>Offhand</strong>: <br>Ancients' Pledge 33.33%<br>The Ward 8.33%<br>Doom Bite 8.33%</div>
+            </div>
+        
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Ring</strong>: Nagelring 8.33%, Nature's Peace 8.33%, Jade Ring of the Lamprey 8.33%, Dread Gyre 8.33%, Stone Eye 8.33%, Entropy Loop 8.33%, Havoc Knot 8.33%, Death Touch 8.33%, Cobalt Ring of the Sentinel 8.33%, Dwarf Star 8.33%, Chaos Gyre 8.33%, GhoulRI Knot 8.33%<br><strong>Belt</strong>: Nightsmoke 8.33%, Credendum 8.33%, Goldwrap 8.33%, Hailstone Lash 8.33%, Hsarus' Iron Stay 8.33%, String of Ears 8.33%<br><strong>Helmet</strong>: Rockstopper 8.33%, Dire Mask 8.33%, Pain Brow 8.33%, Spirit Veil 8.33%, Lore 16.67%<br><strong>Boots</strong>: War Traveler 8.33%, Fiendra Trample 8.33%, Storm Stalker 8.33%, Raven Greaves 8.33%, Hsarus' Iron Heel 8.33%, Dread Nails 8.33%<br><strong>Gloves</strong>: Laying of Hands 8.33%, Bramble Knuckle 8.33%, Sander's Taboo 8.33%, Eagle Clutches 8.33%, Corpse Finger 8.33%, Magefist 8.33%<br><strong>Amulet</strong>: Storm Torc 8.33%, Cunning Amulet 8.33%, Cunning Amulet of the Jackal 8.33%, Grim Gorget 8.33%, Trickster's Amulet of Fortune 8.33%, Cunning Amulet of Life 8.33%<br><strong>Body</strong>: Smoke 8.33%, The Spirit Shroud 8.33%, Treachery 8.33%, Stealth 16.67%, Skin of the Vipermagi 8.33%<br><strong>Left hand</strong>: Greater Claws 8.33%, Bartuc's Cut-Throat 16.67%, Spirit 25.00%, Bitter Razor 8.33%, Lapis Battle Staff of Teleportation 8.33%, Leaf 8.33%, Spire of Lazarus 8.33%<br><strong>Offhand</strong>: The Ward 8.33%, Doom Bite 8.33%, Ancients' Pledge 33.33%</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>12 Characters in this cluster:</strong></button>
+            <div class="content">
+                
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=kimcoco">kimcoco</a></div>
+                    <div>76</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Wake of Fire:20, Lightning Sentry:20, Wake of Inferno:20, Death Sentry:11, Fire Blast:10, Shock Web:1, Charged Bolt Sentry:1, Claw Mastery:1, Burst of Speed:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Zavi">Zavi</a></div>
+                    <div>76</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:8, Blade Throw:1, Blade Fury:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1, Shadow Master:1</p>
+            <p><strong>Equipment:</strong> ring: Nagelring x1, ring: Nature's Peace x1, belt: Nightsmoke x1, helmet: Rockstopper x1, boots: War Traveler x1, gloves: Laying of Hands x1, amulet: Storm Torc x1, body: Smoke x1, Left hand: Greater Claws x1, Left hand: Bartuc's Cut-Throat x1, Offhand: The Ward x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=PiotrekPuszer">PiotrekPuszer</a></div>
+                    <div>75</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Death Sentry:15, Shock Web:1, Charged Bolt Sentry:1, Lightning Sentry:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1, Shadow Master:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=king-sex">king-sex</a></div>
+                    <div>71</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Throw:11, Blade Fury:1, Blade Shield:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Shadow Warrior:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Astros_Fire">Astros_Fire</a></div>
+                    <div>69</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Wake of Fire:20, Blade Fury:20, Wake of Inferno:20, Fire Blast:6, Blade Throw:1, Blade Shield:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Shadow Warrior:1</p>
+            <p><strong>Equipment:</strong> body: The Spirit Shroud x1, helmet: Dire Mask x1, gloves: Bramble Knuckle x1, amulet: Cunning Amulet x1, ring: Jade Ring of the Lamprey x1, ring: Dread Gyre x1, boots: Fiendra Trample x1, belt: Credendum x1, Left hand: Bartuc's Cut-Throat x1, Offhand: Doom Bite x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=xpekdsgflsg">xpekdsgflsg</a></div>
+                    <div>65</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Burst of Speed:5, Blade Shield:4, Blade Throw:1, Blade Fury:1, Claw Mastery:1</p>
+            <p><strong>Equipment:</strong> gloves: Sander's Taboo x1, boots: Storm Stalker x1, body: Treachery x1, belt: Goldwrap x1, ring: Stone Eye x1, ring: Entropy Loop x1, helmet: Pain Brow x1, amulet: Cunning Amulet of the Jackal x1, Left hand: Spirit x1, Offhand: Ancients' Pledge x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Vabbeman">Vabbeman</a></div>
+                    <div>62</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Claw Mastery:1, Burst of Speed:1, Fade:1</p>
+            <p><strong>Equipment:</strong> body: Stealth x1, boots: Raven Greaves x1, amulet: Grim Gorget x1, ring: Havoc Knot x1, ring: Death Touch x1, helmet: Spirit Veil x1, belt: Hailstone Lash x1, gloves: Eagle Clutches x1, Left hand: Bitter Razor x1, Offhand: Ancients' Pledge x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=imthemerc">imthemerc</a></div>
+                    <div>58</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Wake of Fire:20, Wake of Inferno:11, Fire Blast:10, Death Sentry:7, Shadow Master:7, Shock Web:1, Charged Bolt Sentry:1, Lightning Sentry:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1</p>
+            <p><strong>Equipment:</strong> boots: Hsarus' Iron Heel x1, belt: Hsarus' Iron Stay x1, amulet: Trickster's Amulet of Fortune x1, ring: Cobalt Ring of the Sentinel x1, ring: Dwarf Star x1, helmet: Lore x1, gloves: Corpse Finger x1, body: Skin of the Vipermagi x1, Left hand: Lapis Battle Staff of Teleportation x1, Left hand: Spirit x1, Offhand: Ancients' Pledge x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=LouSainis">LouSainis</a></div>
+                    <div>48</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Wake of Fire:20, Wake of Inferno:20, Fire Blast:8, Burst of Speed:5, Claw Mastery:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=SCplebsTrap">SCplebsTrap</a></div>
+                    <div>45</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Wake of Fire:20, Fire Blast:9, Wake of Inferno:7, Burst of Speed:6, Shock Web:1, Blade Throw:1, Charged Bolt Sentry:1, Lightning Sentry:1, Death Sentry:1, Claw Mastery:1</p>
+            <p><strong>Equipment:</strong> body: Stealth x1, ring: Chaos Gyre x1, ring: GhoulRI Knot x1, gloves: Magefist x1, helmet: Lore x1, belt: String of Ears x1, Left hand: Leaf x1, Left hand: Spirit x1, boots: Dread Nails x1, amulet: Cunning Amulet of Life x1, Offhand: Ancients' Pledge x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=HoosierD">HoosierD</a></div>
+                    <div>35</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Wake of Fire:20, Fire Blast:10, Wake of Inferno:3, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Ahshassin">Ahshassin</a></div>
+                    <div>33</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Wake of Fire:20, Wake of Inferno:7, Fire Blast:1, Blade Throw:1, Blade Fury:1, Claw Mastery:1, Burst of Speed:1, Fade:1</p>
+            <p><strong>Equipment:</strong> Left hand: Spire of Lazarus x1</p>
+        
+        </div>
+        <hr>
+        
+        <h2>11.65%  of Assassin's Main Skills:<br><img src='icons/Psychic Hammer.png' alt='Psychic Hammer' width='20' height='20'> Psychic Hammer 100.00% (240)<br><img src='icons/Cloak of Shadows.png' alt='Cloak of Shadows' width='20' height='20'> Cloak of Shadows 100.00% (240)<br><img src='icons/Mind Blast.png' alt='Mind Blast' width='20' height='20'> Mind Blast 100.00% (240)</h2>
+        <p><strong>Other Skills:<br></strong> <img src='icons/Shadow Master.png' alt='Shadow Master' width='20' height='20'> Shadow Master 75.0% (131.0)<br><img src='icons/Fade.png' alt='Fade' width='20' height='20'> Fade 91.67% (114.0)<br><img src='icons/Blade Shield.png' alt='Blade Shield' width='20' height='20'> Blade Shield 16.67% (33.0)<br><img src='icons/Shadow Warrior.png' alt='Shadow Warrior' width='20' height='20'> Shadow Warrior 91.67% (24.0)<br><img src='icons/Burst of Speed.png' alt='Burst of Speed' width='20' height='20'> Burst of Speed 100.0% (22.0)<br><img src='icons/Claw Mastery.png' alt='Claw Mastery' width='20' height='20'> Claw Mastery 100.0% (12.0)</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>All Skills</strong></button>
+            <div class="content">
+                <div><img src='icons/Psychic Hammer.png' alt='Psychic Hammer' width='20' height='20'> Psychic Hammer 100.0% (240.0)<br><img src='icons/Cloak of Shadows.png' alt='Cloak of Shadows' width='20' height='20'> Cloak of Shadows 100.0% (240.0)<br><img src='icons/Mind Blast.png' alt='Mind Blast' width='20' height='20'> Mind Blast 100.0% (240.0)<br><img src='icons/Shadow Master.png' alt='Shadow Master' width='20' height='20'> Shadow Master 75.0% (131.0)<br><img src='icons/Fade.png' alt='Fade' width='20' height='20'> Fade 91.67% (114.0)<br><img src='icons/Blade Shield.png' alt='Blade Shield' width='20' height='20'> Blade Shield 16.67% (33.0)<br><img src='icons/Shadow Warrior.png' alt='Shadow Warrior' width='20' height='20'> Shadow Warrior 91.67% (24.0)<br><img src='icons/Burst of Speed.png' alt='Burst of Speed' width='20' height='20'> Burst of Speed 100.0% (22.0)<br><img src='icons/Claw Mastery.png' alt='Claw Mastery' width='20' height='20'> Claw Mastery 100.0% (12.0)<br><img src='icons/Weapon Block.png' alt='Weapon Block' width='20' height='20'> Weapon Block 91.67% (11.0)<br><img src='icons/Fire Blast.png' alt='Fire Blast' width='20' height='20'> Fire Blast 25.0% (3.0)<br><img src='icons/Wake of Fire.png' alt='Wake of Fire' width='20' height='20'> Wake of Fire 16.67% (2.0)<br><img src='icons/Blade Fury.png' alt='Blade Fury' width='20' height='20'> Blade Fury 16.67% (2.0)<br><img src='icons/Blade Throw.png' alt='Blade Throw' width='20' height='20'> Blade Throw 16.67% (2.0)<br><img src='icons/Shock Web.png' alt='Shock Web' width='20' height='20'> Shock Web 8.33% (1.0)<br><img src='icons/Charged Bolt Sentry.png' alt='Charged Bolt Sentry' width='20' height='20'> Charged Bolt Sentry 8.33% (1.0)<br><img src='icons/Lightning Sentry.png' alt='Lightning Sentry' width='20' height='20'> Lightning Sentry 8.33% (1.0)<br><img src='icons/Death Sentry.png' alt='Death Sentry' width='20' height='20'> Death Sentry 8.33% (1.0)<br><img src='icons/Dragon Claw.png' alt='Dragon Claw' width='20' height='20'> Dragon Claw 8.33% (1.0)<br><img src='icons/Wake of Inferno.png' alt='Wake of Inferno' width='20' height='20'> Wake of Inferno 0.0% (0.0)<br><img src='icons/Fists of Fire.png' alt='Fists of Fire' width='20' height='20'> Fists of Fire 0.0% (0.0)<br><img src='icons/Tiger Strike.png' alt='Tiger Strike' width='20' height='20'> Tiger Strike 0.0% (0.0)<br><img src='icons/Claws of Thunder.png' alt='Claws of Thunder' width='20' height='20'> Claws of Thunder 0.0% (0.0)<br><img src='icons/Dragon Talon.png' alt='Dragon Talon' width='20' height='20'> Dragon Talon 0.0% (0.0)<br><img src='icons/Blades of Ice.png' alt='Blades of Ice' width='20' height='20'> Blades of Ice 0.0% (0.0)<br><img src='icons/Dragon Flight.png' alt='Dragon Flight' width='20' height='20'> Dragon Flight 0.0% (0.0)<br><img src='icons/Cobra Strike.png' alt='Cobra Strike' width='20' height='20'> Cobra Strike 0.0% (0.0)<br><img src='icons/Venom.png' alt='Venom' width='20' height='20'> Venom 0.0% (0.0)</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>Most Common Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Amulet</strong>: <br>Psychic Amulet of Leadership 8.33%<br>Wraithra Gorget 8.33%<br>Mara's Kaleidoscope 8.33%<br>Shadow Amulet of the Whale 8.33%<br>Shadow Amulet of the Colossus 8.33%<br><strong>Body</strong>: <br>Treachery 41.67%<br>Skin of the Vipermagi 16.67%<br>Natalya's Shadow 16.67%<br><strong>Ring</strong>: <br>Raven Frost 16.67%<br>Dwarf Star 16.67%<br>GhoulRI Band 8.33%<br>Order Loop 8.33%<br>Chaos Eye 8.33%<br><strong>Gloves</strong>: <br>Magefist 33.33%<br>Trang-Oul's Claws 16.67%<br>Chance Guards 16.67%<br>PlagueRI Touch 8.33%<br><strong>Boots</strong>: <br>Natalya's Soul 16.67%<br>Grim Tread 8.33%<br>Demon Stalker 8.33%<br>War Traveler 8.33%<br>Dread Trample 8.33%<br><strong>Helmet</strong>: <br>Harlequin Crest 16.67%<br>Dread Brow 8.33%<br>Stone Hood 8.33%<br>Spirit Veil 8.33%<br>Shadow Demonhead 8.33%<br><strong>Belt</strong>: <br>Goldwrap 16.67%<br>Arachnid Mesh 8.33%<br>Carrion Clasp 8.33%<br>Thundergod's Vigor 8.33%<br>Verdungo's Hearty Cord 8.33%<br><strong>Left hand</strong>: <br>Spirit 33.33%<br>Heart of the Oak 25.00%<br>Holy Thunder 25.00%<br>Blackhand Key 8.33%<br>Blade of Ali Baba 8.33%<br><strong>Offhand</strong>: <br>Spirit 83.33%<br>Moser's Blessed Circle 8.33%<br>Ancients' Pledge 8.33%<br>Rhyme 8.33%<br>Small Shield 8.33%</div>
+            </div>
+        
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Amulet</strong>: Psychic Amulet of Leadership 8.33%, Wraithra Gorget 8.33%, Mara's Kaleidoscope 8.33%, Shadow Amulet of the Whale 8.33%, Shadow Amulet of the Colossus 8.33%, Shadow Amulet 8.33%, Psychic Amulet of the Giant 8.33%, Corruption Talisman 8.33%, Telling of Beads 8.33%<br><strong>Body</strong>: Treachery 41.67%, Skin of the Vipermagi 16.67%, Natalya's Shadow 16.67%<br><strong>Ring</strong>: Raven Frost 16.67%, Dwarf Star 16.67%, GhoulRI Band 8.33%, Order Loop 8.33%, Chaos Eye 8.33%, Nagelring 8.33%, Storm Turn 8.33%, GhoulRI Circle 8.33%, Bone Circle 8.33%, Storm Band 8.33%, Raven Eye 8.33%, Bitter Eye 8.33%, Order Whorl 8.33%, Bone Grip 8.33%, Skull Coil 8.33%, Viper Turn 8.33%<br><strong>Gloves</strong>: Magefist 33.33%, Trang-Oul's Claws 16.67%, Chance Guards 16.67%, PlagueRI Touch 8.33%<br><strong>Boots</strong>: Grim Tread 8.33%, Demon Stalker 8.33%, War Traveler 8.33%, Dread Trample 8.33%, Natalya's Soul 16.67%, Rune Brogues 8.33%, Soul Brogues 8.33%, Shadow Dancer 8.33%<br><strong>Helmet</strong>: Harlequin Crest 16.67%, Dread Brow 8.33%, Stone Hood 8.33%, Spirit Veil 8.33%, Shadow Demonhead 8.33%, Shadow Bone Helm of the Tiger 8.33%, Shadow Tiara of Nova Shield 8.33%, Eagle Horn 8.33%<br><strong>Belt</strong>: Arachnid Mesh 8.33%, Carrion Clasp 8.33%, Thundergod's Vigor 8.33%, Goldwrap 16.67%, Verdungo's Hearty Cord 8.33%, Bramble Cord 8.33%, Imp Buckle 8.33%, Tal Rasha's Fine-Spun Cloth 8.33%<br><strong>Left hand</strong>: Blackhand Key 8.33%, Heart of the Oak 25.00%, Holy Thunder 25.00%, Blade of Ali Baba 8.33%, Naj's Puzzler 8.33%, Spirit 33.33%, Battle Staff of Teleportation 8.33%, Gnarled Staff of Teleportation 8.33%, Edge 8.33%, Lawbringer 8.33%<br><strong>Offhand</strong>: Spirit 83.33%, Moser's Blessed Circle 8.33%, Ancients' Pledge 8.33%, Rhyme 8.33%, Small Shield 8.33%</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>12 Characters in this cluster:</strong></button>
+            <div class="content">
+                
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Squeeztoplz">Squeeztoplz</a></div>
+                    <div>94</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Psychic Hammer:20, Cloak of Shadows:20, Fade:20, Mind Blast:20, Shadow Master:20, Claw Mastery:1, Burst of Speed:1, Weapon Block:1, Shadow Warrior:1, Dragon Claw:1</p>
+            <p><strong>Equipment:</strong> amulet: Psychic Amulet of Leadership x1, body: Treachery x1, ring: Raven Frost x1, ring: Dwarf Star x1, gloves: Magefist x1, boots: Grim Tread x1, helmet: Harlequin Crest x1, belt: Arachnid Mesh x1, Left hand: Blackhand Key x1, Left hand: Heart of the Oak x1, Offhand: Spirit x2</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=eG-SophiaX">eG-SophiaX</a></div>
+                    <div>92</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Psychic Hammer:20, Cloak of Shadows:20, Mind Blast:20, Shadow Master:20, Burst of Speed:11, Fade:9, Claw Mastery:1, Weapon Block:1, Shadow Warrior:1</p>
+            <p><strong>Equipment:</strong> helmet: Dread Brow x1, belt: Carrion Clasp x1, amulet: Wraithra Gorget x1, boots: Demon Stalker x1, ring: GhoulRI Band x1, ring: Order Loop x1, body: Treachery x1, gloves: Trang-Oul's Claws x1, Left hand: Holy Thunder x1, Left hand: Heart of the Oak x1, Offhand: Moser's Blessed Circle x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Insomx">Insomx</a></div>
+                    <div>91</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Psychic Hammer:20, Cloak of Shadows:20, Mind Blast:20, Shadow Master:20, Fade:16, Claw Mastery:1, Burst of Speed:1, Weapon Block:1, Shadow Warrior:1</p>
+            <p><strong>Equipment:</strong> ring: Dwarf Star x1, ring: Raven Frost x1, belt: Thundergod's Vigor x1, body: Treachery x1, gloves: Chance Guards x1, amulet: Mara's Kaleidoscope x1, boots: War Traveler x1, helmet: Harlequin Crest x1, Left hand: Blade of Ali Baba x1, Left hand: Holy Thunder x1, Offhand: Spirit x1, Offhand: Ancients' Pledge x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Chilly_Willy">Chilly_Willy</a></div>
+                    <div>91</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Psychic Hammer:20, Cloak of Shadows:20, Mind Blast:20, Shadow Master:20, Fade:18, Claw Mastery:1, Burst of Speed:1, Weapon Block:1, Shadow Warrior:1</p>
+            <p><strong>Equipment:</strong> ring: Chaos Eye x1, ring: Nagelring x1, body: Treachery x1, belt: Goldwrap x1, amulet: Shadow Amulet of the Whale x1, gloves: Chance Guards x1, helmet: Stone Hood x1, boots: Dread Trample x1, Left hand: Naj's Puzzler x1, Left hand: Spirit x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Amirul_Blast">Amirul_Blast</a></div>
+                    <div>89</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Blade Shield:20, Psychic Hammer:20, Cloak of Shadows:20, Mind Blast:20, Fire Blast:1, Blade Throw:1, Wake of Fire:1, Blade Fury:1, Claw Mastery:1, Burst of Speed:1, Weapon Block:1, Shadow Warrior:1, Shadow Master:1</p>
+            <p><strong>Equipment:</strong> amulet: Shadow Amulet of the Colossus x1, gloves: Magefist x1, belt: Goldwrap x1, ring: Storm Turn x1, ring: GhoulRI Circle x1, helmet: Spirit Veil x1, body: Skin of the Vipermagi x1, Left hand: Battle Staff of Teleportation x1, Left hand: Spirit x1, boots: Natalya's Soul x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=OtzaSinbka">OtzaSinbka</a></div>
+                    <div>89</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Psychic Hammer:20, Cloak of Shadows:20, Mind Blast:20, Fade:19, Shadow Master:17, Claw Mastery:1, Burst of Speed:1, Weapon Block:1, Shadow Warrior:1</p>
+            <p><strong>Equipment:</strong> body: Natalya's Shadow x1, gloves: Trang-Oul's Claws x1, amulet: Shadow Amulet x1, ring: Bone Circle x1, ring: Storm Band x1, boots: Rune Brogues x1, helmet: Shadow Demonhead x1, belt: Verdungo's Hearty Cord x1, Left hand: Gnarled Staff of Teleportation x1, Left hand: Spirit x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=WhyArentIAsain">WhyArentIAsain</a></div>
+                    <div>87</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Psychic Hammer:20, Cloak of Shadows:20, Fade:20, Mind Blast:20, Shadow Warrior:14, Claw Mastery:1, Burst of Speed:1, Weapon Block:1</p>
+            <p><strong>Equipment:</strong> gloves: PlagueRI Touch x1, boots: Soul Brogues x1, helmet: Shadow Bone Helm of the Tiger x1, body: Treachery x1, ring: Raven Eye x1, ring: Bitter Eye x1, belt: Bramble Cord x1, Left hand: Edge x1, Left hand: Spirit x1, amulet: Psychic Amulet of the Giant x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=FrlAssini">FrlAssini</a></div>
+                    <div>78</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Psychic Hammer:20, Cloak of Shadows:20, Mind Blast:20, Blade Shield:13, Fire Blast:1, Blade Throw:1, Wake of Fire:1, Blade Fury:1, Claw Mastery:1, Burst of Speed:1, Fade:1</p>
+            <p><strong>Equipment:</strong> gloves: Magefist x1, ring: Order Whorl x1, ring: Bone Grip x1, belt: Imp Buckle x1, helmet: Shadow Tiara of Nova Shield x1, body: Natalya's Shadow x1, amulet: Corruption Talisman x1, boots: Shadow Dancer x1, Left hand: Holy Thunder x1, Left hand: Lawbringer x1, Offhand: Rhyme x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Gorubika">Gorubika</a></div>
+                    <div>77</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Psychic Hammer:20, Cloak of Shadows:20, Mind Blast:20, Shadow Master:19, Claw Mastery:1, Burst of Speed:1, Weapon Block:1, Fade:1, Shadow Warrior:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=MissCoconut">MissCoconut</a></div>
+                    <div>76</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Psychic Hammer:20, Cloak of Shadows:20, Mind Blast:20, Fade:3, Claw Mastery:1, Burst of Speed:1, Weapon Block:1, Shadow Warrior:1</p>
+            <p><strong>Equipment:</strong> Offhand: Small Shield x1, Offhand: Spirit x1, amulet: Telling of Beads x1, gloves: Magefist x1, boots: Natalya's Soul x1, helmet: Eagle Horn x1, belt: Tal Rasha's Fine-Spun Cloth x1, ring: Skull Coil x1, ring: Viper Turn x1, body: Skin of the Vipermagi x1, Left hand: Heart of the Oak x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Waffelin">Waffelin</a></div>
+                    <div>69</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Psychic Hammer:20, Cloak of Shadows:20, Mind Blast:20, Fade:6, Shadow Master:3, Fire Blast:1, Shock Web:1, Charged Bolt Sentry:1, Lightning Sentry:1, Death Sentry:1, Claw Mastery:1, Burst of Speed:1, Weapon Block:1, Shadow Warrior:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Monia">Monia</a></div>
+                    <div>68</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Psychic Hammer:20, Cloak of Shadows:20, Mind Blast:20, Shadow Master:11, Claw Mastery:1, Burst of Speed:1, Weapon Block:1, Fade:1, Shadow Warrior:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+        </div>
+        <hr>
+        
+        <h2>8.74%  of Assassin's Main Skills:<br><img src='icons/Lightning Sentry.png' alt='Lightning Sentry' width='20' height='20'> Lightning Sentry 100.00% (180)<br><img src='icons/Death Sentry.png' alt='Death Sentry' width='20' height='20'> Death Sentry 100.00% (153)<br><img src='icons/Charged Bolt Sentry.png' alt='Charged Bolt Sentry' width='20' height='20'> Charged Bolt Sentry 100.00% (145)</h2>
+        <p><strong>Other Skills:<br></strong> <img src='icons/Shock Web.png' alt='Shock Web' width='20' height='20'> Shock Web 100.0% (142.0)<br><img src='icons/Fire Blast.png' alt='Fire Blast' width='20' height='20'> Fire Blast 100.0% (71.0)<br><img src='icons/Fade.png' alt='Fade' width='20' height='20'> Fade 66.67% (36.0)<br><img src='icons/Blade Shield.png' alt='Blade Shield' width='20' height='20'> Blade Shield 33.33% (14.0)<br><img src='icons/Weapon Block.png' alt='Weapon Block' width='20' height='20'> Weapon Block 66.67% (13.0)<br><img src='icons/Claw Mastery.png' alt='Claw Mastery' width='20' height='20'> Claw Mastery 100.0% (9.0)</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>All Skills</strong></button>
+            <div class="content">
+                <div><img src='icons/Lightning Sentry.png' alt='Lightning Sentry' width='20' height='20'> Lightning Sentry 100.0% (180.0)<br><img src='icons/Death Sentry.png' alt='Death Sentry' width='20' height='20'> Death Sentry 100.0% (153.0)<br><img src='icons/Charged Bolt Sentry.png' alt='Charged Bolt Sentry' width='20' height='20'> Charged Bolt Sentry 100.0% (146.0)<br><img src='icons/Shock Web.png' alt='Shock Web' width='20' height='20'> Shock Web 100.0% (142.0)<br><img src='icons/Fire Blast.png' alt='Fire Blast' width='20' height='20'> Fire Blast 100.0% (71.0)<br><img src='icons/Fade.png' alt='Fade' width='20' height='20'> Fade 66.67% (36.0)<br><img src='icons/Blade Shield.png' alt='Blade Shield' width='20' height='20'> Blade Shield 33.33% (14.0)<br><img src='icons/Weapon Block.png' alt='Weapon Block' width='20' height='20'> Weapon Block 66.67% (13.0)<br><img src='icons/Claw Mastery.png' alt='Claw Mastery' width='20' height='20'> Claw Mastery 100.0% (9.0)<br><img src='icons/Wake of Inferno.png' alt='Wake of Inferno' width='20' height='20'> Wake of Inferno 33.33% (8.0)<br><img src='icons/Burst of Speed.png' alt='Burst of Speed' width='20' height='20'> Burst of Speed 88.89% (8.0)<br><img src='icons/Psychic Hammer.png' alt='Psychic Hammer' width='20' height='20'> Psychic Hammer 55.56% (5.0)<br><img src='icons/Cloak of Shadows.png' alt='Cloak of Shadows' width='20' height='20'> Cloak of Shadows 55.56% (5.0)<br><img src='icons/Wake of Fire.png' alt='Wake of Fire' width='20' height='20'> Wake of Fire 44.44% (4.0)<br><img src='icons/Shadow Master.png' alt='Shadow Master' width='20' height='20'> Shadow Master 44.44% (4.0)<br><img src='icons/Shadow Warrior.png' alt='Shadow Warrior' width='20' height='20'> Shadow Warrior 44.44% (4.0)<br><img src='icons/Blade Throw.png' alt='Blade Throw' width='20' height='20'> Blade Throw 33.33% (3.0)<br><img src='icons/Blade Fury.png' alt='Blade Fury' width='20' height='20'> Blade Fury 33.33% (3.0)<br><img src='icons/Mind Blast.png' alt='Mind Blast' width='20' height='20'> Mind Blast 22.22% (2.0)<br><img src='icons/Fists of Fire.png' alt='Fists of Fire' width='20' height='20'> Fists of Fire 0.0% (0.0)<br><img src='icons/Dragon Claw.png' alt='Dragon Claw' width='20' height='20'> Dragon Claw 0.0% (0.0)<br><img src='icons/Tiger Strike.png' alt='Tiger Strike' width='20' height='20'> Tiger Strike 0.0% (0.0)<br><img src='icons/Claws of Thunder.png' alt='Claws of Thunder' width='20' height='20'> Claws of Thunder 0.0% (0.0)<br><img src='icons/Dragon Talon.png' alt='Dragon Talon' width='20' height='20'> Dragon Talon 0.0% (0.0)<br><img src='icons/Blades of Ice.png' alt='Blades of Ice' width='20' height='20'> Blades of Ice 0.0% (0.0)<br><img src='icons/Dragon Flight.png' alt='Dragon Flight' width='20' height='20'> Dragon Flight 0.0% (0.0)<br><img src='icons/Cobra Strike.png' alt='Cobra Strike' width='20' height='20'> Cobra Strike 0.0% (0.0)<br><img src='icons/Venom.png' alt='Venom' width='20' height='20'> Venom 0.0% (0.0)</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>Most Common Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Amulet</strong>: <br>Cunning Amulet 22.22%<br>Highlord's Wrath 11.11%<br>Skull Torc 11.11%<br>Seraph's Hymn 11.11%<br>Magekiller's Amulet 11.11%<br><strong>Gloves</strong>: <br>Sander's Taboo 33.33%<br>Laying of Hands 22.22%<br>Storm Hold 11.11%<br>Corpse Hand 11.11%<br>Havoc Grasp 11.11%<br><strong>Body</strong>: <br>Enigma 22.22%<br>Treachery 22.22%<br>Duriel's Shell 11.11%<br>Skin of the Vipermagi 11.11%<br>Smoke 11.11%<br><strong>Boots</strong>: <br>Sander's Riprap 22.22%<br>Silkweave 11.11%<br>War Traveler 11.11%<br>Bitter Nails 11.11%<br>Natalya's Soul 11.11%<br><strong>Helmet</strong>: <br>Harlequin Crest 22.22%<br>Sazabi's Mental Sheath 11.11%<br>Peasant Crown 11.11%<br>Cunning Coronet of Venom 11.11%<br>The Face of Horror 11.11%<br><strong>Belt</strong>: <br>Verdungo's Hearty Cord 22.22%<br>Arachnid Mesh 11.11%<br>Rune Chain 11.11%<br>Havoc Strap 11.11%<br>Goldwrap 11.11%<br><strong>Ring</strong>: <br>The Stone of Jordan 22.22%<br>Bul-Kathos' Wedding Band 22.22%<br>Blood Turn 22.22%<br>Wisp Projector 11.11%<br>Scintillating Ring of Chance 11.11%<br><strong>Left hand</strong>: <br>Spirit 33.33%<br>Call to Arms 22.22%<br>Silence 11.11%<br>Cunning Scissors Katar of Blight 11.11%<br>Todesfaelle Flamme 11.11%<br><strong>Offhand</strong>: <br>Medusa's Gaze 22.22%<br>Moser's Blessed Circle 22.22%<br>Stormshield 11.11%<br>Cunning Scissors Katar 11.11%<br>Bartuc's Cut-Throat 11.11%</div>
+            </div>
+        
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Amulet</strong>: Highlord's Wrath 11.11%, Skull Torc 11.11%, Seraph's Hymn 11.11%, Cunning Amulet 22.22%, Magekiller's Amulet 11.11%, Magekiller's Amulet of Maiming 11.11%, Magekiller's Amulet of Regrowth 11.11%<br><strong>Gloves</strong>: Laying of Hands 22.22%, Storm Hold 11.11%, Sander's Taboo 33.33%, Corpse Hand 11.11%, Havoc Grasp 11.11%<br><strong>Body</strong>: Enigma 22.22%, Duriel's Shell 11.11%, Treachery 22.22%, Skin of the Vipermagi 11.11%, Smoke 11.11%, Stone Coat 11.11%<br><strong>Boots</strong>: Silkweave 11.11%, War Traveler 11.11%, Bitter Nails 11.11%, Sander's Riprap 22.22%, Natalya's Soul 11.11%, Bramble Stalker 11.11%, Grim Track 11.11%<br><strong>Helmet</strong>: Harlequin Crest 22.22%, Sazabi's Mental Sheath 11.11%, Peasant Crown 11.11%, Cunning Coronet of Venom 11.11%, The Face of Horror 11.11%, Iratha's Coil 11.11%, Naj's Circlet 11.11%<br><strong>Belt</strong>: Arachnid Mesh 11.11%, Verdungo's Hearty Cord 22.22%, Rune Chain 11.11%, Havoc Strap 11.11%, Goldwrap 11.11%, Arctic Binding 11.11%, GhoulRI Winding 11.11%<br><strong>Ring</strong>: The Stone of Jordan 22.22%, Wisp Projector 11.11%, Bul-Kathos' Wedding Band 22.22%, Scintillating Ring of Chance 11.11%, Manald Heal 11.11%, Blood Turn 22.22%, Beast Spiral 11.11%, Ring of Fortune 11.11%, Chaos Grip 11.11%, Wraithra Touch 11.11%, Eagle Gyre 11.11%, Blood Band 11.11%, Corruption Whorl 11.11%<br><strong>Left hand</strong>: Call to Arms 22.22%, Silence 11.11%, Cunning Scissors Katar of Blight 11.11%, Todesfaelle Flamme 11.11%, Bartuc's Cut-Throat 11.11%, Golemlord's Bone Wand of Lower Resistance 11.11%, Cunning Blade Talons of Ease 11.11%, Holy Thunder 11.11%, Spirit 33.33%, Witch-hunter's Blade Talons of Strength 11.11%, Gnarled Staff of Teleportation 11.11%, Wyrm's Gnarled Staff of Teleportation 11.11%<br><strong>Offhand</strong>: Medusa's Gaze 22.22%, Stormshield 11.11%, Cunning Scissors Katar 11.11%, Bartuc's Cut-Throat 11.11%, Cunning Blade Talons of Simplicity 11.11%, Whitstan's Guard 11.11%, Moser's Blessed Circle 22.22%, Witch-hunter's Blade Talons 11.11%, Ancients' Pledge 11.11%</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>9 Characters in this cluster:</strong></button>
+            <div class="content">
+                
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Aluvia">Aluvia</a></div>
+                    <div>99</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Shock Web:20, Charged Bolt Sentry:20, Lightning Sentry:20, Death Sentry:20, Fire Blast:12, Blade Shield:12, Blade Throw:1, Wake of Fire:1, Blade Fury:1, Claw Mastery:1, Burst of Speed:1, Fade:1</p>
+            <p><strong>Equipment:</strong> amulet: Highlord's Wrath x1, gloves: Laying of Hands x1, body: Enigma x1, boots: Silkweave x1, helmet: Harlequin Crest x1, belt: Arachnid Mesh x1, ring: The Stone of Jordan x1, ring: Wisp Projector x1, Left hand: Call to Arms x1, Left hand: Silence x1, Offhand: Medusa's Gaze x1, Offhand: Stormshield x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=ZalupaBoBra">ZalupaBoBra</a></div>
+                    <div>93</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Shock Web:20, Charged Bolt Sentry:20, Lightning Sentry:20, Death Sentry:20, Fire Blast:12, Fade:9, Claw Mastery:1, Burst of Speed:1, Weapon Block:1</p>
+            <p><strong>Equipment:</strong> belt: Verdungo's Hearty Cord x1, ring: Bul-Kathos' Wedding Band x2, boots: War Traveler x1, gloves: Storm Hold x1, helmet: Harlequin Crest x1, amulet: Skull Torc x1, Left hand: Call to Arms x1, Left hand: Cunning Scissors Katar of Blight x1, Offhand: Medusa's Gaze x1, Offhand: Cunning Scissors Katar x1, body: Enigma x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=HupakkoH">HupakkoH</a></div>
+                    <div>87</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Shock Web:20, Lightning Sentry:20, Death Sentry:20, Charged Bolt Sentry:16, Fade:14, Fire Blast:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Shadow Warrior:1, Shadow Master:1</p>
+            <p><strong>Equipment:</strong> helmet: Sazabi's Mental Sheath x1, ring: Scintillating Ring of Chance x1, ring: Manald Heal x1, belt: Rune Chain x1, amulet: Seraph's Hymn x1, boots: Bitter Nails x1, body: Duriel's Shell x1, gloves: Sander's Taboo x1, Left hand: Todesfaelle Flamme x1, Left hand: Bartuc's Cut-Throat x1, Offhand: Bartuc's Cut-Throat x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Basedgodxx">Basedgodxx</a></div>
+                    <div>82</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Charged Bolt Sentry:20, Lightning Sentry:20, Death Sentry:20, Shock Web:13, Fade:10, Fire Blast:1, Wake of Fire:1, Wake of Inferno:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Shadow Warrior:1, Shadow Master:1</p>
+            <p><strong>Equipment:</strong> ring: Blood Turn x1, ring: Beast Spiral x1, boots: Sander's Riprap x1, gloves: Laying of Hands x1, belt: Havoc Strap x1, Left hand: Golemlord's Bone Wand of Lower Resistance x1, Left hand: Cunning Blade Talons of Ease x1, body: Treachery x1, helmet: Peasant Crown x1, amulet: Cunning Amulet x1, Offhand: Cunning Blade Talons of Simplicity x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Budtraps">Budtraps</a></div>
+                    <div>81</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Fire Blast:20, Shock Web:20, Charged Bolt Sentry:20, Lightning Sentry:20, Death Sentry:3, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1, Mind Blast:1, Shadow Master:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Lofy">Lofy</a></div>
+                    <div>80</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Shock Web:20, Charged Bolt Sentry:20, Lightning Sentry:20, Death Sentry:20, Fire Blast:3, Blade Throw:1, Wake of Fire:1, Blade Fury:1, Wake of Inferno:1, Blade Shield:1, Claw Mastery:1, Burst of Speed:1, Fade:1</p>
+            <p><strong>Equipment:</strong> gloves: Corpse Hand x1, amulet: Cunning Amulet x1, helmet: Cunning Coronet of Venom x1, boots: Natalya's Soul x1, ring: The Stone of Jordan x1, ring: Ring of Fortune x1, belt: Verdungo's Hearty Cord x1, Left hand: Holy Thunder x1, Left hand: Spirit x1, Offhand: Whitstan's Guard x1, Offhand: Moser's Blessed Circle x1, body: Skin of the Vipermagi x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=GrimAssMan">GrimAssMan</a></div>
+                    <div>77</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Shock Web:20, Charged Bolt Sentry:20, Lightning Sentry:20, Death Sentry:11, Weapon Block:8, Fire Blast:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Cloak of Shadows:1, Mind Blast:1</p>
+            <p><strong>Equipment:</strong> boots: Bramble Stalker x1, amulet: Magekiller's Amulet x1, gloves: Havoc Grasp x1, body: Smoke x1, belt: Goldwrap x1, helmet: The Face of Horror x1, ring: Chaos Grip x1, ring: Wraithra Touch x1, Left hand: Witch-hunter's Blade Talons of Strength x1, Left hand: Gnarled Staff of Teleportation x1, Offhand: Witch-hunter's Blade Talons x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Billie-Eilish">Billie-Eilish</a></div>
+                    <div>62</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Fire Blast:20, Lightning Sentry:20, Death Sentry:20, Shock Web:7, Charged Bolt Sentry:1, Claw Mastery:1, Burst of Speed:1</p>
+            <p><strong>Equipment:</strong> body: Stone Coat x1, helmet: Iratha's Coil x1, belt: Arctic Binding x1, gloves: Sander's Taboo x1, boots: Grim Track x1, ring: Eagle Gyre x1, ring: Blood Band x1, amulet: Magekiller's Amulet of Maiming x1, Left hand: Spirit x1, Offhand: Ancients' Pledge x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=CleanLady">CleanLady</a></div>
+                    <div>61</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Lightning Sentry:20, Death Sentry:19, Charged Bolt Sentry:9, Wake of Inferno:6, Shock Web:2, Fire Blast:1, Blade Throw:1, Wake of Fire:1, Blade Fury:1, Blade Shield:1, Claw Mastery:1, Psychic Hammer:1, Weapon Block:1, Cloak of Shadows:1, Shadow Warrior:1, Shadow Master:1</p>
+            <p><strong>Equipment:</strong> amulet: Magekiller's Amulet of Regrowth x1, helmet: Naj's Circlet x1, boots: Sander's Riprap x1, gloves: Sander's Taboo x1, ring: Blood Turn x1, ring: Corruption Whorl x1, body: Treachery x1, Left hand: Wyrm's Gnarled Staff of Teleportation x1, Left hand: Spirit x1, belt: GhoulRI Winding x1, Offhand: Moser's Blessed Circle x1</p>
+        
+        </div>
+        <hr>
+        
+        <h2>4.85%  of Assassin's Main Skills:<br><img src='icons/Fists of Fire.png' alt='Fists of Fire' width='20' height='20'> Fists of Fire 100.00% (89)<br><img src='icons/Blades of Ice.png' alt='Blades of Ice' width='20' height='20'> Blades of Ice 100.00% (81)<br><img src='icons/Claws of Thunder.png' alt='Claws of Thunder' width='20' height='20'> Claws of Thunder 100.00% (79)</h2>
+        <p><strong>Other Skills:<br></strong> <img src='icons/Tiger Strike.png' alt='Tiger Strike' width='20' height='20'> Tiger Strike 100.0% (43.0)<br><img src='icons/Cobra Strike.png' alt='Cobra Strike' width='20' height='20'> Cobra Strike 80.0% (33.0)<br><img src='icons/Claw Mastery.png' alt='Claw Mastery' width='20' height='20'> Claw Mastery 100.0% (31.0)<br><img src='icons/Fade.png' alt='Fade' width='20' height='20'> Fade 40.0% (11.0)<br><img src='icons/Weapon Block.png' alt='Weapon Block' width='20' height='20'> Weapon Block 60.0% (10.0)<br><img src='icons/Burst of Speed.png' alt='Burst of Speed' width='20' height='20'> Burst of Speed 100.0% (7.0)</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>All Skills</strong></button>
+            <div class="content">
+                <div><img src='icons/Fists of Fire.png' alt='Fists of Fire' width='20' height='20'> Fists of Fire 100.0% (89.0)<br><img src='icons/Blades of Ice.png' alt='Blades of Ice' width='20' height='20'> Blades of Ice 100.0% (81.0)<br><img src='icons/Claws of Thunder.png' alt='Claws of Thunder' width='20' height='20'> Claws of Thunder 100.0% (79.0)<br><img src='icons/Tiger Strike.png' alt='Tiger Strike' width='20' height='20'> Tiger Strike 100.0% (43.0)<br><img src='icons/Cobra Strike.png' alt='Cobra Strike' width='20' height='20'> Cobra Strike 80.0% (33.0)<br><img src='icons/Claw Mastery.png' alt='Claw Mastery' width='20' height='20'> Claw Mastery 100.0% (31.0)<br><img src='icons/Fade.png' alt='Fade' width='20' height='20'> Fade 40.0% (11.0)<br><img src='icons/Weapon Block.png' alt='Weapon Block' width='20' height='20'> Weapon Block 60.0% (10.0)<br><img src='icons/Burst of Speed.png' alt='Burst of Speed' width='20' height='20'> Burst of Speed 100.0% (7.0)<br><img src='icons/Dragon Claw.png' alt='Dragon Claw' width='20' height='20'> Dragon Claw 100.0% (5.0)<br><img src='icons/Dragon Talon.png' alt='Dragon Talon' width='20' height='20'> Dragon Talon 100.0% (5.0)<br><img src='icons/Dragon Flight.png' alt='Dragon Flight' width='20' height='20'> Dragon Flight 100.0% (5.0)<br><img src='icons/Psychic Hammer.png' alt='Psychic Hammer' width='20' height='20'> Psychic Hammer 20.0% (1.0)<br><img src='icons/Shadow Warrior.png' alt='Shadow Warrior' width='20' height='20'> Shadow Warrior 20.0% (1.0)<br><img src='icons/Shadow Master.png' alt='Shadow Master' width='20' height='20'> Shadow Master 20.0% (1.0)<br><img src='icons/Cloak of Shadows.png' alt='Cloak of Shadows' width='20' height='20'> Cloak of Shadows 20.0% (1.0)<br><img src='icons/Fire Blast.png' alt='Fire Blast' width='20' height='20'> Fire Blast 0.0% (0.0)<br><img src='icons/Wake of Fire.png' alt='Wake of Fire' width='20' height='20'> Wake of Fire 0.0% (0.0)<br><img src='icons/Shock Web.png' alt='Shock Web' width='20' height='20'> Shock Web 0.0% (0.0)<br><img src='icons/Charged Bolt Sentry.png' alt='Charged Bolt Sentry' width='20' height='20'> Charged Bolt Sentry 0.0% (0.0)<br><img src='icons/Wake of Inferno.png' alt='Wake of Inferno' width='20' height='20'> Wake of Inferno 0.0% (0.0)<br><img src='icons/Lightning Sentry.png' alt='Lightning Sentry' width='20' height='20'> Lightning Sentry 0.0% (0.0)<br><img src='icons/Death Sentry.png' alt='Death Sentry' width='20' height='20'> Death Sentry 0.0% (0.0)<br><img src='icons/Blade Throw.png' alt='Blade Throw' width='20' height='20'> Blade Throw 0.0% (0.0)<br><img src='icons/Blade Fury.png' alt='Blade Fury' width='20' height='20'> Blade Fury 0.0% (0.0)<br><img src='icons/Blade Shield.png' alt='Blade Shield' width='20' height='20'> Blade Shield 0.0% (0.0)<br><img src='icons/Mind Blast.png' alt='Mind Blast' width='20' height='20'> Mind Blast 0.0% (0.0)<br><img src='icons/Venom.png' alt='Venom' width='20' height='20'> Venom 0.0% (0.0)</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>Most Common Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Helmet</strong>: <br>Rockstopper 40.00%<br>Natalya's Totem 20.00%<br>Stealskull 20.00%<br><strong>Gloves</strong>: <br>Dracul's Grasp 20.00%<br>Laying of Hands 20.00%<br>Kenshi's Light Gauntlets of Alacrity 20.00%<br>Sander's Taboo 20.00%<br><strong>Body</strong>: <br>Treachery 40.00%<br>Natalya's Shadow 20.00%<br>Stealth 20.00%<br><strong>Left hand</strong>: <br>Natalya's Mark 40.00%<br>Demon Limb 20.00%<br>Gale Barb 20.00%<br>Spirit 20.00%<br>Bartuc's Cut-Throat 20.00%<br><strong>Offhand</strong>: <br>Mosaic 40.00%<br>Sigon's Guard 40.00%<br>Gerke's Sanctuary 20.00%<br>Ancients' Pledge 20.00%<br><strong>Ring</strong>: <br>Angelic Halo 100.00%<br>Shimmering Ring 20.00%<br><strong>Boots</strong>: <br>Gale Trample 20.00%<br>Aldur's Advance 20.00%<br>Sigon's Sabot 20.00%<br><strong>Belt</strong>: <br>String of Ears 20.00%<br>M'avina's Tenet 20.00%<br>Sigon's Wrap 20.00%<br><strong>Amulet</strong>: <br>Angelic Wings 40.00%<br>Kenshi's Amulet of Enlightenment 20.00%</div>
+            </div>
+        
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Helmet</strong>: Natalya's Totem 20.00%, Rockstopper 40.00%, Stealskull 20.00%<br><strong>Gloves</strong>: Dracul's Grasp 20.00%, Laying of Hands 20.00%, Kenshi's Light Gauntlets of Alacrity 20.00%, Sander's Taboo 20.00%<br><strong>Body</strong>: Natalya's Shadow 20.00%, Treachery 40.00%, Stealth 20.00%<br><strong>Left hand</strong>: Natalya's Mark 40.00%, Demon Limb 20.00%, Gale Barb 20.00%, Spirit 20.00%, Bartuc's Cut-Throat 20.00%, Katar 20.00%<br><strong>Offhand</strong>: Mosaic 40.00%, Sigon's Guard 40.00%, Gerke's Sanctuary 20.00%, Ancients' Pledge 20.00%<br><strong>Ring</strong>: Angelic Halo 100.00%, Shimmering Ring 20.00%<br><strong>Boots</strong>: Gale Trample 20.00%, Aldur's Advance 20.00%, Sigon's Sabot 20.00%<br><strong>Belt</strong>: String of Ears 20.00%, M'avina's Tenet 20.00%, Sigon's Wrap 20.00%<br><strong>Amulet</strong>: Kenshi's Amulet of Enlightenment 20.00%, Angelic Wings 40.00%</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>5 Characters in this cluster:</strong></button>
+            <div class="content">
+                
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=MorgiAssa">MorgiAssa</a></div>
+                    <div>88</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Tiger Strike:20, Claws of Thunder:20, Blades of Ice:20, Fade:10, Fists of Fire:10, Weapon Block:8, Claw Mastery:5, Burst of Speed:3, Dragon Talon:1, Dragon Claw:1, Dragon Flight:1</p>
+            <p><strong>Equipment:</strong> helmet: Natalya's Totem x1, gloves: Dracul's Grasp x1, body: Natalya's Shadow x1, Left hand: Natalya's Mark x1, Left hand: Demon Limb x1, Offhand: Mosaic x1, Offhand: Sigon's Guard x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Diab_LOL">Diab_LOL</a></div>
+                    <div>88</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Claw Mastery:20, Fists of Fire:20, Claws of Thunder:20, Blades of Ice:20, Cobra Strike:9, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Shadow Warrior:1, Shadow Master:1, Tiger Strike:1, Dragon Talon:1, Dragon Claw:1, Dragon Flight:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=BloodyForeskin">BloodyForeskin</a></div>
+                    <div>79</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Tiger Strike:20, Fists of Fire:20, Claws of Thunder:20, Blades of Ice:20, Cobra Strike:3, Claw Mastery:2, Burst of Speed:1, Weapon Block:1, Dragon Talon:1, Dragon Claw:1, Dragon Flight:1</p>
+            <p><strong>Equipment:</strong> ring: Angelic Halo x2, boots: Gale Trample x1, belt: String of Ears x1, helmet: Rockstopper x1, body: Treachery x1, gloves: Laying of Hands x1, Left hand: Gale Barb x1, Left hand: Natalya's Mark x1, amulet: Kenshi's Amulet of Enlightenment x1, Offhand: Mosaic x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=SilentTriesMA">SilentTriesMA</a></div>
+                    <div>66</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Cobra Strike:20, Blades of Ice:20, Fists of Fire:19, Claw Mastery:3, Burst of Speed:1, Fade:1, Tiger Strike:1, Dragon Talon:1, Dragon Claw:1, Claws of Thunder:1, Dragon Flight:1</p>
+            <p><strong>Equipment:</strong> ring: Angelic Halo x1, ring: Shimmering Ring x1, amulet: Angelic Wings x1, helmet: Rockstopper x1, gloves: Kenshi's Light Gauntlets of Alacrity x1, belt: M'avina's Tenet x1, body: Treachery x1, boots: Aldur's Advance x1, Left hand: Spirit x1, Left hand: Bartuc's Cut-Throat x1, Offhand: Sigon's Guard x1, Offhand: Gerke's Sanctuary x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=CumTopia">CumTopia</a></div>
+                    <div>45</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Fists of Fire:20, Claws of Thunder:18, Claw Mastery:1, Burst of Speed:1, Tiger Strike:1, Dragon Talon:1, Dragon Claw:1, Cobra Strike:1, Blades of Ice:1, Dragon Flight:1</p>
+            <p><strong>Equipment:</strong> belt: Sigon's Wrap x1, ring: Angelic Halo x2, body: Stealth x1, boots: Sigon's Sabot x1, gloves: Sander's Taboo x1, amulet: Angelic Wings x1, helmet: Stealskull x1, Left hand: Katar x1, Offhand: Ancients' Pledge x1</p>
+        
+        </div>
+        <hr>
+        
+        <h2>3.88%  of Assassin's Main Skills:<br><img src='icons/Blade Shield.png' alt='Blade Shield' width='20' height='20'> Blade Shield 100.00% (80)<br><img src='icons/Blade Fury.png' alt='Blade Fury' width='20' height='20'> Blade Fury 100.00% (61)<br><img src='icons/Blade Throw.png' alt='Blade Throw' width='20' height='20'> Blade Throw 100.00% (60)</h2>
+        <p><strong>Other Skills:<br></strong> <img src='icons/Dragon Talon.png' alt='Dragon Talon' width='20' height='20'> Dragon Talon 75.0% (41.0)<br><img src='icons/Dragon Flight.png' alt='Dragon Flight' width='20' height='20'> Dragon Flight 75.0% (41.0)<br><img src='icons/Fade.png' alt='Fade' width='20' height='20'> Fade 100.0% (39.0)<br><img src='icons/Venom.png' alt='Venom' width='20' height='20'> Venom 25.0% (20.0)<br><img src='icons/Tiger Strike.png' alt='Tiger Strike' width='20' height='20'> Tiger Strike 25.0% (10.0)<br><img src='icons/Fire Blast.png' alt='Fire Blast' width='20' height='20'> Fire Blast 100.0% (4.0)</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>All Skills</strong></button>
+            <div class="content">
+                <div><img src='icons/Blade Shield.png' alt='Blade Shield' width='20' height='20'> Blade Shield 100.0% (80.0)<br><img src='icons/Blade Fury.png' alt='Blade Fury' width='20' height='20'> Blade Fury 100.0% (61.0)<br><img src='icons/Blade Throw.png' alt='Blade Throw' width='20' height='20'> Blade Throw 100.0% (60.0)<br><img src='icons/Dragon Talon.png' alt='Dragon Talon' width='20' height='20'> Dragon Talon 75.0% (41.0)<br><img src='icons/Dragon Flight.png' alt='Dragon Flight' width='20' height='20'> Dragon Flight 75.0% (41.0)<br><img src='icons/Fade.png' alt='Fade' width='20' height='20'> Fade 100.0% (39.0)<br><img src='icons/Venom.png' alt='Venom' width='20' height='20'> Venom 25.0% (20.0)<br><img src='icons/Tiger Strike.png' alt='Tiger Strike' width='20' height='20'> Tiger Strike 25.0% (10.0)<br><img src='icons/Fire Blast.png' alt='Fire Blast' width='20' height='20'> Fire Blast 100.0% (4.0)<br><img src='icons/Wake of Fire.png' alt='Wake of Fire' width='20' height='20'> Wake of Fire 100.0% (4.0)<br><img src='icons/Burst of Speed.png' alt='Burst of Speed' width='20' height='20'> Burst of Speed 100.0% (4.0)<br><img src='icons/Claw Mastery.png' alt='Claw Mastery' width='20' height='20'> Claw Mastery 100.0% (4.0)<br><img src='icons/Dragon Claw.png' alt='Dragon Claw' width='20' height='20'> Dragon Claw 75.0% (3.0)<br><img src='icons/Cobra Strike.png' alt='Cobra Strike' width='20' height='20'> Cobra Strike 25.0% (1.0)<br><img src='icons/Weapon Block.png' alt='Weapon Block' width='20' height='20'> Weapon Block 25.0% (1.0)<br><img src='icons/Wake of Inferno.png' alt='Wake of Inferno' width='20' height='20'> Wake of Inferno 0.0% (0.0)<br><img src='icons/Lightning Sentry.png' alt='Lightning Sentry' width='20' height='20'> Lightning Sentry 0.0% (0.0)<br><img src='icons/Charged Bolt Sentry.png' alt='Charged Bolt Sentry' width='20' height='20'> Charged Bolt Sentry 0.0% (0.0)<br><img src='icons/Shock Web.png' alt='Shock Web' width='20' height='20'> Shock Web 0.0% (0.0)<br><img src='icons/Death Sentry.png' alt='Death Sentry' width='20' height='20'> Death Sentry 0.0% (0.0)<br><img src='icons/Cloak of Shadows.png' alt='Cloak of Shadows' width='20' height='20'> Cloak of Shadows 0.0% (0.0)<br><img src='icons/Psychic Hammer.png' alt='Psychic Hammer' width='20' height='20'> Psychic Hammer 0.0% (0.0)<br><img src='icons/Shadow Warrior.png' alt='Shadow Warrior' width='20' height='20'> Shadow Warrior 0.0% (0.0)<br><img src='icons/Shadow Master.png' alt='Shadow Master' width='20' height='20'> Shadow Master 0.0% (0.0)<br><img src='icons/Fists of Fire.png' alt='Fists of Fire' width='20' height='20'> Fists of Fire 0.0% (0.0)<br><img src='icons/Claws of Thunder.png' alt='Claws of Thunder' width='20' height='20'> Claws of Thunder 0.0% (0.0)<br><img src='icons/Blades of Ice.png' alt='Blades of Ice' width='20' height='20'> Blades of Ice 0.0% (0.0)<br><img src='icons/Mind Blast.png' alt='Mind Blast' width='20' height='20'> Mind Blast 0.0% (0.0)</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>Most Common Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Boots</strong>: <br>Gore Rider 50.00%<br><strong>Body</strong>: <br>Chains of Honor 25.00%<br>Fortitude 25.00%<br><strong>Amulet</strong>: <br>Highlord's Wrath 25.00%<br>Angelic Wings 25.00%<br><strong>Ring</strong>: <br>Raven Frost 50.00%<br>Nature's Peace 25.00%<br>Angelic Halo 25.00%<br><strong>Belt</strong>: <br>String of Ears 25.00%<br>Gloom's Trap 25.00%<br><strong>Gloves</strong>: <br>Death Claw 25.00%<br>Laying of Hands 25.00%<br><strong>Helmet</strong>: <br>Ondal's Almighty 25.00%<br>Guillaume's Face 25.00%<br><strong>Left hand</strong>: <br>Chaos 25.00%<br>Coldkill 25.00%<br>Bartuc's Cut-Throat 25.00%<br>The Reaper's Toll 25.00%<br><strong>Offhand</strong>: <br>Plague 25.00%<br>Stormshield 25.00%<br>Jade Talon 25.00%</div>
+            </div>
+        
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Boots</strong>: Gore Rider 50.00%<br><strong>Body</strong>: Chains of Honor 25.00%, Fortitude 25.00%<br><strong>Amulet</strong>: Highlord's Wrath 25.00%, Angelic Wings 25.00%<br><strong>Ring</strong>: Nature's Peace 25.00%, Raven Frost 50.00%, Angelic Halo 25.00%<br><strong>Belt</strong>: String of Ears 25.00%, Gloom's Trap 25.00%<br><strong>Gloves</strong>: Death Claw 25.00%, Laying of Hands 25.00%<br><strong>Helmet</strong>: Ondal's Almighty 25.00%, Guillaume's Face 25.00%<br><strong>Left hand</strong>: Chaos 25.00%, Coldkill 25.00%, Bartuc's Cut-Throat 25.00%, The Reaper's Toll 25.00%<br><strong>Offhand</strong>: Plague 25.00%, Stormshield 25.00%, Jade Talon 25.00%</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>4 Characters in this cluster:</strong></button>
+            <div class="content">
+                
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Agatka">Agatka</a></div>
+                    <div>94</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Blade Fury:20, Blade Shield:20, Dragon Talon:20, Dragon Flight:20, Blade Throw:19, Fire Blast:1, Wake of Fire:1, Claw Mastery:1, Burst of Speed:1, Fade:1, Dragon Claw:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Oggisin">Oggisin</a></div>
+                    <div>89</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Blade Shield:20, Venom:20, Dragon Talon:20, Dragon Flight:20, Tiger Strike:10, Fire Blast:1, Blade Throw:1, Wake of Fire:1, Blade Fury:1, Claw Mastery:1, Burst of Speed:1, Weapon Block:1, Fade:1, Dragon Claw:1, Cobra Strike:1</p>
+            <p><strong>Equipment:</strong> boots: Gore Rider x1, body: Chains of Honor x1, amulet: Highlord's Wrath x1, ring: Nature's Peace x1, ring: Raven Frost x1, belt: String of Ears x1, gloves: Death Claw x1, helmet: Ondal's Almighty x1, Left hand: Chaos x1, Left hand: Coldkill x1, Offhand: Plague x1, Offhand: Stormshield x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=TRAPPINSTUFF">TRAPPINSTUFF</a></div>
+                    <div>77</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Blade Throw:20, Blade Fury:20, Blade Shield:20, Fade:20, Fire Blast:1, Wake of Fire:1, Claw Mastery:1, Burst of Speed:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Duszolap">Duszolap</a></div>
+                    <div>75</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Blade Throw:20, Blade Fury:20, Blade Shield:20, Fade:17, Fire Blast:1, Wake of Fire:1, Claw Mastery:1, Burst of Speed:1, Dragon Talon:1, Dragon Claw:1, Dragon Flight:1</p>
+            <p><strong>Equipment:</strong> ring: Raven Frost x1, ring: Angelic Halo x1, helmet: Guillaume's Face x1, boots: Gore Rider x1, body: Fortitude x1, amulet: Angelic Wings x1, gloves: Laying of Hands x1, belt: Gloom's Trap x1, Left hand: Bartuc's Cut-Throat x1, Left hand: The Reaper's Toll x1, Offhand: Jade Talon x1</p>
+        
+        </div>
+        <hr>
+        
+            <h3>Top 5 Most Popular Hardcore Assassin Skills:</h3>
+        <ul>
+            
+            <li>Fire Blast: 687.0</li>
+            
+            <li>Wake of Fire: 643.0</li>
+            
+            <li>Wake of Inferno: 486.0</li>
+            
+            <li>Blade Shield: 436.0</li>
+            
+            <li>Psychic Hammer: 294.0</li>
+            
+        </ul>
+
+        <h3>Bottom 5 Least Popular Hardcore Assassin Skills:</h3>
+        <ul>
+            
+            <li>Dragon Claw: 26.0</li>
+            
+            <li>Cobra Strike: 38.0</li>
+            
+            <li>Shadow Warrior: 53.0</li>
+            
+            <li>Weapon Block: 60.0</li>
+            
+            <li>Dragon Flight: 63.0</li>
+            
+        </ul>
+        <!-- Embed the Plotly pie chart -->
+        <iframe src="hcAssassin-clusters_distribution_pie.html"></iframe>
+        <!-- Embed the Plotly scatter plot at the bottom -->
+        <iframe src="hcAssassin-clusters_with_avg_points.html"></iframe>
+        <button onclick="topFunction()" id="backToTopBtn" class="back-to-top">Top</button>
+        
+
+        <script>
+            var coll = document.getElementsByClassName("collapsible");
+            for (var i = 0; i < coll.length; i++) {
+                coll[i].addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var content = this.nextElementSibling;
+                    var openIcon = this.querySelector("img.icon[alt='Open']");
+                    var closeIcon = this.querySelector("img.icon[alt='Close']");
+
+                    if (content.style.display === "block") {
+                        content.style.display = "none";
+                        openIcon.classList.remove("hidden");
+                        closeIcon.classList.add("hidden");
+                    } else {
+                        content.style.display = "block";
+                        openIcon.classList.add("hidden");
+                        closeIcon.classList.remove("hidden");
+                    }
+                });
+            }
+        </script>
+
+        <script>
+            //Get the button
+            var backToTopBtn = document.getElementById("backToTopBtn");
+
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function() {scrollFunction()};
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    backToTopBtn.style.display = "block";
+                } else {
+                    backToTopBtn.style.display = "none";
+                }
+            }
+
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+                document.body.scrollTop = 0; // For Safari
+                document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+            }
+        </script>
+
+        <script>
+            function setActive(id) {
+                // Remove active class from both buttons
+                document.getElementById("SC").classList.remove("active");
+                document.getElementById("HC").classList.remove("active");
+                
+                // Add active class to the selected button
+                document.getElementById(id).classList.add("active");
+                
+                // Get the current URL
+                var currentUrl = window.location.href;
+                
+                // Determine the new URL based on the selected mode
+                var newUrl;
+                if (id === "SC") {
+                    if (currentUrl.includes('hc')) {
+                        newUrl = currentUrl.replace(/hc/gi, '');
+                    } else {
+                        newUrl = currentUrl;
+                    }
+                } else if (id === "HC") {
+                    if (!currentUrl.includes('hc')) {
+                        newUrl = currentUrl.replace(/(\w+)\.html$/, 'hc$1.html');
+                    } else {
+                        newUrl = currentUrl;
+                    }
+                }
+                
+                // Redirect to the new URL if it has changed
+                if (newUrl !== currentUrl) {
+                    window.location.href = newUrl;
+                }
+            }
+
+            // Set default active button based on the current URL
+            window.onload = function() {
+                if (window.location.href.includes('hc')) {
+                    setActive("HC");
+                } else {
+                    setActive("SC");
+                }
+            }
+        </script>
+
+
+
+
+    </body>
+    </html>
+    

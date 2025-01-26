@@ -1,0 +1,1590 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Paladin Hardcore Analysis Report</title>
+        <style>
+            body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+            h1 { color: #333; }
+            h2 { color: #555; margin-top: 20px; clear: both; }
+            p { clear: both; }
+            .character-info { display: flex; margin-bottom: 10px; }
+            .character-info div { flex: 1; padding: 5px; }
+            .character-link { flex: 1; }
+        .collapsible {
+            background-color: #f1f1f1; /* Green background */
+            color: black; /* White text */
+            cursor: pointer;
+            padding: 10px; /* Increase padding */
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px; /* Increase font size */
+            border-radius: 5px; /* Rounded corners */
+            transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
+            display: flex;
+            align-items: center;
+        }
+        .collapsible img.icon {
+            margin-right: 10px; /* Spacing between icon and text */
+            width: 20px; /* Icon size */
+            height: 20px; /* Icon size */
+        }
+        .collapsible img.icon.hidden {
+            display: none; /* Hide by default */
+        }
+        .collapsible:hover {
+            background-color: #45a049; /* Darker green on hover */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Add shadow on hover */
+        }
+        .active, .collapsible:focus {
+            background-color: #45a049; /* Darker green when active or focused */
+        }
+            
+        .content {
+            padding: 0 18px;
+            display: none;
+            overflow: hidden;
+            background-color: #f9f9f9;
+            }
+        iframe {
+            width: 100%;
+            height: 600px; /* Adjust height as needed */
+            border: none;
+        }
+
+        .top-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px; /* Space between buttons and the rest of the page */
+        }
+        .top-button {
+            background-color: #f1f1f1; /* Green background */
+            color: black; /* White text */
+            cursor: pointer;
+            padding: 10px 15px; /* Adjust padding to fit side by side */
+            border: none;
+            text-align: center;
+            outline: none;
+            font-size: 16px; /* Adjust font size */
+            border-radius: 5px; /* Rounded corners */
+            transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
+            text-decoration: none; /* Remove underline */
+            flex: 1; /* Equal space for each button */
+            margin-right: 10px; /* Space between buttons */
+            height: 30px; /* Ensure height is adjusted based on content */
+        }
+        .top-button:last-child {
+            margin-right: 0; /* Remove right margin for the last button */
+        }
+        .top-button:hover {
+            background-color: #45a049; /* Darker green on hover */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Add shadow on hover */
+        }
+
+        .back-to-top {
+            display: none; /* Hidden by default */
+            position: fixed; /* Fixed/sticky position */
+            bottom: 20px; /* Place the button 20px from the bottom */
+            right: 30px; /* Place the button 30px from the right */
+            z-index: 99; /* Make sure it does not overlap */
+            border: none; /* Remove borders */
+            outline: none; /* Remove outline */
+            background-color: #4CAF50; /* Set background color */
+            color: white; /* Set text color */
+            cursor: pointer; /* Add a mouse pointer on hover */
+            padding: 15px; /* Some padding */
+            border-radius: 10px; /* Rounded corners */
+            font-size: 18px; /* Increase font size */
+        }
+        .back-to-top:hover {
+            background-color: #45a049; /* Darker background on hover */
+        }
+
+            .split-button {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px; /* Space between buttons and the rest of the page */
+        }
+        .split-button-option {
+            background-color: #4CAF50; /* Green background */
+            color: white; /* White text */
+            cursor: pointer;
+            padding: 10px 15px; /* Adjust padding */
+            border: none;
+            text-align: center;
+            outline: none;
+            font-size: 16px; /* Adjust font size */
+            border-radius: 0; /* No rounded corners */
+            transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
+            flex: 1; /* Equal space for each button */
+        }
+        .split-button-option:first-child {
+            border-top-left-radius: 5px; /* Rounded left corners */
+            border-bottom-left-radius: 5px; /* Rounded left corners */
+        }
+        .split-button-option:last-child {
+            border-top-right-radius: 5px; /* Rounded right corners */
+            border-bottom-right-radius: 5px; /* Rounded right corners */
+        }
+        .split-button-option:hover {
+            background-color: #45a049; /* Darker green on hover */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Add shadow on hover */
+        }
+        .split-button-option.active {
+            background-color: #2E7D32; /* Different color for active state */
+        }
+
+        </style>
+    </head>
+    <body>
+        <div class="top-buttons">
+            <a href="Home.html" class="top-button">Home</a>
+            <a href="Amazon.html" class="top-button">Amazon</a>
+            <a href="Assassin.html" class="top-button">Assassin</a>
+            <a href="Barbarian.html" class="top-button">Barbarian</a>
+            <a href="Druid.html" class="top-button">Druid</a>
+            <a href="Necromancer.html" class="top-button">Necromancer</a>
+            <a href="Paladin.html" class="top-button">Paladin</a>
+            <a href="Sorceress.html" class="top-button">Sorceress</a>
+            <div class="split-button">
+                <button id="SC" class="split-button-option" onclick="setActive('SC')">SC</button>
+                <button id="HC" class="split-button-option" onclick="setActive('HC')">HC</button>
+            </div>
+        </div>
+
+        <h1>Paladin Hardcore Skill Distribution </h1>
+        <hr>
+        
+        <h2>43.94%  of Paladin's Main Skills:<br><img src='icons/Holy Fire.png' alt='Holy Fire' width='20' height='20'> Holy Fire 36.21% (110)<br><img src='icons/Smite.png' alt='Smite' width='20' height='20'> Smite 39.66% (73)<br><img src='icons/Sacrifice.png' alt='Sacrifice' width='20' height='20'> Sacrifice 51.72% (66)</h2>
+        <p><strong>Other Skills:<br></strong> <img src='icons/Might.png' alt='Might' width='20' height='20'> Might 74.14% (60.0)<br><img src='icons/Fanaticism.png' alt='Fanaticism' width='20' height='20'> Fanaticism 6.9% (59.0)<br><img src='icons/Prayer.png' alt='Prayer' width='20' height='20'> Prayer 37.93% (49.0)<br><img src='icons/Resist Fire.png' alt='Resist Fire' width='20' height='20'> Resist Fire 22.41% (44.0)<br><img src='icons/Holy Shield.png' alt='Holy Shield' width='20' height='20'> Holy Shield 10.34% (41.0)<br><img src='icons/Blessed Aim.png' alt='Blessed Aim' width='20' height='20'> Blessed Aim 20.69% (39.0)</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>All Skills</strong></button>
+            <div class="content">
+                <div><img src='icons/Holy Fire.png' alt='Holy Fire' width='20' height='20'> Holy Fire 36.21% (110.0)<br><img src='icons/Smite.png' alt='Smite' width='20' height='20'> Smite 39.66% (73.0)<br><img src='icons/Sacrifice.png' alt='Sacrifice' width='20' height='20'> Sacrifice 51.72% (66.0)<br><img src='icons/Might.png' alt='Might' width='20' height='20'> Might 74.14% (60.0)<br><img src='icons/Fanaticism.png' alt='Fanaticism' width='20' height='20'> Fanaticism 6.9% (59.0)<br><img src='icons/Prayer.png' alt='Prayer' width='20' height='20'> Prayer 37.93% (49.0)<br><img src='icons/Resist Fire.png' alt='Resist Fire' width='20' height='20'> Resist Fire 22.41% (44.0)<br><img src='icons/Holy Shield.png' alt='Holy Shield' width='20' height='20'> Holy Shield 10.34% (41.0)<br><img src='icons/Blessed Aim.png' alt='Blessed Aim' width='20' height='20'> Blessed Aim 20.69% (39.0)<br><img src='icons/Holy Bolt.png' alt='Holy Bolt' width='20' height='20'> Holy Bolt 37.93% (38.0)<br><img src='icons/Resist Lightning.png' alt='Resist Lightning' width='20' height='20'> Resist Lightning 8.62% (37.0)<br><img src='icons/Charge.png' alt='Charge' width='20' height='20'> Charge 17.24% (37.0)<br><img src='icons/Holy Freeze.png' alt='Holy Freeze' width='20' height='20'> Holy Freeze 8.62% (27.0)<br><img src='icons/Blessed Hammer.png' alt='Blessed Hammer' width='20' height='20'> Blessed Hammer 17.24% (27.0)<br><img src='icons/Zeal.png' alt='Zeal' width='20' height='20'> Zeal 12.07% (27.0)<br><img src='icons/Salvation.png' alt='Salvation' width='20' height='20'> Salvation 8.62% (27.0)<br><img src='icons/Conviction.png' alt='Conviction' width='20' height='20'> Conviction 3.45% (24.0)<br><img src='icons/Frost Nova.png' alt='Frost Nova' width='20' height='20'> Frost Nova 3.45% (21.0)<br><img src='icons/Fire Blast.png' alt='Fire Blast' width='20' height='20'> Fire Blast 1.72% (20.0)<br><img src='icons/Blade Shield.png' alt='Blade Shield' width='20' height='20'> Blade Shield 1.72% (20.0)<br><img src='icons/Wake of Inferno.png' alt='Wake of Inferno' width='20' height='20'> Wake of Inferno 1.72% (20.0)<br><img src='icons/Wake of Fire.png' alt='Wake of Fire' width='20' height='20'> Wake of Fire 1.72% (20.0)<br><img src='icons/Shiver Armor.png' alt='Shiver Armor' width='20' height='20'> Shiver Armor 1.72% (20.0)<br><img src='icons/Holy Shock.png' alt='Holy Shock' width='20' height='20'> Holy Shock 3.45% (19.0)<br><img src='icons/Ice Blast.png' alt='Ice Blast' width='20' height='20'> Ice Blast 3.45% (18.0)<br><img src='icons/Fire Ball.png' alt='Fire Ball' width='20' height='20'> Fire Ball 1.72% (17.0)<br><img src='icons/Defiance.png' alt='Defiance' width='20' height='20'> Defiance 25.86% (15.0)<br><img src='icons/Burst of Speed.png' alt='Burst of Speed' width='20' height='20'> Burst of Speed 1.72% (14.0)<br><img src='icons/Absolution.png' alt='Absolution' width='20' height='20'> Absolution 1.72% (13.0)<br><img src='icons/Precision.png' alt='Precision' width='20' height='20'> Precision 12.07% (11.0)<br><img src='icons/Vigor.png' alt='Vigor' width='20' height='20'> Vigor 13.79% (10.0)<br><img src='icons/Concentration.png' alt='Concentration' width='20' height='20'> Concentration 12.07% (9.0)<br><img src='icons/Cleansing.png' alt='Cleansing' width='20' height='20'> Cleansing 15.52% (9.0)<br><img src='icons/Energy Shield.png' alt='Energy Shield' width='20' height='20'> Energy Shield 1.72% (9.0)<br><img src='icons/Vengeance.png' alt='Vengeance' width='20' height='20'> Vengeance 6.9% (8.0)<br><img src='icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' width='20' height='20'> Summon Spirit Wolf 1.72% (8.0)<br><img src='icons/Telekinesis.png' alt='Telekinesis' width='20' height='20'> Telekinesis 3.45% (4.0)<br><img src='icons/Resist Cold.png' alt='Resist Cold' width='20' height='20'> Resist Cold 6.9% (4.0)<br><img src='icons/Redemption.png' alt='Redemption' width='20' height='20'> Redemption 5.17% (3.0)<br><img src='icons/Sanctuary.png' alt='Sanctuary' width='20' height='20'> Sanctuary 5.17% (3.0)<br><img src='icons/Dashing Strike.png' alt='Dashing Strike' width='20' height='20'> Dashing Strike 5.17% (3.0)<br><img src='icons/Cold Mastery.png' alt='Cold Mastery' width='20' height='20'> Cold Mastery 1.72% (3.0)<br><img src='icons/Ice Bolt.png' alt='Ice Bolt' width='20' height='20'> Ice Bolt 3.45% (2.0)<br><img src='icons/Teleport.png' alt='Teleport' width='20' height='20'> Teleport 3.45% (2.0)<br><img src='icons/Warmth.png' alt='Warmth' width='20' height='20'> Warmth 3.45% (2.0)<br><img src='icons/Fire Bolt.png' alt='Fire Bolt' width='20' height='20'> Fire Bolt 1.72% (1.0)<br><img src='icons/Poison Creeper.png' alt='Poison Creeper' width='20' height='20'> Poison Creeper 1.72% (1.0)<br><img src='icons/Enflame.png' alt='Enflame' width='20' height='20'> Enflame 1.72% (1.0)<br><img src='icons/Charged Bolt.png' alt='Charged Bolt' width='20' height='20'> Charged Bolt 1.72% (1.0)<br><img src='icons/Lightning Surge.png' alt='Lightning Surge' width='20' height='20'> Lightning Surge 1.72% (1.0)<br><img src='icons/Blade Fury.png' alt='Blade Fury' width='20' height='20'> Blade Fury 1.72% (1.0)<br><img src='icons/Raven.png' alt='Raven' width='20' height='20'> Raven 1.72% (1.0)<br><img src='icons/Chain Lightning.png' alt='Chain Lightning' width='20' height='20'> Chain Lightning 1.72% (1.0)<br><img src='icons/Frigerate.png' alt='Frigerate' width='20' height='20'> Frigerate 1.72% (1.0)<br><img src='icons/Static Field.png' alt='Static Field' width='20' height='20'> Static Field 1.72% (1.0)<br><img src='icons/Carrion Vine.png' alt='Carrion Vine' width='20' height='20'> Carrion Vine 1.72% (1.0)<br><img src='icons/Firestorm.png' alt='Firestorm' width='20' height='20'> Firestorm 1.72% (1.0)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 1.72% (1.0)<br><img src='icons/Fade.png' alt='Fade' width='20' height='20'> Fade 1.72% (1.0)<br><img src='icons/Blade Throw.png' alt='Blade Throw' width='20' height='20'> Blade Throw 1.72% (1.0)<br><img src='icons/Flame Dash.png' alt='Flame Dash' width='20' height='20'> Flame Dash 1.72% (1.0)<br><img src='icons/Molten Boulder.png' alt='Molten Boulder' width='20' height='20'> Molten Boulder 1.72% (1.0)<br><img src='icons/Venom.png' alt='Venom' width='20' height='20'> Venom 1.72% (1.0)<br><img src='icons/Claw Mastery.png' alt='Claw Mastery' width='20' height='20'> Claw Mastery 1.72% (1.0)<br><img src='icons/Fist of the Heavens.png' alt='Fist of the Heavens' width='20' height='20'> Fist of the Heavens 0.0% (0.0)<br><img src='icons/Meditation.png' alt='Meditation' width='20' height='20'> Meditation 0.0% (0.0)</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>Most Common Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Gloves</strong>: <br>Sigon's Gage 6.90%<br>Leather Gloves 6.90%<br>Bloodfist 5.17%<br>Dracul's Grasp 3.45%<br>Laying of Hands 3.45%<br><strong>Belt</strong>: <br>Sash 15.52%<br>Sigon's Wrap 8.62%<br>Belt 5.17%<br>Arctic Binding 5.17%<br>Verdungo's Hearty Cord 3.45%<br><strong>Helmet</strong>: <br>Cap 15.52%<br>Skull Cap 12.07%<br>Crown of Ages 3.45%<br>Berserker's Headgear 3.45%<br>Guillaume's Face 1.72%<br><strong>Boots</strong>: <br>Boots 10.34%<br>Sigon's Sabot 6.90%<br>Gore Rider 3.45%<br>Natalya's Soul 3.45%<br>Gorefoot 3.45%<br><strong>Left hand</strong>: <br>Scepter 25.86%<br>Short Sword 17.24%<br>Civerb's Cudgel 6.90%<br>Spirit 3.45%<br>The Gnasher 3.45%<br><strong>Offhand</strong>: <br>Buckler 22.41%<br>Targe 15.52%<br>Spirit 10.34%<br>Herald of Zakarum 3.45%<br>Sigon's Guard 3.45%<br><strong>Ring</strong>: <br>Ring of Strength 5.17%<br>Raven Frost 3.45%<br>Manald Heal 3.45%<br>Angelic Halo 3.45%<br>Beryl Ring 3.45%<br><strong>Amulet</strong>: <br>Seraph's Hymn 1.72%<br>Highlord's Wrath 1.72%<br>Cunning Amulet of Revivification 1.72%<br>Iratha's Collar 1.72%<br>Eagle Mark 1.72%<br><strong>Body</strong>: <br>Leather Armor 13.79%<br>Hard Leather Armor 6.90%<br>Quilted Armor 6.90%<br>Twitchthroe 5.17%<br>Stealth 5.17%</div>
+            </div>
+        
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Gloves</strong>: Dracul's Grasp 3.45%, Laying of Hands 3.45%, Frostburn 1.72%, Iratha's Cuff 1.72%, Sigon's Gage 6.90%, Bloodfist 5.17%, Chain Gloves of Frost Shield 1.72%, Demon Clutches 1.72%, Eagle Hand 1.72%, Fiendra Grasp 1.72%, Heavy Gloves of Dexterity 1.72%, Hailstone Hand 1.72%, The Hand of Broc 1.72%, Storm Grasp 1.72%, Death's Hand 1.72%, Heavy Gloves 3.45%, Leather Gloves of Dexterity 3.45%, Havoc Touch 1.72%, Viper Hold 1.72%, Leather Gloves 6.90%, Tangerine Leather Gloves of Strength 1.72%, Bronze Heavy Gloves 1.72%, Sturdy Leather Gloves of Strength 1.72%, Imp Finger 1.72%, Wraithra Claw 1.72%<br><strong>Belt</strong>: Verdungo's Hearty Cord 3.45%, Thundergod's Vigor 1.72%, Iratha's Cord 1.72%, Sigon's Wrap 8.62%, Coral Plated Belt of Nova Shield 1.72%, Strong Belt of Frost Shield 1.72%, String of Ears 1.72%, Raven Chain 1.72%, Bitter Chain 1.72%, Corpse Chain 1.72%, Bitter Clasp 3.45%, Sturdy Sash of Balance 1.72%, Demon Winding 1.72%, Sash 15.52%, Gale Winding 1.72%, Death's Guard 1.72%, Belt 5.17%, Arctic Binding 5.17%, Lizard's Light Belt 1.72%, Glimmering Sash of Thorns 1.72%, Shadow Cord 1.72%, Tangerine Light Belt of Balance 1.72%, Sturdy Light Belt of Balance 1.72%, Demon Clasp 1.72%, Sash of Strength 1.72%<br><strong>Helmet</strong>: Crown of Ages 3.45%, Guillaume's Face 1.72%, Natalya's Totem 1.72%, Iratha's Coil 1.72%, Cap 15.52%, Full Helm 1.72%, Sigon's Visor 1.72%, Bramble Visage 1.72%, Skull Cap 12.07%, Stone Visage 1.72%, Berserker's Headgear 3.45%, Imp Visage 1.72%, Spirit Mask 1.72%, Tarnhelm 1.72%, Isenhart's Horns 1.72%, Cap of Frost Shield 1.72%, Gale Veil 1.72%, Glimmering Skull Cap 1.72%, Loath Shell 1.72%, Cap of Energy 1.72%, Sturdy Cap 1.72%<br><strong>Boots</strong>: Gore Rider 3.45%, Natalya's Soul 3.45%, Tearhaunch 1.72%, Sigon's Sabot 6.90%, Vidala's Fetlock 1.72%, Glyph Spur 1.72%, Sander's Riprap 1.72%, Gorefoot 3.45%, Sturdy Heavy Boots of Remedy 1.72%, Hsarus' Iron Heel 3.45%, Viper Nails 1.72%, Heavy Boots of Balance 1.72%, PlagueRI Nails 1.72%, Heavy Boots 1.72%, Boots 10.34%, Beryl Heavy Boots 1.72%, Blood Blazer 1.72%, Corpse Shank 1.72%, Tangerine Heavy Boots of Dexterity 1.72%, Sturdy Boots 1.72%<br><strong>Left hand</strong>: Call to Arms 1.72%, Bone Wand of Lower Resistance 1.72%, Silence 1.72%, Hibernal War Staff of Teleportation 1.72%, Heaven's Light 1.72%, Natalya's Mark 1.72%, Memory 1.72%, Heart of the Oak 1.72%, Berserker's Hatchet 1.72%, Spirit 3.45%, Civerb's Cudgel 6.90%, Long Staff of Teleportation 1.72%, Silver Grand Scepter of Swiftness 1.72%, Khalim's Will 1.72%, Cleglaw's Tooth 1.72%, Bonesnap 1.72%, Leaf 1.72%, Composite Bow 1.72%, The Gnasher 3.45%, Scepter 25.86%, Felloak 1.72%, Horadric Staff 1.72%, Blood Crescent 1.72%, Havoc Needle 1.72%, Holocaust Sever 1.72%, Short Sword 17.24%, Crystal Sword 1.72%, Consecrated Scepter of Flame 1.72%, Tangerine Spiked Club 1.72%, Javelin of Craftmanship 1.72%, Scepter of Amplify Damage 1.72%, Shadow Spell 1.72%, Strangling Gas Potion 1.72%, Short Staff 1.72%, Scimitar 1.72%, Hailstone Thirst 1.72%, Buckler 1.72%, Throwing Knife 1.72%<br><strong>Offhand</strong>: Spirit 10.34%, Herald of Zakarum 3.45%, Stormshield 1.72%, Crown Shield 1.72%, Sigon's Guard 3.45%, Targe 15.52%, Steelclash 3.45%, Ancients' Pledge 1.72%, Swordback Hold 1.72%, Triumphant Arrows of Pacifism 1.72%, Dread Shield 1.72%, Rondache 3.45%, Umbral Disk 3.45%, Heraldic Shield 1.72%, Shimmering Kite Shield of Self-Repair 1.72%, Buckler 22.41%, Brimstone Guard 1.72%, Small Shield 1.72%, Targe of Blocking 1.72%, Shimmering Targe 1.72%, Dire Shell 1.72%, Loath Guard 1.72%, Sturdy Buckler 1.72%, Club 1.72%<br><strong>Ring</strong>: Rune Hold 1.72%, Raven Frost 3.45%, Dwarf Star 1.72%, Russet Ring of Warding 1.72%, Stone Coil 1.72%, The Stone of Jordan 1.72%, Manald Heal 3.45%, Corruption Finger 1.72%, Eagle Finger 1.72%, Wraithra Eye 1.72%, Stone Eye 1.72%, Ring of Might 1.72%, Ring of Poison Dagger 1.72%, Ring of Worth 1.72%, Ring of Measure 1.72%, Order Master 1.72%, Wraithra Grip 1.72%, Ring of the Apprentice 1.72%, Viper Turn 1.72%, Angelic Halo 3.45%, Blood Gyre 1.72%, Corruption Turn 1.72%, Tangerine Ring of Craftmanship 1.72%, Gold Ring of Chance 1.72%, Grim Turn 1.72%, Storm Spiral 1.72%, Beryl Ring 3.45%, Lapis Ring 1.72%, Nagelring 1.72%, Cathan's Seal 1.72%, Felicitous Ring 1.72%, Ring of Warding 3.45%, Crimson Ring of the Apprentice 1.72%, Fortuitous Ring of the Apprentice 1.72%, Rugged Ring of Energy 1.72%, Tangerine Ring 1.72%, Ring of Strength 5.17%, Storm Hold 1.72%, Bone Hold 1.72%, Skull Gyre 1.72%, Beryl Ring of the Apprentice 1.72%, Iron Ring of the Apprentice 1.72%, Iron Ring 1.72%, Ring of Craftmanship 1.72%, Lizard's Ring 1.72%, Azure Ring of Light 1.72%, Ring of Dexterity 1.72%, Triumphant Ring of Craftmanship 1.72%, Rugged Ring of Light 1.72%, Beryl Ring of Remedy 1.72%<br><strong>Amulet</strong>: Seraph's Hymn 1.72%, Highlord's Wrath 1.72%, Cunning Amulet of Revivification 1.72%, Iratha's Collar 1.72%, Eagle Mark 1.72%, Havoc Heart 1.72%, Civerb's Icon 1.72%, Doom Torc 1.72%, Dragon's Amulet 1.72%, Amulet of Fortune 1.72%, Angelic Wings 1.72%, Raven Mark 1.72%, PlagueRI Gorget 1.72%, Beryl Amulet 1.72%, Nokozan Relic 1.72%, Cathan's Sigil 1.72%, Shadow Necklace 1.72%, Amulet of Greed 1.72%, Entropy Talisman 1.72%, Vulpine Amulet of Energy 1.72%, Amulet of Regrowth 1.72%, Amulet of Regeneration 1.72%, Beryl Amulet of the Jackal 1.72%, Lizard's Amulet 1.72%, Bronze Amulet of the Jackal 1.72%, Tangerine Amulet of the Apprentice 1.72%, Crimson Amulet 1.72%, Chaos Talisman 1.72%, Tangerine Amulet of Greed 1.72%, Felicitous Amulet of Greed 1.72%, Bronze Amulet 1.72%<br><strong>Body</strong>: Guardian Angel 1.72%, Natalya's Shadow 1.72%, Skin of the Vipermagi 1.72%, Twitchthroe 5.17%, Hard Leather Armor 6.90%, Sigon's Shelter 3.45%, Breast Plate 3.45%, Stealth 5.17%, Rune Shroud 1.72%, Wraithra Flange 1.72%, Isenhart's Case 1.72%, Bone Carapace 1.72%, Arctic Furs 1.72%, Viper Wrap 1.72%, Leather Armor 13.79%, Bramble Carapace 1.72%, Cruel Carapace 1.72%, Ring Mail 1.72%, Quilted Armor 6.90%, Doom Jack 1.72%, Hailstone Mantle 1.72%, Dread Flange 1.72%, Carrion Shell 1.72%</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>58 Characters in this cluster:</strong></button>
+            <div class="content">
+                
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Cripler">Cripler</a></div>
+                    <div>90</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Sacrifice:20, Zeal:20, Fanaticism:20, Holy Shield:17, Vengeance:5, Smite:1, Holy Bolt:1, Charge:1, Blessed Hammer:1, Dashing Strike:1, Might:1, Blessed Aim:1, Concentration:1, Prayer:1, Resist Fire:1, Defiance:1, Resist Cold:1, Cleansing:1, Resist Lightning:1, Vigor:1, Redemption:1, Salvation:1</p>
+            <p><strong>Equipment:</strong> gloves: Dracul's Grasp x1, belt: Verdungo's Hearty Cord x1, helmet: Crown of Ages x1, boots: Gore Rider x1, Left hand: Call to Arms x1, Offhand: Spirit x1, Offhand: Herald of Zakarum x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=eG-oO">eG-oO</a></div>
+                    <div>89</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Conviction:20, Resist Lightning:20, Salvation:20, Fanaticism:18, Resist Fire:3, Smite:1, Holy Bolt:1, Charge:1, Blessed Hammer:1, Holy Shield:1, Dashing Strike:1, Might:1, Holy Fire:1, Precision:1, Blessed Aim:1, Concentration:1, Holy Freeze:1, Sanctuary:1, Prayer:1, Defiance:1, Resist Cold:1, Cleansing:1, Vigor:1, Redemption:1</p>
+            <p><strong>Equipment:</strong> ring: Rune Hold x1, ring: Raven Frost x1, belt: Thundergod's Vigor x1, amulet: Seraph's Hymn x1, helmet: Crown of Ages x1, body: Guardian Angel x1, boots: Natalya's Soul x1, gloves: Laying of Hands x1, Left hand: Bone Wand of Lower Resistance x1, Left hand: Silence x1, Offhand: Spirit x1, Offhand: Stormshield x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Rdmano">Rdmano</a></div>
+                    <div>89</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Smite:20, Holy Shield:20, Fanaticism:20, Resist Fire:14, Resist Lightning:14, Holy Bolt:1, Charge:1, Blessed Hammer:1, Might:1, Blessed Aim:1, Concentration:1, Prayer:1, Defiance:1, Cleansing:1, Vigor:1, Redemption:1, Salvation:1</p>
+            <p><strong>Equipment:</strong> ring: Dwarf Star x1, ring: Raven Frost x1, amulet: Highlord's Wrath x1, gloves: Dracul's Grasp x1, boots: Gore Rider x1, Left hand: Hibernal War Staff of Teleportation x1, Left hand: Heaven's Light x1, helmet: Guillaume's Face x1, Offhand: Herald of Zakarum x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Alhoon">Alhoon</a></div>
+                    <div>88</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Burst of Speed:14, Blade Throw:1, Blade Fury:1, Claw Mastery:1, Fade:1, Venom:1</p>
+            <p><strong>Equipment:</strong> ring: Russet Ring of Warding x1, ring: Stone Coil x1, amulet: Cunning Amulet of Revivification x1, helmet: Natalya's Totem x1, boots: Natalya's Soul x1, body: Natalya's Shadow x1, belt: Verdungo's Hearty Cord x1, gloves: Laying of Hands x1, Left hand: Natalya's Mark x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Morgi">Morgi</a></div>
+                    <div>72</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Frost Nova:20, Shiver Armor:20, Ice Blast:17, Energy Shield:9, Telekinesis:3, Cold Mastery:3, Warmth:1, Charged Bolt:1, Static Field:1, Lightning Surge:1, Teleport:1, Chain Lightning:1, Ice Bolt:1, Frigerate:1</p>
+            <p><strong>Equipment:</strong> gloves: Frostburn x1, body: Skin of the Vipermagi x1, ring: The Stone of Jordan x1, Left hand: Memory x1, Left hand: Heart of the Oak x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=SCplebsAuraDown">SCplebsAuraDown</a></div>
+                    <div>43</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Fire:20, Resist Fire:3, Sacrifice:1, Zeal:1, Vengeance:1, Might:1, Blessed Aim:1</p>
+            <p><strong>Equipment:</strong> gloves: Iratha's Cuff x1, helmet: Iratha's Coil x1, amulet: Iratha's Collar x1, belt: Iratha's Cord x1, ring: Manald Heal x2, body: Twitchthroe x1, boots: Tearhaunch x1, Left hand: Berserker's Hatchet x1, Offhand: Crown Shield x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Deolast">Deolast</a></div>
+                    <div>37</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Charge:11, Might:9, Holy Freeze:9, Vigor:2, Smite:1, Holy Bolt:1, Blessed Hammer:1, Holy Shield:1, Dashing Strike:1, Holy Fire:1, Prayer:1, Defiance:1, Resist Cold:1, Cleansing:1, Salvation:1</p>
+            <p><strong>Equipment:</strong> belt: Sigon's Wrap x1, body: Twitchthroe x1, ring: Corruption Finger x1, ring: Eagle Finger x1, amulet: Eagle Mark x1, boots: Sigon's Sabot x1, Left hand: Spirit x1, Left hand: Civerb's Cudgel x1, Offhand: Sigon's Guard x1, Offhand: Spirit x1, helmet: Cap x1, gloves: Sigon's Gage x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Mr_Oleander">Mr_Oleander</a></div>
+                    <div>36</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Smite:20, Absolution:13, Sacrifice:1, Zeal:1, Vengeance:1</p>
+            <p><strong>Equipment:</strong> body: Hard Leather Armor x1, ring: Wraithra Eye x1, ring: Stone Eye x1, amulet: Havoc Heart x1, gloves: Bloodfist x1, helmet: Full Helm x1, Left hand: Long Staff of Teleportation x1, Left hand: Silver Grand Scepter of Swiftness x1, boots: Vidala's Fetlock x1, belt: Coral Plated Belt of Nova Shield x1, Offhand: Targe x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=PaladinAndrei">PaladinAndrei</a></div>
+                    <div>36</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Freeze:15, Holy Shock:13, Conviction:4, Salvation:4, Might:1, Holy Fire:1, Precision:1, Sanctuary:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Redwill">Redwill</a></div>
+                    <div>30</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Sacrifice:1, Might:1</p>
+            <p><strong>Equipment:</strong> body: Sigon's Shelter x1, gloves: Sigon's Gage x1, boots: Sigon's Sabot x1, belt: Sigon's Wrap x1, helmet: Sigon's Visor x1, amulet: Civerb's Icon x1, ring: Ring of Might x1, ring: Ring of Poison Dagger x1, Left hand: Civerb's Cudgel x1, Left hand: Khalim's Will x1, Offhand: Steelclash x1, Offhand: Sigon's Guard x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=DangerO_O">DangerO_O</a></div>
+                    <div>30</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Sacrifice:1, Smite:1, Holy Bolt:1, Charge:1, Blessed Hammer:1, Might:1, Blessed Aim:1, Concentration:1, Fanaticism:1, Prayer:1, Defiance:1, Cleansing:1, Vigor:1</p>
+            <p><strong>Equipment:</strong> body: Breast Plate x1, gloves: Chain Gloves of Frost Shield x1, belt: Strong Belt of Frost Shield x1, amulet: Doom Torc x1, ring: Ring of Worth x1, ring: Ring of Measure x1, boots: Glyph Spur x1, helmet: Bramble Visage x1, Left hand: Cleglaw's Tooth x1, Offhand: Ancients' Pledge x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=xpla">xpla</a></div>
+                    <div>29</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Charge:18, Holy Shock:6, Smite:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Sanctuary:1</p>
+            <p><strong>Equipment:</strong> ring: Order Master x1, ring: Wraithra Grip x1, boots: Sander's Riprap x1, body: Stealth x1, helmet: Skull Cap x1, amulet: Dragon's Amulet x1, gloves: Demon Clutches x1, belt: String of Ears x1, Left hand: Bonesnap x1, Left hand: Civerb's Cudgel x1, Offhand: Swordback Hold x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Tequin">Tequin</a></div>
+                    <div>28</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Fire Ball:17, Fire Bolt:1, Warmth:1, Enflame:1, Telekinesis:1, Teleport:1, Ice Bolt:1, Frost Nova:1, Ice Blast:1</p>
+            <p><strong>Equipment:</strong> ring: Ring of the Apprentice x1, ring: Viper Turn x1, body: Stealth x1, amulet: Amulet of Fortune x1, helmet: Stone Visage x1, gloves: Eagle Hand x1, belt: Raven Chain x1, Left hand: Leaf x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=HamingItUp">HamingItUp</a></div>
+                    <div>27</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Blessed Hammer:9, Blessed Aim:9, Smite:1, Holy Bolt:1, Charge:1, Holy Shield:1, Might:1, Concentration:1, Prayer:1, Defiance:1, Cleansing:1, Vigor:1</p>
+            <p><strong>Equipment:</strong> helmet: Berserker's Headgear x1, boots: Sigon's Sabot x1, belt: Sigon's Wrap x1, ring: Angelic Halo x2, amulet: Angelic Wings x1, gloves: Bloodfist x1, body: Sigon's Shelter x1, Left hand: Spirit x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=CekickoCekicDBH">CekickoCekicDBH</a></div>
+                    <div>24</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Blessed Hammer:7, Blessed Aim:7, Vigor:2, Smite:1, Holy Bolt:1, Charge:1, Holy Shield:1, Might:1, Concentration:1, Prayer:1, Defiance:1, Cleansing:1</p>
+            <p><strong>Equipment:</strong> helmet: Imp Visage x1, ring: Blood Gyre x1, ring: Corruption Turn x1, gloves: Bloodfist x1, boots: Gorefoot x1, belt: Bitter Chain x1, amulet: Raven Mark x1, body: Twitchthroe x1, Left hand: Composite Bow x1, Left hand: The Gnasher x1, Offhand: Triumphant Arrows of Pacifism x1, Offhand: Steelclash x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=HMS_Starstruck">HMS_Starstruck</a></div>
+                    <div>21</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Fire:14, Resist Fire:4, Sacrifice:1, Zeal:1, Vengeance:1, Might:1</p>
+            <p><strong>Equipment:</strong> amulet: PlagueRI Gorget x1, helmet: Cap x1, boots: Sturdy Heavy Boots of Remedy x1, gloves: Fiendra Grasp x1, Left hand: Scepter x1, Left hand: Civerb's Cudgel x1, Offhand: Dread Shield x1, Offhand: Rondache x1, body: Rune Shroud x1, belt: Corpse Chain x1, ring: Tangerine Ring of Craftmanship x1, ring: Gold Ring of Chance x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=AuraMancerBlack">AuraMancerBlack</a></div>
+                    <div>21</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Prayer:11, Blessed Aim:6, Blessed Hammer:2, Sacrifice:1, Holy Bolt:1, Might:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=NasheroN">NasheroN</a></div>
+                    <div>21</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Fire:16, Resist Fire:4, Sacrifice:1, Might:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=oklapally">oklapally</a></div>
+                    <div>20</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Blessed Aim:7, Blessed Hammer:3, Concentration:3, Smite:1, Holy Bolt:1, Charge:1, Might:1, Prayer:1, Defiance:1, Cleansing:1, Vigor:1</p>
+            <p><strong>Equipment:</strong> helmet: Cap x1, amulet: Beryl Amulet x1, ring: Grim Turn x1, ring: Storm Spiral x1, boots: Hsarus' Iron Heel x1, gloves: Heavy Gloves of Dexterity x1, belt: Bitter Clasp x1, body: Wraithra Flange x1, Left hand: Felloak x1, Offhand: Umbral Disk x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=RUMENNN">RUMENNN</a></div>
+                    <div>19</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Sacrifice:1, Zeal:1, Might:1, Holy Fire:1, Blessed Aim:1, Holy Freeze:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=TBG_Jordy">TBG_Jordy</a></div>
+                    <div>19</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Fire:13, Resist Fire:3, Zeal:2, Sacrifice:1, Might:1</p>
+            <p><strong>Equipment:</strong> ring: Beryl Ring x1, ring: Lapis Ring x1, boots: Viper Nails x1, helmet: Spirit Mask x1, belt: Sturdy Sash of Balance x1, gloves: Hailstone Hand x1, amulet: Nokozan Relic x1, body: Breast Plate x1, Left hand: Scepter x1, Offhand: Targe x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=SelfDestructnIg">SelfDestructnIg</a></div>
+                    <div>18</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Prayer:12, Blessed Aim:3, Sacrifice:1, Holy Bolt:1, Blessed Hammer:1, Might:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=SlapSlappy">SlapSlappy</a></div>
+                    <div>18</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Smite:12, Holy Bolt:1, Might:1, Prayer:1, Resist Fire:1, Defiance:1, Resist Cold:1, Cleansing:1</p>
+            <p><strong>Equipment:</strong> gloves: Sigon's Gage x1, boots: Sigon's Sabot x1, belt: Sigon's Wrap x1, ring: Nagelring x1, ring: Cathan's Seal x1, helmet: Tarnhelm x1, Left hand: Horadric Staff x1, Left hand: Blood Crescent x1, body: Stealth x1, amulet: Cathan's Sigil x1, Offhand: Heraldic Shield x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Sakhadin">Sakhadin</a></div>
+                    <div>17</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Smite:1, Holy Bolt:1, Charge:1, Might:1, Blessed Aim:1, Defiance:1</p>
+            <p><strong>Equipment:</strong> ring: Beryl Ring x1, ring: Felicitous Ring x1, body: Isenhart's Case x1, helmet: Isenhart's Horns x1, gloves: The Hand of Broc x1, belt: Demon Winding x1, boots: Gorefoot x1, amulet: Shadow Necklace x1, Left hand: Havoc Needle x1, Left hand: Holocaust Sever x1, Offhand: Umbral Disk x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=LordFreddy">LordFreddy</a></div>
+                    <div>16</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Fire:11, Sacrifice:1, Might:1, Resist Lightning:1</p>
+            <p><strong>Equipment:</strong> belt: Sash x1, ring: Ring of Warding x1, gloves: Storm Grasp x1, boots: Heavy Boots of Balance x1, helmet: Cap of Frost Shield x1, Left hand: Short Sword x1, Left hand: Scepter x1, Offhand: Rondache x1, Offhand: Targe x1, amulet: Amulet of Greed x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=ImaFreakDude">ImaFreakDude</a></div>
+                    <div>14</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Summon Spirit Wolf:8, Raven:1, Poison Creeper:1, Carrion Vine:1, Heart of Wolverine:1, Firestorm:1, Molten Boulder:1, Flame Dash:1</p>
+            <p><strong>Equipment:</strong> body: Bone Carapace x1, helmet: Gale Veil x1, boots: PlagueRI Nails x1, amulet: Entropy Talisman x1, ring: Crimson Ring of the Apprentice x1, ring: Fortuitous Ring of the Apprentice x1, gloves: Sigon's Gage x1, belt: Sigon's Wrap x1, Left hand: Crystal Sword x1, Offhand: Shimmering Kite Shield of Self-Repair x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=UwUxxx">UwUxxx</a></div>
+                    <div>13</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Fire:7, Resist Fire:3, Sacrifice:1, Zeal:1, Might:1</p>
+            <p><strong>Equipment:</strong> belt: Gale Winding x1, amulet: Vulpine Amulet of Energy x1, helmet: Skull Cap x1, body: Hard Leather Armor x1, Left hand: Consecrated Scepter of Flame x1, Offhand: Targe x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=FloppyDonkydong">FloppyDonkydong</a></div>
+                    <div>13</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Sacrifice:5, Precision:5, Smite:2, Might:1, Defiance:1</p>
+            <p><strong>Equipment:</strong> body: Arctic Furs x1, boots: Hsarus' Iron Heel x1, belt: Death's Guard x1, gloves: Death's Hand x1, amulet: Amulet of Regrowth x1, Left hand: The Gnasher x1, Offhand: Targe x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=FeanuxIsYourPal">FeanuxIsYourPal</a></div>
+                    <div>12</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Bolt:6, Sacrifice:1, Smite:1, Might:1, Precision:1, Prayer:1, Defiance:1, Resist Lightning:1</p>
+            <p><strong>Equipment:</strong> helmet: Cap x1, body: Viper Wrap x1, ring: Rugged Ring of Energy x1, ring: Tangerine Ring x1, gloves: Heavy Gloves x1, belt: Belt x1, boots: Heavy Boots x1, Left hand: Tangerine Spiked Club x1, Offhand: Buckler x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=XNubA">XNubA</a></div>
+                    <div>11</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Bolt:6, Might:1, Holy Fire:1</p>
+            <p><strong>Equipment:</strong> body: Leather Armor x1, belt: Belt x1, Left hand: Short Sword x1, Offhand: Brimstone Guard x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=HB-Vhitee">HB-Vhitee</a></div>
+                    <div>11</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Bolt:1, Might:1, Holy Fire:1, Precision:1</p>
+            <p><strong>Equipment:</strong> helmet: Cap x1, body: Bramble Carapace x1, ring: Ring of Strength x1, ring: Storm Hold x1, gloves: Leather Gloves of Dexterity x1, Left hand: Scepter x1, Left hand: Javelin of Craftmanship x1, belt: Arctic Binding x1, Offhand: Targe x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=advop">advop</a></div>
+                    <div>11</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Bolt:6, Smite:1, Might:1, Holy Fire:1, Prayer:1, Defiance:1</p>
+            <p><strong>Equipment:</strong> amulet: Amulet of Regeneration x1, gloves: Havoc Touch x1, helmet: Cap x1, ring: Ring of Strength x1, ring: Bone Hold x1, belt: Arctic Binding x1, body: Cruel Carapace x1, Left hand: Scepter x1, Offhand: Buckler x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Jakam">Jakam</a></div>
+                    <div>11</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Fire:5, Sacrifice:1, Might:1</p>
+            <p><strong>Equipment:</strong> boots: Boots x1, belt: Lizard's Light Belt x1, body: Hard Leather Armor x1, Left hand: Short Sword x1, Offhand: Small Shield x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=StayAliiive">StayAliiive</a></div>
+                    <div>9</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Might:4, Holy Fire:4, Sacrifice:1</p>
+            <p><strong>Equipment:</strong> belt: Glimmering Sash of Thorns x1, body: Hard Leather Armor x1, gloves: Viper Hold x1, boots: Beryl Heavy Boots x1, helmet: Glimmering Skull Cap x1, ring: Skull Gyre x1, ring: Beryl Ring of the Apprentice x1, amulet: Beryl Amulet of the Jackal x1, Left hand: Scepter x1, Offhand: Targe of Blocking x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=KiteShield">KiteShield</a></div>
+                    <div>9</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Sacrifice:5, Smite:1, Holy Bolt:1, Might:1, Prayer:1</p>
+            <p><strong>Equipment:</strong> gloves: Heavy Gloves x1, helmet: Skull Cap x1, ring: Iron Ring of the Apprentice x1, ring: Iron Ring x1, body: Ring Mail x1, belt: Belt x1, boots: Blood Blazer x1, amulet: Lizard's Amulet x1, Left hand: Scepter of Amplify Damage x1, Left hand: Shadow Spell x1, Offhand: Targe x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=SliceHC">SliceHC</a></div>
+                    <div>8</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Fire:3, Resist Fire:3, Sacrifice:1, Might:1</p>
+            <p><strong>Equipment:</strong> boots: Corpse Shank x1, belt: Shadow Cord x1, gloves: Leather Gloves x1, helmet: Cap x1, Left hand: Strangling Gas Potion x1, Left hand: Scepter x1, body: Leather Armor x1, ring: Ring of Craftmanship x1, amulet: Bronze Amulet of the Jackal x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=superdeadbro">superdeadbro</a></div>
+                    <div>8</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Smite:1, Holy Bolt:1, Might:1, Prayer:1, Defiance:1</p>
+            <p><strong>Equipment:</strong> body: Quilted Armor x1, boots: Boots x1, gloves: Tangerine Leather Gloves of Strength x1, belt: Bitter Clasp x1, ring: Ring of Strength x1, ring: Lizard's Ring x1, amulet: Tangerine Amulet of the Apprentice x1, helmet: Loath Shell x1, Left hand: Scepter x1, Offhand: Targe x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Orical">Orical</a></div>
+                    <div>8</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Prayer:7, Holy Bolt:1</p>
+            <p><strong>Equipment:</strong> ring: Azure Ring of Light x1, ring: Ring of Dexterity x1, body: Leather Armor x1, belt: Tangerine Light Belt of Balance x1, gloves: Bronze Heavy Gloves x1, helmet: Skull Cap x1, amulet: Crimson Amulet x1, boots: Tangerine Heavy Boots of Dexterity x1, Left hand: Short Staff x1, Left hand: Scepter x1, Offhand: Targe x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=selerxd">selerxd</a></div>
+                    <div>8</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Fire:3, Resist Fire:3, Sacrifice:1, Might:1</p>
+            <p><strong>Equipment:</strong> helmet: Skull Cap x1, belt: Sash x1, body: Leather Armor x1, Left hand: Scimitar x1, Offhand: Buckler x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=faqadin">faqadin</a></div>
+                    <div>8</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Fire:3, Sacrifice:1, Smite:1, Might:1, Prayer:1, Defiance:1</p>
+            <p><strong>Equipment:</strong> body: Doom Jack x1, helmet: Skull Cap x1, ring: Triumphant Ring of Craftmanship x1, ring: Rugged Ring of Light x1, amulet: Chaos Talisman x1, gloves: Sturdy Leather Gloves of Strength x1, belt: Sturdy Light Belt of Balance x1, Left hand: Scepter x1, Offhand: Shimmering Targe x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Taak">Taak</a></div>
+                    <div>7</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Bolt:2, Holy Fire:2, Might:1, Prayer:1</p>
+            <p><strong>Equipment:</strong> body: Leather Armor x1, belt: Demon Clasp x1, helmet: Cap x1, gloves: Imp Finger x1, boots: Boots x1, ring: Beryl Ring of Remedy x1, Left hand: Scepter x1, Offhand: Buckler x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=chargerI">chargerI</a></div>
+                    <div>7</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Might:5, Sacrifice:1, Prayer:1</p>
+            <p><strong>Equipment:</strong> body: Leather Armor x1, Left hand: Scepter x1, Offhand: Dire Shell x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Kuntaco">Kuntaco</a></div>
+                    <div>6</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Sacrifice:3, Precision:1</p>
+            <p><strong>Equipment:</strong> belt: Sash x1, helmet: Berserker's Headgear x1, body: Hailstone Mantle x1, Left hand: Short Sword x1, Offhand: Buckler x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=CONVERSION">CONVERSION</a></div>
+                    <div>6</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Might:1, Holy Fire:1, Resist Fire:1</p>
+            <p><strong>Equipment:</strong> belt: Sash x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=palliboii">palliboii</a></div>
+                    <div>6</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Sacrifice:5, Holy Bolt:1</p>
+            <p><strong>Equipment:</strong> belt: Arctic Binding x1, gloves: Wraithra Claw x1, body: Dread Flange x1, ring: Ring of Warding x1, helmet: Cap x1, Left hand: Hailstone Thirst x1, Offhand: Loath Guard x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=GOJAMAN">GOJAMAN</a></div>
+                    <div>6</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Bolt:1</p>
+            <p><strong>Equipment:</strong> gloves: Leather Gloves x1, belt: Sash x1, helmet: Cap of Energy x1, boots: Boots x1, body: Quilted Armor x1, amulet: Tangerine Amulet of Greed x1, Left hand: Scepter x1, Offhand: Sturdy Buckler x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=SmiteMyLaserQQ">SmiteMyLaserQQ</a></div>
+                    <div>6</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Sacrifice:1, Smite:1, Might:1</p>
+            <p><strong>Equipment:</strong> boots: Boots x1, belt: Sash x1, gloves: Leather Gloves x1, amulet: Felicitous Amulet of Greed x1, Offhand: Club x1, Left hand: Buckler x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Gigarad">Gigarad</a></div>
+                    <div>6</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Sacrifice:3, Might:3</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=illuzod">illuzod</a></div>
+                    <div>5</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Smite:1, Might:1, Prayer:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=RyanGosling">RyanGosling</a></div>
+                    <div>5</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Sacrifice:1, Smite:1, Might:1, Prayer:1</p>
+            <p><strong>Equipment:</strong> belt: Sash of Strength x1, Left hand: Short Sword x1, Offhand: Buckler x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=peali">peali</a></div>
+                    <div>4</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Sacrifice:2, Smite:1</p>
+            <p><strong>Equipment:</strong> gloves: Leather Gloves x1, boots: Boots x1, body: Quilted Armor x1, Left hand: Throwing Knife x1, Offhand: Buckler x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Kannan">Kannan</a></div>
+                    <div>4</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Sacrifice:1, Smite:1, Might:1, Resist Fire:1</p>
+            <p><strong>Equipment:</strong> body: Carrion Shell x1, belt: Sash x1, boots: Sturdy Boots x1, helmet: Sturdy Cap x1, Left hand: Scepter x1, Offhand: Buckler x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=ForgottenFoH">ForgottenFoH</a></div>
+                    <div>3</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> </p>
+            <p><strong>Equipment:</strong> Left hand: Short Sword x1, Offhand: Buckler x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=PoEInAWeek">PoEInAWeek</a></div>
+                    <div>3</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Sacrifice:1, Might:1</p>
+            <p><strong>Equipment:</strong> belt: Sash x1, body: Leather Armor x1, gloves: Leather Gloves of Dexterity x1, amulet: Bronze Amulet x1, Left hand: Scepter x1, Offhand: Buckler x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=MoHMan">MoHMan</a></div>
+                    <div>3</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> </p>
+            <p><strong>Equipment:</strong> belt: Sash x1, Left hand: Short Sword x1, Offhand: Buckler x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=yyPal">yyPal</a></div>
+                    <div>2</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Prayer:1</p>
+            <p><strong>Equipment:</strong> body: Leather Armor x1, helmet: Skull Cap x1, Left hand: Short Sword x1, Offhand: Buckler x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=ScorpY">ScorpY</a></div>
+                    <div>1</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> </p>
+            <p><strong>Equipment:</strong> Left hand: Short Sword x1, Offhand: Buckler x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=INFINITY_PALA">INFINITY_PALA</a></div>
+                    <div>1</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> </p>
+            <p><strong>Equipment:</strong> body: Quilted Armor x1, Left hand: Short Sword x1</p>
+        
+        </div>
+        <hr>
+        
+        <h2>15.15%  of Paladin's Main Skills:<br><img src='icons/Holy Bolt.png' alt='Holy Bolt' width='20' height='20'> Holy Bolt 100.00% (398)<br><img src='icons/Fist of the Heavens.png' alt='Fist of the Heavens' width='20' height='20'> Fist of the Heavens 100.00% (397)<br><img src='icons/Sanctuary.png' alt='Sanctuary' width='20' height='20'> Sanctuary 100.00% (369)</h2>
+        <p><strong>Other Skills:<br></strong> <img src='icons/Holy Shield.png' alt='Holy Shield' width='20' height='20'> Holy Shield 90.0% (216.0)<br><img src='icons/Redemption.png' alt='Redemption' width='20' height='20'> Redemption 80.0% (39.0)<br><img src='icons/Conviction.png' alt='Conviction' width='20' height='20'> Conviction 45.0% (37.0)<br><img src='icons/Salvation.png' alt='Salvation' width='20' height='20'> Salvation 60.0% (28.0)<br><img src='icons/Holy Freeze.png' alt='Holy Freeze' width='20' height='20'> Holy Freeze 100.0% (24.0)<br><img src='icons/Prayer.png' alt='Prayer' width='20' height='20'> Prayer 100.0% (24.0)</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>All Skills</strong></button>
+            <div class="content">
+                <div><img src='icons/Holy Bolt.png' alt='Holy Bolt' width='20' height='20'> Holy Bolt 100.0% (398.0)<br><img src='icons/Fist of the Heavens.png' alt='Fist of the Heavens' width='20' height='20'> Fist of the Heavens 100.0% (397.0)<br><img src='icons/Sanctuary.png' alt='Sanctuary' width='20' height='20'> Sanctuary 100.0% (369.0)<br><img src='icons/Holy Shield.png' alt='Holy Shield' width='20' height='20'> Holy Shield 90.0% (216.0)<br><img src='icons/Redemption.png' alt='Redemption' width='20' height='20'> Redemption 80.0% (39.0)<br><img src='icons/Conviction.png' alt='Conviction' width='20' height='20'> Conviction 45.0% (37.0)<br><img src='icons/Salvation.png' alt='Salvation' width='20' height='20'> Salvation 60.0% (28.0)<br><img src='icons/Defiance.png' alt='Defiance' width='20' height='20'> Defiance 95.0% (24.0)<br><img src='icons/Holy Freeze.png' alt='Holy Freeze' width='20' height='20'> Holy Freeze 100.0% (24.0)<br><img src='icons/Prayer.png' alt='Prayer' width='20' height='20'> Prayer 100.0% (24.0)<br><img src='icons/Vigor.png' alt='Vigor' width='20' height='20'> Vigor 85.0% (23.0)<br><img src='icons/Absolution.png' alt='Absolution' width='20' height='20'> Absolution 100.0% (20.0)<br><img src='icons/Might.png' alt='Might' width='20' height='20'> Might 100.0% (20.0)<br><img src='icons/Sacrifice.png' alt='Sacrifice' width='20' height='20'> Sacrifice 100.0% (20.0)<br><img src='icons/Zeal.png' alt='Zeal' width='20' height='20'> Zeal 100.0% (20.0)<br><img src='icons/Vengeance.png' alt='Vengeance' width='20' height='20'> Vengeance 100.0% (20.0)<br><img src='icons/Holy Fire.png' alt='Holy Fire' width='20' height='20'> Holy Fire 100.0% (20.0)<br><img src='icons/Blessed Hammer.png' alt='Blessed Hammer' width='20' height='20'> Blessed Hammer 100.0% (20.0)<br><img src='icons/Precision.png' alt='Precision' width='20' height='20'> Precision 100.0% (20.0)<br><img src='icons/Charge.png' alt='Charge' width='20' height='20'> Charge 90.0% (19.0)<br><img src='icons/Smite.png' alt='Smite' width='20' height='20'> Smite 90.0% (18.0)<br><img src='icons/Cleansing.png' alt='Cleansing' width='20' height='20'> Cleansing 85.0% (17.0)<br><img src='icons/Holy Shock.png' alt='Holy Shock' width='20' height='20'> Holy Shock 20.0% (8.0)<br><img src='icons/Dashing Strike.png' alt='Dashing Strike' width='20' height='20'> Dashing Strike 25.0% (6.0)<br><img src='icons/Meditation.png' alt='Meditation' width='20' height='20'> Meditation 5.0% (1.0)<br><img src='icons/Resist Cold.png' alt='Resist Cold' width='20' height='20'> Resist Cold 0.0% (0.0)<br><img src='icons/Concentration.png' alt='Concentration' width='20' height='20'> Concentration 0.0% (0.0)<br><img src='icons/Resist Lightning.png' alt='Resist Lightning' width='20' height='20'> Resist Lightning 0.0% (0.0)<br><img src='icons/Resist Fire.png' alt='Resist Fire' width='20' height='20'> Resist Fire 0.0% (0.0)<br><img src='icons/Fanaticism.png' alt='Fanaticism' width='20' height='20'> Fanaticism 0.0% (0.0)<br><img src='icons/Fire Bolt.png' alt='Fire Bolt' width='20' height='20'> Fire Bolt 0.0% (0.0)<br><img src='icons/Warmth.png' alt='Warmth' width='20' height='20'> Warmth 0.0% (0.0)<br><img src='icons/Fire Ball.png' alt='Fire Ball' width='20' height='20'> Fire Ball 0.0% (0.0)<br><img src='icons/Blessed Aim.png' alt='Blessed Aim' width='20' height='20'> Blessed Aim 0.0% (0.0)<br><img src='icons/Enflame.png' alt='Enflame' width='20' height='20'> Enflame 0.0% (0.0)<br><img src='icons/Telekinesis.png' alt='Telekinesis' width='20' height='20'> Telekinesis 0.0% (0.0)<br><img src='icons/Ice Bolt.png' alt='Ice Bolt' width='20' height='20'> Ice Bolt 0.0% (0.0)<br><img src='icons/Teleport.png' alt='Teleport' width='20' height='20'> Teleport 0.0% (0.0)<br><img src='icons/Ice Blast.png' alt='Ice Blast' width='20' height='20'> Ice Blast 0.0% (0.0)<br><img src='icons/Charged Bolt.png' alt='Charged Bolt' width='20' height='20'> Charged Bolt 0.0% (0.0)<br><img src='icons/Static Field.png' alt='Static Field' width='20' height='20'> Static Field 0.0% (0.0)<br><img src='icons/Frost Nova.png' alt='Frost Nova' width='20' height='20'> Frost Nova 0.0% (0.0)<br><img src='icons/Chain Lightning.png' alt='Chain Lightning' width='20' height='20'> Chain Lightning 0.0% (0.0)<br><img src='icons/Energy Shield.png' alt='Energy Shield' width='20' height='20'> Energy Shield 0.0% (0.0)<br><img src='icons/Frigerate.png' alt='Frigerate' width='20' height='20'> Frigerate 0.0% (0.0)<br><img src='icons/Shiver Armor.png' alt='Shiver Armor' width='20' height='20'> Shiver Armor 0.0% (0.0)<br><img src='icons/Cold Mastery.png' alt='Cold Mastery' width='20' height='20'> Cold Mastery 0.0% (0.0)<br><img src='icons/Raven.png' alt='Raven' width='20' height='20'> Raven 0.0% (0.0)<br><img src='icons/Poison Creeper.png' alt='Poison Creeper' width='20' height='20'> Poison Creeper 0.0% (0.0)<br><img src='icons/Lightning Surge.png' alt='Lightning Surge' width='20' height='20'> Lightning Surge 0.0% (0.0)<br><img src='icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' width='20' height='20'> Summon Spirit Wolf 0.0% (0.0)<br><img src='icons/Carrion Vine.png' alt='Carrion Vine' width='20' height='20'> Carrion Vine 0.0% (0.0)<br><img src='icons/Firestorm.png' alt='Firestorm' width='20' height='20'> Firestorm 0.0% (0.0)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 0.0% (0.0)<br><img src='icons/Molten Boulder.png' alt='Molten Boulder' width='20' height='20'> Molten Boulder 0.0% (0.0)<br><img src='icons/Flame Dash.png' alt='Flame Dash' width='20' height='20'> Flame Dash 0.0% (0.0)<br><img src='icons/Fire Blast.png' alt='Fire Blast' width='20' height='20'> Fire Blast 0.0% (0.0)<br><img src='icons/Blade Throw.png' alt='Blade Throw' width='20' height='20'> Blade Throw 0.0% (0.0)<br><img src='icons/Wake of Fire.png' alt='Wake of Fire' width='20' height='20'> Wake of Fire 0.0% (0.0)<br><img src='icons/Blade Fury.png' alt='Blade Fury' width='20' height='20'> Blade Fury 0.0% (0.0)<br><img src='icons/Wake of Inferno.png' alt='Wake of Inferno' width='20' height='20'> Wake of Inferno 0.0% (0.0)<br><img src='icons/Blade Shield.png' alt='Blade Shield' width='20' height='20'> Blade Shield 0.0% (0.0)<br><img src='icons/Claw Mastery.png' alt='Claw Mastery' width='20' height='20'> Claw Mastery 0.0% (0.0)<br><img src='icons/Burst of Speed.png' alt='Burst of Speed' width='20' height='20'> Burst of Speed 0.0% (0.0)<br><img src='icons/Fade.png' alt='Fade' width='20' height='20'> Fade 0.0% (0.0)<br><img src='icons/Venom.png' alt='Venom' width='20' height='20'> Venom 0.0% (0.0)</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>Most Common Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Gloves</strong>: <br>Magefist 25.00%<br>Trang-Oul's Claws 25.00%<br>Chance Guards 5.00%<br>Sigon's Gage 5.00%<br>Gale Hand 5.00%<br><strong>Belt</strong>: <br>Arachnid Mesh 15.00%<br>Verdungo's Hearty Cord 10.00%<br>String of Ears 5.00%<br>Beast Harness 5.00%<br>Credendum 5.00%<br><strong>Body</strong>: <br>Enigma 20.00%<br>Smoke 10.00%<br>Skin of the Vipermagi 10.00%<br>Stealth 10.00%<br>Sigon's Shelter 5.00%<br><strong>Helmet</strong>: <br>Harlequin Crest 30.00%<br>Lore 15.00%<br>Rose Branded Circlet 5.00%<br>Sigon's Visor 5.00%<br>Hailstone Crest 5.00%<br><strong>Amulet</strong>: <br>Rose Branded Amulet 15.00%<br>Mara's Kaleidoscope 10.00%<br>Rose Branded Amulet of the Apprentice 5.00%<br>Hawk Branded Amulet of Strength 5.00%<br>Order Necklace 5.00%<br><strong>Ring</strong>: <br>Raven Frost 15.00%<br>Nagelring 15.00%<br>Dwarf Star 10.00%<br>Garnet Ring of Sorcery 10.00%<br>Viper Eye 10.00%<br><strong>Boots</strong>: <br>Aldur's Advance 30.00%<br>War Traveler 10.00%<br>Tearhaunch 10.00%<br>Sigon's Sabot 5.00%<br>Silkweave 5.00%<br><strong>Left hand</strong>: <br>Spirit 45.00%<br>Heart of the Oak 25.00%<br>Gnarled Staff of Teleportation 10.00%<br>Call to Arms 5.00%<br>Edge 5.00%<br><strong>Offhand</strong>: <br>Spirit 80.00%</div>
+            </div>
+        
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Gloves</strong>: Magefist 25.00%, Chance Guards 5.00%, Trang-Oul's Claws 25.00%, Sigon's Gage 5.00%, Gale Hand 5.00%, Lapis Gauntlets of Fortune 5.00%, Dread Hold 5.00%, Glorious Demonhide Gloves of Thawing 5.00%, Bramble Touch 5.00%<br><strong>Belt</strong>: String of Ears 5.00%, Arachnid Mesh 15.00%, Beast Harness 5.00%, Credendum 5.00%, Sigon's Wrap 5.00%, Verdungo's Hearty Cord 10.00%, Goldwrap 5.00%, Loath Chain 5.00%, Pain Fringe 5.00%, Soul Cord 5.00%, Cruel Chain 5.00%, Bladebuckle 5.00%<br><strong>Body</strong>: Enigma 20.00%, Smoke 10.00%, Skin of the Vipermagi 10.00%, Sigon's Shelter 5.00%, Duriel's Shell 5.00%, Stealth 10.00%, Tal Rasha's Guardianship 5.00%, Lionheart 5.00%, Gothic Plate 5.00%, The Spirit Shroud 5.00%<br><strong>Helmet</strong>: Harlequin Crest 30.00%, Rose Branded Circlet 5.00%, Sigon's Visor 5.00%, Hailstone Crest 5.00%, Loath Shell 5.00%, Lore 15.00%, Peasant Crown 5.00%, Iratha's Coil 5.00%<br><strong>Amulet</strong>: Rose Branded Amulet of the Apprentice 5.00%, Mara's Kaleidoscope 10.00%, Rose Branded Amulet 15.00%, Hawk Branded Amulet of Strength 5.00%, Order Necklace 5.00%, Rose Branded Amulet of the Squid 5.00%, Bitter Heart 5.00%, Rose Branded Amulet of Chain Lightning 5.00%, Scintillating Amulet of the Apprentice 5.00%, Iratha's Collar 5.00%, Nokozan Relic 5.00%, Commander's Amulet of Luck 5.00%<br><strong>Ring</strong>: Death Whorl 5.00%, Raven Frost 15.00%, Dwarf Star 10.00%, Nagelring 15.00%, PlagueRI Grasp 5.00%, Garnet Ring of Sorcery 10.00%, Entropy Master 5.00%, Stone Finger 5.00%, Bone Spiral 5.00%, Raven Circle 5.00%, Viper Eye 10.00%, PlagueRI Touch 5.00%, Garnet Ring of Thawing 5.00%, Ring of Wizardry 5.00%, Bitter Master 5.00%, Order Hold 5.00%, Scintillating Ring 5.00%, GhoulRI Hold 5.00%, Stone Spiral 5.00%, Ring of Sorcery 5.00%, Wraithra Knot 5.00%, Chaos Band 5.00%, Crimson Ring 5.00%, Doom Turn 5.00%<br><strong>Boots</strong>: Aldur's Advance 30.00%, War Traveler 10.00%, Tearhaunch 10.00%, Sigon's Sabot 5.00%, Silkweave 5.00%, Stone Blazer 5.00%, Waterwalk 5.00%, Demon Trample 5.00%<br><strong>Left hand</strong>: Call to Arms 5.00%, Heart of the Oak 25.00%, Gnarled Staff of Teleportation 10.00%, Spirit 45.00%, Edge 5.00%, Dragon's War Staff of Teleportation 5.00%, Triumphant Battle Staff of Teleportation 5.00%, Toxic Battle Staff of Teleportation 5.00%, Beryl Gnarled Staff of Teleportation 5.00%<br><strong>Offhand</strong>: Spirit 80.00%</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>20 Characters in this cluster:</strong></button>
+            <div class="content">
+                
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Demon_Hunter">Demon_Hunter</a></div>
+                    <div>91</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Bolt:20, Holy Shield:20, Fist of the Heavens:20, Sanctuary:20, Sacrifice:1, Smite:1, Zeal:1, Charge:1, Vengeance:1, Blessed Hammer:1, Absolution:1, Dashing Strike:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Prayer:1, Defiance:1, Cleansing:1, Vigor:1, Redemption:1, Salvation:1</p>
+            <p><strong>Equipment:</strong> gloves: Magefist x1, belt: String of Ears x1, body: Enigma x1, helmet: Harlequin Crest x1, amulet: Rose Branded Amulet of the Apprentice x1, ring: Death Whorl x1, ring: Raven Frost x1, boots: Aldur's Advance x1, Left hand: Call to Arms x1, Left hand: Heart of the Oak x1, Offhand: Spirit x2</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Bolt-Mania">Bolt-Mania</a></div>
+                    <div>90</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Bolt:20, Fist of the Heavens:20, Sanctuary:20, Redemption:7, Holy Freeze:5, Sacrifice:1, Smite:1, Zeal:1, Charge:1, Vengeance:1, Blessed Hammer:1, Absolution:1, Holy Shield:1, Might:1, Holy Fire:1, Precision:1, Prayer:1, Defiance:1, Cleansing:1, Vigor:1</p>
+            <p><strong>Equipment:</strong> helmet: Harlequin Crest x1, gloves: Magefist x1, belt: Arachnid Mesh x1, boots: War Traveler x1, amulet: Mara's Kaleidoscope x1, body: Smoke x1, ring: Dwarf Star x1, ring: Nagelring x1, Left hand: Gnarled Staff of Teleportation x1, Left hand: Spirit x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Armagaden">Armagaden</a></div>
+                    <div>90</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Bolt:20, Fist of the Heavens:20, Sanctuary:20, Salvation:17, Holy Shield:6, Conviction:4, Sacrifice:1, Smite:1, Zeal:1, Charge:1, Vengeance:1, Blessed Hammer:1, Absolution:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Holy Shock:1, Prayer:1, Defiance:1</p>
+            <p><strong>Equipment:</strong> body: Skin of the Vipermagi x1, amulet: Rose Branded Amulet x1, boots: Tearhaunch x1, belt: Beast Harness x1, ring: PlagueRI Grasp x1, ring: Garnet Ring of Sorcery x1, helmet: Rose Branded Circlet x1, gloves: Chance Guards x1, Left hand: Spirit x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Bonkbagan">Bonkbagan</a></div>
+                    <div>90</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Fist of the Heavens:20, Sanctuary:20, Conviction:19, Holy Bolt:18, Holy Shield:4, Sacrifice:1, Smite:1, Zeal:1, Charge:1, Vengeance:1, Blessed Hammer:1, Absolution:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Prayer:1, Defiance:1, Cleansing:1, Vigor:1, Meditation:1, Salvation:1</p>
+            <p><strong>Equipment:</strong> gloves: Magefist x1, body: Enigma x1, belt: Arachnid Mesh x1, ring: Entropy Master x1, ring: Stone Finger x1, helmet: Harlequin Crest x1, boots: War Traveler x1, amulet: Hawk Branded Amulet of Strength x1, Left hand: Heart of the Oak x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=bbanana_pal">bbanana_pal</a></div>
+                    <div>89</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Bolt:20, Fist of the Heavens:20, Sanctuary:20, Redemption:15, Holy Shield:9, Sacrifice:1, Smite:1, Zeal:1, Charge:1, Vengeance:1, Blessed Hammer:1, Absolution:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Holy Shock:1, Prayer:1, Defiance:1, Cleansing:1, Vigor:1</p>
+            <p><strong>Equipment:</strong> amulet: Rose Branded Amulet x1, ring: Raven Frost x1, ring: Nagelring x1, gloves: Trang-Oul's Claws x1, helmet: Harlequin Crest x1, boots: Aldur's Advance x1, belt: Credendum x1, body: Enigma x1, Left hand: Edge x1, Left hand: Heart of the Oak x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=MaybeNxtTime">MaybeNxtTime</a></div>
+                    <div>89</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Bolt:20, Fist of the Heavens:20, Sanctuary:20, Holy Shield:15, Vigor:7, Dashing Strike:2, Sacrifice:1, Smite:1, Zeal:1, Charge:1, Vengeance:1, Blessed Hammer:1, Absolution:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Prayer:1, Defiance:1, Cleansing:1, Redemption:1, Salvation:1</p>
+            <p><strong>Equipment:</strong> body: Sigon's Shelter x1, helmet: Sigon's Visor x1, boots: Sigon's Sabot x1, belt: Sigon's Wrap x1, gloves: Sigon's Gage x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Tymian">Tymian</a></div>
+                    <div>88</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Bolt:20, Holy Shield:20, Fist of the Heavens:20, Sanctuary:20, Conviction:2, Sacrifice:1, Smite:1, Zeal:1, Charge:1, Vengeance:1, Blessed Hammer:1, Absolution:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Prayer:1, Defiance:1, Cleansing:1, Vigor:1, Redemption:1, Salvation:1</p>
+            <p><strong>Equipment:</strong> boots: Aldur's Advance x1, amulet: Order Necklace x1, ring: Bone Spiral x1, ring: Raven Circle x1, body: Skin of the Vipermagi x1, belt: Verdungo's Hearty Cord x1, gloves: Trang-Oul's Claws x1, helmet: Harlequin Crest x1, Left hand: Heart of the Oak x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=HB-Vhite">HB-Vhite</a></div>
+                    <div>87</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Bolt:20, Holy Shield:20, Fist of the Heavens:20, Sanctuary:20, Defiance:5, Sacrifice:1, Smite:1, Zeal:1, Charge:1, Vengeance:1, Blessed Hammer:1, Absolution:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Prayer:1, Salvation:1</p>
+            <p><strong>Equipment:</strong> ring: Viper Eye x1, ring: PlagueRI Touch x1, gloves: Gale Hand x1, amulet: Rose Branded Amulet of the Squid x1, belt: Goldwrap x1, body: Duriel's Shell x1, helmet: Hailstone Crest x1, boots: Silkweave x1, Left hand: Gnarled Staff of Teleportation x1, Left hand: Spirit x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Androidpal">Androidpal</a></div>
+                    <div>87</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Bolt:20, Holy Shield:20, Fist of the Heavens:20, Sanctuary:20, Sacrifice:1, Smite:1, Zeal:1, Charge:1, Vengeance:1, Blessed Hammer:1, Absolution:1, Dashing Strike:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Conviction:1, Prayer:1, Defiance:1, Cleansing:1, Vigor:1, Redemption:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=LotusFOH">LotusFOH</a></div>
+                    <div>86</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Bolt:20, Fist of the Heavens:20, Sanctuary:20, Holy Shield:10, Prayer:5, Sacrifice:1, Smite:1, Zeal:1, Charge:1, Vengeance:1, Blessed Hammer:1, Absolution:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Defiance:1, Cleansing:1, Vigor:1, Redemption:1</p>
+            <p><strong>Equipment:</strong> amulet: Mara's Kaleidoscope x1, gloves: Trang-Oul's Claws x1, boots: Aldur's Advance x1, belt: Verdungo's Hearty Cord x1, ring: Raven Frost x1, ring: Dwarf Star x1, helmet: Harlequin Crest x1, body: Enigma x1, Left hand: Heart of the Oak x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=TurboAnalyst">TurboAnalyst</a></div>
+                    <div>85</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Bolt:20, Fist of the Heavens:20, Sanctuary:20, Holy Shield:18, Sacrifice:1, Smite:1, Zeal:1, Charge:1, Vengeance:1, Blessed Hammer:1, Absolution:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Conviction:1, Prayer:1, Defiance:1, Cleansing:1, Vigor:1, Redemption:1, Salvation:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=apart">apart</a></div>
+                    <div>84</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Bolt:20, Fist of the Heavens:20, Sanctuary:20, Holy Shield:16, Sacrifice:1, Smite:1, Zeal:1, Charge:1, Vengeance:1, Blessed Hammer:1, Absolution:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Prayer:1, Defiance:1, Cleansing:1, Vigor:1, Redemption:1</p>
+            <p><strong>Equipment:</strong> body: Smoke x1, ring: Garnet Ring of Thawing x1, ring: Ring of Wizardry x1, amulet: Bitter Heart x1, belt: Loath Chain x1, boots: Tearhaunch x1, gloves: Trang-Oul's Claws x1, helmet: Loath Shell x1, Left hand: Dragon's War Staff of Teleportation x1, Left hand: Spirit x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=AVPal">AVPal</a></div>
+                    <div>81</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Bolt:20, Fist of the Heavens:20, Sanctuary:20, Holy Shield:10, Defiance:2, Sacrifice:1, Smite:1, Zeal:1, Charge:1, Vengeance:1, Blessed Hammer:1, Absolution:1, Dashing Strike:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Holy Shock:1, Conviction:1, Prayer:1, Cleansing:1, Vigor:1, Redemption:1, Salvation:1</p>
+            <p><strong>Equipment:</strong> ring: Bitter Master x1, ring: Viper Eye x1, helmet: Lore x1, belt: Pain Fringe x1, body: Stealth x1, boots: Stone Blazer x1, amulet: Rose Branded Amulet of Chain Lightning x1, gloves: Magefist x1, Left hand: Triumphant Battle Staff of Teleportation x1, Left hand: Spirit x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=When_The">When_The</a></div>
+                    <div>81</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Bolt:20, Holy Shield:20, Fist of the Heavens:20, Holy Shock:5, Redemption:4, Charge:2, Sacrifice:1, Smite:1, Zeal:1, Vengeance:1, Blessed Hammer:1, Absolution:1, Dashing Strike:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Sanctuary:1, Conviction:1, Prayer:1, Defiance:1, Cleansing:1, Vigor:1, Salvation:1</p>
+            <p><strong>Equipment:</strong> helmet: Peasant Crown x1, gloves: Magefist x1, ring: Order Hold x1, boots: Waterwalk x1, body: Tal Rasha's Guardianship x1, amulet: Scintillating Amulet of the Apprentice x1, belt: Arachnid Mesh x1, Left hand: Spirit x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Rozmarin">Rozmarin</a></div>
+                    <div>77</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Bolt:20, Fist of the Heavens:20, Sanctuary:20, Holy Shield:12, Sacrifice:1, Smite:1, Zeal:1, Charge:1, Vengeance:1, Blessed Hammer:1, Absolution:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Prayer:1, Defiance:1, Cleansing:1, Vigor:1, Redemption:1</p>
+            <p><strong>Equipment:</strong> gloves: Trang-Oul's Claws x1, body: Lionheart x1, belt: Soul Cord x1, boots: Aldur's Advance x1, ring: Scintillating Ring x1, ring: GhoulRI Hold x1, helmet: Iratha's Coil x1, amulet: Iratha's Collar x1, Left hand: Spirit x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=jikesdude">jikesdude</a></div>
+                    <div>77</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Bolt:20, Fist of the Heavens:20, Sanctuary:20, Holy Shield:10, Sacrifice:1, Smite:1, Zeal:1, Charge:1, Vengeance:1, Blessed Hammer:1, Absolution:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Conviction:1, Prayer:1, Defiance:1, Cleansing:1, Vigor:1, Redemption:1, Salvation:1</p>
+            <p><strong>Equipment:</strong> helmet: Lore x1, ring: Nagelring x1, ring: Stone Spiral x1, gloves: Lapis Gauntlets of Fortune x1, body: Gothic Plate x1, boots: Demon Trample x1, belt: Cruel Chain x1, Left hand: Toxic Battle Staff of Teleportation x1, Left hand: Spirit x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Bagatoni">Bagatoni</a></div>
+                    <div>76</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Bolt:20, Fist of the Heavens:20, Sanctuary:20, Conviction:7, Holy Shield:4, Sacrifice:1, Smite:1, Zeal:1, Charge:1, Vengeance:1, Blessed Hammer:1, Absolution:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Prayer:1, Salvation:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=GoFun">GoFun</a></div>
+                    <div>65</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Bolt:20, Sanctuary:20, Fist of the Heavens:17, Sacrifice:1, Zeal:1, Vengeance:1, Blessed Hammer:1, Absolution:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Prayer:1, Defiance:1, Cleansing:1, Vigor:1, Redemption:1</p>
+            <p><strong>Equipment:</strong> gloves: Dread Hold x1, amulet: Nokozan Relic x1, ring: Garnet Ring of Sorcery x1, ring: Ring of Sorcery x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=SpicyClam">SpicyClam</a></div>
+                    <div>63</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Bolt:20, Fist of the Heavens:20, Sanctuary:13, Sacrifice:1, Smite:1, Zeal:1, Charge:1, Vengeance:1, Blessed Hammer:1, Absolution:1, Holy Shield:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Prayer:1, Defiance:1, Cleansing:1, Vigor:1, Redemption:1, Salvation:1</p>
+            <p><strong>Equipment:</strong> ring: Wraithra Knot x1, ring: Chaos Band x1, gloves: Glorious Demonhide Gloves of Thawing x1, amulet: Rose Branded Amulet x1, body: Stealth x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=FooFIST">FooFIST</a></div>
+                    <div>61</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Bolt:20, Fist of the Heavens:20, Sanctuary:15, Sacrifice:1, Zeal:1, Vengeance:1, Blessed Hammer:1, Absolution:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Prayer:1, Defiance:1, Cleansing:1, Vigor:1, Redemption:1</p>
+            <p><strong>Equipment:</strong> ring: Crimson Ring x1, ring: Doom Turn x1, helmet: Lore x1, boots: Aldur's Advance x1, gloves: Bramble Touch x1, belt: Bladebuckle x1, amulet: Commander's Amulet of Luck x1, body: The Spirit Shroud x1, Left hand: Beryl Gnarled Staff of Teleportation x1, Left hand: Spirit x1, Offhand: Spirit x1</p>
+        
+        </div>
+        <hr>
+        
+        <h2>13.64%  of Paladin's Main Skills:<br><img src='icons/Blessed Hammer.png' alt='Blessed Hammer' width='20' height='20'> Blessed Hammer 100.00% (360)<br><img src='icons/Vigor.png' alt='Vigor' width='20' height='20'> Vigor 100.00% (334)<br><img src='icons/Concentration.png' alt='Concentration' width='20' height='20'> Concentration 88.89% (271)</h2>
+        <p><strong>Other Skills:<br></strong> <img src='icons/Blessed Aim.png' alt='Blessed Aim' width='20' height='20'> Blessed Aim 100.0% (271.0)<br><img src='icons/Holy Shield.png' alt='Holy Shield' width='20' height='20'> Holy Shield 100.0% (143.0)<br><img src='icons/Defiance.png' alt='Defiance' width='20' height='20'> Defiance 100.0% (30.0)<br><img src='icons/Smite.png' alt='Smite' width='20' height='20'> Smite 100.0% (18.0)<br><img src='icons/Holy Bolt.png' alt='Holy Bolt' width='20' height='20'> Holy Bolt 100.0% (18.0)<br><img src='icons/Charge.png' alt='Charge' width='20' height='20'> Charge 100.0% (18.0)</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>All Skills</strong></button>
+            <div class="content">
+                <div><img src='icons/Blessed Hammer.png' alt='Blessed Hammer' width='20' height='20'> Blessed Hammer 100.0% (360.0)<br><img src='icons/Vigor.png' alt='Vigor' width='20' height='20'> Vigor 100.0% (334.0)<br><img src='icons/Concentration.png' alt='Concentration' width='20' height='20'> Concentration 88.89% (272.0)<br><img src='icons/Blessed Aim.png' alt='Blessed Aim' width='20' height='20'> Blessed Aim 100.0% (271.0)<br><img src='icons/Holy Shield.png' alt='Holy Shield' width='20' height='20'> Holy Shield 100.0% (143.0)<br><img src='icons/Defiance.png' alt='Defiance' width='20' height='20'> Defiance 100.0% (30.0)<br><img src='icons/Holy Bolt.png' alt='Holy Bolt' width='20' height='20'> Holy Bolt 100.0% (18.0)<br><img src='icons/Smite.png' alt='Smite' width='20' height='20'> Smite 100.0% (18.0)<br><img src='icons/Prayer.png' alt='Prayer' width='20' height='20'> Prayer 100.0% (18.0)<br><img src='icons/Cleansing.png' alt='Cleansing' width='20' height='20'> Cleansing 100.0% (18.0)<br><img src='icons/Charge.png' alt='Charge' width='20' height='20'> Charge 100.0% (18.0)<br><img src='icons/Might.png' alt='Might' width='20' height='20'> Might 100.0% (18.0)<br><img src='icons/Zeal.png' alt='Zeal' width='20' height='20'> Zeal 22.22% (14.0)<br><img src='icons/Sacrifice.png' alt='Sacrifice' width='20' height='20'> Sacrifice 22.22% (13.0)<br><img src='icons/Salvation.png' alt='Salvation' width='20' height='20'> Salvation 38.89% (7.0)<br><img src='icons/Redemption.png' alt='Redemption' width='20' height='20'> Redemption 38.89% (7.0)<br><img src='icons/Dashing Strike.png' alt='Dashing Strike' width='20' height='20'> Dashing Strike 22.22% (6.0)<br><img src='icons/Resist Lightning.png' alt='Resist Lightning' width='20' height='20'> Resist Lightning 5.56% (2.0)<br><img src='icons/Holy Fire.png' alt='Holy Fire' width='20' height='20'> Holy Fire 5.56% (1.0)<br><img src='icons/Holy Freeze.png' alt='Holy Freeze' width='20' height='20'> Holy Freeze 5.56% (1.0)<br><img src='icons/Vengeance.png' alt='Vengeance' width='20' height='20'> Vengeance 0.0% (0.0)<br><img src='icons/Resist Cold.png' alt='Resist Cold' width='20' height='20'> Resist Cold 0.0% (0.0)<br><img src='icons/Holy Shock.png' alt='Holy Shock' width='20' height='20'> Holy Shock 0.0% (0.0)<br><img src='icons/Precision.png' alt='Precision' width='20' height='20'> Precision 0.0% (0.0)<br><img src='icons/Absolution.png' alt='Absolution' width='20' height='20'> Absolution 0.0% (0.0)<br><img src='icons/Fist of the Heavens.png' alt='Fist of the Heavens' width='20' height='20'> Fist of the Heavens 0.0% (0.0)<br><img src='icons/Sanctuary.png' alt='Sanctuary' width='20' height='20'> Sanctuary 0.0% (0.0)<br><img src='icons/Conviction.png' alt='Conviction' width='20' height='20'> Conviction 0.0% (0.0)<br><img src='icons/Resist Fire.png' alt='Resist Fire' width='20' height='20'> Resist Fire 0.0% (0.0)<br><img src='icons/Fanaticism.png' alt='Fanaticism' width='20' height='20'> Fanaticism 0.0% (0.0)<br><img src='icons/Fire Bolt.png' alt='Fire Bolt' width='20' height='20'> Fire Bolt 0.0% (0.0)<br><img src='icons/Warmth.png' alt='Warmth' width='20' height='20'> Warmth 0.0% (0.0)<br><img src='icons/Fire Ball.png' alt='Fire Ball' width='20' height='20'> Fire Ball 0.0% (0.0)<br><img src='icons/Enflame.png' alt='Enflame' width='20' height='20'> Enflame 0.0% (0.0)<br><img src='icons/Telekinesis.png' alt='Telekinesis' width='20' height='20'> Telekinesis 0.0% (0.0)<br><img src='icons/Teleport.png' alt='Teleport' width='20' height='20'> Teleport 0.0% (0.0)<br><img src='icons/Ice Bolt.png' alt='Ice Bolt' width='20' height='20'> Ice Bolt 0.0% (0.0)<br><img src='icons/Frost Nova.png' alt='Frost Nova' width='20' height='20'> Frost Nova 0.0% (0.0)<br><img src='icons/Ice Blast.png' alt='Ice Blast' width='20' height='20'> Ice Blast 0.0% (0.0)<br><img src='icons/Charged Bolt.png' alt='Charged Bolt' width='20' height='20'> Charged Bolt 0.0% (0.0)<br><img src='icons/Static Field.png' alt='Static Field' width='20' height='20'> Static Field 0.0% (0.0)<br><img src='icons/Lightning Surge.png' alt='Lightning Surge' width='20' height='20'> Lightning Surge 0.0% (0.0)<br><img src='icons/Chain Lightning.png' alt='Chain Lightning' width='20' height='20'> Chain Lightning 0.0% (0.0)<br><img src='icons/Energy Shield.png' alt='Energy Shield' width='20' height='20'> Energy Shield 0.0% (0.0)<br><img src='icons/Frigerate.png' alt='Frigerate' width='20' height='20'> Frigerate 0.0% (0.0)<br><img src='icons/Shiver Armor.png' alt='Shiver Armor' width='20' height='20'> Shiver Armor 0.0% (0.0)<br><img src='icons/Cold Mastery.png' alt='Cold Mastery' width='20' height='20'> Cold Mastery 0.0% (0.0)<br><img src='icons/Raven.png' alt='Raven' width='20' height='20'> Raven 0.0% (0.0)<br><img src='icons/Poison Creeper.png' alt='Poison Creeper' width='20' height='20'> Poison Creeper 0.0% (0.0)<br><img src='icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' width='20' height='20'> Summon Spirit Wolf 0.0% (0.0)<br><img src='icons/Carrion Vine.png' alt='Carrion Vine' width='20' height='20'> Carrion Vine 0.0% (0.0)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 0.0% (0.0)<br><img src='icons/Firestorm.png' alt='Firestorm' width='20' height='20'> Firestorm 0.0% (0.0)<br><img src='icons/Molten Boulder.png' alt='Molten Boulder' width='20' height='20'> Molten Boulder 0.0% (0.0)<br><img src='icons/Flame Dash.png' alt='Flame Dash' width='20' height='20'> Flame Dash 0.0% (0.0)<br><img src='icons/Meditation.png' alt='Meditation' width='20' height='20'> Meditation 0.0% (0.0)<br><img src='icons/Fire Blast.png' alt='Fire Blast' width='20' height='20'> Fire Blast 0.0% (0.0)<br><img src='icons/Blade Throw.png' alt='Blade Throw' width='20' height='20'> Blade Throw 0.0% (0.0)<br><img src='icons/Wake of Fire.png' alt='Wake of Fire' width='20' height='20'> Wake of Fire 0.0% (0.0)<br><img src='icons/Blade Fury.png' alt='Blade Fury' width='20' height='20'> Blade Fury 0.0% (0.0)<br><img src='icons/Wake of Inferno.png' alt='Wake of Inferno' width='20' height='20'> Wake of Inferno 0.0% (0.0)<br><img src='icons/Blade Shield.png' alt='Blade Shield' width='20' height='20'> Blade Shield 0.0% (0.0)<br><img src='icons/Claw Mastery.png' alt='Claw Mastery' width='20' height='20'> Claw Mastery 0.0% (0.0)<br><img src='icons/Burst of Speed.png' alt='Burst of Speed' width='20' height='20'> Burst of Speed 0.0% (0.0)<br><img src='icons/Fade.png' alt='Fade' width='20' height='20'> Fade 0.0% (0.0)<br><img src='icons/Venom.png' alt='Venom' width='20' height='20'> Venom 0.0% (0.0)</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>Most Common Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Boots</strong>: <br>Tearhaunch 16.67%<br>Waterwalk 11.11%<br>Natalya's Soul 11.11%<br>War Traveler 5.56%<br>Pain Spur 5.56%<br><strong>Helmet</strong>: <br>Lore 33.33%<br>Harlequin Crest 27.78%<br>Dire Visor 5.56%<br>Tarnhelm 5.56%<br>Rose Branded Tiara 5.56%<br><strong>Amulet</strong>: <br>PlagueRI Emblem 5.56%<br>Skull Gorget 5.56%<br>Seraph's Hymn 5.56%<br>Mara's Kaleidoscope 5.56%<br>Blood Heart 5.56%<br><strong>Ring</strong>: <br>Raven Frost 16.67%<br>Blood Coil 5.56%<br>The Stone of Jordan 5.56%<br>Beast Band 5.56%<br>Chaos Coil 5.56%<br><strong>Gloves</strong>: <br>Trang-Oul's Claws 22.22%<br>Sigon's Gage 11.11%<br>Hailstone Grasp 5.56%<br>Dracul's Grasp 5.56%<br>Bloodfist 5.56%<br><strong>Body</strong>: <br>Stealth 16.67%<br>Guardian Angel 11.11%<br>Skin of the Vipermagi 11.11%<br>Enigma 5.56%<br>Tal Rasha's Guardianship 5.56%<br><strong>Belt</strong>: <br>Verdungo's Hearty Cord 11.11%<br>String of Ears 11.11%<br>Sigon's Wrap 11.11%<br>Havoc Harness 5.56%<br>Credendum 5.56%<br><strong>Left hand</strong>: <br>Spirit 55.56%<br>Heart of the Oak 16.67%<br>Holy Thunder 11.11%<br>War Staff of Teleportation 11.11%<br>Call to Arms 5.56%<br><strong>Offhand</strong>: <br>Spirit 83.33%<br>Herald of Zakarum 11.11%<br>Heraldic Shield 5.56%<br>Arrows 5.56%</div>
+            </div>
+        
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Boots</strong>: War Traveler 5.56%, Waterwalk 11.11%, Pain Spur 5.56%, Tearhaunch 16.67%, Corpse Tread 5.56%, Natalya's Soul 11.11%, Imp Nails 5.56%, Sigon's Sabot 5.56%, Viper Spur 5.56%, Sander's Riprap 5.56%<br><strong>Helmet</strong>: Harlequin Crest 27.78%, Lore 33.33%, Dire Visor 5.56%, Tarnhelm 5.56%, Rose Branded Tiara 5.56%, Soul Mask 5.56%<br><strong>Amulet</strong>: PlagueRI Emblem 5.56%, Skull Gorget 5.56%, Seraph's Hymn 5.56%, Mara's Kaleidoscope 5.56%, Blood Heart 5.56%, Entropy Emblem 5.56%, Rose Branded Amulet 5.56%, Skull Clasp 5.56%, Storm Noose 5.56%, Monk's Amulet of the Tiger 5.56%, Garnet Amulet 5.56%, Garnet Amulet of the Apprentice 5.56%, Scintillating Amulet of Wizardry 5.56%, Corruption Wing 5.56%<br><strong>Ring</strong>: Blood Coil 5.56%, The Stone of Jordan 5.56%, Beast Band 5.56%, Chaos Coil 5.56%, Raven Frost 16.67%, Carrion Wind 5.56%, Scintillating Ring of Regrowth 5.56%, Rainbow Ring 5.56%, Rainbow Ring of Precision 5.56%, Corruption Spiral 5.56%, Garnet Ring of the Jackal 5.56%, PlagueRI Touch 5.56%, Death Band 5.56%, Stone Coil 5.56%, Wraithra Gyre 5.56%, Eagle Grasp 5.56%, Dread Loop 5.56%, Triumphant Ring of the Apprentice 5.56%, Doom Coil 5.56%, Doom Hold 5.56%, Viper Eye 5.56%, Dread Eye 5.56%, PlagueRI Finger 5.56%, Garnet Ring of the Mind 5.56%<br><strong>Gloves</strong>: Trang-Oul's Claws 22.22%, Hailstone Grasp 5.56%, Dracul's Grasp 5.56%, Bloodfist 5.56%, Venom Grip 5.56%, Magefist 5.56%, Pain Fist 5.56%, Sigon's Gage 11.11%, Glyph Touch 5.56%, Garnet Light Gauntlets of Fortune 5.56%<br><strong>Body</strong>: Guardian Angel 11.11%, Enigma 5.56%, Tal Rasha's Guardianship 5.56%, Skin of the Vipermagi 11.11%, Smoke 5.56%, Raven Mantle 5.56%, Stealth 16.67%, Full Plate Mail 5.56%<br><strong>Belt</strong>: Havoc Harness 5.56%, Verdungo's Hearty Cord 11.11%, String of Ears 11.11%, Credendum 5.56%, Tal Rasha's Fine-Spun Cloth 5.56%, Soul Cord 5.56%, Immortal King's Detail 5.56%, Rune Buckle 5.56%, Sigon's Wrap 11.11%, Snakecord 5.56%, PlagueRI Harness 5.56%<br><strong>Left hand</strong>: Call to Arms 5.56%, Heart of the Oak 16.67%, Holy Thunder 11.11%, War Staff of Teleportation 11.11%, Lightsabre 5.56%, Gnarled Staff of Teleportation 5.56%, Spirit 55.56%, Spire of Honor 5.56%, Spire of Lazarus 5.56%, Long Bow 5.56%, Howling Battle Staff of Teleportation 5.56%, Wailing Battle Staff of Teleportation 5.56%<br><strong>Offhand</strong>: Spirit 83.33%, Herald of Zakarum 11.11%, Heraldic Shield 5.56%, Arrows 5.56%</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>18 Characters in this cluster:</strong></button>
+            <div class="content">
+                
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=DiMarco">DiMarco</a></div>
+                    <div>93</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Blessed Hammer:20, Blessed Aim:20, Concentration:20, Vigor:20, Holy Shield:15, Resist Lightning:2, Smite:1, Holy Bolt:1, Charge:1, Might:1, Prayer:1, Defiance:1, Cleansing:1</p>
+            <p><strong>Equipment:</strong> boots: War Traveler x1, helmet: Harlequin Crest x1, amulet: PlagueRI Emblem x1, ring: Blood Coil x1, ring: The Stone of Jordan x1, gloves: Trang-Oul's Claws x1, body: Guardian Angel x1, belt: Havoc Harness x1, Left hand: Call to Arms x1, Left hand: Heart of the Oak x1, Offhand: Spirit x1, Offhand: Herald of Zakarum x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=gasic-gooo">gasic-gooo</a></div>
+                    <div>92</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Blessed Hammer:20, Blessed Aim:20, Concentration:20, Vigor:20, Defiance:13, Holy Shield:3, Smite:1, Holy Bolt:1, Charge:1, Might:1, Prayer:1, Cleansing:1, Redemption:1</p>
+            <p><strong>Equipment:</strong> ring: Beast Band x1, ring: Chaos Coil x1, boots: Waterwalk x1, gloves: Trang-Oul's Claws x1, belt: Verdungo's Hearty Cord x1, amulet: Skull Gorget x1, helmet: Harlequin Crest x1, body: Enigma x1, Left hand: Holy Thunder x1, Left hand: Heart of the Oak x1, Offhand: Spirit x2</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=dstrY">dstrY</a></div>
+                    <div>92</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Blessed Hammer:20, Blessed Aim:20, Concentration:20, Vigor:20, Holy Shield:14, Smite:1, Holy Bolt:1, Charge:1, Might:1, Prayer:1, Defiance:1, Cleansing:1, Redemption:1, Salvation:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=rildumsuk">rildumsuk</a></div>
+                    <div>90</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Blessed Hammer:20, Blessed Aim:20, Concentration:20, Vigor:20, Holy Shield:14, Smite:1, Holy Bolt:1, Charge:1, Might:1, Prayer:1, Defiance:1, Cleansing:1</p>
+            <p><strong>Equipment:</strong> helmet: Lore x1, gloves: Hailstone Grasp x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Kovac">Kovac</a></div>
+                    <div>89</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Blessed Hammer:20, Blessed Aim:20, Vigor:20, Zeal:11, Holy Shield:11, Sacrifice:9, Smite:1, Holy Bolt:1, Charge:1, Might:1, Prayer:1, Defiance:1, Cleansing:1</p>
+            <p><strong>Equipment:</strong> amulet: Seraph's Hymn x1, boots: Pain Spur x1, belt: String of Ears x1, body: Guardian Angel x1, gloves: Dracul's Grasp x1, ring: Raven Frost x1, ring: Carrion Wind x1, helmet: Harlequin Crest x1, Left hand: War Staff of Teleportation x1, Left hand: Lightsabre x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=GiveMoreRedBull">GiveMoreRedBull</a></div>
+                    <div>89</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Blessed Hammer:20, Blessed Aim:20, Concentration:20, Vigor:20, Holy Shield:11, Smite:1, Holy Bolt:1, Charge:1, Might:1, Prayer:1, Defiance:1, Cleansing:1, Redemption:1, Salvation:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=SeCretofDead">SeCretofDead</a></div>
+                    <div>86</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Blessed Hammer:20, Blessed Aim:20, Concentration:20, Vigor:20, Sacrifice:1, Smite:1, Holy Bolt:1, Zeal:1, Charge:1, Holy Shield:1, Might:1, Holy Fire:1, Holy Freeze:1, Prayer:1, Defiance:1, Cleansing:1, Redemption:1, Salvation:1</p>
+            <p><strong>Equipment:</strong> belt: Credendum x1, amulet: Mara's Kaleidoscope x1, helmet: Harlequin Crest x1, boots: Waterwalk x1, Left hand: Heart of the Oak x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=MoziPaL">MoziPaL</a></div>
+                    <div>84</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Blessed Hammer:20, Blessed Aim:20, Concentration:20, Vigor:20, Holy Shield:7, Smite:1, Holy Bolt:1, Charge:1, Might:1, Prayer:1, Defiance:1, Cleansing:1, Salvation:1</p>
+            <p><strong>Equipment:</strong> boots: Tearhaunch x1, belt: Tal Rasha's Fine-Spun Cloth x1, gloves: Bloodfist x1, Left hand: Gnarled Staff of Teleportation x1, Left hand: Spirit x1, amulet: Blood Heart x1, ring: Scintillating Ring of Regrowth x1, ring: Rainbow Ring x1, helmet: Dire Visor x1, body: Tal Rasha's Guardianship x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=HammerBrother">HammerBrother</a></div>
+                    <div>82</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Blessed Hammer:20, Holy Shield:20, Blessed Aim:20, Vigor:20, Concentration:6, Smite:1, Holy Bolt:1, Charge:1, Might:1, Prayer:1, Defiance:1, Cleansing:1</p>
+            <p><strong>Equipment:</strong> body: Skin of the Vipermagi x1, gloves: Venom Grip x1, belt: Soul Cord x1, ring: Rainbow Ring of Precision x1, ring: Raven Frost x1, boots: Corpse Tread x1, helmet: Lore x1, amulet: Entropy Emblem x1, Left hand: Spire of Honor x1, Left hand: Spirit x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=ExpiredPussy">ExpiredPussy</a></div>
+                    <div>81</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Blessed Hammer:20, Blessed Aim:20, Concentration:20, Vigor:20, Smite:1, Holy Bolt:1, Charge:1, Holy Shield:1, Might:1, Prayer:1, Defiance:1, Cleansing:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Seyz">Seyz</a></div>
+                    <div>80</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Blessed Hammer:20, Blessed Aim:20, Vigor:20, Holy Shield:16, Sacrifice:1, Smite:1, Holy Bolt:1, Zeal:1, Charge:1, Dashing Strike:1, Might:1, Prayer:1, Defiance:1, Cleansing:1, Redemption:1, Salvation:1</p>
+            <p><strong>Equipment:</strong> amulet: Rose Branded Amulet x1, body: Smoke x1, ring: Corruption Spiral x1, ring: Garnet Ring of the Jackal x1, boots: Natalya's Soul x1, helmet: Tarnhelm x1, belt: Immortal King's Detail x1, gloves: Trang-Oul's Claws x1, Left hand: Holy Thunder x1, Left hand: Spirit x1, Offhand: Heraldic Shield x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=JOTDOSIBAR">JOTDOSIBAR</a></div>
+                    <div>80</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Blessed Hammer:20, Blessed Aim:20, Concentration:20, Vigor:20, Dashing Strike:3, Smite:1, Holy Bolt:1, Charge:1, Holy Shield:1, Might:1, Prayer:1, Defiance:1, Cleansing:1</p>
+            <p><strong>Equipment:</strong> ring: PlagueRI Touch x1, ring: Death Band x1, helmet: Lore x1, gloves: Trang-Oul's Claws x1, amulet: Skull Clasp x1, belt: String of Ears x1, boots: Tearhaunch x1, Left hand: War Staff of Teleportation x1, Left hand: Spirit x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Hamigo">Hamigo</a></div>
+                    <div>78</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Blessed Hammer:20, Concentration:20, Vigor:20, Blessed Aim:13, Holy Shield:4, Sacrifice:2, Smite:1, Holy Bolt:1, Zeal:1, Charge:1, Dashing Strike:1, Might:1, Prayer:1, Defiance:1, Cleansing:1, Redemption:1</p>
+            <p><strong>Equipment:</strong> ring: Stone Coil x1, ring: Raven Frost x1, boots: Tearhaunch x1, helmet: Rose Branded Tiara x1, amulet: Storm Noose x1, gloves: Magefist x1, belt: Verdungo's Hearty Cord x1, body: Skin of the Vipermagi x1, Left hand: Spirit x1, Offhand: Herald of Zakarum x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Palandrei">Palandrei</a></div>
+                    <div>69</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Blessed Hammer:20, Concentration:20, Vigor:20, Blessed Aim:10, Smite:1, Holy Bolt:1, Charge:1, Holy Shield:1, Might:1, Prayer:1, Defiance:1, Cleansing:1</p>
+            <p><strong>Equipment:</strong> belt: Rune Buckle x1, gloves: Pain Fist x1, body: Raven Mantle x1, Left hand: Spire of Lazarus x1, Left hand: Spirit x1, ring: Wraithra Gyre x1, ring: Eagle Grasp x1, amulet: Monk's Amulet of the Tiger x1, boots: Imp Nails x1, helmet: Harlequin Crest x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=TPII">TPII</a></div>
+                    <div>62</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Blessed Hammer:20, Concentration:20, Vigor:9, Smite:1, Holy Bolt:1, Charge:1, Holy Shield:1, Might:1, Blessed Aim:1, Prayer:1, Defiance:1, Cleansing:1, Salvation:1</p>
+            <p><strong>Equipment:</strong> gloves: Sigon's Gage x1, body: Stealth x1, belt: Sigon's Wrap x1, boots: Sigon's Sabot x1, helmet: Lore x1, ring: Dread Loop x1, ring: Triumphant Ring of the Apprentice x1, amulet: Garnet Amulet x1, Left hand: Long Bow x1, Left hand: Spirit x1, Offhand: Arrows x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Budpork">Budpork</a></div>
+                    <div>60</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Blessed Hammer:20, Vigor:20, Holy Shield:17, Smite:1, Holy Bolt:1, Charge:1, Might:1, Blessed Aim:1, Concentration:1, Prayer:1, Defiance:1, Cleansing:1</p>
+            <p><strong>Equipment:</strong> ring: Doom Coil x1, ring: Doom Hold x1, amulet: Garnet Amulet of the Apprentice x1, gloves: Glyph Touch x1, helmet: Lore x1, belt: Sigon's Wrap x1, boots: Natalya's Soul x1, body: Stealth x1, Left hand: Howling Battle Staff of Teleportation x1, Left hand: Spirit x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=TDK_Saidien">TDK_Saidien</a></div>
+                    <div>54</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Blessed Hammer:20, Concentration:20, Vigor:11, Smite:1, Holy Bolt:1, Charge:1, Holy Shield:1, Might:1, Blessed Aim:1, Prayer:1, Defiance:1, Cleansing:1</p>
+            <p><strong>Equipment:</strong> belt: Snakecord x1, ring: Viper Eye x1, ring: Dread Eye x1, gloves: Sigon's Gage x1, helmet: Soul Mask x1, body: Full Plate Mail x1, boots: Viper Spur x1, amulet: Scintillating Amulet of Wizardry x1, Left hand: Spirit x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Vici">Vici</a></div>
+                    <div>52</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Blessed Hammer:20, Vigor:14, Holy Shield:5, Blessed Aim:5, Concentration:5, Smite:1, Holy Bolt:1, Charge:1, Dashing Strike:1, Might:1, Prayer:1, Defiance:1, Cleansing:1, Redemption:1, Salvation:1</p>
+            <p><strong>Equipment:</strong> gloves: Garnet Light Gauntlets of Fortune x1, ring: PlagueRI Finger x1, ring: Garnet Ring of the Mind x1, belt: PlagueRI Harness x1, amulet: Corruption Wing x1, helmet: Lore x1, boots: Sander's Riprap x1, body: Stealth x1, Left hand: Wailing Battle Staff of Teleportation x1, Left hand: Spirit x1, Offhand: Spirit x1</p>
+        
+        </div>
+        <hr>
+        
+        <h2>10.61%  of Paladin's Main Skills:<br><img src='icons/Holy Bolt.png' alt='Holy Bolt' width='20' height='20'> Holy Bolt 100.00% (280)<br><img src='icons/Fist of the Heavens.png' alt='Fist of the Heavens' width='20' height='20'> Fist of the Heavens 100.00% (280)<br><img src='icons/Holy Shock.png' alt='Holy Shock' width='20' height='20'> Holy Shock 100.00% (256)</h2>
+        <p><strong>Other Skills:<br></strong> <img src='icons/Sanctuary.png' alt='Sanctuary' width='20' height='20'> Sanctuary 78.57% (130.0)<br><img src='icons/Holy Shield.png' alt='Holy Shield' width='20' height='20'> Holy Shield 100.0% (59.0)<br><img src='icons/Conviction.png' alt='Conviction' width='20' height='20'> Conviction 71.43% (37.0)<br><img src='icons/Salvation.png' alt='Salvation' width='20' height='20'> Salvation 71.43% (29.0)<br><img src='icons/Redemption.png' alt='Redemption' width='20' height='20'> Redemption 92.86% (16.0)<br><img src='icons/Might.png' alt='Might' width='20' height='20'> Might 100.0% (15.0)</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>All Skills</strong></button>
+            <div class="content">
+                <div><img src='icons/Holy Bolt.png' alt='Holy Bolt' width='20' height='20'> Holy Bolt 100.0% (280.0)<br><img src='icons/Fist of the Heavens.png' alt='Fist of the Heavens' width='20' height='20'> Fist of the Heavens 100.0% (280.0)<br><img src='icons/Holy Shock.png' alt='Holy Shock' width='20' height='20'> Holy Shock 100.0% (256.0)<br><img src='icons/Sanctuary.png' alt='Sanctuary' width='20' height='20'> Sanctuary 78.57% (130.0)<br><img src='icons/Holy Shield.png' alt='Holy Shield' width='20' height='20'> Holy Shield 100.0% (59.0)<br><img src='icons/Conviction.png' alt='Conviction' width='20' height='20'> Conviction 71.43% (37.0)<br><img src='icons/Salvation.png' alt='Salvation' width='20' height='20'> Salvation 71.43% (29.0)<br><img src='icons/Redemption.png' alt='Redemption' width='20' height='20'> Redemption 92.86% (16.0)<br><img src='icons/Might.png' alt='Might' width='20' height='20'> Might 100.0% (15.0)<br><img src='icons/Smite.png' alt='Smite' width='20' height='20'> Smite 100.0% (14.0)<br><img src='icons/Sacrifice.png' alt='Sacrifice' width='20' height='20'> Sacrifice 100.0% (14.0)<br><img src='icons/Zeal.png' alt='Zeal' width='20' height='20'> Zeal 100.0% (14.0)<br><img src='icons/Absolution.png' alt='Absolution' width='20' height='20'> Absolution 100.0% (14.0)<br><img src='icons/Blessed Hammer.png' alt='Blessed Hammer' width='20' height='20'> Blessed Hammer 100.0% (14.0)<br><img src='icons/Holy Freeze.png' alt='Holy Freeze' width='20' height='20'> Holy Freeze 100.0% (14.0)<br><img src='icons/Holy Fire.png' alt='Holy Fire' width='20' height='20'> Holy Fire 100.0% (14.0)<br><img src='icons/Vengeance.png' alt='Vengeance' width='20' height='20'> Vengeance 100.0% (14.0)<br><img src='icons/Charge.png' alt='Charge' width='20' height='20'> Charge 100.0% (14.0)<br><img src='icons/Prayer.png' alt='Prayer' width='20' height='20'> Prayer 92.86% (13.0)<br><img src='icons/Cleansing.png' alt='Cleansing' width='20' height='20'> Cleansing 92.86% (13.0)<br><img src='icons/Vigor.png' alt='Vigor' width='20' height='20'> Vigor 92.86% (13.0)<br><img src='icons/Defiance.png' alt='Defiance' width='20' height='20'> Defiance 92.86% (13.0)<br><img src='icons/Precision.png' alt='Precision' width='20' height='20'> Precision 85.71% (12.0)<br><img src='icons/Dashing Strike.png' alt='Dashing Strike' width='20' height='20'> Dashing Strike 21.43% (3.0)<br><img src='icons/Meditation.png' alt='Meditation' width='20' height='20'> Meditation 7.14% (1.0)<br><img src='icons/Resist Cold.png' alt='Resist Cold' width='20' height='20'> Resist Cold 0.0% (0.0)<br><img src='icons/Concentration.png' alt='Concentration' width='20' height='20'> Concentration 0.0% (0.0)<br><img src='icons/Resist Lightning.png' alt='Resist Lightning' width='20' height='20'> Resist Lightning 0.0% (0.0)<br><img src='icons/Resist Fire.png' alt='Resist Fire' width='20' height='20'> Resist Fire 0.0% (0.0)<br><img src='icons/Fanaticism.png' alt='Fanaticism' width='20' height='20'> Fanaticism 0.0% (0.0)<br><img src='icons/Fire Bolt.png' alt='Fire Bolt' width='20' height='20'> Fire Bolt 0.0% (0.0)<br><img src='icons/Warmth.png' alt='Warmth' width='20' height='20'> Warmth 0.0% (0.0)<br><img src='icons/Fire Ball.png' alt='Fire Ball' width='20' height='20'> Fire Ball 0.0% (0.0)<br><img src='icons/Blessed Aim.png' alt='Blessed Aim' width='20' height='20'> Blessed Aim 0.0% (0.0)<br><img src='icons/Enflame.png' alt='Enflame' width='20' height='20'> Enflame 0.0% (0.0)<br><img src='icons/Telekinesis.png' alt='Telekinesis' width='20' height='20'> Telekinesis 0.0% (0.0)<br><img src='icons/Ice Bolt.png' alt='Ice Bolt' width='20' height='20'> Ice Bolt 0.0% (0.0)<br><img src='icons/Teleport.png' alt='Teleport' width='20' height='20'> Teleport 0.0% (0.0)<br><img src='icons/Ice Blast.png' alt='Ice Blast' width='20' height='20'> Ice Blast 0.0% (0.0)<br><img src='icons/Charged Bolt.png' alt='Charged Bolt' width='20' height='20'> Charged Bolt 0.0% (0.0)<br><img src='icons/Static Field.png' alt='Static Field' width='20' height='20'> Static Field 0.0% (0.0)<br><img src='icons/Frost Nova.png' alt='Frost Nova' width='20' height='20'> Frost Nova 0.0% (0.0)<br><img src='icons/Chain Lightning.png' alt='Chain Lightning' width='20' height='20'> Chain Lightning 0.0% (0.0)<br><img src='icons/Energy Shield.png' alt='Energy Shield' width='20' height='20'> Energy Shield 0.0% (0.0)<br><img src='icons/Frigerate.png' alt='Frigerate' width='20' height='20'> Frigerate 0.0% (0.0)<br><img src='icons/Shiver Armor.png' alt='Shiver Armor' width='20' height='20'> Shiver Armor 0.0% (0.0)<br><img src='icons/Cold Mastery.png' alt='Cold Mastery' width='20' height='20'> Cold Mastery 0.0% (0.0)<br><img src='icons/Raven.png' alt='Raven' width='20' height='20'> Raven 0.0% (0.0)<br><img src='icons/Poison Creeper.png' alt='Poison Creeper' width='20' height='20'> Poison Creeper 0.0% (0.0)<br><img src='icons/Lightning Surge.png' alt='Lightning Surge' width='20' height='20'> Lightning Surge 0.0% (0.0)<br><img src='icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' width='20' height='20'> Summon Spirit Wolf 0.0% (0.0)<br><img src='icons/Carrion Vine.png' alt='Carrion Vine' width='20' height='20'> Carrion Vine 0.0% (0.0)<br><img src='icons/Firestorm.png' alt='Firestorm' width='20' height='20'> Firestorm 0.0% (0.0)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 0.0% (0.0)<br><img src='icons/Molten Boulder.png' alt='Molten Boulder' width='20' height='20'> Molten Boulder 0.0% (0.0)<br><img src='icons/Flame Dash.png' alt='Flame Dash' width='20' height='20'> Flame Dash 0.0% (0.0)<br><img src='icons/Fire Blast.png' alt='Fire Blast' width='20' height='20'> Fire Blast 0.0% (0.0)<br><img src='icons/Blade Throw.png' alt='Blade Throw' width='20' height='20'> Blade Throw 0.0% (0.0)<br><img src='icons/Wake of Fire.png' alt='Wake of Fire' width='20' height='20'> Wake of Fire 0.0% (0.0)<br><img src='icons/Blade Fury.png' alt='Blade Fury' width='20' height='20'> Blade Fury 0.0% (0.0)<br><img src='icons/Wake of Inferno.png' alt='Wake of Inferno' width='20' height='20'> Wake of Inferno 0.0% (0.0)<br><img src='icons/Blade Shield.png' alt='Blade Shield' width='20' height='20'> Blade Shield 0.0% (0.0)<br><img src='icons/Claw Mastery.png' alt='Claw Mastery' width='20' height='20'> Claw Mastery 0.0% (0.0)<br><img src='icons/Burst of Speed.png' alt='Burst of Speed' width='20' height='20'> Burst of Speed 0.0% (0.0)<br><img src='icons/Fade.png' alt='Fade' width='20' height='20'> Fade 0.0% (0.0)<br><img src='icons/Venom.png' alt='Venom' width='20' height='20'> Venom 0.0% (0.0)</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>Most Common Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Body</strong>: <br>Enigma 21.43%<br>Skin of the Vipermagi 7.14%<br>Guardian Angel 7.14%<br>Duriel's Shell 7.14%<br>Smoke 7.14%<br><strong>Gloves</strong>: <br>Magefist 35.71%<br>Loath Finger 7.14%<br>Trang-Oul's Claws 7.14%<br>Wraithra Grip 7.14%<br>Sander's Taboo 7.14%<br><strong>Amulet</strong>: <br>Rose Branded Amulet 21.43%<br>Mara's Kaleidoscope 7.14%<br>Corruption Collar 7.14%<br>Order Heart 7.14%<br>Rose Branded Amulet of Luck 7.14%<br><strong>Helmet</strong>: <br>Harlequin Crest 28.57%<br>Griffon's Eye 7.14%<br>Crown of Ages 7.14%<br>Glyph Horn 7.14%<br>Lore 7.14%<br><strong>Ring</strong>: <br>Skull Spiral 14.29%<br>Shadow Finger 14.29%<br>Ring of the Apprentice 7.14%<br>Eagle Master 7.14%<br>The Stone of Jordan 7.14%<br><strong>Boots</strong>: <br>Silkweave 14.29%<br>Aldur's Advance 14.29%<br>Natalya's Soul 14.29%<br>War Traveler 7.14%<br>Raven Stalker 7.14%<br><strong>Belt</strong>: <br>Arachnid Mesh 28.57%<br>Dire Lash 7.14%<br>Glyph Clasp 7.14%<br>Bone Harness 7.14%<br>Shadow Chain 7.14%<br><strong>Left hand</strong>: <br>Heart of the Oak 35.71%<br>Spirit 21.43%<br>Call to Arms 14.29%<br>Hand of Blessed Light 14.29%<br>Holy Thunder 7.14%<br><strong>Offhand</strong>: <br>Spirit 78.57%<br>Herald of Zakarum 14.29%<br>Medusa's Gaze 7.14%<br>Heraldic Shield 7.14%</div>
+            </div>
+        
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Body</strong>: Enigma 21.43%, Skin of the Vipermagi 7.14%, Guardian Angel 7.14%, Duriel's Shell 7.14%, Smoke 7.14%, Stealth 7.14%, Iron Pelt 7.14%<br><strong>Gloves</strong>: Magefist 35.71%, Loath Finger 7.14%, Trang-Oul's Claws 7.14%, Wraithra Grip 7.14%, Sander's Taboo 7.14%, GhoulRI Clutches 7.14%, Garnet Gauntlets of Chance 7.14%<br><strong>Amulet</strong>: Mara's Kaleidoscope 7.14%, Corruption Collar 7.14%, Order Heart 7.14%, Rose Branded Amulet 21.43%, Rose Branded Amulet of Luck 7.14%, Doom Noose 7.14%, Prismatic Amulet of the Apprentice 7.14%, Rose Branded Amulet of Fortune 7.14%, Skull Wing 7.14%<br><strong>Helmet</strong>: Griffon's Eye 7.14%, Crown of Ages 7.14%, Harlequin Crest 28.57%, Glyph Horn 7.14%, Lore 7.14%, The Face of Horror 7.14%, Iratha's Coil 7.14%<br><strong>Ring</strong>: Skull Spiral 14.29%, Shadow Finger 14.29%, Ring of the Apprentice 7.14%, Eagle Master 7.14%, The Stone of Jordan 7.14%, Manald Heal 7.14%, Raven Frost 7.14%, Blood Grip 7.14%, Viper Master 7.14%, Order Eye 7.14%, Viper Eye 7.14%, Viper Knot 7.14%, Eagle Circle 7.14%, PlagueRI Grip 7.14%, Raven Circle 7.14%, Doom Coil 7.14%, Ring of Fortune 7.14%, Coral Ring of Flame 7.14%, Garnet Ring of Regrowth 7.14%<br><strong>Boots</strong>: Silkweave 14.29%, Aldur's Advance 14.29%, War Traveler 7.14%, Natalya's Soul 14.29%, Raven Stalker 7.14%, Infernostride 7.14%, Sigon's Sabot 7.14%<br><strong>Belt</strong>: Arachnid Mesh 28.57%, Dire Lash 7.14%, Glyph Clasp 7.14%, Bone Harness 7.14%, Shadow Chain 7.14%, Spirit Winding 7.14%, Sigon's Wrap 7.14%<br><strong>Left hand</strong>: Call to Arms 14.29%, Heart of the Oak 35.71%, Holy Thunder 7.14%, Battle Staff of Teleportation 7.14%, Demon Limb 7.14%, Hand of Blessed Light 14.29%, Khalim's Flail 7.14%, War Staff of Teleportation 7.14%, Spirit 21.43%, Scepter of Worth 7.14%<br><strong>Offhand</strong>: Medusa's Gaze 7.14%, Herald of Zakarum 14.29%, Spirit 78.57%, Heraldic Shield 7.14%</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>14 Characters in this cluster:</strong></button>
+            <div class="content">
+                
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Oggidin">Oggidin</a></div>
+                    <div>96</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Bolt:20, Fist of the Heavens:20, Holy Shock:20, Salvation:20, Conviction:9, Sacrifice:1, Smite:1, Zeal:1, Charge:1, Vengeance:1, Blessed Hammer:1, Absolution:1, Holy Shield:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Sanctuary:1, Prayer:1, Defiance:1, Cleansing:1, Vigor:1, Redemption:1</p>
+            <p><strong>Equipment:</strong> body: Enigma x1, gloves: Magefist x1, amulet: Mara's Kaleidoscope x1, helmet: Griffon's Eye x1, ring: Skull Spiral x1, ring: Shadow Finger x1, boots: Silkweave x1, belt: Arachnid Mesh x1, Left hand: Call to Arms x1, Left hand: Heart of the Oak x1, Offhand: Medusa's Gaze x1, Offhand: Herald of Zakarum x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Xaoc_Fury">Xaoc_Fury</a></div>
+                    <div>95</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Bolt:20, Fist of the Heavens:20, Holy Shock:20, Sanctuary:20, Holy Shield:7, Sacrifice:1, Smite:1, Zeal:1, Charge:1, Vengeance:1, Blessed Hammer:1, Absolution:1, Dashing Strike:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Conviction:1, Prayer:1, Defiance:1, Cleansing:1, Vigor:1, Redemption:1, Salvation:1</p>
+            <p><strong>Equipment:</strong> helmet: Crown of Ages x1, gloves: Magefist x1, body: Enigma x1, boots: Aldur's Advance x1, belt: Arachnid Mesh x1, ring: Ring of the Apprentice x1, ring: Eagle Master x1, amulet: Corruption Collar x1, Left hand: Call to Arms x1, Left hand: Heart of the Oak x1, Offhand: Spirit x1, Offhand: Herald of Zakarum x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Hunterbaron">Hunterbaron</a></div>
+                    <div>92</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Bolt:20, Fist of the Heavens:20, Holy Shock:20, Sanctuary:17, Redemption:4, Holy Shield:3, Sacrifice:1, Smite:1, Zeal:1, Charge:1, Vengeance:1, Blessed Hammer:1, Absolution:1, Dashing Strike:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Conviction:1, Prayer:1, Defiance:1, Cleansing:1, Vigor:1, Meditation:1, Salvation:1</p>
+            <p><strong>Equipment:</strong> gloves: Magefist x1, body: Skin of the Vipermagi x1, amulet: Order Heart x1, belt: Arachnid Mesh x1, ring: The Stone of Jordan x1, ring: Manald Heal x1, helmet: Harlequin Crest x1, boots: Silkweave x1, Left hand: Heart of the Oak x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Bragnix">Bragnix</a></div>
+                    <div>91</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Bolt:20, Fist of the Heavens:20, Holy Shock:20, Sanctuary:20, Holy Shield:4, Sacrifice:1, Smite:1, Zeal:1, Charge:1, Vengeance:1, Blessed Hammer:1, Absolution:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Conviction:1, Prayer:1, Defiance:1, Cleansing:1, Vigor:1, Redemption:1, Salvation:1</p>
+            <p><strong>Equipment:</strong> boots: War Traveler x1, helmet: Harlequin Crest x1, gloves: Magefist x1, ring: Skull Spiral x1, ring: Raven Frost x1, body: Enigma x1, belt: Arachnid Mesh x1, amulet: Rose Branded Amulet x1, Left hand: Holy Thunder x1, Left hand: Heart of the Oak x1, Offhand: Spirit x2</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Rampensau">Rampensau</a></div>
+                    <div>89</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Bolt:20, Fist of the Heavens:20, Holy Shock:20, Sanctuary:20, Holy Shield:2, Sacrifice:1, Smite:1, Zeal:1, Charge:1, Vengeance:1, Blessed Hammer:1, Absolution:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Conviction:1, Prayer:1, Defiance:1, Cleansing:1, Vigor:1, Redemption:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=wise_pal">wise_pal</a></div>
+                    <div>87</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Bolt:20, Fist of the Heavens:20, Holy Shock:20, Sanctuary:19, Sacrifice:1, Smite:1, Zeal:1, Charge:1, Vengeance:1, Blessed Hammer:1, Absolution:1, Holy Shield:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Conviction:1, Prayer:1, Defiance:1, Cleansing:1, Vigor:1, Redemption:1, Salvation:1</p>
+            <p><strong>Equipment:</strong> ring: Blood Grip x1, ring: Viper Master x1, helmet: Glyph Horn x1, amulet: Rose Branded Amulet of Luck x1, Left hand: Battle Staff of Teleportation x1, gloves: Loath Finger x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Astros_FoH">Astros_FoH</a></div>
+                    <div>86</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Bolt:20, Fist of the Heavens:20, Holy Shock:20, Holy Shield:12, Sanctuary:5, Sacrifice:1, Smite:1, Zeal:1, Charge:1, Vengeance:1, Blessed Hammer:1, Absolution:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Conviction:1, Prayer:1, Defiance:1, Cleansing:1, Vigor:1, Redemption:1, Salvation:1</p>
+            <p><strong>Equipment:</strong> ring: Order Eye x1, ring: Viper Eye x1, amulet: Doom Noose x1, gloves: Trang-Oul's Claws x1, Left hand: Demon Limb x1, Left hand: Heart of the Oak x1, Offhand: Spirit x2, boots: Aldur's Advance x1, belt: Dire Lash x1, body: Guardian Angel x1, helmet: Harlequin Crest x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Posmotri">Posmotri</a></div>
+                    <div>86</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Bolt:20, Fist of the Heavens:20, Sanctuary:20, Holy Shock:17, Sacrifice:1, Smite:1, Zeal:1, Charge:1, Vengeance:1, Blessed Hammer:1, Absolution:1, Holy Shield:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Conviction:1, Prayer:1, Defiance:1, Cleansing:1, Vigor:1, Redemption:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Astros-FoH">Astros-FoH</a></div>
+                    <div>79</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Bolt:20, Fist of the Heavens:20, Holy Shock:20, Holy Shield:10, Sacrifice:1, Smite:1, Zeal:1, Charge:1, Vengeance:1, Blessed Hammer:1, Absolution:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Prayer:1, Defiance:1, Cleansing:1, Vigor:1, Redemption:1, Salvation:1</p>
+            <p><strong>Equipment:</strong> amulet: Prismatic Amulet of the Apprentice x1, belt: Glyph Clasp x1, boots: Natalya's Soul x1, gloves: Magefist x1, body: Duriel's Shell x1, helmet: Harlequin Crest x1, ring: Viper Knot x1, ring: Shadow Finger x1, Left hand: Hand of Blessed Light x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=RLLR">RLLR</a></div>
+                    <div>78</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Bolt:20, Fist of the Heavens:20, Holy Shock:20, Sanctuary:6, Holy Shield:5, Sacrifice:1, Smite:1, Zeal:1, Charge:1, Vengeance:1, Blessed Hammer:1, Absolution:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Prayer:1, Defiance:1, Cleansing:1, Vigor:1, Redemption:1</p>
+            <p><strong>Equipment:</strong> body: Smoke x1, ring: Eagle Circle x1, ring: PlagueRI Grip x1, gloves: Wraithra Grip x1, amulet: Rose Branded Amulet x1, belt: Bone Harness x1, boots: Raven Stalker x1, Left hand: Khalim's Flail x1, Left hand: Hand of Blessed Light x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Tess_d">Tess_d</a></div>
+                    <div>75</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Bolt:20, Fist of the Heavens:20, Holy Shock:19, Holy Shield:10, Sacrifice:1, Smite:1, Zeal:1, Charge:1, Vengeance:1, Blessed Hammer:1, Absolution:1, Might:1, Holy Fire:1, Holy Freeze:1, Prayer:1, Defiance:1, Cleansing:1, Vigor:1, Redemption:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=BigBlackCum">BigBlackCum</a></div>
+                    <div>73</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Bolt:20, Fist of the Heavens:20, Conviction:20, Holy Shock:8, Sacrifice:1, Smite:1, Zeal:1, Charge:1, Vengeance:1, Blessed Hammer:1, Absolution:1, Holy Shield:1, Dashing Strike:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Sanctuary:1, Salvation:1</p>
+            <p><strong>Equipment:</strong> helmet: Lore x1, gloves: Sander's Taboo x1, ring: Raven Circle x1, belt: Shadow Chain x1, boots: Infernostride x1, amulet: Rose Branded Amulet of Fortune x1, Left hand: War Staff of Teleportation x1, Left hand: Spirit x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=ZUELi">ZUELi</a></div>
+                    <div>71</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Bolt:20, Fist of the Heavens:20, Holy Shock:20, Sacrifice:1, Smite:1, Zeal:1, Charge:1, Vengeance:1, Blessed Hammer:1, Absolution:1, Holy Shield:1, Might:1, Holy Fire:1, Holy Freeze:1, Prayer:1, Defiance:1, Cleansing:1, Vigor:1, Redemption:1, Salvation:1</p>
+            <p><strong>Equipment:</strong> ring: Doom Coil x1, ring: Ring of Fortune x1, belt: Spirit Winding x1, body: Stealth x1, gloves: GhoulRI Clutches x1, boots: Natalya's Soul x1, helmet: The Face of Horror x1, Left hand: Scepter of Worth x1, Left hand: Spirit x1, Offhand: Heraldic Shield x1, Offhand: Spirit x1, amulet: Skull Wing x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Star_Paladin">Star_Paladin</a></div>
+                    <div>66</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Bolt:20, Fist of the Heavens:20, Holy Shock:12, Might:2, Sacrifice:1, Smite:1, Zeal:1, Charge:1, Vengeance:1, Blessed Hammer:1, Absolution:1, Holy Shield:1, Holy Fire:1, Precision:1, Holy Freeze:1, Sanctuary:1, Conviction:1, Prayer:1, Defiance:1, Cleansing:1, Vigor:1, Redemption:1, Salvation:1</p>
+            <p><strong>Equipment:</strong> boots: Sigon's Sabot x1, gloves: Garnet Gauntlets of Chance x1, belt: Sigon's Wrap x1, amulet: Rose Branded Amulet x1, ring: Coral Ring of Flame x1, ring: Garnet Ring of Regrowth x1, helmet: Iratha's Coil x1, body: Iron Pelt x1, Left hand: Spirit x1, Offhand: Spirit x1</p>
+        
+        </div>
+        <hr>
+        
+        <h2>9.85%  of Paladin's Main Skills:<br><img src='icons/Holy Bolt.png' alt='Holy Bolt' width='20' height='20'> Holy Bolt 100.00% (203)<br><img src='icons/Fist of the Heavens.png' alt='Fist of the Heavens' width='20' height='20'> Fist of the Heavens 53.85% (76)<br><img src='icons/Holy Fire.png' alt='Holy Fire' width='20' height='20'> Holy Fire 76.92% (28)</h2>
+        <p><strong>Other Skills:<br></strong> <img src='icons/Sanctuary.png' alt='Sanctuary' width='20' height='20'> Sanctuary 30.77% (20.0)<br><img src='icons/Smite.png' alt='Smite' width='20' height='20'> Smite 100.0% (13.0)<br><img src='icons/Charge.png' alt='Charge' width='20' height='20'> Charge 92.31% (12.0)<br><img src='icons/Blessed Hammer.png' alt='Blessed Hammer' width='20' height='20'> Blessed Hammer 84.62% (11.0)<br><img src='icons/Might.png' alt='Might' width='20' height='20'> Might 84.62% (11.0)<br><img src='icons/Zeal.png' alt='Zeal' width='20' height='20'> Zeal 53.85% (10.0)</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>All Skills</strong></button>
+            <div class="content">
+                <div><img src='icons/Holy Bolt.png' alt='Holy Bolt' width='20' height='20'> Holy Bolt 100.0% (203.0)<br><img src='icons/Fist of the Heavens.png' alt='Fist of the Heavens' width='20' height='20'> Fist of the Heavens 53.85% (76.0)<br><img src='icons/Holy Fire.png' alt='Holy Fire' width='20' height='20'> Holy Fire 76.92% (29.0)<br><img src='icons/Sanctuary.png' alt='Sanctuary' width='20' height='20'> Sanctuary 30.77% (20.0)<br><img src='icons/Smite.png' alt='Smite' width='20' height='20'> Smite 100.0% (13.0)<br><img src='icons/Charge.png' alt='Charge' width='20' height='20'> Charge 92.31% (12.0)<br><img src='icons/Might.png' alt='Might' width='20' height='20'> Might 84.62% (11.0)<br><img src='icons/Blessed Hammer.png' alt='Blessed Hammer' width='20' height='20'> Blessed Hammer 84.62% (11.0)<br><img src='icons/Zeal.png' alt='Zeal' width='20' height='20'> Zeal 53.85% (10.0)<br><img src='icons/Prayer.png' alt='Prayer' width='20' height='20'> Prayer 69.23% (9.0)<br><img src='icons/Sacrifice.png' alt='Sacrifice' width='20' height='20'> Sacrifice 69.23% (9.0)<br><img src='icons/Holy Shield.png' alt='Holy Shield' width='20' height='20'> Holy Shield 61.54% (9.0)<br><img src='icons/Holy Freeze.png' alt='Holy Freeze' width='20' height='20'> Holy Freeze 61.54% (8.0)<br><img src='icons/Vengeance.png' alt='Vengeance' width='20' height='20'> Vengeance 53.85% (7.0)<br><img src='icons/Vigor.png' alt='Vigor' width='20' height='20'> Vigor 53.85% (7.0)<br><img src='icons/Absolution.png' alt='Absolution' width='20' height='20'> Absolution 53.85% (7.0)<br><img src='icons/Defiance.png' alt='Defiance' width='20' height='20'> Defiance 53.85% (7.0)<br><img src='icons/Cleansing.png' alt='Cleansing' width='20' height='20'> Cleansing 53.85% (7.0)<br><img src='icons/Precision.png' alt='Precision' width='20' height='20'> Precision 46.15% (6.0)<br><img src='icons/Redemption.png' alt='Redemption' width='20' height='20'> Redemption 38.46% (5.0)<br><img src='icons/Conviction.png' alt='Conviction' width='20' height='20'> Conviction 23.08% (3.0)<br><img src='icons/Holy Shock.png' alt='Holy Shock' width='20' height='20'> Holy Shock 23.08% (3.0)<br><img src='icons/Salvation.png' alt='Salvation' width='20' height='20'> Salvation 7.69% (1.0)<br><img src='icons/Dashing Strike.png' alt='Dashing Strike' width='20' height='20'> Dashing Strike 0.0% (0.0)<br><img src='icons/Resist Cold.png' alt='Resist Cold' width='20' height='20'> Resist Cold 0.0% (0.0)<br><img src='icons/Blessed Aim.png' alt='Blessed Aim' width='20' height='20'> Blessed Aim 0.0% (0.0)<br><img src='icons/Concentration.png' alt='Concentration' width='20' height='20'> Concentration 0.0% (0.0)<br><img src='icons/Resist Lightning.png' alt='Resist Lightning' width='20' height='20'> Resist Lightning 0.0% (0.0)<br><img src='icons/Resist Fire.png' alt='Resist Fire' width='20' height='20'> Resist Fire 0.0% (0.0)<br><img src='icons/Fanaticism.png' alt='Fanaticism' width='20' height='20'> Fanaticism 0.0% (0.0)<br><img src='icons/Fire Bolt.png' alt='Fire Bolt' width='20' height='20'> Fire Bolt 0.0% (0.0)<br><img src='icons/Warmth.png' alt='Warmth' width='20' height='20'> Warmth 0.0% (0.0)<br><img src='icons/Fire Ball.png' alt='Fire Ball' width='20' height='20'> Fire Ball 0.0% (0.0)<br><img src='icons/Enflame.png' alt='Enflame' width='20' height='20'> Enflame 0.0% (0.0)<br><img src='icons/Telekinesis.png' alt='Telekinesis' width='20' height='20'> Telekinesis 0.0% (0.0)<br><img src='icons/Teleport.png' alt='Teleport' width='20' height='20'> Teleport 0.0% (0.0)<br><img src='icons/Ice Bolt.png' alt='Ice Bolt' width='20' height='20'> Ice Bolt 0.0% (0.0)<br><img src='icons/Frost Nova.png' alt='Frost Nova' width='20' height='20'> Frost Nova 0.0% (0.0)<br><img src='icons/Ice Blast.png' alt='Ice Blast' width='20' height='20'> Ice Blast 0.0% (0.0)<br><img src='icons/Charged Bolt.png' alt='Charged Bolt' width='20' height='20'> Charged Bolt 0.0% (0.0)<br><img src='icons/Static Field.png' alt='Static Field' width='20' height='20'> Static Field 0.0% (0.0)<br><img src='icons/Lightning Surge.png' alt='Lightning Surge' width='20' height='20'> Lightning Surge 0.0% (0.0)<br><img src='icons/Chain Lightning.png' alt='Chain Lightning' width='20' height='20'> Chain Lightning 0.0% (0.0)<br><img src='icons/Energy Shield.png' alt='Energy Shield' width='20' height='20'> Energy Shield 0.0% (0.0)<br><img src='icons/Frigerate.png' alt='Frigerate' width='20' height='20'> Frigerate 0.0% (0.0)<br><img src='icons/Shiver Armor.png' alt='Shiver Armor' width='20' height='20'> Shiver Armor 0.0% (0.0)<br><img src='icons/Cold Mastery.png' alt='Cold Mastery' width='20' height='20'> Cold Mastery 0.0% (0.0)<br><img src='icons/Raven.png' alt='Raven' width='20' height='20'> Raven 0.0% (0.0)<br><img src='icons/Poison Creeper.png' alt='Poison Creeper' width='20' height='20'> Poison Creeper 0.0% (0.0)<br><img src='icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' width='20' height='20'> Summon Spirit Wolf 0.0% (0.0)<br><img src='icons/Carrion Vine.png' alt='Carrion Vine' width='20' height='20'> Carrion Vine 0.0% (0.0)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 0.0% (0.0)<br><img src='icons/Firestorm.png' alt='Firestorm' width='20' height='20'> Firestorm 0.0% (0.0)<br><img src='icons/Molten Boulder.png' alt='Molten Boulder' width='20' height='20'> Molten Boulder 0.0% (0.0)<br><img src='icons/Flame Dash.png' alt='Flame Dash' width='20' height='20'> Flame Dash 0.0% (0.0)<br><img src='icons/Meditation.png' alt='Meditation' width='20' height='20'> Meditation 0.0% (0.0)<br><img src='icons/Fire Blast.png' alt='Fire Blast' width='20' height='20'> Fire Blast 0.0% (0.0)<br><img src='icons/Blade Throw.png' alt='Blade Throw' width='20' height='20'> Blade Throw 0.0% (0.0)<br><img src='icons/Wake of Fire.png' alt='Wake of Fire' width='20' height='20'> Wake of Fire 0.0% (0.0)<br><img src='icons/Blade Fury.png' alt='Blade Fury' width='20' height='20'> Blade Fury 0.0% (0.0)<br><img src='icons/Wake of Inferno.png' alt='Wake of Inferno' width='20' height='20'> Wake of Inferno 0.0% (0.0)<br><img src='icons/Blade Shield.png' alt='Blade Shield' width='20' height='20'> Blade Shield 0.0% (0.0)<br><img src='icons/Claw Mastery.png' alt='Claw Mastery' width='20' height='20'> Claw Mastery 0.0% (0.0)<br><img src='icons/Burst of Speed.png' alt='Burst of Speed' width='20' height='20'> Burst of Speed 0.0% (0.0)<br><img src='icons/Fade.png' alt='Fade' width='20' height='20'> Fade 0.0% (0.0)<br><img src='icons/Venom.png' alt='Venom' width='20' height='20'> Venom 0.0% (0.0)</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>Most Common Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Belt</strong>: <br>Sigon's Wrap 15.38%<br>String of Ears 7.69%<br>Fiendra Buckle 7.69%<br>Skull Lash 7.69%<br>Grim Winding 7.69%<br><strong>Ring</strong>: <br>Angelic Halo 38.46%<br>Ring of the Apprentice 15.38%<br>Lizard's Ring of the Apprentice 7.69%<br>Beryl Ring of the Apprentice 7.69%<br>Death Circle 7.69%<br><strong>Amulet</strong>: <br>Angelic Wings 23.08%<br>Crimson Amulet of the Apprentice 7.69%<br>Monk's Amulet of Protection 7.69%<br>Shimmering Amulet of the Apprentice 7.69%<br>Cobalt Amulet of the Mind 7.69%<br><strong>Left hand</strong>: <br>Spirit 38.46%<br>Gnarled Staff of Teleportation 23.08%<br>Rancid Gas Potion 7.69%<br>Ember Battle Staff of Teleportation 7.69%<br>Dire Bane 7.69%<br><strong>Offhand</strong>: <br>Ancients' Pledge 30.77%<br>Heraldic Shield 23.08%<br>Spirit 15.38%<br>Raven Mark 7.69%<br>Buckler 7.69%<br><strong>Body</strong>: <br>Angelic Mantle 15.38%<br>Stealth 15.38%<br>Venom Ward 7.69%<br>Gothic Plate 7.69%<br>Rockfleece 7.69%<br><strong>Boots</strong>: <br>Treads of Cthon 7.69%<br>Rite of Passage 7.69%<br>Corpse Slippers 7.69%<br>Blood Spur 7.69%<br>Death Brogues 7.69%<br><strong>Gloves</strong>: <br>Chance Guards 15.38%<br>Sigon's Gage 15.38%<br>Frostburn 7.69%<br>Corpse Clutches 7.69%<br>Corpse Fist 7.69%<br><strong>Helmet</strong>: <br>Lore 30.77%<br>Peasant Crown 15.38%<br>Cruel Hood 7.69%<br>Imp Cowl 7.69%<br>Berserker's Headgear 7.69%</div>
+            </div>
+        
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Belt</strong>: String of Ears 7.69%, Fiendra Buckle 7.69%, Skull Lash 7.69%, Grim Winding 7.69%, Death's Guard 7.69%, Sigon's Wrap 15.38%, Snakecord 7.69%, Spirit Clasp 7.69%, Corpse Buckle 7.69%, Ocher Belt of Might 7.69%<br><strong>Ring</strong>: Lizard's Ring of the Apprentice 7.69%, Beryl Ring of the Apprentice 7.69%, Death Circle 7.69%, Bitter Spiral 7.69%, Rune Eye 7.69%, Beast Knot 7.69%, Ring of Energy 7.69%, Beryl Ring 7.69%, Angelic Halo 38.46%, Entropy Loop 7.69%, Bitter Turn 7.69%, Blood Band 7.69%, Chaos Turn 7.69%, Bone Turn 7.69%, Ring of Strength 7.69%, Doom Gyre 7.69%, Ring of the Apprentice 15.38%<br><strong>Amulet</strong>: Crimson Amulet of the Apprentice 7.69%, Monk's Amulet of Protection 7.69%, Shimmering Amulet of the Apprentice 7.69%, Cobalt Amulet of the Mind 7.69%, Angelic Wings 23.08%, Viper Collar 7.69%, Lion Branded Amulet 7.69%, Vidala's Snare 7.69%, Skull Noose 7.69%<br><strong>Left hand</strong>: Rancid Gas Potion 7.69%, Spirit 38.46%, Ember Battle Staff of Teleportation 7.69%, Gnarled Staff of Teleportation 23.08%, Dire Bane 7.69%, Angelic Sickle 7.69%, Raven Mangler 7.69%, Steel 7.69%, War Staff of Teleportation 7.69%, Carrion Weaver 7.69%, Civerb's Cudgel 7.69%, Horadric Staff 7.69%, Crystal Sword 7.69%, Triumphant Scepter 7.69%<br><strong>Offhand</strong>: Ancients' Pledge 30.77%, Spirit 15.38%, Heraldic Shield 23.08%, Raven Mark 7.69%, Buckler 7.69%, Aerin Shield 7.69%, Swordback Hold 7.69%, Targe 7.69%<br><strong>Body</strong>: Venom Ward 7.69%, Gothic Plate 7.69%, Rockfleece 7.69%, Fiendra Flange 7.69%, Angelic Mantle 15.38%, Stealth 15.38%, Berserker's Hauberk 7.69%, Lizard's Breast Plate of Balance 7.69%, Quilted Armor 7.69%<br><strong>Boots</strong>: Treads of Cthon 7.69%, Rite of Passage 7.69%, Corpse Slippers 7.69%, Blood Spur 7.69%, Death Brogues 7.69%, Sigon's Sabot 7.69%, Chain Boots of Dexterity 7.69%, Raven Stalker 7.69%, Cow King's Hooves 7.69%, Imp Brogues 7.69%, Bramble Nails 7.69%<br><strong>Gloves</strong>: Frostburn 7.69%, Chance Guards 15.38%, Corpse Clutches 7.69%, Corpse Fist 7.69%, Sigon's Gage 15.38%, Sturdy Heavy Gloves 7.69%, Storm Touch 7.69%, Dire Knuckle 7.69%, Demon Finger 7.69%, The Hand of Broc 7.69%<br><strong>Helmet</strong>: Peasant Crown 15.38%, Cruel Hood 7.69%, Imp Cowl 7.69%, Lore 30.77%, Berserker's Headgear 7.69%, Beast Mask 7.69%, Pain Circlet 7.69%</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>13 Characters in this cluster:</strong></button>
+            <div class="content">
+                
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=FohXmulder">FohXmulder</a></div>
+                    <div>57</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Bolt:20, Fist of the Heavens:20, Sacrifice:1, Smite:1, Zeal:1, Charge:1, Vengeance:1, Blessed Hammer:1, Absolution:1, Holy Shield:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Holy Shock:1, Sanctuary:1, Conviction:1, Prayer:1, Defiance:1, Cleansing:1, Vigor:1, Redemption:1</p>
+            <p><strong>Equipment:</strong> belt: String of Ears x1, ring: Lizard's Ring of the Apprentice x1, ring: Beryl Ring of the Apprentice x1, amulet: Crimson Amulet of the Apprentice x1, Left hand: Rancid Gas Potion x1, Left hand: Spirit x1, Offhand: Ancients' Pledge x1, Offhand: Spirit x1, body: Venom Ward x1, boots: Treads of Cthon x1, gloves: Frostburn x1, helmet: Peasant Crown x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Gruthan">Gruthan</a></div>
+                    <div>51</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Fist of the Heavens:20, Holy Bolt:13, Holy Fire:12, Zeal:4, Sacrifice:1, Smite:1, Vengeance:1, Blessed Hammer:1, Absolution:1, Might:1, Holy Freeze:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Wapplechar">Wapplechar</a></div>
+                    <div>43</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Bolt:20, Sanctuary:17, Holy Shield:2, Smite:1, Charge:1, Blessed Hammer:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Salvation:1</p>
+            <p><strong>Equipment:</strong> body: Gothic Plate x1, ring: Death Circle x1, ring: Bitter Spiral x1, amulet: Monk's Amulet of Protection x1, Left hand: Ember Battle Staff of Teleportation x1, Left hand: Spirit x1, helmet: Cruel Hood x1, belt: Fiendra Buckle x1, gloves: Chance Guards x1, boots: Rite of Passage x1, Offhand: Heraldic Shield x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=RedTaxi">RedTaxi</a></div>
+                    <div>42</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Fist of the Heavens:12, Holy Bolt:9, Sacrifice:1, Smite:1, Zeal:1, Charge:1, Vengeance:1, Blessed Hammer:1, Absolution:1, Holy Shield:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Holy Shock:1, Sanctuary:1, Conviction:1, Prayer:1, Defiance:1, Cleansing:1, Vigor:1, Redemption:1</p>
+            <p><strong>Equipment:</strong> helmet: Peasant Crown x1, amulet: Shimmering Amulet of the Apprentice x1, belt: Skull Lash x1, boots: Corpse Slippers x1, gloves: Corpse Clutches x1, ring: Rune Eye x1, ring: Beast Knot x1, body: Rockfleece x1, Left hand: Gnarled Staff of Teleportation x1, Left hand: Spirit x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=ForgottenHeaven">ForgottenHeaven</a></div>
+                    <div>42</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Bolt:20, Fist of the Heavens:13, Sacrifice:1, Smite:1, Zeal:1, Charge:1, Vengeance:1, Blessed Hammer:1, Absolution:1, Holy Shield:1, Might:1, Prayer:1</p>
+            <p><strong>Equipment:</strong> ring: Ring of Energy x1, ring: Beryl Ring x1, amulet: Cobalt Amulet of the Mind x1, boots: Blood Spur x1, body: Fiendra Flange x1, gloves: Corpse Fist x1, helmet: Imp Cowl x1, belt: Grim Winding x1, Left hand: Dire Bane x1, Offhand: Raven Mark x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Redlife">Redlife</a></div>
+                    <div>36</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Bolt:8, Fist of the Heavens:7, Sacrifice:1, Smite:1, Zeal:1, Charge:1, Vengeance:1, Blessed Hammer:1, Absolution:1, Holy Shield:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Holy Shock:1, Sanctuary:1, Conviction:1, Prayer:1, Defiance:1, Cleansing:1, Vigor:1, Redemption:1</p>
+            <p><strong>Equipment:</strong> belt: Death's Guard x1, body: Angelic Mantle x1, gloves: Chance Guards x1, helmet: Lore x1, boots: Death Brogues x1, ring: Angelic Halo x2, amulet: Angelic Wings x1, Left hand: Gnarled Staff of Teleportation x1, Left hand: Angelic Sickle x1, Offhand: Ancients' Pledge x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=ShoK-Porakone">ShoK-Porakone</a></div>
+                    <div>35</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Bolt:20, Holy Fire:9, Smite:1, Charge:1, Blessed Hammer:1, Holy Shield:1, Might:1, Precision:1, Prayer:1, Defiance:1, Cleansing:1, Vigor:1</p>
+            <p><strong>Equipment:</strong> Left hand: Raven Mangler x1, Left hand: Spirit x1, boots: Sigon's Sabot x1, gloves: Sigon's Gage x1, ring: Angelic Halo x1, ring: Entropy Loop x1, amulet: Angelic Wings x1, belt: Sigon's Wrap x1, body: Angelic Mantle x1, helmet: Lore x1, Offhand: Ancients' Pledge x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Freeisgone">Freeisgone</a></div>
+                    <div>32</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Bolt:20, Fist of the Heavens:2, Sacrifice:1, Smite:1, Zeal:1, Charge:1, Vengeance:1, Blessed Hammer:1, Absolution:1, Holy Shield:1, Prayer:1, Defiance:1, Cleansing:1, Vigor:1, Redemption:1</p>
+            <p><strong>Equipment:</strong> gloves: Sturdy Heavy Gloves x1, boots: Chain Boots of Dexterity x1, ring: Bitter Turn x1, ring: Blood Band x1, belt: Snakecord x1, body: Stealth x1, helmet: Lore x1, amulet: Viper Collar x1, Left hand: Gnarled Staff of Teleportation x1, Left hand: Steel x1, Offhand: Ancients' Pledge x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=hc-pal">hc-pal</a></div>
+                    <div>32</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Bolt:20, Fist of the Heavens:2, Sacrifice:1, Smite:1, Zeal:1, Charge:1, Vengeance:1, Blessed Hammer:1, Absolution:1, Holy Shield:1, Prayer:1, Defiance:1, Cleansing:1, Vigor:1, Redemption:1</p>
+            <p><strong>Equipment:</strong> boots: Raven Stalker x1, belt: Spirit Clasp x1, gloves: Storm Touch x1, body: Stealth x1, ring: Chaos Turn x1, ring: Bone Turn x1, amulet: Lion Branded Amulet x1, helmet: Lore x1, Left hand: War Staff of Teleportation x1, Left hand: Spirit x1, Offhand: Heraldic Shield x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=krippp">krippp</a></div>
+                    <div>22</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Bolt:17, Smite:1, Charge:1, Blessed Hammer:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Prayer:1</p>
+            <p><strong>Equipment:</strong> gloves: Dire Knuckle x1, Left hand: Carrion Weaver x1, Offhand: Heraldic Shield x1, Offhand: Buckler x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Sir_Vivor">Sir_Vivor</a></div>
+                    <div>21</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Bolt:10, Smite:1, Charge:1, Blessed Hammer:1, Might:1, Holy Fire:1, Holy Freeze:1, Prayer:1, Defiance:1, Cleansing:1, Vigor:1</p>
+            <p><strong>Equipment:</strong> boots: Cow King's Hooves x1, ring: Angelic Halo x2, amulet: Angelic Wings x1, gloves: Sigon's Gage x1, belt: Sigon's Wrap x1, helmet: Berserker's Headgear x1, body: Berserker's Hauberk x1, Left hand: Civerb's Cudgel x1, Offhand: Aerin Shield x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Pla_Pla">Pla_Pla</a></div>
+                    <div>20</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Bolt:11, Sacrifice:1, Smite:1, Charge:1, Might:1, Holy Fire:1</p>
+            <p><strong>Equipment:</strong> body: Lizard's Breast Plate of Balance x1, boots: Imp Brogues x1, ring: Ring of Strength x1, ring: Doom Gyre x1, amulet: Vidala's Snare x1, gloves: Demon Finger x1, helmet: Beast Mask x1, belt: Corpse Buckle x1, Left hand: Horadric Staff x1, Left hand: Crystal Sword x1, Offhand: Swordback Hold x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=srt_abstwo">srt_abstwo</a></div>
+                    <div>20</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Bolt:15, Sacrifice:1, Smite:1, Charge:1, Might:1, Holy Fire:1, Holy Freeze:1</p>
+            <p><strong>Equipment:</strong> helmet: Pain Circlet x1, body: Quilted Armor x1, ring: Ring of the Apprentice x2, gloves: The Hand of Broc x1, amulet: Skull Noose x1, boots: Bramble Nails x1, belt: Ocher Belt of Might x1, Left hand: Triumphant Scepter x1, Offhand: Targe x1</p>
+        
+        </div>
+        <hr>
+        
+        <h2>4.55%  of Paladin's Main Skills:<br><img src='icons/Dashing Strike.png' alt='Dashing Strike' width='20' height='20'> Dashing Strike 100.00% (120)<br><img src='icons/Cleansing.png' alt='Cleansing' width='20' height='20'> Cleansing 100.00% (120)<br><img src='icons/Sanctuary.png' alt='Sanctuary' width='20' height='20'> Sanctuary 100.00% (120)</h2>
+        <p><strong>Other Skills:<br></strong> <img src='icons/Holy Shield.png' alt='Holy Shield' width='20' height='20'> Holy Shield 100.0% (59.0)<br><img src='icons/Holy Bolt.png' alt='Holy Bolt' width='20' height='20'> Holy Bolt 100.0% (33.0)<br><img src='icons/Holy Freeze.png' alt='Holy Freeze' width='20' height='20'> Holy Freeze 100.0% (19.0)<br><img src='icons/Defiance.png' alt='Defiance' width='20' height='20'> Defiance 66.67% (11.0)<br><img src='icons/Smite.png' alt='Smite' width='20' height='20'> Smite 100.0% (6.0)<br><img src='icons/Charge.png' alt='Charge' width='20' height='20'> Charge 100.0% (6.0)</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>All Skills</strong></button>
+            <div class="content">
+                <div><img src='icons/Cleansing.png' alt='Cleansing' width='20' height='20'> Cleansing 100.0% (120.0)<br><img src='icons/Dashing Strike.png' alt='Dashing Strike' width='20' height='20'> Dashing Strike 100.0% (120.0)<br><img src='icons/Sanctuary.png' alt='Sanctuary' width='20' height='20'> Sanctuary 100.0% (120.0)<br><img src='icons/Holy Shield.png' alt='Holy Shield' width='20' height='20'> Holy Shield 100.0% (59.0)<br><img src='icons/Holy Bolt.png' alt='Holy Bolt' width='20' height='20'> Holy Bolt 100.0% (33.0)<br><img src='icons/Holy Freeze.png' alt='Holy Freeze' width='20' height='20'> Holy Freeze 100.0% (19.0)<br><img src='icons/Defiance.png' alt='Defiance' width='20' height='20'> Defiance 66.67% (11.0)<br><img src='icons/Smite.png' alt='Smite' width='20' height='20'> Smite 100.0% (6.0)<br><img src='icons/Charge.png' alt='Charge' width='20' height='20'> Charge 100.0% (6.0)<br><img src='icons/Might.png' alt='Might' width='20' height='20'> Might 100.0% (6.0)<br><img src='icons/Prayer.png' alt='Prayer' width='20' height='20'> Prayer 100.0% (6.0)<br><img src='icons/Holy Fire.png' alt='Holy Fire' width='20' height='20'> Holy Fire 100.0% (6.0)<br><img src='icons/Precision.png' alt='Precision' width='20' height='20'> Precision 100.0% (6.0)<br><img src='icons/Blessed Hammer.png' alt='Blessed Hammer' width='20' height='20'> Blessed Hammer 100.0% (6.0)<br><img src='icons/Vigor.png' alt='Vigor' width='20' height='20'> Vigor 50.0% (3.0)<br><img src='icons/Redemption.png' alt='Redemption' width='20' height='20'> Redemption 50.0% (3.0)<br><img src='icons/Salvation.png' alt='Salvation' width='20' height='20'> Salvation 16.67% (1.0)<br><img src='icons/Resist Cold.png' alt='Resist Cold' width='20' height='20'> Resist Cold 16.67% (1.0)<br><img src='icons/Resist Fire.png' alt='Resist Fire' width='20' height='20'> Resist Fire 16.67% (1.0)<br><img src='icons/Zeal.png' alt='Zeal' width='20' height='20'> Zeal 16.67% (1.0)<br><img src='icons/Sacrifice.png' alt='Sacrifice' width='20' height='20'> Sacrifice 16.67% (1.0)<br><img src='icons/Conviction.png' alt='Conviction' width='20' height='20'> Conviction 16.67% (1.0)<br><img src='icons/Vengeance.png' alt='Vengeance' width='20' height='20'> Vengeance 0.0% (0.0)<br><img src='icons/Holy Shock.png' alt='Holy Shock' width='20' height='20'> Holy Shock 0.0% (0.0)<br><img src='icons/Absolution.png' alt='Absolution' width='20' height='20'> Absolution 0.0% (0.0)<br><img src='icons/Fist of the Heavens.png' alt='Fist of the Heavens' width='20' height='20'> Fist of the Heavens 0.0% (0.0)<br><img src='icons/Blessed Aim.png' alt='Blessed Aim' width='20' height='20'> Blessed Aim 0.0% (0.0)<br><img src='icons/Concentration.png' alt='Concentration' width='20' height='20'> Concentration 0.0% (0.0)<br><img src='icons/Resist Lightning.png' alt='Resist Lightning' width='20' height='20'> Resist Lightning 0.0% (0.0)<br><img src='icons/Fanaticism.png' alt='Fanaticism' width='20' height='20'> Fanaticism 0.0% (0.0)<br><img src='icons/Fire Bolt.png' alt='Fire Bolt' width='20' height='20'> Fire Bolt 0.0% (0.0)<br><img src='icons/Warmth.png' alt='Warmth' width='20' height='20'> Warmth 0.0% (0.0)<br><img src='icons/Fire Ball.png' alt='Fire Ball' width='20' height='20'> Fire Ball 0.0% (0.0)<br><img src='icons/Enflame.png' alt='Enflame' width='20' height='20'> Enflame 0.0% (0.0)<br><img src='icons/Telekinesis.png' alt='Telekinesis' width='20' height='20'> Telekinesis 0.0% (0.0)<br><img src='icons/Teleport.png' alt='Teleport' width='20' height='20'> Teleport 0.0% (0.0)<br><img src='icons/Ice Bolt.png' alt='Ice Bolt' width='20' height='20'> Ice Bolt 0.0% (0.0)<br><img src='icons/Frost Nova.png' alt='Frost Nova' width='20' height='20'> Frost Nova 0.0% (0.0)<br><img src='icons/Ice Blast.png' alt='Ice Blast' width='20' height='20'> Ice Blast 0.0% (0.0)<br><img src='icons/Charged Bolt.png' alt='Charged Bolt' width='20' height='20'> Charged Bolt 0.0% (0.0)<br><img src='icons/Static Field.png' alt='Static Field' width='20' height='20'> Static Field 0.0% (0.0)<br><img src='icons/Lightning Surge.png' alt='Lightning Surge' width='20' height='20'> Lightning Surge 0.0% (0.0)<br><img src='icons/Chain Lightning.png' alt='Chain Lightning' width='20' height='20'> Chain Lightning 0.0% (0.0)<br><img src='icons/Energy Shield.png' alt='Energy Shield' width='20' height='20'> Energy Shield 0.0% (0.0)<br><img src='icons/Frigerate.png' alt='Frigerate' width='20' height='20'> Frigerate 0.0% (0.0)<br><img src='icons/Shiver Armor.png' alt='Shiver Armor' width='20' height='20'> Shiver Armor 0.0% (0.0)<br><img src='icons/Cold Mastery.png' alt='Cold Mastery' width='20' height='20'> Cold Mastery 0.0% (0.0)<br><img src='icons/Raven.png' alt='Raven' width='20' height='20'> Raven 0.0% (0.0)<br><img src='icons/Poison Creeper.png' alt='Poison Creeper' width='20' height='20'> Poison Creeper 0.0% (0.0)<br><img src='icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' width='20' height='20'> Summon Spirit Wolf 0.0% (0.0)<br><img src='icons/Carrion Vine.png' alt='Carrion Vine' width='20' height='20'> Carrion Vine 0.0% (0.0)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 0.0% (0.0)<br><img src='icons/Firestorm.png' alt='Firestorm' width='20' height='20'> Firestorm 0.0% (0.0)<br><img src='icons/Molten Boulder.png' alt='Molten Boulder' width='20' height='20'> Molten Boulder 0.0% (0.0)<br><img src='icons/Flame Dash.png' alt='Flame Dash' width='20' height='20'> Flame Dash 0.0% (0.0)<br><img src='icons/Meditation.png' alt='Meditation' width='20' height='20'> Meditation 0.0% (0.0)<br><img src='icons/Fire Blast.png' alt='Fire Blast' width='20' height='20'> Fire Blast 0.0% (0.0)<br><img src='icons/Blade Throw.png' alt='Blade Throw' width='20' height='20'> Blade Throw 0.0% (0.0)<br><img src='icons/Wake of Fire.png' alt='Wake of Fire' width='20' height='20'> Wake of Fire 0.0% (0.0)<br><img src='icons/Blade Fury.png' alt='Blade Fury' width='20' height='20'> Blade Fury 0.0% (0.0)<br><img src='icons/Wake of Inferno.png' alt='Wake of Inferno' width='20' height='20'> Wake of Inferno 0.0% (0.0)<br><img src='icons/Blade Shield.png' alt='Blade Shield' width='20' height='20'> Blade Shield 0.0% (0.0)<br><img src='icons/Claw Mastery.png' alt='Claw Mastery' width='20' height='20'> Claw Mastery 0.0% (0.0)<br><img src='icons/Burst of Speed.png' alt='Burst of Speed' width='20' height='20'> Burst of Speed 0.0% (0.0)<br><img src='icons/Fade.png' alt='Fade' width='20' height='20'> Fade 0.0% (0.0)<br><img src='icons/Venom.png' alt='Venom' width='20' height='20'> Venom 0.0% (0.0)</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>Most Common Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Gloves</strong>: <br>Chance Guards 33.33%<br>Beast Fist 16.67%<br>Sander's Taboo 16.67%<br>Rune Clutches 16.67%<br><strong>Belt</strong>: <br>Death Fringe 16.67%<br>Arachnid Mesh 16.67%<br>Credendum 16.67%<br>Snowclash 16.67%<br>Tal Rasha's Fine-Spun Cloth 16.67%<br><strong>Ring</strong>: <br>Raven Frost 50.00%<br>Dwarf Star 33.33%<br>Wraithra Finger 16.67%<br>Bul-Kathos' Wedding Band 16.67%<br>Wraithra Coil 16.67%<br><strong>Body</strong>: <br>Tal Rasha's Guardianship 16.67%<br>Chains of Honor 16.67%<br>Guardian Angel 16.67%<br>Stealth 16.67%<br>Embossed Plate 16.67%<br><strong>Boots</strong>: <br>Dire Blazer 16.67%<br>Dire Brogues 16.67%<br>Tearhaunch 16.67%<br>Gale Brogues 16.67%<br>Treads of Cthon 16.67%<br><strong>Amulet</strong>: <br>Marshal's Amulet 50.00%<br>Mara's Kaleidoscope 16.67%<br>Marshal's Amulet of Regrowth 16.67%<br><strong>Helmet</strong>: <br>Lore 33.33%<br>Jeweler's Tiara of Precision 16.67%<br>Harlequin Crest 16.67%<br>Spirit Cowl 16.67%<br><strong>Left hand</strong>: <br>Spirit 50.00%<br>Heaven's Light 33.33%<br>Naj's Puzzler 16.67%<br>Holy Thunder 16.67%<br>Civerb's Cudgel 16.67%<br><strong>Offhand</strong>: <br>Spirit 83.33%<br>Medusa's Gaze 16.67%<br>Herald of Zakarum 16.67%<br>Civerb's Ward 16.67%</div>
+            </div>
+        
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Gloves</strong>: Beast Fist 16.67%, Chance Guards 33.33%, Sander's Taboo 16.67%, Rune Clutches 16.67%<br><strong>Belt</strong>: Death Fringe 16.67%, Arachnid Mesh 16.67%, Credendum 16.67%, Snowclash 16.67%, Tal Rasha's Fine-Spun Cloth 16.67%<br><strong>Ring</strong>: Wraithra Finger 16.67%, Dwarf Star 33.33%, Bul-Kathos' Wedding Band 16.67%, Raven Frost 50.00%, Wraithra Coil 16.67%, Nagelring 16.67%, Manald Heal 16.67%<br><strong>Body</strong>: Tal Rasha's Guardianship 16.67%, Chains of Honor 16.67%, Guardian Angel 16.67%, Stealth 16.67%, Embossed Plate 16.67%<br><strong>Boots</strong>: Dire Blazer 16.67%, Dire Brogues 16.67%, Tearhaunch 16.67%, Gale Brogues 16.67%, Treads of Cthon 16.67%<br><strong>Amulet</strong>: Mara's Kaleidoscope 16.67%, Marshal's Amulet of Regrowth 16.67%, Marshal's Amulet 50.00%<br><strong>Helmet</strong>: Jeweler's Tiara of Precision 16.67%, Harlequin Crest 16.67%, Spirit Cowl 16.67%, Lore 33.33%<br><strong>Left hand</strong>: Naj's Puzzler 16.67%, Spirit 50.00%, Holy Thunder 16.67%, Heaven's Light 33.33%, Civerb's Cudgel 16.67%<br><strong>Offhand</strong>: Spirit 83.33%, Medusa's Gaze 16.67%, Herald of Zakarum 16.67%, Civerb's Ward 16.67%</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>6 Characters in this cluster:</strong></button>
+            <div class="content">
+                
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=when_reset">when_reset</a></div>
+                    <div>88</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Bolt:20, Dashing Strike:20, Sanctuary:20, Cleansing:20, Holy Shield:6, Sacrifice:1, Smite:1, Zeal:1, Charge:1, Blessed Hammer:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Prayer:1, Defiance:1, Vigor:1, Redemption:1</p>
+            <p><strong>Equipment:</strong> gloves: Beast Fist x1, belt: Death Fringe x1, ring: Wraithra Finger x1, ring: Dwarf Star x1, body: Tal Rasha's Guardianship x1, boots: Dire Blazer x1, amulet: Mara's Kaleidoscope x1, helmet: Jeweler's Tiara of Precision x1, Left hand: Naj's Puzzler x1, Left hand: Spirit x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=DropRunner">DropRunner</a></div>
+                    <div>86</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Shield:20, Dashing Strike:20, Sanctuary:20, Cleansing:20, Holy Bolt:6, Smite:1, Charge:1, Blessed Hammer:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Prayer:1, Defiance:1, Vigor:1, Redemption:1</p>
+            <p><strong>Equipment:</strong> ring: Bul-Kathos' Wedding Band x1, ring: Raven Frost x1, body: Chains of Honor x1, belt: Arachnid Mesh x1, boots: Dire Brogues x1, helmet: Harlequin Crest x1, gloves: Chance Guards x1, amulet: Marshal's Amulet of Regrowth x1, Left hand: Holy Thunder x1, Left hand: Heaven's Light x1, Offhand: Medusa's Gaze x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Kra">Kra</a></div>
+                    <div>86</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Shield:20, Dashing Strike:20, Sanctuary:20, Cleansing:20, Defiance:8, Smite:1, Holy Bolt:1, Charge:1, Blessed Hammer:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Prayer:1</p>
+            <p><strong>Equipment:</strong> amulet: Marshal's Amulet x1, belt: Credendum x1, ring: Raven Frost x1, ring: Dwarf Star x1, Offhand: Spirit x1, Offhand: Herald of Zakarum x1, gloves: Chance Guards x1, boots: Tearhaunch x1, body: Guardian Angel x1, helmet: Spirit Cowl x1, Left hand: Heaven's Light x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Butt_Plugg">Butt_Plugg</a></div>
+                    <div>78</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Dashing Strike:20, Sanctuary:20, Cleansing:20, Holy Shield:11, Holy Bolt:2, Smite:1, Charge:1, Blessed Hammer:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Prayer:1, Resist Fire:1, Defiance:1, Resist Cold:1, Vigor:1, Redemption:1</p>
+            <p><strong>Equipment:</strong> ring: Wraithra Coil x1, ring: Raven Frost x1, belt: Snowclash x1, gloves: Sander's Taboo x1, helmet: Lore x1, body: Stealth x1, boots: Gale Brogues x1, Left hand: Civerb's Cudgel x1, Left hand: Spirit x1, Offhand: Civerb's Ward x1, Offhand: Spirit x1, amulet: Marshal's Amulet x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=lilaura">lilaura</a></div>
+                    <div>75</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Dashing Strike:20, Sanctuary:20, Cleansing:20, Holy Freeze:14, Smite:1, Holy Bolt:1, Charge:1, Blessed Hammer:1, Holy Shield:1, Might:1, Holy Fire:1, Precision:1, Conviction:1, Prayer:1, Salvation:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Starso_Pal">Starso_Pal</a></div>
+                    <div>64</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Dashing Strike:20, Sanctuary:20, Cleansing:20, Holy Bolt:3, Smite:1, Charge:1, Blessed Hammer:1, Holy Shield:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Prayer:1</p>
+            <p><strong>Equipment:</strong> boots: Treads of Cthon x1, ring: Nagelring x1, ring: Manald Heal x1, helmet: Lore x1, amulet: Marshal's Amulet x1, gloves: Rune Clutches x1, belt: Tal Rasha's Fine-Spun Cloth x1, body: Embossed Plate x1, Left hand: Spirit x1, Offhand: Spirit x1</p>
+        
+        </div>
+        <hr>
+        
+        <h2>2.27%  of Paladin's Main Skills:<br><img src='icons/Salvation.png' alt='Salvation' width='20' height='20'> Salvation 100.00% (60)<br><img src='icons/Holy Shock.png' alt='Holy Shock' width='20' height='20'> Holy Shock 100.00% (60)<br><img src='icons/Charge.png' alt='Charge' width='20' height='20'> Charge 100.00% (29)</h2>
+        <p><strong>Other Skills:<br></strong> <img src='icons/Might.png' alt='Might' width='20' height='20'> Might 100.0% (22.0)<br><img src='icons/Zeal.png' alt='Zeal' width='20' height='20'> Zeal 66.67% (21.0)<br><img src='icons/Resist Lightning.png' alt='Resist Lightning' width='20' height='20'> Resist Lightning 66.67% (21.0)<br><img src='icons/Resist Fire.png' alt='Resist Fire' width='20' height='20'> Resist Fire 33.33% (20.0)<br><img src='icons/Holy Shield.png' alt='Holy Shield' width='20' height='20'> Holy Shield 100.0% (16.0)<br><img src='icons/Vigor.png' alt='Vigor' width='20' height='20'> Vigor 66.67% (4.0)</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>All Skills</strong></button>
+            <div class="content">
+                <div><img src='icons/Holy Shock.png' alt='Holy Shock' width='20' height='20'> Holy Shock 100.0% (60.0)<br><img src='icons/Salvation.png' alt='Salvation' width='20' height='20'> Salvation 100.0% (60.0)<br><img src='icons/Charge.png' alt='Charge' width='20' height='20'> Charge 100.0% (29.0)<br><img src='icons/Might.png' alt='Might' width='20' height='20'> Might 100.0% (22.0)<br><img src='icons/Resist Lightning.png' alt='Resist Lightning' width='20' height='20'> Resist Lightning 66.67% (21.0)<br><img src='icons/Zeal.png' alt='Zeal' width='20' height='20'> Zeal 66.67% (21.0)<br><img src='icons/Resist Fire.png' alt='Resist Fire' width='20' height='20'> Resist Fire 33.33% (20.0)<br><img src='icons/Holy Shield.png' alt='Holy Shield' width='20' height='20'> Holy Shield 100.0% (16.0)<br><img src='icons/Vigor.png' alt='Vigor' width='20' height='20'> Vigor 66.67% (4.0)<br><img src='icons/Smite.png' alt='Smite' width='20' height='20'> Smite 100.0% (3.0)<br><img src='icons/Holy Bolt.png' alt='Holy Bolt' width='20' height='20'> Holy Bolt 100.0% (3.0)<br><img src='icons/Holy Fire.png' alt='Holy Fire' width='20' height='20'> Holy Fire 100.0% (3.0)<br><img src='icons/Holy Freeze.png' alt='Holy Freeze' width='20' height='20'> Holy Freeze 100.0% (3.0)<br><img src='icons/Blessed Hammer.png' alt='Blessed Hammer' width='20' height='20'> Blessed Hammer 100.0% (3.0)<br><img src='icons/Sacrifice.png' alt='Sacrifice' width='20' height='20'> Sacrifice 66.67% (2.0)<br><img src='icons/Dashing Strike.png' alt='Dashing Strike' width='20' height='20'> Dashing Strike 66.67% (2.0)<br><img src='icons/Prayer.png' alt='Prayer' width='20' height='20'> Prayer 66.67% (2.0)<br><img src='icons/Defiance.png' alt='Defiance' width='20' height='20'> Defiance 66.67% (2.0)<br><img src='icons/Cleansing.png' alt='Cleansing' width='20' height='20'> Cleansing 66.67% (2.0)<br><img src='icons/Vengeance.png' alt='Vengeance' width='20' height='20'> Vengeance 33.33% (1.0)<br><img src='icons/Resist Cold.png' alt='Resist Cold' width='20' height='20'> Resist Cold 0.0% (0.0)<br><img src='icons/Absolution.png' alt='Absolution' width='20' height='20'> Absolution 0.0% (0.0)<br><img src='icons/Sanctuary.png' alt='Sanctuary' width='20' height='20'> Sanctuary 0.0% (0.0)<br><img src='icons/Conviction.png' alt='Conviction' width='20' height='20'> Conviction 0.0% (0.0)<br><img src='icons/Fist of the Heavens.png' alt='Fist of the Heavens' width='20' height='20'> Fist of the Heavens 0.0% (0.0)<br><img src='icons/Precision.png' alt='Precision' width='20' height='20'> Precision 0.0% (0.0)<br><img src='icons/Blessed Aim.png' alt='Blessed Aim' width='20' height='20'> Blessed Aim 0.0% (0.0)<br><img src='icons/Redemption.png' alt='Redemption' width='20' height='20'> Redemption 0.0% (0.0)<br><img src='icons/Concentration.png' alt='Concentration' width='20' height='20'> Concentration 0.0% (0.0)<br><img src='icons/Fanaticism.png' alt='Fanaticism' width='20' height='20'> Fanaticism 0.0% (0.0)<br><img src='icons/Fire Bolt.png' alt='Fire Bolt' width='20' height='20'> Fire Bolt 0.0% (0.0)<br><img src='icons/Warmth.png' alt='Warmth' width='20' height='20'> Warmth 0.0% (0.0)<br><img src='icons/Fire Ball.png' alt='Fire Ball' width='20' height='20'> Fire Ball 0.0% (0.0)<br><img src='icons/Enflame.png' alt='Enflame' width='20' height='20'> Enflame 0.0% (0.0)<br><img src='icons/Telekinesis.png' alt='Telekinesis' width='20' height='20'> Telekinesis 0.0% (0.0)<br><img src='icons/Teleport.png' alt='Teleport' width='20' height='20'> Teleport 0.0% (0.0)<br><img src='icons/Ice Bolt.png' alt='Ice Bolt' width='20' height='20'> Ice Bolt 0.0% (0.0)<br><img src='icons/Frost Nova.png' alt='Frost Nova' width='20' height='20'> Frost Nova 0.0% (0.0)<br><img src='icons/Ice Blast.png' alt='Ice Blast' width='20' height='20'> Ice Blast 0.0% (0.0)<br><img src='icons/Charged Bolt.png' alt='Charged Bolt' width='20' height='20'> Charged Bolt 0.0% (0.0)<br><img src='icons/Static Field.png' alt='Static Field' width='20' height='20'> Static Field 0.0% (0.0)<br><img src='icons/Lightning Surge.png' alt='Lightning Surge' width='20' height='20'> Lightning Surge 0.0% (0.0)<br><img src='icons/Chain Lightning.png' alt='Chain Lightning' width='20' height='20'> Chain Lightning 0.0% (0.0)<br><img src='icons/Energy Shield.png' alt='Energy Shield' width='20' height='20'> Energy Shield 0.0% (0.0)<br><img src='icons/Frigerate.png' alt='Frigerate' width='20' height='20'> Frigerate 0.0% (0.0)<br><img src='icons/Shiver Armor.png' alt='Shiver Armor' width='20' height='20'> Shiver Armor 0.0% (0.0)<br><img src='icons/Cold Mastery.png' alt='Cold Mastery' width='20' height='20'> Cold Mastery 0.0% (0.0)<br><img src='icons/Raven.png' alt='Raven' width='20' height='20'> Raven 0.0% (0.0)<br><img src='icons/Poison Creeper.png' alt='Poison Creeper' width='20' height='20'> Poison Creeper 0.0% (0.0)<br><img src='icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' width='20' height='20'> Summon Spirit Wolf 0.0% (0.0)<br><img src='icons/Carrion Vine.png' alt='Carrion Vine' width='20' height='20'> Carrion Vine 0.0% (0.0)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 0.0% (0.0)<br><img src='icons/Firestorm.png' alt='Firestorm' width='20' height='20'> Firestorm 0.0% (0.0)<br><img src='icons/Molten Boulder.png' alt='Molten Boulder' width='20' height='20'> Molten Boulder 0.0% (0.0)<br><img src='icons/Flame Dash.png' alt='Flame Dash' width='20' height='20'> Flame Dash 0.0% (0.0)<br><img src='icons/Meditation.png' alt='Meditation' width='20' height='20'> Meditation 0.0% (0.0)<br><img src='icons/Fire Blast.png' alt='Fire Blast' width='20' height='20'> Fire Blast 0.0% (0.0)<br><img src='icons/Blade Throw.png' alt='Blade Throw' width='20' height='20'> Blade Throw 0.0% (0.0)<br><img src='icons/Wake of Fire.png' alt='Wake of Fire' width='20' height='20'> Wake of Fire 0.0% (0.0)<br><img src='icons/Blade Fury.png' alt='Blade Fury' width='20' height='20'> Blade Fury 0.0% (0.0)<br><img src='icons/Wake of Inferno.png' alt='Wake of Inferno' width='20' height='20'> Wake of Inferno 0.0% (0.0)<br><img src='icons/Blade Shield.png' alt='Blade Shield' width='20' height='20'> Blade Shield 0.0% (0.0)<br><img src='icons/Claw Mastery.png' alt='Claw Mastery' width='20' height='20'> Claw Mastery 0.0% (0.0)<br><img src='icons/Burst of Speed.png' alt='Burst of Speed' width='20' height='20'> Burst of Speed 0.0% (0.0)<br><img src='icons/Fade.png' alt='Fade' width='20' height='20'> Fade 0.0% (0.0)<br><img src='icons/Venom.png' alt='Venom' width='20' height='20'> Venom 0.0% (0.0)</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>Most Common Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Ring</strong>: <br>Cathan's Seal 33.33%<br>Bronze Ring of Fortune 33.33%<br><strong>Helmet</strong>: <br>Gale Mask 33.33%<br><strong>Body</strong>: <br>Skin of the Vipermagi 33.33%<br><strong>Amulet</strong>: <br>Monk's Amulet of Luck 33.33%<br><strong>Boots</strong>: <br>Beast Spur 33.33%<br><strong>Belt</strong>: <br>Goldwrap 33.33%<br><strong>Gloves</strong>: <br>Chance Guards 33.33%<br><strong>Left hand</strong>: <br>Lightsabre 33.33%<br><strong>Offhand</strong>: <br>Spirit 33.33%</div>
+            </div>
+        
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Ring</strong>: Cathan's Seal 33.33%, Bronze Ring of Fortune 33.33%<br><strong>Helmet</strong>: Gale Mask 33.33%<br><strong>Body</strong>: Skin of the Vipermagi 33.33%<br><strong>Amulet</strong>: Monk's Amulet of Luck 33.33%<br><strong>Boots</strong>: Beast Spur 33.33%<br><strong>Belt</strong>: Goldwrap 33.33%<br><strong>Gloves</strong>: Chance Guards 33.33%<br><strong>Left hand</strong>: Lightsabre 33.33%<br><strong>Offhand</strong>: Spirit 33.33%</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>3 Characters in this cluster:</strong></button>
+            <div class="content">
+                
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=simholy">simholy</a></div>
+                    <div>91</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Shock:20, Resist Fire:20, Resist Lightning:20, Salvation:20, Charge:8, Sacrifice:1, Smite:1, Holy Bolt:1, Zeal:1, Blessed Hammer:1, Holy Shield:1, Dashing Strike:1, Might:1, Holy Fire:1, Holy Freeze:1, Prayer:1, Defiance:1, Cleansing:1, Vigor:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Deo_Mikar">Deo_Mikar</a></div>
+                    <div>83</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Charge:20, Might:20, Holy Shock:20, Salvation:20, Vigor:3, Smite:1, Holy Bolt:1, Blessed Hammer:1, Holy Shield:1, Dashing Strike:1, Holy Fire:1, Holy Freeze:1, Prayer:1, Defiance:1, Cleansing:1, Resist Lightning:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=SirBastian_HC">SirBastian_HC</a></div>
+                    <div>74</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Zeal:20, Holy Shock:20, Salvation:20, Holy Shield:14, Sacrifice:1, Smite:1, Holy Bolt:1, Charge:1, Vengeance:1, Blessed Hammer:1, Might:1, Holy Fire:1, Holy Freeze:1</p>
+            <p><strong>Equipment:</strong> ring: Cathan's Seal x1, ring: Bronze Ring of Fortune x1, helmet: Gale Mask x1, body: Skin of the Vipermagi x1, amulet: Monk's Amulet of Luck x1, boots: Beast Spur x1, belt: Goldwrap x1, gloves: Chance Guards x1, Left hand: Lightsabre x1, Offhand: Spirit x1</p>
+        
+        </div>
+        <hr>
+        
+            <h3>Top 5 Most Popular Hardcore Paladin Skills:</h3>
+        <ul>
+            
+            <li>Holy Bolt: 973.0</li>
+            
+            <li>Fist of the Heavens: 753.0</li>
+            
+            <li>Sanctuary: 642.0</li>
+            
+            <li>Holy Shield: 543.0</li>
+            
+            <li>Blessed Hammer: 441.0</li>
+            
+        </ul>
+
+        <h3>Bottom 5 Least Popular Hardcore Paladin Skills:</h3>
+        <ul>
+            
+            <li>Fire Bolt: 1.0</li>
+            
+            <li>Carrion Vine: 1.0</li>
+            
+            <li>Heart of Wolverine: 1.0</li>
+            
+            <li>Firestorm: 1.0</li>
+            
+            <li>Flame Dash: 1.0</li>
+            
+        </ul>
+        <!-- Embed the Plotly pie chart -->
+        <iframe src="hcPaladin-clusters_distribution_pie.html"></iframe>
+        <!-- Embed the Plotly scatter plot at the bottom -->
+        <iframe src="hcPaladin-clusters_with_avg_points.html"></iframe>
+        <button onclick="topFunction()" id="backToTopBtn" class="back-to-top">Top</button>
+        
+
+        <script>
+            var coll = document.getElementsByClassName("collapsible");
+            for (var i = 0; i < coll.length; i++) {
+                coll[i].addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var content = this.nextElementSibling;
+                    var openIcon = this.querySelector("img.icon[alt='Open']");
+                    var closeIcon = this.querySelector("img.icon[alt='Close']");
+
+                    if (content.style.display === "block") {
+                        content.style.display = "none";
+                        openIcon.classList.remove("hidden");
+                        closeIcon.classList.add("hidden");
+                    } else {
+                        content.style.display = "block";
+                        openIcon.classList.add("hidden");
+                        closeIcon.classList.remove("hidden");
+                    }
+                });
+            }
+        </script>
+
+        <script>
+            //Get the button
+            var backToTopBtn = document.getElementById("backToTopBtn");
+
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function() {scrollFunction()};
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    backToTopBtn.style.display = "block";
+                } else {
+                    backToTopBtn.style.display = "none";
+                }
+            }
+
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+                document.body.scrollTop = 0; // For Safari
+                document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+            }
+        </script>
+
+        <script>
+            function setActive(id) {
+                // Remove active class from both buttons
+                document.getElementById("SC").classList.remove("active");
+                document.getElementById("HC").classList.remove("active");
+                
+                // Add active class to the selected button
+                document.getElementById(id).classList.add("active");
+                
+                // Get the current URL
+                var currentUrl = window.location.href;
+                
+                // Determine the new URL based on the selected mode
+                var newUrl;
+                if (id === "SC") {
+                    if (currentUrl.includes('hc')) {
+                        newUrl = currentUrl.replace(/hc/gi, '');
+                    } else {
+                        newUrl = currentUrl;
+                    }
+                } else if (id === "HC") {
+                    if (!currentUrl.includes('hc')) {
+                        newUrl = currentUrl.replace(/(\w+)\.html$/, 'hc$1.html');
+                    } else {
+                        newUrl = currentUrl;
+                    }
+                }
+                
+                // Redirect to the new URL if it has changed
+                if (newUrl !== currentUrl) {
+                    window.location.href = newUrl;
+                }
+            }
+
+            // Set default active button based on the current URL
+            window.onload = function() {
+                if (window.location.href.includes('hc')) {
+                    setActive("HC");
+                } else {
+                    setActive("SC");
+                }
+            }
+        </script>
+
+
+
+
+    </body>
+    </html>
+    

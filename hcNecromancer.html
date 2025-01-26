@@ -1,0 +1,1752 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Necromancer Hardcore Analysis Report</title>
+        <style>
+            body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+            h1 { color: #333; }
+            h2 { color: #555; margin-top: 20px; clear: both; }
+            p { clear: both; }
+            .character-info { display: flex; margin-bottom: 10px; }
+            .character-info div { flex: 1; padding: 5px; }
+            .character-link { flex: 1; }
+        .collapsible {
+            background-color: #f1f1f1; /* Green background */
+            color: black; /* White text */
+            cursor: pointer;
+            padding: 10px; /* Increase padding */
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px; /* Increase font size */
+            border-radius: 5px; /* Rounded corners */
+            transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
+            display: flex;
+            align-items: center;
+        }
+        .collapsible img.icon {
+            margin-right: 10px; /* Spacing between icon and text */
+            width: 20px; /* Icon size */
+            height: 20px; /* Icon size */
+        }
+        .collapsible img.icon.hidden {
+            display: none; /* Hide by default */
+        }
+        .collapsible:hover {
+            background-color: #45a049; /* Darker green on hover */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Add shadow on hover */
+        }
+        .active, .collapsible:focus {
+            background-color: #45a049; /* Darker green when active or focused */
+        }
+            
+        .content {
+            padding: 0 18px;
+            display: none;
+            overflow: hidden;
+            background-color: #f9f9f9;
+            }
+        iframe {
+            width: 100%;
+            height: 600px; /* Adjust height as needed */
+            border: none;
+        }
+
+        .top-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px; /* Space between buttons and the rest of the page */
+        }
+        .top-button {
+            background-color: #f1f1f1; /* Green background */
+            color: black; /* White text */
+            cursor: pointer;
+            padding: 10px 15px; /* Adjust padding to fit side by side */
+            border: none;
+            text-align: center;
+            outline: none;
+            font-size: 16px; /* Adjust font size */
+            border-radius: 5px; /* Rounded corners */
+            transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
+            text-decoration: none; /* Remove underline */
+            flex: 1; /* Equal space for each button */
+            margin-right: 10px; /* Space between buttons */
+            height: 30px; /* Ensure height is adjusted based on content */
+        }
+        .top-button:last-child {
+            margin-right: 0; /* Remove right margin for the last button */
+        }
+        .top-button:hover {
+            background-color: #45a049; /* Darker green on hover */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Add shadow on hover */
+        }
+
+        .back-to-top {
+            display: none; /* Hidden by default */
+            position: fixed; /* Fixed/sticky position */
+            bottom: 20px; /* Place the button 20px from the bottom */
+            right: 30px; /* Place the button 30px from the right */
+            z-index: 99; /* Make sure it does not overlap */
+            border: none; /* Remove borders */
+            outline: none; /* Remove outline */
+            background-color: #4CAF50; /* Set background color */
+            color: white; /* Set text color */
+            cursor: pointer; /* Add a mouse pointer on hover */
+            padding: 15px; /* Some padding */
+            border-radius: 10px; /* Rounded corners */
+            font-size: 18px; /* Increase font size */
+        }
+        .back-to-top:hover {
+            background-color: #45a049; /* Darker background on hover */
+        }
+
+            .split-button {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px; /* Space between buttons and the rest of the page */
+        }
+        .split-button-option {
+            background-color: #4CAF50; /* Green background */
+            color: white; /* White text */
+            cursor: pointer;
+            padding: 10px 15px; /* Adjust padding */
+            border: none;
+            text-align: center;
+            outline: none;
+            font-size: 16px; /* Adjust font size */
+            border-radius: 0; /* No rounded corners */
+            transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
+            flex: 1; /* Equal space for each button */
+        }
+        .split-button-option:first-child {
+            border-top-left-radius: 5px; /* Rounded left corners */
+            border-bottom-left-radius: 5px; /* Rounded left corners */
+        }
+        .split-button-option:last-child {
+            border-top-right-radius: 5px; /* Rounded right corners */
+            border-bottom-right-radius: 5px; /* Rounded right corners */
+        }
+        .split-button-option:hover {
+            background-color: #45a049; /* Darker green on hover */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Add shadow on hover */
+        }
+        .split-button-option.active {
+            background-color: #2E7D32; /* Different color for active state */
+        }
+
+        </style>
+    </head>
+    <body>
+        <div class="top-buttons">
+            <a href="Home.html" class="top-button">Home</a>
+            <a href="Amazon.html" class="top-button">Amazon</a>
+            <a href="Assassin.html" class="top-button">Assassin</a>
+            <a href="Barbarian.html" class="top-button">Barbarian</a>
+            <a href="Druid.html" class="top-button">Druid</a>
+            <a href="Necromancer.html" class="top-button">Necromancer</a>
+            <a href="Paladin.html" class="top-button">Paladin</a>
+            <a href="Sorceress.html" class="top-button">Sorceress</a>
+            <div class="split-button">
+                <button id="SC" class="split-button-option" onclick="setActive('SC')">SC</button>
+                <button id="HC" class="split-button-option" onclick="setActive('HC')">HC</button>
+            </div>
+        </div>
+
+        <h1>Necromancer Hardcore Skill Distribution </h1>
+        <hr>
+        
+        <h2>32.30%  of Necromancer's Main Skills:<br><img src='icons/Hemorrhage.png' alt='Hemorrhage' width='20' height='20'> Hemorrhage 100.00% (1040)<br><img src='icons/Iron Maiden.png' alt='Iron Maiden' width='20' height='20'> Iron Maiden 100.00% (977)<br><img src='icons/Life Tap.png' alt='Life Tap' width='20' height='20'> Life Tap 100.00% (916)</h2>
+        <p><strong>Other Skills:<br></strong> <img src='icons/Weaken.png' alt='Weaken' width='20' height='20'> Weaken 98.08% (866.0)<br><img src='icons/Dim Vision.png' alt='Dim Vision' width='20' height='20'> Dim Vision 48.08% (144.0)<br><img src='icons/Convocation.png' alt='Convocation' width='20' height='20'> Convocation 73.08% (84.0)<br><img src='icons/Bone Armor.png' alt='Bone Armor' width='20' height='20'> Bone Armor 51.92% (58.0)<br><img src='icons/Summon Mastery.png' alt='Summon Mastery' width='20' height='20'> Summon Mastery 55.77% (51.0)<br><img src='icons/Revive.png' alt='Revive' width='20' height='20'> Revive 30.77% (44.0)</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>All Skills</strong></button>
+            <div class="content">
+                <div><img src='icons/Hemorrhage.png' alt='Hemorrhage' width='20' height='20'> Hemorrhage 100.0% (1040.0)<br><img src='icons/Iron Maiden.png' alt='Iron Maiden' width='20' height='20'> Iron Maiden 100.0% (977.0)<br><img src='icons/Life Tap.png' alt='Life Tap' width='20' height='20'> Life Tap 100.0% (917.0)<br><img src='icons/Weaken.png' alt='Weaken' width='20' height='20'> Weaken 98.08% (866.0)<br><img src='icons/Dim Vision.png' alt='Dim Vision' width='20' height='20'> Dim Vision 48.08% (144.0)<br><img src='icons/Convocation.png' alt='Convocation' width='20' height='20'> Convocation 73.08% (84.0)<br><img src='icons/Bone Armor.png' alt='Bone Armor' width='20' height='20'> Bone Armor 51.92% (58.0)<br><img src='icons/Summon Mastery.png' alt='Summon Mastery' width='20' height='20'> Summon Mastery 55.77% (51.0)<br><img src='icons/Revive.png' alt='Revive' width='20' height='20'> Revive 30.77% (44.0)<br><img src='icons/Decrepify.png' alt='Decrepify' width='20' height='20'> Decrepify 63.46% (42.0)<br><img src='icons/Clay Golem.png' alt='Clay Golem' width='20' height='20'> Clay Golem 75.0% (40.0)<br><img src='icons/Blood Golem.png' alt='Blood Golem' width='20' height='20'> Blood Golem 61.54% (40.0)<br><img src='icons/Raise Skeletal Mage.png' alt='Raise Skeletal Mage' width='20' height='20'> Raise Skeletal Mage 30.77% (16.0)<br><img src='icons/Raise Skeleton Warrior.png' alt='Raise Skeleton Warrior' width='20' height='20'> Raise Skeleton Warrior 30.77% (16.0)<br><img src='icons/Corpse Explosion.png' alt='Corpse Explosion' width='20' height='20'> Corpse Explosion 13.46% (7.0)<br><img src='icons/Bone Wall.png' alt='Bone Wall' width='20' height='20'> Bone Wall 5.77% (7.0)<br><img src='icons/Lower Resist.png' alt='Lower Resist' width='20' height='20'> Lower Resist 11.54% (6.0)<br><img src='icons/Amplify Damage.png' alt='Amplify Damage' width='20' height='20'> Amplify Damage 9.62% (5.0)<br><img src='icons/Iron Golem.png' alt='Iron Golem' width='20' height='20'> Iron Golem 9.62% (5.0)<br><img src='icons/Fire Golem.png' alt='Fire Golem' width='20' height='20'> Fire Golem 7.69% (4.0)<br><img src='icons/Deadly Poison.png' alt='Deadly Poison' width='20' height='20'> Deadly Poison 5.77% (3.0)<br><img src='icons/Desecrate.png' alt='Desecrate' width='20' height='20'> Desecrate 5.77% (3.0)<br><img src='icons/Teeth.png' alt='Teeth' width='20' height='20'> Teeth 1.92% (1.0)<br><img src='icons/Terror.png' alt='Terror' width='20' height='20'> Terror 1.92% (1.0)<br><img src='icons/Bone Spear.png' alt='Bone Spear' width='20' height='20'> Bone Spear 0.0% (0.0)<br><img src='icons/Bone Spirit.png' alt='Bone Spirit' width='20' height='20'> Bone Spirit 0.0% (0.0)<br><img src='icons/Flesh Offering.png' alt='Flesh Offering' width='20' height='20'> Flesh Offering 0.0% (0.0)<br><img src='icons/Bone Offering.png' alt='Bone Offering' width='20' height='20'> Bone Offering 0.0% (0.0)<br><img src='icons/Poison Nova.png' alt='Poison Nova' width='20' height='20'> Poison Nova 0.0% (0.0)<br><img src='icons/Attract.png' alt='Attract' width='20' height='20'> Attract 0.0% (0.0)<br><img src='icons/Confuse.png' alt='Confuse' width='20' height='20'> Confuse 0.0% (0.0)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 0.0% (0.0)<br><img src='icons/Jab.png' alt='Jab' width='20' height='20'> Jab 0.0% (0.0)</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>Most Common Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Body</strong>: <br>Skin of the Vipermagi 15.38%<br>Enigma 7.69%<br>Bone 7.69%<br>Stealth 5.77%<br>Trang-Oul's Scales 3.85%<br><strong>Helmet</strong>: <br>Lore 21.15%<br>Harlequin Crest 17.31%<br>Peasant Crown 5.77%<br>Accursed Circlet 1.92%<br>Trang-Oul's Guise 1.92%<br><strong>Ring</strong>: <br>Raven Frost 7.69%<br>Dwarf Star 5.77%<br>Manald Heal 5.77%<br>The Stone of Jordan 3.85%<br>Bul-Kathos' Wedding Band 3.85%<br><strong>Amulet</strong>: <br>Accursed Amulet 21.15%<br>Amulet of Luck 3.85%<br>Wraithra Gorget 1.92%<br>Accursed Amulet of Accuracy 1.92%<br>Accursed Amulet of the Squid 1.92%<br><strong>Gloves</strong>: <br>Trang-Oul's Claws 46.15%<br>Chain Gloves of Fortune 3.85%<br>Bloodfist 3.85%<br>Viper Hold 1.92%<br>Magefist 1.92%<br><strong>Boots</strong>: <br>Aldur's Advance 9.62%<br>Natalya's Soul 7.69%<br>Sander's Riprap 7.69%<br>War Traveler 3.85%<br>Hsarus' Iron Heel 3.85%<br><strong>Belt</strong>: <br>Arachnid Mesh 9.62%<br>Arctic Binding 5.77%<br>Trang-Oul's Girth 3.85%<br>Tal Rasha's Fine-Spun Cloth 3.85%<br>Dire Chain 1.92%<br><strong>Left hand</strong>: <br>Spirit 17.31%<br>Call to Arms 7.69%<br>Accursed Bone Wand 7.69%<br>Wand 7.69%<br>Edge 5.77%<br><strong>Offhand</strong>: <br>Homunculus 17.31%<br>Rhyme 11.54%<br>Ancients' Pledge 11.54%<br>Preserved Head 7.69%<br>Medusa's Gaze 5.77%</div>
+            </div>
+        
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Body</strong>: Enigma 7.69%, Skin of the Vipermagi 15.38%, Naj's Light Plate 1.92%, Bone 7.69%, Que-Hegan's Wisdom 1.92%, Trang-Oul's Scales 3.85%, Skullder's Ire 3.85%, Smoke 3.85%, The Spirit Shroud 3.85%, Wyrmhide 1.92%, Heavenly Garb 1.92%, Ring Mail 1.92%, Artificer's Ring Mail 1.92%, Duriel's Shell 1.92%, Stealth 5.77%, Arctic Furs 1.92%<br><strong>Helmet</strong>: Harlequin Crest 17.31%, Accursed Circlet 1.92%, Trang-Oul's Guise 1.92%, Shadow Cowl 1.92%, Peasant Crown 5.77%, Bone Casque 1.92%, Lore 21.15%, Accursed Circlet of Atlas 1.92%, Dread Visage 1.92%, Chromatic Circlet of Atlas 1.92%, Sazabi's Mental Sheath 1.92%, Tal Rasha's Horadric Crest 1.92%, Bone Helm 1.92%, Rockstopper 1.92%, Skull Cap 1.92%<br><strong>Ring</strong>: The Stone of Jordan 3.85%, Raven Frost 7.69%, Havoc Master 1.92%, Bul-Kathos' Wedding Band 3.85%, Dread Grip 1.92%, Wraithra Grasp 3.85%, Death Master 1.92%, Raven Hold 1.92%, Shadow Touch 1.92%, Blood Master 1.92%, Dwarf Star 5.77%, Grim Spiral 1.92%, Manald Heal 5.77%, Bitter Eye 1.92%, Wraithra Whorl 1.92%, Nagelring 3.85%, Grim Hold 1.92%, Havoc Whorl 1.92%, Coral Ring of Fortune 1.92%, Storm Band 1.92%, Dread Coil 3.85%, Ring of the Apprentice 3.85%, Grim Coil 1.92%, Bitter Gyre 1.92%, Wraithra Eye 1.92%, GhoulRI Eye 1.92%, Rune Gyre 1.92%, Viper Knot 1.92%, Corruption Whorl 1.92%, Grim Master 1.92%, Beast Gyre 1.92%, Dread Band 3.85%, Skull Circle 1.92%, Doom Loop 1.92%, Shadow Finger 3.85%, Entropy Knot 1.92%, Blood Circle 1.92%, Eagle Whorl 1.92%, Garnet Ring of Thawing 1.92%, Doom Spiral 1.92%, Bahamut's Ring of the Wolf 1.92%, Scintillating Ring of Thawing 1.92%, Corruption Coil 1.92%, Death Whorl 1.92%, Viper Whorl 1.92%, Storm Grip 1.92%, Raven Finger 1.92%, Ring of Fortune 1.92%, Lapis Ring of Fortune 1.92%, Coral Ring of the Mind 1.92%, Havoc Circle 1.92%, Coral Ring of the Apprentice 1.92%, Angelic Halo 1.92%, Russet Ring 1.92%<br><strong>Amulet</strong>: Accursed Amulet 21.15%, Wraithra Gorget 1.92%, Accursed Amulet of Accuracy 1.92%, Accursed Amulet of the Squid 1.92%, Necromancer's Amulet 1.92%, Grim Scarab 1.92%, Accursed Amulet of the Ox 1.92%, Blighting Amulet 1.92%, Accursed Amulet of Bone Spirit 1.92%, Blighting Amulet of Thawing 1.92%, PlagueRI Talisman 1.92%, Chromatic Amulet of the Titan 1.92%, Accursed Amulet of Chance 1.92%, Accursed Amulet of the Whale 1.92%, Amulet of Luck 3.85%, Rainbow Amulet of Health 1.92%, Skull Noose 1.92%, Doom Wing 1.92%, Shadow Clasp 1.92%, Shadow Eye 1.92%, Accursed Amulet of Maiming 1.92%, Telling of Beads 1.92%, Crimson Amulet of Strength 1.92%, Corruption Heart 1.92%<br><strong>Gloves</strong>: Trang-Oul's Claws 46.15%, Viper Hold 1.92%, Magefist 1.92%, Cruel Fist 1.92%, Coral Chain Gloves of Thawing 1.92%, Bone Hold 1.92%, Chain Gloves of Fortune 3.85%, Rune Grip 1.92%, Bloodfist 3.85%, Hailstone Fist 1.92%<br><strong>Boots</strong>: Silkweave 1.92%, Aldur's Advance 9.62%, Waterwalk 1.92%, War Traveler 3.85%, Soul Slippers 1.92%, Natalya's Soul 7.69%, Fiendra Brogues 1.92%, Marrowwalk 1.92%, Shadow Blazer 1.92%, Sander's Riprap 7.69%, Infernostride 1.92%, Dread Spur 1.92%, Spirit Blazer 1.92%, Viper Trample 1.92%, Havoc Tread 1.92%, Dire Brogues 1.92%, Dire Stalker 1.92%, Dread Track 1.92%, Fiendra Slippers 1.92%, Tearhaunch 1.92%, Hsarus' Iron Heel 3.85%, Chain Boots of Luck 1.92%, Doom Shank 1.92%<br><strong>Belt</strong>: Arachnid Mesh 9.62%, Dire Chain 1.92%, Raven Cord 1.92%, Trang-Oul's Girth 3.85%, Eagle Chain 1.92%, Tal Rasha's Fine-Spun Cloth 3.85%, Wraithra Harness 1.92%, Eagle Clasp 1.92%, Corpse Winding 1.92%, Storm Winding 1.92%, Credendum 1.92%, Thundergod's Vigor 1.92%, Brimstone Lock 1.92%, String of Ears 1.92%, M'avina's Tenet 1.92%, Arctic Binding 5.77%, Gale Lash 1.92%, Viper Lock 1.92%, Coral Plated Belt of the Mammoth 1.92%, Dire Strap 1.92%, Corpse Chain 1.92%, Soul Clasp 1.92%, Storm Cord 1.92%, Light Belt of Strength 1.92%, Sigon's Wrap 1.92%, Nightsmoke 1.92%, Loath Lock 1.92%<br><strong>Left hand</strong>: Call to Arms 7.69%, Necromancer's Bone Wand 3.85%, Spirit 17.31%, Accursed Bone Wand of Chain Lightning 1.92%, Heart of the Oak 1.92%, Accursed Bone Wand of Bone Spear 1.92%, Necromancer's Grim Wand of Wizardry 1.92%, Edge 5.77%, Accursed Bone Wand 7.69%, Accursed Bone Wand of Firebolts 1.92%, Accursed Grim Wand 1.92%, Necromancer's Grim Wand of Weaken 1.92%, Golemlord's Bone Wand 1.92%, Accursed Bone Wand of Regeneration 1.92%, Skull Collector 1.92%, Necromancer's Bone Wand of the Locust 1.92%, White 3.85%, Blighting Bone Wand 1.92%, Venomous Bone Wand of Leadership 1.92%, Necromancer's Bone Wand of Chain Lightning 1.92%, Spineripper 1.92%, Gravenspine 1.92%, Accursed Yew Wand 1.92%, Snowflake Bone Wand 1.92%, Wand 7.69%, Tangerine Wand of the Leech 1.92%, Battle Staff of Teleportation 5.77%, War Staff of Teleportation 1.92%, Wand of Energy 1.92%, Javelin 1.92%, Accursed Bone Wand of the Apprentice 1.92%, Blackhand Key 1.92%, Bone Wand of Control 1.92%, Petrified Wand 1.92%<br><strong>Offhand</strong>: Medusa's Gaze 5.77%, Homunculus 17.31%, The Ward 3.85%, Boneflame 5.77%, Spirit 1.92%, Sigon's Guard 1.92%, Rhyme 11.54%, Trang-Oul's Wing 1.92%, Preserved Head 7.69%, Hailstone Wing 1.92%, Gale Badge 1.92%, Glyph Badge 1.92%, Hailstone Shield 1.92%, Unraveller Head 3.85%, Shadow Shield 1.92%, Mummified Trophy of Bone Spirit 1.92%, Ancients' Pledge 11.54%, Buckler 1.92%, Large Shield 1.92%, Stone Tower 1.92%, Fetish Trophy of the Jackal 1.92%, PlagueRI Shield 1.92%, Demon Guard 1.92%</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>52 Characters in this cluster:</strong></button>
+            <div class="content">
+                
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=First-hero">First-hero</a></div>
+                    <div>95</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Weaken:20, Iron Maiden:20, Life Tap:20, Hemorrhage:20, Dim Vision:18, Summon Mastery:2, Decrepify:1, Bone Armor:1, Clay Golem:1, Blood Golem:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=IAKI">IAKI</a></div>
+                    <div>95</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Dim Vision:20, Weaken:20, Iron Maiden:20, Life Tap:20, Hemorrhage:20, Bone Armor:2, Decrepify:1, Summon Mastery:1, Clay Golem:1, Blood Golem:1</p>
+            <p><strong>Equipment:</strong> body: Enigma x1, helmet: Harlequin Crest x1, ring: The Stone of Jordan x1, ring: Raven Frost x1, amulet: Accursed Amulet x1, gloves: Trang-Oul's Claws x1, boots: Silkweave x1, belt: Arachnid Mesh x1, Left hand: Call to Arms x1, Left hand: Necromancer's Bone Wand x1, Offhand: Medusa's Gaze x1, Offhand: Homunculus x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Doctor_GER">Doctor_GER</a></div>
+                    <div>95</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Weaken:20, Iron Maiden:20, Life Tap:20, Hemorrhage:20, Revive:15, Amplify Damage:1, Dim Vision:1, Decrepify:1, Lower Resist:1, Bone Armor:1, Corpse Explosion:1, Bone Wall:1, Summon Mastery:1, Raise Skeleton Warrior:1, Clay Golem:1, Raise Skeletal Mage:1</p>
+            <p><strong>Equipment:</strong> body: Enigma x1, belt: Arachnid Mesh x1, helmet: Harlequin Crest x1, gloves: Trang-Oul's Claws x1, ring: Raven Frost x1, ring: Havoc Master x1, amulet: Wraithra Gorget x1, boots: Aldur's Advance x1, Left hand: Spirit x1, Left hand: Accursed Bone Wand of Chain Lightning x1, Offhand: Medusa's Gaze x1, Offhand: Homunculus x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=MigoDead">MigoDead</a></div>
+                    <div>93</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Weaken:20, Iron Maiden:20, Life Tap:20, Hemorrhage:20, Dim Vision:8, Bone Wall:5, Decrepify:1, Bone Armor:1, Deadly Poison:1, Corpse Explosion:1, Desecrate:1, Summon Mastery:1, Raise Skeleton Warrior:1, Clay Golem:1, Raise Skeletal Mage:1, Blood Golem:1, Revive:1</p>
+            <p><strong>Equipment:</strong> ring: Bul-Kathos' Wedding Band x1, ring: Dread Grip x1, helmet: Harlequin Crest x1, gloves: Trang-Oul's Claws x1, belt: Arachnid Mesh x1, boots: Waterwalk x1, amulet: Accursed Amulet of Accuracy x1, body: Enigma x1, Left hand: Heart of the Oak x1, Offhand: Homunculus x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=doodsickbroAE">doodsickbroAE</a></div>
+                    <div>92</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Weaken:20, Life Tap:20, Hemorrhage:20, Bone Armor:20, Iron Maiden:19, Summon Mastery:1, Clay Golem:1, Convocation:1, Blood Golem:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Mup_Curse">Mup_Curse</a></div>
+                    <div>91</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Weaken:20, Iron Maiden:20, Life Tap:20, Hemorrhage:20, Dim Vision:18, Bone Armor:1, Summon Mastery:1, Clay Golem:1, Convocation:1</p>
+            <p><strong>Equipment:</strong> gloves: Trang-Oul's Claws x1, helmet: Harlequin Crest x1, ring: Wraithra Grasp x1, ring: The Stone of Jordan x1, belt: Arachnid Mesh x1, amulet: Accursed Amulet of the Squid x1, body: Skin of the Vipermagi x1, boots: War Traveler x1, Left hand: Call to Arms x1, Left hand: Accursed Bone Wand of Bone Spear x1, Offhand: The Ward x1, Offhand: Homunculus x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Ranghan_NN">Ranghan_NN</a></div>
+                    <div>90</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Weaken:20, Iron Maiden:20, Life Tap:20, Hemorrhage:20, Convocation:12, Decrepify:1, Bone Armor:1, Corpse Explosion:1, Summon Mastery:1, Raise Skeleton Warrior:1, Clay Golem:1, Raise Skeletal Mage:1, Blood Golem:1, Revive:1</p>
+            <p><strong>Equipment:</strong> ring: Death Master x1, ring: Raven Hold x1, belt: Dire Chain x1, helmet: Harlequin Crest x1, boots: Soul Slippers x1, body: Skin of the Vipermagi x1, gloves: Trang-Oul's Claws x1, amulet: Necromancer's Amulet x1, Left hand: Necromancer's Grim Wand of Wizardry x1, Offhand: Boneflame x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Rank">Rank</a></div>
+                    <div>89</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Weaken:20, Iron Maiden:20, Life Tap:20, Hemorrhage:20, Dim Vision:13, Decrepify:1, Bone Armor:1, Summon Mastery:1, Clay Golem:1, Convocation:1, Blood Golem:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=MigoHemo">MigoHemo</a></div>
+                    <div>89</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Weaken:20, Iron Maiden:20, Life Tap:20, Hemorrhage:20, Dim Vision:12, Lower Resist:1, Summon Mastery:1, Raise Skeleton Warrior:1, Clay Golem:1, Convocation:1, Raise Skeletal Mage:1, Blood Golem:1, Revive:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=b_n">b_n</a></div>
+                    <div>89</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Weaken:20, Iron Maiden:20, Life Tap:20, Hemorrhage:20, Dim Vision:8, Revive:2, Decrepify:1, Bone Armor:1, Deadly Poison:1, Desecrate:1, Summon Mastery:1, Raise Skeleton Warrior:1, Clay Golem:1, Convocation:1, Raise Skeletal Mage:1, Blood Golem:1</p>
+            <p><strong>Equipment:</strong> ring: Shadow Touch x1, ring: Blood Master x1, amulet: Accursed Amulet x1, belt: Raven Cord x1, gloves: Trang-Oul's Claws x1, helmet: Harlequin Crest x1, boots: Natalya's Soul x1, body: Naj's Light Plate x1, Left hand: Edge x1, Left hand: Accursed Bone Wand x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=canvas_Hemo">canvas_Hemo</a></div>
+                    <div>88</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Weaken:20, Iron Maiden:20, Life Tap:20, Hemorrhage:20, Bone Armor:9, Dim Vision:4, Summon Mastery:2, Decrepify:1, Corpse Explosion:1, Clay Golem:1, Convocation:1</p>
+            <p><strong>Equipment:</strong> belt: Trang-Oul's Girth x1, boots: Natalya's Soul x1, gloves: Trang-Oul's Claws x1, body: Bone x1, ring: Raven Frost x1, ring: Dwarf Star x1, amulet: Grim Scarab x1, helmet: Accursed Circlet x1, Left hand: Call to Arms x1, Left hand: Accursed Bone Wand of Firebolts x1, Offhand: Sigon's Guard x1, Offhand: Boneflame x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=fireop">fireop</a></div>
+                    <div>87</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Weaken:20, Iron Maiden:20, Life Tap:20, Hemorrhage:20, Convocation:14, Decrepify:1, Summon Mastery:1, Clay Golem:1, Blood Golem:1</p>
+            <p><strong>Equipment:</strong> ring: Wraithra Grasp x1, ring: Grim Spiral x1, amulet: Accursed Amulet x1, belt: Eagle Chain x1, boots: Fiendra Brogues x1, gloves: Trang-Oul's Claws x1, body: Que-Hegan's Wisdom x1, helmet: Harlequin Crest x1, Left hand: Edge x1, Left hand: Accursed Grim Wand x1, Offhand: Rhyme x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Anal_Warts">Anal_Warts</a></div>
+                    <div>87</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Weaken:20, Iron Maiden:20, Life Tap:20, Hemorrhage:20, Blood Golem:9, Summon Mastery:6, Dim Vision:1, Clay Golem:1, Iron Golem:1</p>
+            <p><strong>Equipment:</strong> ring: Manald Heal x1, ring: Bitter Eye x1, amulet: Accursed Amulet of the Ox x1, belt: Trang-Oul's Girth x1, boots: Marrowwalk x1, helmet: Trang-Oul's Guise x1, body: Trang-Oul's Scales x1, gloves: Trang-Oul's Claws x1, Left hand: Necromancer's Grim Wand of Weaken x1, Offhand: Trang-Oul's Wing x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=TuNo">TuNo</a></div>
+                    <div>87</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Weaken:20, Iron Maiden:20, Life Tap:20, Hemorrhage:20, Convocation:8, Revive:3, Amplify Damage:1, Dim Vision:1, Decrepify:1, Lower Resist:1, Bone Armor:1, Raise Skeleton Warrior:1, Raise Skeletal Mage:1</p>
+            <p><strong>Equipment:</strong> ring: Wraithra Whorl x1, ring: Bul-Kathos' Wedding Band x1, amulet: Accursed Amulet x1, gloves: Trang-Oul's Claws x1, helmet: Harlequin Crest x1, boots: Aldur's Advance x1, body: Enigma x1, belt: Arachnid Mesh x1, Left hand: Call to Arms x1, Left hand: Accursed Bone Wand x1, Offhand: Medusa's Gaze x1, Offhand: Homunculus x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Panihida">Panihida</a></div>
+                    <div>87</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Weaken:20, Iron Maiden:20, Life Tap:20, Hemorrhage:20, Dim Vision:12, Decrepify:1, Clay Golem:1, Convocation:1, Blood Golem:1, Iron Golem:1, Fire Golem:1</p>
+            <p><strong>Equipment:</strong> belt: Tal Rasha's Fine-Spun Cloth x1, ring: Nagelring x1, ring: Grim Hold x1, gloves: Trang-Oul's Claws x1, amulet: Accursed Amulet x1, boots: Shadow Blazer x1, helmet: Shadow Cowl x1, body: Bone x1, Left hand: Golemlord's Bone Wand x1, Left hand: Accursed Bone Wand of Regeneration x1, Offhand: Rhyme x1, Offhand: Homunculus x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=PisyaPopa">PisyaPopa</a></div>
+                    <div>87</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Weaken:20, Iron Maiden:20, Life Tap:20, Hemorrhage:20, Convocation:16, Dim Vision:1, Bone Armor:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=wise_HCnec">wise_HCnec</a></div>
+                    <div>86</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Weaken:20, Iron Maiden:20, Life Tap:20, Hemorrhage:20, Dim Vision:1, Decrepify:1, Bone Armor:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=ArThOOrNecro">ArThOOrNecro</a></div>
+                    <div>85</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Weaken:20, Iron Maiden:20, Life Tap:20, Hemorrhage:20, Summon Mastery:10, Dim Vision:2, Decrepify:1, Clay Golem:1, Convocation:1, Blood Golem:1</p>
+            <p><strong>Equipment:</strong> amulet: Accursed Amulet x1, Left hand: Skull Collector x1, Left hand: Necromancer's Bone Wand of the Locust x1, gloves: Trang-Oul's Claws x1, ring: Havoc Whorl x1, ring: Coral Ring of Fortune x1, helmet: Peasant Crown x1, belt: Wraithra Harness x1, body: Skullder's Ire x1, boots: Aldur's Advance x1, Offhand: Homunculus x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Maledictorian">Maledictorian</a></div>
+                    <div>84</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Weaken:20, Iron Maiden:20, Life Tap:20, Hemorrhage:20, Revive:4, Decrepify:1, Summon Mastery:1, Raise Skeleton Warrior:1, Clay Golem:1, Convocation:1, Raise Skeletal Mage:1, Blood Golem:1</p>
+            <p><strong>Equipment:</strong> gloves: Trang-Oul's Claws x1, body: Bone x1, helmet: Bone Casque x1, amulet: Blighting Amulet x1, ring: Storm Band x1, ring: Dread Coil x1, belt: Eagle Clasp x1, boots: Sander's Riprap x1, Left hand: White x1, Left hand: Blighting Bone Wand x1, Offhand: Homunculus x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=ClassIXNecphila">ClassIXNecphila</a></div>
+                    <div>83</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Weaken:20, Iron Maiden:20, Life Tap:20, Hemorrhage:20, Summon Mastery:6, Dim Vision:1, Decrepify:1, Lower Resist:1, Clay Golem:1, Convocation:1, Blood Golem:1</p>
+            <p><strong>Equipment:</strong> belt: Corpse Winding x1, gloves: Trang-Oul's Claws x1, body: Skin of the Vipermagi x1, boots: Natalya's Soul x1, ring: Ring of the Apprentice x2, amulet: Accursed Amulet of Bone Spirit x1, helmet: Lore x1, Left hand: Venomous Bone Wand of Leadership x1, Left hand: Necromancer's Bone Wand of Chain Lightning x1, Offhand: Preserved Head x1, Offhand: Homunculus x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=oooone">oooone</a></div>
+                    <div>82</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Weaken:20, Iron Maiden:20, Life Tap:20, Hemorrhage:20, Dim Vision:5, Decrepify:1, Summon Mastery:1, Raise Skeleton Warrior:1, Clay Golem:1, Convocation:1, Raise Skeletal Mage:1, Blood Golem:1, Revive:1</p>
+            <p><strong>Equipment:</strong> ring: Grim Coil x1, ring: Bitter Gyre x1, helmet: Lore x1, amulet: Accursed Amulet x1, body: Smoke x1, boots: Infernostride x1, gloves: Trang-Oul's Claws x1, belt: Storm Winding x1, Left hand: Edge x1, Left hand: Accursed Bone Wand x1, Offhand: Rhyme x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Sakhaa">Sakhaa</a></div>
+                    <div>81</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Weaken:20, Iron Maiden:20, Life Tap:20, Hemorrhage:20, Revive:3, Amplify Damage:1, Bone Armor:1, Corpse Explosion:1, Bone Wall:1, Raise Skeleton Warrior:1, Clay Golem:1, Convocation:1, Raise Skeletal Mage:1, Blood Golem:1</p>
+            <p><strong>Equipment:</strong> gloves: Trang-Oul's Claws x1, boots: War Traveler x1, body: Skin of the Vipermagi x1, helmet: Harlequin Crest x1, ring: Wraithra Eye x1, ring: GhoulRI Eye x1, belt: Credendum x1, amulet: Blighting Amulet of Thawing x1, Left hand: Spineripper x1, Left hand: Gravenspine x1, Offhand: Hailstone Wing x1, Offhand: Gale Badge x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=GOGOHEMO">GOGOHEMO</a></div>
+                    <div>80</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Weaken:20, Iron Maiden:20, Life Tap:20, Hemorrhage:20, Revive:4, Decrepify:1, Summon Mastery:1, Raise Skeleton Warrior:1, Clay Golem:1, Convocation:1, Raise Skeletal Mage:1, Blood Golem:1</p>
+            <p><strong>Equipment:</strong> ring: Rune Gyre x1, ring: Viper Knot x1, helmet: Lore x1, gloves: Viper Hold x1, amulet: PlagueRI Talisman x1, body: Bone x1, belt: Tal Rasha's Fine-Spun Cloth x1, boots: Dread Spur x1, Left hand: Accursed Yew Wand x1, Offhand: Glyph Badge x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=GERHC">GERHC</a></div>
+                    <div>80</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Weaken:20, Iron Maiden:20, Life Tap:20, Hemorrhage:20, Revive:4, Decrepify:1, Raise Skeleton Warrior:1, Clay Golem:1, Convocation:1, Raise Skeletal Mage:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=durianade">durianade</a></div>
+                    <div>79</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Weaken:20, Iron Maiden:20, Life Tap:20, Hemorrhage:20, Dim Vision:2, Decrepify:1, Summon Mastery:1, Raise Skeleton Warrior:1, Clay Golem:1, Convocation:1, Raise Skeletal Mage:1, Blood Golem:1, Revive:1</p>
+            <p><strong>Equipment:</strong> body: The Spirit Shroud x1, belt: Thundergod's Vigor x1, helmet: Lore x1, amulet: Chromatic Amulet of the Titan x1, gloves: Trang-Oul's Claws x1, ring: Corruption Whorl x1, ring: Grim Master x1, boots: Spirit Blazer x1, Left hand: Snowflake Bone Wand x1, Left hand: Wand x1, Offhand: Hailstone Shield x1, Offhand: Unraveller Head x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=khdwff">khdwff</a></div>
+                    <div>78</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Weaken:20, Iron Maiden:20, Life Tap:20, Hemorrhage:20, Summon Mastery:2, Bone Armor:1, Raise Skeleton Warrior:1, Clay Golem:1, Convocation:1, Raise Skeletal Mage:1, Blood Golem:1, Revive:1</p>
+            <p><strong>Equipment:</strong> gloves: Trang-Oul's Claws x1, helmet: Lore x1, boots: Viper Trample x1, belt: Brimstone Lock x1, ring: Beast Gyre x1, ring: Dread Band x1, body: Skin of the Vipermagi x1, amulet: Accursed Amulet x1, Left hand: Tangerine Wand of the Leech x1, Left hand: Spirit x1, Offhand: Shadow Shield x1, Offhand: Mummified Trophy of Bone Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Ranghan_N">Ranghan_N</a></div>
+                    <div>77</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Iron Maiden:20, Life Tap:20, Hemorrhage:20, Weaken:15, Amplify Damage:1, Decrepify:1, Bone Armor:1, Corpse Explosion:1, Summon Mastery:1, Raise Skeleton Warrior:1, Clay Golem:1, Convocation:1, Raise Skeletal Mage:1, Blood Golem:1, Revive:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=DaOnDa_N">DaOnDa_N</a></div>
+                    <div>77</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Weaken:20, Iron Maiden:20, Life Tap:20, Hemorrhage:20, Dim Vision:5, Amplify Damage:1, Bone Armor:1</p>
+            <p><strong>Equipment:</strong> ring: Skull Circle x1, ring: Raven Frost x1, gloves: Trang-Oul's Claws x1, amulet: Accursed Amulet of Chance x1, belt: String of Ears x1, boots: Aldur's Advance x1, helmet: Accursed Circlet of Atlas x1, body: Skin of the Vipermagi x1, Left hand: Battle Staff of Teleportation x1, Left hand: Necromancer's Bone Wand x1, Offhand: Boneflame x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=BetuN">BetuN</a></div>
+                    <div>76</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Weaken:20, Iron Maiden:20, Life Tap:20, Hemorrhage:20, Summon Mastery:1, Clay Golem:1, Convocation:1, Blood Golem:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=EddieSmurphy">EddieSmurphy</a></div>
+                    <div>76</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Weaken:20, Iron Maiden:20, Life Tap:20, Hemorrhage:20, Decrepify:1, Bone Armor:1, Summon Mastery:1, Clay Golem:1, Convocation:1</p>
+            <p><strong>Equipment:</strong> ring: Doom Loop x1, ring: Shadow Finger x1, gloves: Trang-Oul's Claws x1, belt: M'avina's Tenet x1, amulet: Accursed Amulet x1, helmet: Lore x1, body: Wyrmhide x1, boots: Aldur's Advance x1, Left hand: Spirit x1, Offhand: Ancients' Pledge x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=RRLK">RRLK</a></div>
+                    <div>75</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Weaken:20, Iron Maiden:20, Life Tap:20, Hemorrhage:20, Bone Armor:2, Decrepify:1</p>
+            <p><strong>Equipment:</strong> gloves: Magefist x1, ring: Entropy Knot x1, ring: Blood Circle x1, body: Heavenly Garb x1, belt: Arctic Binding x1, helmet: Dread Visage x1, amulet: Accursed Amulet of the Whale x1, boots: Havoc Tread x1, Left hand: War Staff of Teleportation x1, Left hand: White x1, Offhand: Rhyme x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Wafflecro">Wafflecro</a></div>
+                    <div>74</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Weaken:20, Iron Maiden:20, Hemorrhage:20, Life Tap:18, Decrepify:1, Bone Armor:1, Corpse Explosion:1, Summon Mastery:1, Clay Golem:1, Convocation:1, Blood Golem:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=XPEHOTEHb">XPEHOTEHb</a></div>
+                    <div>72</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Iron Maiden:20, Life Tap:20, Hemorrhage:20, Weaken:15, Decrepify:1, Clay Golem:1, Convocation:1, Blood Golem:1</p>
+            <p><strong>Equipment:</strong> body: Ring Mail x1, ring: Shadow Finger x1, ring: Nagelring x1, helmet: Lore x1, amulet: Amulet of Luck x1, boots: Dire Brogues x1, Offhand: Rhyme x1, Offhand: Ancients' Pledge x1, gloves: Cruel Fist x1, belt: Gale Lash x1, Left hand: Wand of Energy x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=zaydren">zaydren</a></div>
+                    <div>72</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Weaken:20, Iron Maiden:20, Life Tap:20, Hemorrhage:20, Convocation:1</p>
+            <p><strong>Equipment:</strong> Left hand: Javelin x1, Left hand: Spirit x1, Offhand: Buckler x1, Offhand: Ancients' Pledge x1, amulet: Rainbow Amulet of Health x1, body: Artificer's Ring Mail x1, gloves: Coral Chain Gloves of Thawing x1, boots: Natalya's Soul x1, helmet: Chromatic Circlet of Atlas x1, ring: Eagle Whorl x1, ring: Garnet Ring of Thawing x1, belt: Viper Lock x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=FooSKELETOR">FooSKELETOR</a></div>
+                    <div>71</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Weaken:20, Iron Maiden:20, Life Tap:20, Hemorrhage:20, Decrepify:1, Bone Armor:1</p>
+            <p><strong>Equipment:</strong> belt: Arctic Binding x1, gloves: Bone Hold x1, body: Smoke x1, boots: Dire Stalker x1, ring: Doom Spiral x1, amulet: Accursed Amulet x1, helmet: Lore x1, Left hand: Battle Staff of Teleportation x1, Left hand: Accursed Bone Wand of the Apprentice x1, Offhand: Ancients' Pledge x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Cultisto">Cultisto</a></div>
+                    <div>71</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Weaken:20, Life Tap:20, Hemorrhage:20, Iron Maiden:11, Decrepify:1, Lower Resist:1, Bone Armor:1, Summon Mastery:1, Clay Golem:1, Convocation:1, Blood Golem:1, Iron Golem:1, Fire Golem:1</p>
+            <p><strong>Equipment:</strong> boots: Dread Track x1, gloves: Chain Gloves of Fortune x1, ring: Bahamut's Ring of the Wolf x1, ring: Scintillating Ring of Thawing x1, helmet: Sazabi's Mental Sheath x1, belt: Coral Plated Belt of the Mammoth x1, amulet: Skull Noose x1, body: Skullder's Ire x1, Left hand: Accursed Bone Wand x1, Offhand: The Ward x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=rOdeO_QnEcQ">rOdeO_QnEcQ</a></div>
+                    <div>70</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Iron Maiden:20, Life Tap:20, Hemorrhage:20, Weaken:7, Dim Vision:6, Decrepify:1, Bone Armor:1, Clay Golem:1, Convocation:1, Blood Golem:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=CumNecrophilia">CumNecrophilia</a></div>
+                    <div>69</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Weaken:20, Iron Maiden:20, Hemorrhage:20, Life Tap:9, Decrepify:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Fenikel">Fenikel</a></div>
+                    <div>69</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Life Tap:20, Hemorrhage:20, Iron Maiden:19, Weaken:17, Dim Vision:1</p>
+            <p><strong>Equipment:</strong> ring: Corruption Coil x1, ring: Death Whorl x1, Offhand: Large Shield x1, Offhand: Stone Tower x1, gloves: Trang-Oul's Claws x1, amulet: Doom Wing x1, belt: Dire Strap x1, helmet: Tal Rasha's Horadric Crest x1, body: The Spirit Shroud x1, boots: Fiendra Slippers x1, Left hand: Blackhand Key x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Hourai_Victim">Hourai_Victim</a></div>
+                    <div>67</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Weaken:20, Iron Maiden:20, Hemorrhage:20, Life Tap:3, Dim Vision:1, Decrepify:1, Teeth:1, Deadly Poison:1, Desecrate:1, Raise Skeleton Warrior:1, Clay Golem:1, Convocation:1, Raise Skeletal Mage:1, Blood Golem:1, Revive:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Sedmasreca">Sedmasreca</a></div>
+                    <div>67</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Life Tap:20, Hemorrhage:20, Iron Maiden:14, Weaken:13, Summon Mastery:1, Raise Skeleton Warrior:1, Clay Golem:1, Raise Skeletal Mage:1, Blood Golem:1, Iron Golem:1, Fire Golem:1, Revive:1</p>
+            <p><strong>Equipment:</strong> helmet: Lore x1, belt: Corpse Chain x1, boots: Tearhaunch x1, body: Duriel's Shell x1, gloves: Trang-Oul's Claws x1, ring: Manald Heal x1, ring: Viper Whorl x1, amulet: Shadow Clasp x1, Left hand: Battle Staff of Teleportation x1, Left hand: Bone Wand of Control x1, Offhand: Preserved Head x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=wise_Hnec">wise_Hnec</a></div>
+                    <div>63</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Weaken:20, Iron Maiden:20, Hemorrhage:20, Life Tap:4, Dim Vision:1, Bone Armor:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=sanaldrug">sanaldrug</a></div>
+                    <div>59</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Hemorrhage:20, Weaken:13, Iron Maiden:13, Life Tap:13, Dim Vision:1, Decrepify:1, Lower Resist:1, Bone Armor:1, Clay Golem:1, Convocation:1, Blood Golem:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=STDAIDSandCRABS">STDAIDSandCRABS</a></div>
+                    <div>58</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Iron Maiden:20, Life Tap:20, Hemorrhage:20, Clay Golem:1, Convocation:1, Blood Golem:1, Iron Golem:1, Fire Golem:1</p>
+            <p><strong>Equipment:</strong> ring: Storm Grip x1, ring: Raven Finger x1, boots: Hsarus' Iron Heel x1, body: Stealth x1, helmet: Lore x1, belt: Soul Clasp x1, gloves: Rune Grip x1, amulet: Accursed Amulet x1, Left hand: Wand x1, Offhand: Rhyme x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=XxXKoluzaXxX">XxXKoluzaXxX</a></div>
+                    <div>56</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Iron Maiden:20, Hemorrhage:20, Decrepify:10, Life Tap:5, Bone Armor:3, Clay Golem:2, Weaken:1, Summon Mastery:1, Convocation:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=ToxicMist">ToxicMist</a></div>
+                    <div>55</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Iron Maiden:20, Life Tap:20, Hemorrhage:20, Weaken:1, Convocation:1</p>
+            <p><strong>Equipment:</strong> amulet: Amulet of Luck x1, boots: Chain Boots of Luck x1, gloves: Chain Gloves of Fortune x1, ring: Ring of Fortune x1, ring: Lapis Ring of Fortune x1, belt: Storm Cord x1, helmet: Peasant Crown x1, body: Skin of the Vipermagi x1, Left hand: Wand x2, Offhand: Unraveller Head x1, Offhand: Preserved Head x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=NECristiano">NECristiano</a></div>
+                    <div>53</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Weaken:20, Hemorrhage:20, Iron Maiden:13, Terror:1, Life Tap:1, Decrepify:1, Clay Golem:1, Convocation:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=hidii_hc">hidii_hc</a></div>
+                    <div>53</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Iron Maiden:20, Hemorrhage:20, Life Tap:18, Weaken:1, Convocation:1</p>
+            <p><strong>Equipment:</strong> gloves: Bloodfist x1, boots: Hsarus' Iron Heel x1, belt: Light Belt of Strength x1, helmet: Bone Helm x1, body: Skin of the Vipermagi x1, amulet: Shadow Eye x1, ring: Coral Ring of the Mind x1, ring: Havoc Circle x1, Left hand: Spirit x1, Offhand: Fetish Trophy of the Jackal x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Dreadspire">Dreadspire</a></div>
+                    <div>52</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Weaken:20, Hemorrhage:20, Iron Maiden:8, Dim Vision:1, Life Tap:1, Decrepify:1, Bone Armor:1, Summon Mastery:1, Clay Golem:1, Convocation:1, Blood Golem:1</p>
+            <p><strong>Equipment:</strong> body: Stealth x1, belt: Arctic Binding x1, boots: Sander's Riprap x1, ring: Dread Band x1, ring: Coral Ring of the Apprentice x1, helmet: Lore x1, gloves: Trang-Oul's Claws x1, amulet: Accursed Amulet of Maiming x1, Left hand: Spirit x1, Offhand: Ancients' Pledge x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Skeleparty">Skeleparty</a></div>
+                    <div>51</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Life Tap:20, Hemorrhage:20, Iron Maiden:15, Weaken:1, Convocation:1</p>
+            <p><strong>Equipment:</strong> belt: Sigon's Wrap x1, amulet: Telling of Beads x1, helmet: Peasant Crown x1, boots: Sander's Riprap x1, gloves: Trang-Oul's Claws x1, ring: Dwarf Star x2, body: Trang-Oul's Scales x1, Left hand: Spirit x1, Offhand: PlagueRI Shield x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=oklahomie">oklahomie</a></div>
+                    <div>45</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Iron Maiden:20, Hemorrhage:20, Life Tap:5, Weaken:1, Summon Mastery:1, Clay Golem:1, Convocation:1, Blood Golem:1</p>
+            <p><strong>Equipment:</strong> amulet: Crimson Amulet of Strength x1, body: Arctic Furs x1, belt: Nightsmoke x1, gloves: Hailstone Fist x1, ring: Dread Coil x1, ring: Manald Heal x1, Left hand: Petrified Wand x1, Left hand: Spirit x1, helmet: Rockstopper x1, boots: Doom Shank x1, Offhand: Preserved Head x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=HC_BONEd">HC_BONEd</a></div>
+                    <div>41</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Life Tap:20, Hemorrhage:20, Iron Maiden:5, Weaken:1, Clay Golem:1, Blood Golem:1</p>
+            <p><strong>Equipment:</strong> belt: Loath Lock x1, ring: Angelic Halo x1, ring: Russet Ring x1, gloves: Bloodfist x1, helmet: Skull Cap x1, body: Stealth x1, boots: Sander's Riprap x1, Offhand: Demon Guard x1, Offhand: Ancients' Pledge x1, amulet: Corruption Heart x1, Left hand: Spirit x1</p>
+        
+        </div>
+        <hr>
+        
+        <h2>32.30%  of Necromancer's Main Skills:<br><img src='icons/Hemorrhage.png' alt='Hemorrhage' width='20' height='20'> Hemorrhage 44.23% (331)<br><img src='icons/Raise Skeleton Warrior.png' alt='Raise Skeleton Warrior' width='20' height='20'> Raise Skeleton Warrior 61.54% (227)<br><img src='icons/Teeth.png' alt='Teeth' width='20' height='20'> Teeth 19.23% (102)</h2>
+        <p><strong>Other Skills:<br></strong> <img src='icons/Summon Mastery.png' alt='Summon Mastery' width='20' height='20'> Summon Mastery 61.54% (93.0)<br><img src='icons/Weaken.png' alt='Weaken' width='20' height='20'> Weaken 30.77% (84.0)<br><img src='icons/Clay Golem.png' alt='Clay Golem' width='20' height='20'> Clay Golem 71.15% (40.0)<br><img src='icons/Bone Armor.png' alt='Bone Armor' width='20' height='20'> Bone Armor 38.46% (39.0)<br><img src='icons/Iron Maiden.png' alt='Iron Maiden' width='20' height='20'> Iron Maiden 26.92% (34.0)<br><img src='icons/Deadly Poison.png' alt='Deadly Poison' width='20' height='20'> Deadly Poison 19.23% (28.0)</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>All Skills</strong></button>
+            <div class="content">
+                <div><img src='icons/Hemorrhage.png' alt='Hemorrhage' width='20' height='20'> Hemorrhage 44.23% (331.0)<br><img src='icons/Raise Skeleton Warrior.png' alt='Raise Skeleton Warrior' width='20' height='20'> Raise Skeleton Warrior 61.54% (228.0)<br><img src='icons/Teeth.png' alt='Teeth' width='20' height='20'> Teeth 19.23% (103.0)<br><img src='icons/Summon Mastery.png' alt='Summon Mastery' width='20' height='20'> Summon Mastery 61.54% (93.0)<br><img src='icons/Weaken.png' alt='Weaken' width='20' height='20'> Weaken 30.77% (84.0)<br><img src='icons/Clay Golem.png' alt='Clay Golem' width='20' height='20'> Clay Golem 71.15% (40.0)<br><img src='icons/Bone Armor.png' alt='Bone Armor' width='20' height='20'> Bone Armor 38.46% (39.0)<br><img src='icons/Iron Maiden.png' alt='Iron Maiden' width='20' height='20'> Iron Maiden 26.92% (34.0)<br><img src='icons/Deadly Poison.png' alt='Deadly Poison' width='20' height='20'> Deadly Poison 19.23% (28.0)<br><img src='icons/Decrepify.png' alt='Decrepify' width='20' height='20'> Decrepify 15.38% (27.0)<br><img src='icons/Raise Skeletal Mage.png' alt='Raise Skeletal Mage' width='20' height='20'> Raise Skeletal Mage 26.92% (27.0)<br><img src='icons/Amplify Damage.png' alt='Amplify Damage' width='20' height='20'> Amplify Damage 40.38% (23.0)<br><img src='icons/Life Tap.png' alt='Life Tap' width='20' height='20'> Life Tap 17.31% (20.0)<br><img src='icons/Bone Offering.png' alt='Bone Offering' width='20' height='20'> Bone Offering 11.54% (19.0)<br><img src='icons/Corpse Explosion.png' alt='Corpse Explosion' width='20' height='20'> Corpse Explosion 15.38% (18.0)<br><img src='icons/Flesh Offering.png' alt='Flesh Offering' width='20' height='20'> Flesh Offering 17.31% (13.0)<br><img src='icons/Convocation.png' alt='Convocation' width='20' height='20'> Convocation 23.08% (12.0)<br><img src='icons/Lower Resist.png' alt='Lower Resist' width='20' height='20'> Lower Resist 1.92% (12.0)<br><img src='icons/Blood Golem.png' alt='Blood Golem' width='20' height='20'> Blood Golem 23.08% (12.0)<br><img src='icons/Bone Spear.png' alt='Bone Spear' width='20' height='20'> Bone Spear 9.62% (7.0)<br><img src='icons/Dim Vision.png' alt='Dim Vision' width='20' height='20'> Dim Vision 3.85% (4.0)<br><img src='icons/Desecrate.png' alt='Desecrate' width='20' height='20'> Desecrate 7.69% (4.0)<br><img src='icons/Revive.png' alt='Revive' width='20' height='20'> Revive 3.85% (2.0)<br><img src='icons/Bone Wall.png' alt='Bone Wall' width='20' height='20'> Bone Wall 3.85% (2.0)<br><img src='icons/Iron Golem.png' alt='Iron Golem' width='20' height='20'> Iron Golem 3.85% (2.0)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 1.92% (1.0)<br><img src='icons/Bone Spirit.png' alt='Bone Spirit' width='20' height='20'> Bone Spirit 1.92% (1.0)<br><img src='icons/Terror.png' alt='Terror' width='20' height='20'> Terror 1.92% (1.0)<br><img src='icons/Jab.png' alt='Jab' width='20' height='20'> Jab 1.92% (1.0)<br><img src='icons/Fire Golem.png' alt='Fire Golem' width='20' height='20'> Fire Golem 0.0% (0.0)<br><img src='icons/Poison Nova.png' alt='Poison Nova' width='20' height='20'> Poison Nova 0.0% (0.0)<br><img src='icons/Confuse.png' alt='Confuse' width='20' height='20'> Confuse 0.0% (0.0)<br><img src='icons/Attract.png' alt='Attract' width='20' height='20'> Attract 0.0% (0.0)</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>Most Common Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Amulet</strong>: <br>Amulet of the Apprentice 5.77%<br>Iratha's Collar 3.85%<br>Amulet of Control 3.85%<br>PlagueRI Clasp 3.85%<br>Felicitous Amulet 3.85%<br><strong>Helmet</strong>: <br>Skull Cap 13.46%<br>Cap 9.62%<br>Lore 7.69%<br>Tarnhelm 3.85%<br>Cap of Energy 3.85%<br><strong>Boots</strong>: <br>Storm Nails 3.85%<br>Sander's Riprap 3.85%<br>Gorefoot 3.85%<br>Tireless Boots of Dexterity 3.85%<br>Boots 3.85%<br><strong>Left hand</strong>: <br>Wand 26.92%<br>Bone Wand 7.69%<br>Javelin 5.77%<br>Wand of Brilliance 3.85%<br>Infernal Torch 3.85%<br><strong>Gloves</strong>: <br>Leather Gloves 11.54%<br>Chance Guards 3.85%<br>Sigon's Gage 3.85%<br>Trang-Oul's Claws 1.92%<br>Imp Grasp 1.92%<br><strong>Ring</strong>: <br>Ring of the Apprentice 17.31%<br>Nagelring 9.62%<br>Beryl Ring of the Apprentice 5.77%<br>Ring of Chance 3.85%<br>Manald Heal 3.85%<br><strong>Body</strong>: <br>Stealth 25.00%<br>Hard Leather Armor 7.69%<br>Ring Mail 3.85%<br>Isenhart's Case 3.85%<br>Leather Armor 3.85%<br><strong>Belt</strong>: <br>Sash 7.69%<br>Hsarus' Iron Stay 5.77%<br>Arctic Binding 3.85%<br>Sigon's Wrap 3.85%<br>Iratha's Cord 3.85%<br><strong>Offhand</strong>: <br>Preserved Head 28.85%<br>Buckler 5.77%<br>Ancients' Pledge 3.85%<br>Unraveller Head 3.85%<br>Trang-Oul's Wing 1.92%</div>
+            </div>
+        
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Amulet</strong>: Iratha's Collar 3.85%, PlagueRI Wing 1.92%, Amulet of Control 3.85%, Corruption Necklace 1.92%, Amulet of the Apprentice 5.77%, Hexing Amulet 1.92%, PlagueRI Clasp 3.85%, Viridian Amulet of Brilliance 1.92%, Felicitous Amulet of Thawing 1.92%, Wraithra Emblem 1.92%, Amulet of Strength 1.92%, Vulpine Amulet of the Apprentice 1.92%, Fungal Amulet of the Bat 1.92%, Coral Amulet 1.92%, Amulet of Leadership 1.92%, Bronze Amulet of Fortune 1.92%, Amulet of the Viper 1.92%, Russet Amulet 1.92%, Lizard's Amulet of Dexterity 1.92%, GhoulRI Gorget 1.92%, Bronze Amulet of the Jackal 1.92%, Snake's Amulet of the Mind 1.92%, Wraithra Collar 1.92%, Lapis Amulet of Remedy 1.92%, Amulet of Brilliance 1.92%, Vidala's Snare 1.92%, Felicitous Amulet of Energy 1.92%, PlagueRI Torc 1.92%, Felicitous Amulet 3.85%, Nokozan Relic 1.92%, Amulet of the Jackal 1.92%, Azure Amulet of Light 1.92%, Tangerine Amulet 1.92%, Crimson Amulet 1.92%, Amulet of Might 1.92%<br><strong>Helmet</strong>: Sigon's Visor 1.92%, Blood Veil 1.92%, Lore 7.69%, Dread Horn 1.92%, Carrion Veil 1.92%, Tarnhelm 3.85%, Tancred's Skull 1.92%, Pain Hood 1.92%, Arcanna's Head 1.92%, Cap 9.62%, Grim Circlet 1.92%, Wormskull 1.92%, Circlet of Leadership 1.92%, Skull Cap 13.46%, Iratha's Coil 1.92%, Dread Casque 1.92%, Crimson Skull Cap 1.92%, Raven Horn 1.92%, Shadow Horn 1.92%, Cap of Energy 3.85%, Death Cowl 1.92%, Blood Crest 1.92%, Glowing Cap of Balance 1.92%, Beryl Cap of Remedy 1.92%, Biggin's Bonnet 1.92%<br><strong>Boots</strong>: Sigon's Sabot 1.92%, Storm Nails 3.85%, Raven Nails 1.92%, Treads of Cthon 1.92%, Viper Tread 1.92%, Brimstone Trample 1.92%, Pain Slippers 1.92%, Bone Slippers 1.92%, Sander's Riprap 3.85%, Hsarus' Iron Heel 1.92%, Vidala's Fetlock 1.92%, Grim Brogues 1.92%, Ocher Light Plated Boots of Fortune 1.92%, Gorefoot 3.85%, Ocher Heavy Boots of Chance 1.92%, Bitter Shank 1.92%, Sturdy Boots of Dexterity 1.92%, Crimson Heavy Boots of Fortune 1.92%, Loath Blazer 1.92%, Chain Boots of Dexterity 1.92%, Dread Nails 1.92%, Soul Spur 1.92%, Spirit Blazer 1.92%, Tireless Boots of Dexterity 3.85%, Boots 3.85%, Bramble Track 1.92%, Storm Greaves 1.92%, Heavy Boots of Thawing 1.92%, Crimson Boots of Self-Repair 1.92%, Strong Heavy Boots 1.92%, Death Greaves 1.92%, Glyph Track 1.92%<br><strong>Left hand</strong>: Call to Arms 1.92%, Arm of King Leoric 1.92%, Battle Staff of Teleportation 1.92%, Wand of Brilliance 3.85%, Static Bone Wand 1.92%, Bone Wand of Leadership 1.92%, Infernal Torch 3.85%, Raven Crack 1.92%, Envenomed Yew Wand of Firebolts 1.92%, Wand 26.92%, Wirt's Leg 1.92%, Envenomed Wand of Amplify Damage 1.92%, Crimson Wand of Firebolts 1.92%, Spirit 1.92%, Wand of the Bat 1.92%, Storm Brand 1.92%, Empyrion Brand 1.92%, Maelstrom 1.92%, Yew Wand of the Bear 1.92%, Gravenspine 3.85%, Snowflake Bone Wand of Brilliance 1.92%, Bone Wand 7.69%, Wailing Yew Wand of the Locust 1.92%, Victorious Wand of the Apprentice 1.92%, Septic Wand of Blight 1.92%, Yew Wand 3.85%, Lizard's Wand 1.92%, Septic Wand 1.92%, Javelin 5.77%, Envenomed Wand of Weaken 1.92%, Short Bow 1.92%<br><strong>Gloves</strong>: Trang-Oul's Claws 1.92%, Imp Grasp 1.92%, Eagle Hold 1.92%, Hailstone Grip 1.92%, Bitter Claw 1.92%, Bloodfist 1.92%, Chain Gloves of Fortune 1.92%, Chance Guards 3.85%, Sander's Taboo 1.92%, Light Gauntlets of Chance 1.92%, Stone Touch 1.92%, Leather Gloves 11.54%, Sigon's Gage 3.85%, The Hand of Broc 1.92%, Russet Gauntlets of Dexterity 1.92%, Viper Hold 1.92%, Iratha's Cuff 1.92%, Sturdy Heavy Gloves of Chance 1.92%, Demon Knuckle 1.92%, Beast Fist 1.92%, Loath Finger 1.92%, Russet Chain Gloves of Charged Bolt 1.92%, Soul Claw 1.92%, Death Fist 1.92%, Leather Gloves of Strength 1.92%, Sturdy Heavy Gloves 1.92%, Leather Gloves of Self-Repair 1.92%, Bitter Hand 1.92%, Tangerine Leather Gloves of Dexterity 1.92%<br><strong>Ring</strong>: Death Circle 1.92%, Skull Whorl 1.92%, Skull Finger 1.92%, Bitter Spiral 1.92%, Ring of Thawing 1.92%, Russet Ring of Energy 1.92%, Beast Band 1.92%, Wraithra Circle 1.92%, Crimson Ring of Warding 1.92%, Nagelring 9.62%, Beast Gyre 1.92%, Ring of Chance 3.85%, Skull Gyre 1.92%, Corruption Finger 1.92%, Manald Heal 3.85%, PlagueRI Loop 1.92%, Ring of the Apprentice 17.31%, Bitter Coil 1.92%, Bone Circle 1.92%, Beryl Ring of the Apprentice 5.77%, Ring of Charged Bolt 1.92%, Grim Grip 1.92%, Lizard's Ring of the Apprentice 3.85%, Havoc Eye 1.92%, Raven Finger 1.92%, Russet Ring of Warding 1.92%, Blood Whorl 1.92%, Bronze Ring of Warding 1.92%, PlagueRI Master 1.92%, Viper Coil 1.92%, Felicitous Ring of the Apprentice 3.85%, Felicitous Ring of Remedy 1.92%, Coral Ring of the Apprentice 1.92%, Eagle Grasp 1.92%, Triumphant Ring of Warding 1.92%, Beryl Ring of Regeneration 1.92%, Lizard's Ring of Greed 1.92%, Tangerine Ring of Charged Bolt 1.92%, Lapis Ring of the Apprentice 1.92%, Blood Coil 1.92%, Snake's Ring 1.92%, Eagle Finger 1.92%, Grim Circle 1.92%, Bronze Ring 1.92%, Triumphant Ring 1.92%, Beryl Ring of Energy 1.92%, Bone Whorl 1.92%, Ring of Strength 1.92%, Beryl Ring 3.85%, Crimson Ring of Light 1.92%, Doom Spiral 1.92%, Ring of Energy 1.92%, Crimson Ring 3.85%, Bronze Ring of the Apprentice 1.92%, Shadow Band 1.92%, Bone Master 1.92%, Ocher Ring of Craftmanship 1.92%, Garnet Ring of the Apprentice 1.92%, Triumphant Ring of Craftmanship 1.92%, Bronze Ring of Light 1.92%<br><strong>Body</strong>: Skin of the Vipermagi 1.92%, Stealth 25.00%, Rune Mantle 1.92%, Ring Mail 3.85%, Fiendra Wrap 1.92%, Corpse Shell 1.92%, Sturdy Hard Leather Armor of Remedy 1.92%, Isenhart's Case 3.85%, Darkglow 1.92%, Dread Hide 1.92%, Dread Jack 1.92%, Eagle Suit 1.92%, Wraithra Shell 1.92%, Leather Armor 3.85%, Lizard's Quilted Armor of Thorns 1.92%, Tangerine Quilted Armor 1.92%, Sturdy Hard Leather Armor of Health 1.92%, Hard Leather Armor 7.69%, Quilted Armor 1.92%, Brimstone Hide 1.92%, Hailstone Shroud 1.92%, Soul Cloak 1.92%, Arctic Furs 1.92%, Glyph Mantle 1.92%, Studded Leather of Thorns 1.92%<br><strong>Belt</strong>: Trang-Oul's Girth 1.92%, Demonhide Sash of Regeneration 1.92%, Arctic Binding 3.85%, Wraithra Harness 1.92%, Sigon's Wrap 3.85%, Doom Harness 1.92%, Skull Buckle 1.92%, Goldwrap 1.92%, Dire Lock 1.92%, Snakecord 1.92%, Brimstone Fringe 1.92%, Hsarus' Iron Stay 5.77%, Cruel Fringe 1.92%, Sash of Strength 1.92%, Grim Winding 1.92%, Iratha's Cord 3.85%, Azure Light Belt of Balance 1.92%, Crimson Light Belt 1.92%, Belt of Might 1.92%, Shadow Lash 1.92%, Demon Chain 1.92%, Sash of the Jackal 1.92%, Lizard's Light Belt of Regeneration 1.92%, Tangerine Belt of Thorns 1.92%, Viridian Sash of Regeneration 1.92%, Sash 7.69%, Sash of Thorns 1.92%, Lizard's Light Belt of Strength 1.92%, Crimson Belt 1.92%, Crimson Sash 1.92%, Sturdy Sash of Thorns 1.92%, Beast Harness 1.92%<br><strong>Offhand</strong>: Trang-Oul's Wing 1.92%, Mummified Trophy of Balance 1.92%, Ancients' Pledge 3.85%, Preserved Head 28.85%, Soul Emblem 1.92%, Storm Rock 1.92%, Corpse Shield 1.92%, Zombie Head 1.92%, Milabrega's Orb 1.92%, Beast Badge 1.92%, Unraveller Head 3.85%, Crimson Preserved Head 1.92%, Bramble Aegis 1.92%, Doom Emblem 1.92%, Wraithra Shield 1.92%, Sigon's Guard 1.92%, Sturdy Gargoyle Head 1.92%, Preserved Head of the Jackal 1.92%, Beryl Preserved Head 1.92%, Pelta Lunata 1.92%, Eagle Ward 1.92%, Shadow Aegis 1.92%, Corpse Rock 1.92%, Buckler 5.77%, Bone Shield of Blocking 1.92%, Eagle Shell 1.92%, Preserved Head of Balance 1.92%, Preserved Head of Blocking 1.92%, Dire Guard 1.92%, Shimmering Zombie Head 1.92%, Sturdy Small Shield of Blocking 1.92%</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>52 Characters in this cluster:</strong></button>
+            <div class="content">
+                
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Zeikar">Zeikar</a></div>
+                    <div>62</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Decrepify:20, Bone Armor:20, Lower Resist:12, Corpse Explosion:9</p>
+            <p><strong>Equipment:</strong> amulet: Iratha's Collar x1, helmet: Sigon's Visor x1, boots: Sigon's Sabot x1, Left hand: Call to Arms x1, Left hand: Arm of King Leoric x1, gloves: Trang-Oul's Claws x1, ring: Death Circle x1, ring: Skull Whorl x1, body: Skin of the Vipermagi x1, belt: Trang-Oul's Girth x1, Offhand: Trang-Oul's Wing x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=HC_P">HC_P</a></div>
+                    <div>41</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Weaken:20, Hemorrhage:20, Iron Maiden:2, Life Tap:1, Decrepify:1, Bone Armor:1, Clay Golem:1</p>
+            <p><strong>Equipment:</strong> body: Stealth x1, amulet: PlagueRI Wing x1, ring: Skull Finger x1, ring: Bitter Spiral x1, boots: Storm Nails x1, belt: Demonhide Sash of Regeneration x1, helmet: Blood Veil x1, Left hand: Battle Staff of Teleportation x1, Left hand: Wand of Brilliance x1, gloves: Imp Grasp x1, Offhand: Mummified Trophy of Balance x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Jabarkas">Jabarkas</a></div>
+                    <div>40</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Raise Skeleton Warrior:20, Bone Offering:14, Summon Mastery:8, Amplify Damage:1, Convocation:1, Flesh Offering:1</p>
+            <p><strong>Equipment:</strong> body: Stealth x1, ring: Ring of Thawing x1, ring: Russet Ring of Energy x1, amulet: Amulet of Control x1, gloves: Eagle Hold x1, boots: Raven Nails x1, helmet: Lore x1, belt: Arctic Binding x1, Left hand: Static Bone Wand x1, Left hand: Bone Wand of Leadership x1, Offhand: Ancients' Pledge x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Hellothereee">Hellothereee</a></div>
+                    <div>34</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Raise Skeleton Warrior:20, Summon Mastery:10, Amplify Damage:1, Decrepify:1, Deadly Poison:1, Desecrate:1, Clay Golem:1, Convocation:1, Raise Skeletal Mage:1, Bone Offering:1, Revive:1</p>
+            <p><strong>Equipment:</strong> ring: Beast Band x1, ring: Wraithra Circle x1, amulet: Corruption Necklace x1, body: Stealth x1, gloves: Hailstone Grip x1, boots: Treads of Cthon x1, helmet: Dread Horn x1, belt: Wraithra Harness x1, Left hand: Infernal Torch x1, Offhand: Preserved Head x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=HemoGod">HemoGod</a></div>
+                    <div>33</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Hemorrhage:20, Weaken:5, Iron Maiden:3, Life Tap:3, Bone Armor:1, Summon Mastery:1, Raise Skeleton Warrior:1, Convocation:1, Raise Skeletal Mage:1, Revive:1</p>
+            <p><strong>Equipment:</strong> ring: Crimson Ring of Warding x1, amulet: Amulet of the Apprentice x1, body: Stealth x1, belt: Sigon's Wrap x1, helmet: Carrion Veil x1, gloves: Bitter Claw x1, boots: Viper Tread x1, Left hand: Raven Crack x1, Offhand: Soul Emblem x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=pisik">pisik</a></div>
+                    <div>33</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Hemorrhage:20, Weaken:12, Decrepify:1, Summon Mastery:1, Clay Golem:1, Convocation:1, Blood Golem:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=AvaNec">AvaNec</a></div>
+                    <div>31</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Hemorrhage:18, Weaken:4, Iron Maiden:4, Life Tap:4, Bone Armor:1, Summon Mastery:1, Clay Golem:1, Convocation:1, Blood Golem:1</p>
+            <p><strong>Equipment:</strong> gloves: Bloodfist x1, ring: Nagelring x1, ring: Beast Gyre x1, amulet: Hexing Amulet x1, body: Stealth x1, boots: Brimstone Trample x1, belt: Doom Harness x1, helmet: Lore x1, Left hand: Envenomed Yew Wand of Firebolts x1, Offhand: Storm Rock x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=ShitSticks">ShitSticks</a></div>
+                    <div>30</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Hemorrhage:13, Raise Skeleton Warrior:7, Summon Mastery:4, Raise Skeletal Mage:3, Decrepify:1, Clay Golem:1, Convocation:1, Blood Golem:1, Iron Golem:1</p>
+            <p><strong>Equipment:</strong> ring: Ring of Chance x1, ring: Skull Gyre x1, body: Rune Mantle x1, helmet: Tarnhelm x1, gloves: Chain Gloves of Fortune x1, belt: Skull Buckle x1, amulet: Amulet of Control x1, boots: Pain Slippers x1, Left hand: Wand x1, Offhand: Corpse Shield x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=DIABLO_V">DIABLO_V</a></div>
+                    <div>30</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Hemorrhage:19, Life Tap:7, Dim Vision:3, Decrepify:1, Summon Mastery:1, Clay Golem:1, Convocation:1, Blood Golem:1</p>
+            <p><strong>Equipment:</strong> body: Stealth x1, gloves: Chance Guards x1, helmet: Tancred's Skull x1, boots: Bone Slippers x1, Left hand: Wirt's Leg x1, Left hand: Envenomed Wand of Amplify Damage x1, Offhand: Zombie Head x1, Offhand: Milabrega's Orb x1, ring: Corruption Finger x1, ring: Manald Heal x1, amulet: PlagueRI Clasp x1, belt: Goldwrap x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=molamolaa">molamolaa</a></div>
+                    <div>30</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Hemorrhage:20, Iron Maiden:5, Amplify Damage:1, Weaken:1, Teeth:1, Bone Armor:1, Raise Skeleton Warrior:1, Clay Golem:1, Convocation:1, Blood Golem:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Kupcia">Kupcia</a></div>
+                    <div>30</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Hemorrhage:20, Weaken:11, Iron Maiden:1, Life Tap:1</p>
+            <p><strong>Equipment:</strong> belt: Dire Lock x1, ring: PlagueRI Loop x1, ring: Ring of the Apprentice x1, amulet: Viridian Amulet of Brilliance x1, body: Stealth x1, helmet: Lore x1, gloves: Sander's Taboo x1, boots: Sander's Riprap x1, Left hand: Crimson Wand of Firebolts x1, Offhand: Beast Badge x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Parasolek">Parasolek</a></div>
+                    <div>30</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Hemorrhage:16, Iron Maiden:7, Raise Skeleton Warrior:4, Amplify Damage:1, Decrepify:1, Summon Mastery:1, Clay Golem:1, Convocation:1</p>
+            <p><strong>Equipment:</strong> ring: Bitter Coil x1, ring: Bone Circle x1, body: Ring Mail x1, boots: Hsarus' Iron Heel x1, helmet: Lore x1, belt: Snakecord x1, amulet: Felicitous Amulet of Thawing x1, gloves: Light Gauntlets of Chance x1, Left hand: Spirit x1, Offhand: Ancients' Pledge x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=methodHCman">methodHCman</a></div>
+                    <div>29</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Hemorrhage:20, Iron Maiden:4, Dim Vision:1, Weaken:1, Life Tap:1, Decrepify:1, Bone Armor:1, Summon Mastery:1, Clay Golem:1, Convocation:1</p>
+            <p><strong>Equipment:</strong> ring: Beryl Ring of the Apprentice x1, ring: Ring of Chance x1, boots: Vidala's Fetlock x1, amulet: Wraithra Emblem x1, gloves: Stone Touch x1, body: Stealth x1, belt: Brimstone Fringe x1, helmet: Pain Hood x1, Left hand: Wand of the Bat x1, Offhand: Unraveller Head x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Chapu_ii">Chapu_ii</a></div>
+                    <div>28</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Raise Skeleton Warrior:20, Summon Mastery:2, Amplify Damage:1, Bone Armor:1, Corpse Explosion:1, Clay Golem:1, Convocation:1, Raise Skeletal Mage:1, Flesh Offering:1</p>
+            <p><strong>Equipment:</strong> gloves: Leather Gloves x1, amulet: Amulet of Strength x1, ring: Ring of Charged Bolt x1, ring: Grim Grip x1, belt: Arctic Binding x1, body: Stealth x1, helmet: Arcanna's Head x1, Left hand: Wand x1, Offhand: Crimson Preserved Head x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=LZIMKW">LZIMKW</a></div>
+                    <div>27</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Hemorrhage:20, Weaken:4, Amplify Damage:1, Iron Maiden:1, Bone Armor:1, Clay Golem:1, Convocation:1</p>
+            <p><strong>Equipment:</strong> helmet: Cap x1, ring: Lizard's Ring of the Apprentice x1, ring: Beryl Ring of the Apprentice x1, gloves: Sigon's Gage x1, amulet: Vulpine Amulet of the Apprentice x1, boots: Sander's Riprap x1, body: Stealth x1, belt: Sigon's Wrap x1, Left hand: Storm Brand x1, Offhand: Preserved Head x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=PeterNov">PeterNov</a></div>
+                    <div>25</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Teeth:18, Bone Armor:1, Corpse Explosion:1, Bone Wall:1, Bone Spear:1, Bone Spirit:1, Raise Skeleton Warrior:1, Clay Golem:1, Raise Skeletal Mage:1, Blood Golem:1, Iron Golem:1</p>
+            <p><strong>Equipment:</strong> boots: Grim Brogues x1, gloves: The Hand of Broc x1, helmet: Grim Circlet x1, ring: Havoc Eye x1, ring: Raven Finger x1, belt: Hsarus' Iron Stay x1, body: Fiendra Wrap x1, amulet: Fungal Amulet of the Bat x1, Left hand: Empyrion Brand x1, Left hand: Maelstrom x1, Offhand: Preserved Head x1, Offhand: Bramble Aegis x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=longao">longao</a></div>
+                    <div>25</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Hemorrhage:20, Weaken:4, Iron Maiden:1, Life Tap:1, Clay Golem:1, Blood Golem:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=bambaleilo">bambaleilo</a></div>
+                    <div>23</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Raise Skeleton Warrior:20, Summon Mastery:4, Amplify Damage:1, Flesh Offering:1</p>
+            <p><strong>Equipment:</strong> ring: Russet Ring of Warding x1, ring: Blood Whorl x1, belt: Cruel Fringe x1, helmet: Tarnhelm x1, body: Corpse Shell x1, amulet: Coral Amulet x1, boots: Ocher Light Plated Boots of Fortune x1, gloves: Russet Gauntlets of Dexterity x1, Left hand: Yew Wand of the Bear x1, Offhand: Doom Emblem x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Gabe_Newell">Gabe_Newell</a></div>
+                    <div>22</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Raise Skeleton Warrior:11, Raise Skeletal Mage:9, Summon Mastery:1, Clay Golem:1, Blood Golem:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Revbenet">Revbenet</a></div>
+                    <div>22</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Teeth:13, Bone Spear:3, Bone Armor:1, Corpse Explosion:1, Bone Wall:1, Raise Skeleton Warrior:1, Clay Golem:1, Blood Golem:1</p>
+            <p><strong>Equipment:</strong> belt: Sash of Strength x1, ring: Bronze Ring of Warding x1, ring: Manald Heal x1, boots: Storm Nails x1, body: Sturdy Hard Leather Armor of Remedy x1, amulet: Amulet of the Apprentice x1, gloves: Chance Guards x1, helmet: Wormskull x1, Left hand: Gravenspine x1, Offhand: Wraithra Shield x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=fkncr">fkncr</a></div>
+                    <div>22</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Raise Skeleton Warrior:9, Summon Mastery:5, Flesh Offering:3, Deadly Poison:1, Desecrate:1, Clay Golem:1, Raise Skeletal Mage:1, Blood Golem:1, Bone Offering:1</p>
+            <p><strong>Equipment:</strong> belt: Hsarus' Iron Stay x1, amulet: Amulet of Leadership x1, body: Isenhart's Case x1, gloves: Sigon's Gage x1, boots: Gorefoot x1, helmet: Circlet of Leadership x1, ring: PlagueRI Master x1, ring: Viper Coil x1, Left hand: Gravenspine x1, Offhand: Sigon's Guard x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=ghostHCface">ghostHCface</a></div>
+                    <div>22</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Raise Skeleton Warrior:15, Summon Mastery:9, Amplify Damage:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Narcan">Narcan</a></div>
+                    <div>21</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Summon Mastery:14, Raise Skeleton Warrior:2, Raise Skeletal Mage:2, Amplify Damage:1, Bone Armor:1, Corpse Explosion:1, Clay Golem:1</p>
+            <p><strong>Equipment:</strong> helmet: Skull Cap x1, ring: Felicitous Ring of the Apprentice x1, ring: Felicitous Ring of Remedy x1, gloves: Viper Hold x1, boots: Ocher Heavy Boots of Chance x1, belt: Grim Winding x1, body: Ring Mail x1, amulet: Bronze Amulet of Fortune x1, Left hand: Infernal Torch x1, Offhand: Sturdy Gargoyle Head x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=OOAKOO">OOAKOO</a></div>
+                    <div>20</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Hemorrhage:15, Weaken:1, Iron Maiden:1, Life Tap:1, Bone Armor:1, Clay Golem:1</p>
+            <p><strong>Equipment:</strong> gloves: Iratha's Cuff x1, belt: Iratha's Cord x1, body: Darkglow x1, ring: Coral Ring of the Apprentice x1, ring: Eagle Grasp x1, amulet: Iratha's Collar x1, helmet: Iratha's Coil x1, Left hand: Snowflake Bone Wand of Brilliance x1, Offhand: Unraveller Head x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=SirAlucard">SirAlucard</a></div>
+                    <div>19</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Teeth:10, Raise Skeleton Warrior:3, Amplify Damage:1, Deadly Poison:1, Desecrate:1, Bone Spear:1, Clay Golem:1, Raise Skeletal Mage:1, Blood Golem:1</p>
+            <p><strong>Equipment:</strong> boots: Bitter Shank x1, ring: Triumphant Ring of Warding x1, ring: Beryl Ring of Regeneration x1, Left hand: Bone Wand x2, Offhand: Preserved Head of the Jackal x1, Offhand: Preserved Head x1, belt: Iratha's Cord x1, body: Dread Hide x1, helmet: Dread Casque x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=rekton">rekton</a></div>
+                    <div>19</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Hemorrhage:8, Raise Skeleton Warrior:4, Summon Mastery:3, Amplify Damage:1, Weaken:1, Deadly Poison:1, Desecrate:1</p>
+            <p><strong>Equipment:</strong> boots: Sturdy Boots of Dexterity x1, ring: Lizard's Ring of Greed x1, ring: Tangerine Ring of Charged Bolt x1, body: Stealth x1, helmet: Crimson Skull Cap x1, belt: Azure Light Belt of Balance x1, amulet: Amulet of the Viper x1, Left hand: Wand x1, Offhand: Beryl Preserved Head x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=demigorg">demigorg</a></div>
+                    <div>19</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Hemorrhage:14, Raise Skeleton Warrior:5, Iron Maiden:1</p>
+            <p><strong>Equipment:</strong> boots: Crimson Heavy Boots of Fortune x1, belt: Hsarus' Iron Stay x1, helmet: Cap x1, gloves: Sturdy Heavy Gloves of Chance x1, ring: Lapis Ring of the Apprentice x1, ring: Blood Coil x1, amulet: Russet Amulet x1, body: Stealth x1, Left hand: Wailing Yew Wand of the Locust x1, Offhand: Pelta Lunata x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Treyman">Treyman</a></div>
+                    <div>18</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Hemorrhage:10, Weaken:4, Iron Maiden:2, Life Tap:1, Clay Golem:1</p>
+            <p><strong>Equipment:</strong> gloves: Leather Gloves x1, helmet: Skull Cap x1, ring: Ring of the Apprentice x1, ring: Snake's Ring x1, amulet: Lizard's Amulet of Dexterity x1, boots: Loath Blazer x1, belt: Crimson Light Belt x1, body: Stealth x1, Left hand: Wand of Brilliance x1, Offhand: Preserved Head x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=BusterBear">BusterBear</a></div>
+                    <div>18</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Teeth:13, Bone Armor:1, Bone Spear:1, Summon Mastery:1, Raise Skeleton Warrior:1, Clay Golem:1</p>
+            <p><strong>Equipment:</strong> helmet: Raven Horn x1, gloves: Demon Knuckle x1, ring: Ring of the Apprentice x1, ring: Eagle Finger x1, amulet: GhoulRI Gorget x1, belt: Belt of Might x1, boots: Chain Boots of Dexterity x1, body: Isenhart's Case x1, Offhand: Eagle Ward x1, Offhand: Shadow Aegis x1, Left hand: Wand x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Chubaqa">Chubaqa</a></div>
+                    <div>18</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Teeth:14, Bone Armor:1, Bone Spear:1, Summon Mastery:1, Clay Golem:1, Blood Golem:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Wafflecno">Wafflecno</a></div>
+                    <div>17</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Deadly Poison:10, Corpse Explosion:3, Terror:1, Bone Armor:1, Summon Mastery:1, Clay Golem:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=DrewnianeKlocki">DrewnianeKlocki</a></div>
+                    <div>17</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Teeth:15, Iron Maiden:1, Bone Armor:1, Clay Golem:1</p>
+            <p><strong>Equipment:</strong> body: Dread Jack x1, helmet: Shadow Horn x1, gloves: Beast Fist x1, boots: Gorefoot x1, amulet: PlagueRI Clasp x1, ring: Grim Circle x1, ring: Ring of the Apprentice x1, belt: Shadow Lash x1, Left hand: Victorious Wand of the Apprentice x1, Offhand: Preserved Head x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=freize">freize</a></div>
+                    <div>17</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Hemorrhage:11, Amplify Damage:2, Bone Armor:1, Summon Mastery:1, Raise Skeleton Warrior:1, Clay Golem:1</p>
+            <p><strong>Equipment:</strong> gloves: Leather Gloves x1, ring: Bronze Ring x1, ring: Triumphant Ring x1, body: Eagle Suit x1, amulet: Bronze Amulet of the Jackal x1, helmet: Skull Cap x1, belt: Demon Chain x1, boots: Dread Nails x1, Left hand: Septic Wand of Blight x1, Left hand: Yew Wand x1, Offhand: Corpse Rock x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Nondead">Nondead</a></div>
+                    <div>16</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Hemorrhage:8, Summon Mastery:2, Raise Skeleton Warrior:2, Clay Golem:2, Amplify Damage:1, Raise Skeletal Mage:1</p>
+            <p><strong>Equipment:</strong> helmet: Cap x1, ring: Beryl Ring of Energy x1, ring: Bone Whorl x1, belt: Sash of the Jackal x1, body: Wraithra Shell x1, gloves: Loath Finger x1, amulet: Snake's Amulet of the Mind x1, boots: Soul Spur x1, Left hand: Bone Wand x1, Offhand: Preserved Head x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=FULLKEK">FULLKEK</a></div>
+                    <div>16</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Hemorrhage:11, Weaken:6</p>
+            <p><strong>Equipment:</strong> body: Leather Armor x1, ring: Ring of Strength x1, helmet: Cap of Energy x1, belt: Lizard's Light Belt of Regeneration x1, gloves: Russet Chain Gloves of Charged Bolt x1, amulet: Wraithra Collar x1, Left hand: Yew Wand x1, Offhand: Buckler x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=sinsun">sinsun</a></div>
+                    <div>16</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Hemorrhage:11, Weaken:3, Iron Maiden:1, Summon Mastery:1, Clay Golem:1</p>
+            <p><strong>Equipment:</strong> body: Lizard's Quilted Armor of Thorns x1, ring: Lizard's Ring of the Apprentice x1, ring: Felicitous Ring of the Apprentice x1, belt: Tangerine Belt of Thorns x1, amulet: Amulet of the Apprentice x1, helmet: Death Cowl x1, gloves: Soul Claw x1, boots: Spirit Blazer x1, Left hand: Bone Wand x1, Offhand: Bone Shield of Blocking x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Golbez-HC">Golbez-HC</a></div>
+                    <div>16</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Raise Skeleton Warrior:16, Deadly Poison:1</p>
+            <p><strong>Equipment:</strong> ring: Beryl Ring x1, ring: Crimson Ring of Light x1, body: Tangerine Quilted Armor x1, helmet: Cap x1, boots: Tireless Boots of Dexterity x1, amulet: Lapis Amulet of Remedy x1, gloves: Death Fist x1, belt: Viridian Sash of Regeneration x1, Left hand: Lizard's Wand x1, Offhand: Eagle Shell x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=bigdaddybjorno">bigdaddybjorno</a></div>
+                    <div>16</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Teeth:5, Raise Skeleton Warrior:4, Clay Golem:3, Amplify Damage:2, Summon Mastery:2</p>
+            <p><strong>Equipment:</strong> boots: Boots x1, belt: Sash x1, gloves: Leather Gloves x1, body: Sturdy Hard Leather Armor of Health x1, helmet: Blood Crest x1, ring: Ring of the Apprentice x2, amulet: Amulet of Brilliance x1, Left hand: Wand x1, Offhand: Preserved Head of Balance x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=JesusFChrist">JesusFChrist</a></div>
+                    <div>15</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Raise Skeleton Warrior:12, Summon Mastery:3, Amplify Damage:1</p>
+            <p><strong>Equipment:</strong> gloves: Leather Gloves x1, belt: Sash x1, ring: Doom Spiral x1, ring: Nagelring x1, body: Hard Leather Armor x1, boots: Bramble Track x1, amulet: Vidala's Snare x1, Left hand: Wand x1, Offhand: Preserved Head x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=CoffinFlop">CoffinFlop</a></div>
+                    <div>14</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Raise Skeleton Warrior:5, Flesh Offering:3, Summon Mastery:2, Amplify Damage:1, Clay Golem:1, Raise Skeletal Mage:1, Bone Offering:1</p>
+            <p><strong>Equipment:</strong> Left hand: Wand x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Army_ManBuren">Army_ManBuren</a></div>
+                    <div>14</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Raise Skeletal Mage:3, Summon Mastery:1, Raise Skeleton Warrior:1, Clay Golem:1, Flesh Offering:1, Bone Offering:1</p>
+            <p><strong>Equipment:</strong> belt: Sash of Thorns x1, helmet: Skull Cap x1, ring: Ring of the Apprentice x1, ring: Ring of Energy x1, body: Quilted Armor x1, boots: Storm Greaves x1, amulet: Felicitous Amulet of Energy x1, Left hand: Septic Wand x1, Offhand: Preserved Head of Blocking x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=pgls">pgls</a></div>
+                    <div>14</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Deadly Poison:9, Raise Skeleton Warrior:1, Clay Golem:1, Raise Skeletal Mage:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Syrhcez">Syrhcez</a></div>
+                    <div>14</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Raise Skeleton Warrior:11, Summon Mastery:2, Clay Golem:1, Flesh Offering:1</p>
+            <p><strong>Equipment:</strong> helmet: Skull Cap x1, ring: Crimson Ring x1, ring: Beryl Ring x1, boots: Heavy Boots of Thawing x1, body: Hard Leather Armor x1, belt: Lizard's Light Belt of Strength x1, amulet: PlagueRI Torc x1, Left hand: Wand x1, Offhand: Buckler x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Fartmancer">Fartmancer</a></div>
+                    <div>14</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Raise Skeleton Warrior:6, Summon Mastery:4, Amplify Damage:1, Deadly Poison:1, Clay Golem:1, Flesh Offering:1</p>
+            <p><strong>Equipment:</strong> body: Hard Leather Armor x1, helmet: Skull Cap x1, Offhand: Preserved Head x2, ring: Bronze Ring of the Apprentice x1, ring: Shadow Band x1, amulet: Felicitous Amulet x1, Left hand: Wand x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Nickfictions">Nickfictions</a></div>
+                    <div>13</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Teeth:8, Amplify Damage:1, Bone Armor:1, Corpse Explosion:1, Summon Mastery:1, Clay Golem:1</p>
+            <p><strong>Equipment:</strong> ring: Nagelring x2, body: Brimstone Hide x1, amulet: Nokozan Relic x1, Left hand: Wand x1, Offhand: Preserved Head x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Another_Bone">Another_Bone</a></div>
+                    <div>13</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Teeth:6, Amplify Damage:1, Bone Armor:1, Deadly Poison:1, Corpse Explosion:1, Summon Mastery:1, Raise Skeleton Warrior:1, Clay Golem:1</p>
+            <p><strong>Equipment:</strong> gloves: Leather Gloves of Strength x1, belt: Sash x1, helmet: Glowing Cap of Balance x1, body: Hard Leather Armor x1, ring: Ring of the Apprentice x1, ring: Bone Master x1, amulet: Amulet of the Jackal x1, boots: Crimson Boots of Self-Repair x1, Left hand: Wand x1, Left hand: Javelin x1, Offhand: Dire Guard x1, Offhand: Preserved Head x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=EbalEbalHC">EbalEbalHC</a></div>
+                    <div>13</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Raise Skeleton Warrior:9, Summon Mastery:3, Flesh Offering:1, Bone Offering:1</p>
+            <p><strong>Equipment:</strong> helmet: Cap of Energy x1, body: Hailstone Shroud x1, amulet: Felicitous Amulet x1, gloves: Sturdy Heavy Gloves x1, boots: Strong Heavy Boots x1, belt: Crimson Belt x1, ring: Ocher Ring of Craftmanship x1, ring: Garnet Ring of the Apprentice x1, Left hand: Wand x1, Offhand: Preserved Head x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=NoobieDoo">NoobieDoo</a></div>
+                    <div>12</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Hemorrhage:7, Weaken:3</p>
+            <p><strong>Equipment:</strong> amulet: Azure Amulet of Light x1, body: Soul Cloak x1, belt: Crimson Sash x1, gloves: Leather Gloves of Self-Repair x1, boots: Tireless Boots of Dexterity x1, helmet: Beryl Cap of Remedy x1, Left hand: Wand x1, Offhand: Shimmering Zombie Head x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Vinaztwo">Vinaztwo</a></div>
+                    <div>12</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Raise Skeleton Warrior:7, Amplify Damage:1, Bone Armor:1, Summon Mastery:1, Clay Golem:1, Raise Skeletal Mage:1</p>
+            <p><strong>Equipment:</strong> boots: Boots x1, ring: Crimson Ring x1, ring: Ring of the Apprentice x1, belt: Sturdy Sash of Thorns x1, gloves: Bitter Hand x1, helmet: Biggin's Bonnet x1, amulet: Tangerine Amulet x1, body: Arctic Furs x1, Left hand: Wand x1, Offhand: Preserved Head x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=IronmanIsomer">IronmanIsomer</a></div>
+                    <div>12</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Hemorrhage:7, Weaken:4, Deadly Poison:2</p>
+            <p><strong>Equipment:</strong> gloves: Tangerine Leather Gloves of Dexterity x1, belt: Beast Harness x1, helmet: Cap x1, body: Glyph Mantle x1, boots: Death Greaves x1, ring: Triumphant Ring of Craftmanship x1, ring: Nagelring x1, amulet: Crimson Amulet x1, Left hand: Javelin x1, Offhand: Preserved Head x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=PokPo">PokPo</a></div>
+                    <div>12</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Raise Skeleton Warrior:7, Hemorrhage:3, Amplify Damage:1, Clay Golem:1</p>
+            <p><strong>Equipment:</strong> gloves: Leather Gloves x1, belt: Sash x1, helmet: Skull Cap x1, ring: Beryl Ring of the Apprentice x1, ring: Bronze Ring of Light x1, boots: Glyph Track x1, body: Studded Leather of Thorns x1, amulet: Amulet of Might x1, Left hand: Envenomed Wand of Weaken x1, Offhand: Sturdy Small Shield of Blocking x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=RichS">RichS</a></div>
+                    <div>5</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Lethal Strike:1, Jab:1</p>
+            <p><strong>Equipment:</strong> Left hand: Short Bow x1, Left hand: Javelin x1, body: Leather Armor x1, Offhand: Buckler x1</p>
+        
+        </div>
+        <hr>
+        
+        <h2>19.25%  of Necromancer's Main Skills:<br><img src='icons/Summon Mastery.png' alt='Summon Mastery' width='20' height='20'> Summon Mastery 100.00% (602)<br><img src='icons/Raise Skeleton Warrior.png' alt='Raise Skeleton Warrior' width='20' height='20'> Raise Skeleton Warrior 96.77% (430)<br><img src='icons/Raise Skeletal Mage.png' alt='Raise Skeletal Mage' width='20' height='20'> Raise Skeletal Mage 93.55% (424)</h2>
+        <p><strong>Other Skills:<br></strong> <img src='icons/Fire Golem.png' alt='Fire Golem' width='20' height='20'> Fire Golem 64.52% (314.0)<br><img src='icons/Corpse Explosion.png' alt='Corpse Explosion' width='20' height='20'> Corpse Explosion 64.52% (228.0)<br><img src='icons/Convocation.png' alt='Convocation' width='20' height='20'> Convocation 96.77% (167.0)<br><img src='icons/Revive.png' alt='Revive' width='20' height='20'> Revive 64.52% (80.0)<br><img src='icons/Flesh Offering.png' alt='Flesh Offering' width='20' height='20'> Flesh Offering 45.16% (53.0)<br><img src='icons/Blood Golem.png' alt='Blood Golem' width='20' height='20'> Blood Golem 96.77% (50.0)</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>All Skills</strong></button>
+            <div class="content">
+                <div><img src='icons/Summon Mastery.png' alt='Summon Mastery' width='20' height='20'> Summon Mastery 100.0% (602.0)<br><img src='icons/Raise Skeleton Warrior.png' alt='Raise Skeleton Warrior' width='20' height='20'> Raise Skeleton Warrior 96.77% (431.0)<br><img src='icons/Raise Skeletal Mage.png' alt='Raise Skeletal Mage' width='20' height='20'> Raise Skeletal Mage 93.55% (424.0)<br><img src='icons/Fire Golem.png' alt='Fire Golem' width='20' height='20'> Fire Golem 64.52% (314.0)<br><img src='icons/Corpse Explosion.png' alt='Corpse Explosion' width='20' height='20'> Corpse Explosion 64.52% (228.0)<br><img src='icons/Convocation.png' alt='Convocation' width='20' height='20'> Convocation 96.77% (167.0)<br><img src='icons/Revive.png' alt='Revive' width='20' height='20'> Revive 64.52% (80.0)<br><img src='icons/Flesh Offering.png' alt='Flesh Offering' width='20' height='20'> Flesh Offering 45.16% (53.0)<br><img src='icons/Blood Golem.png' alt='Blood Golem' width='20' height='20'> Blood Golem 96.77% (50.0)<br><img src='icons/Desecrate.png' alt='Desecrate' width='20' height='20'> Desecrate 70.97% (40.0)<br><img src='icons/Lower Resist.png' alt='Lower Resist' width='20' height='20'> Lower Resist 58.06% (36.0)<br><img src='icons/Clay Golem.png' alt='Clay Golem' width='20' height='20'> Clay Golem 96.77% (30.0)<br><img src='icons/Bone Offering.png' alt='Bone Offering' width='20' height='20'> Bone Offering 32.26% (27.0)<br><img src='icons/Bone Armor.png' alt='Bone Armor' width='20' height='20'> Bone Armor 77.42% (26.0)<br><img src='icons/Deadly Poison.png' alt='Deadly Poison' width='20' height='20'> Deadly Poison 70.97% (22.0)<br><img src='icons/Iron Golem.png' alt='Iron Golem' width='20' height='20'> Iron Golem 67.74% (21.0)<br><img src='icons/Decrepify.png' alt='Decrepify' width='20' height='20'> Decrepify 61.29% (20.0)<br><img src='icons/Amplify Damage.png' alt='Amplify Damage' width='20' height='20'> Amplify Damage 54.84% (17.0)<br><img src='icons/Bone Wall.png' alt='Bone Wall' width='20' height='20'> Bone Wall 12.9% (11.0)<br><img src='icons/Bone Spear.png' alt='Bone Spear' width='20' height='20'> Bone Spear 6.45% (10.0)<br><img src='icons/Confuse.png' alt='Confuse' width='20' height='20'> Confuse 6.45% (2.0)<br><img src='icons/Teeth.png' alt='Teeth' width='20' height='20'> Teeth 6.45% (2.0)<br><img src='icons/Iron Maiden.png' alt='Iron Maiden' width='20' height='20'> Iron Maiden 3.23% (1.0)<br><img src='icons/Bone Spirit.png' alt='Bone Spirit' width='20' height='20'> Bone Spirit 3.23% (1.0)<br><img src='icons/Poison Nova.png' alt='Poison Nova' width='20' height='20'> Poison Nova 3.23% (1.0)<br><img src='icons/Terror.png' alt='Terror' width='20' height='20'> Terror 3.23% (1.0)<br><img src='icons/Attract.png' alt='Attract' width='20' height='20'> Attract 3.23% (1.0)<br><img src='icons/Dim Vision.png' alt='Dim Vision' width='20' height='20'> Dim Vision 0.0% (0.0)<br><img src='icons/Weaken.png' alt='Weaken' width='20' height='20'> Weaken 0.0% (0.0)<br><img src='icons/Life Tap.png' alt='Life Tap' width='20' height='20'> Life Tap 0.0% (0.0)<br><img src='icons/Hemorrhage.png' alt='Hemorrhage' width='20' height='20'> Hemorrhage 0.0% (0.0)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 0.0% (0.0)<br><img src='icons/Jab.png' alt='Jab' width='20' height='20'> Jab 0.0% (0.0)</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>Most Common Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Amulet</strong>: <br>Amulet of Leadership 6.45%<br>GhoulRI Beads 3.23%<br>Golemlord's Amulet of the Squid 3.23%<br>Order Clasp 3.23%<br>Shadow Scarab 3.23%<br><strong>Boots</strong>: <br>Aldur's Advance 9.68%<br>Silkweave 6.45%<br>Marrowwalk 6.45%<br>Hsarus' Iron Heel 6.45%<br>Pain Spur 3.23%<br><strong>Ring</strong>: <br>Dwarf Star 12.90%<br>Nagelring 9.68%<br>Viper Spiral 6.45%<br>The Stone of Jordan 6.45%<br>GhoulRI Coil 6.45%<br><strong>Left hand</strong>: <br>Spirit 32.26%<br>Arm of King Leoric 9.68%<br>Call to Arms 6.45%<br>Heart of the Oak 6.45%<br>Battle Staff of Teleportation 6.45%<br><strong>Offhand</strong>: <br>Homunculus 19.35%<br>Rhyme 16.13%<br>Moser's Blessed Circle 9.68%<br>Spirit 9.68%<br>Trang-Oul's Wing 9.68%<br><strong>Body</strong>: <br>Stealth 19.35%<br>Bone 16.13%<br>Trang-Oul's Scales 16.13%<br>Skin of the Vipermagi 6.45%<br>Smoke 6.45%<br><strong>Belt</strong>: <br>Trang-Oul's Girth 12.90%<br>Verdungo's Hearty Cord 6.45%<br>Goldwrap 6.45%<br>Nightsmoke 6.45%<br>String of Ears 3.23%<br><strong>Gloves</strong>: <br>Trang-Oul's Claws 19.35%<br>Chance Guards 9.68%<br>Magefist 9.68%<br>PlagueRI Hold 3.23%<br>Pain Knuckle 3.23%<br><strong>Helmet</strong>: <br>Undead Crown 16.13%<br>Lore 16.13%<br>Harlequin Crest 12.90%<br>Trang-Oul's Guise 9.68%<br>Peasant Crown 6.45%</div>
+            </div>
+        
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Amulet</strong>: GhoulRI Beads 3.23%, Golemlord's Amulet of the Squid 3.23%, Order Clasp 3.23%, Shadow Scarab 3.23%, Necromancer's Amulet 3.23%, Stone Scarab 3.23%, Golemlord's Amulet of Luck 3.23%, Amulet of Luck 3.23%, Venomous Amulet of Health 3.23%, Golemlord's Amulet 3.23%, Summoner's Amulet 3.23%, The Eye of Etlich 3.23%, Golemlord's Amulet of Craftmanship 3.23%, Golemlord's Amulet of Revivification 3.23%, Amulet of Leadership 6.45%, Havoc Noose 3.23%, Noxious Amulet of the Apprentice 3.23%, Seraph's Hymn 3.23%, Summoner's Amulet of Fortune 3.23%, Havoc Scarab 3.23%, Graverobber's Amulet of the Mind 3.23%, Vodoun Amulet of Life Everlasting 3.23%, Prismatic Amulet of Revivification 3.23%<br><strong>Boots</strong>: Pain Spur 3.23%, Aldur's Advance 9.68%, Natalya's Soul 3.23%, Storm Nails 3.23%, Silkweave 6.45%, Dread Blazer 3.23%, Cruel Brogues 3.23%, Marrowwalk 6.45%, Corpse Slippers 3.23%, PlagueRI Spur 3.23%, Tancred's Hobnails 3.23%, Sander's Riprap 3.23%, Bramble Spur 3.23%, Hsarus' Iron Heel 6.45%, Ocher Light Plated Boots of Fortune 3.23%, Brimstone Track 3.23%, Eagle Stalker 3.23%, Pain Track 3.23%, Treads of Cthon 3.23%<br><strong>Ring</strong>: Entropy Hold 3.23%, Death Spiral 3.23%, Entropy Band 3.23%, Dread Coil 3.23%, Rune Turn 3.23%, Viper Loop 3.23%, Grim Hold 3.23%, Skull Hold 3.23%, Viper Coil 3.23%, Viper Spiral 6.45%, Rune Coil 3.23%, Stone Master 3.23%, Nagelring 9.68%, Eagle Grasp 3.23%, Wisp Projector 3.23%, Dwarf Star 12.90%, Death Loop 3.23%, Chaos Master 3.23%, Blood Grasp 3.23%, Crimson Ring of the Apprentice 3.23%, Raven Whorl 3.23%, Dread Band 3.23%, Dread Spiral 3.23%, The Stone of Jordan 6.45%, Order Grip 3.23%, Viper Band 3.23%, Garnet Ring of the Sentinel 3.23%, GhoulRI Coil 6.45%, Grim Turn 3.23%, Stone Band 3.23%, Raven Frost 3.23%, Bone Circle 3.23%, Ring of Fortune 3.23%, Corruption Spiral 3.23%, Blood Whorl 3.23%, Russet Ring 3.23%, Grim Loop 3.23%, Eagle Eye 3.23%, Order Loop 3.23%, Blood Touch 3.23%<br><strong>Left hand</strong>: Call to Arms 6.45%, Golemlord's Grim Wand of Leadership 3.23%, Heart of the Oak 6.45%, Spirit 32.26%, Tomb Wand of Leadership 3.23%, Arm of King Leoric 9.68%, Blade of Ali Baba 3.23%, Necromancer's Bone Wand of Leadership 3.23%, Burnt Wand 3.23%, White 3.23%, Carrion Horn 3.23%, Battle Staff of Teleportation 6.45%, Necromancer's Yew Wand 3.23%, Golemlord's Grim Wand of Regeneration 3.23%, Rune Bludgeon 3.23%, Necromancer's Bone Wand of Nova 3.23%, Maelstrom 3.23%, Golemlord's Grim Wand of the Wraith 3.23%, Blackhand Key 3.23%, Ember Grim Wand 3.23%, Vodoun Petrified Wand of Leadership 3.23%, Golemlord's Yew Wand 3.23%, Vodoun Bone Wand 3.23%<br><strong>Offhand</strong>: Moser's Blessed Circle 9.68%, Homunculus 19.35%, Spirit 9.68%, Radament's Sphere 3.23%, Rune Aegis 3.23%, Trang-Oul's Wing 9.68%, Rhyme 16.13%, Milabrega's Orb 3.23%, Preserved Head 3.23%, Boneflame 3.23%, Large Shield 3.23%, Ancients' Pledge 9.68%, Shadow Ward 3.23%, Cleglaw's Claw 3.23%, Lidless Wall 3.23%, The Ward 3.23%, Blessed Hierophant Trophy of Blocking 3.23%, Dread Wing 3.23%<br><strong>Body</strong>: Skin of the Vipermagi 6.45%, Bone 16.13%, Stealth 19.35%, Trang-Oul's Scales 16.13%, Smoke 6.45%, Carrion Shroud 3.23%, Goldskin 3.23%, Breast Plate 3.23%, Hwanin's Refuge 3.23%<br><strong>Belt</strong>: Verdungo's Hearty Cord 6.45%, String of Ears 3.23%, Goldwrap 6.45%, Trang-Oul's Girth 12.90%, Tal Rasha's Fine-Spun Cloth 3.23%, Immortal King's Detail 3.23%, Nightsmoke 6.45%, Storm Buckle 3.23%, Glyph Lash 3.23%, Pain Fringe 3.23%, Imp Buckle 3.23%, M'avina's Tenet 3.23%, Fiendra Lash 3.23%, Hsarus' Iron Stay 3.23%, Brimstone Chain 3.23%, Skull Clasp 3.23%, Plated Belt of the Squid 3.23%, Infernal Sign 3.23%<br><strong>Gloves</strong>: Chance Guards 9.68%, Trang-Oul's Claws 19.35%, PlagueRI Hold 3.23%, Magefist 9.68%, Pain Knuckle 3.23%, Fiendra Knuckle 3.23%, Grim Fist 3.23%, Raven Grasp 3.23%, Fiendra Fist 3.23%, Sharkskin Gloves of Fortune 3.23%, Sander's Taboo 3.23%, Corpse Grip 3.23%, Skull Hand 3.23%, Bitter Knuckle 3.23%, Garnet Chain Gloves of Fortune 3.23%<br><strong>Helmet</strong>: Harlequin Crest 12.90%, Golemlord's Circlet 3.23%, Undead Crown 16.13%, Full Helm 3.23%, Trang-Oul's Guise 9.68%, Lore 16.13%, Golemlord's Circlet of the Colossus 3.23%, Peasant Crown 6.45%, Skull Brow 3.23%, War Hat 3.23%</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>31 Characters in this cluster:</strong></button>
+            <div class="content">
+                
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Ferret">Ferret</a></div>
+                    <div>94</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Summon Mastery:20, Raise Skeleton Warrior:20, Raise Skeletal Mage:20, Convocation:19, Desecrate:9, Corpse Explosion:7, Lower Resist:3, Terror:1, Decrepify:1, Bone Armor:1, Deadly Poison:1, Clay Golem:1, Blood Golem:1, Revive:1</p>
+            <p><strong>Equipment:</strong> amulet: GhoulRI Beads x1, boots: Pain Spur x1, ring: Entropy Hold x1, ring: Death Spiral x1, Left hand: Call to Arms x1, Left hand: Golemlord's Grim Wand of Leadership x1, Offhand: Moser's Blessed Circle x1, Offhand: Homunculus x1, body: Skin of the Vipermagi x1, belt: Verdungo's Hearty Cord x1, gloves: Chance Guards x1, helmet: Harlequin Crest x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=ArmeijaII">ArmeijaII</a></div>
+                    <div>90</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Summon Mastery:20, Raise Skeleton Warrior:20, Raise Skeletal Mage:20, Fire Golem:20, Corpse Explosion:10, Lower Resist:2, Amplify Damage:1, Bone Armor:1, Deadly Poison:1, Desecrate:1, Clay Golem:1, Convocation:1, Blood Golem:1, Iron Golem:1, Revive:1</p>
+            <p><strong>Equipment:</strong> amulet: Golemlord's Amulet of the Squid x1, ring: Entropy Band x1, ring: Dread Coil x1, body: Bone x1, belt: Verdungo's Hearty Cord x1, gloves: Trang-Oul's Claws x1, boots: Aldur's Advance x1, helmet: Golemlord's Circlet x1, Left hand: Call to Arms x1, Left hand: Heart of the Oak x1, Offhand: Spirit x2</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=OdsieracCasu">OdsieracCasu</a></div>
+                    <div>90</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Corpse Explosion:20, Summon Mastery:20, Raise Skeletal Mage:20, Fire Golem:20, Lower Resist:10, Flesh Offering:3, Decrepify:2, Bone Armor:1, Raise Skeleton Warrior:1, Clay Golem:1, Convocation:1, Blood Golem:1, Iron Golem:1</p>
+            <p><strong>Equipment:</strong> boots: Natalya's Soul x1, gloves: Trang-Oul's Claws x1, amulet: Order Clasp x1, Left hand: Spirit x1, Left hand: Tomb Wand of Leadership x1, Offhand: Radament's Sphere x1, Offhand: Rune Aegis x1, ring: Rune Turn x1, ring: Viper Loop x1, body: Bone x1, helmet: Harlequin Crest x1, belt: String of Ears x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Manardo">Manardo</a></div>
+                    <div>90</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Corpse Explosion:20, Summon Mastery:20, Raise Skeleton Warrior:20, Convocation:20, Fire Golem:8, Lower Resist:5, Decrepify:1, Bone Armor:1, Deadly Poison:1, Desecrate:1, Clay Golem:1, Raise Skeletal Mage:1, Blood Golem:1, Iron Golem:1</p>
+            <p><strong>Equipment:</strong> body: Stealth x1, boots: Storm Nails x1, ring: Grim Hold x1, ring: Skull Hold x1, belt: Goldwrap x1, helmet: Harlequin Crest x1, gloves: PlagueRI Hold x1, amulet: Shadow Scarab x1, Left hand: Spirit x1, Offhand: Homunculus x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Sakha">Sakha</a></div>
+                    <div>88</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Summon Mastery:20, Raise Skeleton Warrior:20, Raise Skeletal Mage:20, Revive:20, Desecrate:5, Corpse Explosion:4, Amplify Damage:1, Decrepify:1, Lower Resist:1, Bone Armor:1, Deadly Poison:1, Clay Golem:1, Convocation:1, Blood Golem:1, Flesh Offering:1, Bone Offering:1</p>
+            <p><strong>Equipment:</strong> gloves: Chance Guards x1, boots: Silkweave x1, body: Trang-Oul's Scales x1, amulet: Necromancer's Amulet x1, belt: Trang-Oul's Girth x1, ring: Viper Coil x1, ring: Viper Spiral x1, helmet: Undead Crown x1, Left hand: Arm of King Leoric x1, Offhand: Trang-Oul's Wing x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Neckki">Neckki</a></div>
+                    <div>87</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Corpse Explosion:20, Summon Mastery:20, Convocation:20, Fire Golem:20, Bone Wall:8, Lower Resist:1, Bone Armor:1, Deadly Poison:1, Desecrate:1, Clay Golem:1, Blood Golem:1, Iron Golem:1</p>
+            <p><strong>Equipment:</strong> body: Bone x1, helmet: Harlequin Crest x1, ring: Rune Coil x1, ring: Stone Master x1, gloves: Magefist x1, amulet: Stone Scarab x1, belt: Tal Rasha's Fine-Spun Cloth x1, boots: Silkweave x1, Left hand: Heart of the Oak x1, Offhand: Homunculus x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Veni">Veni</a></div>
+                    <div>86</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Summon Mastery:20, Raise Skeleton Warrior:20, Raise Skeletal Mage:20, Convocation:13, Revive:11, Amplify Damage:1, Lower Resist:1, Bone Armor:1, Deadly Poison:1, Corpse Explosion:1, Bone Wall:1, Desecrate:1, Clay Golem:1, Blood Golem:1, Flesh Offering:1, Bone Offering:1, Iron Golem:1, Fire Golem:1</p>
+            <p><strong>Equipment:</strong> ring: Nagelring x1, ring: Viper Spiral x1, gloves: Chance Guards x1, helmet: Undead Crown x1, body: Bone x1, amulet: Golemlord's Amulet of Luck x1, belt: Goldwrap x1, boots: Dread Blazer x1, Left hand: Blade of Ali Baba x1, Left hand: Necromancer's Bone Wand of Leadership x1, Offhand: Rhyme x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=SkelliBellii">SkelliBellii</a></div>
+                    <div>84</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Corpse Explosion:20, Summon Mastery:20, Raise Skeleton Warrior:20, Raise Skeletal Mage:20, Revive:3, Bone Offering:2, Fire Golem:2, Decrepify:1, Bone Armor:1, Deadly Poison:1, Desecrate:1, Clay Golem:1, Convocation:1, Blood Golem:1, Iron Golem:1</p>
+            <p><strong>Equipment:</strong> helmet: Full Helm x1, boots: Cruel Brogues x1, ring: Eagle Grasp x1, ring: Wisp Projector x1, gloves: Pain Knuckle x1, body: Trang-Oul's Scales x1, belt: Immortal King's Detail x1, amulet: Amulet of Luck x1, Left hand: Burnt Wand x1, Left hand: Spirit x1, Offhand: Milabrega's Orb x1, Offhand: Preserved Head x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=BrooklonNecro">BrooklonNecro</a></div>
+                    <div>84</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Corpse Explosion:20, Summon Mastery:20, Convocation:20, Fire Golem:20, Lower Resist:3, Revive:2, Decrepify:1, Bone Armor:1, Deadly Poison:1, Bone Wall:1, Desecrate:1, Raise Skeleton Warrior:1, Clay Golem:1, Raise Skeletal Mage:1, Blood Golem:1, Iron Golem:1</p>
+            <p><strong>Equipment:</strong> amulet: Venomous Amulet of Health x1, ring: Dwarf Star x1, ring: Death Loop x1, gloves: Trang-Oul's Claws x1, belt: Trang-Oul's Girth x1, body: Trang-Oul's Scales x1, helmet: Trang-Oul's Guise x1, boots: Aldur's Advance x1, Left hand: White x1, Offhand: Trang-Oul's Wing x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Chunkromancer">Chunkromancer</a></div>
+                    <div>80</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Summon Mastery:20, Raise Skeleton Warrior:20, Raise Skeletal Mage:20, Fire Golem:20, Corpse Explosion:5, Amplify Damage:1, Bone Armor:1, Clay Golem:1, Convocation:1, Blood Golem:1, Iron Golem:1</p>
+            <p><strong>Equipment:</strong> ring: Chaos Master x1, ring: Blood Grasp x1, body: Smoke x1, gloves: Trang-Oul's Claws x1, helmet: Undead Crown x1, belt: Nightsmoke x1, amulet: Golemlord's Amulet x1, boots: Marrowwalk x1, Left hand: Carrion Horn x1, Left hand: Arm of King Leoric x1, Offhand: Boneflame x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=SDPOnDemand">SDPOnDemand</a></div>
+                    <div>80</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Corpse Explosion:20, Summon Mastery:20, Fire Golem:20, Convocation:15, Amplify Damage:1, Decrepify:1, Lower Resist:1, Teeth:1, Bone Armor:1, Deadly Poison:1, Bone Wall:1, Desecrate:1, Bone Spear:1, Bone Spirit:1, Raise Skeleton Warrior:1, Clay Golem:1, Raise Skeletal Mage:1, Blood Golem:1, Iron Golem:1, Revive:1</p>
+            <p><strong>Equipment:</strong> body: Stealth x1, ring: Crimson Ring of the Apprentice x1, ring: Raven Whorl x1, gloves: Fiendra Knuckle x1, boots: Corpse Slippers x1, belt: Storm Buckle x1, helmet: Lore x1, Left hand: Battle Staff of Teleportation x1, Left hand: Spirit x1, amulet: Summoner's Amulet x1, Offhand: Rhyme x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=MuffStuffin">MuffStuffin</a></div>
+                    <div>79</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Summon Mastery:20, Raise Skeleton Warrior:20, Raise Skeletal Mage:20, Convocation:8, Revive:7, Flesh Offering:6, Blood Golem:2, Amplify Damage:1, Decrepify:1, Bone Armor:1, Deadly Poison:1, Desecrate:1, Clay Golem:1, Iron Golem:1</p>
+            <p><strong>Equipment:</strong> ring: Dread Band x1, ring: Dread Spiral x1, amulet: The Eye of Etlich x1, gloves: Trang-Oul's Claws x1, belt: Trang-Oul's Girth x1, helmet: Trang-Oul's Guise x1, boots: PlagueRI Spur x1, body: Trang-Oul's Scales x1, Offhand: Large Shield x1, Offhand: Moser's Blessed Circle x1, Left hand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=HotCreamPie">HotCreamPie</a></div>
+                    <div>79</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Summon Mastery:20, Raise Skeletal Mage:20, Fire Golem:20, Convocation:19, Raise Skeleton Warrior:3, Revive:2, Confuse:1, Lower Resist:1, Clay Golem:1, Blood Golem:1, Flesh Offering:1, Iron Golem:1</p>
+            <p><strong>Equipment:</strong> belt: Nightsmoke x1, helmet: Golemlord's Circlet of the Colossus x1, body: Bone x1, gloves: Magefist x1, ring: The Stone of Jordan x2, amulet: Golemlord's Amulet of Craftmanship x1, boots: Tancred's Hobnails x1, Left hand: Necromancer's Yew Wand x1, Left hand: Golemlord's Grim Wand of Regeneration x1, Offhand: Homunculus x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=ene">ene</a></div>
+                    <div>79</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Summon Mastery:20, Raise Skeleton Warrior:20, Raise Skeletal Mage:20, Fire Golem:20, Convocation:3, Confuse:1, Attract:1, Decrepify:1, Clay Golem:1, Blood Golem:1, Iron Golem:1</p>
+            <p><strong>Equipment:</strong> belt: Glyph Lash x1, helmet: Peasant Crown x1, boots: Sander's Riprap x1, amulet: Golemlord's Amulet of Revivification x1, body: Carrion Shroud x1, Offhand: Ancients' Pledge x1, Offhand: Homunculus x1, gloves: Grim Fist x1, ring: Order Grip x1, ring: Viper Band x1, Left hand: Rune Bludgeon x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Ense">Ense</a></div>
+                    <div>77</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Summon Mastery:20, Raise Skeleton Warrior:20, Raise Skeletal Mage:20, Bone Offering:17, Amplify Damage:1, Decrepify:1, Lower Resist:1, Bone Armor:1, Deadly Poison:1, Desecrate:1, Clay Golem:1, Convocation:1, Blood Golem:1, Flesh Offering:1, Revive:1</p>
+            <p><strong>Equipment:</strong> belt: Pain Fringe x1, ring: Dwarf Star x1, ring: Garnet Ring of the Sentinel x1, amulet: Amulet of Leadership x1, helmet: Peasant Crown x1, Left hand: Necromancer's Bone Wand of Nova x1, Left hand: Spirit x1, Offhand: Shadow Ward x1, Offhand: Ancients' Pledge x1, boots: Bramble Spur x1, gloves: Raven Grasp x1, body: Goldskin x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Gehius">Gehius</a></div>
+                    <div>77</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Corpse Explosion:20, Raise Skeleton Warrior:20, Fire Golem:15, Summon Mastery:13, Convocation:5, Raise Skeletal Mage:2, Amplify Damage:1, Decrepify:1, Lower Resist:1, Bone Armor:1, Deadly Poison:1, Desecrate:1, Poison Nova:1, Clay Golem:1, Blood Golem:1, Flesh Offering:1, Bone Offering:1, Iron Golem:1, Revive:1</p>
+            <p><strong>Equipment:</strong> ring: GhoulRI Coil x1, ring: Dwarf Star x1, amulet: Havoc Noose x1, gloves: Trang-Oul's Claws x1, belt: Trang-Oul's Girth x1, boots: Marrowwalk x1, helmet: Trang-Oul's Guise x1, body: Trang-Oul's Scales x1, Left hand: Maelstrom x1, Left hand: Arm of King Leoric x1, Offhand: Cleglaw's Claw x1, Offhand: Trang-Oul's Wing x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=IzC_Nec">IzC_Nec</a></div>
+                    <div>77</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Corpse Explosion:20, Raise Skeletal Mage:20, Fire Golem:15, Summon Mastery:12, Desecrate:7, Convocation:6, Decrepify:1, Lower Resist:1, Bone Armor:1, Deadly Poison:1, Raise Skeleton Warrior:1, Clay Golem:1, Blood Golem:1, Iron Golem:1</p>
+            <p><strong>Equipment:</strong> ring: Grim Turn x1, ring: Stone Band x1, belt: Imp Buckle x1, helmet: Lore x1, gloves: Magefist x1, amulet: Noxious Amulet of the Apprentice x1, body: Smoke x1, boots: Hsarus' Iron Heel x1, Left hand: Spirit x1, Offhand: Lidless Wall x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=SSF_Ranggarn">SSF_Ranggarn</a></div>
+                    <div>76</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Summon Mastery:20, Raise Skeleton Warrior:20, Raise Skeletal Mage:20, Fire Golem:12, Amplify Damage:1, Decrepify:1, Bone Armor:1, Deadly Poison:1, Corpse Explosion:1, Desecrate:1, Clay Golem:1, Convocation:1, Blood Golem:1, Flesh Offering:1, Bone Offering:1, Iron Golem:1</p>
+            <p><strong>Equipment:</strong> body: Stealth x1, helmet: Lore x1, gloves: Fiendra Fist x1, boots: Aldur's Advance x1, ring: Raven Frost x1, ring: Dwarf Star x1, belt: M'avina's Tenet x1, amulet: Seraph's Hymn x1, Left hand: Spirit x1, Offhand: The Ward x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=JeNecro">JeNecro</a></div>
+                    <div>75</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Summon Mastery:20, Raise Skeleton Warrior:20, Fire Golem:20, Raise Skeletal Mage:19, Amplify Damage:1, Lower Resist:1, Clay Golem:1, Convocation:1, Blood Golem:1, Flesh Offering:1, Iron Golem:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=hardstink">hardstink</a></div>
+                    <div>74</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Summon Mastery:20, Raise Skeletal Mage:20, Revive:20, Blood Golem:16, Bone Armor:3, Deadly Poison:1, Desecrate:1, Raise Skeleton Warrior:1, Clay Golem:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Boner_Lord">Boner_Lord</a></div>
+                    <div>72</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Summon Mastery:20, Raise Skeleton Warrior:20, Raise Skeletal Mage:20, Fire Golem:11, Amplify Damage:1, Decrepify:1, Bone Armor:1, Deadly Poison:1, Corpse Explosion:1, Desecrate:1, Clay Golem:1, Convocation:1, Blood Golem:1, Iron Golem:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=KEBORK">KEBORK</a></div>
+                    <div>72</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Summon Mastery:20, Raise Skeleton Warrior:20, Raise Skeletal Mage:20, Bone Spear:9, Amplify Damage:1, Decrepify:1, Lower Resist:1, Teeth:1, Bone Armor:1, Corpse Explosion:1, Clay Golem:1, Convocation:1, Blood Golem:1, Flesh Offering:1, Bone Offering:1, Revive:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=xsddg">xsddg</a></div>
+                    <div>72</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Summon Mastery:20, Raise Skeleton Warrior:20, Raise Skeletal Mage:20, Corpse Explosion:16, Revive:3, Amplify Damage:1, Decrepify:1, Bone Armor:1, Convocation:1</p>
+            <p><strong>Equipment:</strong> Left hand: Golemlord's Grim Wand of the Wraith x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Bone_McJones">Bone_McJones</a></div>
+                    <div>60</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Summon Mastery:20, Raise Skeleton Warrior:20, Fire Golem:18, Decrepify:1, Bone Armor:1, Deadly Poison:1, Corpse Explosion:1, Desecrate:1, Clay Golem:1, Convocation:1, Blood Golem:1, Iron Golem:1</p>
+            <p><strong>Equipment:</strong> helmet: Undead Crown x1, belt: Fiendra Lash x1, ring: Bone Circle x1, ring: Ring of Fortune x1, boots: Ocher Light Plated Boots of Fortune x1, gloves: Sharkskin Gloves of Fortune x1, body: Breast Plate x1, amulet: Summoner's Amulet of Fortune x1, Left hand: Blackhand Key x1, Offhand: Rhyme x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Skeleton_Army">Skeleton_Army</a></div>
+                    <div>60</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Corpse Explosion:20, Fire Golem:20, Summon Mastery:17, Lower Resist:1, Bone Armor:1, Deadly Poison:1, Desecrate:1, Raise Skeleton Warrior:1, Clay Golem:1, Convocation:1, Raise Skeletal Mage:1, Blood Golem:1, Iron Golem:1, Revive:1</p>
+            <p><strong>Equipment:</strong> body: Stealth x1, ring: Corruption Spiral x1, ring: Blood Whorl x1, boots: Hsarus' Iron Heel x1, amulet: Havoc Scarab x1, belt: Hsarus' Iron Stay x1, gloves: Sander's Taboo x1, helmet: Lore x1, Left hand: Ember Grim Wand x1, Left hand: Spirit x1, Offhand: Blessed Hierophant Trophy of Blocking x1, Offhand: Homunculus x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=B_Mogily">B_Mogily</a></div>
+                    <div>60</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Summon Mastery:20, Raise Skeleton Warrior:20, Raise Skeletal Mage:16, Blood Golem:5, Amplify Damage:1, Decrepify:1, Deadly Poison:1, Desecrate:1, Clay Golem:1, Convocation:1, Bone Offering:1</p>
+            <p><strong>Equipment:</strong> ring: Nagelring x1, ring: GhoulRI Coil x1, amulet: Graverobber's Amulet of the Mind x1, belt: Brimstone Chain x1, helmet: Undead Crown x1, boots: Brimstone Track x1, body: Skin of the Vipermagi x1, gloves: Corpse Grip x1, Left hand: Vodoun Petrified Wand of Leadership x1, Offhand: Ancients' Pledge x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=FlameLoafer">FlameLoafer</a></div>
+                    <div>59</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Summon Mastery:20, Fire Golem:20, Flesh Offering:18, Lower Resist:1, Raise Skeleton Warrior:1, Clay Golem:1, Convocation:1, Raise Skeletal Mage:1, Blood Golem:1, Bone Offering:1, Iron Golem:1, Revive:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Eganwo">Eganwo</a></div>
+                    <div>58</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Summon Mastery:20, Raise Skeleton Warrior:20, Raise Skeletal Mage:14, Amplify Damage:1, Iron Maiden:1, Decrepify:1, Bone Armor:1, Corpse Explosion:1, Clay Golem:1, Convocation:1, Blood Golem:1, Flesh Offering:1, Bone Offering:1, Revive:1</p>
+            <p><strong>Equipment:</strong> body: Stealth x1, belt: Skull Clasp x1, boots: Eagle Stalker x1, ring: Russet Ring x1, ring: Nagelring x1, gloves: Skull Hand x1, amulet: Vodoun Amulet of Life Everlasting x1, Left hand: Battle Staff of Teleportation x1, Left hand: Golemlord's Yew Wand x1, helmet: Lore x1, Offhand: Dread Wing x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Count-Sacula">Count-Sacula</a></div>
+                    <div>57</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Summon Mastery:20, Raise Skeleton Warrior:20, Flesh Offering:16, Amplify Damage:1, Deadly Poison:1, Desecrate:1, Clay Golem:1, Convocation:1, Raise Skeletal Mage:1, Blood Golem:1, Revive:1</p>
+            <p><strong>Equipment:</strong> gloves: Bitter Knuckle x1, helmet: Skull Brow x1, ring: Grim Loop x1, ring: Eagle Eye x1, amulet: Amulet of Leadership x1, boots: Pain Track x1, body: Hwanin's Refuge x1, belt: Plated Belt of the Squid x1, Left hand: Vodoun Bone Wand x1, Offhand: Moser's Blessed Circle x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Neksondy">Neksondy</a></div>
+                    <div>56</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Summon Mastery:20, Raise Skeletal Mage:20, Fire Golem:12, Lower Resist:1, Bone Armor:1, Deadly Poison:1, Desecrate:1, Raise Skeleton Warrior:1, Clay Golem:1, Convocation:1, Blood Golem:1, Flesh Offering:1, Iron Golem:1, Revive:1</p>
+            <p><strong>Equipment:</strong> Offhand: Rhyme x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=DemonRoads">DemonRoads</a></div>
+                    <div>47</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Summon Mastery:20, Raise Skeleton Warrior:20, Raise Skeletal Mage:7, Amplify Damage:1, Deadly Poison:1, Desecrate:1, Clay Golem:1, Convocation:1, Blood Golem:1, Revive:1</p>
+            <p><strong>Equipment:</strong> body: Stealth x1, boots: Treads of Cthon x1, gloves: Garnet Chain Gloves of Fortune x1, belt: Infernal Sign x1, amulet: Prismatic Amulet of Revivification x1, ring: Order Loop x1, ring: Blood Touch x1, helmet: War Hat x1, Left hand: Spirit x1, Offhand: Rhyme x1</p>
+        
+        </div>
+        <hr>
+        
+        <h2>9.94%  of Necromancer's Main Skills:<br><img src='icons/Bone Spear.png' alt='Bone Spear' width='20' height='20'> Bone Spear 100.00% (304)<br><img src='icons/Teeth.png' alt='Teeth' width='20' height='20'> Teeth 100.00% (294)<br><img src='icons/Bone Spirit.png' alt='Bone Spirit' width='20' height='20'> Bone Spirit 87.50% (238)</h2>
+        <p><strong>Other Skills:<br></strong> <img src='icons/Bone Wall.png' alt='Bone Wall' width='20' height='20'> Bone Wall 87.5% (76.0)<br><img src='icons/Convocation.png' alt='Convocation' width='20' height='20'> Convocation 81.25% (67.0)<br><img src='icons/Summon Mastery.png' alt='Summon Mastery' width='20' height='20'> Summon Mastery 87.5% (33.0)<br><img src='icons/Corpse Explosion.png' alt='Corpse Explosion' width='20' height='20'> Corpse Explosion 87.5% (24.0)<br><img src='icons/Bone Armor.png' alt='Bone Armor' width='20' height='20'> Bone Armor 93.75% (22.0)<br><img src='icons/Fire Golem.png' alt='Fire Golem' width='20' height='20'> Fire Golem 6.25% (20.0)</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>All Skills</strong></button>
+            <div class="content">
+                <div><img src='icons/Bone Spear.png' alt='Bone Spear' width='20' height='20'> Bone Spear 100.0% (304.0)<br><img src='icons/Teeth.png' alt='Teeth' width='20' height='20'> Teeth 100.0% (294.0)<br><img src='icons/Bone Spirit.png' alt='Bone Spirit' width='20' height='20'> Bone Spirit 87.5% (238.0)<br><img src='icons/Bone Wall.png' alt='Bone Wall' width='20' height='20'> Bone Wall 87.5% (76.0)<br><img src='icons/Convocation.png' alt='Convocation' width='20' height='20'> Convocation 81.25% (67.0)<br><img src='icons/Summon Mastery.png' alt='Summon Mastery' width='20' height='20'> Summon Mastery 87.5% (33.0)<br><img src='icons/Corpse Explosion.png' alt='Corpse Explosion' width='20' height='20'> Corpse Explosion 87.5% (24.0)<br><img src='icons/Bone Armor.png' alt='Bone Armor' width='20' height='20'> Bone Armor 93.75% (22.0)<br><img src='icons/Fire Golem.png' alt='Fire Golem' width='20' height='20'> Fire Golem 6.25% (20.0)<br><img src='icons/Revive.png' alt='Revive' width='20' height='20'> Revive 62.5% (20.0)<br><img src='icons/Raise Skeleton Warrior.png' alt='Raise Skeleton Warrior' width='20' height='20'> Raise Skeleton Warrior 75.0% (19.0)<br><img src='icons/Blood Golem.png' alt='Blood Golem' width='20' height='20'> Blood Golem 75.0% (15.0)<br><img src='icons/Clay Golem.png' alt='Clay Golem' width='20' height='20'> Clay Golem 87.5% (14.0)<br><img src='icons/Raise Skeletal Mage.png' alt='Raise Skeletal Mage' width='20' height='20'> Raise Skeletal Mage 75.0% (12.0)<br><img src='icons/Decrepify.png' alt='Decrepify' width='20' height='20'> Decrepify 62.5% (10.0)<br><img src='icons/Deadly Poison.png' alt='Deadly Poison' width='20' height='20'> Deadly Poison 25.0% (4.0)<br><img src='icons/Desecrate.png' alt='Desecrate' width='20' height='20'> Desecrate 25.0% (4.0)<br><img src='icons/Amplify Damage.png' alt='Amplify Damage' width='20' height='20'> Amplify Damage 12.5% (2.0)<br><img src='icons/Lower Resist.png' alt='Lower Resist' width='20' height='20'> Lower Resist 12.5% (2.0)<br><img src='icons/Iron Golem.png' alt='Iron Golem' width='20' height='20'> Iron Golem 12.5% (2.0)<br><img src='icons/Attract.png' alt='Attract' width='20' height='20'> Attract 6.25% (1.0)<br><img src='icons/Hemorrhage.png' alt='Hemorrhage' width='20' height='20'> Hemorrhage 6.25% (1.0)<br><img src='icons/Iron Maiden.png' alt='Iron Maiden' width='20' height='20'> Iron Maiden 6.25% (1.0)<br><img src='icons/Life Tap.png' alt='Life Tap' width='20' height='20'> Life Tap 6.25% (1.0)<br><img src='icons/Weaken.png' alt='Weaken' width='20' height='20'> Weaken 0.0% (0.0)<br><img src='icons/Dim Vision.png' alt='Dim Vision' width='20' height='20'> Dim Vision 0.0% (0.0)<br><img src='icons/Flesh Offering.png' alt='Flesh Offering' width='20' height='20'> Flesh Offering 0.0% (0.0)<br><img src='icons/Poison Nova.png' alt='Poison Nova' width='20' height='20'> Poison Nova 0.0% (0.0)<br><img src='icons/Bone Offering.png' alt='Bone Offering' width='20' height='20'> Bone Offering 0.0% (0.0)<br><img src='icons/Terror.png' alt='Terror' width='20' height='20'> Terror 0.0% (0.0)<br><img src='icons/Confuse.png' alt='Confuse' width='20' height='20'> Confuse 0.0% (0.0)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 0.0% (0.0)<br><img src='icons/Jab.png' alt='Jab' width='20' height='20'> Jab 0.0% (0.0)</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>Most Common Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Body</strong>: <br>Stealth 31.25%<br>Skin of the Vipermagi 12.50%<br>Bone 6.25%<br>Duriel's Shell 6.25%<br>Cathan's Mesh 6.25%<br><strong>Boots</strong>: <br>Aldur's Advance 12.50%<br>GhoulRI Slippers 6.25%<br>Demon Spur 6.25%<br>Natalya's Soul 6.25%<br>Doom Nails 6.25%<br><strong>Amulet</strong>: <br>Venomous Amulet 6.25%<br>Summoner's Amulet of the Centaur 6.25%<br>Blood Torc 6.25%<br>Corruption Torc 6.25%<br>Saracen's Chance 6.25%<br><strong>Offhand</strong>: <br>Rhyme 25.00%<br>Lidless Wall 6.25%<br>Preserved Head 6.25%<br>Gerke's Sanctuary 6.25%<br>Storm Guard 6.25%<br><strong>Ring</strong>: <br>Beast Hold 6.25%<br>Death Turn 6.25%<br>Dread Eye 6.25%<br>Scintillating Ring 6.25%<br>Entropy Turn 6.25%<br><strong>Belt</strong>: <br>Arctic Binding 12.50%<br>Arachnid Mesh 6.25%<br>Credendum 6.25%<br>Dire Buckle 6.25%<br>Bitter Lock 6.25%<br><strong>Gloves</strong>: <br>Trang-Oul's Claws 18.75%<br>Eagle Grip 6.25%<br>Raven Touch 6.25%<br>Magefist 6.25%<br>Sander's Taboo 6.25%<br><strong>Helmet</strong>: <br>Lore 12.50%<br>Harlequin Crest 6.25%<br>Tarnhelm 6.25%<br>Grim Mask 6.25%<br>Peasant Crown 6.25%<br><strong>Left hand</strong>: <br>Spirit 31.25%<br>White 18.75%<br>Emerald Battle Staff of Teleportation 6.25%<br>Golemlord's Grim Wand of the Lamprey 6.25%<br>Bone Wand of the Wraith 6.25%</div>
+            </div>
+        
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Body</strong>: Bone 6.25%, Stealth 31.25%, Skin of the Vipermagi 12.50%, Duriel's Shell 6.25%, Cathan's Mesh 6.25%, Sigon's Shelter 6.25%<br><strong>Boots</strong>: GhoulRI Slippers 6.25%, Aldur's Advance 12.50%, Demon Spur 6.25%, Natalya's Soul 6.25%, Doom Nails 6.25%, Sander's Riprap 6.25%, Hsarus' Iron Heel 6.25%, Sigon's Sabot 6.25%<br><strong>Amulet</strong>: Venomous Amulet 6.25%, Summoner's Amulet of the Centaur 6.25%, Blood Torc 6.25%, Corruption Torc 6.25%, Saracen's Chance 6.25%, Venomous Amulet of Regrowth 6.25%, Civerb's Icon 6.25%, Shimmering Amulet 6.25%, Great Wyrm's Amulet of Holy Bolt 6.25%, Amulet of Energy 6.25%<br><strong>Offhand</strong>: Lidless Wall 6.25%, Rhyme 25.00%, Preserved Head 6.25%, Gerke's Sanctuary 6.25%, Storm Guard 6.25%, Homunculus 6.25%, Ancients' Pledge 6.25%, Brimstone Ward 6.25%, Spirit 6.25%, Milabrega's Orb 6.25%<br><strong>Ring</strong>: Beast Hold 6.25%, Death Turn 6.25%, Dread Eye 6.25%, Scintillating Ring 6.25%, Entropy Turn 6.25%, Dread Spiral 6.25%, Stone Touch 6.25%, Russet Ring of the Apprentice 6.25%, Corruption Circle 6.25%, Beast Finger 6.25%, Raven Frost 6.25%, Wyrm's Ring of the Apprentice 6.25%, Crimson Ring of Craftmanship 6.25%, Ring of Worth 6.25%, Bitter Grasp 6.25%, Storm Master 6.25%, Ring of the Apprentice 6.25%, Cathan's Seal 6.25%, Angelic Halo 6.25%, Bone Spiral 6.25%, Viper Whorl 6.25%<br><strong>Belt</strong>: Arachnid Mesh 6.25%, Credendum 6.25%, Dire Buckle 6.25%, Bitter Lock 6.25%, Lenymo 6.25%, Nightsmoke 6.25%, Arctic Binding 12.50%, Doom Buckle 6.25%, Light Belt 6.25%<br><strong>Gloves</strong>: Trang-Oul's Claws 18.75%, Eagle Grip 6.25%, Raven Touch 6.25%, Magefist 6.25%, Sander's Taboo 6.25%, Leather Gloves of Strength 6.25%, Soul Finger 6.25%, Magnus' Skin 6.25%, Bloodfist 6.25%<br><strong>Helmet</strong>: Harlequin Crest 6.25%, Tarnhelm 6.25%, Lore 12.50%, Grim Mask 6.25%, Peasant Crown 6.25%, The Face of Horror 6.25%, Cathan's Visage 6.25%, Naj's Circlet 6.25%, Nadir 6.25%<br><strong>Left hand</strong>: White 18.75%, Spirit 31.25%, Emerald Battle Staff of Teleportation 6.25%, Golemlord's Grim Wand of the Lamprey 6.25%, Bone Wand of the Wraith 6.25%, Suicide Branch 6.25%, Sigon's Guard 6.25%, Corpse Call 6.25%</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>16 Characters in this cluster:</strong></button>
+            <div class="content">
+                
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=FooSpear">FooSpear</a></div>
+                    <div>91</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Teeth:20, Bone Wall:20, Bone Spear:20, Bone Spirit:20, Revive:8, Convocation:5, Bone Armor:2, Decrepify:1, Corpse Explosion:1, Summon Mastery:1, Raise Skeleton Warrior:1, Clay Golem:1, Raise Skeletal Mage:1, Blood Golem:1</p>
+            <p><strong>Equipment:</strong> body: Bone x1, boots: GhoulRI Slippers x1, amulet: Venomous Amulet x1, Offhand: Lidless Wall x1, Offhand: Rhyme x1, ring: Beast Hold x1, ring: Death Turn x1, belt: Arachnid Mesh x1, gloves: Trang-Oul's Claws x1, helmet: Harlequin Crest x1, Left hand: White x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Don_Necromancer">Don_Necromancer</a></div>
+                    <div>88</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Teeth:20, Bone Spear:20, Bone Spirit:20, Summon Mastery:20, Raise Skeleton Warrior:8, Blood Golem:4, Amplify Damage:1, Bone Armor:1, Corpse Explosion:1, Bone Wall:1, Clay Golem:1, Raise Skeletal Mage:1, Revive:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Budcorpse">Budcorpse</a></div>
+                    <div>85</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Teeth:20, Bone Spear:20, Bone Spirit:20, Convocation:20, Bone Wall:5, Decrepify:1, Bone Armor:1, Deadly Poison:1, Corpse Explosion:1, Desecrate:1, Summon Mastery:1, Raise Skeleton Warrior:1, Clay Golem:1, Raise Skeletal Mage:1, Blood Golem:1, Revive:1</p>
+            <p><strong>Equipment:</strong> body: Stealth x1, ring: Dread Eye x1, ring: Scintillating Ring x1, boots: Aldur's Advance x1, belt: Credendum x1, amulet: Summoner's Amulet of the Centaur x1, helmet: Tarnhelm x1, gloves: Trang-Oul's Claws x1, Left hand: Spirit x1, Left hand: White x1, Offhand: Preserved Head x1, Offhand: Rhyme x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=REDOAKS">REDOAKS</a></div>
+                    <div>83</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Teeth:20, Bone Spear:20, Bone Spirit:20, Corpse Explosion:10, Bone Wall:10, Decrepify:1, Bone Armor:1, Deadly Poison:1, Desecrate:1, Summon Mastery:1, Raise Skeleton Warrior:1, Clay Golem:1, Convocation:1, Raise Skeletal Mage:1, Blood Golem:1, Revive:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=RichXX">RichXX</a></div>
+                    <div>81</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Teeth:20, Bone Spear:20, Bone Spirit:20, Convocation:20, Revive:3, Decrepify:1, Bone Armor:1, Corpse Explosion:1, Bone Wall:1, Summon Mastery:1, Raise Skeleton Warrior:1, Clay Golem:1, Raise Skeletal Mage:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=BlightWhisperer">BlightWhisperer</a></div>
+                    <div>81</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Teeth:20, Bone Wall:20, Bone Spear:20, Bone Spirit:20, Convocation:2, Bone Armor:1, Deadly Poison:1, Corpse Explosion:1, Desecrate:1, Summon Mastery:1, Raise Skeleton Warrior:1, Clay Golem:1, Raise Skeletal Mage:1, Blood Golem:1, Revive:1</p>
+            <p><strong>Equipment:</strong> amulet: Blood Torc x1, helmet: Lore x1, belt: Dire Buckle x1, ring: Entropy Turn x1, ring: Dread Spiral x1, body: Skin of the Vipermagi x1, gloves: Trang-Oul's Claws x1, boots: Aldur's Advance x1, Left hand: Emerald Battle Staff of Teleportation x1, Left hand: Spirit x1, Offhand: Gerke's Sanctuary x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Pannbenet">Pannbenet</a></div>
+                    <div>77</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Teeth:20, Bone Spear:20, Bone Spirit:20, Bone Wall:12, Life Tap:1, Attract:1, Decrepify:1, Bone Armor:1, Corpse Explosion:1, Summon Mastery:1, Raise Skeleton Warrior:1, Clay Golem:1, Convocation:1, Raise Skeletal Mage:1, Blood Golem:1, Iron Golem:1, Revive:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=IceCrunch">IceCrunch</a></div>
+                    <div>76</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Bone Spear:20, Bone Spirit:20, Fire Golem:20, Teeth:14, Lower Resist:1, Bone Armor:1, Corpse Explosion:1, Bone Wall:1, Summon Mastery:1, Raise Skeleton Warrior:1, Clay Golem:1, Convocation:1, Raise Skeletal Mage:1, Blood Golem:1, Iron Golem:1</p>
+            <p><strong>Equipment:</strong> ring: Stone Touch x1, ring: Russet Ring of the Apprentice x1, gloves: Eagle Grip x1, belt: Bitter Lock x1, body: Duriel's Shell x1, boots: Demon Spur x1, amulet: Corruption Torc x1, Left hand: Golemlord's Grim Wand of the Lamprey x1, Left hand: Spirit x1, Offhand: Storm Guard x1, Offhand: Rhyme x1, helmet: Grim Mask x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=RB_FirstTime">RB_FirstTime</a></div>
+                    <div>65</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Bone Spear:20, Bone Spirit:20, Teeth:18, Iron Maiden:1, Decrepify:1, Lower Resist:1, Bone Armor:1, Deadly Poison:1, Corpse Explosion:1, Bone Wall:1, Desecrate:1, Summon Mastery:1, Raise Skeleton Warrior:1, Clay Golem:1, Convocation:1, Raise Skeletal Mage:1, Blood Golem:1, Revive:1</p>
+            <p><strong>Equipment:</strong> ring: Corruption Circle x1, ring: Beast Finger x1, helmet: Lore x1, belt: Lenymo x1, gloves: Raven Touch x1, boots: Natalya's Soul x1, Left hand: Bone Wand of the Wraith x1, Left hand: White x1, amulet: Saracen's Chance x1, body: Stealth x1, Offhand: Rhyme x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Wafflen">Wafflen</a></div>
+                    <div>64</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Teeth:20, Bone Spear:20, Bone Spirit:20, Corpse Explosion:2, Revive:2, Decrepify:1, Bone Armor:1, Bone Wall:1, Summon Mastery:1, Raise Skeleton Warrior:1, Clay Golem:1, Convocation:1, Raise Skeletal Mage:1, Blood Golem:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=LotusCE">LotusCE</a></div>
+                    <div>63</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Bone Spear:20, Bone Spirit:20, Convocation:12, Teeth:10, Bone Armor:1, Corpse Explosion:1, Bone Wall:1, Summon Mastery:1, Raise Skeleton Warrior:1, Clay Golem:1, Raise Skeletal Mage:1, Blood Golem:1, Revive:1</p>
+            <p><strong>Equipment:</strong> helmet: Peasant Crown x1, amulet: Venomous Amulet of Regrowth x1, ring: Raven Frost x1, ring: Wyrm's Ring of the Apprentice x1, gloves: Magefist x1, boots: Doom Nails x1, body: Skin of the Vipermagi x1, belt: Nightsmoke x1, Left hand: Spirit x1, Offhand: Homunculus x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=xperiiDeadSouls">xperiiDeadSouls</a></div>
+                    <div>54</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Teeth:20, Bone Spear:20, Bone Spirit:16, Decrepify:1, Bone Armor:1, Corpse Explosion:1, Bone Wall:1</p>
+            <p><strong>Equipment:</strong> ring: Crimson Ring of Craftmanship x1, ring: Ring of Worth x1, gloves: Sander's Taboo x1, amulet: Civerb's Icon x1, body: Stealth x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Setamies">Setamies</a></div>
+                    <div>45</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Bone Spear:20, Teeth:17, Bone Armor:7, Summon Mastery:1, Raise Skeleton Warrior:1, Clay Golem:1, Convocation:1, Raise Skeletal Mage:1, Blood Golem:1</p>
+            <p><strong>Equipment:</strong> gloves: Leather Gloves of Strength x1, amulet: Shimmering Amulet x1, boots: Sander's Riprap x1, ring: Bitter Grasp x1, ring: Storm Master x1, body: Stealth x1, belt: Arctic Binding x1, helmet: The Face of Horror x1, Left hand: Spirit x1, Offhand: Ancients' Pledge x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Benzo">Benzo</a></div>
+                    <div>45</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Bone Spear:20, Teeth:16, Amplify Damage:1, Decrepify:1, Hemorrhage:1, Bone Armor:1, Corpse Explosion:1, Bone Wall:1, Bone Spirit:1, Summon Mastery:1, Clay Golem:1, Convocation:1, Blood Golem:1</p>
+            <p><strong>Equipment:</strong> ring: Ring of the Apprentice x1, ring: Cathan's Seal x1, boots: Hsarus' Iron Heel x1, belt: Doom Buckle x1, gloves: Soul Finger x1, body: Cathan's Mesh x1, helmet: Cathan's Visage x1, amulet: Great Wyrm's Amulet of Holy Bolt x1, Left hand: Suicide Branch x1, Offhand: Brimstone Ward x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Babangida">Babangida</a></div>
+                    <div>37</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Teeth:19, Bone Spear:14, Decrepify:1, Bone Armor:1, Corpse Explosion:1, Bone Wall:1, Bone Spirit:1, Summon Mastery:1, Clay Golem:1, Convocation:1</p>
+            <p><strong>Equipment:</strong> ring: Angelic Halo x1, helmet: Naj's Circlet x1, body: Sigon's Shelter x1, belt: Arctic Binding x1, gloves: Magnus' Skin x1, boots: Sigon's Sabot x1, Offhand: Spirit x1, Left hand: Sigon's Guard x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=anuchotam">anuchotam</a></div>
+                    <div>27</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Teeth:20, Bone Spear:10</p>
+            <p><strong>Equipment:</strong> amulet: Amulet of Energy x1, belt: Light Belt x1, gloves: Bloodfist x1, ring: Bone Spiral x1, ring: Viper Whorl x1, body: Stealth x1, helmet: Nadir x1, Left hand: Corpse Call x1, Offhand: Milabrega's Orb x1</p>
+        
+        </div>
+        <hr>
+        
+        <h2>6.21%  of Necromancer's Main Skills:<br><img src='icons/Desecrate.png' alt='Desecrate' width='20' height='20'> Desecrate 100.00% (170)<br><img src='icons/Deadly Poison.png' alt='Deadly Poison' width='20' height='20'> Deadly Poison 100.00% (142)<br><img src='icons/Poison Nova.png' alt='Poison Nova' width='20' height='20'> Poison Nova 80.00% (115)</h2>
+        <p><strong>Other Skills:<br></strong> <img src='icons/Convocation.png' alt='Convocation' width='20' height='20'> Convocation 90.0% (105.0)<br><img src='icons/Corpse Explosion.png' alt='Corpse Explosion' width='20' height='20'> Corpse Explosion 60.0% (101.0)<br><img src='icons/Fire Golem.png' alt='Fire Golem' width='20' height='20'> Fire Golem 40.0% (80.0)<br><img src='icons/Lower Resist.png' alt='Lower Resist' width='20' height='20'> Lower Resist 90.0% (34.0)<br><img src='icons/Summon Mastery.png' alt='Summon Mastery' width='20' height='20'> Summon Mastery 70.0% (26.0)<br><img src='icons/Decrepify.png' alt='Decrepify' width='20' height='20'> Decrepify 70.0% (16.0)</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>All Skills</strong></button>
+            <div class="content">
+                <div><img src='icons/Desecrate.png' alt='Desecrate' width='20' height='20'> Desecrate 100.0% (170.0)<br><img src='icons/Deadly Poison.png' alt='Deadly Poison' width='20' height='20'> Deadly Poison 100.0% (142.0)<br><img src='icons/Poison Nova.png' alt='Poison Nova' width='20' height='20'> Poison Nova 80.0% (115.0)<br><img src='icons/Convocation.png' alt='Convocation' width='20' height='20'> Convocation 90.0% (105.0)<br><img src='icons/Corpse Explosion.png' alt='Corpse Explosion' width='20' height='20'> Corpse Explosion 60.0% (101.0)<br><img src='icons/Fire Golem.png' alt='Fire Golem' width='20' height='20'> Fire Golem 40.0% (80.0)<br><img src='icons/Lower Resist.png' alt='Lower Resist' width='20' height='20'> Lower Resist 90.0% (34.0)<br><img src='icons/Summon Mastery.png' alt='Summon Mastery' width='20' height='20'> Summon Mastery 70.0% (26.0)<br><img src='icons/Decrepify.png' alt='Decrepify' width='20' height='20'> Decrepify 70.0% (16.0)<br><img src='icons/Bone Armor.png' alt='Bone Armor' width='20' height='20'> Bone Armor 80.0% (15.0)<br><img src='icons/Bone Wall.png' alt='Bone Wall' width='20' height='20'> Bone Wall 10.0% (14.0)<br><img src='icons/Revive.png' alt='Revive' width='20' height='20'> Revive 80.0% (11.0)<br><img src='icons/Blood Golem.png' alt='Blood Golem' width='20' height='20'> Blood Golem 80.0% (9.0)<br><img src='icons/Clay Golem.png' alt='Clay Golem' width='20' height='20'> Clay Golem 90.0% (9.0)<br><img src='icons/Raise Skeletal Mage.png' alt='Raise Skeletal Mage' width='20' height='20'> Raise Skeletal Mage 80.0% (8.0)<br><img src='icons/Raise Skeleton Warrior.png' alt='Raise Skeleton Warrior' width='20' height='20'> Raise Skeleton Warrior 80.0% (8.0)<br><img src='icons/Iron Golem.png' alt='Iron Golem' width='20' height='20'> Iron Golem 50.0% (5.0)<br><img src='icons/Amplify Damage.png' alt='Amplify Damage' width='20' height='20'> Amplify Damage 0.0% (0.0)<br><img src='icons/Life Tap.png' alt='Life Tap' width='20' height='20'> Life Tap 0.0% (0.0)<br><img src='icons/Weaken.png' alt='Weaken' width='20' height='20'> Weaken 0.0% (0.0)<br><img src='icons/Iron Maiden.png' alt='Iron Maiden' width='20' height='20'> Iron Maiden 0.0% (0.0)<br><img src='icons/Hemorrhage.png' alt='Hemorrhage' width='20' height='20'> Hemorrhage 0.0% (0.0)<br><img src='icons/Dim Vision.png' alt='Dim Vision' width='20' height='20'> Dim Vision 0.0% (0.0)<br><img src='icons/Bone Spear.png' alt='Bone Spear' width='20' height='20'> Bone Spear 0.0% (0.0)<br><img src='icons/Teeth.png' alt='Teeth' width='20' height='20'> Teeth 0.0% (0.0)<br><img src='icons/Bone Spirit.png' alt='Bone Spirit' width='20' height='20'> Bone Spirit 0.0% (0.0)<br><img src='icons/Flesh Offering.png' alt='Flesh Offering' width='20' height='20'> Flesh Offering 0.0% (0.0)<br><img src='icons/Bone Offering.png' alt='Bone Offering' width='20' height='20'> Bone Offering 0.0% (0.0)<br><img src='icons/Terror.png' alt='Terror' width='20' height='20'> Terror 0.0% (0.0)<br><img src='icons/Attract.png' alt='Attract' width='20' height='20'> Attract 0.0% (0.0)<br><img src='icons/Confuse.png' alt='Confuse' width='20' height='20'> Confuse 0.0% (0.0)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 0.0% (0.0)<br><img src='icons/Jab.png' alt='Jab' width='20' height='20'> Jab 0.0% (0.0)</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>Most Common Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Gloves</strong>: <br>Trang-Oul's Claws 50.00%<br>Grim Hand 10.00%<br>Iratha's Cuff 10.00%<br>Cleglaw's Pincers 10.00%<br><strong>Amulet</strong>: <br>Eagle Emblem 10.00%<br>Chaos Noose 10.00%<br>GhoulRI Wing 10.00%<br>Mara's Kaleidoscope 10.00%<br>Prismatic Amulet of the Jackal 10.00%<br><strong>Ring</strong>: <br>Nagelring 20.00%<br>Entropy Band 10.00%<br>Bitter Knot 10.00%<br>Chaos Circle 10.00%<br>Chaos Hold 10.00%<br><strong>Helmet</strong>: <br>Trang-Oul's Guise 40.00%<br>Harlequin Crest 10.00%<br>Imp Casque 10.00%<br>Iratha's Coil 10.00%<br>Tarnhelm 10.00%<br><strong>Body</strong>: <br>Trang-Oul's Scales 40.00%<br>Skin of the Vipermagi 10.00%<br>Stealth 10.00%<br>Twitchthroe 10.00%<br><strong>Boots</strong>: <br>Silkweave 20.00%<br>Marrowwalk 10.00%<br>Aldur's Advance 10.00%<br>Tearhaunch 10.00%<br>PlagueRI Brogues 10.00%<br><strong>Belt</strong>: <br>Trang-Oul's Girth 30.00%<br>Arachnid Mesh 10.00%<br>Infernal Sign 10.00%<br>Garnet Heavy Belt of the Colossus 10.00%<br>Iratha's Cord 10.00%<br><strong>Left hand</strong>: <br>Call to Arms 30.00%<br>Heart of the Oak 20.00%<br>White 20.00%<br>Death's Web 10.00%<br>Light Crossbow of Gore 10.00%<br><strong>Offhand</strong>: <br>Trang-Oul's Wing 40.00%<br>Medusa's Gaze 30.00%<br>Homunculus 10.00%<br>Ancients' Pledge 10.00%<br>Storm Rock 10.00%</div>
+            </div>
+        
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Gloves</strong>: Trang-Oul's Claws 50.00%, Grim Hand 10.00%, Iratha's Cuff 10.00%, Cleglaw's Pincers 10.00%<br><strong>Amulet</strong>: Eagle Emblem 10.00%, Chaos Noose 10.00%, GhoulRI Wing 10.00%, Mara's Kaleidoscope 10.00%, Prismatic Amulet of the Jackal 10.00%, Prismatic Amulet of Chain Lightning 10.00%, Iratha's Collar 10.00%, Storm Gorget 10.00%<br><strong>Ring</strong>: Entropy Band 10.00%, Bitter Knot 10.00%, Chaos Circle 10.00%, Chaos Hold 10.00%, Beast Finger 10.00%, Grim Master 10.00%, Havoc Grasp 10.00%, Great Wyrm's Ring of the Apprentice 10.00%, Triumphant Ring of the Apprentice 10.00%, Bone Eye 10.00%, Coral Ring 10.00%, Garnet Ring of Thawing 10.00%, Bitter Touch 10.00%, Beast Hold 10.00%, Nagelring 20.00%<br><strong>Helmet</strong>: Trang-Oul's Guise 40.00%, Harlequin Crest 10.00%, Imp Casque 10.00%, Iratha's Coil 10.00%, Tarnhelm 10.00%<br><strong>Body</strong>: Trang-Oul's Scales 40.00%, Skin of the Vipermagi 10.00%, Stealth 10.00%, Twitchthroe 10.00%<br><strong>Boots</strong>: Silkweave 20.00%, Marrowwalk 10.00%, Aldur's Advance 10.00%, Tearhaunch 10.00%, PlagueRI Brogues 10.00%, Havoc Blazer 10.00%, Hsarus' Iron Heel 10.00%<br><strong>Belt</strong>: Trang-Oul's Girth 30.00%, Arachnid Mesh 10.00%, Infernal Sign 10.00%, Garnet Heavy Belt of the Colossus 10.00%, Iratha's Cord 10.00%, Hsarus' Iron Stay 10.00%<br><strong>Left hand</strong>: Call to Arms 30.00%, Heart of the Oak 20.00%, Death's Web 10.00%, White 20.00%, Light Crossbow of Gore 10.00%, Spirit 10.00%, Wand 10.00%, Witherstring 10.00%<br><strong>Offhand</strong>: Medusa's Gaze 30.00%, Trang-Oul's Wing 40.00%, Homunculus 10.00%, Ancients' Pledge 10.00%, Storm Rock 10.00%, Shadow Eye 10.00%</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>10 Characters in this cluster:</strong></button>
+            <div class="content">
+                
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=YosterNecOne">YosterNecOne</a></div>
+                    <div>96</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Corpse Explosion:20, Desecrate:20, Convocation:20, Fire Golem:20, Decrepify:10, Lower Resist:7, Bone Armor:1, Deadly Poison:1, Poison Nova:1, Summon Mastery:1, Raise Skeleton Warrior:1, Clay Golem:1, Raise Skeletal Mage:1, Blood Golem:1, Iron Golem:1, Revive:1</p>
+            <p><strong>Equipment:</strong> gloves: Trang-Oul's Claws x1, amulet: Eagle Emblem x1, ring: Entropy Band x1, ring: Bitter Knot x1, helmet: Trang-Oul's Guise x1, body: Trang-Oul's Scales x1, boots: Silkweave x1, belt: Trang-Oul's Girth x1, Left hand: Call to Arms x1, Left hand: Heart of the Oak x1, Offhand: Medusa's Gaze x1, Offhand: Trang-Oul's Wing x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Oggimancer">Oggimancer</a></div>
+                    <div>96</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Corpse Explosion:20, Desecrate:20, Poison Nova:20, Convocation:20, Deadly Poison:19, Decrepify:1, Lower Resist:1, Bone Armor:1, Raise Skeleton Warrior:1, Clay Golem:1, Raise Skeletal Mage:1, Blood Golem:1, Revive:1</p>
+            <p><strong>Equipment:</strong> gloves: Trang-Oul's Claws x1, boots: Marrowwalk x1, ring: Chaos Circle x1, ring: Chaos Hold x1, amulet: Chaos Noose x1, belt: Arachnid Mesh x1, helmet: Harlequin Crest x1, body: Skin of the Vipermagi x1, Left hand: Call to Arms x1, Left hand: Death's Web x1, Offhand: Medusa's Gaze x1, Offhand: Homunculus x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=SCplebsWhy">SCplebsWhy</a></div>
+                    <div>92</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Deadly Poison:20, Desecrate:20, Poison Nova:20, Convocation:20, Summon Mastery:16, Lower Resist:1, Raise Skeleton Warrior:1, Clay Golem:1, Raise Skeletal Mage:1, Blood Golem:1, Iron Golem:1, Revive:1</p>
+            <p><strong>Equipment:</strong> belt: Trang-Oul's Girth x1, helmet: Trang-Oul's Guise x1, boots: Aldur's Advance x1, amulet: GhoulRI Wing x1, ring: Beast Finger x1, ring: Grim Master x1, body: Trang-Oul's Scales x1, gloves: Trang-Oul's Claws x1, Left hand: White x1, Offhand: Trang-Oul's Wing x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=NetyxCE">NetyxCE</a></div>
+                    <div>89</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Corpse Explosion:20, Convocation:20, Fire Golem:20, Bone Wall:14, Bone Armor:8, Summon Mastery:5, Decrepify:1, Lower Resist:1, Deadly Poison:1, Desecrate:1, Raise Skeleton Warrior:1, Clay Golem:1, Raise Skeletal Mage:1, Blood Golem:1, Iron Golem:1, Revive:1</p>
+            <p><strong>Equipment:</strong> ring: Havoc Grasp x1, ring: Great Wyrm's Ring of the Apprentice x1, boots: Silkweave x1, amulet: Mara's Kaleidoscope x1, belt: Trang-Oul's Girth x1, gloves: Trang-Oul's Claws x1, body: Trang-Oul's Scales x1, helmet: Trang-Oul's Guise x1, Left hand: Call to Arms x1, Left hand: Heart of the Oak x1, Offhand: Medusa's Gaze x1, Offhand: Trang-Oul's Wing x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Letok">Letok</a></div>
+                    <div>89</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Deadly Poison:20, Corpse Explosion:20, Desecrate:20, Fire Golem:20, Poison Nova:11, Convocation:2, Decrepify:1, Lower Resist:1, Bone Armor:1, Summon Mastery:1, Clay Golem:1, Blood Golem:1, Iron Golem:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=POWER-SEX">POWER-SEX</a></div>
+                    <div>82</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Corpse Explosion:20, Desecrate:20, Poison Nova:20, Fire Golem:20, Decrepify:1, Lower Resist:1, Bone Armor:1, Deadly Poison:1, Summon Mastery:1, Raise Skeleton Warrior:1, Clay Golem:1, Convocation:1, Raise Skeletal Mage:1, Blood Golem:1, Iron Golem:1, Revive:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=NecIsBadChoice">NecIsBadChoice</a></div>
+                    <div>82</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Deadly Poison:20, Desecrate:20, Poison Nova:20, Convocation:20, Revive:4, Decrepify:1, Lower Resist:1, Bone Armor:1, Corpse Explosion:1, Raise Skeleton Warrior:1, Clay Golem:1, Raise Skeletal Mage:1, Blood Golem:1</p>
+            <p><strong>Equipment:</strong> ring: Triumphant Ring of the Apprentice x1, ring: Bone Eye x1, belt: Infernal Sign x1, amulet: Prismatic Amulet of the Jackal x1, gloves: Trang-Oul's Claws x1, boots: Tearhaunch x1, helmet: Trang-Oul's Guise x1, body: Trang-Oul's Scales x1, Left hand: Light Crossbow of Gore x1, Left hand: White x1, Offhand: Trang-Oul's Wing x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Basedgodx">Basedgodx</a></div>
+                    <div>81</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Lower Resist:20, Deadly Poison:20, Desecrate:20, Poison Nova:20, Blood Golem:2, Bone Armor:1, Summon Mastery:1, Raise Skeleton Warrior:1, Clay Golem:1, Convocation:1, Raise Skeletal Mage:1, Revive:1</p>
+            <p><strong>Equipment:</strong> gloves: Grim Hand x1, ring: Coral Ring x1, ring: Garnet Ring of Thawing x1, boots: PlagueRI Brogues x1, amulet: Prismatic Amulet of Chain Lightning x1, belt: Garnet Heavy Belt of the Colossus x1, helmet: Imp Casque x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Dismembered">Dismembered</a></div>
+                    <div>36</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Deadly Poison:20, Desecrate:19, Poison Nova:3, Convocation:1</p>
+            <p><strong>Equipment:</strong> helmet: Iratha's Coil x1, gloves: Iratha's Cuff x1, amulet: Iratha's Collar x1, body: Stealth x1, ring: Bitter Touch x1, ring: Beast Hold x1, boots: Havoc Blazer x1, belt: Iratha's Cord x1, Left hand: Spirit x1, Offhand: Ancients' Pledge x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=psnbowa">psnbowa</a></div>
+                    <div>34</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Deadly Poison:20, Desecrate:10, Decrepify:1, Lower Resist:1, Bone Armor:1, Summon Mastery:1, Raise Skeleton Warrior:1, Clay Golem:1, Raise Skeletal Mage:1, Revive:1</p>
+            <p><strong>Equipment:</strong> belt: Hsarus' Iron Stay x1, boots: Hsarus' Iron Heel x1, gloves: Cleglaw's Pincers x1, body: Twitchthroe x1, helmet: Tarnhelm x1, Left hand: Wand x1, Left hand: Witherstring x1, Offhand: Storm Rock x1, Offhand: Shadow Eye x1, amulet: Storm Gorget x1, ring: Nagelring x2</p>
+        
+        </div>
+        <hr>
+        
+            <h3>Top 5 Most Popular Hardcore Necromancer Skills:</h3>
+        <ul>
+            
+            <li>Hemorrhage: 1372.0</li>
+            
+            <li>Iron Maiden: 1013.0</li>
+            
+            <li>Weaken: 950.0</li>
+            
+            <li>Life Tap: 938.0</li>
+            
+            <li>Summon Mastery: 805.0</li>
+            
+        </ul>
+
+        <h3>Bottom 5 Least Popular Hardcore Necromancer Skills:</h3>
+        <ul>
+            
+            <li>Lethal Strike: 1.0</li>
+            
+            <li>Jab: 1.0</li>
+            
+            <li>Confuse: 2.0</li>
+            
+            <li>Attract: 2.0</li>
+            
+            <li>Terror: 3.0</li>
+            
+        </ul>
+        <!-- Embed the Plotly pie chart -->
+        <iframe src="hcNecromancer-clusters_distribution_pie.html"></iframe>
+        <!-- Embed the Plotly scatter plot at the bottom -->
+        <iframe src="hcNecromancer-clusters_with_avg_points.html"></iframe>
+        <button onclick="topFunction()" id="backToTopBtn" class="back-to-top">Top</button>
+        
+
+        <script>
+            var coll = document.getElementsByClassName("collapsible");
+            for (var i = 0; i < coll.length; i++) {
+                coll[i].addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var content = this.nextElementSibling;
+                    var openIcon = this.querySelector("img.icon[alt='Open']");
+                    var closeIcon = this.querySelector("img.icon[alt='Close']");
+
+                    if (content.style.display === "block") {
+                        content.style.display = "none";
+                        openIcon.classList.remove("hidden");
+                        closeIcon.classList.add("hidden");
+                    } else {
+                        content.style.display = "block";
+                        openIcon.classList.add("hidden");
+                        closeIcon.classList.remove("hidden");
+                    }
+                });
+            }
+        </script>
+
+        <script>
+            //Get the button
+            var backToTopBtn = document.getElementById("backToTopBtn");
+
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function() {scrollFunction()};
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    backToTopBtn.style.display = "block";
+                } else {
+                    backToTopBtn.style.display = "none";
+                }
+            }
+
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+                document.body.scrollTop = 0; // For Safari
+                document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+            }
+        </script>
+
+        <script>
+            function setActive(id) {
+                // Remove active class from both buttons
+                document.getElementById("SC").classList.remove("active");
+                document.getElementById("HC").classList.remove("active");
+                
+                // Add active class to the selected button
+                document.getElementById(id).classList.add("active");
+                
+                // Get the current URL
+                var currentUrl = window.location.href;
+                
+                // Determine the new URL based on the selected mode
+                var newUrl;
+                if (id === "SC") {
+                    if (currentUrl.includes('hc')) {
+                        newUrl = currentUrl.replace(/hc/gi, '');
+                    } else {
+                        newUrl = currentUrl;
+                    }
+                } else if (id === "HC") {
+                    if (!currentUrl.includes('hc')) {
+                        newUrl = currentUrl.replace(/(\w+)\.html$/, 'hc$1.html');
+                    } else {
+                        newUrl = currentUrl;
+                    }
+                }
+                
+                // Redirect to the new URL if it has changed
+                if (newUrl !== currentUrl) {
+                    window.location.href = newUrl;
+                }
+            }
+
+            // Set default active button based on the current URL
+            window.onload = function() {
+                if (window.location.href.includes('hc')) {
+                    setActive("HC");
+                } else {
+                    setActive("SC");
+                }
+            }
+        </script>
+
+
+
+
+    </body>
+    </html>
+    

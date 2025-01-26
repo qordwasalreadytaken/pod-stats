@@ -1,0 +1,1473 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Barbarian Hardcore Analysis Report</title>
+        <style>
+            body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+            h1 { color: #333; }
+            h2 { color: #555; margin-top: 20px; clear: both; }
+            p { clear: both; }
+            .character-info { display: flex; margin-bottom: 10px; }
+            .character-info div { flex: 1; padding: 5px; }
+            .character-link { flex: 1; }
+        .collapsible {
+            background-color: #f1f1f1; /* Green background */
+            color: black; /* White text */
+            cursor: pointer;
+            padding: 10px; /* Increase padding */
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px; /* Increase font size */
+            border-radius: 5px; /* Rounded corners */
+            transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
+            display: flex;
+            align-items: center;
+        }
+        .collapsible img.icon {
+            margin-right: 10px; /* Spacing between icon and text */
+            width: 20px; /* Icon size */
+            height: 20px; /* Icon size */
+        }
+        .collapsible img.icon.hidden {
+            display: none; /* Hide by default */
+        }
+        .collapsible:hover {
+            background-color: #45a049; /* Darker green on hover */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Add shadow on hover */
+        }
+        .active, .collapsible:focus {
+            background-color: #45a049; /* Darker green when active or focused */
+        }
+            
+        .content {
+            padding: 0 18px;
+            display: none;
+            overflow: hidden;
+            background-color: #f9f9f9;
+            }
+        iframe {
+            width: 100%;
+            height: 600px; /* Adjust height as needed */
+            border: none;
+        }
+
+        .top-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px; /* Space between buttons and the rest of the page */
+        }
+        .top-button {
+            background-color: #f1f1f1; /* Green background */
+            color: black; /* White text */
+            cursor: pointer;
+            padding: 10px 15px; /* Adjust padding to fit side by side */
+            border: none;
+            text-align: center;
+            outline: none;
+            font-size: 16px; /* Adjust font size */
+            border-radius: 5px; /* Rounded corners */
+            transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
+            text-decoration: none; /* Remove underline */
+            flex: 1; /* Equal space for each button */
+            margin-right: 10px; /* Space between buttons */
+            height: 30px; /* Ensure height is adjusted based on content */
+        }
+        .top-button:last-child {
+            margin-right: 0; /* Remove right margin for the last button */
+        }
+        .top-button:hover {
+            background-color: #45a049; /* Darker green on hover */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Add shadow on hover */
+        }
+
+        .back-to-top {
+            display: none; /* Hidden by default */
+            position: fixed; /* Fixed/sticky position */
+            bottom: 20px; /* Place the button 20px from the bottom */
+            right: 30px; /* Place the button 30px from the right */
+            z-index: 99; /* Make sure it does not overlap */
+            border: none; /* Remove borders */
+            outline: none; /* Remove outline */
+            background-color: #4CAF50; /* Set background color */
+            color: white; /* Set text color */
+            cursor: pointer; /* Add a mouse pointer on hover */
+            padding: 15px; /* Some padding */
+            border-radius: 10px; /* Rounded corners */
+            font-size: 18px; /* Increase font size */
+        }
+        .back-to-top:hover {
+            background-color: #45a049; /* Darker background on hover */
+        }
+
+            .split-button {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px; /* Space between buttons and the rest of the page */
+        }
+        .split-button-option {
+            background-color: #4CAF50; /* Green background */
+            color: white; /* White text */
+            cursor: pointer;
+            padding: 10px 15px; /* Adjust padding */
+            border: none;
+            text-align: center;
+            outline: none;
+            font-size: 16px; /* Adjust font size */
+            border-radius: 0; /* No rounded corners */
+            transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
+            flex: 1; /* Equal space for each button */
+        }
+        .split-button-option:first-child {
+            border-top-left-radius: 5px; /* Rounded left corners */
+            border-bottom-left-radius: 5px; /* Rounded left corners */
+        }
+        .split-button-option:last-child {
+            border-top-right-radius: 5px; /* Rounded right corners */
+            border-bottom-right-radius: 5px; /* Rounded right corners */
+        }
+        .split-button-option:hover {
+            background-color: #45a049; /* Darker green on hover */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Add shadow on hover */
+        }
+        .split-button-option.active {
+            background-color: #2E7D32; /* Different color for active state */
+        }
+
+        </style>
+    </head>
+    <body>
+        <div class="top-buttons">
+            <a href="Home.html" class="top-button">Home</a>
+            <a href="Amazon.html" class="top-button">Amazon</a>
+            <a href="Assassin.html" class="top-button">Assassin</a>
+            <a href="Barbarian.html" class="top-button">Barbarian</a>
+            <a href="Druid.html" class="top-button">Druid</a>
+            <a href="Necromancer.html" class="top-button">Necromancer</a>
+            <a href="Paladin.html" class="top-button">Paladin</a>
+            <a href="Sorceress.html" class="top-button">Sorceress</a>
+            <div class="split-button">
+                <button id="SC" class="split-button-option" onclick="setActive('SC')">SC</button>
+                <button id="HC" class="split-button-option" onclick="setActive('HC')">HC</button>
+            </div>
+        </div>
+
+        <h1>Barbarian Hardcore Skill Distribution </h1>
+        <hr>
+        
+        <h2>46.02%  of Barbarian's Main Skills:<br><img src='icons/Double Swing.png' alt='Double Swing' width='20' height='20'> Double Swing 65.38% (134)<br><img src='icons/Frenzy.png' alt='Frenzy' width='20' height='20'> Frenzy 42.31% (121)<br><img src='icons/Edged Weapon Mastery.png' alt='Edged Weapon Mastery' width='20' height='20'> Edged Weapon Mastery 46.15% (81)</h2>
+        <p><strong>Other Skills:<br></strong> <img src='icons/Leap Slam.png' alt='Leap Slam' width='20' height='20'> Leap Slam 38.46% (68.0)<br><img src='icons/Shout.png' alt='Shout' width='20' height='20'> Shout 57.69% (64.0)<br><img src='icons/Blunt Weapon Mastery.png' alt='Blunt Weapon Mastery' width='20' height='20'> Blunt Weapon Mastery 25.0% (61.0)<br><img src='icons/Battle Command.png' alt='Battle Command' width='20' height='20'> Battle Command 17.31% (39.0)<br><img src='icons/Whirlwind.png' alt='Whirlwind' width='20' height='20'> Whirlwind 11.54% (37.0)<br><img src='icons/Howl.png' alt='Howl' width='20' height='20'> Howl 69.23% (36.0)</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>All Skills</strong></button>
+            <div class="content">
+                <div><img src='icons/Double Swing.png' alt='Double Swing' width='20' height='20'> Double Swing 65.38% (134.0)<br><img src='icons/Frenzy.png' alt='Frenzy' width='20' height='20'> Frenzy 42.31% (121.0)<br><img src='icons/Edged Weapon Mastery.png' alt='Edged Weapon Mastery' width='20' height='20'> Edged Weapon Mastery 46.15% (81.0)<br><img src='icons/Leap Slam.png' alt='Leap Slam' width='20' height='20'> Leap Slam 38.46% (68.0)<br><img src='icons/Shout.png' alt='Shout' width='20' height='20'> Shout 57.69% (64.0)<br><img src='icons/Blunt Weapon Mastery.png' alt='Blunt Weapon Mastery' width='20' height='20'> Blunt Weapon Mastery 25.0% (61.0)<br><img src='icons/Battle Command.png' alt='Battle Command' width='20' height='20'> Battle Command 17.31% (39.0)<br><img src='icons/Whirlwind.png' alt='Whirlwind' width='20' height='20'> Whirlwind 11.54% (37.0)<br><img src='icons/Howl.png' alt='Howl' width='20' height='20'> Howl 69.23% (36.0)<br><img src='icons/Battle Orders.png' alt='Battle Orders' width='20' height='20'> Battle Orders 30.77% (30.0)<br><img src='icons/Battle Cry.png' alt='Battle Cry' width='20' height='20'> Battle Cry 15.38% (28.0)<br><img src='icons/Iron Skin.png' alt='Iron Skin' width='20' height='20'> Iron Skin 48.08% (26.0)<br><img src='icons/Increased Stamina.png' alt='Increased Stamina' width='20' height='20'> Increased Stamina 46.15% (24.0)<br><img src='icons/Cleave.png' alt='Cleave' width='20' height='20'> Cleave 44.23% (24.0)<br><img src='icons/War Cry.png' alt='War Cry' width='20' height='20'> War Cry 3.85% (23.0)<br><img src='icons/Taunt.png' alt='Taunt' width='20' height='20'> Taunt 25.0% (22.0)<br><img src='icons/Increased Speed.png' alt='Increased Speed' width='20' height='20'> Increased Speed 28.85% (21.0)<br><img src='icons/Hemorrhage.png' alt='Hemorrhage' width='20' height='20'> Hemorrhage 1.92% (20.0)<br><img src='icons/Bash.png' alt='Bash' width='20' height='20'> Bash 32.69% (19.0)<br><img src='icons/Natural Resistance.png' alt='Natural Resistance' width='20' height='20'> Natural Resistance 23.08% (18.0)<br><img src='icons/Counter Attack.png' alt='Counter Attack' width='20' height='20'> Counter Attack 30.77% (16.0)<br><img src='icons/Whirling Axes.png' alt='Whirling Axes' width='20' height='20'> Whirling Axes 13.46% (14.0)<br><img src='icons/Concentrate.png' alt='Concentrate' width='20' height='20'> Concentrate 15.38% (12.0)<br><img src='icons/Find Potion.png' alt='Find Potion' width='20' height='20'> Find Potion 23.08% (12.0)<br><img src='icons/Weaken.png' alt='Weaken' width='20' height='20'> Weaken 1.92% (11.0)<br><img src='icons/Stun.png' alt='Stun' width='20' height='20'> Stun 19.23% (10.0)<br><img src='icons/Puncture.png' alt='Puncture' width='20' height='20'> Puncture 15.38% (9.0)<br><img src='icons/Pole Weapon Mastery.png' alt='Pole Weapon Mastery' width='20' height='20'> Pole Weapon Mastery 5.77% (8.0)<br><img src='icons/Find Item.png' alt='Find Item' width='20' height='20'> Find Item 13.46% (7.0)<br><img src='icons/Thrown Weapon Mastery.png' alt='Thrown Weapon Mastery' width='20' height='20'> Thrown Weapon Mastery 1.92% (4.0)<br><img src='icons/Grim Ward.png' alt='Grim Ward' width='20' height='20'> Grim Ward 5.77% (3.0)<br><img src='icons/Iron Maiden.png' alt='Iron Maiden' width='20' height='20'> Iron Maiden 1.92% (1.0)<br><img src='icons/Life Tap.png' alt='Life Tap' width='20' height='20'> Life Tap 1.92% (1.0)<br><img src='icons/Ethereal Throw.png' alt='Ethereal Throw' width='20' height='20'> Ethereal Throw 0.0% (0.0)</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>Most Common Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Gloves</strong>: <br>Leather Gloves 21.15%<br>Sigon's Gage 15.38%<br>Bloodfist 3.85%<br>Pain Clutches 3.85%<br>Eagle Claw 1.92%<br><strong>Amulet</strong>: <br>Angelic Wings 7.69%<br>Slayer's Amulet 3.85%<br>Amulet of Light 3.85%<br>Amulet of Regeneration 3.85%<br>Amulet of the Jackal 3.85%<br><strong>Boots</strong>: <br>Boots 17.31%<br>Sigon's Sabot 15.38%<br>Hsarus' Iron Heel 5.77%<br>Sander's Riprap 3.85%<br>Sturdy Boots of Dexterity 3.85%<br><strong>Body</strong>: <br>Stealth 9.62%<br>Berserker's Hauberk 7.69%<br>Quilted Armor 7.69%<br>Arctic Furs 5.77%<br>Leather Armor 5.77%<br><strong>Helmet</strong>: <br>Berserker's Headgear 13.46%<br>Cap 11.54%<br>Sigon's Visor 9.62%<br>Jawbone Cap 5.77%<br>Immortal King's Will 1.92%<br><strong>Belt</strong>: <br>Sash 17.31%<br>Sigon's Wrap 13.46%<br>Arctic Binding 5.77%<br>String of Ears 3.85%<br>Hsarus' Iron Stay 3.85%<br><strong>Left hand</strong>: <br>Berserker's Hatchet 13.46%<br>Hand Axe 9.62%<br>Steel 5.77%<br>Crushflange 5.77%<br>Spear 5.77%<br><strong>Offhand</strong>: <br>Hand Axe 15.38%<br>Berserker's Hatchet 9.62%<br>Short Sword 7.69%<br>Spirit 3.85%<br>Large Shield 3.85%<br><strong>Ring</strong>: <br>Manald Heal 15.38%<br>Ring of Craftmanship 9.62%<br>Angelic Halo 7.69%<br>Bronze Ring 7.69%<br>Ring of the Apprentice 5.77%</div>
+            </div>
+        
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Gloves</strong>: Bloodfist 3.85%, Eagle Claw 1.92%, Immortal King's Forge 1.92%, Chance Guards 1.92%, Death's Hand 1.92%, Rune Clutches 1.92%, Beryl Leather Gloves 1.92%, Cleglaw's Pincers 1.92%, Wraithra Grip 1.92%, Sander's Taboo 1.92%, Sigon's Gage 15.38%, Imp Touch 1.92%, Heavy Gloves of Frost Shield 1.92%, Carrion Touch 1.92%, Pain Clutches 3.85%, Soul Touch 1.92%, Crimson Leather Gloves 1.92%, Leather Gloves 21.15%, Havoc Hand 1.92%, PlagueRI Hand 1.92%, Tangerine Chain Gloves of Remedy 1.92%, Sturdy Leather Gloves 1.92%, Storm Touch 1.92%, Leather Gloves of Strength 1.92%, Heavy Gloves of Strength 1.92%<br><strong>Amulet</strong>: The Mahim-Oak Curio 1.92%, Slayer's Amulet 3.85%, Angelic Wings 7.69%, Vidala's Snare 1.92%, Amber Amulet of Craftmanship 1.92%, Scintillating Amulet 1.92%, Shimmering Amulet of the Apprentice 1.92%, Viridian Amulet of Brilliance 1.92%, Amulet of Greed 1.92%, Blood Necklace 1.92%, Lapis Amulet of Frost Shield 1.92%, Skull Scarab 1.92%, Amulet of Dexterity 1.92%, Shimmering Amulet of Regeneration 1.92%, Vulpine Amulet of Warding 1.92%, Skull Clasp 1.92%, Nokozan Relic 1.92%, Stone Collar 1.92%, Bone Wing 1.92%, Amulet of Light 3.85%, Beryl Amulet 1.92%, Corruption Emblem 1.92%, Beryl Amulet of Craftmanship 1.92%, Amulet of Regeneration 3.85%, Felicitous Amulet 1.92%, Amulet of the Jackal 3.85%, Tangerine Amulet 1.92%, Rugged Amulet of Regeneration 1.92%, Crimson Amulet of the Jackal 1.92%, Lizard's Amulet of Strength 1.92%, Amulet of Craftmanship 1.92%, Grim Mark 1.92%, Bronze Amulet 1.92%<br><strong>Boots</strong>: Sander's Riprap 3.85%, Bone Trample 1.92%, Immortal King's Pillar 1.92%, Beast Slippers 1.92%, Vidala's Fetlock 1.92%, Infernostride 1.92%, Imp Stalker 1.92%, Eagle Slippers 1.92%, Demon Track 1.92%, Sigon's Sabot 15.38%, Crimson Chain Boots of Frost Shield 1.92%, Gorefoot 1.92%, Beryl Heavy Boots 1.92%, Rugged Heavy Boots of Dexterity 1.92%, Hsarus' Iron Heel 5.77%, GhoulRI Slippers 1.92%, Sturdy Boots of Dexterity 3.85%, Viper Blazer 1.92%, Boots 17.31%, Light Plated Boots of Balance 1.92%, Boots of Dexterity 3.85%, Eagle Brogues 1.92%, Boots of Balance 1.92%<br><strong>Body</strong>: Smoke 1.92%, The Spirit Shroud 3.85%, Skin of the Vipermagi 1.92%, Stealth 9.62%, Myth 1.92%, Hawkmail 1.92%, Isenhart's Case 1.92%, Breast Plate 1.92%, Bitter Pelt 1.92%, Scale Mail of Frost Shield 1.92%, Berserker's Hauberk 7.69%, Sigon's Shelter 3.85%, Studded Leather 1.92%, Quilted Armor 7.69%, Bitter Coat 1.92%, Arctic Furs 5.77%, Hard Leather Armor of Balance 1.92%, Bone Flange 1.92%, Angelic Mantle 1.92%, Hard Leather Armor 1.92%, Storm Cloak 1.92%, Studded Leather of Self-Repair 1.92%, Leather Armor 5.77%, Hard Leather Armor of Self-Repair 1.92%, Ring Mail 1.92%, Sturdy Leather Armor of Self-Repair 1.92%, Studded Leather of the Jackal 1.92%, Carrion Jack 1.92%, Leather Armor of the Jackal 1.92%<br><strong>Helmet</strong>: Immortal King's Will 1.92%, Bramble Cowl 1.92%, Peasant Crown 1.92%, Arreat's Face 1.92%, Mask 1.92%, Rockstopper 1.92%, Skull Cap 1.92%, Isenhart's Horns 1.92%, Horned Helm 1.92%, Lore 1.92%, Sigon's Visor 9.62%, Duskdeep 1.92%, Spirit Visage 1.92%, Bitter Crest 1.92%, Berserker's Headgear 13.46%, Cap 11.54%, Corpse Mask 1.92%, PlagueRI Visage 1.92%, Glyph Horn 1.92%, Stone Mask 1.92%, Jawbone Cap 5.77%, Gale Hood 1.92%, Bone Helm 1.92%, Stone Veil 1.92%, Sturdy Jawbone Cap of Energy 1.92%, Crimson Skull Cap 1.92%, Beryl Fanged Helm of Energy 1.92%, Pain Cowl 1.92%, Doom Casque 1.92%, Cap of Charged Bolt 1.92%, Cruel Circlet 1.92%<br><strong>Belt</strong>: String of Ears 3.85%, Brimstone Winding 1.92%, Nightsmoke 1.92%, Snakecord 1.92%, Tangerine Light Belt 1.92%, Pain Buckle 1.92%, Sturdy Sash of Thorns 1.92%, Viridian Plated Belt 1.92%, Dire Lock 1.92%, Sigon's Wrap 13.46%, Russet Sash of the Jackal 1.92%, Dread Lock 1.92%, Sash 17.31%, Snake's Sash of the Fox 1.92%, Hsarus' Iron Stay 3.85%, Doom Lock 1.92%, Arctic Binding 5.77%, Eagle Harness 1.92%, Skull Harness 1.92%, Light Belt of Balance 1.92%, Pain Strap 1.92%, Sash of the Jackal 1.92%, Sash of Strength 1.92%, Belt of Strength 1.92%, Imp Cord 1.92%, Tangerine Sash 1.92%, Imp Buckle 1.92%<br><strong>Left hand</strong>: Pompeii's Wrath 1.92%, Pierre Tombale Couant 1.92%, Holy Thunder 1.92%, Spirit 3.85%, Bonesnap 1.92%, Steel 5.77%, 80 1.92%, Steeldriver 1.92%, Honor 1.92%, Hell Forge Hammer 3.85%, Strength 1.92%, Blood Spawn 1.92%, Bitter Slayer 1.92%, Jagged Great Maul of Gore 1.92%, Crimson Wand of Firebolts 1.92%, Imp Saw 1.92%, Claymore 1.92%, Goreshovel 1.92%, Crushflange 5.77%, Viper Goad 1.92%, Dire Goad 1.92%, Berserker's Hatchet 13.46%, The Jade Tan Do 1.92%, Scepter 3.85%, Crystal Sword 1.92%, Raven Song 1.92%, Deathspade 1.92%, Flail 1.92%, PlagueRI Knell 1.92%, Isenhart's Lightbrand 1.92%, Viper Splitter 1.92%, Spear 5.77%, Hand Axe 9.62%, Wirt's Leg 1.92%, Bone Slayer 1.92%, Crimson Scepter 1.92%, Axe 1.92%, Glyph Stinger 1.92%, Gale Impaler 1.92%, Fulminating Potion 1.92%, Scepter of Quality 1.92%, Throwing Knife 1.92%, Large Axe 1.92%, Short Sword 3.85%, Scimitar of Craftmanship 1.92%, Bronze Javelin 1.92%, Long Bow 1.92%, Rixot's Keen 1.92%, Stone Mangler 1.92%<br><strong>Offhand</strong>: Ginther's Rift 1.92%, Spirit 3.85%, Ironstone 1.92%, 80 1.92%, The General's Tan Do Li Ga 1.92%, Large Shield 3.85%, Ancients' Pledge 3.85%, Jagged War Hammer of Maiming 1.92%, Beast Badge 1.92%, Berserker's Hatchet 9.62%, PlagueRI Impaler 1.92%, Claymore 1.92%, Crushflange 3.85%, Jagged Javelin of Worth 1.92%, Stone Razor 1.92%, Sigon's Guard 1.92%, Bloodrise 1.92%, Civerb's Cudgel 1.92%, Scepter 1.92%, Angelic Sickle 1.92%, Rixot's Keen 1.92%, Kite Shield 1.92%, Short Sword 7.69%, Crystal Sword 1.92%, Axe 1.92%, Flail 1.92%, Storm Gnash 1.92%, Corpse Mangler 1.92%, Hand Axe 15.38%, Stone Emblem 1.92%, Scepter of Maiming 1.92%, Gale Song 1.92%, Throwing Knife 1.92%, Dagger of Shock 1.92%, Javelin 1.92%, Sturdy Small Shield of Balance 1.92%, Demon Barb 1.92%<br><strong>Ring</strong>: Viper Grip 1.92%, Dread Grasp 1.92%, Manald Heal 15.38%, Angelic Halo 7.69%, Bone Turn 1.92%, Stone Grasp 1.92%, Lapis Ring 1.92%, Coral Ring 1.92%, Nagelring 3.85%, Entropy Master 1.92%, Beast Whorl 1.92%, PlagueRI Loop 1.92%, Ring of the Apprentice 5.77%, Ring of Craftmanship 9.62%, Azure Ring of Energy 1.92%, Ocher Ring of Strength 1.92%, Russet Ring of Health 1.92%, Cobalt Ring of the Leech 1.92%, Cobalt Ring of the Bat 1.92%, Shadow Touch 1.92%, PlagueRI Whorl 1.92%, Beast Eye 1.92%, Ring of Regeneration 5.77%, Corruption Hold 1.92%, Bone Grip 1.92%, Eagle Grasp 1.92%, Dragon's Ring 1.92%, Order Loop 1.92%, Entropy Spiral 1.92%, Stone Finger 1.92%, Viridian Ring of the Leech 1.92%, Blood Band 1.92%, Shadow Eye 1.92%, Ring of Dexterity 1.92%, Bronze Ring 7.69%, Chaos Finger 1.92%, Ring of Strength 1.92%, Skull Gyre 1.92%, Blood Circle 1.92%, Dread Touch 1.92%, Bronze Ring of Strength 3.85%, Crimson Ring 5.77%, Bronze Ring of Greed 1.92%, Crimson Ring of Craftmanship 1.92%, Ring of Health 1.92%, Iron Ring 1.92%, Ring of Light 3.85%, Bronze Ring of Dexterity 1.92%, Lizard's Ring of Strength 1.92%, Tangerine Ring 1.92%, Snake's Ring of Dexterity 1.92%, Snake's Ring of Strength 1.92%, Triumphant Ring 1.92%</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>52 Characters in this cluster:</strong></button>
+            <div class="content">
+                
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Bonkbrother">Bonkbrother</a></div>
+                    <div>53</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Whirlwind:20, Frenzy:14, Double Swing:7, Edged Weapon Mastery:7, Bash:1, Leap Slam:1, Stun:1, Concentrate:1, Cleave:1, Whirling Axes:1, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Natural Resistance:1, Puncture:1, Counter Attack:1</p>
+            <p><strong>Equipment:</strong> gloves: Bloodfist x1, amulet: The Mahim-Oak Curio x1, boots: Sander's Riprap x1, body: Smoke x1, helmet: Immortal King's Will x1, belt: String of Ears x1, Left hand: Pompeii's Wrath x1, Left hand: Pierre Tombale Couant x1, Offhand: Ginther's Rift x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Tooric_Icefist">Tooric_Icefist</a></div>
+                    <div>50</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Leap Slam:20, Bash:1, Stun:1, Concentrate:1, Whirlwind:1, Cleave:1, Edged Weapon Mastery:1, Pole Weapon Mastery:1, Blunt Weapon Mastery:1, Whirling Axes:1, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Natural Resistance:1, Puncture:1, Counter Attack:1, Howl:1, Shout:1, Battle Orders:1, Battle Command:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Viddi">Viddi</a></div>
+                    <div>46</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> War Cry:15, Battle Command:10, Battle Orders:7, Bash:1, Leap Slam:1, Double Swing:1, Frenzy:1, Cleave:1, Whirling Axes:1, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Natural Resistance:1, Puncture:1, Counter Attack:1, Howl:1, Find Potion:1, Taunt:1, Shout:1, Find Item:1, Battle Cry:1, Grim Ward:1</p>
+            <p><strong>Equipment:</strong> helmet: Bramble Cowl x1, amulet: Slayer's Amulet x1, body: The Spirit Shroud x1, ring: Viper Grip x1, ring: Dread Grasp x1, belt: Brimstone Winding x1, gloves: Eagle Claw x1, boots: Bone Trample x1, Left hand: Holy Thunder x1, Left hand: Spirit x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=YxBagan">YxBagan</a></div>
+                    <div>45</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Blunt Weapon Mastery:20, Whirlwind:13, Battle Orders:2, Bash:1, Leap Slam:1, Stun:1, Concentrate:1, Cleave:1, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Natural Resistance:1, Howl:1, Shout:1, Battle Command:1</p>
+            <p><strong>Equipment:</strong> ring: Manald Heal x2, helmet: Peasant Crown x1, body: Skin of the Vipermagi x1, belt: String of Ears x1, amulet: Angelic Wings x1, boots: Immortal King's Pillar x1, gloves: Immortal King's Forge x1, Left hand: Bonesnap x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=DontDieKoluza">DontDieKoluza</a></div>
+                    <div>44</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Shout:10, Battle Command:10, War Cry:8, Battle Cry:7, Taunt:6, Battle Orders:2, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Natural Resistance:1, Howl:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=johnnieworker">johnnieworker</a></div>
+                    <div>44</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Double Swing:10, Blunt Weapon Mastery:7, Frenzy:6, Whirling Axes:4, Edged Weapon Mastery:2, Shout:2, Battle Orders:2, Battle Command:2, Bash:1, Stun:1, Cleave:1, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Natural Resistance:1, Puncture:1, Counter Attack:1, Howl:1, Find Potion:1, Find Item:1, Grim Ward:1</p>
+            <p><strong>Equipment:</strong> gloves: Chance Guards x1, ring: Angelic Halo x1, ring: Bone Turn x1, belt: Nightsmoke x1, helmet: Arreat's Face x1, boots: Beast Slippers x1, amulet: Slayer's Amulet x1, body: Stealth x1, Left hand: Steel x1, Left hand: 80 x1, Offhand: Ironstone x1, Offhand: 80 x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=LEAPATTACK">LEAPATTACK</a></div>
+                    <div>43</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Edged Weapon Mastery:20, Leap Slam:11, Battle Command:10, Cleave:1, Iron Skin:1, Natural Resistance:1, Howl:1, Shout:1, Battle Orders:1</p>
+            <p><strong>Equipment:</strong> boots: Vidala's Fetlock x1, ring: Manald Heal x1, ring: Stone Grasp x1, amulet: Vidala's Snare x1, belt: Snakecord x1, helmet: Mask x1, gloves: Death's Hand x1, Left hand: Steeldriver x1, Left hand: Honor x1, body: Myth x1, Offhand: The General's Tan Do Li Ga x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Hwaaarr">Hwaaarr</a></div>
+                    <div>35</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Frenzy:18, Increased Speed:7, Natural Resistance:6, Double Swing:1, Whirling Axes:1, Increased Stamina:1, Iron Skin:1, Howl:1, Shout:1, Battle Orders:1, Battle Command:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=FaSzLaMaK">FaSzLaMaK</a></div>
+                    <div>32</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Double Swing:5, Edged Weapon Mastery:5, Whirling Axes:3, Battle Command:3, Bash:1, Leap Slam:1, Stun:1, Concentrate:1, Frenzy:1, Whirlwind:1, Cleave:1, Blunt Weapon Mastery:1, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Natural Resistance:1, Counter Attack:1, Howl:1, Shout:1, Battle Orders:1</p>
+            <p><strong>Equipment:</strong> belt: Tangerine Light Belt x1, ring: Angelic Halo x1, ring: Manald Heal x1, gloves: Rune Clutches x1, Left hand: Hell Forge Hammer x1, Left hand: Spirit x1, Offhand: Large Shield x1, Offhand: Spirit x1, amulet: Angelic Wings x1, body: The Spirit Shroud x1, boots: Infernostride x1, helmet: Rockstopper x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Commitment">Commitment</a></div>
+                    <div>32</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Battle Cry:15, Whirling Axes:3, Bash:1, Leap Slam:1, Stun:1, Concentrate:1, Whirlwind:1, Cleave:1, Edged Weapon Mastery:1, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Natural Resistance:1, Howl:1, Taunt:1</p>
+            <p><strong>Equipment:</strong> gloves: Beryl Leather Gloves x1, helmet: Skull Cap x1, boots: Imp Stalker x1, amulet: Amber Amulet of Craftmanship x1, ring: Lapis Ring x1, ring: Coral Ring x1, body: Hawkmail x1, belt: Pain Buckle x1, Left hand: Strength x1, Offhand: Ancients' Pledge x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=petervarv">petervarv</a></div>
+                    <div>32</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Shout:20, Bash:1, Leap Slam:1, Double Swing:1, Stun:1, Concentrate:1, Frenzy:1, Whirlwind:1, Cleave:1, Iron Skin:1, Natural Resistance:1, Counter Attack:1, Howl:1, Taunt:1, Battle Cry:1, Battle Orders:1, Battle Command:1</p>
+            <p><strong>Equipment:</strong> gloves: Cleglaw's Pincers x1, ring: Manald Heal x1, ring: Nagelring x1, belt: Sturdy Sash of Thorns x1, boots: Eagle Slippers x1, body: Isenhart's Case x1, helmet: Isenhart's Horns x1, amulet: Scintillating Amulet x1, Left hand: Blood Spawn x1, Left hand: Bitter Slayer x1, Offhand: Jagged War Hammer of Maiming x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Grommnir">Grommnir</a></div>
+                    <div>31</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Blunt Weapon Mastery:20, Leap Slam:9, Natural Resistance:2, Cleave:1, Iron Skin:1, Puncture:1</p>
+            <p><strong>Equipment:</strong> belt: Viridian Plated Belt x1, helmet: Horned Helm x1, gloves: Wraithra Grip x1, body: Breast Plate x1, ring: Entropy Master x1, ring: Beast Whorl x1, amulet: Shimmering Amulet of the Apprentice x1, boots: Demon Track x1, Left hand: Jagged Great Maul of Gore x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Kupcia">Kupcia</a></div>
+                    <div>30</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Hemorrhage:20, Weaken:11, Iron Maiden:1, Life Tap:1</p>
+            <p><strong>Equipment:</strong> belt: Dire Lock x1, ring: PlagueRI Loop x1, ring: Ring of the Apprentice x1, amulet: Viridian Amulet of Brilliance x1, body: Stealth x1, helmet: Lore x1, gloves: Sander's Taboo x1, boots: Sander's Riprap x1, Left hand: Crimson Wand of Firebolts x1, Offhand: Beast Badge x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=iseeyourspace">iseeyourspace</a></div>
+                    <div>29</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Double Swing:15, Battle Orders:6, Edged Weapon Mastery:3, Bash:1, Frenzy:1, Iron Skin:1, Counter Attack:1, Howl:1, Taunt:1, Shout:1, Battle Cry:1</p>
+            <p><strong>Equipment:</strong> ring: Ring of Craftmanship x1, ring: Azure Ring of Energy x1, amulet: Amulet of Greed x1, gloves: Sigon's Gage x1, boots: Sigon's Sabot x1, helmet: Sigon's Visor x1, belt: Sigon's Wrap x1, body: Bitter Pelt x1, Left hand: Imp Saw x1, Offhand: Berserker's Hatchet x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Schnork">Schnork</a></div>
+                    <div>27</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Edged Weapon Mastery:7, Frenzy:6, Double Swing:3, Iron Skin:2, Puncture:2, Leap Slam:1, Cleave:1, Increased Stamina:1, Increased Speed:1, Counter Attack:1, Howl:1, Find Potion:1, Shout:1, Find Item:1, Battle Orders:1</p>
+            <p><strong>Equipment:</strong> amulet: Blood Necklace x1, ring: Ocher Ring of Strength x1, ring: Russet Ring of Health x1, gloves: Imp Touch x1, boots: Sigon's Sabot x1, belt: Russet Sash of the Jackal x1, Left hand: Steel x1, Left hand: Claymore x1, Offhand: PlagueRI Impaler x1, Offhand: Claymore x1, helmet: Duskdeep x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=BbIkunbMycop">BbIkunbMycop</a></div>
+                    <div>27</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Double Swing:1, Increased Stamina:1, Iron Skin:1, Increased Speed:1</p>
+            <p><strong>Equipment:</strong> boots: Crimson Chain Boots of Frost Shield x1, gloves: Heavy Gloves of Frost Shield x1, amulet: Lapis Amulet of Frost Shield x1, helmet: Spirit Visage x1, belt: Dread Lock x1, ring: Cobalt Ring of the Leech x1, ring: Cobalt Ring of the Bat x1, body: Scale Mail of Frost Shield x1, Left hand: Goreshovel x1, Left hand: Crushflange x1, Offhand: Crushflange x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=ThePlumber">ThePlumber</a></div>
+                    <div>25</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Leap Slam:11, Bash:1, Cleave:1, Pole Weapon Mastery:1, Blunt Weapon Mastery:1, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Puncture:1, Counter Attack:1, Howl:1, Find Potion:1, Taunt:1, Shout:1, Find Item:1, Battle Cry:1, Battle Orders:1, Grim Ward:1</p>
+            <p><strong>Equipment:</strong> body: Berserker's Hauberk x1, gloves: Sigon's Gage x1, belt: Sigon's Wrap x1, amulet: Skull Scarab x1, Left hand: Viper Goad x1, Left hand: Dire Goad x1, Offhand: Jagged Javelin of Worth x1, helmet: Bitter Crest x1, ring: Shadow Touch x1, ring: PlagueRI Whorl x1, boots: Gorefoot x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Carousel">Carousel</a></div>
+                    <div>25</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Frenzy:10, Double Swing:3, Cleave:2, Bash:1, Leap Slam:1, Stun:1, Edged Weapon Mastery:1, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Howl:1, Taunt:1, Shout:1, Battle Orders:1</p>
+            <p><strong>Equipment:</strong> belt: Sash x1, helmet: Berserker's Headgear x1, amulet: Amulet of Dexterity x1, body: Berserker's Hauberk x1, ring: Manald Heal x1, ring: Beast Eye x1, boots: Beryl Heavy Boots x1, gloves: Carrion Touch x1, Left hand: Berserker's Hatchet x1, Offhand: Stone Razor x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=NoAltarWeRHuman">NoAltarWeRHuman</a></div>
+                    <div>24</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Double Swing:12, Shout:2, Bash:1, Frenzy:1, Edged Weapon Mastery:1, Blunt Weapon Mastery:1, Iron Skin:1, Counter Attack:1, Howl:1, Taunt:1, Battle Cry:1, Battle Orders:1</p>
+            <p><strong>Equipment:</strong> gloves: Sigon's Gage x1, belt: Sigon's Wrap x1, boots: Sigon's Sabot x1, body: Sigon's Shelter x1, helmet: Sigon's Visor x1, amulet: Shimmering Amulet of Regeneration x1, ring: Ring of Regeneration x1, ring: Corruption Hold x1, Left hand: Crushflange x1, Left hand: The Jade Tan Do x1, Offhand: Sigon's Guard x1, Offhand: Bloodrise x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Dclone_Killer">Dclone_Killer</a></div>
+                    <div>24</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Leap Slam:1, Double Swing:1, Frenzy:1, Cleave:1, Edged Weapon Mastery:1, Blunt Weapon Mastery:1, Increased Stamina:1, Iron Skin:1</p>
+            <p><strong>Equipment:</strong> gloves: Sigon's Gage x1, boots: Sigon's Sabot x1, belt: Sigon's Wrap x1, helmet: Sigon's Visor x1, amulet: Vulpine Amulet of Warding x1, ring: Manald Heal x1, ring: Bone Grip x1, body: Studded Leather x1, Offhand: Civerb's Cudgel x1, Left hand: Hell Forge Hammer x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=VapourBarb">VapourBarb</a></div>
+                    <div>24</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Frenzy:14, Double Swing:4, Blunt Weapon Mastery:2, Edged Weapon Mastery:1, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Howl:1, Shout:1, Battle Orders:1</p>
+            <p><strong>Equipment:</strong> helmet: Cap x1, gloves: Pain Clutches x1, belt: Snake's Sash of the Fox x1, boots: Rugged Heavy Boots of Dexterity x1, body: Stealth x1, ring: Eagle Grasp x1, ring: Dragon's Ring x1, amulet: Skull Clasp x1, Left hand: Scepter x1, Offhand: Scepter x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=LarsErik">LarsErik</a></div>
+                    <div>24</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Frenzy:11, Edged Weapon Mastery:5, Double Swing:4, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Puncture:1, Howl:1, Shout:1, Battle Orders:1</p>
+            <p><strong>Equipment:</strong> gloves: Sigon's Gage x1, helmet: Sigon's Visor x1, belt: Sigon's Wrap x1, body: Sigon's Shelter x1, boots: Sigon's Sabot x1, ring: Angelic Halo x1, ring: Order Loop x1, amulet: Nokozan Relic x1, Left hand: Berserker's Hatchet x1, Offhand: Berserker's Hatchet x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=kepBarb">kepBarb</a></div>
+                    <div>23</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Double Swing:8, Edged Weapon Mastery:4, Frenzy:3, Leap Slam:1, Cleave:1, Increased Stamina:1, Iron Skin:1, Counter Attack:1, Howl:1, Taunt:1, Shout:1, Battle Cry:1</p>
+            <p><strong>Equipment:</strong> helmet: Berserker's Headgear x1, body: Berserker's Hauberk x1, belt: Sigon's Wrap x1, gloves: Sigon's Gage x1, boots: Sigon's Sabot x1, ring: Angelic Halo x1, ring: Nagelring x1, amulet: Angelic Wings x1, Left hand: Berserker's Hatchet x1, Offhand: Angelic Sickle x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=YoNis">YoNis</a></div>
+                    <div>23</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Thrown Weapon Mastery:4, Bash:3, Leap Slam:1, Double Swing:1, Stun:1, Concentrate:1, Frenzy:1, Cleave:1, Increased Stamina:1, Iron Skin:1, Counter Attack:1, Howl:1, Find Potion:1, Shout:1, Find Item:1</p>
+            <p><strong>Equipment:</strong> belt: Hsarus' Iron Stay x1, boots: Hsarus' Iron Heel x1, gloves: Bloodfist x1, ring: Entropy Spiral x1, ring: Stone Finger x1, amulet: Stone Collar x1, body: Stealth x1, helmet: Corpse Mask x1, Offhand: Ancients' Pledge x1, Offhand: Rixot's Keen x1, Left hand: Berserker's Hatchet x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Dalthor">Dalthor</a></div>
+                    <div>22</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Concentrate:5, Taunt:5, Bash:1, Leap Slam:1, Stun:1, Cleave:1, Edged Weapon Mastery:1, Blunt Weapon Mastery:1, Increased Stamina:1, Iron Skin:1, Howl:1, Find Potion:1, Shout:1, Find Item:1</p>
+            <p><strong>Equipment:</strong> belt: Doom Lock x1, gloves: Soul Touch x1, boots: GhoulRI Slippers x1, ring: Viridian Ring of the Leech x1, ring: Blood Band x1, helmet: PlagueRI Visage x1, amulet: Bone Wing x1, Left hand: Steel x1, Left hand: Crushflange x1, Offhand: Large Shield x1, Offhand: Kite Shield x1, body: Stealth x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=ArtCry">ArtCry</a></div>
+                    <div>21</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Frenzy:9, Shout:2, Bash:1, Leap Slam:1, Double Swing:1, Cleave:1, Edged Weapon Mastery:1, Increased Stamina:1, Iron Skin:1, Counter Attack:1, Howl:1, Find Potion:1, Taunt:1</p>
+            <p><strong>Equipment:</strong> boots: Sturdy Boots of Dexterity x1, gloves: Crimson Leather Gloves x1, amulet: Amulet of Light x1, body: Quilted Armor x1, helmet: Glyph Horn x1, belt: Arctic Binding x1, ring: Shadow Eye x1, ring: Manald Heal x1, Left hand: Crystal Sword x1, Left hand: Raven Song x1, Offhand: Short Sword x1, Offhand: Crystal Sword x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=GEFROH">GEFROH</a></div>
+                    <div>20</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Double Swing:10, Edged Weapon Mastery:4, Shout:4, Increased Stamina:1, Howl:1</p>
+            <p><strong>Equipment:</strong> ring: Ring of Dexterity x1, ring: Bronze Ring x1, helmet: Stone Mask x1, amulet: Beryl Amulet x1, gloves: Leather Gloves x1, belt: Sash x1, body: Bitter Coat x1, Left hand: Deathspade x1, Offhand: Axe x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Groudon">Groudon</a></div>
+                    <div>17</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Frenzy:5, Double Swing:3, Leap Slam:1, Cleave:1, Blunt Weapon Mastery:1, Increased Stamina:1, Counter Attack:1, Howl:1, Find Potion:1, Taunt:1, Shout:1, Find Item:1</p>
+            <p><strong>Equipment:</strong> ring: Ring of Craftmanship x1, ring: Chaos Finger x1, body: Arctic Furs x1, helmet: Jawbone Cap x1, gloves: Havoc Hand x1, belt: Eagle Harness x1, boots: Viper Blazer x1, amulet: Corruption Emblem x1, Offhand: Flail x1, Left hand: Flail x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Kbx-Barb">Kbx-Barb</a></div>
+                    <div>14</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Frenzy:4, Blunt Weapon Mastery:4, Double Swing:2, Leap Slam:1, Cleave:1, Howl:1, Shout:1</p>
+            <p><strong>Equipment:</strong> boots: Boots x1, amulet: Beryl Amulet of Craftmanship x1, gloves: PlagueRI Hand x1, ring: Ring of Strength x1, ring: Skull Gyre x1, belt: Arctic Binding x1, body: Arctic Furs x1, helmet: Gale Hood x1, Left hand: PlagueRI Knell x1, Offhand: Storm Gnash x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=CUNT_BUSTER">CUNT_BUSTER</a></div>
+                    <div>14</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Double Swing:10, Frenzy:1, Edged Weapon Mastery:1, Counter Attack:1, Howl:1, Shout:1</p>
+            <p><strong>Equipment:</strong> boots: Light Plated Boots of Balance x1, ring: Ring of Regeneration x2, amulet: Amulet of Regeneration x1, gloves: Tangerine Chain Gloves of Remedy x1, belt: Skull Harness x1, helmet: Bone Helm x1, body: Hard Leather Armor of Balance x1, Offhand: Crushflange x1, Left hand: Isenhart's Lightbrand x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=hurrpees">hurrpees</a></div>
+                    <div>13</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Pole Weapon Mastery:6, Leap Slam:2, Cleave:1, Increased Stamina:1, Counter Attack:1, Howl:1, Shout:1</p>
+            <p><strong>Equipment:</strong> gloves: Leather Gloves x1, belt: Sash x1, amulet: Amulet of Regeneration x1, ring: Ring of the Apprentice x1, body: Bone Flange x1, helmet: Stone Veil x1, Left hand: Viper Splitter x1, Left hand: Spear x1, Offhand: Corpse Mangler x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=LilRun">LilRun</a></div>
+                    <div>13</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Frenzy:8, Double Swing:5, Increased Stamina:1</p>
+            <p><strong>Equipment:</strong> ring: Blood Circle x1, ring: Dread Touch x1, helmet: Berserker's Headgear x1, boots: Sigon's Sabot x1, belt: Sigon's Wrap x1, gloves: Sigon's Gage x1, body: Angelic Mantle x1, amulet: Angelic Wings x1, Offhand: Berserker's Hatchet x1, Left hand: Berserker's Hatchet x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=HEICO">HEICO</a></div>
+                    <div>12</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Edged Weapon Mastery:5, Double Swing:4, Howl:1, Shout:1</p>
+            <p><strong>Equipment:</strong> gloves: Leather Gloves x1, ring: Bronze Ring of Strength x1, ring: Crimson Ring x1, boots: Boots of Dexterity x1, body: Hard Leather Armor x1, helmet: Sturdy Jawbone Cap of Energy x1, belt: Light Belt of Balance x1, Left hand: Hand Axe x1, Offhand: Hand Axe x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=dumbidiotguy">dumbidiotguy</a></div>
+                    <div>10</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Bash:1, Howl:1, Shout:1</p>
+            <p><strong>Equipment:</strong> body: Arctic Furs x1, helmet: Berserker's Headgear x1, boots: Hsarus' Iron Heel x1, belt: Sash x1, amulet: Felicitous Amulet x1, ring: Bronze Ring of Greed x1, ring: Crimson Ring x1, gloves: Sturdy Leather Gloves x1, Left hand: Wirt's Leg x1, Offhand: Stone Emblem x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Doomguard">Doomguard</a></div>
+                    <div>9</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Edged Weapon Mastery:6, Cleave:1, Howl:1, Shout:1</p>
+            <p><strong>Equipment:</strong> gloves: Leather Gloves x1, belt: Pain Strap x1, body: Storm Cloak x1, boots: Eagle Brogues x1, helmet: Crimson Skull Cap x1, amulet: Amulet of the Jackal x1, Offhand: Short Sword x1, Left hand: Bone Slayer x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=FooBARBIE">FooBARBIE</a></div>
+                    <div>9</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Bash:1, Double Swing:1, Frenzy:1, Howl:1, Shout:1</p>
+            <p><strong>Equipment:</strong> ring: Crimson Ring x1, gloves: Sigon's Gage x1, boots: Sigon's Sabot x1, helmet: Sigon's Visor x1, belt: Hsarus' Iron Stay x1, Offhand: Scepter of Maiming x1, Left hand: Crimson Scepter x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Spartda">Spartda</a></div>
+                    <div>9</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Double Swing:4, Frenzy:4, Find Potion:1</p>
+            <p><strong>Equipment:</strong> gloves: Storm Touch x1, body: Studded Leather of Self-Repair x1, boots: Boots x1, belt: Sash of the Jackal x1, ring: Ring of Craftmanship x1, ring: Crimson Ring of Craftmanship x1, helmet: Beryl Fanged Helm of Energy x1, Offhand: Gale Song x1, Left hand: Axe x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Plub">Plub</a></div>
+                    <div>9</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> </p>
+            <p><strong>Equipment:</strong> gloves: Leather Gloves of Strength x1, helmet: Jawbone Cap x1, Left hand: Hand Axe x1, Left hand: Spear x1, Offhand: Hand Axe x1, body: Leather Armor x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=jup">jup</a></div>
+                    <div>8</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Double Swing:5, Edged Weapon Mastery:1, Howl:1, Shout:1</p>
+            <p><strong>Equipment:</strong> gloves: Leather Gloves x1, belt: Sash of Strength x1, boots: Boots of Dexterity x1, helmet: Pain Cowl x1, body: Hard Leather Armor of Self-Repair x1, amulet: Tangerine Amulet x1, Left hand: Glyph Stinger x1, Left hand: Gale Impaler x1, ring: Ring of Health x1, Offhand: Short Sword x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=KercHC">KercHC</a></div>
+                    <div>6</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Double Swing:2, Blunt Weapon Mastery:1, Howl:1, Find Potion:1, Taunt:1</p>
+            <p><strong>Equipment:</strong> ring: Ring of Craftmanship x1, ring: Iron Ring x1, belt: Sash x1, gloves: Leather Gloves x1, boots: Boots x1, body: Quilted Armor x1, helmet: Cap x1, Left hand: Fulminating Potion x1, Left hand: Scepter of Quality x1, amulet: Rugged Amulet of Regeneration x1, Offhand: Hand Axe x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Maximus_Decimus">Maximus_Decimus</a></div>
+                    <div>6</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Double Swing:1, Edged Weapon Mastery:1</p>
+            <p><strong>Equipment:</strong> Left hand: Spear x1, Left hand: Hand Axe x1, helmet: Jawbone Cap x1, belt: Belt of Strength x1, body: Ring Mail x1, Offhand: Hand Axe x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=MigoBO">MigoBO</a></div>
+                    <div>6</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Cleave:1</p>
+            <p><strong>Equipment:</strong> boots: Boots x1, body: Sturdy Leather Armor of Self-Repair x1, amulet: Crimson Amulet of the Jackal x1, belt: Imp Cord x1, ring: Ring of Light x1, ring: Bronze Ring of Dexterity x1, gloves: Leather Gloves x1, helmet: Doom Casque x1, Left hand: Throwing Knife x1, Left hand: Large Axe x1, Offhand: Throwing Knife x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Magicalstick">Magicalstick</a></div>
+                    <div>5</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Double Swing:4</p>
+            <p><strong>Equipment:</strong> amulet: Lizard's Amulet of Strength x1, ring: Bronze Ring of Strength x1, ring: Ring of Craftmanship x1, boots: Sturdy Boots of Dexterity x1, helmet: Cap of Charged Bolt x1, belt: Tangerine Sash x1, gloves: Heavy Gloves of Strength x1, body: Studded Leather of the Jackal x1, Left hand: Short Sword x1, Offhand: Short Sword x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=SicMundus">SicMundus</a></div>
+                    <div>5</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Double Swing:1</p>
+            <p><strong>Equipment:</strong> boots: Boots x1, belt: Sash x1, gloves: Pain Clutches x1, body: Carrion Jack x1, amulet: Amulet of Craftmanship x1, helmet: Cap x1, Left hand: Short Sword x1, Offhand: Dagger of Shock x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Tetsuya">Tetsuya</a></div>
+                    <div>5</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Double Swing:1, Edged Weapon Mastery:1, Howl:1, Find Potion:1</p>
+            <p><strong>Equipment:</strong> ring: Bronze Ring x1, ring: Ring of Light x1, amulet: Amulet of Light x1, helmet: Cruel Circlet x1, boots: Boots x1, body: Leather Armor of the Jackal x1, Offhand: Hand Axe x1, Left hand: Scimitar of Craftmanship x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=DudeWheresMyAxe">DudeWheresMyAxe</a></div>
+                    <div>5</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Double Swing:1, Howl:1, Find Potion:1</p>
+            <p><strong>Equipment:</strong> helmet: Cap x1, belt: Sash x1, boots: Boots x1, gloves: Leather Gloves x1, body: Leather Armor x1, ring: Lizard's Ring of Strength x1, ring: Tangerine Ring x1, Left hand: Bronze Javelin x1, Left hand: Scepter x1, Offhand: Javelin x1, Offhand: Sturdy Small Shield of Balance x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Duumass">Duumass</a></div>
+                    <div>4</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Double Swing:1</p>
+            <p><strong>Equipment:</strong> Left hand: Long Bow x1, Left hand: Berserker's Hatchet x1, belt: Arctic Binding x1, helmet: Berserker's Headgear x1, boots: Hsarus' Iron Heel x1, amulet: Grim Mark x1, ring: Snake's Ring of Dexterity x1, ring: Snake's Ring of Strength x1, body: Berserker's Hauberk x1, Offhand: Berserker's Hatchet x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Wujek">Wujek</a></div>
+                    <div>4</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Edged Weapon Mastery:1, Howl:1</p>
+            <p><strong>Equipment:</strong> helmet: Cap x1, body: Quilted Armor x1, gloves: Leather Gloves x1, boots: Boots x1, belt: Sash x1, Offhand: Hand Axe x1, Left hand: Rixot's Keen x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Wirbel-Willi">Wirbel-Willi</a></div>
+                    <div>4</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> </p>
+            <p><strong>Equipment:</strong> body: Leather Armor x1, ring: Bronze Ring x1, boots: Boots x1, helmet: Cap x1, Offhand: Hand Axe x1, Left hand: Hand Axe x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=BasedgodSneed">BasedgodSneed</a></div>
+                    <div>4</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Howl:1</p>
+            <p><strong>Equipment:</strong> body: Quilted Armor x1, Offhand: Hand Axe x1, Left hand: Hand Axe x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=pondabimbom">pondabimbom</a></div>
+                    <div>3</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> </p>
+            <p><strong>Equipment:</strong> belt: Imp Buckle x1, gloves: Leather Gloves x1, amulet: Bronze Amulet x1, ring: Triumphant Ring x1, ring: Ring of the Apprentice x1, boots: Boots of Balance x1, helmet: Berserker's Headgear x1, Left hand: Stone Mangler x1, Offhand: Demon Barb x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=alim">alim</a></div>
+                    <div>3</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Double Swing:1</p>
+            <p><strong>Equipment:</strong> amulet: Amulet of the Jackal x1, gloves: Leather Gloves x1, helmet: Berserker's Headgear x1, belt: Sash x1, ring: Bronze Ring x1, Left hand: Berserker's Hatchet x1, Offhand: Berserker's Hatchet x1</p>
+        
+        </div>
+        <hr>
+        
+        <h2>14.16%  of Barbarian's Main Skills:<br><img src='icons/War Cry.png' alt='War Cry' width='20' height='20'> War Cry 100.00% (320)<br><img src='icons/Battle Cry.png' alt='Battle Cry' width='20' height='20'> Battle Cry 100.00% (313)<br><img src='icons/Taunt.png' alt='Taunt' width='20' height='20'> Taunt 100.00% (260)</h2>
+        <p><strong>Other Skills:<br></strong> <img src='icons/Battle Orders.png' alt='Battle Orders' width='20' height='20'> Battle Orders 100.0% (197.0)<br><img src='icons/Battle Command.png' alt='Battle Command' width='20' height='20'> Battle Command 100.0% (110.0)<br><img src='icons/Shout.png' alt='Shout' width='20' height='20'> Shout 100.0% (25.0)<br><img src='icons/Grim Ward.png' alt='Grim Ward' width='20' height='20'> Grim Ward 68.75% (21.0)<br><img src='icons/Natural Resistance.png' alt='Natural Resistance' width='20' height='20'> Natural Resistance 100.0% (20.0)<br><img src='icons/Iron Skin.png' alt='Iron Skin' width='20' height='20'> Iron Skin 100.0% (16.0)</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>All Skills</strong></button>
+            <div class="content">
+                <div><img src='icons/War Cry.png' alt='War Cry' width='20' height='20'> War Cry 100.0% (320.0)<br><img src='icons/Battle Cry.png' alt='Battle Cry' width='20' height='20'> Battle Cry 100.0% (314.0)<br><img src='icons/Taunt.png' alt='Taunt' width='20' height='20'> Taunt 100.0% (260.0)<br><img src='icons/Battle Orders.png' alt='Battle Orders' width='20' height='20'> Battle Orders 100.0% (197.0)<br><img src='icons/Battle Command.png' alt='Battle Command' width='20' height='20'> Battle Command 100.0% (110.0)<br><img src='icons/Shout.png' alt='Shout' width='20' height='20'> Shout 100.0% (25.0)<br><img src='icons/Grim Ward.png' alt='Grim Ward' width='20' height='20'> Grim Ward 68.75% (21.0)<br><img src='icons/Natural Resistance.png' alt='Natural Resistance' width='20' height='20'> Natural Resistance 100.0% (20.0)<br><img src='icons/Iron Skin.png' alt='Iron Skin' width='20' height='20'> Iron Skin 100.0% (16.0)<br><img src='icons/Howl.png' alt='Howl' width='20' height='20'> Howl 100.0% (16.0)<br><img src='icons/Increased Speed.png' alt='Increased Speed' width='20' height='20'> Increased Speed 93.75% (15.0)<br><img src='icons/Find Potion.png' alt='Find Potion' width='20' height='20'> Find Potion 93.75% (15.0)<br><img src='icons/Increased Stamina.png' alt='Increased Stamina' width='20' height='20'> Increased Stamina 93.75% (15.0)<br><img src='icons/Find Item.png' alt='Find Item' width='20' height='20'> Find Item 93.75% (15.0)<br><img src='icons/Cleave.png' alt='Cleave' width='20' height='20'> Cleave 37.5% (6.0)<br><img src='icons/Leap Slam.png' alt='Leap Slam' width='20' height='20'> Leap Slam 31.25% (6.0)<br><img src='icons/Bash.png' alt='Bash' width='20' height='20'> Bash 6.25% (1.0)<br><img src='icons/Puncture.png' alt='Puncture' width='20' height='20'> Puncture 6.25% (1.0)<br><img src='icons/Double Swing.png' alt='Double Swing' width='20' height='20'> Double Swing 6.25% (1.0)<br><img src='icons/Counter Attack.png' alt='Counter Attack' width='20' height='20'> Counter Attack 6.25% (1.0)<br><img src='icons/Blunt Weapon Mastery.png' alt='Blunt Weapon Mastery' width='20' height='20'> Blunt Weapon Mastery 6.25% (1.0)<br><img src='icons/Whirlwind.png' alt='Whirlwind' width='20' height='20'> Whirlwind 0.0% (0.0)<br><img src='icons/Whirling Axes.png' alt='Whirling Axes' width='20' height='20'> Whirling Axes 0.0% (0.0)<br><img src='icons/Concentrate.png' alt='Concentrate' width='20' height='20'> Concentrate 0.0% (0.0)<br><img src='icons/Edged Weapon Mastery.png' alt='Edged Weapon Mastery' width='20' height='20'> Edged Weapon Mastery 0.0% (0.0)<br><img src='icons/Stun.png' alt='Stun' width='20' height='20'> Stun 0.0% (0.0)<br><img src='icons/Frenzy.png' alt='Frenzy' width='20' height='20'> Frenzy 0.0% (0.0)<br><img src='icons/Pole Weapon Mastery.png' alt='Pole Weapon Mastery' width='20' height='20'> Pole Weapon Mastery 0.0% (0.0)<br><img src='icons/Thrown Weapon Mastery.png' alt='Thrown Weapon Mastery' width='20' height='20'> Thrown Weapon Mastery 0.0% (0.0)<br><img src='icons/Ethereal Throw.png' alt='Ethereal Throw' width='20' height='20'> Ethereal Throw 0.0% (0.0)<br><img src='icons/Weaken.png' alt='Weaken' width='20' height='20'> Weaken 0.0% (0.0)<br><img src='icons/Iron Maiden.png' alt='Iron Maiden' width='20' height='20'> Iron Maiden 0.0% (0.0)<br><img src='icons/Life Tap.png' alt='Life Tap' width='20' height='20'> Life Tap 0.0% (0.0)<br><img src='icons/Hemorrhage.png' alt='Hemorrhage' width='20' height='20'> Hemorrhage 0.0% (0.0)</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>Most Common Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Body</strong>: <br>Skin of the Vipermagi 25.00%<br>Stealth 18.75%<br>Enigma 12.50%<br>Goldskin 12.50%<br>Smoke 6.25%<br><strong>Helmet</strong>: <br>Immortal King's Will 31.25%<br>Harlequin Crest 12.50%<br>Tarnhelm 12.50%<br>Sazabi's Mental Sheath 6.25%<br>Arreat's Face 6.25%<br><strong>Ring</strong>: <br>Dwarf Star 25.00%<br>Manald Heal 12.50%<br>Order Loop 6.25%<br>Death Circle 6.25%<br>Raven Frost 6.25%<br><strong>Gloves</strong>: <br>Chance Guards 25.00%<br>Frostburn 12.50%<br>Doom Grasp 6.25%<br>GhoulRI Grasp 6.25%<br>Bitter Knuckle 6.25%<br><strong>Boots</strong>: <br>War Traveler 12.50%<br>Aldur's Advance 12.50%<br>Silkweave 6.25%<br>Sander's Riprap 6.25%<br>Wraithra Trample 6.25%<br><strong>Belt</strong>: <br>String of Ears 25.00%<br>Goldwrap 18.75%<br>Verdungo's Hearty Cord 6.25%<br>Arachnid Mesh 6.25%<br>Tal Rasha's Fine-Spun Cloth 6.25%<br><strong>Amulet</strong>: <br>Echoing Amulet 25.00%<br>Echoing Amulet of Regrowth 6.25%<br>Bitter Mark 6.25%<br>Echoing Amulet of the Colossus 6.25%<br>Echoing Amulet of Sorcery 6.25%<br><strong>Left hand</strong>: <br>Spirit 56.25%<br>Heart of the Oak 25.00%<br>Naj's Puzzler 12.50%<br>Blade of Ali Baba 12.50%<br>Wizardspike 6.25%<br><strong>Offhand</strong>: <br>Spirit 56.25%<br>Radament's Sphere 12.50%<br>Heart of the Oak 12.50%<br>Blade of Ali Baba 12.50%<br>Stormshield 6.25%</div>
+            </div>
+        
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Body</strong>: Enigma 12.50%, Skin of the Vipermagi 25.00%, Smoke 6.25%, Stealth 18.75%, Myth 6.25%, Goldskin 12.50%<br><strong>Helmet</strong>: Harlequin Crest 12.50%, Tarnhelm 12.50%, Immortal King's Will 31.25%, Sazabi's Mental Sheath 6.25%, Arreat's Face 6.25%, Crown of Thieves 6.25%, Blood Brow 6.25%, Hailstone Brow 6.25%<br><strong>Ring</strong>: Order Loop 6.25%, Death Circle 6.25%, Dwarf Star 25.00%, Raven Frost 6.25%, Scintillating Ring of Craftmanship 6.25%, Dread Touch 6.25%, Manald Heal 12.50%, Stone Whorl 6.25%, Blood Master 6.25%, Grim Loop 6.25%, Ring of Fortune 6.25%, Viper Band 6.25%, Death Loop 6.25%, Stone Grasp 6.25%, Dread Master 6.25%, Order Coil 6.25%, Viper Turn 6.25%, Storm Spiral 6.25%, PlagueRI Eye 6.25%, Havoc Master 6.25%, Rune Circle 6.25%, Bone Hold 6.25%<br><strong>Gloves</strong>: Frostburn 12.50%, Chance Guards 25.00%, Doom Grasp 6.25%, GhoulRI Grasp 6.25%, Bitter Knuckle 6.25%, Magefist 6.25%, Fiendra Clutches 6.25%, Gale Grip 6.25%, Wraithra Fist 6.25%<br><strong>Boots</strong>: War Traveler 12.50%, Silkweave 6.25%, Sander's Riprap 6.25%, Wraithra Trample 6.25%, Aldur's Advance 12.50%, Infernostride 6.25%, Natalya's Soul 6.25%, Corpse Spur 6.25%, Goblin Toe 6.25%, Demon Spur 6.25%, Gale Track 6.25%, Spirit Brogues 6.25%<br><strong>Belt</strong>: Verdungo's Hearty Cord 6.25%, Arachnid Mesh 6.25%, Goldwrap 18.75%, String of Ears 25.00%, Tal Rasha's Fine-Spun Cloth 6.25%, Bone Cord 6.25%, Storm Lock 6.25%, Hsarus' Iron Stay 6.25%, Cruel Fringe 6.25%<br><strong>Amulet</strong>: Echoing Amulet of Regrowth 6.25%, Bitter Mark 6.25%, Echoing Amulet of the Colossus 6.25%, Echoing Amulet of Sorcery 6.25%, Wraithra Noose 6.25%, Echoing Amulet 25.00%, Shadow Emblem 6.25%, Echoing Amulet of Fortune 6.25%, Death Beads 6.25%, Saracen's Chance 6.25%<br><strong>Left hand</strong>: Spirit 56.25%, Heart of the Oak 25.00%, Wizardspike 6.25%, Naj's Puzzler 12.50%, Nord's Tenderizer 6.25%, Echoing War Axe of Performance 6.25%, Echoing War Sword of Alacrity 6.25%, Blade of Ali Baba 12.50%, Spellsteel 6.25%, Echoing Bastard Sword 6.25%, PlagueRI Gnash 6.25%, Skull Bane 6.25%, PlagueRI Splitter 6.25%<br><strong>Offhand</strong>: Radament's Sphere 12.50%, Heart of the Oak 12.50%, Spirit 56.25%, Stormshield 6.25%, Echoing Crystal Sword of Venom 6.25%, Blade of Ali Baba 12.50%, Echoing Flamberge 6.25%, Ancients' Pledge 6.25%, Static Throwing Axe of Blight 6.25%</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>16 Characters in this cluster:</strong></button>
+            <div class="content">
+                
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=SCplebsBaba">SCplebsBaba</a></div>
+                    <div>92</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Taunt:20, Battle Cry:20, Battle Orders:20, War Cry:20, Battle Command:10, Grim Ward:5, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Natural Resistance:1, Howl:1, Find Potion:1, Shout:1, Find Item:1</p>
+            <p><strong>Equipment:</strong> body: Enigma x1, helmet: Harlequin Crest x1, ring: Order Loop x1, ring: Death Circle x1, gloves: Frostburn x1, boots: War Traveler x1, belt: Verdungo's Hearty Cord x1, amulet: Echoing Amulet of Regrowth x1, Left hand: Spirit x1, Left hand: Heart of the Oak x1, Offhand: Radament's Sphere x1, Offhand: Heart of the Oak x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=dobbyisfree">dobbyisfree</a></div>
+                    <div>92</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Battle Cry:20, Battle Orders:20, War Cry:20, Battle Command:20, Taunt:14, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Natural Resistance:1, Howl:1, Find Potion:1, Shout:1, Find Item:1, Grim Ward:1</p>
+            <p><strong>Equipment:</strong> belt: Arachnid Mesh x1, amulet: Bitter Mark x1, boots: Silkweave x1, body: Enigma x1, ring: Dwarf Star x1, ring: Raven Frost x1, gloves: Chance Guards x1, helmet: Harlequin Crest x1, Left hand: Wizardspike x1, Left hand: Heart of the Oak x1, Offhand: Radament's Sphere x1, Offhand: Heart of the Oak x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Fatal-Voice">Fatal-Voice</a></div>
+                    <div>89</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Taunt:20, Battle Cry:20, Battle Orders:20, War Cry:20, Battle Command:11, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Natural Resistance:1, Howl:1, Find Potion:1, Shout:1, Find Item:1, Grim Ward:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Sulo_Remes">Sulo_Remes</a></div>
+                    <div>88</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Taunt:20, Battle Cry:20, Battle Orders:20, War Cry:20, Battle Command:10, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Natural Resistance:1, Howl:1, Find Potion:1, Shout:1, Find Item:1, Grim Ward:1</p>
+            <p><strong>Equipment:</strong> amulet: Echoing Amulet of the Colossus x1, ring: Scintillating Ring of Craftmanship x1, ring: Dread Touch x1, body: Skin of the Vipermagi x1, helmet: Tarnhelm x1, belt: Goldwrap x1, boots: Sander's Riprap x1, gloves: Chance Guards x1, Left hand: Heart of the Oak x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=ChLaBaLaY">ChLaBaLaY</a></div>
+                    <div>88</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Taunt:20, Battle Cry:20, Battle Orders:20, War Cry:20, Grim Ward:7, Natural Resistance:2, Leap Slam:1, Cleave:1, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Howl:1, Find Potion:1, Shout:1, Find Item:1, Battle Command:1</p>
+            <p><strong>Equipment:</strong> belt: Goldwrap x1, boots: War Traveler x1, gloves: Doom Grasp x1, body: Skin of the Vipermagi x1, amulet: Echoing Amulet of Sorcery x1, ring: Manald Heal x1, ring: Stone Whorl x1, helmet: Immortal King's Will x1, Left hand: Naj's Puzzler x1, Left hand: Heart of the Oak x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Xerky">Xerky</a></div>
+                    <div>86</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Taunt:20, Battle Cry:20, War Cry:20, Battle Command:20, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Natural Resistance:1, Howl:1, Find Potion:1, Shout:1, Find Item:1, Battle Orders:1, Grim Ward:1</p>
+            <p><strong>Equipment:</strong> ring: Dwarf Star x1, ring: Blood Master x1, amulet: Wraithra Noose x1, belt: String of Ears x1, helmet: Immortal King's Will x1, gloves: Chance Guards x1, body: Skin of the Vipermagi x1, boots: Wraithra Trample x1, Left hand: Naj's Puzzler x1, Left hand: Spirit x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=ZigaPlay_Barb">ZigaPlay_Barb</a></div>
+                    <div>85</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Taunt:20, Battle Cry:20, War Cry:20, Battle Command:20, Battle Orders:3, Bash:1, Leap Slam:1, Cleave:1, Blunt Weapon Mastery:1, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Natural Resistance:1, Howl:1, Find Potion:1, Shout:1, Find Item:1, Grim Ward:1</p>
+            <p><strong>Equipment:</strong> body: Smoke x1, amulet: Echoing Amulet x1, gloves: Frostburn x1, helmet: Sazabi's Mental Sheath x1, boots: Aldur's Advance x1, ring: Grim Loop x1, ring: Ring of Fortune x1, belt: Tal Rasha's Fine-Spun Cloth x1, Left hand: Nord's Tenderizer x1, Left hand: Spirit x1, Offhand: Stormshield x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=OswaldCobb">OswaldCobb</a></div>
+                    <div>82</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Taunt:20, Battle Cry:20, Battle Orders:20, War Cry:20, Leap Slam:1, Cleave:1, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Natural Resistance:1, Howl:1, Find Potion:1, Shout:1, Find Item:1, Grim Ward:1, Battle Command:1</p>
+            <p><strong>Equipment:</strong> body: Stealth x1, ring: Viper Band x1, ring: Death Loop x1, belt: Bone Cord x1, boots: Infernostride x1, amulet: Shadow Emblem x1, helmet: Immortal King's Will x1, gloves: GhoulRI Grasp x1, Left hand: Echoing War Axe of Performance x1, Left hand: Spirit x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Horkules">Horkules</a></div>
+                    <div>73</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Battle Cry:20, War Cry:20, Taunt:19, Battle Command:10, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Natural Resistance:1, Howl:1, Find Potion:1, Shout:1, Find Item:1, Battle Orders:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=yybar">yybar</a></div>
+                    <div>73</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Battle Orders:20, War Cry:20, Battle Cry:15, Shout:10, Taunt:3, Leap Slam:2, Double Swing:1, Cleave:1, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Natural Resistance:1, Puncture:1, Counter Attack:1, Howl:1, Find Potion:1, Find Item:1, Battle Command:1</p>
+            <p><strong>Equipment:</strong> gloves: Bitter Knuckle x1, boots: Natalya's Soul x1, belt: String of Ears x1, body: Myth x1, ring: Stone Grasp x1, ring: Dread Master x1, helmet: Arreat's Face x1, amulet: Echoing Amulet of Fortune x1, Left hand: Echoing War Sword of Alacrity x1, Left hand: Spirit x1, Offhand: Echoing Crystal Sword of Venom x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=GoldDIggler">GoldDIggler</a></div>
+                    <div>72</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Battle Cry:20, War Cry:20, Taunt:14, Battle Orders:13, Cleave:1, Iron Skin:1, Natural Resistance:1, Howl:1, Find Potion:1, Shout:1, Find Item:1, Battle Command:1</p>
+            <p><strong>Equipment:</strong> belt: Goldwrap x1, boots: Corpse Spur x1, ring: Dwarf Star x2, amulet: Death Beads x1, helmet: Crown of Thieves x1, gloves: Chance Guards x1, Left hand: Spirit x1, Left hand: Blade of Ali Baba x1, Offhand: Spirit x1, Offhand: Blade of Ali Baba x1, body: Goldskin x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=SlowChemical">SlowChemical</a></div>
+                    <div>72</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Taunt:20, Battle Cry:20, War Cry:20, Natural Resistance:4, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Howl:1, Find Potion:1, Shout:1, Find Item:1, Battle Orders:1, Grim Ward:1, Battle Command:1</p>
+            <p><strong>Equipment:</strong> belt: String of Ears x1, boots: Goblin Toe x1, ring: Order Coil x1, ring: Viper Turn x1, Left hand: Spellsteel x1, Left hand: Spirit x1, helmet: Immortal King's Will x1, gloves: Magefist x1, body: Skin of the Vipermagi x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=thisgamsuk">thisgamsuk</a></div>
+                    <div>71</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Taunt:20, Battle Cry:20, War Cry:20, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Natural Resistance:1, Howl:1, Find Potion:1, Shout:1, Find Item:1, Battle Orders:1, Grim Ward:1, Battle Command:1</p>
+            <p><strong>Equipment:</strong> amulet: Echoing Amulet x1, helmet: Blood Brow x1, boots: Demon Spur x1, belt: String of Ears x1, Left hand: Echoing Bastard Sword x1, Offhand: Echoing Flamberge x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=LuckyLeech">LuckyLeech</a></div>
+                    <div>68</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Battle Cry:20, War Cry:20, Battle Orders:16, Taunt:10, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Natural Resistance:1, Howl:1, Shout:1, Battle Command:1</p>
+            <p><strong>Equipment:</strong> boots: Gale Track x1, gloves: Fiendra Clutches x1, helmet: Hailstone Brow x1, ring: Storm Spiral x1, ring: Manald Heal x1, belt: Storm Lock x1, amulet: Echoing Amulet x1, body: Stealth x1, Left hand: PlagueRI Gnash x1, Left hand: Skull Bane x1, Offhand: Ancients' Pledge x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=IamtheCumMan">IamtheCumMan</a></div>
+                    <div>67</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Battle Orders:20, War Cry:20, Battle Cry:19, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Natural Resistance:1, Howl:1, Find Potion:1, Taunt:1, Shout:1, Find Item:1, Grim Ward:1, Battle Command:1</p>
+            <p><strong>Equipment:</strong> belt: Hsarus' Iron Stay x1, body: Stealth x1, ring: PlagueRI Eye x1, ring: Havoc Master x1, helmet: Immortal King's Will x1, gloves: Gale Grip x1, boots: Aldur's Advance x1, amulet: Echoing Amulet x1, Left hand: PlagueRI Splitter x1, Left hand: Spirit x1, Offhand: Static Throwing Axe of Blight x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Cor_Angar">Cor_Angar</a></div>
+                    <div>63</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Battle Cry:20, War Cry:20, Taunt:19, Leap Slam:1, Cleave:1, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Natural Resistance:1, Howl:1, Find Potion:1, Shout:1, Find Item:1, Battle Orders:1, Battle Command:1</p>
+            <p><strong>Equipment:</strong> ring: Rune Circle x1, ring: Bone Hold x1, helmet: Tarnhelm x1, belt: Cruel Fringe x1, gloves: Wraithra Fist x1, body: Goldskin x1, boots: Spirit Brogues x1, amulet: Saracen's Chance x1, Left hand: Blade of Ali Baba x1, Left hand: Spirit x1, Offhand: Blade of Ali Baba x1, Offhand: Spirit x1</p>
+        
+        </div>
+        <hr>
+        
+        <h2>8.85%  of Barbarian's Main Skills:<br><img src='icons/Whirlwind.png' alt='Whirlwind' width='20' height='20'> Whirlwind 100.00% (195)<br><img src='icons/Pole Weapon Mastery.png' alt='Pole Weapon Mastery' width='20' height='20'> Pole Weapon Mastery 80.00% (128)<br><img src='icons/Battle Orders.png' alt='Battle Orders' width='20' height='20'> Battle Orders 100.00% (114)</h2>
+        <p><strong>Other Skills:<br></strong> <img src='icons/Whirling Axes.png' alt='Whirling Axes' width='20' height='20'> Whirling Axes 70.0% (107.0)<br><img src='icons/Battle Command.png' alt='Battle Command' width='20' height='20'> Battle Command 100.0% (38.0)<br><img src='icons/Blunt Weapon Mastery.png' alt='Blunt Weapon Mastery' width='20' height='20'> Blunt Weapon Mastery 20.0% (34.0)<br><img src='icons/Shout.png' alt='Shout' width='20' height='20'> Shout 100.0% (32.0)<br><img src='icons/Natural Resistance.png' alt='Natural Resistance' width='20' height='20'> Natural Resistance 100.0% (30.0)<br><img src='icons/Double Swing.png' alt='Double Swing' width='20' height='20'> Double Swing 20.0% (24.0)</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>All Skills</strong></button>
+            <div class="content">
+                <div><img src='icons/Whirlwind.png' alt='Whirlwind' width='20' height='20'> Whirlwind 100.0% (195.0)<br><img src='icons/Pole Weapon Mastery.png' alt='Pole Weapon Mastery' width='20' height='20'> Pole Weapon Mastery 80.0% (128.0)<br><img src='icons/Battle Orders.png' alt='Battle Orders' width='20' height='20'> Battle Orders 100.0% (114.0)<br><img src='icons/Whirling Axes.png' alt='Whirling Axes' width='20' height='20'> Whirling Axes 70.0% (107.0)<br><img src='icons/Battle Command.png' alt='Battle Command' width='20' height='20'> Battle Command 100.0% (38.0)<br><img src='icons/Blunt Weapon Mastery.png' alt='Blunt Weapon Mastery' width='20' height='20'> Blunt Weapon Mastery 20.0% (34.0)<br><img src='icons/Shout.png' alt='Shout' width='20' height='20'> Shout 100.0% (32.0)<br><img src='icons/Natural Resistance.png' alt='Natural Resistance' width='20' height='20'> Natural Resistance 100.0% (30.0)<br><img src='icons/Double Swing.png' alt='Double Swing' width='20' height='20'> Double Swing 20.0% (24.0)<br><img src='icons/Grim Ward.png' alt='Grim Ward' width='20' height='20'> Grim Ward 20.0% (21.0)<br><img src='icons/Increased Speed.png' alt='Increased Speed' width='20' height='20'> Increased Speed 100.0% (14.0)<br><img src='icons/Bash.png' alt='Bash' width='20' height='20'> Bash 100.0% (10.0)<br><img src='icons/Leap Slam.png' alt='Leap Slam' width='20' height='20'> Leap Slam 100.0% (10.0)<br><img src='icons/Increased Stamina.png' alt='Increased Stamina' width='20' height='20'> Increased Stamina 100.0% (10.0)<br><img src='icons/Iron Skin.png' alt='Iron Skin' width='20' height='20'> Iron Skin 100.0% (10.0)<br><img src='icons/Cleave.png' alt='Cleave' width='20' height='20'> Cleave 100.0% (10.0)<br><img src='icons/Concentrate.png' alt='Concentrate' width='20' height='20'> Concentrate 100.0% (10.0)<br><img src='icons/Stun.png' alt='Stun' width='20' height='20'> Stun 100.0% (10.0)<br><img src='icons/Find Item.png' alt='Find Item' width='20' height='20'> Find Item 50.0% (10.0)<br><img src='icons/Howl.png' alt='Howl' width='20' height='20'> Howl 100.0% (10.0)<br><img src='icons/Edged Weapon Mastery.png' alt='Edged Weapon Mastery' width='20' height='20'> Edged Weapon Mastery 10.0% (7.0)<br><img src='icons/Puncture.png' alt='Puncture' width='20' height='20'> Puncture 70.0% (7.0)<br><img src='icons/Counter Attack.png' alt='Counter Attack' width='20' height='20'> Counter Attack 60.0% (6.0)<br><img src='icons/Battle Cry.png' alt='Battle Cry' width='20' height='20'> Battle Cry 10.0% (6.0)<br><img src='icons/Find Potion.png' alt='Find Potion' width='20' height='20'> Find Potion 50.0% (5.0)<br><img src='icons/Taunt.png' alt='Taunt' width='20' height='20'> Taunt 10.0% (1.0)<br><img src='icons/Frenzy.png' alt='Frenzy' width='20' height='20'> Frenzy 0.0% (0.0)<br><img src='icons/War Cry.png' alt='War Cry' width='20' height='20'> War Cry 0.0% (0.0)<br><img src='icons/Thrown Weapon Mastery.png' alt='Thrown Weapon Mastery' width='20' height='20'> Thrown Weapon Mastery 0.0% (0.0)<br><img src='icons/Ethereal Throw.png' alt='Ethereal Throw' width='20' height='20'> Ethereal Throw 0.0% (0.0)<br><img src='icons/Weaken.png' alt='Weaken' width='20' height='20'> Weaken 0.0% (0.0)<br><img src='icons/Iron Maiden.png' alt='Iron Maiden' width='20' height='20'> Iron Maiden 0.0% (0.0)<br><img src='icons/Life Tap.png' alt='Life Tap' width='20' height='20'> Life Tap 0.0% (0.0)<br><img src='icons/Hemorrhage.png' alt='Hemorrhage' width='20' height='20'> Hemorrhage 0.0% (0.0)</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>Most Common Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Ring</strong>: <br>Raven Frost 40.00%<br>Angelic Halo 20.00%<br>Dwarf Star 20.00%<br>Blood Master 20.00%<br>Viper Band 10.00%<br><strong>Body</strong>: <br>Fortitude 30.00%<br>Smoke 20.00%<br>Tyrael's Might 10.00%<br>The Spirit Shroud 10.00%<br><strong>Belt</strong>: <br>String of Ears 20.00%<br>Immortal King's Detail 20.00%<br>M'avina's Tenet 10.00%<br>Hsarus' Iron Stay 10.00%<br>Nosferatu's Coil 10.00%<br><strong>Boots</strong>: <br>Gore Rider 30.00%<br>War Traveler 10.00%<br>Aldur's Advance 10.00%<br>Immortal King's Pillar 10.00%<br>Hsarus' Iron Heel 10.00%<br><strong>Helmet</strong>: <br>Arreat's Face 50.00%<br>Harlequin Crest 10.00%<br>Blood Circlet 10.00%<br>Horned Helm 10.00%<br><strong>Gloves</strong>: <br>Steelrend 20.00%<br>Laying of Hands 20.00%<br>Chance Guards 10.00%<br>Bloodfist 10.00%<br>Sander's Taboo 10.00%<br><strong>Amulet</strong>: <br>Angelic Wings 20.00%<br>Highlord's Wrath 20.00%<br>Atma's Scarab 10.00%<br>Skull Beads 10.00%<br>The Eye of Etlich 10.00%<br><strong>Left hand</strong>: <br>Breath of the Dying 30.00%<br>Echoing War Sword of the Locust 10.00%<br>Echoing War Sword 10.00%<br>Echoing Blade of Alacrity 10.00%<br>Holy Thunder 10.00%<br><strong>Offhand</strong>: <br>Echoing Bastard Sword 10.00%<br>Echoing Kris 10.00%<br>Radament's Sphere 10.00%<br>Lidless Wall 10.00%<br>Echoing Throwing Spear of Maiming 10.00%</div>
+            </div>
+        
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Ring</strong>: Raven Frost 40.00%, Angelic Halo 20.00%, Dwarf Star 20.00%, Blood Master 20.00%, Viper Band 10.00%, Manald Heal 10.00%, Cathan's Seal 10.00%, Stone Knot 10.00%, Silver Ring of Thawing 10.00%<br><strong>Body</strong>: Fortitude 30.00%, Smoke 20.00%, Tyrael's Might 10.00%, The Spirit Shroud 10.00%<br><strong>Belt</strong>: String of Ears 20.00%, M'avina's Tenet 10.00%, Immortal King's Detail 20.00%, Hsarus' Iron Stay 10.00%, Nosferatu's Coil 10.00%<br><strong>Boots</strong>: War Traveler 10.00%, Gore Rider 30.00%, Aldur's Advance 10.00%, Immortal King's Pillar 10.00%, Hsarus' Iron Heel 10.00%, Sander's Riprap 10.00%<br><strong>Helmet</strong>: Arreat's Face 50.00%, Harlequin Crest 10.00%, Blood Circlet 10.00%, Horned Helm 10.00%<br><strong>Gloves</strong>: Chance Guards 10.00%, Steelrend 20.00%, Laying of Hands 20.00%, Bloodfist 10.00%, Sander's Taboo 10.00%, Ghoulhide 10.00%<br><strong>Amulet</strong>: Angelic Wings 20.00%, Atma's Scarab 10.00%, Highlord's Wrath 20.00%, Skull Beads 10.00%, The Eye of Etlich 10.00%, Order Torc 10.00%<br><strong>Left hand</strong>: Echoing War Sword of the Locust 10.00%, Breath of the Dying 30.00%, Echoing War Sword 10.00%, Echoing Blade of Alacrity 10.00%, Holy Thunder 10.00%, Obedience 10.00%, Echoing Balanced Axe 10.00%, The Reaper's Toll 10.00%, Echoing Sabre 10.00%, Bloodtree Stump 10.00%, Echoing Military Pick of Thunder 10.00%, Bonesnap 10.00%, Spirit 10.00%, Insight 10.00%<br><strong>Offhand</strong>: Echoing Bastard Sword 10.00%, Echoing Kris 10.00%, Radament's Sphere 10.00%, Lidless Wall 10.00%, Echoing Throwing Spear of Maiming 10.00%, Echoing Kris of the Icicle 10.00%, Resonant Glaive of Might 10.00%, Spirit 10.00%</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>10 Characters in this cluster:</strong></button>
+            <div class="content">
+                
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=CaM">CaM</a></div>
+                    <div>93</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Double Swing:20, Whirlwind:20, Pole Weapon Mastery:20, Whirling Axes:20, Battle Cry:6, Bash:1, Leap Slam:1, Stun:1, Concentrate:1, Cleave:1, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Natural Resistance:1, Puncture:1, Howl:1, Find Potion:1, Taunt:1, Shout:1, Find Item:1, Battle Orders:1, Grim Ward:1, Battle Command:1</p>
+            <p><strong>Equipment:</strong> ring: Raven Frost x1, ring: Angelic Halo x1, body: Fortitude x1, belt: String of Ears x1, boots: War Traveler x1, helmet: Arreat's Face x1, gloves: Chance Guards x1, amulet: Angelic Wings x1, Left hand: Echoing War Sword of the Locust x1, Left hand: Breath of the Dying x1, Offhand: Echoing Bastard Sword x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=sbabas">sbabas</a></div>
+                    <div>91</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Whirlwind:20, Pole Weapon Mastery:20, Battle Orders:20, Battle Command:20, Shout:8, Bash:1, Leap Slam:1, Stun:1, Concentrate:1, Cleave:1, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Natural Resistance:1, Puncture:1, Counter Attack:1, Howl:1, Find Potion:1, Find Item:1</p>
+            <p><strong>Equipment:</strong> ring: Raven Frost x1, boots: Gore Rider x1, helmet: Arreat's Face x1, gloves: Steelrend x1, amulet: Atma's Scarab x1, Left hand: Echoing War Sword x1, Left hand: Breath of the Dying x1, Offhand: Echoing Kris x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=FatNinja">FatNinja</a></div>
+                    <div>88</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Whirlwind:20, Pole Weapon Mastery:20, Battle Orders:20, Grim Ward:20, Natural Resistance:3, Bash:1, Leap Slam:1, Stun:1, Concentrate:1, Cleave:1, Whirling Axes:1, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Puncture:1, Counter Attack:1, Howl:1, Find Potion:1, Shout:1, Find Item:1, Battle Command:1</p>
+            <p><strong>Equipment:</strong> belt: String of Ears x1, ring: Raven Frost x1, ring: Dwarf Star x1, helmet: Arreat's Face x1, amulet: Highlord's Wrath x1, boots: Gore Rider x1, gloves: Steelrend x1, body: Fortitude x1, Left hand: Echoing Blade of Alacrity x1, Left hand: Breath of the Dying x1, Offhand: Radament's Sphere x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Barbcored">Barbcored</a></div>
+                    <div>87</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Whirlwind:20, Pole Weapon Mastery:20, Battle Orders:20, Shout:16, Find Item:6, Natural Resistance:4, Increased Speed:2, Bash:1, Leap Slam:1, Stun:1, Concentrate:1, Cleave:1, Increased Stamina:1, Iron Skin:1, Howl:1, Find Potion:1, Battle Command:1</p>
+            <p><strong>Equipment:</strong> ring: Angelic Halo x1, ring: Blood Master x1, amulet: Angelic Wings x1, helmet: Harlequin Crest x1, body: Smoke x1, gloves: Laying of Hands x1, boots: Aldur's Advance x1, belt: M'avina's Tenet x1, Left hand: Holy Thunder x1, Left hand: Obedience x1, Offhand: Lidless Wall x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=RumpRider">RumpRider</a></div>
+                    <div>86</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Whirlwind:20, Pole Weapon Mastery:20, Whirling Axes:20, Battle Orders:20, Double Swing:4, Bash:1, Leap Slam:1, Stun:1, Concentrate:1, Cleave:1, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Natural Resistance:1, Counter Attack:1, Howl:1, Shout:1, Battle Command:1</p>
+            <p><strong>Equipment:</strong> ring: Viper Band x1, ring: Dwarf Star x1, gloves: Laying of Hands x1, belt: Immortal King's Detail x1, boots: Gore Rider x1, amulet: Highlord's Wrath x1, body: Tyrael's Might x1, helmet: Blood Circlet x1, Left hand: Echoing Balanced Axe x1, Left hand: The Reaper's Toll x1, Offhand: Echoing Throwing Spear of Maiming x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=SirBerus_HC">SirBerus_HC</a></div>
+                    <div>76</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Whirlwind:20, Blunt Weapon Mastery:20, Whirling Axes:19, Battle Orders:10, Bash:1, Leap Slam:1, Stun:1, Concentrate:1, Cleave:1, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Natural Resistance:1, Puncture:1, Counter Attack:1, Howl:1, Find Potion:1, Shout:1, Find Item:1, Battle Command:1</p>
+            <p><strong>Equipment:</strong> helmet: Arreat's Face x1, gloves: Bloodfist x1, amulet: Skull Beads x1, belt: Immortal King's Detail x1, boots: Immortal King's Pillar x1, ring: Raven Frost x1, ring: Manald Heal x1, body: Fortitude x1, Left hand: Echoing Sabre x1, Left hand: Bloodtree Stump x1, Offhand: Echoing Kris of the Icicle x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=FOLLOWMYTWITCH">FOLLOWMYTWITCH</a></div>
+                    <div>74</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Whirlwind:20, Whirling Axes:20, Blunt Weapon Mastery:14, Battle Orders:10, Natural Resistance:8, Bash:1, Leap Slam:1, Stun:1, Concentrate:1, Cleave:1, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Puncture:1, Counter Attack:1, Howl:1, Shout:1, Battle Command:1</p>
+            <p><strong>Equipment:</strong> ring: Cathan's Seal x1, ring: Stone Knot x1, amulet: The Eye of Etlich x1, helmet: Horned Helm x1, gloves: Sander's Taboo x1, body: Smoke x1, belt: Hsarus' Iron Stay x1, boots: Hsarus' Iron Heel x1, Left hand: Echoing Military Pick of Thunder x1, Left hand: Bonesnap x1, Offhand: Resonant Glaive of Might x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=InwardOfAnIgger">InwardOfAnIgger</a></div>
+                    <div>72</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Whirlwind:20, Whirling Axes:20, Battle Command:10, Edged Weapon Mastery:7, Natural Resistance:5, Increased Speed:4, Bash:1, Leap Slam:1, Stun:1, Concentrate:1, Cleave:1, Pole Weapon Mastery:1, Increased Stamina:1, Iron Skin:1, Puncture:1, Counter Attack:1, Howl:1, Shout:1, Battle Orders:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=babaaasbaa">babaaasbaa</a></div>
+                    <div>54</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Whirlwind:20, Pole Weapon Mastery:20, Whirling Axes:7, Natural Resistance:2, Bash:1, Leap Slam:1, Stun:1, Concentrate:1, Cleave:1, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Howl:1, Shout:1, Battle Orders:1, Battle Command:1</p>
+            <p><strong>Equipment:</strong> amulet: Order Torc x1, gloves: Ghoulhide x1, helmet: Arreat's Face x1, ring: Blood Master x1, ring: Silver Ring of Thawing x1, belt: Nosferatu's Coil x1, boots: Sander's Riprap x1, body: The Spirit Shroud x1, Left hand: Spirit x1, Left hand: Insight x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=IMJUNGROAN">IMJUNGROAN</a></div>
+                    <div>44</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Whirlwind:15, Battle Orders:11, Pole Weapon Mastery:7, Natural Resistance:4, Bash:1, Leap Slam:1, Stun:1, Concentrate:1, Cleave:1, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Puncture:1, Howl:1, Shout:1, Battle Command:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+        </div>
+        <hr>
+        
+        <h2>8.85%  of Barbarian's Main Skills:<br><img src='icons/Battle Orders.png' alt='Battle Orders' width='20' height='20'> Battle Orders 100.00% (200)<br><img src='icons/Edged Weapon Mastery.png' alt='Edged Weapon Mastery' width='20' height='20'> Edged Weapon Mastery 90.00% (174)<br><img src='icons/Whirlwind.png' alt='Whirlwind' width='20' height='20'> Whirlwind 60.00% (113)</h2>
+        <p><strong>Other Skills:<br></strong> <img src='icons/Shout.png' alt='Shout' width='20' height='20'> Shout 100.0% (104.0)<br><img src='icons/Grim Ward.png' alt='Grim Ward' width='20' height='20'> Grim Ward 50.0% (81.0)<br><img src='icons/Cleave.png' alt='Cleave' width='20' height='20'> Cleave 100.0% (48.0)<br><img src='icons/Battle Command.png' alt='Battle Command' width='20' height='20'> Battle Command 100.0% (35.0)<br><img src='icons/Natural Resistance.png' alt='Natural Resistance' width='20' height='20'> Natural Resistance 100.0% (33.0)<br><img src='icons/Leap Slam.png' alt='Leap Slam' width='20' height='20'> Leap Slam 90.0% (31.0)</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>All Skills</strong></button>
+            <div class="content">
+                <div><img src='icons/Battle Orders.png' alt='Battle Orders' width='20' height='20'> Battle Orders 100.0% (200.0)<br><img src='icons/Edged Weapon Mastery.png' alt='Edged Weapon Mastery' width='20' height='20'> Edged Weapon Mastery 90.0% (174.0)<br><img src='icons/Whirlwind.png' alt='Whirlwind' width='20' height='20'> Whirlwind 60.0% (113.0)<br><img src='icons/Shout.png' alt='Shout' width='20' height='20'> Shout 100.0% (104.0)<br><img src='icons/Grim Ward.png' alt='Grim Ward' width='20' height='20'> Grim Ward 50.0% (81.0)<br><img src='icons/Cleave.png' alt='Cleave' width='20' height='20'> Cleave 100.0% (48.0)<br><img src='icons/Battle Command.png' alt='Battle Command' width='20' height='20'> Battle Command 100.0% (35.0)<br><img src='icons/Natural Resistance.png' alt='Natural Resistance' width='20' height='20'> Natural Resistance 100.0% (33.0)<br><img src='icons/Leap Slam.png' alt='Leap Slam' width='20' height='20'> Leap Slam 90.0% (31.0)<br><img src='icons/Concentrate.png' alt='Concentrate' width='20' height='20'> Concentrate 70.0% (26.0)<br><img src='icons/Blunt Weapon Mastery.png' alt='Blunt Weapon Mastery' width='20' height='20'> Blunt Weapon Mastery 20.0% (21.0)<br><img src='icons/Increased Speed.png' alt='Increased Speed' width='20' height='20'> Increased Speed 100.0% (14.0)<br><img src='icons/Find Item.png' alt='Find Item' width='20' height='20'> Find Item 70.0% (12.0)<br><img src='icons/Iron Skin.png' alt='Iron Skin' width='20' height='20'> Iron Skin 100.0% (11.0)<br><img src='icons/Howl.png' alt='Howl' width='20' height='20'> Howl 100.0% (10.0)<br><img src='icons/Increased Stamina.png' alt='Increased Stamina' width='20' height='20'> Increased Stamina 100.0% (10.0)<br><img src='icons/Bash.png' alt='Bash' width='20' height='20'> Bash 70.0% (7.0)<br><img src='icons/Find Potion.png' alt='Find Potion' width='20' height='20'> Find Potion 70.0% (7.0)<br><img src='icons/Stun.png' alt='Stun' width='20' height='20'> Stun 70.0% (7.0)<br><img src='icons/Puncture.png' alt='Puncture' width='20' height='20'> Puncture 60.0% (6.0)<br><img src='icons/Taunt.png' alt='Taunt' width='20' height='20'> Taunt 10.0% (5.0)<br><img src='icons/Counter Attack.png' alt='Counter Attack' width='20' height='20'> Counter Attack 40.0% (4.0)<br><img src='icons/Whirling Axes.png' alt='Whirling Axes' width='20' height='20'> Whirling Axes 30.0% (3.0)<br><img src='icons/Double Swing.png' alt='Double Swing' width='20' height='20'> Double Swing 0.0% (0.0)<br><img src='icons/Pole Weapon Mastery.png' alt='Pole Weapon Mastery' width='20' height='20'> Pole Weapon Mastery 0.0% (0.0)<br><img src='icons/Battle Cry.png' alt='Battle Cry' width='20' height='20'> Battle Cry 0.0% (0.0)<br><img src='icons/Frenzy.png' alt='Frenzy' width='20' height='20'> Frenzy 0.0% (0.0)<br><img src='icons/War Cry.png' alt='War Cry' width='20' height='20'> War Cry 0.0% (0.0)<br><img src='icons/Thrown Weapon Mastery.png' alt='Thrown Weapon Mastery' width='20' height='20'> Thrown Weapon Mastery 0.0% (0.0)<br><img src='icons/Ethereal Throw.png' alt='Ethereal Throw' width='20' height='20'> Ethereal Throw 0.0% (0.0)<br><img src='icons/Weaken.png' alt='Weaken' width='20' height='20'> Weaken 0.0% (0.0)<br><img src='icons/Iron Maiden.png' alt='Iron Maiden' width='20' height='20'> Iron Maiden 0.0% (0.0)<br><img src='icons/Life Tap.png' alt='Life Tap' width='20' height='20'> Life Tap 0.0% (0.0)<br><img src='icons/Hemorrhage.png' alt='Hemorrhage' width='20' height='20'> Hemorrhage 0.0% (0.0)</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>Most Common Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Body</strong>: <br>Fortitude 30.00%<br>Duriel's Shell 10.00%<br>Immortal King's Soul Cage 10.00%<br>Enigma 10.00%<br>The Gladiator's Bane 10.00%<br><strong>Ring</strong>: <br>Raven Frost 50.00%<br>Angelic Halo 40.00%<br>Entropy Whorl 10.00%<br>Bitter Hold 10.00%<br>Beast Finger 10.00%<br><strong>Boots</strong>: <br>Gore Rider 50.00%<br>Sigon's Sabot 20.00%<br>Silkweave 10.00%<br>Immortal King's Pillar 10.00%<br>Hsarus' Iron Heel 10.00%<br><strong>Helmet</strong>: <br>Arreat's Face 40.00%<br>Wolfhowl 20.00%<br>Harlequin Crest 10.00%<br>Immortal King's Will 10.00%<br>Sigon's Visor 10.00%<br><strong>Belt</strong>: <br>String of Ears 30.00%<br>Immortal King's Detail 20.00%<br>Verdungo's Hearty Cord 20.00%<br>Thundergod's Vigor 10.00%<br>Sigon's Wrap 10.00%<br><strong>Amulet</strong>: <br>Highlord's Wrath 40.00%<br>Angelic Wings 20.00%<br>Mara's Kaleidoscope 10.00%<br>Atma's Scarab 10.00%<br>Chaos Scarab 10.00%<br><strong>Gloves</strong>: <br>Laying of Hands 40.00%<br>Lava Gout 10.00%<br>Immortal King's Forge 10.00%<br>Steelrend 10.00%<br>Dracul's Grasp 10.00%<br><strong>Left hand</strong>: <br>Heart of the Oak 40.00%<br>The Grandfather 20.00%<br>Death 20.00%<br>Grief 20.00%<br>Echoing Glaive of Measure 10.00%<br><strong>Offhand</strong>: <br>Radament's Sphere 40.00%<br>Stormshield 40.00%<br>Spirit 10.00%<br>Medusa's Gaze 10.00%<br>Cloudcrack 10.00%</div>
+            </div>
+        
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Body</strong>: Duriel's Shell 10.00%, Fortitude 30.00%, Immortal King's Soul Cage 10.00%, Enigma 10.00%, The Gladiator's Bane 10.00%, Gothic Plate 10.00%, Angelic Mantle 10.00%<br><strong>Ring</strong>: Entropy Whorl 10.00%, Bitter Hold 10.00%, Angelic Halo 40.00%, Beast Finger 10.00%, Corruption Coil 10.00%, Raven Frost 50.00%, Doom Touch 10.00%, Bitter Finger 10.00%, Nature's Peace 10.00%, Dwarf Star 10.00%, Shimmering Ring of the Lamprey 10.00%, Grim Touch 10.00%, Corruption Grip 10.00%<br><strong>Boots</strong>: Silkweave 10.00%, Gore Rider 50.00%, Immortal King's Pillar 10.00%, Sigon's Sabot 20.00%, Hsarus' Iron Heel 10.00%<br><strong>Helmet</strong>: Harlequin Crest 10.00%, Arreat's Face 40.00%, Immortal King's Will 10.00%, Wolfhowl 20.00%, Sigon's Visor 10.00%, Slayer Guard 10.00%<br><strong>Belt</strong>: Immortal King's Detail 20.00%, String of Ears 30.00%, Verdungo's Hearty Cord 20.00%, Thundergod's Vigor 10.00%, Sigon's Wrap 10.00%, Hsarus' Iron Stay 10.00%<br><strong>Amulet</strong>: Mara's Kaleidoscope 10.00%, Angelic Wings 20.00%, Highlord's Wrath 40.00%, Atma's Scarab 10.00%, Chaos Scarab 10.00%, Garnet Amulet of Life Everlasting 10.00%<br><strong>Gloves</strong>: Lava Gout 10.00%, Laying of Hands 40.00%, Immortal King's Forge 10.00%, Steelrend 10.00%, Dracul's Grasp 10.00%, Sigon's Gage 10.00%, Glyph Finger 10.00%<br><strong>Left hand</strong>: Echoing Glaive of Measure 10.00%, The Grandfather 20.00%, Snowflake Battle Staff of Teleportation 10.00%, Death 20.00%, War Staff of Teleportation 10.00%, Immortal King's Stone Crusher 10.00%, Heart of the Oak 40.00%, Doom 10.00%, Grief 20.00%, Echoing Balanced Knife of the Giant 10.00%, Spirit 10.00%, Stormrider 10.00%, Echoing Balanced Axe of Lightning 10.00%<br><strong>Offhand</strong>: Spirit 10.00%, Medusa's Gaze 10.00%, Cloudcrack 10.00%, Radament's Sphere 40.00%, Stormshield 40.00%, Blade of Ali Baba 10.00%, Echoing Balanced Axe 10.00%</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>10 Characters in this cluster:</strong></button>
+            <div class="content">
+                
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Karalarim">Karalarim</a></div>
+                    <div>91</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Whirlwind:20, Edged Weapon Mastery:20, Shout:20, Battle Orders:20, Battle Command:6, Natural Resistance:5, Bash:1, Leap Slam:1, Stun:1, Concentrate:1, Cleave:1, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Puncture:1, Counter Attack:1, Howl:1</p>
+            <p><strong>Equipment:</strong> body: Duriel's Shell x1, ring: Entropy Whorl x1, ring: Bitter Hold x1, boots: Silkweave x1, helmet: Harlequin Crest x1, belt: Immortal King's Detail x1, amulet: Mara's Kaleidoscope x1, gloves: Lava Gout x1, Left hand: Echoing Glaive of Measure x1, Left hand: The Grandfather x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Barbcore">Barbcore</a></div>
+                    <div>91</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Whirlwind:20, Edged Weapon Mastery:20, Battle Orders:20, Shout:19, Find Item:6, Natural Resistance:4, Increased Speed:2, Bash:1, Leap Slam:1, Stun:1, Concentrate:1, Cleave:1, Increased Stamina:1, Iron Skin:1, Puncture:1, Howl:1, Find Potion:1, Battle Command:1</p>
+            <p><strong>Equipment:</strong> ring: Angelic Halo x2, belt: String of Ears x1, boots: Gore Rider x1, amulet: Angelic Wings x1, gloves: Laying of Hands x1, helmet: Arreat's Face x1, body: Fortitude x1, Left hand: Snowflake Battle Staff of Teleportation x1, Left hand: Death x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Nipaa">Nipaa</a></div>
+                    <div>90</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Whirlwind:20, Blunt Weapon Mastery:20, Shout:20, Battle Orders:20, Natural Resistance:7, Increased Speed:4, Iron Skin:2, Bash:1, Leap Slam:1, Stun:1, Concentrate:1, Cleave:1, Increased Stamina:1, Howl:1, Battle Command:1</p>
+            <p><strong>Equipment:</strong> amulet: Angelic Wings x1, ring: Angelic Halo x1, ring: Beast Finger x1, gloves: Immortal King's Forge x1, belt: Immortal King's Detail x1, helmet: Immortal King's Will x1, body: Immortal King's Soul Cage x1, boots: Immortal King's Pillar x1, Left hand: War Staff of Teleportation x1, Left hand: Immortal King's Stone Crusher x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Artheon">Artheon</a></div>
+                    <div>90</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Whirlwind:20, Edged Weapon Mastery:20, Shout:20, Battle Orders:20, Bash:1, Leap Slam:1, Stun:1, Concentrate:1, Cleave:1, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Natural Resistance:1, Howl:1, Find Potion:1, Find Item:1, Grim Ward:1, Battle Command:1</p>
+            <p><strong>Equipment:</strong> helmet: Arreat's Face x1, boots: Gore Rider x1, belt: String of Ears x1, ring: Corruption Coil x1, ring: Raven Frost x1, gloves: Steelrend x1, body: Enigma x1, amulet: Highlord's Wrath x1, Left hand: Heart of the Oak x1, Left hand: The Grandfather x1, Offhand: Medusa's Gaze x1, Offhand: Cloudcrack x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=hiyooooooo">hiyooooooo</a></div>
+                    <div>89</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Concentrate:20, Edged Weapon Mastery:20, Battle Orders:20, Grim Ward:20, Taunt:5, Bash:1, Leap Slam:1, Stun:1, Cleave:1, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Natural Resistance:1, Puncture:1, Counter Attack:1, Howl:1, Find Potion:1, Shout:1, Find Item:1, Battle Command:1</p>
+            <p><strong>Equipment:</strong> body: The Gladiator's Bane x1, gloves: Laying of Hands x1, helmet: Arreat's Face x1, boots: Sigon's Sabot x1, ring: Doom Touch x1, ring: Bitter Finger x1, belt: Verdungo's Hearty Cord x1, amulet: Atma's Scarab x1, Left hand: Heart of the Oak x1, Left hand: Doom x1, Offhand: Radament's Sphere x1, Offhand: Stormshield x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Cucaracha_EZBRZ">Cucaracha_EZBRZ</a></div>
+                    <div>88</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Cleave:20, Edged Weapon Mastery:20, Battle Orders:20, Grim Ward:20, Leap Slam:4, Natural Resistance:4, Whirling Axes:1, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Puncture:1, Counter Attack:1, Howl:1, Find Potion:1, Shout:1, Find Item:1, Battle Command:1</p>
+            <p><strong>Equipment:</strong> ring: Raven Frost x2, gloves: Laying of Hands x1, boots: Gore Rider x1, belt: Thundergod's Vigor x1, helmet: Wolfhowl x1, amulet: Highlord's Wrath x1, Left hand: Heart of the Oak x1, Left hand: Grief x1, Offhand: Radament's Sphere x1, Offhand: Stormshield x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Pripadai">Pripadai</a></div>
+                    <div>87</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Whirlwind:20, Edged Weapon Mastery:20, Battle Orders:20, Grim Ward:20, Natural Resistance:2, Bash:1, Leap Slam:1, Stun:1, Concentrate:1, Cleave:1, Whirling Axes:1, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Puncture:1, Counter Attack:1, Howl:1, Find Potion:1, Shout:1, Find Item:1, Battle Command:1</p>
+            <p><strong>Equipment:</strong> gloves: Laying of Hands x1, boots: Gore Rider x1, helmet: Arreat's Face x1, ring: Raven Frost x1, ring: Nature's Peace x1, belt: Verdungo's Hearty Cord x1, body: Fortitude x1, amulet: Highlord's Wrath x1, Left hand: Echoing Balanced Knife of the Giant x1, Left hand: Death x1, Offhand: Radament's Sphere x1, Offhand: Stormshield x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Lalo">Lalo</a></div>
+                    <div>87</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Cleave:20, Edged Weapon Mastery:20, Battle Orders:20, Grim Ward:20, Battle Command:10, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Natural Resistance:1, Howl:1, Find Potion:1, Shout:1, Find Item:1</p>
+            <p><strong>Equipment:</strong> ring: Raven Frost x1, ring: Dwarf Star x1, amulet: Highlord's Wrath x1, gloves: Dracul's Grasp x1, boots: Gore Rider x1, belt: String of Ears x1, body: Fortitude x1, Left hand: Heart of the Oak x1, Left hand: Grief x1, Offhand: Radament's Sphere x1, Offhand: Stormshield x1, helmet: Wolfhowl x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Turd_Boy">Turd_Boy</a></div>
+                    <div>77</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Leap Slam:20, Edged Weapon Mastery:20, Battle Orders:20, Battle Command:10, Natural Resistance:5, Cleave:1, Whirling Axes:1, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Puncture:1, Howl:1, Find Potion:1, Shout:1, Find Item:1</p>
+            <p><strong>Equipment:</strong> amulet: Chaos Scarab x1, ring: Shimmering Ring of the Lamprey x1, ring: Grim Touch x1, helmet: Sigon's Visor x1, boots: Sigon's Sabot x1, gloves: Sigon's Gage x1, belt: Sigon's Wrap x1, body: Gothic Plate x1, Left hand: Spirit x1, Left hand: Stormrider x1, Offhand: Blade of Ali Baba x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=star_Barbarian">star_Barbarian</a></div>
+                    <div>74</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Shout:20, Battle Orders:20, Edged Weapon Mastery:14, Whirlwind:13, Natural Resistance:3, Battle Command:3, Bash:1, Leap Slam:1, Stun:1, Concentrate:1, Cleave:1, Blunt Weapon Mastery:1, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Howl:1</p>
+            <p><strong>Equipment:</strong> belt: Hsarus' Iron Stay x1, boots: Hsarus' Iron Heel x1, gloves: Glyph Finger x1, amulet: Garnet Amulet of Life Everlasting x1, body: Angelic Mantle x1, ring: Angelic Halo x1, ring: Corruption Grip x1, helmet: Slayer Guard x1, Left hand: Echoing Balanced Axe of Lightning x1, Offhand: Echoing Balanced Axe x1</p>
+        
+        </div>
+        <hr>
+        
+        <h2>7.96%  of Barbarian's Main Skills:<br><img src='icons/Whirling Axes.png' alt='Whirling Axes' width='20' height='20'> Whirling Axes 100.00% (180)<br><img src='icons/Double Swing.png' alt='Double Swing' width='20' height='20'> Double Swing 100.00% (179)<br><img src='icons/Battle Cry.png' alt='Battle Cry' width='20' height='20'> Battle Cry 88.89% (150)</h2>
+        <p><strong>Other Skills:<br></strong> <img src='icons/Grim Ward.png' alt='Grim Ward' width='20' height='20'> Grim Ward 66.67% (67.0)<br><img src='icons/Battle Orders.png' alt='Battle Orders' width='20' height='20'> Battle Orders 100.0% (52.0)<br><img src='icons/Edged Weapon Mastery.png' alt='Edged Weapon Mastery' width='20' height='20'> Edged Weapon Mastery 66.67% (41.0)<br><img src='icons/Whirlwind.png' alt='Whirlwind' width='20' height='20'> Whirlwind 77.78% (23.0)<br><img src='icons/Blunt Weapon Mastery.png' alt='Blunt Weapon Mastery' width='20' height='20'> Blunt Weapon Mastery 11.11% (20.0)<br><img src='icons/Battle Command.png' alt='Battle Command' width='20' height='20'> Battle Command 88.89% (10.0)</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>All Skills</strong></button>
+            <div class="content">
+                <div><img src='icons/Whirling Axes.png' alt='Whirling Axes' width='20' height='20'> Whirling Axes 100.0% (180.0)<br><img src='icons/Double Swing.png' alt='Double Swing' width='20' height='20'> Double Swing 100.0% (179.0)<br><img src='icons/Battle Cry.png' alt='Battle Cry' width='20' height='20'> Battle Cry 88.89% (150.0)<br><img src='icons/Grim Ward.png' alt='Grim Ward' width='20' height='20'> Grim Ward 66.67% (67.0)<br><img src='icons/Battle Orders.png' alt='Battle Orders' width='20' height='20'> Battle Orders 100.0% (52.0)<br><img src='icons/Edged Weapon Mastery.png' alt='Edged Weapon Mastery' width='20' height='20'> Edged Weapon Mastery 66.67% (41.0)<br><img src='icons/Whirlwind.png' alt='Whirlwind' width='20' height='20'> Whirlwind 77.78% (23.0)<br><img src='icons/Blunt Weapon Mastery.png' alt='Blunt Weapon Mastery' width='20' height='20'> Blunt Weapon Mastery 11.11% (20.0)<br><img src='icons/Battle Command.png' alt='Battle Command' width='20' height='20'> Battle Command 88.89% (10.0)<br><img src='icons/Howl.png' alt='Howl' width='20' height='20'> Howl 100.0% (9.0)<br><img src='icons/Shout.png' alt='Shout' width='20' height='20'> Shout 100.0% (9.0)<br><img src='icons/Taunt.png' alt='Taunt' width='20' height='20'> Taunt 100.0% (9.0)<br><img src='icons/Natural Resistance.png' alt='Natural Resistance' width='20' height='20'> Natural Resistance 77.78% (8.0)<br><img src='icons/Iron Skin.png' alt='Iron Skin' width='20' height='20'> Iron Skin 88.89% (8.0)<br><img src='icons/Increased Speed.png' alt='Increased Speed' width='20' height='20'> Increased Speed 77.78% (8.0)<br><img src='icons/Bash.png' alt='Bash' width='20' height='20'> Bash 77.78% (7.0)<br><img src='icons/Leap Slam.png' alt='Leap Slam' width='20' height='20'> Leap Slam 77.78% (7.0)<br><img src='icons/Cleave.png' alt='Cleave' width='20' height='20'> Cleave 77.78% (7.0)<br><img src='icons/Concentrate.png' alt='Concentrate' width='20' height='20'> Concentrate 77.78% (7.0)<br><img src='icons/Stun.png' alt='Stun' width='20' height='20'> Stun 77.78% (7.0)<br><img src='icons/Puncture.png' alt='Puncture' width='20' height='20'> Puncture 77.78% (7.0)<br><img src='icons/Increased Stamina.png' alt='Increased Stamina' width='20' height='20'> Increased Stamina 77.78% (7.0)<br><img src='icons/Find Item.png' alt='Find Item' width='20' height='20'> Find Item 66.67% (7.0)<br><img src='icons/Find Potion.png' alt='Find Potion' width='20' height='20'> Find Potion 66.67% (6.0)<br><img src='icons/Counter Attack.png' alt='Counter Attack' width='20' height='20'> Counter Attack 44.44% (4.0)<br><img src='icons/Frenzy.png' alt='Frenzy' width='20' height='20'> Frenzy 33.33% (3.0)<br><img src='icons/Thrown Weapon Mastery.png' alt='Thrown Weapon Mastery' width='20' height='20'> Thrown Weapon Mastery 22.22% (2.0)<br><img src='icons/Pole Weapon Mastery.png' alt='Pole Weapon Mastery' width='20' height='20'> Pole Weapon Mastery 0.0% (0.0)<br><img src='icons/War Cry.png' alt='War Cry' width='20' height='20'> War Cry 0.0% (0.0)<br><img src='icons/Ethereal Throw.png' alt='Ethereal Throw' width='20' height='20'> Ethereal Throw 0.0% (0.0)<br><img src='icons/Weaken.png' alt='Weaken' width='20' height='20'> Weaken 0.0% (0.0)<br><img src='icons/Iron Maiden.png' alt='Iron Maiden' width='20' height='20'> Iron Maiden 0.0% (0.0)<br><img src='icons/Life Tap.png' alt='Life Tap' width='20' height='20'> Life Tap 0.0% (0.0)<br><img src='icons/Hemorrhage.png' alt='Hemorrhage' width='20' height='20'> Hemorrhage 0.0% (0.0)</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>Most Common Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Ring</strong>: <br>Raven Frost 66.67%<br>Bul-Kathos' Wedding Band 22.22%<br>Wisp Projector 11.11%<br>Angelic Halo 11.11%<br>Entropy Touch 11.11%<br><strong>Boots</strong>: <br>Gore Rider 44.44%<br>Goblin Toe 22.22%<br>Immortal King's Pillar 11.11%<br>Vidala's Fetlock 11.11%<br><strong>Body</strong>: <br>Enigma 22.22%<br>Chains of Honor 11.11%<br>Fortitude 11.11%<br>Immortal King's Soul Cage 11.11%<br>Myth 11.11%<br><strong>Gloves</strong>: <br>Cleglaw's Pincers 11.11%<br>Chance Guards 11.11%<br>Soul Drainer 11.11%<br>Dracul's Grasp 11.11%<br>Laying of Hands 11.11%<br><strong>Belt</strong>: <br>String of Ears 33.33%<br>Verdungo's Hearty Cord 22.22%<br>Immortal King's Detail 11.11%<br>Saintly Plated Belt of Atlas 11.11%<br>Razortail 11.11%<br><strong>Helmet</strong>: <br>Arreat's Face 44.44%<br>Vampire Gaze 11.11%<br>Immortal King's Will 11.11%<br>Gale Veil 11.11%<br><strong>Amulet</strong>: <br>Berserker's Amulet of Leadership 11.11%<br>Mara's Kaleidoscope 11.11%<br>Furious Amulet of Wizardry 11.11%<br>Angelic Wings 11.11%<br>Atma's Scarab 11.11%<br><strong>Left hand</strong>: <br>Death 22.22%<br>Echoing Glaive 22.22%<br>Breath of the Dying 22.22%<br>Lacerator 22.22%<br>Oath 11.11%<br><strong>Offhand</strong>: <br>Stormshield 33.33%<br>Oath 11.11%<br>Spirit Ward 11.11%<br>Blade of Ali Baba 11.11%<br>Echoing Glaive of Quality 11.11%</div>
+            </div>
+        
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Ring</strong>: Wisp Projector 11.11%, Raven Frost 66.67%, Bul-Kathos' Wedding Band 22.22%, Angelic Halo 11.11%, Entropy Touch 11.11%, Bone Grasp 11.11%, PlagueRI Hold 11.11%, Ring of Precision 11.11%, Manald Heal 11.11%<br><strong>Boots</strong>: Gore Rider 44.44%, Goblin Toe 22.22%, Immortal King's Pillar 11.11%, Vidala's Fetlock 11.11%<br><strong>Body</strong>: Enigma 22.22%, Chains of Honor 11.11%, Fortitude 11.11%, Immortal King's Soul Cage 11.11%, Myth 11.11%<br><strong>Gloves</strong>: Cleglaw's Pincers 11.11%, Chance Guards 11.11%, Soul Drainer 11.11%, Dracul's Grasp 11.11%, Laying of Hands 11.11%, Immortal King's Forge 11.11%, Magnus' Skin 11.11%<br><strong>Belt</strong>: String of Ears 33.33%, Verdungo's Hearty Cord 22.22%, Immortal King's Detail 11.11%, Saintly Plated Belt of Atlas 11.11%, Razortail 11.11%<br><strong>Helmet</strong>: Arreat's Face 44.44%, Vampire Gaze 11.11%, Immortal King's Will 11.11%, Gale Veil 11.11%<br><strong>Amulet</strong>: Berserker's Amulet of Leadership 11.11%, Mara's Kaleidoscope 11.11%, Furious Amulet of Wizardry 11.11%, Angelic Wings 11.11%, Atma's Scarab 11.11%, PlagueRI Gorget 11.11%, Prismatic Amulet 11.11%, Vidala's Snare 11.11%<br><strong>Left hand</strong>: Oath 11.11%, Death 22.22%, Blade of Ali Baba 11.11%, Lightsabre 11.11%, Echoing Glaive 22.22%, Breath of the Dying 22.22%, Demon Limb 11.11%, Immortal King's Stone Crusher 11.11%, Lacerator 22.22%, Spirit 11.11%, Echoing Balanced Axe 11.11%<br><strong>Offhand</strong>: Oath 11.11%, Spirit Ward 11.11%, Blade of Ali Baba 11.11%, Stormshield 33.33%, Echoing Glaive of Quality 11.11%, Radament's Sphere 11.11%, Bing Sz Wang 11.11%, Echoing Blade of Evisceration 11.11%, Gimmershred 11.11%, Echoing Morning Star of Blight 11.11%, Whitstan's Guard 11.11%</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>9 Characters in this cluster:</strong></button>
+            <div class="content">
+                
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Oggibaba">Oggibaba</a></div>
+                    <div>95</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Double Swing:20, Whirling Axes:20, Battle Cry:20, Grim Ward:20, Bash:1, Leap Slam:1, Stun:1, Concentrate:1, Whirlwind:1, Cleave:1, Edged Weapon Mastery:1, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Natural Resistance:1, Puncture:1, Counter Attack:1, Howl:1, Find Potion:1, Taunt:1, Shout:1, Find Item:1, Battle Orders:1, Battle Command:1</p>
+            <p><strong>Equipment:</strong> ring: Wisp Projector x1, ring: Raven Frost x1, boots: Gore Rider x1, body: Enigma x1, gloves: Cleglaw's Pincers x1, belt: String of Ears x1, helmet: Arreat's Face x1, amulet: Berserker's Amulet of Leadership x1, Left hand: Oath x1, Left hand: Death x1, Offhand: Oath x1, Offhand: Spirit Ward x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Sonen">Sonen</a></div>
+                    <div>95</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Double Swing:20, Whirling Axes:20, Battle Cry:20, Grim Ward:19, Battle Orders:6, Battle Command:3, Bash:1, Leap Slam:1, Stun:1, Concentrate:1, Whirlwind:1, Cleave:1, Edged Weapon Mastery:1, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Natural Resistance:1, Puncture:1, Counter Attack:1, Howl:1, Find Potion:1, Taunt:1, Shout:1, Find Item:1</p>
+            <p><strong>Equipment:</strong> body: Enigma x1, amulet: Mara's Kaleidoscope x1, ring: Bul-Kathos' Wedding Band x1, ring: Raven Frost x1, boots: Gore Rider x1, helmet: Arreat's Face x1, belt: Verdungo's Hearty Cord x1, gloves: Chance Guards x1, Left hand: Blade of Ali Baba x1, Left hand: Lightsabre x1, Offhand: Blade of Ali Baba x1, Offhand: Stormshield x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Mup_SparTak">Mup_SparTak</a></div>
+                    <div>90</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Double Swing:20, Whirling Axes:20, Battle Cry:20, Whirlwind:15, Grim Ward:10, Bash:1, Leap Slam:1, Stun:1, Concentrate:1, Cleave:1, Edged Weapon Mastery:1, Iron Skin:1, Natural Resistance:1, Puncture:1, Howl:1, Find Potion:1, Taunt:1, Shout:1, Find Item:1, Battle Orders:1, Battle Command:1</p>
+            <p><strong>Equipment:</strong> belt: String of Ears x1, body: Chains of Honor x1, helmet: Arreat's Face x1, boots: Gore Rider x1, ring: Bul-Kathos' Wedding Band x1, ring: Raven Frost x1, amulet: Furious Amulet of Wizardry x1, gloves: Soul Drainer x1, Left hand: Echoing Glaive x1, Left hand: Breath of the Dying x1, Offhand: Echoing Glaive of Quality x1, Offhand: Stormshield x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=eG-Storas">eG-Storas</a></div>
+                    <div>89</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Double Swing:20, Edged Weapon Mastery:20, Whirling Axes:20, Battle Cry:20, Whirlwind:3, Bash:1, Leap Slam:1, Stun:1, Concentrate:1, Cleave:1, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Natural Resistance:1, Howl:1, Find Potion:1, Taunt:1, Shout:1, Find Item:1, Battle Orders:1, Grim Ward:1, Battle Command:1</p>
+            <p><strong>Equipment:</strong> belt: String of Ears x1, ring: Raven Frost x1, ring: Angelic Halo x1, gloves: Dracul's Grasp x1, amulet: Angelic Wings x1, body: Fortitude x1, boots: Goblin Toe x1, helmet: Arreat's Face x1, Left hand: Demon Limb x1, Left hand: Death x1, Offhand: Radament's Sphere x1, Offhand: Bing Sz Wang x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Diab-LOL">Diab-LOL</a></div>
+                    <div>88</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Double Swing:20, Whirling Axes:20, Battle Cry:20, Edged Weapon Mastery:17, Grim Ward:2, Bash:1, Leap Slam:1, Stun:1, Concentrate:1, Frenzy:1, Whirlwind:1, Cleave:1, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Natural Resistance:1, Puncture:1, Counter Attack:1, Howl:1, Find Potion:1, Taunt:1, Shout:1, Find Item:1, Battle Orders:1, Battle Command:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=DisSwinging">DisSwinging</a></div>
+                    <div>83</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Double Swing:20, Whirling Axes:20, Battle Orders:20, Battle Cry:17, Bash:1, Leap Slam:1, Stun:1, Concentrate:1, Whirlwind:1, Cleave:1, Edged Weapon Mastery:1, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Natural Resistance:1, Puncture:1, Counter Attack:1, Howl:1, Taunt:1, Shout:1, Battle Command:1</p>
+            <p><strong>Equipment:</strong> gloves: Laying of Hands x1, belt: Verdungo's Hearty Cord x1, boots: Gore Rider x1, helmet: Vampire Gaze x1, ring: Raven Frost x1, ring: Entropy Touch x1, amulet: Atma's Scarab x1, Offhand: Echoing Blade of Evisceration x1, Offhand: Stormshield x1, Left hand: Breath of the Dying x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=HaveAniceNite">HaveAniceNite</a></div>
+                    <div>82</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Blunt Weapon Mastery:20, Whirling Axes:20, Battle Orders:20, Double Swing:19, Bash:1, Leap Slam:1, Stun:1, Concentrate:1, Whirlwind:1, Cleave:1, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Puncture:1, Howl:1, Taunt:1, Shout:1, Battle Command:1</p>
+            <p><strong>Equipment:</strong> amulet: PlagueRI Gorget x1, belt: Immortal King's Detail x1, gloves: Immortal King's Forge x1, boots: Immortal King's Pillar x1, ring: Bone Grasp x1, ring: PlagueRI Hold x1, body: Immortal King's Soul Cage x1, helmet: Immortal King's Will x1, Left hand: Echoing Glaive x1, Left hand: Immortal King's Stone Crusher x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Ashadelo">Ashadelo</a></div>
+                    <div>82</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Double Swing:20, Whirling Axes:20, Battle Cry:20, Grim Ward:15, Increased Speed:2, Natural Resistance:2, Find Item:2, Frenzy:1, Thrown Weapon Mastery:1, Increased Stamina:1, Iron Skin:1, Puncture:1, Howl:1, Find Potion:1, Taunt:1, Shout:1, Battle Orders:1, Battle Command:1</p>
+            <p><strong>Equipment:</strong> amulet: Prismatic Amulet x1, body: Myth x1, belt: Saintly Plated Belt of Atlas x1, helmet: Gale Veil x1, ring: Ring of Precision x1, Left hand: Lacerator x1, Left hand: Spirit x1, Offhand: Gimmershred x1, boots: Goblin Toe x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=ComeOnAhYeeha">ComeOnAhYeeha</a></div>
+                    <div>76</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Double Swing:20, Whirling Axes:20, Battle Cry:13, Frenzy:1, Thrown Weapon Mastery:1, Howl:1, Taunt:1, Shout:1, Battle Orders:1</p>
+            <p><strong>Equipment:</strong> boots: Vidala's Fetlock x1, ring: Manald Heal x1, ring: Raven Frost x1, gloves: Magnus' Skin x1, belt: Razortail x1, amulet: Vidala's Snare x1, Left hand: Echoing Balanced Axe x1, Left hand: Lacerator x1, Offhand: Echoing Morning Star of Blight x1, Offhand: Whitstan's Guard x1</p>
+        
+        </div>
+        <hr>
+        
+        <h2>5.31%  of Barbarian's Main Skills:<br><img src='icons/Battle Orders.png' alt='Battle Orders' width='20' height='20'> Battle Orders 100.00% (120)<br><img src='icons/Battle Command.png' alt='Battle Command' width='20' height='20'> Battle Command 100.00% (120)<br><img src='icons/Shout.png' alt='Shout' width='20' height='20'> Shout 100.00% (88)</h2>
+        <p><strong>Other Skills:<br></strong> <img src='icons/Grim Ward.png' alt='Grim Ward' width='20' height='20'> Grim Ward 50.0% (24.0)<br><img src='icons/Edged Weapon Mastery.png' alt='Edged Weapon Mastery' width='20' height='20'> Edged Weapon Mastery 33.33% (21.0)<br><img src='icons/Cleave.png' alt='Cleave' width='20' height='20'> Cleave 66.67% (19.0)<br><img src='icons/Frenzy.png' alt='Frenzy' width='20' height='20'> Frenzy 16.67% (18.0)<br><img src='icons/Natural Resistance.png' alt='Natural Resistance' width='20' height='20'> Natural Resistance 66.67% (15.0)<br><img src='icons/Iron Skin.png' alt='Iron Skin' width='20' height='20'> Iron Skin 66.67% (9.0)</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>All Skills</strong></button>
+            <div class="content">
+                <div><img src='icons/Battle Orders.png' alt='Battle Orders' width='20' height='20'> Battle Orders 100.0% (120.0)<br><img src='icons/Battle Command.png' alt='Battle Command' width='20' height='20'> Battle Command 100.0% (120.0)<br><img src='icons/Shout.png' alt='Shout' width='20' height='20'> Shout 100.0% (89.0)<br><img src='icons/Grim Ward.png' alt='Grim Ward' width='20' height='20'> Grim Ward 50.0% (24.0)<br><img src='icons/Edged Weapon Mastery.png' alt='Edged Weapon Mastery' width='20' height='20'> Edged Weapon Mastery 33.33% (21.0)<br><img src='icons/Cleave.png' alt='Cleave' width='20' height='20'> Cleave 66.67% (19.0)<br><img src='icons/Frenzy.png' alt='Frenzy' width='20' height='20'> Frenzy 16.67% (18.0)<br><img src='icons/Natural Resistance.png' alt='Natural Resistance' width='20' height='20'> Natural Resistance 66.67% (15.0)<br><img src='icons/Iron Skin.png' alt='Iron Skin' width='20' height='20'> Iron Skin 66.67% (9.0)<br><img src='icons/Howl.png' alt='Howl' width='20' height='20'> Howl 100.0% (6.0)<br><img src='icons/Double Swing.png' alt='Double Swing' width='20' height='20'> Double Swing 16.67% (5.0)<br><img src='icons/Leap Slam.png' alt='Leap Slam' width='20' height='20'> Leap Slam 16.67% (4.0)<br><img src='icons/Increased Stamina.png' alt='Increased Stamina' width='20' height='20'> Increased Stamina 66.67% (4.0)<br><img src='icons/Increased Speed.png' alt='Increased Speed' width='20' height='20'> Increased Speed 66.67% (4.0)<br><img src='icons/Find Item.png' alt='Find Item' width='20' height='20'> Find Item 50.0% (3.0)<br><img src='icons/Find Potion.png' alt='Find Potion' width='20' height='20'> Find Potion 50.0% (3.0)<br><img src='icons/Counter Attack.png' alt='Counter Attack' width='20' height='20'> Counter Attack 33.33% (2.0)<br><img src='icons/Puncture.png' alt='Puncture' width='20' height='20'> Puncture 33.33% (2.0)<br><img src='icons/Bash.png' alt='Bash' width='20' height='20'> Bash 16.67% (1.0)<br><img src='icons/Whirling Axes.png' alt='Whirling Axes' width='20' height='20'> Whirling Axes 16.67% (1.0)<br><img src='icons/Stun.png' alt='Stun' width='20' height='20'> Stun 0.0% (0.0)<br><img src='icons/Concentrate.png' alt='Concentrate' width='20' height='20'> Concentrate 0.0% (0.0)<br><img src='icons/Taunt.png' alt='Taunt' width='20' height='20'> Taunt 0.0% (0.0)<br><img src='icons/Whirlwind.png' alt='Whirlwind' width='20' height='20'> Whirlwind 0.0% (0.0)<br><img src='icons/Battle Cry.png' alt='Battle Cry' width='20' height='20'> Battle Cry 0.0% (0.0)<br><img src='icons/Pole Weapon Mastery.png' alt='Pole Weapon Mastery' width='20' height='20'> Pole Weapon Mastery 0.0% (0.0)<br><img src='icons/Blunt Weapon Mastery.png' alt='Blunt Weapon Mastery' width='20' height='20'> Blunt Weapon Mastery 0.0% (0.0)<br><img src='icons/War Cry.png' alt='War Cry' width='20' height='20'> War Cry 0.0% (0.0)<br><img src='icons/Thrown Weapon Mastery.png' alt='Thrown Weapon Mastery' width='20' height='20'> Thrown Weapon Mastery 0.0% (0.0)<br><img src='icons/Ethereal Throw.png' alt='Ethereal Throw' width='20' height='20'> Ethereal Throw 0.0% (0.0)<br><img src='icons/Weaken.png' alt='Weaken' width='20' height='20'> Weaken 0.0% (0.0)<br><img src='icons/Iron Maiden.png' alt='Iron Maiden' width='20' height='20'> Iron Maiden 0.0% (0.0)<br><img src='icons/Life Tap.png' alt='Life Tap' width='20' height='20'> Life Tap 0.0% (0.0)<br><img src='icons/Hemorrhage.png' alt='Hemorrhage' width='20' height='20'> Hemorrhage 0.0% (0.0)</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>Most Common Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Ring</strong>: <br>Angelic Halo 33.33%<br>Cathan's Seal 33.33%<br>Raven Frost 16.67%<br>Manald Heal 16.67%<br>Death Grasp 16.67%<br><strong>Amulet</strong>: <br>Angelic Wings 16.67%<br>Doom Mark 16.67%<br>Echoing Amulet 16.67%<br>Echoing Amulet of Remedy 16.67%<br>Serpent's Amulet of the Wolf 16.67%<br><strong>Belt</strong>: <br>String of Ears 16.67%<br>Sigon's Wrap 16.67%<br>Immortal King's Detail 16.67%<br>M'avina's Tenet 16.67%<br>Rune Chain 16.67%<br><strong>Helmet</strong>: <br>Wolfhowl 16.67%<br>Sigon's Visor 16.67%<br>Grim Circlet 16.67%<br>2693 16.67%<br>Holocaust Casque 16.67%<br><strong>Boots</strong>: <br>Sigon's Sabot 33.33%<br>Natalya's Soul 16.67%<br>Tearhaunch 16.67%<br>Pain Trample 16.67%<br><strong>Gloves</strong>: <br>Bloodfist 16.67%<br>Sigon's Gage 16.67%<br>Immortal King's Forge 16.67%<br>Magefist 16.67%<br>Pain Hand 16.67%<br><strong>Body</strong>: <br>Myth 33.33%<br>Shaftstop 16.67%<br>Sigon's Shelter 16.67%<br>Berserker's Hauberk 16.67%<br><strong>Left hand</strong>: <br>Spirit 16.67%<br>Heart of the Oak 16.67%<br>Civerb's Cudgel 16.67%<br>Echoing Throwing Spear of Slaying 16.67%<br>Demon Limb 16.67%<br><strong>Offhand</strong>: <br>Spirit 16.67%<br>Radament's Sphere 16.67%<br>Sigon's Guard 16.67%<br>Echoing Balanced Knife 16.67%<br>Echoing War Sword 16.67%</div>
+            </div>
+        
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Ring</strong>: Raven Frost 16.67%, Angelic Halo 33.33%, Cathan's Seal 33.33%, Manald Heal 16.67%, Death Grasp 16.67%, Corruption Grasp 16.67%, Crimson Ring of Craftmanship 16.67%, Doom Hold 16.67%<br><strong>Amulet</strong>: Angelic Wings 16.67%, Doom Mark 16.67%, Echoing Amulet 16.67%, Echoing Amulet of Remedy 16.67%, Serpent's Amulet of the Wolf 16.67%<br><strong>Belt</strong>: String of Ears 16.67%, Sigon's Wrap 16.67%, Immortal King's Detail 16.67%, M'avina's Tenet 16.67%, Rune Chain 16.67%<br><strong>Helmet</strong>: Wolfhowl 16.67%, Sigon's Visor 16.67%, Grim Circlet 16.67%, 2693 16.67%, Holocaust Casque 16.67%<br><strong>Boots</strong>: Natalya's Soul 16.67%, Sigon's Sabot 33.33%, Tearhaunch 16.67%, Pain Trample 16.67%<br><strong>Gloves</strong>: Bloodfist 16.67%, Sigon's Gage 16.67%, Immortal King's Forge 16.67%, Magefist 16.67%, Pain Hand 16.67%<br><strong>Body</strong>: Shaftstop 16.67%, Sigon's Shelter 16.67%, Myth 33.33%, Berserker's Hauberk 16.67%<br><strong>Left hand</strong>: Spirit 16.67%, Heart of the Oak 16.67%, Civerb's Cudgel 16.67%, Echoing Throwing Spear of Slaying 16.67%, Demon Limb 16.67%, Echoing War Sword 16.67%, Berserker's Hatchet 16.67%, Echoing Crystal Sword of Gore 16.67%, Slayer's Balanced Axe of Carnage 16.67%<br><strong>Offhand</strong>: Spirit 16.67%, Radament's Sphere 16.67%, Sigon's Guard 16.67%, Echoing Balanced Knife 16.67%, Echoing War Sword 16.67%, Civerb's Cudgel 16.67%, Echoing Throwing Spear 16.67%</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>6 Characters in this cluster:</strong></button>
+            <div class="content">
+                
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Humblert">Humblert</a></div>
+                    <div>88</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Edged Weapon Mastery:20, Shout:20, Battle Orders:20, Battle Command:20, Iron Skin:6, Natural Resistance:5, Bash:1, Cleave:1, Increased Stamina:1, Increased Speed:1, Puncture:1, Counter Attack:1, Howl:1</p>
+            <p><strong>Equipment:</strong> </p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=YosterBarb">YosterBarb</a></div>
+                    <div>81</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Battle Orders:20, Grim Ward:20, Battle Command:20, Shout:18, Cleave:1, Edged Weapon Mastery:1, Whirling Axes:1, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Natural Resistance:1, Puncture:1, Counter Attack:1, Howl:1, Find Potion:1, Find Item:1</p>
+            <p><strong>Equipment:</strong> ring: Raven Frost x1, ring: Angelic Halo x1, amulet: Angelic Wings x1, belt: String of Ears x1, helmet: Wolfhowl x1, boots: Natalya's Soul x1, gloves: Bloodfist x1, body: Shaftstop x1, Left hand: Spirit x1, Left hand: Heart of the Oak x1, Offhand: Spirit x1, Offhand: Radament's Sphere x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=MigoMeat">MigoMeat</a></div>
+                    <div>75</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Battle Orders:20, Battle Command:20, Cleave:14, Shout:6, Leap Slam:4, Natural Resistance:4, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Howl:1, Find Potion:1, Find Item:1, Grim Ward:1</p>
+            <p><strong>Equipment:</strong> gloves: Sigon's Gage x1, belt: Sigon's Wrap x1, boots: Sigon's Sabot x1, helmet: Sigon's Visor x1, body: Sigon's Shelter x1, ring: Angelic Halo x1, ring: Cathan's Seal x1, amulet: Doom Mark x1, Left hand: Civerb's Cudgel x1, Left hand: Echoing Throwing Spear of Slaying x1, Offhand: Sigon's Guard x1, Offhand: Echoing Balanced Knife x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Lotto_DA">Lotto_DA</a></div>
+                    <div>68</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Battle Orders:20, Battle Command:20, Frenzy:18, Shout:10, Double Swing:5, Cleave:3, Howl:1</p>
+            <p><strong>Equipment:</strong> ring: Manald Heal x1, ring: Cathan's Seal x1, boots: Sigon's Sabot x1, gloves: Immortal King's Forge x1, belt: Immortal King's Detail x1, amulet: Echoing Amulet x1, helmet: Grim Circlet x1, body: Myth x1, Left hand: Demon Limb x1, Left hand: Echoing War Sword x1, Offhand: Echoing War Sword x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=eG-GOD">eG-GOD</a></div>
+                    <div>67</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Shout:20, Battle Orders:20, Battle Command:20, Natural Resistance:5, Grim Ward:3, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Howl:1, Find Potion:1, Find Item:1</p>
+            <p><strong>Equipment:</strong> body: Myth x1, Left hand: Berserker's Hatchet x1, Left hand: Echoing Crystal Sword of Gore x1, Offhand: Civerb's Cudgel x1, Offhand: Echoing Throwing Spear x1, boots: Tearhaunch x1, ring: Death Grasp x1, ring: Corruption Grasp x1, amulet: Echoing Amulet of Remedy x1, helmet: 2693 x1, belt: M'avina's Tenet x1, gloves: Magefist x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=GoCry">GoCry</a></div>
+                    <div>51</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Battle Orders:20, Battle Command:20, Shout:15, Howl:1</p>
+            <p><strong>Equipment:</strong> boots: Pain Trample x1, gloves: Pain Hand x1, amulet: Serpent's Amulet of the Wolf x1, ring: Crimson Ring of Craftmanship x1, ring: Doom Hold x1, helmet: Holocaust Casque x1, belt: Rune Chain x1, body: Berserker's Hauberk x1, Left hand: Slayer's Balanced Axe of Carnage x1</p>
+        
+        </div>
+        <hr>
+        
+        <h2>5.31%  of Barbarian's Main Skills:<br><img src='icons/Ethereal Throw.png' alt='Ethereal Throw' width='20' height='20'> Ethereal Throw 100.00% (120)<br><img src='icons/Bash.png' alt='Bash' width='20' height='20'> Bash 100.00% (108)<br><img src='icons/Thrown Weapon Mastery.png' alt='Thrown Weapon Mastery' width='20' height='20'> Thrown Weapon Mastery 100.00% (82)</h2>
+        <p><strong>Other Skills:<br></strong> <img src='icons/Battle Orders.png' alt='Battle Orders' width='20' height='20'> Battle Orders 100.0% (27.0)<br><img src='icons/Iron Skin.png' alt='Iron Skin' width='20' height='20'> Iron Skin 100.0% (9.0)<br><img src='icons/Leap Slam.png' alt='Leap Slam' width='20' height='20'> Leap Slam 100.0% (6.0)<br><img src='icons/Double Swing.png' alt='Double Swing' width='20' height='20'> Double Swing 100.0% (6.0)<br><img src='icons/Stun.png' alt='Stun' width='20' height='20'> Stun 100.0% (6.0)<br><img src='icons/Concentrate.png' alt='Concentrate' width='20' height='20'> Concentrate 100.0% (6.0)</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>All Skills</strong></button>
+            <div class="content">
+                <div><img src='icons/Ethereal Throw.png' alt='Ethereal Throw' width='20' height='20'> Ethereal Throw 100.0% (120.0)<br><img src='icons/Bash.png' alt='Bash' width='20' height='20'> Bash 100.0% (108.0)<br><img src='icons/Thrown Weapon Mastery.png' alt='Thrown Weapon Mastery' width='20' height='20'> Thrown Weapon Mastery 100.0% (82.0)<br><img src='icons/Battle Orders.png' alt='Battle Orders' width='20' height='20'> Battle Orders 100.0% (27.0)<br><img src='icons/Iron Skin.png' alt='Iron Skin' width='20' height='20'> Iron Skin 100.0% (9.0)<br><img src='icons/Leap Slam.png' alt='Leap Slam' width='20' height='20'> Leap Slam 100.0% (6.0)<br><img src='icons/Increased Stamina.png' alt='Increased Stamina' width='20' height='20'> Increased Stamina 100.0% (6.0)<br><img src='icons/Double Swing.png' alt='Double Swing' width='20' height='20'> Double Swing 100.0% (6.0)<br><img src='icons/Concentrate.png' alt='Concentrate' width='20' height='20'> Concentrate 100.0% (6.0)<br><img src='icons/Stun.png' alt='Stun' width='20' height='20'> Stun 100.0% (6.0)<br><img src='icons/Howl.png' alt='Howl' width='20' height='20'> Howl 100.0% (6.0)<br><img src='icons/Natural Resistance.png' alt='Natural Resistance' width='20' height='20'> Natural Resistance 100.0% (6.0)<br><img src='icons/Battle Command.png' alt='Battle Command' width='20' height='20'> Battle Command 100.0% (6.0)<br><img src='icons/Frenzy.png' alt='Frenzy' width='20' height='20'> Frenzy 100.0% (6.0)<br><img src='icons/Shout.png' alt='Shout' width='20' height='20'> Shout 100.0% (6.0)<br><img src='icons/Cleave.png' alt='Cleave' width='20' height='20'> Cleave 100.0% (6.0)<br><img src='icons/Increased Speed.png' alt='Increased Speed' width='20' height='20'> Increased Speed 100.0% (6.0)<br><img src='icons/Find Potion.png' alt='Find Potion' width='20' height='20'> Find Potion 50.0% (3.0)<br><img src='icons/Find Item.png' alt='Find Item' width='20' height='20'> Find Item 50.0% (3.0)<br><img src='icons/Grim Ward.png' alt='Grim Ward' width='20' height='20'> Grim Ward 33.33% (2.0)<br><img src='icons/Puncture.png' alt='Puncture' width='20' height='20'> Puncture 16.67% (1.0)<br><img src='icons/Taunt.png' alt='Taunt' width='20' height='20'> Taunt 0.0% (0.0)<br><img src='icons/Whirlwind.png' alt='Whirlwind' width='20' height='20'> Whirlwind 0.0% (0.0)<br><img src='icons/Counter Attack.png' alt='Counter Attack' width='20' height='20'> Counter Attack 0.0% (0.0)<br><img src='icons/Edged Weapon Mastery.png' alt='Edged Weapon Mastery' width='20' height='20'> Edged Weapon Mastery 0.0% (0.0)<br><img src='icons/Whirling Axes.png' alt='Whirling Axes' width='20' height='20'> Whirling Axes 0.0% (0.0)<br><img src='icons/Pole Weapon Mastery.png' alt='Pole Weapon Mastery' width='20' height='20'> Pole Weapon Mastery 0.0% (0.0)<br><img src='icons/Battle Cry.png' alt='Battle Cry' width='20' height='20'> Battle Cry 0.0% (0.0)<br><img src='icons/War Cry.png' alt='War Cry' width='20' height='20'> War Cry 0.0% (0.0)<br><img src='icons/Blunt Weapon Mastery.png' alt='Blunt Weapon Mastery' width='20' height='20'> Blunt Weapon Mastery 0.0% (0.0)<br><img src='icons/Weaken.png' alt='Weaken' width='20' height='20'> Weaken 0.0% (0.0)<br><img src='icons/Iron Maiden.png' alt='Iron Maiden' width='20' height='20'> Iron Maiden 0.0% (0.0)<br><img src='icons/Life Tap.png' alt='Life Tap' width='20' height='20'> Life Tap 0.0% (0.0)<br><img src='icons/Hemorrhage.png' alt='Hemorrhage' width='20' height='20'> Hemorrhage 0.0% (0.0)</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>Most Common Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Body</strong>: <br>Fortitude 33.33%<br>Enigma 16.67%<br>Treachery 16.67%<br>Myth 16.67%<br><strong>Boots</strong>: <br>Gore Rider 50.00%<br>Infernostride 16.67%<br>Immortal King's Pillar 16.67%<br><strong>Gloves</strong>: <br>Laying of Hands 50.00%<br>Frostburn 16.67%<br>Immortal King's Forge 16.67%<br>Venom Grip 16.67%<br><strong>Helmet</strong>: <br>Arreat's Face 50.00%<br>Tal Rasha's Horadric Crest 16.67%<br>Storm Brow 16.67%<br><strong>Amulet</strong>: <br>Highlord's Wrath 50.00%<br>Angelic Wings 16.67%<br>Shadow Torc 16.67%<br>Amulet of the Bat 16.67%<br><strong>Ring</strong>: <br>Raven Frost 50.00%<br>Wisp Projector 16.67%<br>Storm Spiral 16.67%<br>Angelic Halo 16.67%<br>Chaos Coil 16.67%<br><strong>Belt</strong>: <br>Razortail 50.00%<br>Wilhelm's Pride 16.67%<br>Immortal King's Detail 16.67%<br>Cobalt Demonhide Sash of Balance 16.67%<br><strong>Left hand</strong>: <br>Warshrike 66.67%<br>Heart of the Oak 16.67%<br>Spirit 16.67%<br>Echoing Crystal Sword of Butchery 16.67%<br>Echoing Executioner Sword of Performance 16.67%<br><strong>Offhand</strong>: <br>Phoenix 33.33%<br>Spirit 33.33%<br>Stormshield 33.33%<br>Holy Thunder 16.67%<br>Echoing War Sword of Carnage 16.67%</div>
+            </div>
+        
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Body</strong>: Enigma 16.67%, Fortitude 33.33%, Treachery 16.67%, Myth 16.67%<br><strong>Boots</strong>: Gore Rider 50.00%, Infernostride 16.67%, Immortal King's Pillar 16.67%<br><strong>Gloves</strong>: Laying of Hands 50.00%, Frostburn 16.67%, Immortal King's Forge 16.67%, Venom Grip 16.67%<br><strong>Helmet</strong>: Arreat's Face 50.00%, Tal Rasha's Horadric Crest 16.67%, Storm Brow 16.67%<br><strong>Amulet</strong>: Highlord's Wrath 50.00%, Angelic Wings 16.67%, Shadow Torc 16.67%, Amulet of the Bat 16.67%<br><strong>Ring</strong>: Raven Frost 50.00%, Wisp Projector 16.67%, Storm Spiral 16.67%, Angelic Halo 16.67%, Chaos Coil 16.67%, Corruption Gyre 16.67%, Carrion Wind 16.67%, Havoc Coil 16.67%, Chaos Touch 16.67%, PlagueRI Grip 16.67%<br><strong>Belt</strong>: Razortail 50.00%, Wilhelm's Pride 16.67%, Immortal King's Detail 16.67%, Cobalt Demonhide Sash of Balance 16.67%<br><strong>Left hand</strong>: Heart of the Oak 16.67%, Warshrike 66.67%, Spirit 16.67%, Echoing Crystal Sword of Butchery 16.67%, Echoing Executioner Sword of Performance 16.67%, Wraith Flight 16.67%, Echoing Throwing Spear 16.67%, Humongous 16.67%, GhoulRI Needle 16.67%<br><strong>Offhand</strong>: Holy Thunder 16.67%, Phoenix 33.33%, Spirit 33.33%, Stormshield 33.33%, Echoing War Sword of Carnage 16.67%, Echoing Military Pick of Icebolt 16.67%, Echoing Throwing Spear 16.67%, Tiamat's Rebuke 16.67%</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>6 Characters in this cluster:</strong></button>
+            <div class="content">
+                
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Netyx">Netyx</a></div>
+                    <div>93</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Bash:20, Ethereal Throw:20, Thrown Weapon Mastery:20, Battle Orders:11, Leap Slam:1, Double Swing:1, Stun:1, Concentrate:1, Frenzy:1, Cleave:1, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Natural Resistance:1, Howl:1, Shout:1, Battle Command:1</p>
+            <p><strong>Equipment:</strong> body: Enigma x1, boots: Gore Rider x1, gloves: Laying of Hands x1, helmet: Arreat's Face x1, amulet: Highlord's Wrath x1, ring: Raven Frost x1, ring: Wisp Projector x1, belt: Razortail x1, Left hand: Heart of the Oak x1, Left hand: Warshrike x1, Offhand: Holy Thunder x1, Offhand: Phoenix x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Karczi">Karczi</a></div>
+                    <div>87</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Bash:20, Ethereal Throw:20, Thrown Weapon Mastery:20, Battle Orders:2, Leap Slam:1, Double Swing:1, Stun:1, Concentrate:1, Frenzy:1, Cleave:1, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Natural Resistance:1, Puncture:1, Howl:1, Find Potion:1, Shout:1, Find Item:1, Battle Command:1</p>
+            <p><strong>Equipment:</strong> body: Fortitude x1, belt: Razortail x1, boots: Gore Rider x1, gloves: Laying of Hands x1, amulet: Highlord's Wrath x1, ring: Storm Spiral x1, ring: Raven Frost x1, helmet: Arreat's Face x1, Left hand: Spirit x1, Left hand: Warshrike x1, Offhand: Spirit x1, Offhand: Stormshield x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=PamPomPom">PamPomPom</a></div>
+                    <div>86</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Bash:20, Ethereal Throw:20, Thrown Weapon Mastery:20, Battle Orders:4, Leap Slam:1, Double Swing:1, Stun:1, Concentrate:1, Frenzy:1, Cleave:1, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Natural Resistance:1, Howl:1, Shout:1, Battle Command:1</p>
+            <p><strong>Equipment:</strong> helmet: Arreat's Face x1, ring: Angelic Halo x1, ring: Chaos Coil x1, boots: Gore Rider x1, gloves: Laying of Hands x1, body: Fortitude x1, belt: Razortail x1, amulet: Angelic Wings x1, Left hand: Echoing Crystal Sword of Butchery x1, Left hand: Warshrike x1, Offhand: Echoing War Sword of Carnage x1, Offhand: Phoenix x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Ranghan_B">Ranghan_B</a></div>
+                    <div>80</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Ethereal Throw:20, Thrown Weapon Mastery:20, Bash:14, Iron Skin:4, Leap Slam:1, Double Swing:1, Stun:1, Concentrate:1, Frenzy:1, Cleave:1, Increased Stamina:1, Increased Speed:1, Natural Resistance:1, Howl:1, Shout:1, Battle Orders:1, Battle Command:1</p>
+            <p><strong>Equipment:</strong> ring: Raven Frost x1, ring: Corruption Gyre x1, body: Treachery x1, belt: Wilhelm's Pride x1, amulet: Shadow Torc x1, gloves: Frostburn x1, boots: Infernostride x1, helmet: Tal Rasha's Horadric Crest x1, Left hand: Echoing Executioner Sword of Performance x1, Left hand: Wraith Flight x1, Offhand: Echoing Military Pick of Icebolt x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=brrb">brrb</a></div>
+                    <div>80</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Bash:20, Ethereal Throw:20, Battle Orders:8, Leap Slam:1, Double Swing:1, Stun:1, Concentrate:1, Frenzy:1, Cleave:1, Thrown Weapon Mastery:1, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Natural Resistance:1, Howl:1, Find Potion:1, Shout:1, Find Item:1, Grim Ward:1, Battle Command:1</p>
+            <p><strong>Equipment:</strong> boots: Immortal King's Pillar x1, belt: Immortal King's Detail x1, ring: Carrion Wind x1, ring: Havoc Coil x1, gloves: Immortal King's Forge x1, helmet: Storm Brow x1, amulet: Highlord's Wrath x1, Left hand: Echoing Throwing Spear x1, Left hand: Warshrike x1, Offhand: Echoing Throwing Spear x1, Offhand: Stormshield x1, body: Myth x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Starso_Bar">Starso_Bar</a></div>
+                    <div>65</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Ethereal Throw:20, Bash:14, Leap Slam:1, Double Swing:1, Stun:1, Concentrate:1, Frenzy:1, Cleave:1, Thrown Weapon Mastery:1, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Natural Resistance:1, Howl:1, Find Potion:1, Shout:1, Find Item:1, Battle Orders:1, Grim Ward:1, Battle Command:1</p>
+            <p><strong>Equipment:</strong> amulet: Amulet of the Bat x1, belt: Cobalt Demonhide Sash of Balance x1, gloves: Venom Grip x1, Left hand: Humongous x1, Left hand: GhoulRI Needle x1, ring: Chaos Touch x1, ring: PlagueRI Grip x1, Offhand: Tiamat's Rebuke x1</p>
+        
+        </div>
+        <hr>
+        
+        <h2>3.54%  of Barbarian's Main Skills:<br><img src='icons/Thrown Weapon Mastery.png' alt='Thrown Weapon Mastery' width='20' height='20'> Thrown Weapon Mastery 100.00% (37)<br><img src='icons/Double Swing.png' alt='Double Swing' width='20' height='20'> Double Swing 100.00% (20)<br><img src='icons/Howl.png' alt='Howl' width='20' height='20'> Howl 100.00% (4)</h2>
+        <p><strong>Other Skills:<br></strong> <img src='icons/Shout.png' alt='Shout' width='20' height='20'> Shout 100.0% (4.0)<br><img src='icons/Frenzy.png' alt='Frenzy' width='20' height='20'> Frenzy 100.0% (4.0)<br><img src='icons/Bash.png' alt='Bash' width='20' height='20'> Bash 75.0% (3.0)<br><img src='icons/Increased Stamina.png' alt='Increased Stamina' width='20' height='20'> Increased Stamina 75.0% (3.0)<br><img src='icons/Leap Slam.png' alt='Leap Slam' width='20' height='20'> Leap Slam 25.0% (1.0)<br><img src='icons/Stun.png' alt='Stun' width='20' height='20'> Stun 25.0% (1.0)</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>All Skills</strong></button>
+            <div class="content">
+                <div><img src='icons/Thrown Weapon Mastery.png' alt='Thrown Weapon Mastery' width='20' height='20'> Thrown Weapon Mastery 100.0% (37.0)<br><img src='icons/Double Swing.png' alt='Double Swing' width='20' height='20'> Double Swing 100.0% (20.0)<br><img src='icons/Frenzy.png' alt='Frenzy' width='20' height='20'> Frenzy 100.0% (4.0)<br><img src='icons/Howl.png' alt='Howl' width='20' height='20'> Howl 100.0% (4.0)<br><img src='icons/Shout.png' alt='Shout' width='20' height='20'> Shout 100.0% (4.0)<br><img src='icons/Bash.png' alt='Bash' width='20' height='20'> Bash 75.0% (3.0)<br><img src='icons/Increased Stamina.png' alt='Increased Stamina' width='20' height='20'> Increased Stamina 75.0% (3.0)<br><img src='icons/Leap Slam.png' alt='Leap Slam' width='20' height='20'> Leap Slam 25.0% (1.0)<br><img src='icons/Increased Speed.png' alt='Increased Speed' width='20' height='20'> Increased Speed 25.0% (1.0)<br><img src='icons/Cleave.png' alt='Cleave' width='20' height='20'> Cleave 25.0% (1.0)<br><img src='icons/Taunt.png' alt='Taunt' width='20' height='20'> Taunt 25.0% (1.0)<br><img src='icons/Counter Attack.png' alt='Counter Attack' width='20' height='20'> Counter Attack 25.0% (1.0)<br><img src='icons/Iron Skin.png' alt='Iron Skin' width='20' height='20'> Iron Skin 25.0% (1.0)<br><img src='icons/Stun.png' alt='Stun' width='20' height='20'> Stun 25.0% (1.0)<br><img src='icons/Battle Orders.png' alt='Battle Orders' width='20' height='20'> Battle Orders 25.0% (1.0)<br><img src='icons/Edged Weapon Mastery.png' alt='Edged Weapon Mastery' width='20' height='20'> Edged Weapon Mastery 0.0% (0.0)<br><img src='icons/Concentrate.png' alt='Concentrate' width='20' height='20'> Concentrate 0.0% (0.0)<br><img src='icons/Whirlwind.png' alt='Whirlwind' width='20' height='20'> Whirlwind 0.0% (0.0)<br><img src='icons/Find Potion.png' alt='Find Potion' width='20' height='20'> Find Potion 0.0% (0.0)<br><img src='icons/Puncture.png' alt='Puncture' width='20' height='20'> Puncture 0.0% (0.0)<br><img src='icons/Natural Resistance.png' alt='Natural Resistance' width='20' height='20'> Natural Resistance 0.0% (0.0)<br><img src='icons/Whirling Axes.png' alt='Whirling Axes' width='20' height='20'> Whirling Axes 0.0% (0.0)<br><img src='icons/Battle Cry.png' alt='Battle Cry' width='20' height='20'> Battle Cry 0.0% (0.0)<br><img src='icons/Grim Ward.png' alt='Grim Ward' width='20' height='20'> Grim Ward 0.0% (0.0)<br><img src='icons/Battle Command.png' alt='Battle Command' width='20' height='20'> Battle Command 0.0% (0.0)<br><img src='icons/Find Item.png' alt='Find Item' width='20' height='20'> Find Item 0.0% (0.0)<br><img src='icons/Pole Weapon Mastery.png' alt='Pole Weapon Mastery' width='20' height='20'> Pole Weapon Mastery 0.0% (0.0)<br><img src='icons/Blunt Weapon Mastery.png' alt='Blunt Weapon Mastery' width='20' height='20'> Blunt Weapon Mastery 0.0% (0.0)<br><img src='icons/War Cry.png' alt='War Cry' width='20' height='20'> War Cry 0.0% (0.0)<br><img src='icons/Ethereal Throw.png' alt='Ethereal Throw' width='20' height='20'> Ethereal Throw 0.0% (0.0)<br><img src='icons/Weaken.png' alt='Weaken' width='20' height='20'> Weaken 0.0% (0.0)<br><img src='icons/Iron Maiden.png' alt='Iron Maiden' width='20' height='20'> Iron Maiden 0.0% (0.0)<br><img src='icons/Life Tap.png' alt='Life Tap' width='20' height='20'> Life Tap 0.0% (0.0)<br><img src='icons/Hemorrhage.png' alt='Hemorrhage' width='20' height='20'> Hemorrhage 0.0% (0.0)</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>Most Common Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Amulet</strong>: <br>Angelic Wings 25.00%<br>Shimmering Amulet 25.00%<br>Grim Talisman 25.00%<br>Bronze Amulet 25.00%<br><strong>Ring</strong>: <br>Angelic Halo 25.00%<br>Viper Eye 25.00%<br>Steel Ring of Remedy 25.00%<br>Dread Touch 25.00%<br>Nagelring 25.00%<br><strong>Body</strong>: <br>Stealth 50.00%<br>Holocaust Wrap 25.00%<br>Holocaust Flange 25.00%<br><strong>Helmet</strong>: <br>PlagueRI Mask 25.00%<br>Bramble Visage 25.00%<br>Nadir 25.00%<br>Pain Brow 25.00%<br><strong>Boots</strong>: <br>Vidala's Fetlock 25.00%<br>Beryl Heavy Boots 25.00%<br>Sigon's Sabot 25.00%<br>Hsarus' Iron Heel 25.00%<br><strong>Gloves</strong>: <br>Cleglaw's Pincers 25.00%<br>Storm Hand 25.00%<br>Sigon's Gage 25.00%<br>Heavy Gloves of Thawing 25.00%<br><strong>Belt</strong>: <br>String of Ears 25.00%<br>Dread Strap 25.00%<br>Sigon's Wrap 25.00%<br>Sash of Thorns 25.00%<br><strong>Left hand</strong>: <br>Havoc Thirst 25.00%<br>Civerb's Cudgel 25.00%<br>Beast Dart 25.00%<br>Soul Bolt 25.00%<br>Short Spear 25.00%<br><strong>Offhand</strong>: <br>Glyph Spike 25.00%<br>Brutal Glaive of Replenishing 25.00%<br>Jagged Pilum of Quality 25.00%</div>
+            </div>
+        
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Amulet</strong>: Angelic Wings 25.00%, Shimmering Amulet 25.00%, Grim Talisman 25.00%, Bronze Amulet 25.00%<br><strong>Ring</strong>: Angelic Halo 25.00%, Viper Eye 25.00%, Steel Ring of Remedy 25.00%, Dread Touch 25.00%, Nagelring 25.00%, Skull Grip 25.00%, Iron Ring of the Apprentice 25.00%, Steel Ring 25.00%<br><strong>Body</strong>: Holocaust Wrap 25.00%, Stealth 50.00%, Holocaust Flange 25.00%<br><strong>Helmet</strong>: PlagueRI Mask 25.00%, Bramble Visage 25.00%, Nadir 25.00%, Pain Brow 25.00%<br><strong>Boots</strong>: Vidala's Fetlock 25.00%, Beryl Heavy Boots 25.00%, Sigon's Sabot 25.00%, Hsarus' Iron Heel 25.00%<br><strong>Gloves</strong>: Cleglaw's Pincers 25.00%, Storm Hand 25.00%, Sigon's Gage 25.00%, Heavy Gloves of Thawing 25.00%<br><strong>Belt</strong>: String of Ears 25.00%, Dread Strap 25.00%, Sigon's Wrap 25.00%, Sash of Thorns 25.00%<br><strong>Left hand</strong>: Havoc Thirst 25.00%, Civerb's Cudgel 25.00%, Beast Dart 25.00%, Soul Bolt 25.00%, Short Spear 25.00%<br><strong>Offhand</strong>: Glyph Spike 25.00%, Brutal Glaive of Replenishing 25.00%, Jagged Pilum of Quality 25.00%</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>4 Characters in this cluster:</strong></button>
+            <div class="content">
+                
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=LYSDEXIC">LYSDEXIC</a></div>
+                    <div>47</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Double Swing:17, Thrown Weapon Mastery:8, Frenzy:1, Howl:1, Shout:1</p>
+            <p><strong>Equipment:</strong> amulet: Angelic Wings x1, ring: Angelic Halo x1, ring: Viper Eye x1, body: Holocaust Wrap x1, helmet: PlagueRI Mask x1, boots: Vidala's Fetlock x1, gloves: Cleglaw's Pincers x1, belt: String of Ears x1, Left hand: Havoc Thirst x1, Offhand: Glyph Spike x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=GG_Clown">GG_Clown</a></div>
+                    <div>27</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Thrown Weapon Mastery:10, Bash:1, Leap Slam:1, Double Swing:1, Frenzy:1, Cleave:1, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Counter Attack:1, Howl:1, Taunt:1, Shout:1, Battle Orders:1</p>
+            <p><strong>Equipment:</strong> boots: Beryl Heavy Boots x1, ring: Steel Ring of Remedy x1, ring: Dread Touch x1, amulet: Shimmering Amulet x1, belt: Dread Strap x1, body: Stealth x1, helmet: Bramble Visage x1, gloves: Storm Hand x1, Left hand: Civerb's Cudgel x1, Left hand: Beast Dart x1, Offhand: Brutal Glaive of Replenishing x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=iEatvaginalHC">iEatvaginalHC</a></div>
+                    <div>21</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Thrown Weapon Mastery:12, Bash:1, Double Swing:1, Frenzy:1, Increased Stamina:1, Howl:1, Shout:1</p>
+            <p><strong>Equipment:</strong> ring: Nagelring x1, ring: Skull Grip x1, body: Stealth x1, helmet: Nadir x1, gloves: Sigon's Gage x1, belt: Sigon's Wrap x1, boots: Sigon's Sabot x1, amulet: Grim Talisman x1, Left hand: Soul Bolt x1, Offhand: Jagged Pilum of Quality x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=QwertyX">QwertyX</a></div>
+                    <div>13</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Thrown Weapon Mastery:7, Bash:1, Double Swing:1, Stun:1, Frenzy:1, Increased Stamina:1, Howl:1, Shout:1</p>
+            <p><strong>Equipment:</strong> belt: Sash of Thorns x1, ring: Iron Ring of the Apprentice x1, ring: Steel Ring x1, amulet: Bronze Amulet x1, body: Holocaust Flange x1, boots: Hsarus' Iron Heel x1, helmet: Pain Brow x1, gloves: Heavy Gloves of Thawing x1, Left hand: Short Spear x1</p>
+        
+        </div>
+        <hr>
+        
+            <h3>Top 5 Most Popular Hardcore Barbarian Skills:</h3>
+        <ul>
+            
+            <li>Battle Orders: 741.0</li>
+            
+            <li>Battle Cry: 498.0</li>
+            
+            <li>Double Swing: 369.0</li>
+            
+            <li>Whirlwind: 368.0</li>
+            
+            <li>Battle Command: 358.0</li>
+            
+        </ul>
+
+        <h3>Bottom 5 Least Popular Hardcore Barbarian Skills:</h3>
+        <ul>
+            
+            <li>Iron Maiden: 1.0</li>
+            
+            <li>Life Tap: 1.0</li>
+            
+            <li>Weaken: 11.0</li>
+            
+            <li>Hemorrhage: 20.0</li>
+            
+            <li>Puncture: 33.0</li>
+            
+        </ul>
+        <!-- Embed the Plotly pie chart -->
+        <iframe src="hcBarbarian-clusters_distribution_pie.html"></iframe>
+        <!-- Embed the Plotly scatter plot at the bottom -->
+        <iframe src="hcBarbarian-clusters_with_avg_points.html"></iframe>
+        <button onclick="topFunction()" id="backToTopBtn" class="back-to-top">Top</button>
+        
+
+        <script>
+            var coll = document.getElementsByClassName("collapsible");
+            for (var i = 0; i < coll.length; i++) {
+                coll[i].addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var content = this.nextElementSibling;
+                    var openIcon = this.querySelector("img.icon[alt='Open']");
+                    var closeIcon = this.querySelector("img.icon[alt='Close']");
+
+                    if (content.style.display === "block") {
+                        content.style.display = "none";
+                        openIcon.classList.remove("hidden");
+                        closeIcon.classList.add("hidden");
+                    } else {
+                        content.style.display = "block";
+                        openIcon.classList.add("hidden");
+                        closeIcon.classList.remove("hidden");
+                    }
+                });
+            }
+        </script>
+
+        <script>
+            //Get the button
+            var backToTopBtn = document.getElementById("backToTopBtn");
+
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function() {scrollFunction()};
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    backToTopBtn.style.display = "block";
+                } else {
+                    backToTopBtn.style.display = "none";
+                }
+            }
+
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+                document.body.scrollTop = 0; // For Safari
+                document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+            }
+        </script>
+
+        <script>
+            function setActive(id) {
+                // Remove active class from both buttons
+                document.getElementById("SC").classList.remove("active");
+                document.getElementById("HC").classList.remove("active");
+                
+                // Add active class to the selected button
+                document.getElementById(id).classList.add("active");
+                
+                // Get the current URL
+                var currentUrl = window.location.href;
+                
+                // Determine the new URL based on the selected mode
+                var newUrl;
+                if (id === "SC") {
+                    if (currentUrl.includes('hc')) {
+                        newUrl = currentUrl.replace(/hc/gi, '');
+                    } else {
+                        newUrl = currentUrl;
+                    }
+                } else if (id === "HC") {
+                    if (!currentUrl.includes('hc')) {
+                        newUrl = currentUrl.replace(/(\w+)\.html$/, 'hc$1.html');
+                    } else {
+                        newUrl = currentUrl;
+                    }
+                }
+                
+                // Redirect to the new URL if it has changed
+                if (newUrl !== currentUrl) {
+                    window.location.href = newUrl;
+                }
+            }
+
+            // Set default active button based on the current URL
+            window.onload = function() {
+                if (window.location.href.includes('hc')) {
+                    setActive("HC");
+                } else {
+                    setActive("SC");
+                }
+            }
+        </script>
+
+
+
+
+    </body>
+    </html>
+    
