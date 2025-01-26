@@ -53,10 +53,108 @@
         height: 600px; /* Adjust height as needed */
         border: none;
     }
+
+    .top-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px; /* Space between buttons and the rest of the page */
+    }
+    .top-button {
+        background-color: #f1f1f1; /* Green background */
+        color: black; /* White text */
+        cursor: pointer;
+        padding: 10px 15px; /* Adjust padding to fit side by side */
+        border: none;
+        text-align: center;
+        outline: none;
+        font-size: 16px; /* Adjust font size */
+        border-radius: 5px; /* Rounded corners */
+        transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
+        text-decoration: none; /* Remove underline */
+        flex: 1; /* Equal space for each button */
+        margin-right: 10px; /* Space between buttons */
+        height: 30px; /* Ensure height is adjusted based on content */
+    }
+    .top-button:last-child {
+        margin-right: 0; /* Remove right margin for the last button */
+    }
+    .top-button:hover {
+        background-color: #45a049; /* Darker green on hover */
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Add shadow on hover */
+    }
+
+    .back-to-top {
+        display: none; /* Hidden by default */
+        position: fixed; /* Fixed/sticky position */
+        bottom: 20px; /* Place the button 20px from the bottom */
+        right: 30px; /* Place the button 30px from the right */
+        z-index: 99; /* Make sure it does not overlap */
+        border: none; /* Remove borders */
+        outline: none; /* Remove outline */
+        background-color: #4CAF50; /* Set background color */
+        color: white; /* Set text color */
+        cursor: pointer; /* Add a mouse pointer on hover */
+        padding: 15px; /* Some padding */
+        border-radius: 10px; /* Rounded corners */
+        font-size: 18px; /* Increase font size */
+    }
+    .back-to-top:hover {
+        background-color: #45a049; /* Darker background on hover */
+    }
+
+        .split-button {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px; /* Space between buttons and the rest of the page */
+    }
+    .split-button-option {
+        background-color: #4CAF50; /* Green background */
+        color: white; /* White text */
+        cursor: pointer;
+        padding: 10px 15px; /* Adjust padding */
+        border: none;
+        text-align: center;
+        outline: none;
+        font-size: 16px; /* Adjust font size */
+        border-radius: 0; /* No rounded corners */
+        transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
+        flex: 1; /* Equal space for each button */
+    }
+    .split-button-option:first-child {
+        border-top-left-radius: 5px; /* Rounded left corners */
+        border-bottom-left-radius: 5px; /* Rounded left corners */
+    }
+    .split-button-option:last-child {
+        border-top-right-radius: 5px; /* Rounded right corners */
+        border-bottom-right-radius: 5px; /* Rounded right corners */
+    }
+    .split-button-option:hover {
+        background-color: #45a049; /* Darker green on hover */
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Add shadow on hover */
+    }
+    .split-button-option.active {
+        background-color: #2E7D32; /* Different color for active state */
+    }
+
     </style>
 </head>
 <body>
-    <h1>Assassin Skill Distribution </h1>
+    <div class="top-buttons">
+        <a href="Home.html" class="top-button">Home</a>
+        <a href="Amazon.html" class="top-button">Amazon</a>
+        <a href="Assassin.html" class="top-button">Assassin</a>
+        <a href="Barbarian.html" class="top-button">Barbarian</a>
+        <a href="Druid.html" class="top-button">Druid</a>
+        <a href="Necromancer.html" class="top-button">Necromancer</a>
+        <a href="Paladin.html" class="top-button">Paladin</a>
+        <a href="Sorceress.html" class="top-button">Sorceress</a>
+        <div class="split-button">
+            <button id="SC" class="split-button-option" onclick="setActive('SC')">SC</button>
+            <button id="HC" class="split-button-option" onclick="setActive('HC')">HC</button>
+        </div>
+    </div>
+
+    <h1>Assassin Softcore Skill Distribution </h1>
     <hr>
     
     <h2>68.37%  of Assassin's Main Skills:<br><img src='icons/Wake of Fire.png' alt='Wake of Fire' width='20' height='20'> Wake of Fire 100.00% (2680)<br><img src='icons/Wake of Inferno.png' alt='Wake of Inferno' width='20' height='20'> Wake of Inferno 100.00% (2677)<br><img src='icons/Fire Blast.png' alt='Fire Blast' width='20' height='20'> Fire Blast 100.00% (2623)</h2>
@@ -1905,6 +2003,7 @@
     <iframe src="Assassin-clusters_distribution_pie.html"></iframe>
     <!-- Embed the Plotly scatter plot at the bottom -->
     <iframe src="Assassin-clusters_with_avg_points.html"></iframe>
+    <button onclick="topFunction()" id="backToTopBtn" class="back-to-top">Top</button>
     
 
     <script>
@@ -1928,5 +2027,75 @@
             });
         }
     </script>
+
+    <script>
+        //Get the button
+        var backToTopBtn = document.getElementById("backToTopBtn");
+
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {scrollFunction()};
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                backToTopBtn.style.display = "block";
+            } else {
+                backToTopBtn.style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        }
+    </script>
+
+    <script>
+        function setActive(id) {
+            // Remove active class from both buttons
+            document.getElementById("SC").classList.remove("active");
+            document.getElementById("HC").classList.remove("active");
+            
+            // Add active class to the selected button
+            document.getElementById(id).classList.add("active");
+            
+            // Get the current URL
+            var currentUrl = window.location.href;
+            
+            // Determine the new URL based on the selected mode
+            var newUrl;
+            if (id === "SC") {
+                if (currentUrl.includes('hc')) {
+                    newUrl = currentUrl.replace(/hc/gi, '');
+                } else {
+                    newUrl = currentUrl;
+                }
+            } else if (id === "HC") {
+                if (!currentUrl.includes('hc')) {
+                    newUrl = currentUrl.replace(/(\w+)\.html$/, 'hc$1.html');
+                } else {
+                    newUrl = currentUrl;
+                }
+            }
+            
+            // Redirect to the new URL if it has changed
+            if (newUrl !== currentUrl) {
+                window.location.href = newUrl;
+            }
+        }
+
+        // Set default active button based on the current URL
+        window.onload = function() {
+            if (window.location.href.includes('hc')) {
+                setActive("HC");
+            } else {
+                setActive("SC");
+            }
+        }
+    </script>
+
+
+
+
 </body>
 </html>
