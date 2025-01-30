@@ -214,18 +214,15 @@
     <hr>
     <h1>Pod Softcore Stats </h1>
     <!-- Embed the Plotly pie chart -->
-     <h2>Pick a class below for more detail</h2>
-     <iframe src="cluster_analysis_report.html"></iframe>
+<!--     <h2>Pick a class below for more detail</h2>-->
+<!--     <iframe src="cluster_analysis_report.html"></iframe>  -->
+     <br>
+     <iframe src="class_distribution.html"></iframe>
+     
      <!-- Embed the Plotly scatter plot at the bottom -->
     <button onclick="topFunction()" id="backToTopBtn" class="back-to-top">Top</button>
     <hr> 
-    <h2>Softcore Fun Facts</h2>
-    <ul style="list-style-type:circle; padding-left: 40px;">
-            <li>Only one Dangoon, one Eternity, and one Delerium spotted in the wild.</li>
-            <li>5 ladder characters on softcore ladder have not died.</li>
-            <li>There are 61 Synthesized weapons equipped.</li>
-    </ul>  
-
+    <h1>Non-Class specific reporting</h1>
     <h3>Most and least popular Runewords, Uniques, and Set items</h3>
 
     <button type="button" class="collapsible">
@@ -294,7 +291,10 @@
     </div>
     </div>
     <br>
-    <h3>Non-Zon Bow Users</h3>
+    <hr>
+    <h3>Non-Amazon Bow Users</h3>
+    <a href="Notazons.html" class="top-button">Non-Zon Bow Users</a>
+ <!--   <h3>Non-Zon Bow Users</h3>
     <button type="button" class="collapsible">
         <img src="icons/closed.png" alt="Open" class="icon">
         <img src="icons/open.png" alt="Close" class="icon hidden">
@@ -304,12 +304,18 @@
     <div id="non-zon">
         <p>This is any non-Amazon character that's got arrows or bolts equipped</p>
         <embed type="text/html" src="Non-Zon Bow users.html"  width="100%" height="500">
+        <iframe src="Non-Zon Bow users-clusters_distribution_pie.html"></iframe>
+        <iframe src="Non-Zon Bow users-clusters_with_avg_points.html"></iframe>
+
         </div>
     </div>
-    </div>
+    </div> -->
     <br>
     <h3>Possibly Chargers</h3>
-    <button type="button" class="collapsible">
+    <a href="Possible-Chargers.html" class="top-button">Chargers?</a>
+    <br><br>
+        <hr>
+<!--    <button type="button" class="collapsible">
         <img src="icons/closed.png" alt="Open" class="icon">
         <img src="icons/open.png" alt="Close" class="icon hidden">
         <strong>Maybe Chargers?</strong>
@@ -317,10 +323,17 @@
     <div class="content">
     <div id="charge">
         <p>This is any character that's got Templars equipped OR has more than 5 points in charge</p>
-        <embed type="text/html" src="Charge.html"  width="100%" height="500">
-    </div>
-    </div>    
-    <br>
+        <embed type="text/html" src="Possible-Chargers.html"  width="100%" height="500">
+        <embed type="text/html" src="Charge.html"  width="100%" height="500"> 
+            </div>
+    </div>    -->
+    <h2>Softcore Fun Facts</h2>
+    <ul style="list-style-type:circle; padding-left: 40px;">
+            <li>Only one Dangoon, one Eternity, and one Delerium spotted in the wild.</li>
+            <li>5 ladder characters on softcore ladder have not died.</li>
+            <li>There are 61 Synthesized weapons equipped.</li>
+    </ul>  
+    <br><br><br><br>
     <script>
         var coll = document.getElementsByClassName("collapsible");
         for (var i = 0; i < coll.length; i++) {
