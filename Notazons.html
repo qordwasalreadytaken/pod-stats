@@ -3,139 +3,147 @@
 <html>
 <head>
     <title>Notazons Analysis Report</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+            <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 20px; 
+            line-height: 1.6; 
+            margin-left: 200px; /* Adjust this value to the width of your fixed buttons + some extra space */
+        }
         h1 { color: #333; }
         h2 { color: #555; margin-top: 20px; clear: both; }
         p { clear: both; }
         .character-info { display: flex; margin-bottom: 10px; }
         .character-info div { flex: 1; padding: 5px; }
         .character-link { flex: 1; }
-    .collapsible {
-        background-color: #f1f1f1; /* Green background */
-        color: black; /* White text */
-        cursor: pointer;
-        padding: 10px; /* Increase padding */
-        width: 100%;
-        border: none;
-        text-align: left;
-        outline: none;
-        font-size: 15px; /* Increase font size */
-        border-radius: 5px; /* Rounded corners */
-        transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
-        display: flex;
-        align-items: center;
-    }
-    .collapsible img.icon {
-        margin-right: 10px; /* Spacing between icon and text */
-        width: 20px; /* Icon size */
-        height: 20px; /* Icon size */
-    }
-    .collapsible img.icon.hidden {
-        display: none; /* Hide by default */
-    }
-    .collapsible:hover {
-        background-color: #45a049; /* Darker green on hover */
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Add shadow on hover */
-    }
-    .active, .collapsible:focus {
-        background-color: #45a049; /* Darker green when active or focused */
-    }
-        
-    .content {
-        padding: 0 18px;
-        display: none;
-        overflow: hidden;
-        background-color: #f9f9f9;
+    
+        .collapsible {
+            background-color: #f1f1f1;
+            color: black;
+            cursor: pointer;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            align-items: center;
         }
-    iframe {
-        width: 100%;
-        height: 600px; /* Adjust height as needed */
-        border: none;
-    }
-
-    .top-buttons {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 20px; /* Space between buttons and the rest of the page */
-    }
-    .top-button {
-        background-color: #f1f1f1; /* Green background */
-        color: black; /* White text */
-        cursor: pointer;
-        padding: 10px 15px; /* Adjust padding to fit side by side */
-        border: none;
-        text-align: center;
-        outline: none;
-        font-size: 16px; /* Adjust font size */
-        border-radius: 5px; /* Rounded corners */
-        transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
-        text-decoration: none; /* Remove underline */
-        flex: 1; /* Equal space for each button */
-        margin-right: 10px; /* Space between buttons */
-        height: 30px; /* Ensure height is adjusted based on content */
-    }
-    .top-button:last-child {
-        margin-right: 0; /* Remove right margin for the last button */
-    }
-    .top-button:hover {
-        background-color: #45a049; /* Darker green on hover */
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Add shadow on hover */
-    }
-
-    .back-to-top {
-        display: none; /* Hidden by default */
-        position: fixed; /* Fixed/sticky position */
-        bottom: 20px; /* Place the button 20px from the bottom */
-        right: 30px; /* Place the button 30px from the right */
-        z-index: 99; /* Make sure it does not overlap */
-        border: none; /* Remove borders */
-        outline: none; /* Remove outline */
-        background-color: #4CAF50; /* Set background color */
-        color: white; /* Set text color */
-        cursor: pointer; /* Add a mouse pointer on hover */
-        padding: 15px; /* Some padding */
-        border-radius: 10px; /* Rounded corners */
-        font-size: 18px; /* Increase font size */
-    }
-    .back-to-top:hover {
-        background-color: #45a049; /* Darker background on hover */
-    }
-
+        .collapsible img.icon {
+            margin-right: 10px;
+            width: 20px;
+            height: 20px;
+        }
+        .collapsible img.icon.hidden {
+            display: none;
+        }
+        .collapsible:hover {
+            background-color: #45a049;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .active, .collapsible:focus {
+            background-color: #45a049;
+        }
+    
+        .content {
+            padding: 0 18px;
+            display: none;
+            overflow: hidden;
+            background-color: #f9f9f9;
+        }
+        iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+        }
+    
+        .top-buttons {
+            position: fixed;
+            top: 20px;
+            left: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            margin-right: 20px;
+        }
+        .top-button {
+            background-color: #f1f1f1;
+            color: black;
+            cursor: pointer;
+            padding: 10px 15px;
+            border: none;
+            text-align: center;
+            outline: none;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            flex: 0 0 auto;
+            margin-bottom: 10px;
+        }
+        .top-button:hover {
+            background-color: #45a049;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .top-button.active {
+            background-color: #2E7D32; /* Different color for active state */
+        }
+    
+        .back-to-top {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 30px;
+            z-index: 99;
+            border: none;
+            outline: none;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 18px;
+        }
+        .back-to-top:hover {
+            background-color: #45a049;
+        }
+    
         .split-button {
-        display: flex;
-        justify-content: center;
-        margin-bottom: 20px; /* Space between buttons and the rest of the page */
-    }
-    .split-button-option {
-        background-color: #4CAF50; /* Green background */
-        color: white; /* White text */
-        cursor: pointer;
-        padding: 10px 15px; /* Adjust padding */
-        border: none;
-        text-align: center;
-        outline: none;
-        font-size: 16px; /* Adjust font size */
-        border-radius: 0; /* No rounded corners */
-        transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
-        flex: 1; /* Equal space for each button */
-    }
-    .split-button-option:first-child {
-        border-top-left-radius: 5px; /* Rounded left corners */
-        border-bottom-left-radius: 5px; /* Rounded left corners */
-    }
-    .split-button-option:last-child {
-        border-top-right-radius: 5px; /* Rounded right corners */
-        border-bottom-right-radius: 5px; /* Rounded right corners */
-    }
-    .split-button-option:hover {
-        background-color: #45a049; /* Darker green on hover */
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Add shadow on hover */
-    }
-    .split-button-option.active {
-        background-color: #2E7D32; /* Different color for active state */
-    }
-
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .split-button-option {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            padding: 10px 15px;
+            border: none;
+            text-align: center;
+            outline: none;
+            font-size: 16px;
+            border-radius: 0;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            flex: 1;
+        }
+        .split-button-option:first-child {
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+        }
+        .split-button-option:last-child {
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+        .split-button-option:hover {
+            background-color: #45a049;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .split-button-option.active {
+            background-color: #2E7D32;
+        }
     </style>
 </head>
 <body>
@@ -156,12 +164,12 @@
 
     <h1>Notazons Softcore Skill Distribution </h1>
     <h3>The Notazon is not a Zon, but has bolts or arrows equipped</h3>
-    <p>Popular builds include:<br>34.48% of Notazons's invest heavily in Enflame, Frigerate, Warmth, Shiver Armor<br>31.03% of Notazons's invest heavily in Lycanthropy, Maul, Werebear, Heart of Wolverine<br>13.79% of Notazons's invest heavily in Molten Boulder, Armageddon, Hurricane, Heart of Wolverine<br>10.34% of Notazons's invest heavily in Heart of Wolverine, Summon Grizzly, Summon Spirit Wolf, Summon Dire Wolf<br>6.90% of Notazons's invest heavily in Corpse Explosion, Fire Golem, Desecrate, Summon Mastery<br>3.45% of Notazons's invest heavily in Telekinesis, Lightning Mastery, Energy Shield, Thunder Storm </p>
+    <p>Popular builds include:<br>34.48% of Notazons's invest heavily in Enflame, Frigerate, Warmth<br>31.03% of Notazons's invest heavily in Lycanthropy, Maul, Werebear<br>13.79% of Notazons's invest heavily in Molten Boulder, Armageddon, Hurricane<br>10.34% of Notazons's invest heavily in Heart of Wolverine, Summon Grizzly, Summon Spirit Wolf<br>6.90% of Notazons's invest heavily in Corpse Explosion, Fire Golem, Desecrate<br>3.45% of Notazons's invest heavily in Telekinesis, Lightning Mastery, Energy Shield </p>
 
     <hr>
     
-    <h2>34.48%  of Notazons's Main Skills:<br><img src='icons/Enflame.png' alt='Enflame' width='20' height='20'> Enflame 90.00% (180)<br><img src='icons/Frigerate.png' alt='Frigerate' width='20' height='20'> Frigerate 100.00% (175)<br><img src='icons/Warmth.png' alt='Warmth' width='20' height='20'> Warmth 100.00% (156)<br><img src='icons/Shiver Armor.png' alt='Shiver Armor' width='20' height='20'> Shiver Armor 90.00% (149)</h2>
-    <p><strong>Other Skills:<br></strong> <img src='icons/Fire Mastery.png' alt='Fire Mastery' width='20' height='20'> Fire Mastery 100.0% (118.0)<br><img src='icons/Cold Mastery.png' alt='Cold Mastery' width='20' height='20'> Cold Mastery 100.0% (97.0)<br><img src='icons/Fire Bolt.png' alt='Fire Bolt' width='20' height='20'> Fire Bolt 90.0% (80.0)<br><img src='icons/Telekinesis.png' alt='Telekinesis' width='20' height='20'> Telekinesis 100.0% (46.0)<br><img src='icons/Teleport.png' alt='Teleport' width='20' height='20'> Teleport 100.0% (10.0)<br><img src='icons/Ice Bolt.png' alt='Ice Bolt' width='20' height='20'> Ice Bolt 90.0% (9.0)</p>
+    <h2>34.48%  of Notazons's Main Skills:<br><img src='icons/Enflame.png' alt='Enflame' width='20' height='20'> Enflame 90.00% (180)<br><img src='icons/Frigerate.png' alt='Frigerate' width='20' height='20'> Frigerate 100.00% (175)<br><img src='icons/Warmth.png' alt='Warmth' width='20' height='20'> Warmth 100.00% (156)</h2>
+    <p><strong>Other Skills:<br></strong> <img src='icons/Shiver Armor.png' alt='Shiver Armor' width='20' height='20'> Shiver Armor 90.0% (149.0)<br><img src='icons/Fire Mastery.png' alt='Fire Mastery' width='20' height='20'> Fire Mastery 100.0% (118.0)<br><img src='icons/Cold Mastery.png' alt='Cold Mastery' width='20' height='20'> Cold Mastery 100.0% (97.0)<br><img src='icons/Fire Bolt.png' alt='Fire Bolt' width='20' height='20'> Fire Bolt 90.0% (80.0)<br><img src='icons/Telekinesis.png' alt='Telekinesis' width='20' height='20'> Telekinesis 100.0% (46.0)<br><img src='icons/Teleport.png' alt='Teleport' width='20' height='20'> Teleport 100.0% (10.0)</p>
     <button class="collapsible">
         <img src="icons/closed.png" alt="Open" class="icon">
         <img src="icons/open.png" alt="Close" class="icon hidden">
@@ -275,8 +283,8 @@
     </div>
     <hr>
     
-    <h2>31.03%  of Notazons's Main Skills:<br><img src='icons/Lycanthropy.png' alt='Lycanthropy' width='20' height='20'> Lycanthropy 44.44% (66)<br><img src='icons/Maul.png' alt='Maul' width='20' height='20'> Maul 33.33% (60)<br><img src='icons/Werebear.png' alt='Werebear' width='20' height='20'> Werebear 33.33% (53)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 44.44% (51)</h2>
-    <p><strong>Other Skills:<br></strong> <img src='icons/Shock Wave.png' alt='Shock Wave' width='20' height='20'> Shock Wave 22.22% (40.0)<br><img src='icons/Fire Blast.png' alt='Fire Blast' width='20' height='20'> Fire Blast 22.22% (40.0)<br><img src='icons/Wake of Fire.png' alt='Wake of Fire' width='20' height='20'> Wake of Fire 22.22% (40.0)<br><img src='icons/Wake of Inferno.png' alt='Wake of Inferno' width='20' height='20'> Wake of Inferno 22.22% (40.0)<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 33.33% (37.0)<br><img src='icons/Fire Arrow.png' alt='Fire Arrow' width='20' height='20'> Fire Arrow 11.11% (20.0)</p>
+    <h2>31.03%  of Notazons's Main Skills:<br><img src='icons/Lycanthropy.png' alt='Lycanthropy' width='20' height='20'> Lycanthropy 44.44% (66)<br><img src='icons/Maul.png' alt='Maul' width='20' height='20'> Maul 33.33% (60)<br><img src='icons/Werebear.png' alt='Werebear' width='20' height='20'> Werebear 33.33% (53)</h2>
+    <p><strong>Other Skills:<br></strong> <img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 44.44% (51.0)<br><img src='icons/Shock Wave.png' alt='Shock Wave' width='20' height='20'> Shock Wave 22.22% (40.0)<br><img src='icons/Fire Blast.png' alt='Fire Blast' width='20' height='20'> Fire Blast 22.22% (40.0)<br><img src='icons/Wake of Fire.png' alt='Wake of Fire' width='20' height='20'> Wake of Fire 22.22% (40.0)<br><img src='icons/Wake of Inferno.png' alt='Wake of Inferno' width='20' height='20'> Wake of Inferno 22.22% (40.0)<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 33.33% (37.0)</p>
     <button class="collapsible">
         <img src="icons/closed.png" alt="Open" class="icon">
         <img src="icons/open.png" alt="Close" class="icon hidden">
@@ -382,8 +390,8 @@
     </div>
     <hr>
     
-    <h2>13.79%  of Notazons's Main Skills:<br><img src='icons/Molten Boulder.png' alt='Molten Boulder' width='20' height='20'> Molten Boulder 75.00% (60)<br><img src='icons/Armageddon.png' alt='Armageddon' width='20' height='20'> Armageddon 75.00% (60)<br><img src='icons/Hurricane.png' alt='Hurricane' width='20' height='20'> Hurricane 50.00% (40)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 100.00% (35)</h2>
-    <p><strong>Other Skills:<br></strong> <img src='icons/Firestorm.png' alt='Firestorm' width='20' height='20'> Firestorm 75.0% (22.0)<br><img src='icons/Fissure.png' alt='Fissure' width='20' height='20'> Fissure 75.0% (22.0)<br><img src='icons/Flame Dash.png' alt='Flame Dash' width='20' height='20'> Flame Dash 75.0% (22.0)<br><img src='icons/Lycanthropy.png' alt='Lycanthropy' width='20' height='20'> Lycanthropy 50.0% (21.0)<br><img src='icons/Tornado.png' alt='Tornado' width='20' height='20'> Tornado 50.0% (21.0)<br><img src='icons/Fire Claws.png' alt='Fire Claws' width='20' height='20'> Fire Claws 25.0% (20.0)</p>
+    <h2>13.79%  of Notazons's Main Skills:<br><img src='icons/Molten Boulder.png' alt='Molten Boulder' width='20' height='20'> Molten Boulder 75.00% (60)<br><img src='icons/Armageddon.png' alt='Armageddon' width='20' height='20'> Armageddon 75.00% (60)<br><img src='icons/Hurricane.png' alt='Hurricane' width='20' height='20'> Hurricane 50.00% (40)</h2>
+    <p><strong>Other Skills:<br></strong> <img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 100.0% (35.0)<br><img src='icons/Firestorm.png' alt='Firestorm' width='20' height='20'> Firestorm 75.0% (22.0)<br><img src='icons/Fissure.png' alt='Fissure' width='20' height='20'> Fissure 75.0% (22.0)<br><img src='icons/Flame Dash.png' alt='Flame Dash' width='20' height='20'> Flame Dash 75.0% (22.0)<br><img src='icons/Lycanthropy.png' alt='Lycanthropy' width='20' height='20'> Lycanthropy 50.0% (21.0)<br><img src='icons/Tornado.png' alt='Tornado' width='20' height='20'> Tornado 50.0% (21.0)</p>
     <button class="collapsible">
         <img src="icons/closed.png" alt="Open" class="icon">
         <img src="icons/open.png" alt="Close" class="icon hidden">
@@ -449,8 +457,8 @@
     </div>
     <hr>
     
-    <h2>10.34%  of Notazons's Main Skills:<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 100.00% (60)<br><img src='icons/Summon Grizzly.png' alt='Summon Grizzly' width='20' height='20'> Summon Grizzly 100.00% (60)<br><img src='icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' width='20' height='20'> Summon Spirit Wolf 100.00% (50)<br><img src='icons/Summon Dire Wolf.png' alt='Summon Dire Wolf' width='20' height='20'> Summon Dire Wolf 100.00% (47)</h2>
-    <p><strong>Other Skills:<br></strong> <img src='icons/Maul.png' alt='Maul' width='20' height='20'> Maul 66.67% (26.0)<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 66.67% (23.0)<br><img src='icons/Poison Creeper.png' alt='Poison Creeper' width='20' height='20'> Poison Creeper 66.67% (17.0)<br><img src='icons/Flame Dash.png' alt='Flame Dash' width='20' height='20'> Flame Dash 66.67% (9.0)<br><img src='icons/Raven.png' alt='Raven' width='20' height='20'> Raven 100.0% (3.0)<br><img src='icons/Carrion Vine.png' alt='Carrion Vine' width='20' height='20'> Carrion Vine 66.67% (2.0)</p>
+    <h2>10.34%  of Notazons's Main Skills:<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 100.00% (60)<br><img src='icons/Summon Grizzly.png' alt='Summon Grizzly' width='20' height='20'> Summon Grizzly 100.00% (60)<br><img src='icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' width='20' height='20'> Summon Spirit Wolf 100.00% (50)</h2>
+    <p><strong>Other Skills:<br></strong> <img src='icons/Summon Dire Wolf.png' alt='Summon Dire Wolf' width='20' height='20'> Summon Dire Wolf 100.0% (47.0)<br><img src='icons/Maul.png' alt='Maul' width='20' height='20'> Maul 66.67% (26.0)<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 66.67% (23.0)<br><img src='icons/Poison Creeper.png' alt='Poison Creeper' width='20' height='20'> Poison Creeper 66.67% (17.0)<br><img src='icons/Flame Dash.png' alt='Flame Dash' width='20' height='20'> Flame Dash 66.67% (9.0)<br><img src='icons/Raven.png' alt='Raven' width='20' height='20'> Raven 100.0% (3.0)</p>
     <button class="collapsible">
         <img src="icons/closed.png" alt="Open" class="icon">
         <img src="icons/open.png" alt="Close" class="icon hidden">
@@ -508,8 +516,8 @@
     </div>
     <hr>
     
-    <h2>6.90%  of Notazons's Main Skills:<br><img src='icons/Corpse Explosion.png' alt='Corpse Explosion' width='20' height='20'> Corpse Explosion 100.00% (40)<br><img src='icons/Fire Golem.png' alt='Fire Golem' width='20' height='20'> Fire Golem 100.00% (32)<br><img src='icons/Desecrate.png' alt='Desecrate' width='20' height='20'> Desecrate 100.00% (27)<br><img src='icons/Summon Mastery.png' alt='Summon Mastery' width='20' height='20'> Summon Mastery 100.00% (21)</h2>
-    <p><strong>Other Skills:<br></strong> <img src='icons/Convocation.png' alt='Convocation' width='20' height='20'> Convocation 100.0% (21.0)<br><img src='icons/Deadly Poison.png' alt='Deadly Poison' width='20' height='20'> Deadly Poison 100.0% (21.0)<br><img src='icons/Poison Nova.png' alt='Poison Nova' width='20' height='20'> Poison Nova 50.0% (20.0)<br><img src='icons/Bone Wall.png' alt='Bone Wall' width='20' height='20'> Bone Wall 50.0% (6.0)<br><img src='icons/Revive.png' alt='Revive' width='20' height='20'> Revive 100.0% (3.0)<br><img src='icons/Decrepify.png' alt='Decrepify' width='20' height='20'> Decrepify 100.0% (2.0)</p>
+    <h2>6.90%  of Notazons's Main Skills:<br><img src='icons/Corpse Explosion.png' alt='Corpse Explosion' width='20' height='20'> Corpse Explosion 100.00% (40)<br><img src='icons/Fire Golem.png' alt='Fire Golem' width='20' height='20'> Fire Golem 100.00% (32)<br><img src='icons/Desecrate.png' alt='Desecrate' width='20' height='20'> Desecrate 100.00% (27)</h2>
+    <p><strong>Other Skills:<br></strong> <img src='icons/Summon Mastery.png' alt='Summon Mastery' width='20' height='20'> Summon Mastery 100.0% (21.0)<br><img src='icons/Convocation.png' alt='Convocation' width='20' height='20'> Convocation 100.0% (21.0)<br><img src='icons/Deadly Poison.png' alt='Deadly Poison' width='20' height='20'> Deadly Poison 100.0% (21.0)<br><img src='icons/Poison Nova.png' alt='Poison Nova' width='20' height='20'> Poison Nova 50.0% (20.0)<br><img src='icons/Bone Wall.png' alt='Bone Wall' width='20' height='20'> Bone Wall 50.0% (6.0)<br><img src='icons/Revive.png' alt='Revive' width='20' height='20'> Revive 100.0% (3.0)</p>
     <button class="collapsible">
         <img src="icons/closed.png" alt="Open" class="icon">
         <img src="icons/open.png" alt="Close" class="icon hidden">
@@ -559,8 +567,8 @@
     </div>
     <hr>
     
-    <h2>3.45%  of Notazons's Main Skills:<br><img src='icons/Telekinesis.png' alt='Telekinesis' width='20' height='20'> Telekinesis 100.00% (20)<br><img src='icons/Lightning Mastery.png' alt='Lightning Mastery' width='20' height='20'> Lightning Mastery 100.00% (20)<br><img src='icons/Energy Shield.png' alt='Energy Shield' width='20' height='20'> Energy Shield 100.00% (20)<br><img src='icons/Thunder Storm.png' alt='Thunder Storm' width='20' height='20'> Thunder Storm 100.00% (20)</h2>
-    <p><strong>Other Skills:<br></strong> <img src='icons/Lightning Surge.png' alt='Lightning Surge' width='20' height='20'> Lightning Surge 100.0% (11.0)<br><img src='icons/Teleport.png' alt='Teleport' width='20' height='20'> Teleport 100.0% (9.0)<br><img src='icons/Warmth.png' alt='Warmth' width='20' height='20'> Warmth 100.0% (1.0)<br><img src='icons/Charged Bolt.png' alt='Charged Bolt' width='20' height='20'> Charged Bolt 100.0% (1.0)<br><img src='icons/Chain Lightning.png' alt='Chain Lightning' width='20' height='20'> Chain Lightning 100.0% (1.0)<br><img src='icons/Magic Arrow.png' alt='Magic Arrow' width='20' height='20'> Magic Arrow 0.0% (0.0)</p>
+    <h2>3.45%  of Notazons's Main Skills:<br><img src='icons/Telekinesis.png' alt='Telekinesis' width='20' height='20'> Telekinesis 100.00% (20)<br><img src='icons/Lightning Mastery.png' alt='Lightning Mastery' width='20' height='20'> Lightning Mastery 100.00% (20)<br><img src='icons/Energy Shield.png' alt='Energy Shield' width='20' height='20'> Energy Shield 100.00% (20)</h2>
+    <p><strong>Other Skills:<br></strong> <img src='icons/Thunder Storm.png' alt='Thunder Storm' width='20' height='20'> Thunder Storm 100.0% (20.0)<br><img src='icons/Lightning Surge.png' alt='Lightning Surge' width='20' height='20'> Lightning Surge 100.0% (11.0)<br><img src='icons/Teleport.png' alt='Teleport' width='20' height='20'> Teleport 100.0% (9.0)<br><img src='icons/Warmth.png' alt='Warmth' width='20' height='20'> Warmth 100.0% (1.0)<br><img src='icons/Charged Bolt.png' alt='Charged Bolt' width='20' height='20'> Charged Bolt 100.0% (1.0)<br><img src='icons/Chain Lightning.png' alt='Chain Lightning' width='20' height='20'> Chain Lightning 100.0% (1.0)</p>
     <button class="collapsible">
         <img src="icons/closed.png" alt="Open" class="icon">
         <img src="icons/open.png" alt="Close" class="icon hidden">
@@ -610,9 +618,14 @@
     <ul>
     </ul>
     <!-- Embed the Plotly pie chart -->
-    <iframe src="charts/Notazons-clusters_distribution_pie.html"></iframe>
-    <!-- Embed the Plotly scatter plot at the bottom -->
-    <iframe src="charts/Notazons-clusters_with_avg_points.html"></iframe>
+    <div>
+        <img src="charts/Notazons-clusters_distribution_pie.png" alt="Notazons Skills Distribution">
+    </div>
+
+    <!-- Embed the Plotly scatter plot -->
+    <div>
+        <img src="charts/Notazons-clusters_with_avg_points.png" alt="Notazons Skill Clusters Scatter Plot">
+    </div>
     <button onclick="topFunction()" id="backToTopBtn" class="back-to-top">Top</button>
     
 
