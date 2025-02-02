@@ -1,574 +1,589 @@
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Charge Analysis Report</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
-        h1 { color: #333; }
-        h2 { color: #555; margin-top: 20px; clear: both; }
-        p { clear: both; }
-        .character-info { display: flex; margin-bottom: 10px; }
-        .character-info div { flex: 1; padding: 5px; }
-        .character-link { flex: 1; }
-    .collapsible {
-        background-color: #f1f1f1; /* Green background */
-        color: black; /* White text */
-        cursor: pointer;
-        padding: 10px; /* Increase padding */
-        width: 100%;
-        border: none;
-        text-align: left;
-        outline: none;
-        font-size: 15px; /* Increase font size */
-        border-radius: 5px; /* Rounded corners */
-        transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
-        display: flex;
-        align-items: center;
-    }
-    .collapsible img.icon {
-        margin-right: 10px; /* Spacing between icon and text */
-        width: 20px; /* Icon size */
-        height: 20px; /* Icon size */
-    }
-    .collapsible img.icon.hidden {
-        display: none; /* Hide by default */
-    }
-    .collapsible:hover {
-        background-color: #45a049; /* Darker green on hover */
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Add shadow on hover */
-    }
-    .active, .collapsible:focus {
-        background-color: #45a049; /* Darker green when active or focused */
-    }
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Charge Analysis Report</title>
+        <style>
+            body { 
+                font-family: Arial, sans-serif; 
+                margin: 20px; 
+                line-height: 1.6; 
+                margin-left: 200px; /* Adjust this value to the width of your fixed buttons + some extra space */
+            }
+            h1 { color: #333; }
+            h2 { color: #555; margin-top: 20px; clear: both; }
+            p { clear: both; }
+            .character-info { display: flex; margin-bottom: 10px; }
+            .character-info div { flex: 1; padding: 5px; }
+            .character-link { flex: 1; }
         
-    .content {
-        padding: 0 18px;
-        display: none;
-        overflow: hidden;
-        background-color: #f9f9f9;
-        }
-    iframe {
-        width: 100%;
-        height: 600px; /* Adjust height as needed */
-        border: none;
-    }
-
-    .top-buttons {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 20px; /* Space between buttons and the rest of the page */
-    }
-    .top-button {
-        background-color: #f1f1f1; /* Green background */
-        color: black; /* White text */
-        cursor: pointer;
-        padding: 10px 15px; /* Adjust padding to fit side by side */
-        border: none;
-        text-align: center;
-        outline: none;
-        font-size: 16px; /* Adjust font size */
-        border-radius: 5px; /* Rounded corners */
-        transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
-        text-decoration: none; /* Remove underline */
-        flex: 1; /* Equal space for each button */
-        margin-right: 10px; /* Space between buttons */
-        height: 30px; /* Ensure height is adjusted based on content */
-    }
-    .top-button:last-child {
-        margin-right: 0; /* Remove right margin for the last button */
-    }
-    .top-button:hover {
-        background-color: #45a049; /* Darker green on hover */
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Add shadow on hover */
-    }
-
-    .back-to-top {
-        display: none; /* Hidden by default */
-        position: fixed; /* Fixed/sticky position */
-        bottom: 20px; /* Place the button 20px from the bottom */
-        right: 30px; /* Place the button 30px from the right */
-        z-index: 99; /* Make sure it does not overlap */
-        border: none; /* Remove borders */
-        outline: none; /* Remove outline */
-        background-color: #4CAF50; /* Set background color */
-        color: white; /* Set text color */
-        cursor: pointer; /* Add a mouse pointer on hover */
-        padding: 15px; /* Some padding */
-        border-radius: 10px; /* Rounded corners */
-        font-size: 18px; /* Increase font size */
-    }
-    .back-to-top:hover {
-        background-color: #45a049; /* Darker background on hover */
-    }
-
-        .split-button {
-        display: flex;
-        justify-content: center;
-        margin-bottom: 20px; /* Space between buttons and the rest of the page */
-    }
-    .split-button-option {
-        background-color: #4CAF50; /* Green background */
-        color: white; /* White text */
-        cursor: pointer;
-        padding: 10px 15px; /* Adjust padding */
-        border: none;
-        text-align: center;
-        outline: none;
-        font-size: 16px; /* Adjust font size */
-        border-radius: 0; /* No rounded corners */
-        transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
-        flex: 1; /* Equal space for each button */
-    }
-    .split-button-option:first-child {
-        border-top-left-radius: 5px; /* Rounded left corners */
-        border-bottom-left-radius: 5px; /* Rounded left corners */
-    }
-    .split-button-option:last-child {
-        border-top-right-radius: 5px; /* Rounded right corners */
-        border-bottom-right-radius: 5px; /* Rounded right corners */
-    }
-    .split-button-option:hover {
-        background-color: #45a049; /* Darker green on hover */
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Add shadow on hover */
-    }
-    .split-button-option.active {
-        background-color: #2E7D32; /* Different color for active state */
-    }
-
-    </style>
-</head>
-<body>
-
-    <h1>Charge Softcore Skill Distribution </h1>
-    <hr>
-    
-    <h2>35.71%  of Charge's Main Skills:<br><img src='icons/Salvation.png' alt='Salvation' width='20' height='20'> Salvation 100.00% (100)<br><img src='icons/Resist Fire.png' alt='Resist Fire' width='20' height='20'> Resist Fire 80.00% (80)<br><img src='icons/Charge.png' alt='Charge' width='20' height='20'> Charge 100.00% (75)</h2>
-    <p><strong>Other Skills:<br></strong> <img src='icons/Resist Lightning.png' alt='Resist Lightning' width='20' height='20'> Resist Lightning 60.0% (60.0)<br><img src='icons/Conviction.png' alt='Conviction' width='20' height='20'> Conviction 60.0% (41.0)<br><img src='icons/Holy Shock.png' alt='Holy Shock' width='20' height='20'> Holy Shock 40.0% (40.0)<br><img src='icons/Holy Shield.png' alt='Holy Shield' width='20' height='20'> Holy Shield 100.0% (36.0)<br><img src='icons/Holy Freeze.png' alt='Holy Freeze' width='20' height='20'> Holy Freeze 100.0% (24.0)<br><img src='icons/Might.png' alt='Might' width='20' height='20'> Might 100.0% (17.0)</p>
-    <button class="collapsible">
-        <img src="icons/closed.png" alt="Open" class="icon">
-        <img src="icons/open.png" alt="Close" class="icon hidden">
-        <strong>All Skills</strong></button>
-        <div class="content">
-            <div><img src='icons/Salvation.png' alt='Salvation' width='20' height='20'> Salvation 100.0% (100.0)<br><img src='icons/Resist Fire.png' alt='Resist Fire' width='20' height='20'> Resist Fire 80.0% (80.0)<br><img src='icons/Charge.png' alt='Charge' width='20' height='20'> Charge 100.0% (75.0)<br><img src='icons/Resist Lightning.png' alt='Resist Lightning' width='20' height='20'> Resist Lightning 60.0% (60.0)<br><img src='icons/Conviction.png' alt='Conviction' width='20' height='20'> Conviction 60.0% (41.0)<br><img src='icons/Holy Shock.png' alt='Holy Shock' width='20' height='20'> Holy Shock 40.0% (40.0)<br><img src='icons/Holy Shield.png' alt='Holy Shield' width='20' height='20'> Holy Shield 100.0% (36.0)<br><img src='icons/Holy Freeze.png' alt='Holy Freeze' width='20' height='20'> Holy Freeze 100.0% (24.0)<br><img src='icons/Might.png' alt='Might' width='20' height='20'> Might 100.0% (17.0)<br><img src='icons/Smite.png' alt='Smite' width='20' height='20'> Smite 100.0% (5.0)<br><img src='icons/Blessed Hammer.png' alt='Blessed Hammer' width='20' height='20'> Blessed Hammer 100.0% (5.0)<br><img src='icons/Holy Bolt.png' alt='Holy Bolt' width='20' height='20'> Holy Bolt 100.0% (5.0)<br><img src='icons/Holy Fire.png' alt='Holy Fire' width='20' height='20'> Holy Fire 100.0% (5.0)<br><img src='icons/Dashing Strike.png' alt='Dashing Strike' width='20' height='20'> Dashing Strike 80.0% (4.0)<br><img src='icons/Precision.png' alt='Precision' width='20' height='20'> Precision 60.0% (3.0)<br><img src='icons/Sanctuary.png' alt='Sanctuary' width='20' height='20'> Sanctuary 60.0% (3.0)<br><img src='icons/Redemption.png' alt='Redemption' width='20' height='20'> Redemption 20.0% (1.0)<br><img src='icons/Zeal.png' alt='Zeal' width='20' height='20'> Zeal 20.0% (1.0)<br><img src='icons/Cleansing.png' alt='Cleansing' width='20' height='20'> Cleansing 20.0% (1.0)<br><img src='icons/Sacrifice.png' alt='Sacrifice' width='20' height='20'> Sacrifice 20.0% (1.0)<br><img src='icons/Defiance.png' alt='Defiance' width='20' height='20'> Defiance 20.0% (1.0)<br><img src='icons/Vigor.png' alt='Vigor' width='20' height='20'> Vigor 20.0% (1.0)<br><img src='icons/Prayer.png' alt='Prayer' width='20' height='20'> Prayer 20.0% (1.0)<br><img src='icons/Whirling Axes.png' alt='Whirling Axes' width='20' height='20'> Whirling Axes 0.0% (0.0)<br><img src='icons/Increased Stamina.png' alt='Increased Stamina' width='20' height='20'> Increased Stamina 0.0% (0.0)<br><img src='icons/Cleave.png' alt='Cleave' width='20' height='20'> Cleave 0.0% (0.0)<br><img src='icons/Double Swing.png' alt='Double Swing' width='20' height='20'> Double Swing 0.0% (0.0)<br><img src='icons/Leap Slam.png' alt='Leap Slam' width='20' height='20'> Leap Slam 0.0% (0.0)<br><img src='icons/Blunt Weapon Mastery.png' alt='Blunt Weapon Mastery' width='20' height='20'> Blunt Weapon Mastery 0.0% (0.0)<br><img src='icons/Battle Orders.png' alt='Battle Orders' width='20' height='20'> Battle Orders 0.0% (0.0)<br><img src='icons/Tornado.png' alt='Tornado' width='20' height='20'> Tornado 0.0% (0.0)<br><img src='icons/Twister.png' alt='Twister' width='20' height='20'> Twister 0.0% (0.0)<br><img src='icons/Cyclone Armor.png' alt='Cyclone Armor' width='20' height='20'> Cyclone Armor 0.0% (0.0)<br><img src='icons/Arctic Blast.png' alt='Arctic Blast' width='20' height='20'> Arctic Blast 0.0% (0.0)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 0.0% (0.0)<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 0.0% (0.0)<br><img src='icons/Battle Command.png' alt='Battle Command' width='20' height='20'> Battle Command 0.0% (0.0)<br><img src='icons/Iron Skin.png' alt='Iron Skin' width='20' height='20'> Iron Skin 0.0% (0.0)<br><img src='icons/Hurricane.png' alt='Hurricane' width='20' height='20'> Hurricane 0.0% (0.0)<br><img src='icons/Increased Speed.png' alt='Increased Speed' width='20' height='20'> Increased Speed 0.0% (0.0)<br><img src='icons/Natural Resistance.png' alt='Natural Resistance' width='20' height='20'> Natural Resistance 0.0% (0.0)<br><img src='icons/Counter Attack.png' alt='Counter Attack' width='20' height='20'> Counter Attack 0.0% (0.0)<br><img src='icons/Howl.png' alt='Howl' width='20' height='20'> Howl 0.0% (0.0)<br><img src='icons/Taunt.png' alt='Taunt' width='20' height='20'> Taunt 0.0% (0.0)<br><img src='icons/Shout.png' alt='Shout' width='20' height='20'> Shout 0.0% (0.0)<br><img src='icons/Battle Cry.png' alt='Battle Cry' width='20' height='20'> Battle Cry 0.0% (0.0)<br><img src='icons/Blessed Aim.png' alt='Blessed Aim' width='20' height='20'> Blessed Aim 0.0% (0.0)<br><img src='icons/Concentration.png' alt='Concentration' width='20' height='20'> Concentration 0.0% (0.0)<br><img src='icons/Fanaticism.png' alt='Fanaticism' width='20' height='20'> Fanaticism 0.0% (0.0)<br><img src='icons/Resist Cold.png' alt='Resist Cold' width='20' height='20'> Resist Cold 0.0% (0.0)<br><img src='icons/Fire Bolt.png' alt='Fire Bolt' width='20' height='20'> Fire Bolt 0.0% (0.0)<br><img src='icons/Warmth.png' alt='Warmth' width='20' height='20'> Warmth 0.0% (0.0)<br><img src='icons/Fire Ball.png' alt='Fire Ball' width='20' height='20'> Fire Ball 0.0% (0.0)<br><img src='icons/Enflame.png' alt='Enflame' width='20' height='20'> Enflame 0.0% (0.0)<br><img src='icons/Fire Mastery.png' alt='Fire Mastery' width='20' height='20'> Fire Mastery 0.0% (0.0)<br><img src='icons/Hydra.png' alt='Hydra' width='20' height='20'> Hydra 0.0% (0.0)<br><img src='icons/Telekinesis.png' alt='Telekinesis' width='20' height='20'> Telekinesis 0.0% (0.0)<br><img src='icons/Teleport.png' alt='Teleport' width='20' height='20'> Teleport 0.0% (0.0)<br><img src='icons/Ice Bolt.png' alt='Ice Bolt' width='20' height='20'> Ice Bolt 0.0% (0.0)<br><img src='icons/Frigerate.png' alt='Frigerate' width='20' height='20'> Frigerate 0.0% (0.0)<br><img src='icons/Ice Blast.png' alt='Ice Blast' width='20' height='20'> Ice Blast 0.0% (0.0)<br><img src='icons/Shiver Armor.png' alt='Shiver Armor' width='20' height='20'> Shiver Armor 0.0% (0.0)<br><img src='icons/Charged Bolt.png' alt='Charged Bolt' width='20' height='20'> Charged Bolt 0.0% (0.0)<br><img src='icons/Static Field.png' alt='Static Field' width='20' height='20'> Static Field 0.0% (0.0)<br><img src='icons/Nova.png' alt='Nova' width='20' height='20'> Nova 0.0% (0.0)<br><img src='icons/Lightning Surge.png' alt='Lightning Surge' width='20' height='20'> Lightning Surge 0.0% (0.0)<br><img src='icons/Chain Lightning.png' alt='Chain Lightning' width='20' height='20'> Chain Lightning 0.0% (0.0)<br><img src='icons/Energy Shield.png' alt='Energy Shield' width='20' height='20'> Energy Shield 0.0% (0.0)<br><img src='icons/Lightning Mastery.png' alt='Lightning Mastery' width='20' height='20'> Lightning Mastery 0.0% (0.0)<br><img src='icons/Thunder Storm.png' alt='Thunder Storm' width='20' height='20'> Thunder Storm 0.0% (0.0)</div>
-        </div>
-
-    <button class="collapsible">
-        <img src="icons/closed.png" alt="Open" class="icon">
-        <img src="icons/open.png" alt="Close" class="icon hidden">
-        <strong>Most Common Equipment:</strong></button>
-        <div class="content">
-            <div><strong>Boots</strong>: <br>War Traveler 40.00%<br>Aldur's Advance 20.00%<br>Sandstorm Trek 20.00%<br>Natalya's Soul 20.00%<br><strong>Amulet</strong>: <br>Highlord's Wrath 40.00%<br>Crescent Moon 20.00%<br>Seraph's Hymn 20.00%<br>Metalgrid 20.00%<br><strong>Belt</strong>: <br>Arachnid Mesh 40.00%<br>Nightsmoke 20.00%<br>String of Ears 20.00%<br>Verdungo's Hearty Cord 20.00%<br><strong>Helmet</strong>: <br>Harlequin Crest 40.00%<br>Andariel's Visage 20.00%<br>Dream 20.00%<br>Steel Shade 20.00%<br><strong>Gloves</strong>: <br>Laying of Hands 40.00%<br>Dracul's Grasp 20.00%<br>Soul Drainer 20.00%<br>Steelrend 20.00%<br><strong>Body</strong>: <br>Dragon 60.00%<br>Tal Rasha's Guardianship 20.00%<br>Enigma 20.00%<br><strong>Ring</strong>: <br>Raven Frost 60.00%<br>Storm Spiral 20.00%<br>Dread Eye 20.00%<br>Bul-Kathos' Wedding Band 20.00%<br>Dwarf Star 20.00%<br><strong>Left hand</strong>: <br>Hand of Justice 80.00%<br>Demon Limb 40.00%<br>Lightsabre 20.00%<br>Naj's Puzzler 20.00%<br>Dire Spell 20.00%<br><strong>Offhand</strong>: <br>Dragon 80.00%<br>Medusa's Gaze 20.00%<br>Dream 20.00%<br>Spirit 20.00%</div>
-        </div>
-    
-    <button class="collapsible">
-        <img src="icons/closed.png" alt="Open" class="icon">
-        <img src="icons/open.png" alt="Close" class="icon hidden">
-        <strong>ALL Equipment:</strong></button>
-        <div class="content">
-            <div><strong>Boots</strong>: Aldur's Advance 20.00%, Sandstorm Trek 20.00%, War Traveler 40.00%, Natalya's Soul 20.00%<br><strong>Amulet</strong>: Highlord's Wrath 40.00%, Crescent Moon 20.00%, Seraph's Hymn 20.00%, Metalgrid 20.00%<br><strong>Belt</strong>: Arachnid Mesh 40.00%, Nightsmoke 20.00%, String of Ears 20.00%, Verdungo's Hearty Cord 20.00%<br><strong>Helmet</strong>: Andariel's Visage 20.00%, Dream 20.00%, Harlequin Crest 40.00%, Steel Shade 20.00%<br><strong>Gloves</strong>: Laying of Hands 40.00%, Dracul's Grasp 20.00%, Soul Drainer 20.00%, Steelrend 20.00%<br><strong>Body</strong>: Dragon 60.00%, Tal Rasha's Guardianship 20.00%, Enigma 20.00%<br><strong>Ring</strong>: Storm Spiral 20.00%, Raven Frost 60.00%, Dread Eye 20.00%, Bul-Kathos' Wedding Band 20.00%, Dwarf Star 20.00%, Nagelring 20.00%, Shadow Gyre 20.00%, Bone Turn 20.00%<br><strong>Left hand</strong>: Demon Limb 40.00%, Hand of Justice 80.00%, Lightsabre 20.00%, Naj's Puzzler 20.00%, Dire Spell 20.00%, Spirit 20.00%<br><strong>Offhand</strong>: Medusa's Gaze 20.00%, Dragon 80.00%, Dream 20.00%, Spirit 20.00%</div>
-        </div>
-
-    <button class="collapsible">
-        <img src="icons/closed.png" alt="Open" class="icon">
-        <img src="icons/open.png" alt="Close" class="icon hidden">
-        <strong>5 Characters in this cluster:</strong></button>
-        <div class="content">
+            .collapsible {
+                background-color: #f1f1f1;
+                color: black;
+                cursor: pointer;
+                padding: 10px;
+                width: 100%;
+                border: none;
+                text-align: left;
+                outline: none;
+                font-size: 15px;
+                border-radius: 5px;
+                transition: background-color 0.3s ease, box-shadow 0.3s ease;
+                display: flex;
+                align-items: center;
+            }
+            .collapsible img.icon {
+                margin-right: 10px;
+                width: 20px;
+                height: 20px;
+            }
+            .collapsible img.icon.hidden {
+                display: none;
+            }
+            .collapsible:hover {
+                background-color: #45a049;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            }
+            .active, .collapsible:focus {
+                background-color: #45a049;
+            }
+        
+            .content {
+                padding: 0 18px;
+                display: none;
+                overflow: hidden;
+                background-color: #f9f9f9;
+            }
+            iframe {
+                width: 100%;
+                height: 600px;
+                border: none;
+            }
+        
+            .top-buttons {
+                position: fixed;
+                top: 20px;
+                left: 10px;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                margin-right: 20px;
+            }
+            .top-button {
+                background-color: #f1f1f1;
+                color: black;
+                cursor: pointer;
+                padding: 10px 15px;
+                border: none;
+                text-align: center;
+                outline: none;
+                font-size: 16px;
+                border-radius: 5px;
+                transition: background-color 0.3s ease, box-shadow 0.3s ease;
+                text-decoration: none;
+                flex: 0 0 auto;
+                margin-bottom: 10px;
+            }
+            .top-button:hover {
+                background-color: #45a049;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            }
+            .top-button.active {
+                background-color: #2E7D32; /* Different color for active state */
+            }
+        
+            .back-to-top {
+                display: none;
+                position: fixed;
+                bottom: 20px;
+                right: 30px;
+                z-index: 99;
+                border: none;
+                outline: none;
+                background-color: #4CAF50;
+                color: white;
+                cursor: pointer;
+                padding: 15px;
+                border-radius: 10px;
+                font-size: 18px;
+            }
+            .back-to-top:hover {
+                background-color: #45a049;
+            }
+        
+            .split-button {
+                display: flex;
+                justify-content: center;
+                margin-bottom: 20px;
+            }
+            .split-button-option {
+                background-color: #4CAF50;
+                color: white;
+                cursor: pointer;
+                padding: 10px 15px;
+                border: none;
+                text-align: center;
+                outline: none;
+                font-size: 16px;
+                border-radius: 0;
+                transition: background-color 0.3s ease, box-shadow 0.3s ease;
+                flex: 1;
+            }
+            .split-button-option:first-child {
+                border-top-left-radius: 5px;
+                border-bottom-left-radius: 5px;
+            }
+            .split-button-option:last-child {
+                border-top-right-radius: 5px;
+                border-bottom-right-radius: 5px;
+            }
+            .split-button-option:hover {
+                background-color: #45a049;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            }
+            .split-button-option.active {
+                background-color: #2E7D32;
+            }
             
-            <div class="character-info">
-                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=SCplebsCultofKg">SCplebsCultofKg</a></div>
-                <div>95</div>
-                <div>Placeholder</div>
+            .container {
+                display: flex;
+                justify-content: space-between;
+            }
+            .column {
+                flex: 1;
+                margin: 10px;
+            }
+            h3 {
+                color: #555;
+            }
+            ul {
+                list-style-type: none;
+                padding: 0;
+            }
+            li {
+                margin-bottom: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="top-buttons">
+            <a href="Home.html" class="top-button">Home</a>
+            <a href="Amazon.html" class="top-button">Amazon</a>
+            <a href="Assassin.html" class="top-button">Assassin</a>
+            <a href="Barbarian.html" class="top-button">Barbarian</a>
+            <a href="Druid.html" class="top-button">Druid</a>
+            <a href="Necromancer.html" class="top-button">Necromancer</a>
+            <a href="Paladin.html" class="top-button">Paladin</a>
+            <a href="Sorceress.html" class="top-button">Sorceress</a>
+            <div class="split-button">
+                <button id="SC" class="split-button-option" onclick="setActive('SC')">SC</button>
+                <button id="HC" class="split-button-option" onclick="setActive('HC')">HC</button>
             </div>
-        <p><strong>Skills:</strong> Holy Shock:20, Resist Fire:20, Resist Lightning:20, Salvation:20, Charge:8, Holy Shield:2, Smite:1, Holy Bolt:1, Blessed Hammer:1, Dashing Strike:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Sanctuary:1, Conviction:1, Prayer:1, Defiance:1, Cleansing:1, Vigor:1, Redemption:1</p>
-        <p><strong>Equipment:</strong> boots: Aldur's Advance x1, amulet: Highlord's Wrath x1, belt: Arachnid Mesh x1, helmet: Andariel's Visage x1, gloves: Laying of Hands x1, body: Dragon x1, ring: Storm Spiral x1, ring: Raven Frost x1, Left hand: Demon Limb x1, Left hand: Hand of Justice x1, Offhand: Medusa's Gaze x1, Offhand: Dragon x1</p>
-    
-            <div class="character-info">
-                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Qunt">Qunt</a></div>
-                <div>93</div>
-                <div>Placeholder</div>
-            </div>
-        <p><strong>Skills:</strong> Holy Shield:20, Conviction:20, Resist Lightning:20, Salvation:20, Charge:14, Sacrifice:1, Smite:1, Holy Bolt:1, Zeal:1, Blessed Hammer:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Sanctuary:1</p>
-        <p><strong>Equipment:</strong> helmet: Dream x1, Left hand: Demon Limb x1, Left hand: Lightsabre x1, amulet: Crescent Moon x1, ring: Raven Frost x1, ring: Dread Eye x1, belt: Nightsmoke x1, body: Tal Rasha's Guardianship x1, gloves: Dracul's Grasp x1, boots: Sandstorm Trek x1, Offhand: Dream x1</p>
-    
-            <div class="character-info">
-                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=fire-ice">fire-ice</a></div>
-                <div>91</div>
-                <div>Placeholder</div>
-            </div>
-        <p><strong>Skills:</strong> Holy Shock:20, Resist Fire:20, Resist Lightning:20, Salvation:20, Charge:13, Smite:1, Holy Bolt:1, Blessed Hammer:1, Holy Shield:1, Dashing Strike:1, Might:1, Holy Fire:1, Holy Freeze:1</p>
-        <p><strong>Equipment:</strong> gloves: Soul Drainer x1, ring: Bul-Kathos' Wedding Band x1, ring: Raven Frost x1, boots: War Traveler x1, belt: Arachnid Mesh x1, body: Enigma x1, helmet: Harlequin Crest x1, amulet: Seraph's Hymn x1, Left hand: Naj's Puzzler x1, Left hand: Hand of Justice x1, Offhand: Dragon x1</p>
-    
-            <div class="character-info">
-                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Thunderwolf">Thunderwolf</a></div>
-                <div>90</div>
-                <div>Placeholder</div>
-            </div>
-        <p><strong>Skills:</strong> Charge:20, Conviction:20, Resist Fire:20, Salvation:20, Holy Shield:12, Smite:1, Holy Bolt:1, Blessed Hammer:1, Dashing Strike:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Sanctuary:1</p>
-        <p><strong>Equipment:</strong> belt: String of Ears x1, gloves: Laying of Hands x1, body: Dragon x1, helmet: Steel Shade x1, boots: Natalya's Soul x1, Left hand: Dire Spell x1, Left hand: Hand of Justice x1, ring: Dwarf Star x1, ring: Nagelring x1, amulet: Metalgrid x1, Offhand: Dragon x1</p>
-    
-            <div class="character-info">
-                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=lol-kek">lol-kek</a></div>
-                <div>88</div>
-                <div>Placeholder</div>
-            </div>
-        <p><strong>Skills:</strong> Charge:20, Holy Freeze:20, Resist Fire:20, Salvation:20, Might:13, Smite:1, Holy Bolt:1, Blessed Hammer:1, Holy Shield:1, Dashing Strike:1, Holy Fire:1</p>
-        <p><strong>Equipment:</strong> gloves: Steelrend x1, body: Dragon x1, ring: Shadow Gyre x1, ring: Bone Turn x1, amulet: Highlord's Wrath x1, boots: War Traveler x1, helmet: Harlequin Crest x1, belt: Verdungo's Hearty Cord x1, Left hand: Spirit x1, Left hand: Hand of Justice x1, Offhand: Spirit x1, Offhand: Dragon x1</p>
-    
-    </div>
-    <hr>
-    
-    <h2>21.43%  of Charge's Main Skills:<br><img src='icons/Charge.png' alt='Charge' width='20' height='20'> Charge 100.00% (60)<br><img src='icons/Might.png' alt='Might' width='20' height='20'> Might 100.00% (60)<br><img src='icons/Vigor.png' alt='Vigor' width='20' height='20'> Vigor 100.00% (47)</h2>
-    <p><strong>Other Skills:<br></strong> <img src='icons/Salvation.png' alt='Salvation' width='20' height='20'> Salvation 100.0% (22.0)<br><img src='icons/Holy Freeze.png' alt='Holy Freeze' width='20' height='20'> Holy Freeze 33.33% (20.0)<br><img src='icons/Fanaticism.png' alt='Fanaticism' width='20' height='20'> Fanaticism 33.33% (20.0)<br><img src='icons/Holy Shield.png' alt='Holy Shield' width='20' height='20'> Holy Shield 100.0% (18.0)<br><img src='icons/Resist Cold.png' alt='Resist Cold' width='20' height='20'> Resist Cold 33.33% (6.0)<br><img src='icons/Smite.png' alt='Smite' width='20' height='20'> Smite 100.0% (3.0)</p>
-    <button class="collapsible">
-        <img src="icons/closed.png" alt="Open" class="icon">
-        <img src="icons/open.png" alt="Close" class="icon hidden">
-        <strong>All Skills</strong></button>
-        <div class="content">
-            <div><img src='icons/Charge.png' alt='Charge' width='20' height='20'> Charge 100.0% (60.0)<br><img src='icons/Might.png' alt='Might' width='20' height='20'> Might 100.0% (60.0)<br><img src='icons/Vigor.png' alt='Vigor' width='20' height='20'> Vigor 100.0% (47.0)<br><img src='icons/Salvation.png' alt='Salvation' width='20' height='20'> Salvation 100.0% (22.0)<br><img src='icons/Holy Freeze.png' alt='Holy Freeze' width='20' height='20'> Holy Freeze 33.33% (20.0)<br><img src='icons/Fanaticism.png' alt='Fanaticism' width='20' height='20'> Fanaticism 33.33% (20.0)<br><img src='icons/Holy Shield.png' alt='Holy Shield' width='20' height='20'> Holy Shield 100.0% (18.0)<br><img src='icons/Resist Cold.png' alt='Resist Cold' width='20' height='20'> Resist Cold 33.33% (6.0)<br><img src='icons/Defiance.png' alt='Defiance' width='20' height='20'> Defiance 100.0% (3.0)<br><img src='icons/Prayer.png' alt='Prayer' width='20' height='20'> Prayer 100.0% (3.0)<br><img src='icons/Blessed Hammer.png' alt='Blessed Hammer' width='20' height='20'> Blessed Hammer 100.0% (3.0)<br><img src='icons/Smite.png' alt='Smite' width='20' height='20'> Smite 100.0% (3.0)<br><img src='icons/Cleansing.png' alt='Cleansing' width='20' height='20'> Cleansing 100.0% (3.0)<br><img src='icons/Holy Bolt.png' alt='Holy Bolt' width='20' height='20'> Holy Bolt 100.0% (3.0)<br><img src='icons/Zeal.png' alt='Zeal' width='20' height='20'> Zeal 33.33% (2.0)<br><img src='icons/Holy Fire.png' alt='Holy Fire' width='20' height='20'> Holy Fire 33.33% (1.0)<br><img src='icons/Blessed Aim.png' alt='Blessed Aim' width='20' height='20'> Blessed Aim 33.33% (1.0)<br><img src='icons/Resist Lightning.png' alt='Resist Lightning' width='20' height='20'> Resist Lightning 33.33% (1.0)<br><img src='icons/Dashing Strike.png' alt='Dashing Strike' width='20' height='20'> Dashing Strike 33.33% (1.0)<br><img src='icons/Sacrifice.png' alt='Sacrifice' width='20' height='20'> Sacrifice 33.33% (1.0)<br><img src='icons/Concentration.png' alt='Concentration' width='20' height='20'> Concentration 33.33% (1.0)<br><img src='icons/Leap Slam.png' alt='Leap Slam' width='20' height='20'> Leap Slam 0.0% (0.0)<br><img src='icons/Increased Stamina.png' alt='Increased Stamina' width='20' height='20'> Increased Stamina 0.0% (0.0)<br><img src='icons/Whirling Axes.png' alt='Whirling Axes' width='20' height='20'> Whirling Axes 0.0% (0.0)<br><img src='icons/Blunt Weapon Mastery.png' alt='Blunt Weapon Mastery' width='20' height='20'> Blunt Weapon Mastery 0.0% (0.0)<br><img src='icons/Cleave.png' alt='Cleave' width='20' height='20'> Cleave 0.0% (0.0)<br><img src='icons/Double Swing.png' alt='Double Swing' width='20' height='20'> Double Swing 0.0% (0.0)<br><img src='icons/Twister.png' alt='Twister' width='20' height='20'> Twister 0.0% (0.0)<br><img src='icons/Tornado.png' alt='Tornado' width='20' height='20'> Tornado 0.0% (0.0)<br><img src='icons/Battle Orders.png' alt='Battle Orders' width='20' height='20'> Battle Orders 0.0% (0.0)<br><img src='icons/Battle Cry.png' alt='Battle Cry' width='20' height='20'> Battle Cry 0.0% (0.0)<br><img src='icons/Shout.png' alt='Shout' width='20' height='20'> Shout 0.0% (0.0)<br><img src='icons/Cyclone Armor.png' alt='Cyclone Armor' width='20' height='20'> Cyclone Armor 0.0% (0.0)<br><img src='icons/Arctic Blast.png' alt='Arctic Blast' width='20' height='20'> Arctic Blast 0.0% (0.0)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 0.0% (0.0)<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 0.0% (0.0)<br><img src='icons/Battle Command.png' alt='Battle Command' width='20' height='20'> Battle Command 0.0% (0.0)<br><img src='icons/Iron Skin.png' alt='Iron Skin' width='20' height='20'> Iron Skin 0.0% (0.0)<br><img src='icons/Hurricane.png' alt='Hurricane' width='20' height='20'> Hurricane 0.0% (0.0)<br><img src='icons/Increased Speed.png' alt='Increased Speed' width='20' height='20'> Increased Speed 0.0% (0.0)<br><img src='icons/Natural Resistance.png' alt='Natural Resistance' width='20' height='20'> Natural Resistance 0.0% (0.0)<br><img src='icons/Counter Attack.png' alt='Counter Attack' width='20' height='20'> Counter Attack 0.0% (0.0)<br><img src='icons/Howl.png' alt='Howl' width='20' height='20'> Howl 0.0% (0.0)<br><img src='icons/Taunt.png' alt='Taunt' width='20' height='20'> Taunt 0.0% (0.0)<br><img src='icons/Conviction.png' alt='Conviction' width='20' height='20'> Conviction 0.0% (0.0)<br><img src='icons/Precision.png' alt='Precision' width='20' height='20'> Precision 0.0% (0.0)<br><img src='icons/Resist Fire.png' alt='Resist Fire' width='20' height='20'> Resist Fire 0.0% (0.0)<br><img src='icons/Holy Shock.png' alt='Holy Shock' width='20' height='20'> Holy Shock 0.0% (0.0)<br><img src='icons/Sanctuary.png' alt='Sanctuary' width='20' height='20'> Sanctuary 0.0% (0.0)<br><img src='icons/Redemption.png' alt='Redemption' width='20' height='20'> Redemption 0.0% (0.0)<br><img src='icons/Fire Bolt.png' alt='Fire Bolt' width='20' height='20'> Fire Bolt 0.0% (0.0)<br><img src='icons/Warmth.png' alt='Warmth' width='20' height='20'> Warmth 0.0% (0.0)<br><img src='icons/Fire Ball.png' alt='Fire Ball' width='20' height='20'> Fire Ball 0.0% (0.0)<br><img src='icons/Enflame.png' alt='Enflame' width='20' height='20'> Enflame 0.0% (0.0)<br><img src='icons/Fire Mastery.png' alt='Fire Mastery' width='20' height='20'> Fire Mastery 0.0% (0.0)<br><img src='icons/Hydra.png' alt='Hydra' width='20' height='20'> Hydra 0.0% (0.0)<br><img src='icons/Telekinesis.png' alt='Telekinesis' width='20' height='20'> Telekinesis 0.0% (0.0)<br><img src='icons/Teleport.png' alt='Teleport' width='20' height='20'> Teleport 0.0% (0.0)<br><img src='icons/Ice Bolt.png' alt='Ice Bolt' width='20' height='20'> Ice Bolt 0.0% (0.0)<br><img src='icons/Frigerate.png' alt='Frigerate' width='20' height='20'> Frigerate 0.0% (0.0)<br><img src='icons/Ice Blast.png' alt='Ice Blast' width='20' height='20'> Ice Blast 0.0% (0.0)<br><img src='icons/Shiver Armor.png' alt='Shiver Armor' width='20' height='20'> Shiver Armor 0.0% (0.0)<br><img src='icons/Charged Bolt.png' alt='Charged Bolt' width='20' height='20'> Charged Bolt 0.0% (0.0)<br><img src='icons/Static Field.png' alt='Static Field' width='20' height='20'> Static Field 0.0% (0.0)<br><img src='icons/Nova.png' alt='Nova' width='20' height='20'> Nova 0.0% (0.0)<br><img src='icons/Lightning Surge.png' alt='Lightning Surge' width='20' height='20'> Lightning Surge 0.0% (0.0)<br><img src='icons/Chain Lightning.png' alt='Chain Lightning' width='20' height='20'> Chain Lightning 0.0% (0.0)<br><img src='icons/Energy Shield.png' alt='Energy Shield' width='20' height='20'> Energy Shield 0.0% (0.0)<br><img src='icons/Lightning Mastery.png' alt='Lightning Mastery' width='20' height='20'> Lightning Mastery 0.0% (0.0)<br><img src='icons/Thunder Storm.png' alt='Thunder Storm' width='20' height='20'> Thunder Storm 0.0% (0.0)</div>
         </div>
 
-    <button class="collapsible">
-        <img src="icons/closed.png" alt="Open" class="icon">
-        <img src="icons/open.png" alt="Close" class="icon hidden">
-        <strong>Most Common Equipment:</strong></button>
-        <div class="content">
-            <div><strong>Belt</strong>: <br>Verdungo's Hearty Cord 100.00%<br><strong>Ring</strong>: <br>Wisp Projector 33.33%<br>Grim Gyre 33.33%<br>Angelic Halo 33.33%<br>Corruption Spiral 33.33%<br>Raven Frost 33.33%<br><strong>Body</strong>: <br>Chains of Honor 33.33%<br>Fortitude 33.33%<br>Enigma 33.33%<br><strong>Boots</strong>: <br>Gore Rider 100.00%<br><strong>Gloves</strong>: <br>Steelrend 33.33%<br>Laying of Hands 33.33%<br>Dracul's Grasp 33.33%<br><strong>Amulet</strong>: <br>Metalgrid 33.33%<br>Angelic Wings 33.33%<br>Highlord's Wrath 33.33%<br><strong>Helmet</strong>: <br>Nightwing's Veil 33.33%<br>Guillaume's Face 33.33%<br>Vampire Gaze 33.33%<br><strong>Left hand</strong>: <br>Grief 66.67%<br>Demon Limb 33.33%<br>Breath of the Dying 33.33%<br>Lawbringer 33.33%<br>Silence 33.33%<br><strong>Offhand</strong>: <br>Stormshield 66.67%<br>Phoenix 66.67%<br>Spirit 33.33%</div>
-        </div>
-    
-    <button class="collapsible">
-        <img src="icons/closed.png" alt="Open" class="icon">
-        <img src="icons/open.png" alt="Close" class="icon hidden">
-        <strong>ALL Equipment:</strong></button>
-        <div class="content">
-            <div><strong>Belt</strong>: Verdungo's Hearty Cord 100.00%<br><strong>Ring</strong>: Wisp Projector 33.33%, Grim Gyre 33.33%, Angelic Halo 33.33%, Corruption Spiral 33.33%, Raven Frost 33.33%, Death Circle 33.33%<br><strong>Body</strong>: Chains of Honor 33.33%, Fortitude 33.33%, Enigma 33.33%<br><strong>Boots</strong>: Gore Rider 100.00%<br><strong>Gloves</strong>: Steelrend 33.33%, Laying of Hands 33.33%, Dracul's Grasp 33.33%<br><strong>Amulet</strong>: Metalgrid 33.33%, Angelic Wings 33.33%, Highlord's Wrath 33.33%<br><strong>Helmet</strong>: Nightwing's Veil 33.33%, Guillaume's Face 33.33%, Vampire Gaze 33.33%<br><strong>Left hand</strong>: Demon Limb 33.33%, Breath of the Dying 33.33%, Lawbringer 33.33%, Grief 66.67%, Silence 33.33%<br><strong>Offhand</strong>: Stormshield 66.67%, Spirit 33.33%, Phoenix 66.67%</div>
-        </div>
+        <h1>Charge Softcore Skill Distribution </h1>
+        <h3>This grup includes anyone with 3 or more points in Charge OR has Templars equipped</h3>
+        <p>Popular builds include:<br>35.71% of Charge's invest heavily in Salvation, Resist Fire, Charge, Resist Lightning<br>21.43% of Charge's invest heavily in Charge, Might, Vigor, Salvation<br>21.43% of Charge's invest heavily in Smite, Holy Shield, Charge, Defiance<br>14.29% of Charge's invest heavily in Fire Bolt, Warmth, Enflame, Fire Mastery<br>7.14% of Charge's invest heavily in Heart of Wolverine, Twister, Tornado, Hurricane </p>
 
-    <button class="collapsible">
-        <img src="icons/closed.png" alt="Open" class="icon">
-        <img src="icons/open.png" alt="Close" class="icon hidden">
-        <strong>3 Characters in this cluster:</strong></button>
-        <div class="content">
-            
-            <div class="character-info">
-                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Hard-Fisting">Hard-Fisting</a></div>
-                <div>92</div>
-                <div>Placeholder</div>
+        <hr>
+        
+        <h2>35.71%  of Charge's Main Skills:<br><img src='icons/Salvation.png' alt='Salvation' width='20' height='20'> Salvation 100.00% (100)<br><img src='icons/Resist Fire.png' alt='Resist Fire' width='20' height='20'> Resist Fire 80.00% (80)<br><img src='icons/Charge.png' alt='Charge' width='20' height='20'> Charge 100.00% (75)<br><img src='icons/Resist Lightning.png' alt='Resist Lightning' width='20' height='20'> Resist Lightning 60.00% (60)</h2>
+        <p><strong>Other Skills:<br></strong> <img src='icons/Conviction.png' alt='Conviction' width='20' height='20'> Conviction 60.0% (41.0)<br><img src='icons/Holy Shock.png' alt='Holy Shock' width='20' height='20'> Holy Shock 40.0% (40.0)<br><img src='icons/Holy Shield.png' alt='Holy Shield' width='20' height='20'> Holy Shield 100.0% (36.0)<br><img src='icons/Holy Freeze.png' alt='Holy Freeze' width='20' height='20'> Holy Freeze 100.0% (24.0)<br><img src='icons/Might.png' alt='Might' width='20' height='20'> Might 100.0% (17.0)<br><img src='icons/Smite.png' alt='Smite' width='20' height='20'> Smite 100.0% (5.0)</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>All Skills</strong></button>
+            <div class="content">
+                <div><img src='icons/Salvation.png' alt='Salvation' width='20' height='20'> Salvation 100.0% (100.0)<br><img src='icons/Resist Fire.png' alt='Resist Fire' width='20' height='20'> Resist Fire 80.0% (80.0)<br><img src='icons/Charge.png' alt='Charge' width='20' height='20'> Charge 100.0% (75.0)<br><img src='icons/Resist Lightning.png' alt='Resist Lightning' width='20' height='20'> Resist Lightning 60.0% (60.0)<br><img src='icons/Conviction.png' alt='Conviction' width='20' height='20'> Conviction 60.0% (41.0)<br><img src='icons/Holy Shock.png' alt='Holy Shock' width='20' height='20'> Holy Shock 40.0% (40.0)<br><img src='icons/Holy Shield.png' alt='Holy Shield' width='20' height='20'> Holy Shield 100.0% (36.0)<br><img src='icons/Holy Freeze.png' alt='Holy Freeze' width='20' height='20'> Holy Freeze 100.0% (24.0)<br><img src='icons/Might.png' alt='Might' width='20' height='20'> Might 100.0% (17.0)<br><img src='icons/Holy Fire.png' alt='Holy Fire' width='20' height='20'> Holy Fire 100.0% (5.0)<br><img src='icons/Holy Bolt.png' alt='Holy Bolt' width='20' height='20'> Holy Bolt 100.0% (5.0)<br><img src='icons/Smite.png' alt='Smite' width='20' height='20'> Smite 100.0% (5.0)<br><img src='icons/Blessed Hammer.png' alt='Blessed Hammer' width='20' height='20'> Blessed Hammer 100.0% (5.0)<br><img src='icons/Dashing Strike.png' alt='Dashing Strike' width='20' height='20'> Dashing Strike 80.0% (4.0)<br><img src='icons/Precision.png' alt='Precision' width='20' height='20'> Precision 60.0% (3.0)<br><img src='icons/Sanctuary.png' alt='Sanctuary' width='20' height='20'> Sanctuary 60.0% (3.0)<br><img src='icons/Vigor.png' alt='Vigor' width='20' height='20'> Vigor 20.0% (1.0)<br><img src='icons/Cleansing.png' alt='Cleansing' width='20' height='20'> Cleansing 20.0% (1.0)<br><img src='icons/Prayer.png' alt='Prayer' width='20' height='20'> Prayer 20.0% (1.0)<br><img src='icons/Defiance.png' alt='Defiance' width='20' height='20'> Defiance 20.0% (1.0)<br><img src='icons/Sacrifice.png' alt='Sacrifice' width='20' height='20'> Sacrifice 20.0% (1.0)<br><img src='icons/Zeal.png' alt='Zeal' width='20' height='20'> Zeal 20.0% (1.0)<br><img src='icons/Redemption.png' alt='Redemption' width='20' height='20'> Redemption 20.0% (1.0)<br><img src='icons/Hurricane.png' alt='Hurricane' width='20' height='20'> Hurricane 0.0% (0.0)<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 0.0% (0.0)<br><img src='icons/Cyclone Armor.png' alt='Cyclone Armor' width='20' height='20'> Cyclone Armor 0.0% (0.0)<br><img src='icons/Arctic Blast.png' alt='Arctic Blast' width='20' height='20'> Arctic Blast 0.0% (0.0)<br><img src='icons/Tornado.png' alt='Tornado' width='20' height='20'> Tornado 0.0% (0.0)<br><img src='icons/Twister.png' alt='Twister' width='20' height='20'> Twister 0.0% (0.0)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 0.0% (0.0)<br><img src='icons/Blessed Aim.png' alt='Blessed Aim' width='20' height='20'> Blessed Aim 0.0% (0.0)<br><img src='icons/Concentration.png' alt='Concentration' width='20' height='20'> Concentration 0.0% (0.0)<br><img src='icons/Fanaticism.png' alt='Fanaticism' width='20' height='20'> Fanaticism 0.0% (0.0)<br><img src='icons/Resist Cold.png' alt='Resist Cold' width='20' height='20'> Resist Cold 0.0% (0.0)<br><img src='icons/Fire Bolt.png' alt='Fire Bolt' width='20' height='20'> Fire Bolt 0.0% (0.0)<br><img src='icons/Warmth.png' alt='Warmth' width='20' height='20'> Warmth 0.0% (0.0)<br><img src='icons/Fire Ball.png' alt='Fire Ball' width='20' height='20'> Fire Ball 0.0% (0.0)<br><img src='icons/Enflame.png' alt='Enflame' width='20' height='20'> Enflame 0.0% (0.0)<br><img src='icons/Fire Mastery.png' alt='Fire Mastery' width='20' height='20'> Fire Mastery 0.0% (0.0)<br><img src='icons/Hydra.png' alt='Hydra' width='20' height='20'> Hydra 0.0% (0.0)<br><img src='icons/Telekinesis.png' alt='Telekinesis' width='20' height='20'> Telekinesis 0.0% (0.0)<br><img src='icons/Teleport.png' alt='Teleport' width='20' height='20'> Teleport 0.0% (0.0)<br><img src='icons/Ice Bolt.png' alt='Ice Bolt' width='20' height='20'> Ice Bolt 0.0% (0.0)<br><img src='icons/Frigerate.png' alt='Frigerate' width='20' height='20'> Frigerate 0.0% (0.0)<br><img src='icons/Ice Blast.png' alt='Ice Blast' width='20' height='20'> Ice Blast 0.0% (0.0)<br><img src='icons/Shiver Armor.png' alt='Shiver Armor' width='20' height='20'> Shiver Armor 0.0% (0.0)<br><img src='icons/Charged Bolt.png' alt='Charged Bolt' width='20' height='20'> Charged Bolt 0.0% (0.0)<br><img src='icons/Static Field.png' alt='Static Field' width='20' height='20'> Static Field 0.0% (0.0)<br><img src='icons/Nova.png' alt='Nova' width='20' height='20'> Nova 0.0% (0.0)<br><img src='icons/Lightning Surge.png' alt='Lightning Surge' width='20' height='20'> Lightning Surge 0.0% (0.0)<br><img src='icons/Chain Lightning.png' alt='Chain Lightning' width='20' height='20'> Chain Lightning 0.0% (0.0)<br><img src='icons/Energy Shield.png' alt='Energy Shield' width='20' height='20'> Energy Shield 0.0% (0.0)<br><img src='icons/Lightning Mastery.png' alt='Lightning Mastery' width='20' height='20'> Lightning Mastery 0.0% (0.0)<br><img src='icons/Thunder Storm.png' alt='Thunder Storm' width='20' height='20'> Thunder Storm 0.0% (0.0)</div>
             </div>
-        <p><strong>Skills:</strong> Charge:20, Might:20, Holy Freeze:20, Salvation:20, Vigor:7, Resist Cold:6, Smite:1, Holy Bolt:1, Blessed Hammer:1, Holy Shield:1, Dashing Strike:1, Holy Fire:1, Prayer:1, Defiance:1, Cleansing:1, Resist Lightning:1</p>
-        <p><strong>Equipment:</strong> belt: Verdungo's Hearty Cord x1, ring: Wisp Projector x1, ring: Grim Gyre x1, body: Chains of Honor x1, boots: Gore Rider x1, gloves: Steelrend x1, amulet: Metalgrid x1, helmet: Nightwing's Veil x1, Left hand: Demon Limb x1, Left hand: Breath of the Dying x1, Offhand: Stormshield x1</p>
-    
-            <div class="character-info">
-                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=jaun_pala">jaun_pala</a></div>
-                <div>91</div>
-                <div>Placeholder</div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>Most Common Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Boots</strong>: <br>War Traveler 40.00%<br>Aldur's Advance 20.00%<br>Sandstorm Trek 20.00%<br>Natalya's Soul 20.00%<br><strong>Amulet</strong>: <br>Highlord's Wrath 40.00%<br>Crescent Moon 20.00%<br>Seraph's Hymn 20.00%<br>Metalgrid 20.00%<br><strong>Belt</strong>: <br>Arachnid Mesh 40.00%<br>Nightsmoke 20.00%<br>String of Ears 20.00%<br>Verdungo's Hearty Cord 20.00%<br><strong>Helmet</strong>: <br>Harlequin Crest 40.00%<br>Andariel's Visage 20.00%<br>Dream 20.00%<br>Steel Shade 20.00%<br><strong>Gloves</strong>: <br>Laying of Hands 40.00%<br>Dracul's Grasp 20.00%<br>Soul Drainer 20.00%<br>Steelrend 20.00%<br><strong>Body</strong>: <br>Dragon 60.00%<br>Tal Rasha's Guardianship 20.00%<br>Enigma 20.00%<br><strong>Ring</strong>: <br>Raven Frost 60.00%<br>Storm Spiral 20.00%<br>Dread Eye 20.00%<br>Bul-Kathos' Wedding Band 20.00%<br>Dwarf Star 20.00%<br><strong>Left hand</strong>: <br>Hand of Justice 80.00%<br>Demon Limb 40.00%<br>Lightsabre 20.00%<br>Naj's Puzzler 20.00%<br>Dire Spell 20.00%<br><strong>Offhand</strong>: <br>Dragon 80.00%<br>Medusa's Gaze 20.00%<br>Dream 20.00%<br>Spirit 20.00%</div>
             </div>
-        <p><strong>Skills:</strong> Charge:20, Might:20, Vigor:20, Holy Shield:12, Zeal:2, Sacrifice:1, Smite:1, Holy Bolt:1, Blessed Hammer:1, Prayer:1, Defiance:1, Cleansing:1, Salvation:1</p>
-        <p><strong>Equipment:</strong> amulet: Angelic Wings x1, ring: Angelic Halo x1, ring: Corruption Spiral x1, boots: Gore Rider x1, gloves: Laying of Hands x1, body: Fortitude x1, helmet: Guillaume's Face x1, belt: Verdungo's Hearty Cord x1, Left hand: Lawbringer x1, Left hand: Grief x1, Offhand: Spirit x1, Offhand: Phoenix x1</p>
-    
-            <div class="character-info">
-                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=bridge_boy">bridge_boy</a></div>
-                <div>90</div>
-                <div>Placeholder</div>
+        
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Boots</strong>: Aldur's Advance 20.00%, Sandstorm Trek 20.00%, War Traveler 40.00%, Natalya's Soul 20.00%<br><strong>Amulet</strong>: Highlord's Wrath 40.00%, Crescent Moon 20.00%, Seraph's Hymn 20.00%, Metalgrid 20.00%<br><strong>Belt</strong>: Arachnid Mesh 40.00%, Nightsmoke 20.00%, String of Ears 20.00%, Verdungo's Hearty Cord 20.00%<br><strong>Helmet</strong>: Andariel's Visage 20.00%, Dream 20.00%, Harlequin Crest 40.00%, Steel Shade 20.00%<br><strong>Gloves</strong>: Laying of Hands 40.00%, Dracul's Grasp 20.00%, Soul Drainer 20.00%, Steelrend 20.00%<br><strong>Body</strong>: Dragon 60.00%, Tal Rasha's Guardianship 20.00%, Enigma 20.00%<br><strong>Ring</strong>: Storm Spiral 20.00%, Raven Frost 60.00%, Dread Eye 20.00%, Bul-Kathos' Wedding Band 20.00%, Dwarf Star 20.00%, Nagelring 20.00%, Shadow Gyre 20.00%, Bone Turn 20.00%<br><strong>Left hand</strong>: Demon Limb 40.00%, Hand of Justice 80.00%, Lightsabre 20.00%, Naj's Puzzler 20.00%, Dire Spell 20.00%, Spirit 20.00%<br><strong>Offhand</strong>: Medusa's Gaze 20.00%, Dragon 80.00%, Dream 20.00%, Spirit 20.00%</div>
             </div>
-        <p><strong>Skills:</strong> Charge:20, Might:20, Fanaticism:20, Vigor:20, Holy Shield:5, Smite:1, Holy Bolt:1, Blessed Hammer:1, Blessed Aim:1, Concentration:1, Prayer:1, Defiance:1, Cleansing:1, Salvation:1</p>
-        <p><strong>Equipment:</strong> boots: Gore Rider x1, belt: Verdungo's Hearty Cord x1, gloves: Dracul's Grasp x1, ring: Raven Frost x1, ring: Death Circle x1, body: Enigma x1, amulet: Highlord's Wrath x1, helmet: Vampire Gaze x1, Left hand: Silence x1, Left hand: Grief x1, Offhand: Stormshield x1, Offhand: Phoenix x1</p>
-    
-    </div>
-    <hr>
-    
-    <h2>14.29%  of Charge's Main Skills:<br><img src='icons/Smite.png' alt='Smite' width='20' height='20'> Smite 100.00% (40)<br><img src='icons/Charge.png' alt='Charge' width='20' height='20'> Charge 100.00% (40)<br><img src='icons/Holy Shield.png' alt='Holy Shield' width='20' height='20'> Holy Shield 100.00% (40)</h2>
-    <p><strong>Other Skills:<br></strong> <img src='icons/Dashing Strike.png' alt='Dashing Strike' width='20' height='20'> Dashing Strike 100.0% (40.0)<br><img src='icons/Defiance.png' alt='Defiance' width='20' height='20'> Defiance 100.0% (23.0)<br><img src='icons/Salvation.png' alt='Salvation' width='20' height='20'> Salvation 100.0% (11.0)<br><img src='icons/Holy Bolt.png' alt='Holy Bolt' width='20' height='20'> Holy Bolt 100.0% (2.0)<br><img src='icons/Blessed Hammer.png' alt='Blessed Hammer' width='20' height='20'> Blessed Hammer 100.0% (2.0)<br><img src='icons/Might.png' alt='Might' width='20' height='20'> Might 50.0% (1.0)</p>
-    <button class="collapsible">
-        <img src="icons/closed.png" alt="Open" class="icon">
-        <img src="icons/open.png" alt="Close" class="icon hidden">
-        <strong>All Skills</strong></button>
-        <div class="content">
-            <div><img src='icons/Holy Shield.png' alt='Holy Shield' width='20' height='20'> Holy Shield 100.0% (40.0)<br><img src='icons/Dashing Strike.png' alt='Dashing Strike' width='20' height='20'> Dashing Strike 100.0% (40.0)<br><img src='icons/Smite.png' alt='Smite' width='20' height='20'> Smite 100.0% (40.0)<br><img src='icons/Charge.png' alt='Charge' width='20' height='20'> Charge 100.0% (40.0)<br><img src='icons/Defiance.png' alt='Defiance' width='20' height='20'> Defiance 100.0% (23.0)<br><img src='icons/Salvation.png' alt='Salvation' width='20' height='20'> Salvation 100.0% (11.0)<br><img src='icons/Holy Bolt.png' alt='Holy Bolt' width='20' height='20'> Holy Bolt 100.0% (2.0)<br><img src='icons/Blessed Hammer.png' alt='Blessed Hammer' width='20' height='20'> Blessed Hammer 100.0% (2.0)<br><img src='icons/Redemption.png' alt='Redemption' width='20' height='20'> Redemption 50.0% (1.0)<br><img src='icons/Vigor.png' alt='Vigor' width='20' height='20'> Vigor 50.0% (1.0)<br><img src='icons/Concentration.png' alt='Concentration' width='20' height='20'> Concentration 50.0% (1.0)<br><img src='icons/Fanaticism.png' alt='Fanaticism' width='20' height='20'> Fanaticism 50.0% (1.0)<br><img src='icons/Prayer.png' alt='Prayer' width='20' height='20'> Prayer 50.0% (1.0)<br><img src='icons/Cleansing.png' alt='Cleansing' width='20' height='20'> Cleansing 50.0% (1.0)<br><img src='icons/Might.png' alt='Might' width='20' height='20'> Might 50.0% (1.0)<br><img src='icons/Resist Lightning.png' alt='Resist Lightning' width='20' height='20'> Resist Lightning 50.0% (1.0)<br><img src='icons/Blessed Aim.png' alt='Blessed Aim' width='20' height='20'> Blessed Aim 50.0% (1.0)<br><img src='icons/Whirling Axes.png' alt='Whirling Axes' width='20' height='20'> Whirling Axes 0.0% (0.0)<br><img src='icons/Double Swing.png' alt='Double Swing' width='20' height='20'> Double Swing 0.0% (0.0)<br><img src='icons/Leap Slam.png' alt='Leap Slam' width='20' height='20'> Leap Slam 0.0% (0.0)<br><img src='icons/Blunt Weapon Mastery.png' alt='Blunt Weapon Mastery' width='20' height='20'> Blunt Weapon Mastery 0.0% (0.0)<br><img src='icons/Cleave.png' alt='Cleave' width='20' height='20'> Cleave 0.0% (0.0)<br><img src='icons/Increased Stamina.png' alt='Increased Stamina' width='20' height='20'> Increased Stamina 0.0% (0.0)<br><img src='icons/Tornado.png' alt='Tornado' width='20' height='20'> Tornado 0.0% (0.0)<br><img src='icons/Cyclone Armor.png' alt='Cyclone Armor' width='20' height='20'> Cyclone Armor 0.0% (0.0)<br><img src='icons/Twister.png' alt='Twister' width='20' height='20'> Twister 0.0% (0.0)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 0.0% (0.0)<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 0.0% (0.0)<br><img src='icons/Battle Command.png' alt='Battle Command' width='20' height='20'> Battle Command 0.0% (0.0)<br><img src='icons/Battle Orders.png' alt='Battle Orders' width='20' height='20'> Battle Orders 0.0% (0.0)<br><img src='icons/Battle Cry.png' alt='Battle Cry' width='20' height='20'> Battle Cry 0.0% (0.0)<br><img src='icons/Shout.png' alt='Shout' width='20' height='20'> Shout 0.0% (0.0)<br><img src='icons/Taunt.png' alt='Taunt' width='20' height='20'> Taunt 0.0% (0.0)<br><img src='icons/Arctic Blast.png' alt='Arctic Blast' width='20' height='20'> Arctic Blast 0.0% (0.0)<br><img src='icons/Iron Skin.png' alt='Iron Skin' width='20' height='20'> Iron Skin 0.0% (0.0)<br><img src='icons/Increased Speed.png' alt='Increased Speed' width='20' height='20'> Increased Speed 0.0% (0.0)<br><img src='icons/Natural Resistance.png' alt='Natural Resistance' width='20' height='20'> Natural Resistance 0.0% (0.0)<br><img src='icons/Counter Attack.png' alt='Counter Attack' width='20' height='20'> Counter Attack 0.0% (0.0)<br><img src='icons/Holy Fire.png' alt='Holy Fire' width='20' height='20'> Holy Fire 0.0% (0.0)<br><img src='icons/Sacrifice.png' alt='Sacrifice' width='20' height='20'> Sacrifice 0.0% (0.0)<br><img src='icons/Hurricane.png' alt='Hurricane' width='20' height='20'> Hurricane 0.0% (0.0)<br><img src='icons/Zeal.png' alt='Zeal' width='20' height='20'> Zeal 0.0% (0.0)<br><img src='icons/Howl.png' alt='Howl' width='20' height='20'> Howl 0.0% (0.0)<br><img src='icons/Conviction.png' alt='Conviction' width='20' height='20'> Conviction 0.0% (0.0)<br><img src='icons/Precision.png' alt='Precision' width='20' height='20'> Precision 0.0% (0.0)<br><img src='icons/Holy Freeze.png' alt='Holy Freeze' width='20' height='20'> Holy Freeze 0.0% (0.0)<br><img src='icons/Resist Fire.png' alt='Resist Fire' width='20' height='20'> Resist Fire 0.0% (0.0)<br><img src='icons/Holy Shock.png' alt='Holy Shock' width='20' height='20'> Holy Shock 0.0% (0.0)<br><img src='icons/Sanctuary.png' alt='Sanctuary' width='20' height='20'> Sanctuary 0.0% (0.0)<br><img src='icons/Resist Cold.png' alt='Resist Cold' width='20' height='20'> Resist Cold 0.0% (0.0)<br><img src='icons/Fire Bolt.png' alt='Fire Bolt' width='20' height='20'> Fire Bolt 0.0% (0.0)<br><img src='icons/Warmth.png' alt='Warmth' width='20' height='20'> Warmth 0.0% (0.0)<br><img src='icons/Fire Ball.png' alt='Fire Ball' width='20' height='20'> Fire Ball 0.0% (0.0)<br><img src='icons/Enflame.png' alt='Enflame' width='20' height='20'> Enflame 0.0% (0.0)<br><img src='icons/Fire Mastery.png' alt='Fire Mastery' width='20' height='20'> Fire Mastery 0.0% (0.0)<br><img src='icons/Hydra.png' alt='Hydra' width='20' height='20'> Hydra 0.0% (0.0)<br><img src='icons/Telekinesis.png' alt='Telekinesis' width='20' height='20'> Telekinesis 0.0% (0.0)<br><img src='icons/Teleport.png' alt='Teleport' width='20' height='20'> Teleport 0.0% (0.0)<br><img src='icons/Ice Bolt.png' alt='Ice Bolt' width='20' height='20'> Ice Bolt 0.0% (0.0)<br><img src='icons/Frigerate.png' alt='Frigerate' width='20' height='20'> Frigerate 0.0% (0.0)<br><img src='icons/Ice Blast.png' alt='Ice Blast' width='20' height='20'> Ice Blast 0.0% (0.0)<br><img src='icons/Shiver Armor.png' alt='Shiver Armor' width='20' height='20'> Shiver Armor 0.0% (0.0)<br><img src='icons/Charged Bolt.png' alt='Charged Bolt' width='20' height='20'> Charged Bolt 0.0% (0.0)<br><img src='icons/Static Field.png' alt='Static Field' width='20' height='20'> Static Field 0.0% (0.0)<br><img src='icons/Nova.png' alt='Nova' width='20' height='20'> Nova 0.0% (0.0)<br><img src='icons/Lightning Surge.png' alt='Lightning Surge' width='20' height='20'> Lightning Surge 0.0% (0.0)<br><img src='icons/Chain Lightning.png' alt='Chain Lightning' width='20' height='20'> Chain Lightning 0.0% (0.0)<br><img src='icons/Energy Shield.png' alt='Energy Shield' width='20' height='20'> Energy Shield 0.0% (0.0)<br><img src='icons/Lightning Mastery.png' alt='Lightning Mastery' width='20' height='20'> Lightning Mastery 0.0% (0.0)<br><img src='icons/Thunder Storm.png' alt='Thunder Storm' width='20' height='20'> Thunder Storm 0.0% (0.0)</div>
-        </div>
 
-    <button class="collapsible">
-        <img src="icons/closed.png" alt="Open" class="icon">
-        <img src="icons/open.png" alt="Close" class="icon hidden">
-        <strong>Most Common Equipment:</strong></button>
-        <div class="content">
-            <div><strong>Helmet</strong>: <br>Ondal's Almighty 50.00%<br>Guillaume's Face 50.00%<br><strong>Ring</strong>: <br>The Stone of Jordan 50.00%<br>Raven Finger 50.00%<br>Raven Frost 50.00%<br><strong>Body</strong>: <br>Tyrael's Might 50.00%<br>Dragon 50.00%<br><strong>Boots</strong>: <br>War Traveler 50.00%<br>Gore Rider 50.00%<br><strong>Amulet</strong>: <br>Rose Branded Amulet of the Wraith 50.00%<br><strong>Belt</strong>: <br>Goldwrap 50.00%<br>Thundergod's Vigor 50.00%<br><strong>Gloves</strong>: <br>Fiendra Hold 50.00%<br>Dracul's Grasp 50.00%<br><strong>Left hand</strong>: <br>Astreon's Iron Ward 50.00%<br>Holy Thunder 50.00%<br>Fleshripper 50.00%<br><strong>Offhand</strong>: <br>Spirit 100.00%<br>Alma Negra 50.00%<br>Dragon 50.00%</div>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>5 Characters in this cluster:</strong></button>
+            <div class="content">
+                
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=SCplebsCultofKg">SCplebsCultofKg</a></div>
+                    <div>95</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Shock:20, Resist Fire:20, Resist Lightning:20, Salvation:20, Charge:8, Holy Shield:2, Smite:1, Holy Bolt:1, Blessed Hammer:1, Dashing Strike:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Sanctuary:1, Conviction:1, Prayer:1, Defiance:1, Cleansing:1, Vigor:1, Redemption:1</p>
+            <p><strong>Equipment:</strong> boots: Aldur's Advance x1, amulet: Highlord's Wrath x1, belt: Arachnid Mesh x1, helmet: Andariel's Visage x1, gloves: Laying of Hands x1, body: Dragon x1, ring: Storm Spiral x1, ring: Raven Frost x1, Left hand: Demon Limb x1, Left hand: Hand of Justice x1, Offhand: Medusa's Gaze x1, Offhand: Dragon x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Qunt">Qunt</a></div>
+                    <div>93</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Shield:20, Conviction:20, Resist Lightning:20, Salvation:20, Charge:14, Sacrifice:1, Smite:1, Holy Bolt:1, Zeal:1, Blessed Hammer:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Sanctuary:1</p>
+            <p><strong>Equipment:</strong> helmet: Dream x1, Left hand: Demon Limb x1, Left hand: Lightsabre x1, amulet: Crescent Moon x1, ring: Raven Frost x1, ring: Dread Eye x1, belt: Nightsmoke x1, body: Tal Rasha's Guardianship x1, gloves: Dracul's Grasp x1, boots: Sandstorm Trek x1, Offhand: Dream x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=fire-ice">fire-ice</a></div>
+                    <div>91</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Holy Shock:20, Resist Fire:20, Resist Lightning:20, Salvation:20, Charge:13, Smite:1, Holy Bolt:1, Blessed Hammer:1, Holy Shield:1, Dashing Strike:1, Might:1, Holy Fire:1, Holy Freeze:1</p>
+            <p><strong>Equipment:</strong> gloves: Soul Drainer x1, ring: Bul-Kathos' Wedding Band x1, ring: Raven Frost x1, boots: War Traveler x1, belt: Arachnid Mesh x1, body: Enigma x1, helmet: Harlequin Crest x1, amulet: Seraph's Hymn x1, Left hand: Naj's Puzzler x1, Left hand: Hand of Justice x1, Offhand: Dragon x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Thunderwolf">Thunderwolf</a></div>
+                    <div>90</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Charge:20, Conviction:20, Resist Fire:20, Salvation:20, Holy Shield:12, Smite:1, Holy Bolt:1, Blessed Hammer:1, Dashing Strike:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Sanctuary:1</p>
+            <p><strong>Equipment:</strong> belt: String of Ears x1, gloves: Laying of Hands x1, body: Dragon x1, helmet: Steel Shade x1, boots: Natalya's Soul x1, Left hand: Dire Spell x1, Left hand: Hand of Justice x1, ring: Dwarf Star x1, ring: Nagelring x1, amulet: Metalgrid x1, Offhand: Dragon x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=lol-kek">lol-kek</a></div>
+                    <div>88</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Charge:20, Holy Freeze:20, Resist Fire:20, Salvation:20, Might:13, Smite:1, Holy Bolt:1, Blessed Hammer:1, Holy Shield:1, Dashing Strike:1, Holy Fire:1</p>
+            <p><strong>Equipment:</strong> gloves: Steelrend x1, body: Dragon x1, ring: Shadow Gyre x1, ring: Bone Turn x1, amulet: Highlord's Wrath x1, boots: War Traveler x1, helmet: Harlequin Crest x1, belt: Verdungo's Hearty Cord x1, Left hand: Spirit x1, Left hand: Hand of Justice x1, Offhand: Spirit x1, Offhand: Dragon x1</p>
+        
         </div>
-    
-    <button class="collapsible">
-        <img src="icons/closed.png" alt="Open" class="icon">
-        <img src="icons/open.png" alt="Close" class="icon hidden">
-        <strong>ALL Equipment:</strong></button>
-        <div class="content">
-            <div><strong>Helmet</strong>: Ondal's Almighty 50.00%, Guillaume's Face 50.00%<br><strong>Ring</strong>: The Stone of Jordan 50.00%, Raven Finger 50.00%, Raven Frost 50.00%<br><strong>Body</strong>: Tyrael's Might 50.00%, Dragon 50.00%<br><strong>Boots</strong>: War Traveler 50.00%, Gore Rider 50.00%<br><strong>Amulet</strong>: Rose Branded Amulet of the Wraith 50.00%<br><strong>Belt</strong>: Goldwrap 50.00%, Thundergod's Vigor 50.00%<br><strong>Gloves</strong>: Fiendra Hold 50.00%, Dracul's Grasp 50.00%<br><strong>Left hand</strong>: Astreon's Iron Ward 50.00%, Holy Thunder 50.00%, Fleshripper 50.00%<br><strong>Offhand</strong>: Alma Negra 50.00%, Spirit 100.00%, Dragon 50.00%</div>
-        </div>
-
-    <button class="collapsible">
-        <img src="icons/closed.png" alt="Open" class="icon">
-        <img src="icons/open.png" alt="Close" class="icon hidden">
-        <strong>2 Characters in this cluster:</strong></button>
-        <div class="content">
-            
-            <div class="character-info">
-                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=TOTALLY_AFK">TOTALLY_AFK</a></div>
-                <div>93</div>
-                <div>Placeholder</div>
+        <hr>
+        
+        <h2>21.43%  of Charge's Main Skills:<br><img src='icons/Charge.png' alt='Charge' width='20' height='20'> Charge 100.00% (60)<br><img src='icons/Might.png' alt='Might' width='20' height='20'> Might 100.00% (60)<br><img src='icons/Vigor.png' alt='Vigor' width='20' height='20'> Vigor 100.00% (47)<br><img src='icons/Salvation.png' alt='Salvation' width='20' height='20'> Salvation 100.00% (21)</h2>
+        <p><strong>Other Skills:<br></strong> <img src='icons/Holy Freeze.png' alt='Holy Freeze' width='20' height='20'> Holy Freeze 33.33% (20.0)<br><img src='icons/Fanaticism.png' alt='Fanaticism' width='20' height='20'> Fanaticism 33.33% (20.0)<br><img src='icons/Holy Shield.png' alt='Holy Shield' width='20' height='20'> Holy Shield 100.0% (18.0)<br><img src='icons/Resist Cold.png' alt='Resist Cold' width='20' height='20'> Resist Cold 33.33% (6.0)<br><img src='icons/Smite.png' alt='Smite' width='20' height='20'> Smite 100.0% (3.0)<br><img src='icons/Holy Bolt.png' alt='Holy Bolt' width='20' height='20'> Holy Bolt 100.0% (3.0)</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>All Skills</strong></button>
+            <div class="content">
+                <div><img src='icons/Might.png' alt='Might' width='20' height='20'> Might 100.0% (60.0)<br><img src='icons/Charge.png' alt='Charge' width='20' height='20'> Charge 100.0% (60.0)<br><img src='icons/Vigor.png' alt='Vigor' width='20' height='20'> Vigor 100.0% (47.0)<br><img src='icons/Salvation.png' alt='Salvation' width='20' height='20'> Salvation 100.0% (22.0)<br><img src='icons/Fanaticism.png' alt='Fanaticism' width='20' height='20'> Fanaticism 33.33% (20.0)<br><img src='icons/Holy Freeze.png' alt='Holy Freeze' width='20' height='20'> Holy Freeze 33.33% (20.0)<br><img src='icons/Holy Shield.png' alt='Holy Shield' width='20' height='20'> Holy Shield 100.0% (18.0)<br><img src='icons/Resist Cold.png' alt='Resist Cold' width='20' height='20'> Resist Cold 33.33% (6.0)<br><img src='icons/Cleansing.png' alt='Cleansing' width='20' height='20'> Cleansing 100.0% (3.0)<br><img src='icons/Smite.png' alt='Smite' width='20' height='20'> Smite 100.0% (3.0)<br><img src='icons/Holy Bolt.png' alt='Holy Bolt' width='20' height='20'> Holy Bolt 100.0% (3.0)<br><img src='icons/Defiance.png' alt='Defiance' width='20' height='20'> Defiance 100.0% (3.0)<br><img src='icons/Prayer.png' alt='Prayer' width='20' height='20'> Prayer 100.0% (3.0)<br><img src='icons/Blessed Hammer.png' alt='Blessed Hammer' width='20' height='20'> Blessed Hammer 100.0% (3.0)<br><img src='icons/Zeal.png' alt='Zeal' width='20' height='20'> Zeal 33.33% (2.0)<br><img src='icons/Holy Fire.png' alt='Holy Fire' width='20' height='20'> Holy Fire 33.33% (1.0)<br><img src='icons/Concentration.png' alt='Concentration' width='20' height='20'> Concentration 33.33% (1.0)<br><img src='icons/Resist Lightning.png' alt='Resist Lightning' width='20' height='20'> Resist Lightning 33.33% (1.0)<br><img src='icons/Blessed Aim.png' alt='Blessed Aim' width='20' height='20'> Blessed Aim 33.33% (1.0)<br><img src='icons/Sacrifice.png' alt='Sacrifice' width='20' height='20'> Sacrifice 33.33% (1.0)<br><img src='icons/Dashing Strike.png' alt='Dashing Strike' width='20' height='20'> Dashing Strike 33.33% (1.0)<br><img src='icons/Twister.png' alt='Twister' width='20' height='20'> Twister 0.0% (0.0)<br><img src='icons/Hurricane.png' alt='Hurricane' width='20' height='20'> Hurricane 0.0% (0.0)<br><img src='icons/Cyclone Armor.png' alt='Cyclone Armor' width='20' height='20'> Cyclone Armor 0.0% (0.0)<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 0.0% (0.0)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 0.0% (0.0)<br><img src='icons/Arctic Blast.png' alt='Arctic Blast' width='20' height='20'> Arctic Blast 0.0% (0.0)<br><img src='icons/Tornado.png' alt='Tornado' width='20' height='20'> Tornado 0.0% (0.0)<br><img src='icons/Conviction.png' alt='Conviction' width='20' height='20'> Conviction 0.0% (0.0)<br><img src='icons/Precision.png' alt='Precision' width='20' height='20'> Precision 0.0% (0.0)<br><img src='icons/Resist Fire.png' alt='Resist Fire' width='20' height='20'> Resist Fire 0.0% (0.0)<br><img src='icons/Holy Shock.png' alt='Holy Shock' width='20' height='20'> Holy Shock 0.0% (0.0)<br><img src='icons/Sanctuary.png' alt='Sanctuary' width='20' height='20'> Sanctuary 0.0% (0.0)<br><img src='icons/Redemption.png' alt='Redemption' width='20' height='20'> Redemption 0.0% (0.0)<br><img src='icons/Fire Bolt.png' alt='Fire Bolt' width='20' height='20'> Fire Bolt 0.0% (0.0)<br><img src='icons/Warmth.png' alt='Warmth' width='20' height='20'> Warmth 0.0% (0.0)<br><img src='icons/Fire Ball.png' alt='Fire Ball' width='20' height='20'> Fire Ball 0.0% (0.0)<br><img src='icons/Enflame.png' alt='Enflame' width='20' height='20'> Enflame 0.0% (0.0)<br><img src='icons/Fire Mastery.png' alt='Fire Mastery' width='20' height='20'> Fire Mastery 0.0% (0.0)<br><img src='icons/Hydra.png' alt='Hydra' width='20' height='20'> Hydra 0.0% (0.0)<br><img src='icons/Telekinesis.png' alt='Telekinesis' width='20' height='20'> Telekinesis 0.0% (0.0)<br><img src='icons/Teleport.png' alt='Teleport' width='20' height='20'> Teleport 0.0% (0.0)<br><img src='icons/Ice Bolt.png' alt='Ice Bolt' width='20' height='20'> Ice Bolt 0.0% (0.0)<br><img src='icons/Frigerate.png' alt='Frigerate' width='20' height='20'> Frigerate 0.0% (0.0)<br><img src='icons/Ice Blast.png' alt='Ice Blast' width='20' height='20'> Ice Blast 0.0% (0.0)<br><img src='icons/Shiver Armor.png' alt='Shiver Armor' width='20' height='20'> Shiver Armor 0.0% (0.0)<br><img src='icons/Charged Bolt.png' alt='Charged Bolt' width='20' height='20'> Charged Bolt 0.0% (0.0)<br><img src='icons/Static Field.png' alt='Static Field' width='20' height='20'> Static Field 0.0% (0.0)<br><img src='icons/Nova.png' alt='Nova' width='20' height='20'> Nova 0.0% (0.0)<br><img src='icons/Lightning Surge.png' alt='Lightning Surge' width='20' height='20'> Lightning Surge 0.0% (0.0)<br><img src='icons/Chain Lightning.png' alt='Chain Lightning' width='20' height='20'> Chain Lightning 0.0% (0.0)<br><img src='icons/Energy Shield.png' alt='Energy Shield' width='20' height='20'> Energy Shield 0.0% (0.0)<br><img src='icons/Lightning Mastery.png' alt='Lightning Mastery' width='20' height='20'> Lightning Mastery 0.0% (0.0)<br><img src='icons/Thunder Storm.png' alt='Thunder Storm' width='20' height='20'> Thunder Storm 0.0% (0.0)</div>
             </div>
-        <p><strong>Skills:</strong> Smite:20, Charge:20, Holy Shield:20, Dashing Strike:20, Defiance:15, Salvation:6, Holy Bolt:1, Blessed Hammer:1, Resist Lightning:1</p>
-        <p><strong>Equipment:</strong> helmet: Ondal's Almighty x1, ring: The Stone of Jordan x1, ring: Raven Finger x1, body: Tyrael's Might x1, boots: War Traveler x1, amulet: Rose Branded Amulet of the Wraith x1, belt: Goldwrap x1, gloves: Fiendra Hold x1, Left hand: Astreon's Iron Ward x1, Left hand: Holy Thunder x1, Offhand: Alma Negra x1, Offhand: Spirit x1</p>
-    
-            <div class="character-info">
-                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Diffex">Diffex</a></div>
-                <div>92</div>
-                <div>Placeholder</div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>Most Common Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Belt</strong>: <br>Verdungo's Hearty Cord 100.00%<br><strong>Ring</strong>: <br>Wisp Projector 33.33%<br>Grim Gyre 33.33%<br>Angelic Halo 33.33%<br>Corruption Spiral 33.33%<br>Raven Frost 33.33%<br><strong>Body</strong>: <br>Chains of Honor 33.33%<br>Fortitude 33.33%<br>Enigma 33.33%<br><strong>Boots</strong>: <br>Gore Rider 100.00%<br><strong>Gloves</strong>: <br>Steelrend 33.33%<br>Laying of Hands 33.33%<br>Dracul's Grasp 33.33%<br><strong>Amulet</strong>: <br>Metalgrid 33.33%<br>Angelic Wings 33.33%<br>Highlord's Wrath 33.33%<br><strong>Helmet</strong>: <br>Nightwing's Veil 33.33%<br>Guillaume's Face 33.33%<br>Vampire Gaze 33.33%<br><strong>Left hand</strong>: <br>Grief 66.67%<br>Demon Limb 33.33%<br>Breath of the Dying 33.33%<br>Lawbringer 33.33%<br>Silence 33.33%<br><strong>Offhand</strong>: <br>Stormshield 66.67%<br>Phoenix 66.67%<br>Spirit 33.33%</div>
             </div>
-        <p><strong>Skills:</strong> Smite:20, Charge:20, Holy Shield:20, Dashing Strike:20, Defiance:8, Salvation:5, Holy Bolt:1, Blessed Hammer:1, Might:1, Blessed Aim:1, Concentration:1, Fanaticism:1, Prayer:1, Cleansing:1, Vigor:1, Redemption:1</p>
-        <p><strong>Equipment:</strong> Offhand: Spirit x1, Offhand: Dragon x1, boots: Gore Rider x1, body: Dragon x1, ring: Raven Frost x1, gloves: Dracul's Grasp x1, belt: Thundergod's Vigor x1, helmet: Guillaume's Face x1, Left hand: Fleshripper x1</p>
-    
-    </div>
-    <hr>
-    
-    <h2>14.29%  of Charge's Main Skills:<br><img src='icons/Fire Bolt.png' alt='Fire Bolt' width='20' height='20'> Fire Bolt 100.00% (21)<br><img src='icons/Warmth.png' alt='Warmth' width='20' height='20'> Warmth 100.00% (21)<br><img src='icons/Enflame.png' alt='Enflame' width='20' height='20'> Enflame 100.00% (21)</h2>
-    <p><strong>Other Skills:<br></strong> <img src='icons/Fire Mastery.png' alt='Fire Mastery' width='20' height='20'> Fire Mastery 100.0% (21.0)<br><img src='icons/Telekinesis.png' alt='Telekinesis' width='20' height='20'> Telekinesis 100.0% (21.0)<br><img src='icons/Teleport.png' alt='Teleport' width='20' height='20'> Teleport 100.0% (21.0)<br><img src='icons/Lightning Mastery.png' alt='Lightning Mastery' width='20' height='20'> Lightning Mastery 50.0% (20.0)<br><img src='icons/Thunder Storm.png' alt='Thunder Storm' width='20' height='20'> Thunder Storm 50.0% (20.0)<br><img src='icons/Nova.png' alt='Nova' width='20' height='20'> Nova 50.0% (10.0)</p>
-    <button class="collapsible">
-        <img src="icons/closed.png" alt="Open" class="icon">
-        <img src="icons/open.png" alt="Close" class="icon hidden">
-        <strong>All Skills</strong></button>
-        <div class="content">
-            <div><img src='icons/Enflame.png' alt='Enflame' width='20' height='20'> Enflame 100.0% (21.0)<br><img src='icons/Fire Bolt.png' alt='Fire Bolt' width='20' height='20'> Fire Bolt 100.0% (21.0)<br><img src='icons/Telekinesis.png' alt='Telekinesis' width='20' height='20'> Telekinesis 100.0% (21.0)<br><img src='icons/Teleport.png' alt='Teleport' width='20' height='20'> Teleport 100.0% (21.0)<br><img src='icons/Warmth.png' alt='Warmth' width='20' height='20'> Warmth 100.0% (21.0)<br><img src='icons/Fire Mastery.png' alt='Fire Mastery' width='20' height='20'> Fire Mastery 100.0% (21.0)<br><img src='icons/Thunder Storm.png' alt='Thunder Storm' width='20' height='20'> Thunder Storm 50.0% (20.0)<br><img src='icons/Lightning Mastery.png' alt='Lightning Mastery' width='20' height='20'> Lightning Mastery 50.0% (20.0)<br><img src='icons/Nova.png' alt='Nova' width='20' height='20'> Nova 50.0% (10.0)<br><img src='icons/Frigerate.png' alt='Frigerate' width='20' height='20'> Frigerate 100.0% (4.0)<br><img src='icons/Fire Ball.png' alt='Fire Ball' width='20' height='20'> Fire Ball 100.0% (2.0)<br><img src='icons/Shiver Armor.png' alt='Shiver Armor' width='20' height='20'> Shiver Armor 50.0% (2.0)<br><img src='icons/Ice Blast.png' alt='Ice Blast' width='20' height='20'> Ice Blast 50.0% (1.0)<br><img src='icons/Ice Bolt.png' alt='Ice Bolt' width='20' height='20'> Ice Bolt 50.0% (1.0)<br><img src='icons/Chain Lightning.png' alt='Chain Lightning' width='20' height='20'> Chain Lightning 50.0% (1.0)<br><img src='icons/Energy Shield.png' alt='Energy Shield' width='20' height='20'> Energy Shield 50.0% (1.0)<br><img src='icons/Static Field.png' alt='Static Field' width='20' height='20'> Static Field 50.0% (1.0)<br><img src='icons/Lightning Surge.png' alt='Lightning Surge' width='20' height='20'> Lightning Surge 50.0% (1.0)<br><img src='icons/Hydra.png' alt='Hydra' width='20' height='20'> Hydra 50.0% (1.0)<br><img src='icons/Charged Bolt.png' alt='Charged Bolt' width='20' height='20'> Charged Bolt 50.0% (1.0)<br><img src='icons/Double Swing.png' alt='Double Swing' width='20' height='20'> Double Swing 0.0% (0.0)<br><img src='icons/Leap Slam.png' alt='Leap Slam' width='20' height='20'> Leap Slam 0.0% (0.0)<br><img src='icons/Increased Stamina.png' alt='Increased Stamina' width='20' height='20'> Increased Stamina 0.0% (0.0)<br><img src='icons/Whirling Axes.png' alt='Whirling Axes' width='20' height='20'> Whirling Axes 0.0% (0.0)<br><img src='icons/Blunt Weapon Mastery.png' alt='Blunt Weapon Mastery' width='20' height='20'> Blunt Weapon Mastery 0.0% (0.0)<br><img src='icons/Cleave.png' alt='Cleave' width='20' height='20'> Cleave 0.0% (0.0)<br><img src='icons/Iron Skin.png' alt='Iron Skin' width='20' height='20'> Iron Skin 0.0% (0.0)<br><img src='icons/Increased Speed.png' alt='Increased Speed' width='20' height='20'> Increased Speed 0.0% (0.0)<br><img src='icons/Natural Resistance.png' alt='Natural Resistance' width='20' height='20'> Natural Resistance 0.0% (0.0)<br><img src='icons/Counter Attack.png' alt='Counter Attack' width='20' height='20'> Counter Attack 0.0% (0.0)<br><img src='icons/Battle Orders.png' alt='Battle Orders' width='20' height='20'> Battle Orders 0.0% (0.0)<br><img src='icons/Battle Command.png' alt='Battle Command' width='20' height='20'> Battle Command 0.0% (0.0)<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 0.0% (0.0)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 0.0% (0.0)<br><img src='icons/Howl.png' alt='Howl' width='20' height='20'> Howl 0.0% (0.0)<br><img src='icons/Taunt.png' alt='Taunt' width='20' height='20'> Taunt 0.0% (0.0)<br><img src='icons/Shout.png' alt='Shout' width='20' height='20'> Shout 0.0% (0.0)<br><img src='icons/Battle Cry.png' alt='Battle Cry' width='20' height='20'> Battle Cry 0.0% (0.0)<br><img src='icons/Holy Fire.png' alt='Holy Fire' width='20' height='20'> Holy Fire 0.0% (0.0)<br><img src='icons/Dashing Strike.png' alt='Dashing Strike' width='20' height='20'> Dashing Strike 0.0% (0.0)<br><img src='icons/Salvation.png' alt='Salvation' width='20' height='20'> Salvation 0.0% (0.0)<br><img src='icons/Vigor.png' alt='Vigor' width='20' height='20'> Vigor 0.0% (0.0)<br><img src='icons/Cleansing.png' alt='Cleansing' width='20' height='20'> Cleansing 0.0% (0.0)<br><img src='icons/Defiance.png' alt='Defiance' width='20' height='20'> Defiance 0.0% (0.0)<br><img src='icons/Prayer.png' alt='Prayer' width='20' height='20'> Prayer 0.0% (0.0)<br><img src='icons/Might.png' alt='Might' width='20' height='20'> Might 0.0% (0.0)<br><img src='icons/Holy Shield.png' alt='Holy Shield' width='20' height='20'> Holy Shield 0.0% (0.0)<br><img src='icons/Blessed Hammer.png' alt='Blessed Hammer' width='20' height='20'> Blessed Hammer 0.0% (0.0)<br><img src='icons/Charge.png' alt='Charge' width='20' height='20'> Charge 0.0% (0.0)<br><img src='icons/Zeal.png' alt='Zeal' width='20' height='20'> Zeal 0.0% (0.0)<br><img src='icons/Holy Bolt.png' alt='Holy Bolt' width='20' height='20'> Holy Bolt 0.0% (0.0)<br><img src='icons/Smite.png' alt='Smite' width='20' height='20'> Smite 0.0% (0.0)<br><img src='icons/Sacrifice.png' alt='Sacrifice' width='20' height='20'> Sacrifice 0.0% (0.0)<br><img src='icons/Hurricane.png' alt='Hurricane' width='20' height='20'> Hurricane 0.0% (0.0)<br><img src='icons/Tornado.png' alt='Tornado' width='20' height='20'> Tornado 0.0% (0.0)<br><img src='icons/Twister.png' alt='Twister' width='20' height='20'> Twister 0.0% (0.0)<br><img src='icons/Cyclone Armor.png' alt='Cyclone Armor' width='20' height='20'> Cyclone Armor 0.0% (0.0)<br><img src='icons/Arctic Blast.png' alt='Arctic Blast' width='20' height='20'> Arctic Blast 0.0% (0.0)<br><img src='icons/Concentration.png' alt='Concentration' width='20' height='20'> Concentration 0.0% (0.0)<br><img src='icons/Fanaticism.png' alt='Fanaticism' width='20' height='20'> Fanaticism 0.0% (0.0)<br><img src='icons/Redemption.png' alt='Redemption' width='20' height='20'> Redemption 0.0% (0.0)<br><img src='icons/Resist Cold.png' alt='Resist Cold' width='20' height='20'> Resist Cold 0.0% (0.0)<br><img src='icons/Conviction.png' alt='Conviction' width='20' height='20'> Conviction 0.0% (0.0)<br><img src='icons/Sanctuary.png' alt='Sanctuary' width='20' height='20'> Sanctuary 0.0% (0.0)<br><img src='icons/Holy Freeze.png' alt='Holy Freeze' width='20' height='20'> Holy Freeze 0.0% (0.0)<br><img src='icons/Precision.png' alt='Precision' width='20' height='20'> Precision 0.0% (0.0)<br><img src='icons/Resist Fire.png' alt='Resist Fire' width='20' height='20'> Resist Fire 0.0% (0.0)<br><img src='icons/Holy Shock.png' alt='Holy Shock' width='20' height='20'> Holy Shock 0.0% (0.0)<br><img src='icons/Resist Lightning.png' alt='Resist Lightning' width='20' height='20'> Resist Lightning 0.0% (0.0)<br><img src='icons/Blessed Aim.png' alt='Blessed Aim' width='20' height='20'> Blessed Aim 0.0% (0.0)</div>
-        </div>
-
-    <button class="collapsible">
-        <img src="icons/closed.png" alt="Open" class="icon">
-        <img src="icons/open.png" alt="Close" class="icon hidden">
-        <strong>Most Common Equipment:</strong></button>
-        <div class="content">
-            <div><strong>Boots</strong>: <br>Rune Blazer 50.00%<br>War Traveler 50.00%<br><strong>Gloves</strong>: <br>Magefist 50.00%<br>Frostburn 50.00%<br><strong>Amulet</strong>: <br>Mara's Kaleidoscope 100.00%<br><strong>Ring</strong>: <br>Rune Touch 50.00%<br>Blood Grip 50.00%<br>The Stone of Jordan 50.00%<br>Wisp Projector 50.00%<br><strong>Body</strong>: <br>Templar's Might 100.00%<br><strong>Belt</strong>: <br>Arachnid Mesh 50.00%<br>Verdungo's Hearty Cord 50.00%<br><strong>Helmet</strong>: <br>Andariel's Visage 50.00%<br>Griffon's Eye 50.00%<br><strong>Left hand</strong>: <br>Call to Arms 50.00%<br>Hexfire 50.00%<br>Bone Wand of Lower Resistance 50.00%<br>Dangoon's Teaching 50.00%<br><strong>Offhand</strong>: <br>Phoenix 100.00%<br>Spirit 50.00%</div>
-        </div>
-    
-    <button class="collapsible">
-        <img src="icons/closed.png" alt="Open" class="icon">
-        <img src="icons/open.png" alt="Close" class="icon hidden">
-        <strong>ALL Equipment:</strong></button>
-        <div class="content">
-            <div><strong>Boots</strong>: Rune Blazer 50.00%, War Traveler 50.00%<br><strong>Gloves</strong>: Magefist 50.00%, Frostburn 50.00%<br><strong>Amulet</strong>: Mara's Kaleidoscope 100.00%<br><strong>Ring</strong>: Rune Touch 50.00%, Blood Grip 50.00%, The Stone of Jordan 50.00%, Wisp Projector 50.00%<br><strong>Body</strong>: Templar's Might 100.00%<br><strong>Belt</strong>: Arachnid Mesh 50.00%, Verdungo's Hearty Cord 50.00%<br><strong>Helmet</strong>: Andariel's Visage 50.00%, Griffon's Eye 50.00%<br><strong>Left hand</strong>: Call to Arms 50.00%, Hexfire 50.00%, Bone Wand of Lower Resistance 50.00%, Dangoon's Teaching 50.00%<br><strong>Offhand</strong>: Spirit 50.00%, Phoenix 100.00%</div>
-        </div>
-
-    <button class="collapsible">
-        <img src="icons/closed.png" alt="Open" class="icon">
-        <img src="icons/open.png" alt="Close" class="icon hidden">
-        <strong>2 Characters in this cluster:</strong></button>
-        <div class="content">
-            
-            <div class="character-info">
-                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=TopMissileClass">TopMissileClass</a></div>
-                <div>91</div>
-                <div>Placeholder</div>
+        
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Belt</strong>: Verdungo's Hearty Cord 100.00%<br><strong>Ring</strong>: Wisp Projector 33.33%, Grim Gyre 33.33%, Angelic Halo 33.33%, Corruption Spiral 33.33%, Raven Frost 33.33%, Death Circle 33.33%<br><strong>Body</strong>: Chains of Honor 33.33%, Fortitude 33.33%, Enigma 33.33%<br><strong>Boots</strong>: Gore Rider 100.00%<br><strong>Gloves</strong>: Steelrend 33.33%, Laying of Hands 33.33%, Dracul's Grasp 33.33%<br><strong>Amulet</strong>: Metalgrid 33.33%, Angelic Wings 33.33%, Highlord's Wrath 33.33%<br><strong>Helmet</strong>: Nightwing's Veil 33.33%, Guillaume's Face 33.33%, Vampire Gaze 33.33%<br><strong>Left hand</strong>: Demon Limb 33.33%, Breath of the Dying 33.33%, Lawbringer 33.33%, Grief 66.67%, Silence 33.33%<br><strong>Offhand</strong>: Stormshield 66.67%, Spirit 33.33%, Phoenix 66.67%</div>
             </div>
-        <p><strong>Skills:</strong> Fire Bolt:20, Warmth:20, Enflame:20, Fire Mastery:20, Frigerate:3, Shiver Armor:2, Fire Ball:1, Hydra:1, Telekinesis:1, Teleport:1, Ice Bolt:1, Ice Blast:1</p>
-        <p><strong>Equipment:</strong> boots: Rune Blazer x1, gloves: Magefist x1, amulet: Mara's Kaleidoscope x1, ring: Rune Touch x1, ring: Blood Grip x1, body: Templar's Might x1, belt: Arachnid Mesh x1, helmet: Andariel's Visage x1, Left hand: Call to Arms x1, Left hand: Hexfire x1, Offhand: Spirit x1, Offhand: Phoenix x1</p>
-    
-            <div class="character-info">
-                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=TeddySorcadin">TeddySorcadin</a></div>
-                <div>90</div>
-                <div>Placeholder</div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>3 Characters in this cluster:</strong></button>
+            <div class="content">
+                
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Hard-Fisting">Hard-Fisting</a></div>
+                    <div>92</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Charge:20, Might:20, Holy Freeze:20, Salvation:20, Vigor:7, Resist Cold:6, Smite:1, Holy Bolt:1, Blessed Hammer:1, Holy Shield:1, Dashing Strike:1, Holy Fire:1, Prayer:1, Defiance:1, Cleansing:1, Resist Lightning:1</p>
+            <p><strong>Equipment:</strong> belt: Verdungo's Hearty Cord x1, ring: Wisp Projector x1, ring: Grim Gyre x1, body: Chains of Honor x1, boots: Gore Rider x1, gloves: Steelrend x1, amulet: Metalgrid x1, helmet: Nightwing's Veil x1, Left hand: Demon Limb x1, Left hand: Breath of the Dying x1, Offhand: Stormshield x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=jaun_pala">jaun_pala</a></div>
+                    <div>91</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Charge:20, Might:20, Vigor:20, Holy Shield:12, Zeal:2, Sacrifice:1, Smite:1, Holy Bolt:1, Blessed Hammer:1, Prayer:1, Defiance:1, Cleansing:1, Salvation:1</p>
+            <p><strong>Equipment:</strong> amulet: Angelic Wings x1, ring: Angelic Halo x1, ring: Corruption Spiral x1, boots: Gore Rider x1, gloves: Laying of Hands x1, body: Fortitude x1, helmet: Guillaume's Face x1, belt: Verdungo's Hearty Cord x1, Left hand: Lawbringer x1, Left hand: Grief x1, Offhand: Spirit x1, Offhand: Phoenix x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=bridge_boy">bridge_boy</a></div>
+                    <div>90</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Charge:20, Might:20, Fanaticism:20, Vigor:20, Holy Shield:5, Smite:1, Holy Bolt:1, Blessed Hammer:1, Blessed Aim:1, Concentration:1, Prayer:1, Defiance:1, Cleansing:1, Salvation:1</p>
+            <p><strong>Equipment:</strong> boots: Gore Rider x1, belt: Verdungo's Hearty Cord x1, gloves: Dracul's Grasp x1, ring: Raven Frost x1, ring: Death Circle x1, body: Enigma x1, amulet: Highlord's Wrath x1, helmet: Vampire Gaze x1, Left hand: Silence x1, Left hand: Grief x1, Offhand: Stormshield x1, Offhand: Phoenix x1</p>
+        
+        </div>
+        <hr>
+        
+        <h2>21.43%  of Charge's Main Skills:<br><img src='icons/Smite.png' alt='Smite' width='20' height='20'> Smite 100.00% (60)<br><img src='icons/Holy Shield.png' alt='Holy Shield' width='20' height='20'> Holy Shield 100.00% (60)<br><img src='icons/Charge.png' alt='Charge' width='20' height='20'> Charge 100.00% (44)<br><img src='icons/Defiance.png' alt='Defiance' width='20' height='20'> Defiance 100.00% (42)</h2>
+        <p><strong>Other Skills:<br></strong> <img src='icons/Dashing Strike.png' alt='Dashing Strike' width='20' height='20'> Dashing Strike 100.0% (41.0)<br><img src='icons/Fanaticism.png' alt='Fanaticism' width='20' height='20'> Fanaticism 66.67% (21.0)<br><img src='icons/Salvation.png' alt='Salvation' width='20' height='20'> Salvation 100.0% (14.0)<br><img src='icons/Resist Lightning.png' alt='Resist Lightning' width='20' height='20'> Resist Lightning 66.67% (4.0)<br><img src='icons/Holy Bolt.png' alt='Holy Bolt' width='20' height='20'> Holy Bolt 100.0% (3.0)<br><img src='icons/Blessed Hammer.png' alt='Blessed Hammer' width='20' height='20'> Blessed Hammer 100.0% (3.0)</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>All Skills</strong></button>
+            <div class="content">
+                <div><img src='icons/Holy Shield.png' alt='Holy Shield' width='20' height='20'> Holy Shield 100.0% (60.0)<br><img src='icons/Smite.png' alt='Smite' width='20' height='20'> Smite 100.0% (60.0)<br><img src='icons/Charge.png' alt='Charge' width='20' height='20'> Charge 100.0% (44.0)<br><img src='icons/Defiance.png' alt='Defiance' width='20' height='20'> Defiance 100.0% (43.0)<br><img src='icons/Dashing Strike.png' alt='Dashing Strike' width='20' height='20'> Dashing Strike 100.0% (41.0)<br><img src='icons/Fanaticism.png' alt='Fanaticism' width='20' height='20'> Fanaticism 66.67% (21.0)<br><img src='icons/Salvation.png' alt='Salvation' width='20' height='20'> Salvation 100.0% (14.0)<br><img src='icons/Resist Lightning.png' alt='Resist Lightning' width='20' height='20'> Resist Lightning 66.67% (4.0)<br><img src='icons/Blessed Hammer.png' alt='Blessed Hammer' width='20' height='20'> Blessed Hammer 100.0% (3.0)<br><img src='icons/Holy Bolt.png' alt='Holy Bolt' width='20' height='20'> Holy Bolt 100.0% (3.0)<br><img src='icons/Resist Fire.png' alt='Resist Fire' width='20' height='20'> Resist Fire 33.33% (3.0)<br><img src='icons/Blessed Aim.png' alt='Blessed Aim' width='20' height='20'> Blessed Aim 66.67% (2.0)<br><img src='icons/Might.png' alt='Might' width='20' height='20'> Might 66.67% (2.0)<br><img src='icons/Concentration.png' alt='Concentration' width='20' height='20'> Concentration 66.67% (2.0)<br><img src='icons/Vigor.png' alt='Vigor' width='20' height='20'> Vigor 33.33% (1.0)<br><img src='icons/Prayer.png' alt='Prayer' width='20' height='20'> Prayer 33.33% (1.0)<br><img src='icons/Redemption.png' alt='Redemption' width='20' height='20'> Redemption 33.33% (1.0)<br><img src='icons/Cleansing.png' alt='Cleansing' width='20' height='20'> Cleansing 33.33% (1.0)<br><img src='icons/Tornado.png' alt='Tornado' width='20' height='20'> Tornado 0.0% (0.0)<br><img src='icons/Twister.png' alt='Twister' width='20' height='20'> Twister 0.0% (0.0)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 0.0% (0.0)<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 0.0% (0.0)<br><img src='icons/Holy Fire.png' alt='Holy Fire' width='20' height='20'> Holy Fire 0.0% (0.0)<br><img src='icons/Sacrifice.png' alt='Sacrifice' width='20' height='20'> Sacrifice 0.0% (0.0)<br><img src='icons/Hurricane.png' alt='Hurricane' width='20' height='20'> Hurricane 0.0% (0.0)<br><img src='icons/Zeal.png' alt='Zeal' width='20' height='20'> Zeal 0.0% (0.0)<br><img src='icons/Arctic Blast.png' alt='Arctic Blast' width='20' height='20'> Arctic Blast 0.0% (0.0)<br><img src='icons/Cyclone Armor.png' alt='Cyclone Armor' width='20' height='20'> Cyclone Armor 0.0% (0.0)<br><img src='icons/Conviction.png' alt='Conviction' width='20' height='20'> Conviction 0.0% (0.0)<br><img src='icons/Precision.png' alt='Precision' width='20' height='20'> Precision 0.0% (0.0)<br><img src='icons/Holy Shock.png' alt='Holy Shock' width='20' height='20'> Holy Shock 0.0% (0.0)<br><img src='icons/Holy Freeze.png' alt='Holy Freeze' width='20' height='20'> Holy Freeze 0.0% (0.0)<br><img src='icons/Sanctuary.png' alt='Sanctuary' width='20' height='20'> Sanctuary 0.0% (0.0)<br><img src='icons/Resist Cold.png' alt='Resist Cold' width='20' height='20'> Resist Cold 0.0% (0.0)<br><img src='icons/Fire Bolt.png' alt='Fire Bolt' width='20' height='20'> Fire Bolt 0.0% (0.0)<br><img src='icons/Warmth.png' alt='Warmth' width='20' height='20'> Warmth 0.0% (0.0)<br><img src='icons/Fire Ball.png' alt='Fire Ball' width='20' height='20'> Fire Ball 0.0% (0.0)<br><img src='icons/Enflame.png' alt='Enflame' width='20' height='20'> Enflame 0.0% (0.0)<br><img src='icons/Fire Mastery.png' alt='Fire Mastery' width='20' height='20'> Fire Mastery 0.0% (0.0)<br><img src='icons/Hydra.png' alt='Hydra' width='20' height='20'> Hydra 0.0% (0.0)<br><img src='icons/Telekinesis.png' alt='Telekinesis' width='20' height='20'> Telekinesis 0.0% (0.0)<br><img src='icons/Teleport.png' alt='Teleport' width='20' height='20'> Teleport 0.0% (0.0)<br><img src='icons/Ice Bolt.png' alt='Ice Bolt' width='20' height='20'> Ice Bolt 0.0% (0.0)<br><img src='icons/Frigerate.png' alt='Frigerate' width='20' height='20'> Frigerate 0.0% (0.0)<br><img src='icons/Ice Blast.png' alt='Ice Blast' width='20' height='20'> Ice Blast 0.0% (0.0)<br><img src='icons/Shiver Armor.png' alt='Shiver Armor' width='20' height='20'> Shiver Armor 0.0% (0.0)<br><img src='icons/Charged Bolt.png' alt='Charged Bolt' width='20' height='20'> Charged Bolt 0.0% (0.0)<br><img src='icons/Static Field.png' alt='Static Field' width='20' height='20'> Static Field 0.0% (0.0)<br><img src='icons/Nova.png' alt='Nova' width='20' height='20'> Nova 0.0% (0.0)<br><img src='icons/Lightning Surge.png' alt='Lightning Surge' width='20' height='20'> Lightning Surge 0.0% (0.0)<br><img src='icons/Chain Lightning.png' alt='Chain Lightning' width='20' height='20'> Chain Lightning 0.0% (0.0)<br><img src='icons/Energy Shield.png' alt='Energy Shield' width='20' height='20'> Energy Shield 0.0% (0.0)<br><img src='icons/Lightning Mastery.png' alt='Lightning Mastery' width='20' height='20'> Lightning Mastery 0.0% (0.0)<br><img src='icons/Thunder Storm.png' alt='Thunder Storm' width='20' height='20'> Thunder Storm 0.0% (0.0)</div>
             </div>
-        <p><strong>Skills:</strong> Telekinesis:20, Teleport:20, Lightning Mastery:20, Thunder Storm:20, Nova:10, Fire Bolt:1, Warmth:1, Fire Ball:1, Enflame:1, Fire Mastery:1, Charged Bolt:1, Static Field:1, Lightning Surge:1, Chain Lightning:1, Energy Shield:1, Frigerate:1</p>
-        <p><strong>Equipment:</strong> helmet: Griffon's Eye x1, boots: War Traveler x1, ring: The Stone of Jordan x1, ring: Wisp Projector x1, amulet: Mara's Kaleidoscope x1, body: Templar's Might x1, gloves: Frostburn x1, belt: Verdungo's Hearty Cord x1, Left hand: Bone Wand of Lower Resistance x1, Left hand: Dangoon's Teaching x1, Offhand: Phoenix x1</p>
-    
-    </div>
-    <hr>
-    
-    <h2>7.14%  of Charge's Main Skills:<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 100.00% (20)<br><img src='icons/Twister.png' alt='Twister' width='20' height='20'> Twister 100.00% (20)<br><img src='icons/Tornado.png' alt='Tornado' width='20' height='20'> Tornado 100.00% (20)</h2>
-    <p><strong>Other Skills:<br></strong> <img src='icons/Hurricane.png' alt='Hurricane' width='20' height='20'> Hurricane 100.0% (20.0)<br><img src='icons/Arctic Blast.png' alt='Arctic Blast' width='20' height='20'> Arctic Blast 100.0% (10.0)<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 100.0% (1.0)<br><img src='icons/Cyclone Armor.png' alt='Cyclone Armor' width='20' height='20'> Cyclone Armor 100.0% (1.0)<br><img src='icons/Leap Slam.png' alt='Leap Slam' width='20' height='20'> Leap Slam 0.0% (0.0)<br><img src='icons/Double Swing.png' alt='Double Swing' width='20' height='20'> Double Swing 0.0% (0.0)</p>
-    <button class="collapsible">
-        <img src="icons/closed.png" alt="Open" class="icon">
-        <img src="icons/open.png" alt="Close" class="icon hidden">
-        <strong>All Skills</strong></button>
-        <div class="content">
-            <div><img src='icons/Twister.png' alt='Twister' width='20' height='20'> Twister 100.0% (20.0)<br><img src='icons/Tornado.png' alt='Tornado' width='20' height='20'> Tornado 100.0% (20.0)<br><img src='icons/Hurricane.png' alt='Hurricane' width='20' height='20'> Hurricane 100.0% (20.0)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 100.0% (20.0)<br><img src='icons/Arctic Blast.png' alt='Arctic Blast' width='20' height='20'> Arctic Blast 100.0% (10.0)<br><img src='icons/Cyclone Armor.png' alt='Cyclone Armor' width='20' height='20'> Cyclone Armor 100.0% (1.0)<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 100.0% (1.0)<br><img src='icons/Whirling Axes.png' alt='Whirling Axes' width='20' height='20'> Whirling Axes 0.0% (0.0)<br><img src='icons/Increased Stamina.png' alt='Increased Stamina' width='20' height='20'> Increased Stamina 0.0% (0.0)<br><img src='icons/Cleave.png' alt='Cleave' width='20' height='20'> Cleave 0.0% (0.0)<br><img src='icons/Double Swing.png' alt='Double Swing' width='20' height='20'> Double Swing 0.0% (0.0)<br><img src='icons/Leap Slam.png' alt='Leap Slam' width='20' height='20'> Leap Slam 0.0% (0.0)<br><img src='icons/Blunt Weapon Mastery.png' alt='Blunt Weapon Mastery' width='20' height='20'> Blunt Weapon Mastery 0.0% (0.0)<br><img src='icons/Iron Skin.png' alt='Iron Skin' width='20' height='20'> Iron Skin 0.0% (0.0)<br><img src='icons/Battle Cry.png' alt='Battle Cry' width='20' height='20'> Battle Cry 0.0% (0.0)<br><img src='icons/Shout.png' alt='Shout' width='20' height='20'> Shout 0.0% (0.0)<br><img src='icons/Taunt.png' alt='Taunt' width='20' height='20'> Taunt 0.0% (0.0)<br><img src='icons/Howl.png' alt='Howl' width='20' height='20'> Howl 0.0% (0.0)<br><img src='icons/Counter Attack.png' alt='Counter Attack' width='20' height='20'> Counter Attack 0.0% (0.0)<br><img src='icons/Natural Resistance.png' alt='Natural Resistance' width='20' height='20'> Natural Resistance 0.0% (0.0)<br><img src='icons/Battle Orders.png' alt='Battle Orders' width='20' height='20'> Battle Orders 0.0% (0.0)<br><img src='icons/Increased Speed.png' alt='Increased Speed' width='20' height='20'> Increased Speed 0.0% (0.0)<br><img src='icons/Battle Command.png' alt='Battle Command' width='20' height='20'> Battle Command 0.0% (0.0)<br><img src='icons/Sacrifice.png' alt='Sacrifice' width='20' height='20'> Sacrifice 0.0% (0.0)<br><img src='icons/Smite.png' alt='Smite' width='20' height='20'> Smite 0.0% (0.0)<br><img src='icons/Holy Bolt.png' alt='Holy Bolt' width='20' height='20'> Holy Bolt 0.0% (0.0)<br><img src='icons/Zeal.png' alt='Zeal' width='20' height='20'> Zeal 0.0% (0.0)<br><img src='icons/Charge.png' alt='Charge' width='20' height='20'> Charge 0.0% (0.0)<br><img src='icons/Blessed Hammer.png' alt='Blessed Hammer' width='20' height='20'> Blessed Hammer 0.0% (0.0)<br><img src='icons/Holy Shield.png' alt='Holy Shield' width='20' height='20'> Holy Shield 0.0% (0.0)<br><img src='icons/Might.png' alt='Might' width='20' height='20'> Might 0.0% (0.0)<br><img src='icons/Prayer.png' alt='Prayer' width='20' height='20'> Prayer 0.0% (0.0)<br><img src='icons/Defiance.png' alt='Defiance' width='20' height='20'> Defiance 0.0% (0.0)<br><img src='icons/Cleansing.png' alt='Cleansing' width='20' height='20'> Cleansing 0.0% (0.0)<br><img src='icons/Vigor.png' alt='Vigor' width='20' height='20'> Vigor 0.0% (0.0)<br><img src='icons/Salvation.png' alt='Salvation' width='20' height='20'> Salvation 0.0% (0.0)<br><img src='icons/Dashing Strike.png' alt='Dashing Strike' width='20' height='20'> Dashing Strike 0.0% (0.0)<br><img src='icons/Holy Fire.png' alt='Holy Fire' width='20' height='20'> Holy Fire 0.0% (0.0)<br><img src='icons/Precision.png' alt='Precision' width='20' height='20'> Precision 0.0% (0.0)<br><img src='icons/Holy Freeze.png' alt='Holy Freeze' width='20' height='20'> Holy Freeze 0.0% (0.0)<br><img src='icons/Sanctuary.png' alt='Sanctuary' width='20' height='20'> Sanctuary 0.0% (0.0)<br><img src='icons/Conviction.png' alt='Conviction' width='20' height='20'> Conviction 0.0% (0.0)<br><img src='icons/Resist Fire.png' alt='Resist Fire' width='20' height='20'> Resist Fire 0.0% (0.0)<br><img src='icons/Holy Shock.png' alt='Holy Shock' width='20' height='20'> Holy Shock 0.0% (0.0)<br><img src='icons/Resist Lightning.png' alt='Resist Lightning' width='20' height='20'> Resist Lightning 0.0% (0.0)<br><img src='icons/Blessed Aim.png' alt='Blessed Aim' width='20' height='20'> Blessed Aim 0.0% (0.0)<br><img src='icons/Concentration.png' alt='Concentration' width='20' height='20'> Concentration 0.0% (0.0)<br><img src='icons/Fanaticism.png' alt='Fanaticism' width='20' height='20'> Fanaticism 0.0% (0.0)<br><img src='icons/Redemption.png' alt='Redemption' width='20' height='20'> Redemption 0.0% (0.0)<br><img src='icons/Resist Cold.png' alt='Resist Cold' width='20' height='20'> Resist Cold 0.0% (0.0)<br><img src='icons/Fire Bolt.png' alt='Fire Bolt' width='20' height='20'> Fire Bolt 0.0% (0.0)<br><img src='icons/Warmth.png' alt='Warmth' width='20' height='20'> Warmth 0.0% (0.0)<br><img src='icons/Fire Ball.png' alt='Fire Ball' width='20' height='20'> Fire Ball 0.0% (0.0)<br><img src='icons/Enflame.png' alt='Enflame' width='20' height='20'> Enflame 0.0% (0.0)<br><img src='icons/Fire Mastery.png' alt='Fire Mastery' width='20' height='20'> Fire Mastery 0.0% (0.0)<br><img src='icons/Hydra.png' alt='Hydra' width='20' height='20'> Hydra 0.0% (0.0)<br><img src='icons/Telekinesis.png' alt='Telekinesis' width='20' height='20'> Telekinesis 0.0% (0.0)<br><img src='icons/Teleport.png' alt='Teleport' width='20' height='20'> Teleport 0.0% (0.0)<br><img src='icons/Ice Bolt.png' alt='Ice Bolt' width='20' height='20'> Ice Bolt 0.0% (0.0)<br><img src='icons/Frigerate.png' alt='Frigerate' width='20' height='20'> Frigerate 0.0% (0.0)<br><img src='icons/Ice Blast.png' alt='Ice Blast' width='20' height='20'> Ice Blast 0.0% (0.0)<br><img src='icons/Shiver Armor.png' alt='Shiver Armor' width='20' height='20'> Shiver Armor 0.0% (0.0)<br><img src='icons/Charged Bolt.png' alt='Charged Bolt' width='20' height='20'> Charged Bolt 0.0% (0.0)<br><img src='icons/Static Field.png' alt='Static Field' width='20' height='20'> Static Field 0.0% (0.0)<br><img src='icons/Nova.png' alt='Nova' width='20' height='20'> Nova 0.0% (0.0)<br><img src='icons/Lightning Surge.png' alt='Lightning Surge' width='20' height='20'> Lightning Surge 0.0% (0.0)<br><img src='icons/Chain Lightning.png' alt='Chain Lightning' width='20' height='20'> Chain Lightning 0.0% (0.0)<br><img src='icons/Energy Shield.png' alt='Energy Shield' width='20' height='20'> Energy Shield 0.0% (0.0)<br><img src='icons/Lightning Mastery.png' alt='Lightning Mastery' width='20' height='20'> Lightning Mastery 0.0% (0.0)<br><img src='icons/Thunder Storm.png' alt='Thunder Storm' width='20' height='20'> Thunder Storm 0.0% (0.0)</div>
-        </div>
 
-    <button class="collapsible">
-        <img src="icons/closed.png" alt="Open" class="icon">
-        <img src="icons/open.png" alt="Close" class="icon hidden">
-        <strong>Most Common Equipment:</strong></button>
-        <div class="content">
-            <div><strong>Belt</strong>: <br>Nightsmoke 100.00%<br><strong>Helmet</strong>: <br>Jalal's Mane 100.00%<br><strong>Amulet</strong>: <br>Stone Clasp 100.00%<br><strong>Boots</strong>: <br>Gore Rider 100.00%<br><strong>Body</strong>: <br>Templar's Might 100.00%<br><strong>Ring</strong>: <br>Bul-Kathos' Wedding Band 200.00%<br><strong>Gloves</strong>: <br>Steelrend 100.00%<br><strong>Left hand</strong>: <br>The Redeemer 100.00%<br><strong>Offhand</strong>: <br>Medusa's Gaze 100.00%</div>
-        </div>
-    
-    <button class="collapsible">
-        <img src="icons/closed.png" alt="Open" class="icon">
-        <img src="icons/open.png" alt="Close" class="icon hidden">
-        <strong>ALL Equipment:</strong></button>
-        <div class="content">
-            <div><strong>Belt</strong>: Nightsmoke 100.00%<br><strong>Helmet</strong>: Jalal's Mane 100.00%<br><strong>Amulet</strong>: Stone Clasp 100.00%<br><strong>Boots</strong>: Gore Rider 100.00%<br><strong>Body</strong>: Templar's Might 100.00%<br><strong>Ring</strong>: Bul-Kathos' Wedding Band 200.00%<br><strong>Gloves</strong>: Steelrend 100.00%<br><strong>Left hand</strong>: The Redeemer 100.00%<br><strong>Offhand</strong>: Medusa's Gaze 100.00%</div>
-        </div>
-
-    <button class="collapsible">
-        <img src="icons/closed.png" alt="Open" class="icon">
-        <img src="icons/open.png" alt="Close" class="icon hidden">
-        <strong>1 Characters in this cluster:</strong></button>
-        <div class="content">
-            
-            <div class="character-info">
-                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Kekimo">Kekimo</a></div>
-                <div>82</div>
-                <div>Placeholder</div>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>Most Common Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Helmet</strong>: <br>Ondal's Almighty 33.33%<br>Guillaume's Face 33.33%<br><strong>Ring</strong>: <br>The Stone of Jordan 33.33%<br>Raven Finger 33.33%<br>Raven Frost 33.33%<br><strong>Body</strong>: <br>Tyrael's Might 33.33%<br>Dragon 33.33%<br><strong>Boots</strong>: <br>War Traveler 33.33%<br>Gore Rider 33.33%<br><strong>Amulet</strong>: <br>Rose Branded Amulet of the Wraith 33.33%<br><strong>Belt</strong>: <br>Goldwrap 33.33%<br>Thundergod's Vigor 33.33%<br><strong>Gloves</strong>: <br>Fiendra Hold 33.33%<br>Dracul's Grasp 33.33%<br><strong>Left hand</strong>: <br>Astreon's Iron Ward 33.33%<br>Holy Thunder 33.33%<br>Fleshripper 33.33%<br><strong>Offhand</strong>: <br>Alma Negra 66.67%<br>Spirit 66.67%<br>Dragon 33.33%</div>
             </div>
-        <p><strong>Skills:</strong> Heart of Wolverine:20, Twister:20, Tornado:20, Hurricane:20, Arctic Blast:10, Oak Sage:1, Cyclone Armor:1</p>
-        <p><strong>Equipment:</strong> belt: Nightsmoke x1, helmet: Jalal's Mane x1, amulet: Stone Clasp x1, boots: Gore Rider x1, body: Templar's Might x1, ring: Bul-Kathos' Wedding Band x2, gloves: Steelrend x1, Left hand: The Redeemer x1, Offhand: Medusa's Gaze x1</p>
-    
-    </div>
-    <hr>
-    
-    <h2>7.14%  of Charge's Main Skills:<br><img src='icons/Leap Slam.png' alt='Leap Slam' width='20' height='20'> Leap Slam 100.00% (20)<br><img src='icons/Double Swing.png' alt='Double Swing' width='20' height='20'> Double Swing 100.00% (20)<br><img src='icons/Whirling Axes.png' alt='Whirling Axes' width='20' height='20'> Whirling Axes 100.00% (20)</h2>
-    <p><strong>Other Skills:<br></strong> <img src='icons/Battle Cry.png' alt='Battle Cry' width='20' height='20'> Battle Cry 100.0% (20.0)<br><img src='icons/Cleave.png' alt='Cleave' width='20' height='20'> Cleave 100.0% (1.0)<br><img src='icons/Blunt Weapon Mastery.png' alt='Blunt Weapon Mastery' width='20' height='20'> Blunt Weapon Mastery 100.0% (1.0)<br><img src='icons/Increased Stamina.png' alt='Increased Stamina' width='20' height='20'> Increased Stamina 100.0% (1.0)<br><img src='icons/Iron Skin.png' alt='Iron Skin' width='20' height='20'> Iron Skin 100.0% (1.0)<br><img src='icons/Increased Speed.png' alt='Increased Speed' width='20' height='20'> Increased Speed 100.0% (1.0)</p>
-    <button class="collapsible">
-        <img src="icons/closed.png" alt="Open" class="icon">
-        <img src="icons/open.png" alt="Close" class="icon hidden">
-        <strong>All Skills</strong></button>
-        <div class="content">
-            <div><img src='icons/Leap Slam.png' alt='Leap Slam' width='20' height='20'> Leap Slam 100.0% (20.0)<br><img src='icons/Double Swing.png' alt='Double Swing' width='20' height='20'> Double Swing 100.0% (20.0)<br><img src='icons/Whirling Axes.png' alt='Whirling Axes' width='20' height='20'> Whirling Axes 100.0% (20.0)<br><img src='icons/Battle Cry.png' alt='Battle Cry' width='20' height='20'> Battle Cry 100.0% (20.0)<br><img src='icons/Blunt Weapon Mastery.png' alt='Blunt Weapon Mastery' width='20' height='20'> Blunt Weapon Mastery 100.0% (1.0)<br><img src='icons/Cleave.png' alt='Cleave' width='20' height='20'> Cleave 100.0% (1.0)<br><img src='icons/Increased Stamina.png' alt='Increased Stamina' width='20' height='20'> Increased Stamina 100.0% (1.0)<br><img src='icons/Iron Skin.png' alt='Iron Skin' width='20' height='20'> Iron Skin 100.0% (1.0)<br><img src='icons/Natural Resistance.png' alt='Natural Resistance' width='20' height='20'> Natural Resistance 100.0% (1.0)<br><img src='icons/Increased Speed.png' alt='Increased Speed' width='20' height='20'> Increased Speed 100.0% (1.0)<br><img src='icons/Counter Attack.png' alt='Counter Attack' width='20' height='20'> Counter Attack 100.0% (1.0)<br><img src='icons/Howl.png' alt='Howl' width='20' height='20'> Howl 100.0% (1.0)<br><img src='icons/Taunt.png' alt='Taunt' width='20' height='20'> Taunt 100.0% (1.0)<br><img src='icons/Shout.png' alt='Shout' width='20' height='20'> Shout 100.0% (1.0)<br><img src='icons/Battle Orders.png' alt='Battle Orders' width='20' height='20'> Battle Orders 100.0% (1.0)<br><img src='icons/Battle Command.png' alt='Battle Command' width='20' height='20'> Battle Command 100.0% (1.0)<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 0.0% (0.0)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 0.0% (0.0)<br><img src='icons/Arctic Blast.png' alt='Arctic Blast' width='20' height='20'> Arctic Blast 0.0% (0.0)<br><img src='icons/Cyclone Armor.png' alt='Cyclone Armor' width='20' height='20'> Cyclone Armor 0.0% (0.0)<br><img src='icons/Twister.png' alt='Twister' width='20' height='20'> Twister 0.0% (0.0)<br><img src='icons/Tornado.png' alt='Tornado' width='20' height='20'> Tornado 0.0% (0.0)<br><img src='icons/Hurricane.png' alt='Hurricane' width='20' height='20'> Hurricane 0.0% (0.0)<br><img src='icons/Sacrifice.png' alt='Sacrifice' width='20' height='20'> Sacrifice 0.0% (0.0)<br><img src='icons/Smite.png' alt='Smite' width='20' height='20'> Smite 0.0% (0.0)<br><img src='icons/Holy Bolt.png' alt='Holy Bolt' width='20' height='20'> Holy Bolt 0.0% (0.0)<br><img src='icons/Zeal.png' alt='Zeal' width='20' height='20'> Zeal 0.0% (0.0)<br><img src='icons/Charge.png' alt='Charge' width='20' height='20'> Charge 0.0% (0.0)<br><img src='icons/Blessed Hammer.png' alt='Blessed Hammer' width='20' height='20'> Blessed Hammer 0.0% (0.0)<br><img src='icons/Holy Shield.png' alt='Holy Shield' width='20' height='20'> Holy Shield 0.0% (0.0)<br><img src='icons/Might.png' alt='Might' width='20' height='20'> Might 0.0% (0.0)<br><img src='icons/Prayer.png' alt='Prayer' width='20' height='20'> Prayer 0.0% (0.0)<br><img src='icons/Defiance.png' alt='Defiance' width='20' height='20'> Defiance 0.0% (0.0)<br><img src='icons/Cleansing.png' alt='Cleansing' width='20' height='20'> Cleansing 0.0% (0.0)<br><img src='icons/Vigor.png' alt='Vigor' width='20' height='20'> Vigor 0.0% (0.0)<br><img src='icons/Salvation.png' alt='Salvation' width='20' height='20'> Salvation 0.0% (0.0)<br><img src='icons/Dashing Strike.png' alt='Dashing Strike' width='20' height='20'> Dashing Strike 0.0% (0.0)<br><img src='icons/Holy Fire.png' alt='Holy Fire' width='20' height='20'> Holy Fire 0.0% (0.0)<br><img src='icons/Precision.png' alt='Precision' width='20' height='20'> Precision 0.0% (0.0)<br><img src='icons/Holy Freeze.png' alt='Holy Freeze' width='20' height='20'> Holy Freeze 0.0% (0.0)<br><img src='icons/Sanctuary.png' alt='Sanctuary' width='20' height='20'> Sanctuary 0.0% (0.0)<br><img src='icons/Conviction.png' alt='Conviction' width='20' height='20'> Conviction 0.0% (0.0)<br><img src='icons/Resist Fire.png' alt='Resist Fire' width='20' height='20'> Resist Fire 0.0% (0.0)<br><img src='icons/Holy Shock.png' alt='Holy Shock' width='20' height='20'> Holy Shock 0.0% (0.0)<br><img src='icons/Resist Lightning.png' alt='Resist Lightning' width='20' height='20'> Resist Lightning 0.0% (0.0)<br><img src='icons/Blessed Aim.png' alt='Blessed Aim' width='20' height='20'> Blessed Aim 0.0% (0.0)<br><img src='icons/Concentration.png' alt='Concentration' width='20' height='20'> Concentration 0.0% (0.0)<br><img src='icons/Fanaticism.png' alt='Fanaticism' width='20' height='20'> Fanaticism 0.0% (0.0)<br><img src='icons/Redemption.png' alt='Redemption' width='20' height='20'> Redemption 0.0% (0.0)<br><img src='icons/Resist Cold.png' alt='Resist Cold' width='20' height='20'> Resist Cold 0.0% (0.0)<br><img src='icons/Fire Bolt.png' alt='Fire Bolt' width='20' height='20'> Fire Bolt 0.0% (0.0)<br><img src='icons/Warmth.png' alt='Warmth' width='20' height='20'> Warmth 0.0% (0.0)<br><img src='icons/Fire Ball.png' alt='Fire Ball' width='20' height='20'> Fire Ball 0.0% (0.0)<br><img src='icons/Enflame.png' alt='Enflame' width='20' height='20'> Enflame 0.0% (0.0)<br><img src='icons/Fire Mastery.png' alt='Fire Mastery' width='20' height='20'> Fire Mastery 0.0% (0.0)<br><img src='icons/Hydra.png' alt='Hydra' width='20' height='20'> Hydra 0.0% (0.0)<br><img src='icons/Telekinesis.png' alt='Telekinesis' width='20' height='20'> Telekinesis 0.0% (0.0)<br><img src='icons/Teleport.png' alt='Teleport' width='20' height='20'> Teleport 0.0% (0.0)<br><img src='icons/Ice Bolt.png' alt='Ice Bolt' width='20' height='20'> Ice Bolt 0.0% (0.0)<br><img src='icons/Frigerate.png' alt='Frigerate' width='20' height='20'> Frigerate 0.0% (0.0)<br><img src='icons/Ice Blast.png' alt='Ice Blast' width='20' height='20'> Ice Blast 0.0% (0.0)<br><img src='icons/Shiver Armor.png' alt='Shiver Armor' width='20' height='20'> Shiver Armor 0.0% (0.0)<br><img src='icons/Charged Bolt.png' alt='Charged Bolt' width='20' height='20'> Charged Bolt 0.0% (0.0)<br><img src='icons/Static Field.png' alt='Static Field' width='20' height='20'> Static Field 0.0% (0.0)<br><img src='icons/Nova.png' alt='Nova' width='20' height='20'> Nova 0.0% (0.0)<br><img src='icons/Lightning Surge.png' alt='Lightning Surge' width='20' height='20'> Lightning Surge 0.0% (0.0)<br><img src='icons/Chain Lightning.png' alt='Chain Lightning' width='20' height='20'> Chain Lightning 0.0% (0.0)<br><img src='icons/Energy Shield.png' alt='Energy Shield' width='20' height='20'> Energy Shield 0.0% (0.0)<br><img src='icons/Lightning Mastery.png' alt='Lightning Mastery' width='20' height='20'> Lightning Mastery 0.0% (0.0)<br><img src='icons/Thunder Storm.png' alt='Thunder Storm' width='20' height='20'> Thunder Storm 0.0% (0.0)</div>
-        </div>
-
-    <button class="collapsible">
-        <img src="icons/closed.png" alt="Open" class="icon">
-        <img src="icons/open.png" alt="Close" class="icon hidden">
-        <strong>Most Common Equipment:</strong></button>
-        <div class="content">
-            <div><strong>Gloves</strong>: <br>Immortal King's Forge 100.00%<br><strong>Belt</strong>: <br>Immortal King's Detail 100.00%<br><strong>Helmet</strong>: <br>Immortal King's Will 100.00%<br><strong>Ring</strong>: <br>Dwarf Star 100.00%<br>Raven Frost 100.00%<br><strong>Amulet</strong>: <br>Blood Noose 100.00%<br><strong>Boots</strong>: <br>Immortal King's Pillar 100.00%<br><strong>Body</strong>: <br>Templar's Might 100.00%<br><strong>Left hand</strong>: <br>Immortal King's Stone Crusher 100.00%</div>
-        </div>
-    
-    <button class="collapsible">
-        <img src="icons/closed.png" alt="Open" class="icon">
-        <img src="icons/open.png" alt="Close" class="icon hidden">
-        <strong>ALL Equipment:</strong></button>
-        <div class="content">
-            <div><strong>Gloves</strong>: Immortal King's Forge 100.00%<br><strong>Belt</strong>: Immortal King's Detail 100.00%<br><strong>Helmet</strong>: Immortal King's Will 100.00%<br><strong>Ring</strong>: Dwarf Star 100.00%, Raven Frost 100.00%<br><strong>Amulet</strong>: Blood Noose 100.00%<br><strong>Boots</strong>: Immortal King's Pillar 100.00%<br><strong>Body</strong>: Templar's Might 100.00%<br><strong>Left hand</strong>: Immortal King's Stone Crusher 100.00%</div>
-        </div>
-
-    <button class="collapsible">
-        <img src="icons/closed.png" alt="Open" class="icon">
-        <img src="icons/open.png" alt="Close" class="icon hidden">
-        <strong>1 Characters in this cluster:</strong></button>
-        <div class="content">
-            
-            <div class="character-info">
-                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Panzerzwerg">Panzerzwerg</a></div>
-                <div>85</div>
-                <div>Placeholder</div>
+        
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Helmet</strong>: Ondal's Almighty 33.33%, Guillaume's Face 33.33%<br><strong>Ring</strong>: The Stone of Jordan 33.33%, Raven Finger 33.33%, Raven Frost 33.33%<br><strong>Body</strong>: Tyrael's Might 33.33%, Dragon 33.33%<br><strong>Boots</strong>: War Traveler 33.33%, Gore Rider 33.33%<br><strong>Amulet</strong>: Rose Branded Amulet of the Wraith 33.33%<br><strong>Belt</strong>: Goldwrap 33.33%, Thundergod's Vigor 33.33%<br><strong>Gloves</strong>: Fiendra Hold 33.33%, Dracul's Grasp 33.33%<br><strong>Left hand</strong>: Astreon's Iron Ward 33.33%, Holy Thunder 33.33%, Fleshripper 33.33%<br><strong>Offhand</strong>: Alma Negra 66.67%, Spirit 66.67%, Dragon 33.33%</div>
             </div>
-        <p><strong>Skills:</strong> Leap Slam:20, Double Swing:20, Whirling Axes:20, Battle Cry:20, Cleave:1, Blunt Weapon Mastery:1, Increased Stamina:1, Iron Skin:1, Increased Speed:1, Natural Resistance:1, Counter Attack:1, Howl:1, Taunt:1, Shout:1, Battle Orders:1, Battle Command:1</p>
-        <p><strong>Equipment:</strong> gloves: Immortal King's Forge x1, belt: Immortal King's Detail x1, helmet: Immortal King's Will x1, ring: Dwarf Star x1, ring: Raven Frost x1, amulet: Blood Noose x1, boots: Immortal King's Pillar x1, body: Templar's Might x1, Left hand: Immortal King's Stone Crusher x1</p>
-    
-    </div>
-    <hr>
-    
-        <h3>Top 5 Most Popular Charge Skills:</h3>
-    <ul>
-    </ul>
 
-    <h3>Bottom 5 Least Popular Charge Skills:</h3>
-    <ul>
-    </ul>
-    <!-- Embed the Plotly pie chart -->
-    <iframe src="Charge-clusters_distribution_pie.html"></iframe>
-    <!-- Embed the Plotly scatter plot at the bottom -->
-    <iframe src="Charge-clusters_with_avg_points.html"></iframe>
-    <button onclick="topFunction()" id="backToTopBtn" class="back-to-top">Top</button>
-    
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>3 Characters in this cluster:</strong></button>
+            <div class="content">
+                
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=TOTALLY_AFK">TOTALLY_AFK</a></div>
+                    <div>93</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Smite:20, Charge:20, Holy Shield:20, Dashing Strike:20, Defiance:15, Salvation:6, Holy Bolt:1, Blessed Hammer:1, Resist Lightning:1</p>
+            <p><strong>Equipment:</strong> helmet: Ondal's Almighty x1, ring: The Stone of Jordan x1, ring: Raven Finger x1, body: Tyrael's Might x1, boots: War Traveler x1, amulet: Rose Branded Amulet of the Wraith x1, belt: Goldwrap x1, gloves: Fiendra Hold x1, Left hand: Astreon's Iron Ward x1, Left hand: Holy Thunder x1, Offhand: Alma Negra x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Diffex">Diffex</a></div>
+                    <div>92</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Smite:20, Charge:20, Holy Shield:20, Dashing Strike:20, Defiance:8, Salvation:5, Holy Bolt:1, Blessed Hammer:1, Might:1, Blessed Aim:1, Concentration:1, Fanaticism:1, Prayer:1, Cleansing:1, Vigor:1, Redemption:1</p>
+            <p><strong>Equipment:</strong> Offhand: Spirit x1, Offhand: Dragon x1, boots: Gore Rider x1, body: Dragon x1, ring: Raven Frost x1, gloves: Dracul's Grasp x1, belt: Thundergod's Vigor x1, helmet: Guillaume's Face x1, Left hand: Fleshripper x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=SrNoob">SrNoob</a></div>
+                    <div>88</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Smite:20, Holy Shield:20, Fanaticism:20, Defiance:20, Charge:4, Resist Fire:3, Resist Lightning:3, Salvation:3, Holy Bolt:1, Blessed Hammer:1, Dashing Strike:1, Might:1, Blessed Aim:1, Concentration:1</p>
+            <p><strong>Equipment:</strong> Offhand: Alma Negra x1</p>
+        
+        </div>
+        <hr>
+        
+        <h2>14.29%  of Charge's Main Skills:<br><img src='icons/Fire Bolt.png' alt='Fire Bolt' width='20' height='20'> Fire Bolt 100.00% (21)<br><img src='icons/Warmth.png' alt='Warmth' width='20' height='20'> Warmth 100.00% (21)<br><img src='icons/Enflame.png' alt='Enflame' width='20' height='20'> Enflame 100.00% (21)<br><img src='icons/Fire Mastery.png' alt='Fire Mastery' width='20' height='20'> Fire Mastery 100.00% (21)</h2>
+        <p><strong>Other Skills:<br></strong> <img src='icons/Telekinesis.png' alt='Telekinesis' width='20' height='20'> Telekinesis 100.0% (21.0)<br><img src='icons/Teleport.png' alt='Teleport' width='20' height='20'> Teleport 100.0% (21.0)<br><img src='icons/Lightning Mastery.png' alt='Lightning Mastery' width='20' height='20'> Lightning Mastery 50.0% (20.0)<br><img src='icons/Thunder Storm.png' alt='Thunder Storm' width='20' height='20'> Thunder Storm 50.0% (20.0)<br><img src='icons/Nova.png' alt='Nova' width='20' height='20'> Nova 50.0% (10.0)<br><img src='icons/Frigerate.png' alt='Frigerate' width='20' height='20'> Frigerate 100.0% (4.0)</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>All Skills</strong></button>
+            <div class="content">
+                <div><img src='icons/Teleport.png' alt='Teleport' width='20' height='20'> Teleport 100.0% (21.0)<br><img src='icons/Telekinesis.png' alt='Telekinesis' width='20' height='20'> Telekinesis 100.0% (21.0)<br><img src='icons/Fire Mastery.png' alt='Fire Mastery' width='20' height='20'> Fire Mastery 100.0% (21.0)<br><img src='icons/Warmth.png' alt='Warmth' width='20' height='20'> Warmth 100.0% (21.0)<br><img src='icons/Fire Bolt.png' alt='Fire Bolt' width='20' height='20'> Fire Bolt 100.0% (21.0)<br><img src='icons/Enflame.png' alt='Enflame' width='20' height='20'> Enflame 100.0% (21.0)<br><img src='icons/Thunder Storm.png' alt='Thunder Storm' width='20' height='20'> Thunder Storm 50.0% (20.0)<br><img src='icons/Lightning Mastery.png' alt='Lightning Mastery' width='20' height='20'> Lightning Mastery 50.0% (20.0)<br><img src='icons/Nova.png' alt='Nova' width='20' height='20'> Nova 50.0% (10.0)<br><img src='icons/Frigerate.png' alt='Frigerate' width='20' height='20'> Frigerate 100.0% (4.0)<br><img src='icons/Fire Ball.png' alt='Fire Ball' width='20' height='20'> Fire Ball 100.0% (2.0)<br><img src='icons/Shiver Armor.png' alt='Shiver Armor' width='20' height='20'> Shiver Armor 50.0% (2.0)<br><img src='icons/Hydra.png' alt='Hydra' width='20' height='20'> Hydra 50.0% (1.0)<br><img src='icons/Charged Bolt.png' alt='Charged Bolt' width='20' height='20'> Charged Bolt 50.0% (1.0)<br><img src='icons/Ice Blast.png' alt='Ice Blast' width='20' height='20'> Ice Blast 50.0% (1.0)<br><img src='icons/Ice Bolt.png' alt='Ice Bolt' width='20' height='20'> Ice Bolt 50.0% (1.0)<br><img src='icons/Static Field.png' alt='Static Field' width='20' height='20'> Static Field 50.0% (1.0)<br><img src='icons/Lightning Surge.png' alt='Lightning Surge' width='20' height='20'> Lightning Surge 50.0% (1.0)<br><img src='icons/Chain Lightning.png' alt='Chain Lightning' width='20' height='20'> Chain Lightning 50.0% (1.0)<br><img src='icons/Energy Shield.png' alt='Energy Shield' width='20' height='20'> Energy Shield 50.0% (1.0)<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 0.0% (0.0)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 0.0% (0.0)<br><img src='icons/Holy Fire.png' alt='Holy Fire' width='20' height='20'> Holy Fire 0.0% (0.0)<br><img src='icons/Dashing Strike.png' alt='Dashing Strike' width='20' height='20'> Dashing Strike 0.0% (0.0)<br><img src='icons/Salvation.png' alt='Salvation' width='20' height='20'> Salvation 0.0% (0.0)<br><img src='icons/Vigor.png' alt='Vigor' width='20' height='20'> Vigor 0.0% (0.0)<br><img src='icons/Cleansing.png' alt='Cleansing' width='20' height='20'> Cleansing 0.0% (0.0)<br><img src='icons/Defiance.png' alt='Defiance' width='20' height='20'> Defiance 0.0% (0.0)<br><img src='icons/Prayer.png' alt='Prayer' width='20' height='20'> Prayer 0.0% (0.0)<br><img src='icons/Might.png' alt='Might' width='20' height='20'> Might 0.0% (0.0)<br><img src='icons/Holy Shield.png' alt='Holy Shield' width='20' height='20'> Holy Shield 0.0% (0.0)<br><img src='icons/Blessed Hammer.png' alt='Blessed Hammer' width='20' height='20'> Blessed Hammer 0.0% (0.0)<br><img src='icons/Charge.png' alt='Charge' width='20' height='20'> Charge 0.0% (0.0)<br><img src='icons/Zeal.png' alt='Zeal' width='20' height='20'> Zeal 0.0% (0.0)<br><img src='icons/Holy Bolt.png' alt='Holy Bolt' width='20' height='20'> Holy Bolt 0.0% (0.0)<br><img src='icons/Smite.png' alt='Smite' width='20' height='20'> Smite 0.0% (0.0)<br><img src='icons/Sacrifice.png' alt='Sacrifice' width='20' height='20'> Sacrifice 0.0% (0.0)<br><img src='icons/Hurricane.png' alt='Hurricane' width='20' height='20'> Hurricane 0.0% (0.0)<br><img src='icons/Tornado.png' alt='Tornado' width='20' height='20'> Tornado 0.0% (0.0)<br><img src='icons/Twister.png' alt='Twister' width='20' height='20'> Twister 0.0% (0.0)<br><img src='icons/Cyclone Armor.png' alt='Cyclone Armor' width='20' height='20'> Cyclone Armor 0.0% (0.0)<br><img src='icons/Arctic Blast.png' alt='Arctic Blast' width='20' height='20'> Arctic Blast 0.0% (0.0)<br><img src='icons/Concentration.png' alt='Concentration' width='20' height='20'> Concentration 0.0% (0.0)<br><img src='icons/Fanaticism.png' alt='Fanaticism' width='20' height='20'> Fanaticism 0.0% (0.0)<br><img src='icons/Redemption.png' alt='Redemption' width='20' height='20'> Redemption 0.0% (0.0)<br><img src='icons/Resist Cold.png' alt='Resist Cold' width='20' height='20'> Resist Cold 0.0% (0.0)<br><img src='icons/Conviction.png' alt='Conviction' width='20' height='20'> Conviction 0.0% (0.0)<br><img src='icons/Sanctuary.png' alt='Sanctuary' width='20' height='20'> Sanctuary 0.0% (0.0)<br><img src='icons/Holy Freeze.png' alt='Holy Freeze' width='20' height='20'> Holy Freeze 0.0% (0.0)<br><img src='icons/Precision.png' alt='Precision' width='20' height='20'> Precision 0.0% (0.0)<br><img src='icons/Resist Fire.png' alt='Resist Fire' width='20' height='20'> Resist Fire 0.0% (0.0)<br><img src='icons/Holy Shock.png' alt='Holy Shock' width='20' height='20'> Holy Shock 0.0% (0.0)<br><img src='icons/Resist Lightning.png' alt='Resist Lightning' width='20' height='20'> Resist Lightning 0.0% (0.0)<br><img src='icons/Blessed Aim.png' alt='Blessed Aim' width='20' height='20'> Blessed Aim 0.0% (0.0)</div>
+            </div>
 
-    <script>
-        var coll = document.getElementsByClassName("collapsible");
-        for (var i = 0; i < coll.length; i++) {
-            coll[i].addEventListener("click", function() {
-                this.classList.toggle("active");
-                var content = this.nextElementSibling;
-                var openIcon = this.querySelector("img.icon[alt='Open']");
-                var closeIcon = this.querySelector("img.icon[alt='Close']");
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>Most Common Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Boots</strong>: <br>Rune Blazer 50.00%<br>War Traveler 50.00%<br><strong>Gloves</strong>: <br>Magefist 50.00%<br>Frostburn 50.00%<br><strong>Amulet</strong>: <br>Mara's Kaleidoscope 100.00%<br><strong>Ring</strong>: <br>Rune Touch 50.00%<br>Blood Grip 50.00%<br>The Stone of Jordan 50.00%<br>Wisp Projector 50.00%<br><strong>Body</strong>: <br>Templar's Might 100.00%<br><strong>Belt</strong>: <br>Arachnid Mesh 50.00%<br>Verdungo's Hearty Cord 50.00%<br><strong>Helmet</strong>: <br>Andariel's Visage 50.00%<br>Griffon's Eye 50.00%<br><strong>Left hand</strong>: <br>Call to Arms 50.00%<br>Hexfire 50.00%<br>Bone Wand of Lower Resistance 50.00%<br>Dangoon's Teaching 50.00%<br><strong>Offhand</strong>: <br>Phoenix 100.00%<br>Spirit 50.00%</div>
+            </div>
+        
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Boots</strong>: Rune Blazer 50.00%, War Traveler 50.00%<br><strong>Gloves</strong>: Magefist 50.00%, Frostburn 50.00%<br><strong>Amulet</strong>: Mara's Kaleidoscope 100.00%<br><strong>Ring</strong>: Rune Touch 50.00%, Blood Grip 50.00%, The Stone of Jordan 50.00%, Wisp Projector 50.00%<br><strong>Body</strong>: Templar's Might 100.00%<br><strong>Belt</strong>: Arachnid Mesh 50.00%, Verdungo's Hearty Cord 50.00%<br><strong>Helmet</strong>: Andariel's Visage 50.00%, Griffon's Eye 50.00%<br><strong>Left hand</strong>: Call to Arms 50.00%, Hexfire 50.00%, Bone Wand of Lower Resistance 50.00%, Dangoon's Teaching 50.00%<br><strong>Offhand</strong>: Spirit 50.00%, Phoenix 100.00%</div>
+            </div>
 
-                if (content.style.display === "block") {
-                    content.style.display = "none";
-                    openIcon.classList.remove("hidden");
-                    closeIcon.classList.add("hidden");
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>2 Characters in this cluster:</strong></button>
+            <div class="content">
+                
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=TopMissileClass">TopMissileClass</a></div>
+                    <div>91</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Fire Bolt:20, Warmth:20, Enflame:20, Fire Mastery:20, Frigerate:3, Shiver Armor:2, Fire Ball:1, Hydra:1, Telekinesis:1, Teleport:1, Ice Bolt:1, Ice Blast:1</p>
+            <p><strong>Equipment:</strong> boots: Rune Blazer x1, gloves: Magefist x1, amulet: Mara's Kaleidoscope x1, ring: Rune Touch x1, ring: Blood Grip x1, body: Templar's Might x1, belt: Arachnid Mesh x1, helmet: Andariel's Visage x1, Left hand: Call to Arms x1, Left hand: Hexfire x1, Offhand: Spirit x1, Offhand: Phoenix x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=TeddySorcadin">TeddySorcadin</a></div>
+                    <div>90</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Telekinesis:20, Teleport:20, Lightning Mastery:20, Thunder Storm:20, Nova:10, Fire Bolt:1, Warmth:1, Fire Ball:1, Enflame:1, Fire Mastery:1, Charged Bolt:1, Static Field:1, Lightning Surge:1, Chain Lightning:1, Energy Shield:1, Frigerate:1</p>
+            <p><strong>Equipment:</strong> helmet: Griffon's Eye x1, boots: War Traveler x1, ring: The Stone of Jordan x1, ring: Wisp Projector x1, amulet: Mara's Kaleidoscope x1, body: Templar's Might x1, gloves: Frostburn x1, belt: Verdungo's Hearty Cord x1, Left hand: Bone Wand of Lower Resistance x1, Left hand: Dangoon's Teaching x1, Offhand: Phoenix x1</p>
+        
+        </div>
+        <hr>
+        
+        <h2>7.14%  of Charge's Main Skills:<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 100.00% (20)<br><img src='icons/Twister.png' alt='Twister' width='20' height='20'> Twister 100.00% (20)<br><img src='icons/Tornado.png' alt='Tornado' width='20' height='20'> Tornado 100.00% (20)<br><img src='icons/Hurricane.png' alt='Hurricane' width='20' height='20'> Hurricane 100.00% (20)</h2>
+        <p><strong>Other Skills:<br></strong> <img src='icons/Arctic Blast.png' alt='Arctic Blast' width='20' height='20'> Arctic Blast 100.0% (10.0)<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 100.0% (1.0)<br><img src='icons/Cyclone Armor.png' alt='Cyclone Armor' width='20' height='20'> Cyclone Armor 100.0% (1.0)<br><img src='icons/Sacrifice.png' alt='Sacrifice' width='20' height='20'> Sacrifice 0.0% (0.0)<br><img src='icons/Smite.png' alt='Smite' width='20' height='20'> Smite 0.0% (0.0)<br><img src='icons/Holy Bolt.png' alt='Holy Bolt' width='20' height='20'> Holy Bolt 0.0% (0.0)</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>All Skills</strong></button>
+            <div class="content">
+                <div><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 100.0% (20.0)<br><img src='icons/Tornado.png' alt='Tornado' width='20' height='20'> Tornado 100.0% (20.0)<br><img src='icons/Twister.png' alt='Twister' width='20' height='20'> Twister 100.0% (20.0)<br><img src='icons/Hurricane.png' alt='Hurricane' width='20' height='20'> Hurricane 100.0% (20.0)<br><img src='icons/Arctic Blast.png' alt='Arctic Blast' width='20' height='20'> Arctic Blast 100.0% (10.0)<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 100.0% (1.0)<br><img src='icons/Cyclone Armor.png' alt='Cyclone Armor' width='20' height='20'> Cyclone Armor 100.0% (1.0)<br><img src='icons/Sacrifice.png' alt='Sacrifice' width='20' height='20'> Sacrifice 0.0% (0.0)<br><img src='icons/Smite.png' alt='Smite' width='20' height='20'> Smite 0.0% (0.0)<br><img src='icons/Holy Bolt.png' alt='Holy Bolt' width='20' height='20'> Holy Bolt 0.0% (0.0)<br><img src='icons/Zeal.png' alt='Zeal' width='20' height='20'> Zeal 0.0% (0.0)<br><img src='icons/Charge.png' alt='Charge' width='20' height='20'> Charge 0.0% (0.0)<br><img src='icons/Blessed Hammer.png' alt='Blessed Hammer' width='20' height='20'> Blessed Hammer 0.0% (0.0)<br><img src='icons/Holy Shield.png' alt='Holy Shield' width='20' height='20'> Holy Shield 0.0% (0.0)<br><img src='icons/Might.png' alt='Might' width='20' height='20'> Might 0.0% (0.0)<br><img src='icons/Prayer.png' alt='Prayer' width='20' height='20'> Prayer 0.0% (0.0)<br><img src='icons/Defiance.png' alt='Defiance' width='20' height='20'> Defiance 0.0% (0.0)<br><img src='icons/Cleansing.png' alt='Cleansing' width='20' height='20'> Cleansing 0.0% (0.0)<br><img src='icons/Vigor.png' alt='Vigor' width='20' height='20'> Vigor 0.0% (0.0)<br><img src='icons/Salvation.png' alt='Salvation' width='20' height='20'> Salvation 0.0% (0.0)<br><img src='icons/Dashing Strike.png' alt='Dashing Strike' width='20' height='20'> Dashing Strike 0.0% (0.0)<br><img src='icons/Holy Fire.png' alt='Holy Fire' width='20' height='20'> Holy Fire 0.0% (0.0)<br><img src='icons/Precision.png' alt='Precision' width='20' height='20'> Precision 0.0% (0.0)<br><img src='icons/Holy Freeze.png' alt='Holy Freeze' width='20' height='20'> Holy Freeze 0.0% (0.0)<br><img src='icons/Sanctuary.png' alt='Sanctuary' width='20' height='20'> Sanctuary 0.0% (0.0)<br><img src='icons/Conviction.png' alt='Conviction' width='20' height='20'> Conviction 0.0% (0.0)<br><img src='icons/Resist Fire.png' alt='Resist Fire' width='20' height='20'> Resist Fire 0.0% (0.0)<br><img src='icons/Holy Shock.png' alt='Holy Shock' width='20' height='20'> Holy Shock 0.0% (0.0)<br><img src='icons/Resist Lightning.png' alt='Resist Lightning' width='20' height='20'> Resist Lightning 0.0% (0.0)<br><img src='icons/Blessed Aim.png' alt='Blessed Aim' width='20' height='20'> Blessed Aim 0.0% (0.0)<br><img src='icons/Concentration.png' alt='Concentration' width='20' height='20'> Concentration 0.0% (0.0)<br><img src='icons/Fanaticism.png' alt='Fanaticism' width='20' height='20'> Fanaticism 0.0% (0.0)<br><img src='icons/Redemption.png' alt='Redemption' width='20' height='20'> Redemption 0.0% (0.0)<br><img src='icons/Resist Cold.png' alt='Resist Cold' width='20' height='20'> Resist Cold 0.0% (0.0)<br><img src='icons/Fire Bolt.png' alt='Fire Bolt' width='20' height='20'> Fire Bolt 0.0% (0.0)<br><img src='icons/Warmth.png' alt='Warmth' width='20' height='20'> Warmth 0.0% (0.0)<br><img src='icons/Fire Ball.png' alt='Fire Ball' width='20' height='20'> Fire Ball 0.0% (0.0)<br><img src='icons/Enflame.png' alt='Enflame' width='20' height='20'> Enflame 0.0% (0.0)<br><img src='icons/Fire Mastery.png' alt='Fire Mastery' width='20' height='20'> Fire Mastery 0.0% (0.0)<br><img src='icons/Hydra.png' alt='Hydra' width='20' height='20'> Hydra 0.0% (0.0)<br><img src='icons/Telekinesis.png' alt='Telekinesis' width='20' height='20'> Telekinesis 0.0% (0.0)<br><img src='icons/Teleport.png' alt='Teleport' width='20' height='20'> Teleport 0.0% (0.0)<br><img src='icons/Ice Bolt.png' alt='Ice Bolt' width='20' height='20'> Ice Bolt 0.0% (0.0)<br><img src='icons/Frigerate.png' alt='Frigerate' width='20' height='20'> Frigerate 0.0% (0.0)<br><img src='icons/Ice Blast.png' alt='Ice Blast' width='20' height='20'> Ice Blast 0.0% (0.0)<br><img src='icons/Shiver Armor.png' alt='Shiver Armor' width='20' height='20'> Shiver Armor 0.0% (0.0)<br><img src='icons/Charged Bolt.png' alt='Charged Bolt' width='20' height='20'> Charged Bolt 0.0% (0.0)<br><img src='icons/Static Field.png' alt='Static Field' width='20' height='20'> Static Field 0.0% (0.0)<br><img src='icons/Nova.png' alt='Nova' width='20' height='20'> Nova 0.0% (0.0)<br><img src='icons/Lightning Surge.png' alt='Lightning Surge' width='20' height='20'> Lightning Surge 0.0% (0.0)<br><img src='icons/Chain Lightning.png' alt='Chain Lightning' width='20' height='20'> Chain Lightning 0.0% (0.0)<br><img src='icons/Energy Shield.png' alt='Energy Shield' width='20' height='20'> Energy Shield 0.0% (0.0)<br><img src='icons/Lightning Mastery.png' alt='Lightning Mastery' width='20' height='20'> Lightning Mastery 0.0% (0.0)<br><img src='icons/Thunder Storm.png' alt='Thunder Storm' width='20' height='20'> Thunder Storm 0.0% (0.0)</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>Most Common Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Belt</strong>: <br>Nightsmoke 100.00%<br><strong>Helmet</strong>: <br>Jalal's Mane 100.00%<br><strong>Amulet</strong>: <br>Stone Clasp 100.00%<br><strong>Boots</strong>: <br>Gore Rider 100.00%<br><strong>Body</strong>: <br>Templar's Might 100.00%<br><strong>Ring</strong>: <br>Bul-Kathos' Wedding Band 200.00%<br><strong>Gloves</strong>: <br>Steelrend 100.00%<br><strong>Left hand</strong>: <br>The Redeemer 100.00%<br><strong>Offhand</strong>: <br>Medusa's Gaze 100.00%</div>
+            </div>
+        
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Belt</strong>: Nightsmoke 100.00%<br><strong>Helmet</strong>: Jalal's Mane 100.00%<br><strong>Amulet</strong>: Stone Clasp 100.00%<br><strong>Boots</strong>: Gore Rider 100.00%<br><strong>Body</strong>: Templar's Might 100.00%<br><strong>Ring</strong>: Bul-Kathos' Wedding Band 200.00%<br><strong>Gloves</strong>: Steelrend 100.00%<br><strong>Left hand</strong>: The Redeemer 100.00%<br><strong>Offhand</strong>: Medusa's Gaze 100.00%</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>1 Characters in this cluster:</strong></button>
+            <div class="content">
+                
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Kekimo">Kekimo</a></div>
+                    <div>82</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Heart of Wolverine:20, Twister:20, Tornado:20, Hurricane:20, Arctic Blast:10, Oak Sage:1, Cyclone Armor:1</p>
+            <p><strong>Equipment:</strong> belt: Nightsmoke x1, helmet: Jalal's Mane x1, amulet: Stone Clasp x1, boots: Gore Rider x1, body: Templar's Might x1, ring: Bul-Kathos' Wedding Band x2, gloves: Steelrend x1, Left hand: The Redeemer x1, Offhand: Medusa's Gaze x1</p>
+        
+        </div>
+        <hr>
+        
+            <h3>Top 5 Most Popular Charge Skills:</h3>
+        <ul>
+        </ul>
+
+        <h3>Bottom 5 Least Popular Charge Skills:</h3>
+        <ul>
+        </ul>
+        <!-- Embed the Plotly pie chart -->
+        <div>
+            <img src="charts/Charge-clusters_distribution_pie.png" alt="Charge Skills Distribution">
+        </div>
+
+        <!-- Embed the Plotly scatter plot -->
+        <div>
+            <img src="charts/Charge-clusters_with_avg_points.png" alt="Charge Skill Clusters Scatter Plot">
+        </div>
+        <button onclick="topFunction()" id="backToTopBtn" class="back-to-top">Top</button>
+        
+
+        <script>
+            var coll = document.getElementsByClassName("collapsible");
+            for (var i = 0; i < coll.length; i++) {
+                coll[i].addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var content = this.nextElementSibling;
+                    var openIcon = this.querySelector("img.icon[alt='Open']");
+                    var closeIcon = this.querySelector("img.icon[alt='Close']");
+
+                    if (content.style.display === "block") {
+                        content.style.display = "none";
+                        openIcon.classList.remove("hidden");
+                        closeIcon.classList.add("hidden");
+                    } else {
+                        content.style.display = "block";
+                        openIcon.classList.add("hidden");
+                        closeIcon.classList.remove("hidden");
+                    }
+                });
+            }
+        </script>
+
+        <script>
+            //Get the button
+            var backToTopBtn = document.getElementById("backToTopBtn");
+
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function() {scrollFunction()};
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    backToTopBtn.style.display = "block";
                 } else {
-                    content.style.display = "block";
-                    openIcon.classList.add("hidden");
-                    closeIcon.classList.remove("hidden");
+                    backToTopBtn.style.display = "none";
                 }
-            });
-        }
-    </script>
-
-    <script>
-        //Get the button
-        var backToTopBtn = document.getElementById("backToTopBtn");
-
-        // When the user scrolls down 20px from the top of the document, show the button
-        window.onscroll = function() {scrollFunction()};
-
-        function scrollFunction() {
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                backToTopBtn.style.display = "block";
-            } else {
-                backToTopBtn.style.display = "none";
             }
-        }
 
-        // When the user clicks on the button, scroll to the top of the document
-        function topFunction() {
-            document.body.scrollTop = 0; // For Safari
-            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-        }
-    </script>
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+                document.body.scrollTop = 0; // For Safari
+                document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+            }
+        </script>
 
-    <script>
-        function setActive(id) {
-            // Remove active class from both buttons
-            document.getElementById("SC").classList.remove("active");
-            document.getElementById("HC").classList.remove("active");
-            
-            // Add active class to the selected button
-            document.getElementById(id).classList.add("active");
-            
-            // Get the current URL
-            var currentUrl = window.location.href;
-            
-            // Determine the new URL based on the selected mode
-            var newUrl;
-            if (id === "SC") {
-                if (currentUrl.includes('hc')) {
-                    newUrl = currentUrl.replace(/hc/gi, '');
+        <script>
+            function setActive(id) {
+                // Remove active class from both buttons
+                document.getElementById("SC").classList.remove("active");
+                document.getElementById("HC").classList.remove("active");
+                
+                // Add active class to the selected button
+                document.getElementById(id).classList.add("active");
+                
+                // Get the current URL
+                var currentUrl = window.location.href;
+                
+                // Determine the new URL based on the selected mode
+                var newUrl;
+                if (id === "SC") {
+                    if (currentUrl.includes('hc')) {
+                        newUrl = currentUrl.replace(/hc/gi, '');
+                    } else {
+                        newUrl = currentUrl;
+                    }
+                } else if (id === "HC") {
+                    if (!currentUrl.includes('hc')) {
+                        newUrl = currentUrl.replace(/(\w+)\.html$/, 'hc$1.html');
+                    } else {
+                        newUrl = currentUrl;
+                    }
+                }
+                
+                // Redirect to the new URL if it has changed
+                if (newUrl !== currentUrl) {
+                    window.location.href = newUrl;
+                }
+            }
+
+            // Set default active button based on the current URL
+            window.onload = function() {
+                if (window.location.href.includes('hc')) {
+                    setActive("HC");
                 } else {
-                    newUrl = currentUrl;
-                }
-            } else if (id === "HC") {
-                if (!currentUrl.includes('hc')) {
-                    newUrl = currentUrl.replace(/(\w+)\.html$/, 'hc$1.html');
-                } else {
-                    newUrl = currentUrl;
+                    setActive("SC");
                 }
             }
-            
-            // Redirect to the new URL if it has changed
-            if (newUrl !== currentUrl) {
-                window.location.href = newUrl;
-            }
-        }
-
-        // Set default active button based on the current URL
-        window.onload = function() {
-            if (window.location.href.includes('hc')) {
-                setActive("HC");
-            } else {
-                setActive("SC");
-            }
-        }
-    </script>
+        </script>
 
 
 
 
-</body>
-</html>
+    </body>
+    </html>
+    
