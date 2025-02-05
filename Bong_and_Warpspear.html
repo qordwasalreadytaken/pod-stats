@@ -1,0 +1,459 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Bong_and_Warpspear Analysis Report</title>
+        <style>
+            body { 
+                font-family: Arial, sans-serif; 
+                margin: 20px; 
+                line-height: 1.6; 
+                margin-left: 200px; /* Adjust this value to the width of your fixed buttons + some extra space */
+            }
+            h1 { color: #333; }
+            h2 { color: #555; margin-top: 20px; clear: both; }
+            p { clear: both; }
+            .character-info { display: flex; margin-bottom: 10px; }
+            .character-info div { flex: 1; padding: 5px; }
+            .character-link { flex: 1; }
+        
+            .collapsible {
+                background-color: #f1f1f1;
+                color: black;
+                cursor: pointer;
+                padding: 10px;
+                width: 100%;
+                border: none;
+                text-align: left;
+                outline: none;
+                font-size: 15px;
+                border-radius: 5px;
+                transition: background-color 0.3s ease, box-shadow 0.3s ease;
+                display: flex;
+                align-items: center;
+            }
+            .collapsible img.icon {
+                margin-right: 10px;
+                width: 20px;
+                height: 20px;
+            }
+            .collapsible img.icon.hidden {
+                display: none;
+            }
+            .collapsible:hover {
+                background-color: #45a049;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            }
+            .active, .collapsible:focus {
+                background-color: #45a049;
+            }
+        
+            .content {
+                padding: 0 18px;
+                display: none;
+                overflow: hidden;
+                background-color: #f9f9f9;
+            }
+            iframe {
+                width: 100%;
+                height: 600px;
+                border: none;
+            }
+        
+            .top-buttons {
+                position: fixed;
+                top: 20px;
+                left: 10px;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                margin-right: 20px;
+            }
+            .top-button {
+                background-color: #f1f1f1;
+                color: black;
+                cursor: pointer;
+                padding: 10px 15px;
+                border: none;
+                text-align: center;
+                outline: none;
+                font-size: 16px;
+                border-radius: 5px;
+                transition: background-color 0.3s ease, box-shadow 0.3s ease;
+                text-decoration: none;
+                flex: 0 0 auto;
+                margin-bottom: 10px;
+            }
+            .top-button:hover {
+                background-color: #45a049;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            }
+            .top-button.active {
+                background-color: #2E7D32; /* Different color for active state */
+            }
+        
+            .back-to-top {
+                display: none;
+                position: fixed;
+                bottom: 20px;
+                right: 30px;
+                z-index: 99;
+                border: none;
+                outline: none;
+                background-color: #4CAF50;
+                color: white;
+                cursor: pointer;
+                padding: 15px;
+                border-radius: 10px;
+                font-size: 18px;
+            }
+            .back-to-top:hover {
+                background-color: #45a049;
+            }
+        
+            .split-button {
+                display: flex;
+                justify-content: center;
+                margin-bottom: 20px;
+            }
+            .split-button-option {
+                background-color: #4CAF50;
+                color: white;
+                cursor: pointer;
+                padding: 10px 15px;
+                border: none;
+                text-align: center;
+                outline: none;
+                font-size: 16px;
+                border-radius: 0;
+                transition: background-color 0.3s ease, box-shadow 0.3s ease;
+                flex: 1;
+            }
+            .split-button-option:first-child {
+                border-top-left-radius: 5px;
+                border-bottom-left-radius: 5px;
+            }
+            .split-button-option:last-child {
+                border-top-right-radius: 5px;
+                border-bottom-right-radius: 5px;
+            }
+            .split-button-option:hover {
+                background-color: #45a049;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            }
+            .split-button-option.active {
+                background-color: #2E7D32;
+            }
+            
+            .container {
+                display: flex;
+                justify-content: space-between;
+            }
+            .column {
+                flex: 1;
+                margin: 10px;
+            }
+            h3 {
+                color: #555;
+            }
+            ul {
+                list-style-type: none;
+                padding: 0;
+            }
+            li {
+                margin-bottom: 5px;
+            }
+            .indented-skills {
+                margin-left: 20px; /* Adjust the value to your preference */
+            }
+        </style>
+    </head>
+    <body>
+        <div class="top-buttons">
+            <a href="Home.html" class="top-button">Home</a>
+            <a href="Amazon.html" class="top-button">Amazon</a>
+            <a href="Assassin.html" class="top-button">Assassin</a>
+            <a href="Barbarian.html" class="top-button">Barbarian</a>
+            <a href="Druid.html" class="top-button">Druid</a>
+            <a href="Necromancer.html" class="top-button">Necromancer</a>
+            <a href="Paladin.html" class="top-button">Paladin</a>
+            <a href="Sorceress.html" class="top-button">Sorceress</a>
+            <div class="split-button">
+                <button id="SC" class="split-button-option" onclick="setActive('SC')">SC</button>
+                <button id="HC" class="split-button-option" onclick="setActive('HC')">HC</button>
+            </div>
+        </div>
+
+        <h1>Warpspear and The Iron Jang Bong Usage </h1>
+        <h3>This is characters who have Warpspear or The Iron Jang Bong equipped</h3>
+        <p class="indented-skills">Skills used:<br>The Iron Jang Bong users favor the skills: Nova (13.33%), Frost Nova (13.33%), Shiver Armor (13.33%), Telekinesis (9.0%)<br>Warpspear users favor the skills: Telekinesis (20.0%), Teleport (20.0%), Thunder Storm (20.0%), Lightning Surge (19.29%) </p>
+
+        <hr>
+        
+        <h2>Warpspear users:<br><img src='icons/Telekinesis.png' alt='Telekinesis' width='20' height='20'> Telekinesis 100.00% (140)<br><img src='icons/Teleport.png' alt='Teleport' width='20' height='20'> Teleport 100.00% (140)<br><img src='icons/Thunder Storm.png' alt='Thunder Storm' width='20' height='20'> Thunder Storm 100.00% (140)<br><img src='icons/Lightning Surge.png' alt='Lightning Surge' width='20' height='20'> Lightning Surge 100.00% (135)</h2>
+        <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='icons/Lightning Mastery.png' alt='Lightning Mastery' width='20' height='20'> Lightning Mastery 100.0% (133.0)<br><img src='icons/Energy Shield.png' alt='Energy Shield' width='20' height='20'> Energy Shield 100.0% (11.0)<br><img src='icons/Warmth.png' alt='Warmth' width='20' height='20'> Warmth 100.0% (7.0)<br><img src='icons/Charged Bolt.png' alt='Charged Bolt' width='20' height='20'> Charged Bolt 100.0% (7.0)<br><img src='icons/Chain Lightning.png' alt='Chain Lightning' width='20' height='20'> Chain Lightning 100.0% (7.0)<br><img src='icons/Static Field.png' alt='Static Field' width='20' height='20'> Static Field 42.86% (3.0)</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>All Skills</strong></button>
+            <div class="content">
+                <div><img src='icons/Teleport.png' alt='Teleport' width='20' height='20'> Teleport 100.0% (140.0)<br><img src='icons/Thunder Storm.png' alt='Thunder Storm' width='20' height='20'> Thunder Storm 100.0% (140.0)<br><img src='icons/Telekinesis.png' alt='Telekinesis' width='20' height='20'> Telekinesis 100.0% (140.0)<br><img src='icons/Lightning Surge.png' alt='Lightning Surge' width='20' height='20'> Lightning Surge 100.0% (135.0)<br><img src='icons/Lightning Mastery.png' alt='Lightning Mastery' width='20' height='20'> Lightning Mastery 100.0% (133.0)<br><img src='icons/Energy Shield.png' alt='Energy Shield' width='20' height='20'> Energy Shield 100.0% (11.0)<br><img src='icons/Charged Bolt.png' alt='Charged Bolt' width='20' height='20'> Charged Bolt 100.0% (7.0)<br><img src='icons/Warmth.png' alt='Warmth' width='20' height='20'> Warmth 100.0% (7.0)<br><img src='icons/Chain Lightning.png' alt='Chain Lightning' width='20' height='20'> Chain Lightning 100.0% (7.0)<br><img src='icons/Static Field.png' alt='Static Field' width='20' height='20'> Static Field 42.86% (3.0)<br><img src='icons/Frigerate.png' alt='Frigerate' width='20' height='20'> Frigerate 14.29% (1.0)<br><img src='icons/Magic Arrow.png' alt='Magic Arrow' width='20' height='20'> Magic Arrow 0.0% (0.0)<br><img src='icons/Inner Sight.png' alt='Inner Sight' width='20' height='20'> Inner Sight 0.0% (0.0)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 0.0% (0.0)<br><img src='icons/Multiple Shot.png' alt='Multiple Shot' width='20' height='20'> Multiple Shot 0.0% (0.0)<br><img src='icons/Cold Arrow.png' alt='Cold Arrow' width='20' height='20'> Cold Arrow 0.0% (0.0)<br><img src='icons/Valkyrie.png' alt='Valkyrie' width='20' height='20'> Valkyrie 0.0% (0.0)<br><img src='icons/Pierce.png' alt='Pierce' width='20' height='20'> Pierce 0.0% (0.0)<br><img src='icons/Decoy.png' alt='Decoy' width='20' height='20'> Decoy 0.0% (0.0)<br><img src='icons/Evade.png' alt='Evade' width='20' height='20'> Evade 0.0% (0.0)<br><img src='icons/Penetrate.png' alt='Penetrate' width='20' height='20'> Penetrate 0.0% (0.0)<br><img src='icons/Avoid.png' alt='Avoid' width='20' height='20'> Avoid 0.0% (0.0)<br><img src='icons/Dodge.png' alt='Dodge' width='20' height='20'> Dodge 0.0% (0.0)<br><img src='icons/Phase Run.png' alt='Phase Run' width='20' height='20'> Phase Run 0.0% (0.0)<br><img src='icons/Guided Arrow.png' alt='Guided Arrow' width='20' height='20'> Guided Arrow 0.0% (0.0)<br><img src='icons/Nova.png' alt='Nova' width='20' height='20'> Nova 0.0% (0.0)<br><img src='icons/Discharge.png' alt='Discharge' width='20' height='20'> Discharge 0.0% (0.0)<br><img src='icons/Ice Bolt.png' alt='Ice Bolt' width='20' height='20'> Ice Bolt 0.0% (0.0)<br><img src='icons/Frost Nova.png' alt='Frost Nova' width='20' height='20'> Frost Nova 0.0% (0.0)<br><img src='icons/Ice Blast.png' alt='Ice Blast' width='20' height='20'> Ice Blast 0.0% (0.0)<br><img src='icons/Shiver Armor.png' alt='Shiver Armor' width='20' height='20'> Shiver Armor 0.0% (0.0)<br><img src='icons/Cold Mastery.png' alt='Cold Mastery' width='20' height='20'> Cold Mastery 0.0% (0.0)</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>Most Common Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Amulet</strong>: <br>Tal Rasha's Adjudication 57.14%<br>Mara's Kaleidoscope 28.57%<br><strong>Gloves</strong>: <br>Magefist 57.14%<br>Chance Guards 28.57%<br>Immortal King's Forge 14.29%<br><strong>Ring</strong>: <br>Nagelring 28.57%<br>The Stone of Jordan 28.57%<br>Nature's Peace 14.29%<br>Bul-Kathos' Wedding Band 14.29%<br>Wisp Projector 14.29%<br><strong>Body</strong>: <br>Tal Rasha's Guardianship 42.86%<br>Skin of the Vipermagi 28.57%<br>Chains of Honor 14.29%<br>Enigma 14.29%<br><strong>Left hand</strong>: <br>Warpspear 100.00%<br>Call to Arms 28.57%<br>Spirit 14.29%<br>Death's Fathom 14.29%<br>Ondal's Wisdom 14.29%<br><strong>Boots</strong>: <br>Silkweave 42.86%<br>Gale Trample 14.29%<br>Storm Shank 14.29%<br>War Traveler 14.29%<br><strong>Belt</strong>: <br>Arachnid Mesh 57.14%<br>Tal Rasha's Fine-Spun Cloth 42.86%<br><strong>Offhand</strong>: <br>Spirit 42.86%<br>Medusa's Gaze 28.57%<br>The Oculus 14.29%<br><strong>Helmet</strong>: <br>Harlequin Crest 57.14%<br>Griffon's Eye 14.29%</div>
+            </div>
+        
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Amulet</strong>: Tal Rasha's Adjudication 57.14%, Mara's Kaleidoscope 28.57%<br><strong>Gloves</strong>: Magefist 57.14%, Chance Guards 28.57%, Immortal King's Forge 14.29%<br><strong>Ring</strong>: Nagelring 28.57%, The Stone of Jordan 28.57%, Nature's Peace 14.29%, Bul-Kathos' Wedding Band 14.29%, Wisp Projector 14.29%, Raven Frost 14.29%, Bone Turn 14.29%, PlagueRI Knot 14.29%, Beast Loop 14.29%, Dread Turn 14.29%, Wraithra Turn 14.29%<br><strong>Body</strong>: Tal Rasha's Guardianship 42.86%, Skin of the Vipermagi 28.57%, Chains of Honor 14.29%, Enigma 14.29%<br><strong>Left hand</strong>: Warpspear 100.00%, Call to Arms 28.57%, Spirit 14.29%, Death's Fathom 14.29%, Ondal's Wisdom 14.29%, Griswold's Edge 14.29%, The Oculus 14.29%<br><strong>Boots</strong>: Silkweave 42.86%, Gale Trample 14.29%, Storm Shank 14.29%, War Traveler 14.29%<br><strong>Belt</strong>: Arachnid Mesh 57.14%, Tal Rasha's Fine-Spun Cloth 42.86%<br><strong>Offhand</strong>: Spirit 42.86%, Medusa's Gaze 28.57%, The Oculus 14.29%<br><strong>Helmet</strong>: Harlequin Crest 57.14%, Griffon's Eye 14.29%</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>7 Characters in this cluster:</strong></button>
+            <div class="content">
+                
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=HHLLL">HHLLL</a></div>
+                    <div>96</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Telekinesis:20, Lightning Surge:20, Teleport:20, Lightning Mastery:20, Thunder Storm:20, Energy Shield:3, Warmth:1, Charged Bolt:1, Static Field:1, Chain Lightning:1</p>
+            <p><strong>Equipment:</strong> amulet: Tal Rasha's Adjudication x1, gloves: Chance Guards x1, ring: Nature's Peace x1, ring: Nagelring x1, body: Tal Rasha's Guardianship x1, Left hand: Warpspear x1, Left hand: Spirit x1, boots: Gale Trample x1, belt: Tal Rasha's Fine-Spun Cloth x1, Offhand: The Oculus x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=dischargeadin">dischargeadin</a></div>
+                    <div>93</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Telekinesis:20, Lightning Surge:20, Teleport:20, Lightning Mastery:20, Thunder Storm:20, Warmth:1, Charged Bolt:1, Chain Lightning:1, Energy Shield:1</p>
+            <p><strong>Equipment:</strong> boots: Storm Shank x1, gloves: Magefist x1, helmet: Harlequin Crest x1, amulet: Mara's Kaleidoscope x1, belt: Arachnid Mesh x1, ring: Bul-Kathos' Wedding Band x1, ring: Wisp Projector x1, body: Skin of the Vipermagi x1, Left hand: Death's Fathom x1, Left hand: Warpspear x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Zarmith">Zarmith</a></div>
+                    <div>93</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Telekinesis:20, Lightning Surge:20, Teleport:20, Lightning Mastery:20, Thunder Storm:20, Warmth:1, Charged Bolt:1, Chain Lightning:1, Energy Shield:1</p>
+            <p><strong>Equipment:</strong> boots: Silkweave x1, gloves: Magefist x1, ring: Raven Frost x1, ring: Bone Turn x1, amulet: Tal Rasha's Adjudication x1, helmet: Harlequin Crest x1, belt: Arachnid Mesh x1, body: Chains of Honor x1, Left hand: Call to Arms x1, Left hand: Warpspear x1, Offhand: Medusa's Gaze x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=scrempo">scrempo</a></div>
+                    <div>93</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Telekinesis:20, Teleport:20, Lightning Mastery:20, Thunder Storm:20, Lightning Surge:19, Warmth:1, Charged Bolt:1, Static Field:1, Chain Lightning:1, Energy Shield:1</p>
+            <p><strong>Equipment:</strong> body: Enigma x1, helmet: Griffon's Eye x1, ring: PlagueRI Knot x1, ring: The Stone of Jordan x1, amulet: Mara's Kaleidoscope x1, boots: Silkweave x1, belt: Arachnid Mesh x1, gloves: Immortal King's Forge x1, Left hand: Call to Arms x1, Left hand: Warpspear x1, Offhand: Spirit x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Teleworking">Teleworking</a></div>
+                    <div>92</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Telekinesis:20, Teleport:20, Lightning Mastery:20, Thunder Storm:20, Lightning Surge:16, Energy Shield:3, Warmth:1, Charged Bolt:1, Chain Lightning:1, Frigerate:1</p>
+            <p><strong>Equipment:</strong> belt: Tal Rasha's Fine-Spun Cloth x1, ring: Beast Loop x1, ring: Dread Turn x1, body: Tal Rasha's Guardianship x1, boots: War Traveler x1, amulet: Tal Rasha's Adjudication x1, helmet: Harlequin Crest x1, gloves: Magefist x1, Left hand: Warpspear x1, Left hand: Ondal's Wisdom x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=QuiBish">QuiBish</a></div>
+                    <div>90</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Telekinesis:20, Lightning Surge:20, Teleport:20, Thunder Storm:20, Lightning Mastery:17, Warmth:1, Charged Bolt:1, Chain Lightning:1, Energy Shield:1</p>
+            <p><strong>Equipment:</strong> gloves: Magefist x1, belt: Arachnid Mesh x1, body: Skin of the Vipermagi x1, ring: Wraithra Turn x1, Left hand: Griswold's Edge x1, Left hand: Warpspear x1, Offhand: Medusa's Gaze x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=kfc-ice">kfc-ice</a></div>
+                    <div>90</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Telekinesis:20, Lightning Surge:20, Teleport:20, Thunder Storm:20, Lightning Mastery:16, Warmth:1, Charged Bolt:1, Static Field:1, Chain Lightning:1, Energy Shield:1</p>
+            <p><strong>Equipment:</strong> ring: The Stone of Jordan x1, ring: Nagelring x1, boots: Silkweave x1, amulet: Tal Rasha's Adjudication x1, body: Tal Rasha's Guardianship x1, gloves: Chance Guards x1, helmet: Harlequin Crest x1, belt: Tal Rasha's Fine-Spun Cloth x1, Left hand: Warpspear x1, Left hand: The Oculus x1, Offhand: Spirit x1</p>
+        
+        </div>
+        <br>
+        <hr>
+        <br>
+        
+        <h2>The Iron Jang Bong users:<br><img src='icons/Nova.png' alt='Nova' width='20' height='20'> Nova 66.67% (39)<br><img src='icons/Frost Nova.png' alt='Frost Nova' width='20' height='20'> Frost Nova 66.67% (39)<br><img src='icons/Shiver Armor.png' alt='Shiver Armor' width='20' height='20'> Shiver Armor 66.67% (39)<br><img src='icons/Telekinesis.png' alt='Telekinesis' width='20' height='20'> Telekinesis 66.67% (27)</h2>
+        <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='icons/Lightning Mastery.png' alt='Lightning Mastery' width='20' height='20'> Lightning Mastery 66.67% (25.0)<br><img src='icons/Magic Arrow.png' alt='Magic Arrow' width='20' height='20'> Magic Arrow 33.33% (20.0)<br><img src='icons/Multiple Shot.png' alt='Multiple Shot' width='20' height='20'> Multiple Shot 33.33% (20.0)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 33.33% (20.0)<br><img src='icons/Penetrate.png' alt='Penetrate' width='20' height='20'> Penetrate 33.33% (20.0)<br><img src='icons/Guided Arrow.png' alt='Guided Arrow' width='20' height='20'> Guided Arrow 33.33% (12.0)</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>All Skills</strong></button>
+            <div class="content">
+                <div><img src='icons/Shiver Armor.png' alt='Shiver Armor' width='20' height='20'> Shiver Armor 66.67% (40.0)<br><img src='icons/Nova.png' alt='Nova' width='20' height='20'> Nova 66.67% (40.0)<br><img src='icons/Frost Nova.png' alt='Frost Nova' width='20' height='20'> Frost Nova 66.67% (40.0)<br><img src='icons/Telekinesis.png' alt='Telekinesis' width='20' height='20'> Telekinesis 66.67% (27.0)<br><img src='icons/Lightning Mastery.png' alt='Lightning Mastery' width='20' height='20'> Lightning Mastery 66.67% (25.0)<br><img src='icons/Magic Arrow.png' alt='Magic Arrow' width='20' height='20'> Magic Arrow 33.33% (20.0)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 33.33% (20.0)<br><img src='icons/Multiple Shot.png' alt='Multiple Shot' width='20' height='20'> Multiple Shot 33.33% (20.0)<br><img src='icons/Penetrate.png' alt='Penetrate' width='20' height='20'> Penetrate 33.33% (20.0)<br><img src='icons/Guided Arrow.png' alt='Guided Arrow' width='20' height='20'> Guided Arrow 33.33% (12.0)<br><img src='icons/Cold Mastery.png' alt='Cold Mastery' width='20' height='20'> Cold Mastery 66.67% (11.0)<br><img src='icons/Ice Blast.png' alt='Ice Blast' width='20' height='20'> Ice Blast 66.67% (8.0)<br><img src='icons/Discharge.png' alt='Discharge' width='20' height='20'> Discharge 33.33% (5.0)<br><img src='icons/Warmth.png' alt='Warmth' width='20' height='20'> Warmth 66.67% (2.0)<br><img src='icons/Static Field.png' alt='Static Field' width='20' height='20'> Static Field 66.67% (2.0)<br><img src='icons/Teleport.png' alt='Teleport' width='20' height='20'> Teleport 66.67% (2.0)<br><img src='icons/Frigerate.png' alt='Frigerate' width='20' height='20'> Frigerate 66.67% (2.0)<br><img src='icons/Ice Bolt.png' alt='Ice Bolt' width='20' height='20'> Ice Bolt 66.67% (2.0)<br><img src='icons/Charged Bolt.png' alt='Charged Bolt' width='20' height='20'> Charged Bolt 33.33% (1.0)<br><img src='icons/Pierce.png' alt='Pierce' width='20' height='20'> Pierce 33.33% (1.0)<br><img src='icons/Avoid.png' alt='Avoid' width='20' height='20'> Avoid 33.33% (1.0)<br><img src='icons/Decoy.png' alt='Decoy' width='20' height='20'> Decoy 33.33% (1.0)<br><img src='icons/Dodge.png' alt='Dodge' width='20' height='20'> Dodge 33.33% (1.0)<br><img src='icons/Phase Run.png' alt='Phase Run' width='20' height='20'> Phase Run 33.33% (1.0)<br><img src='icons/Inner Sight.png' alt='Inner Sight' width='20' height='20'> Inner Sight 33.33% (1.0)<br><img src='icons/Cold Arrow.png' alt='Cold Arrow' width='20' height='20'> Cold Arrow 33.33% (1.0)<br><img src='icons/Valkyrie.png' alt='Valkyrie' width='20' height='20'> Valkyrie 33.33% (1.0)<br><img src='icons/Evade.png' alt='Evade' width='20' height='20'> Evade 33.33% (1.0)<br><img src='icons/Lightning Surge.png' alt='Lightning Surge' width='20' height='20'> Lightning Surge 33.33% (1.0)<br><img src='icons/Energy Shield.png' alt='Energy Shield' width='20' height='20'> Energy Shield 33.33% (1.0)<br><img src='icons/Chain Lightning.png' alt='Chain Lightning' width='20' height='20'> Chain Lightning 33.33% (1.0)<br><img src='icons/Thunder Storm.png' alt='Thunder Storm' width='20' height='20'> Thunder Storm 0.0% (0.0)</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>Most Common Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Body</strong>: <br>Skin of the Vipermagi 33.33%<br>Ormus' Robes 33.33%<br>Fortitude 33.33%<br><strong>Amulet</strong>: <br>Mara's Kaleidoscope 66.67%<br>Atma's Scarab 33.33%<br><strong>Boots</strong>: <br>Silkweave 66.67%<br>War Traveler 33.33%<br><strong>Ring</strong>: <br>The Stone of Jordan 133.33%<br>Order Eye 33.33%<br>Raven Frost 33.33%<br><strong>Belt</strong>: <br>Arachnid Mesh 66.67%<br>Razortail 33.33%<br><strong>Helmet</strong>: <br>Harlequin Crest 66.67%<br>Guillaume's Face 33.33%<br><strong>Gloves</strong>: <br>Frostburn 33.33%<br>Magefist 33.33%<br>Laying of Hands 33.33%<br><strong>Left hand</strong>: <br>The Iron Jang Bong 100.00%<br>Memory 33.33%<br>Spire of Lazarus 33.33%<br>Witchwild String 33.33%<br><strong>Offhand</strong>: <br>Bitter Eye 33.33%</div>
+            </div>
+        
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Body</strong>: Skin of the Vipermagi 33.33%, Ormus' Robes 33.33%, Fortitude 33.33%<br><strong>Amulet</strong>: Mara's Kaleidoscope 66.67%, Atma's Scarab 33.33%<br><strong>Boots</strong>: Silkweave 66.67%, War Traveler 33.33%<br><strong>Ring</strong>: The Stone of Jordan 133.33%, Order Eye 33.33%, Raven Frost 33.33%<br><strong>Belt</strong>: Arachnid Mesh 66.67%, Razortail 33.33%<br><strong>Helmet</strong>: Harlequin Crest 66.67%, Guillaume's Face 33.33%<br><strong>Gloves</strong>: Frostburn 33.33%, Magefist 33.33%, Laying of Hands 33.33%<br><strong>Left hand</strong>: The Iron Jang Bong 100.00%, Memory 33.33%, Spire of Lazarus 33.33%, Witchwild String 33.33%<br><strong>Offhand</strong>: Bitter Eye 33.33%</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>3 Characters in this cluster:</strong></button>
+            <div class="content">
+                
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Ella_Mental">Ella_Mental</a></div>
+                    <div>96</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Telekinesis:20, Nova:20, Frost Nova:20, Shiver Armor:20, Ice Blast:7, Discharge:5, Lightning Mastery:5, Cold Mastery:5, Warmth:1, Static Field:1, Teleport:1, Ice Bolt:1, Frigerate:1</p>
+            <p><strong>Equipment:</strong> body: Skin of the Vipermagi x1, amulet: Mara's Kaleidoscope x1, boots: Silkweave x1, ring: The Stone of Jordan x2, belt: Arachnid Mesh x1, helmet: Harlequin Crest x1, gloves: Frostburn x1, Left hand: Memory x1, Left hand: The Iron Jang Bong x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Heklo">Heklo</a></div>
+                    <div>92</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Nova:20, Lightning Mastery:20, Frost Nova:20, Shiver Armor:20, Telekinesis:7, Cold Mastery:6, Warmth:1, Charged Bolt:1, Static Field:1, Lightning Surge:1, Teleport:1, Chain Lightning:1, Energy Shield:1, Ice Bolt:1, Frigerate:1, Ice Blast:1</p>
+            <p><strong>Equipment:</strong> amulet: Mara's Kaleidoscope x1, helmet: Harlequin Crest x1, body: Ormus' Robes x1, belt: Arachnid Mesh x1, ring: The Stone of Jordan x2, boots: Silkweave x1, gloves: Magefist x1, Left hand: Spire of Lazarus x1, Left hand: The Iron Jang Bong x1</p>
+        
+                <div class="character-info">
+                    <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Lee_Speed">Lee_Speed</a></div>
+                    <div>91</div>
+                    <div>Placeholder</div>
+                </div>
+            <p><strong>Skills:</strong> Magic Arrow:20, Multiple Shot:20, Lethal Strike:20, Penetrate:20, Guided Arrow:12, Cold Arrow:1, Inner Sight:1, Dodge:1, Phase Run:1, Avoid:1, Decoy:1, Evade:1, Valkyrie:1, Pierce:1</p>
+            <p><strong>Equipment:</strong> gloves: Laying of Hands x1, boots: War Traveler x1, amulet: Atma's Scarab x1, body: Fortitude x1, belt: Razortail x1, helmet: Guillaume's Face x1, ring: Order Eye x1, ring: Raven Frost x1, Left hand: The Iron Jang Bong x1, Left hand: Witchwild String x1, Offhand: Bitter Eye x1</p>
+        
+        </div>
+        <br>
+        <hr>
+        <br>
+        
+        <!--    <h3>Top 5 Most Popular Bong_and_Warpspear Skills:</h3>
+        <ul>
+        </ul>
+
+        <h3>Bottom 5 Least Popular Bong_and_Warpspear Skills:</h3>
+        <ul>
+        </ul> -->
+        <!-- Embed the Plotly pie chart -->
+        <div>
+            <img src="charts/Bong_and_Warpspear-clusters_distribution_pie.png" alt="Bong_and_Warpspear Skills Distribution">
+        </div>
+
+        <!-- Embed the Plotly scatter plot 
+        <div>
+            <img src="charts/Bong_and_Warpspear-clusters_with_avg_points.png" alt="Bong_and_Warpspear Skill Clusters Scatter Plot">
+        </div> -->
+        <button onclick="topFunction()" id="backToTopBtn" class="back-to-top">Top</button>
+        
+
+        <script>
+            var coll = document.getElementsByClassName("collapsible");
+            for (var i = 0; i < coll.length; i++) {
+                coll[i].addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var content = this.nextElementSibling;
+                    var openIcon = this.querySelector("img.icon[alt='Open']");
+                    var closeIcon = this.querySelector("img.icon[alt='Close']");
+
+                    if (content.style.display === "block") {
+                        content.style.display = "none";
+                        openIcon.classList.remove("hidden");
+                        closeIcon.classList.add("hidden");
+                    } else {
+                        content.style.display = "block";
+                        openIcon.classList.add("hidden");
+                        closeIcon.classList.remove("hidden");
+                    }
+                });
+            }
+        </script>
+
+        <script>
+            //Get the button
+            var backToTopBtn = document.getElementById("backToTopBtn");
+
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function() {scrollFunction()};
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    backToTopBtn.style.display = "block";
+                } else {
+                    backToTopBtn.style.display = "none";
+                }
+            }
+
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+                document.body.scrollTop = 0; // For Safari
+                document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+            }
+        </script>
+
+        <script>
+            function setActive(id) {
+                // Remove active class from both buttons
+                document.getElementById("SC").classList.remove("active");
+                document.getElementById("HC").classList.remove("active");
+                
+                // Add active class to the selected button
+                document.getElementById(id).classList.add("active");
+                
+                // Get the current URL
+                var currentUrl = window.location.href;
+                
+                // Determine the new URL based on the selected mode
+                var newUrl;
+                if (id === "SC") {
+                    if (currentUrl.includes('hc')) {
+                        newUrl = currentUrl.replace(/hc/gi, '');
+                    } else {
+                        newUrl = currentUrl;
+                    }
+                } else if (id === "HC") {
+                    if (!currentUrl.includes('hc')) {
+                        newUrl = currentUrl.replace(/(\w+)\.html$/, 'hc$1.html');
+                    } else {
+                        newUrl = currentUrl;
+                    }
+                }
+                
+                // Redirect to the new URL if it has changed
+                if (newUrl !== currentUrl) {
+                    window.location.href = newUrl;
+                }
+            }
+
+            // Set default active button based on the current URL
+            window.onload = function() {
+                if (window.location.href.includes('hc')) {
+                    setActive("HC");
+                } else {
+                    setActive("SC");
+                }
+            }
+        </script>
+
+
+
+
+    </body>
+    </html>
+    
