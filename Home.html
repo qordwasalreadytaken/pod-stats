@@ -168,6 +168,15 @@
             .indented-skills {
                 margin-left: 50px; /* Adjust the value to your preference */
             }
+            .merccolumn {
+                float: left; 
+                width: 25%;
+            } 
+            .row:after {
+                content: "";    
+                display: table; 
+                clear: both;
+            }
         </style>
         
         
@@ -267,6 +276,22 @@
             </div>
         </div>
         </div>
+        <br>
+        <hr> 
+        <h1>Mercenary reporting</h1>
+        <h3>Most and least popular Runewords, Uniques, and Set items</h3>
+
+        <button type="button" class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>Mercenary Details</strong>
+        </button>
+        <div class="content">
+        <div id="mercequips">
+            <p><h2>Mercenary Analysis and Popular Equipment</h2></p><p><h3>Mercenary Type Counts</h3></p><ul><li>Act 2 Desert Mercenary: 753</li><li>Act 1 Rogue Scout: 82</li><li>Act 3 Eastern Sorceror: 48</li><li>Act 5 Barbarian: 105</li></ul><p><h3>Popular Equipment by Mercenary Type</h3></p<br><div class='row'><p><strong>Act 2 Desert Mercenary</strong></p><div class=merccolumn><strong>Most Common Armors:</strong><ul><li>Treachery: 178</li><li>Fortitude: 105</li><li>Shaftstop: 101</li><li>Duriel's Shell: 53</li><li>The Gladiator's Bane: 41</li></ul></div><div class=merccolumn><strong>Most Common Helmets:</strong><ul><li>Steel Shade: 169</li><li>Tal Rasha's Horadric Crest: 157</li><li>Andariel's Visage: 94</li><li>Vampire Gaze: 89</li><li>Crown of Thieves: 27</li></ul></div><div class=merccolumn><strong>Most Common Weapons:</strong><ul><li>Infinity: 238</li><li>Insight: 223</li><li>The Reaper's Toll: 72</li><li>Obedience: 32</li><li>Tomb Reaver: 16</li></ul></div></div><br><div class='row'><p><strong>Act 1 Rogue Scout</strong></p><div class=merccolumn><strong>Most Common Helmets:</strong><ul><li>Andariel's Visage: 9</li><li>Vampire Gaze: 9</li><li>Tal Rasha's Horadric Crest: 9</li><li>Crown of Thieves: 4</li><li>Hearth: 4</li></ul></div><div class=merccolumn><strong>Most Common Armors:</strong><ul><li>Treachery: 10</li><li>Duriel's Shell: 8</li><li>Fortitude: 5</li><li>The Gladiator's Bane: 5</li><li>Smoke: 3</li></ul></div><div class=merccolumn><strong>Most Common Weapons:</strong><ul><li>Harmony: 35</li><li>Insight: 7</li><li>Faith: 4</li><li>Buriza-Do Kyanon: 4</li><li>Edge: 2</li></ul></div></div><br><div class='row'><p><strong>Act 3 Eastern Sorceror</strong></p><div class=merccolumn><strong>Most Common Armors:</strong><ul><li>Guardian Angel: 4</li><li>Skin of the Vipermagi: 4</li><li>Shaftstop: 4</li><li>Treachery: 3</li><li>The Gladiator's Bane: 3</li></ul></div><div class=merccolumn><strong>Most Common Helmets:</strong><ul><li>Tal Rasha's Horadric Crest: 6</li><li>Vampire Gaze: 5</li><li>Hwanin's Splendor: 4</li><li>Andariel's Visage: 4</li><li>Griffon's Eye: 2</li></ul></div><div class=merccolumn><strong>Most Common Weapons:</strong><ul><li>Lawbringer: 9</li><li>Spirit: 9</li><li>Silence: 5</li><li>Azurewrath: 4</li><li>Plague: 3</li></ul></div><div class=merccolumn><strong>Most Common Offhands:</strong><ul><li>Spirit: 11</li><li>Stormshield: 9</li><li>Gerke's Sanctuary: 5</li><li>Phoenix: 3</li><li>Tiamat's Rebuke: 3</li></ul></div></div><br><div class='row'><p><strong>Act 5 Barbarian</strong></p><div class=merccolumn><strong>Most Common Helmets:</strong><ul><li>Tal Rasha's Horadric Crest: 26</li><li>Steel Shade: 18</li><li>Andariel's Visage: 13</li><li>Vampire Gaze: 9</li><li>Arreat's Face: 6</li></ul></div><div class=merccolumn><strong>Most Common Armors:</strong><ul><li>Treachery: 23</li><li>Fortitude: 18</li><li>Shaftstop: 8</li><li>Duriel's Shell: 8</li><li>The Gladiator's Bane: 7</li></ul></div><div class=merccolumn><strong>Most Common Weapons:</strong><ul><li>Lawbringer: 40</li><li>Silence: 16</li><li>Plague: 8</li><li>The Grandfather: 7</li><li>Todesfaelle Flamme: 4</li></ul></div></div>
+        </div>
+        </div>
+    
         <br>
         <hr>
         <h3>Non-Amazon Bow Users</h3>
