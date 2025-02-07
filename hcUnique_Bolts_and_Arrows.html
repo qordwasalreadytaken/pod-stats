@@ -1,0 +1,668 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Unique_Bolts_and_Arrows Analysis Report</title>
+        <style>
+            body { 
+                font-family: Arial, sans-serif; 
+                margin: 20px; 
+                line-height: 1.6; 
+                margin-left: 200px; /* Adjust this value to the width of your fixed buttons + some extra space */
+            }
+            h1 { color: #333; }
+            h2 { color: #555; margin-top: 20px; clear: both; }
+            p { clear: both; }
+            .character-info { display: flex; margin-bottom: 10px; }
+            .character-info div { flex: 1; padding: 5px; }
+            .character-link { flex: 1; }
+        
+            .collapsible {
+                background-color: #f1f1f1;
+                color: black;
+                cursor: pointer;
+                padding: 10px;
+                width: 100%;
+                border: none;
+                text-align: left;
+                outline: none;
+                font-size: 15px;
+                border-radius: 5px;
+                transition: background-color 0.3s ease, box-shadow 0.3s ease;
+                display: flex;
+                align-items: center;
+            }
+            .collapsible img.icon {
+                margin-right: 10px;
+                width: 20px;
+                height: 20px;
+            }
+            .collapsible img.icon.hidden {
+                display: none;
+            }
+            .collapsible:hover {
+                background-color: #45a049;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            }
+            .active, .collapsible:focus {
+                background-color: #45a049;
+            }
+        
+            .content {
+                padding: 0 18px;
+                display: none;
+                overflow: hidden;
+                background-color: #f9f9f9;
+            }
+            iframe {
+                width: 100%;
+                height: 600px;
+                border: none;
+            }
+        
+            .top-buttons {
+                position: fixed;
+                top: 20px;
+                left: 10px;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                margin-right: 20px;
+            }
+            .top-button {
+                background-color: #f1f1f1;
+                color: black;
+                cursor: pointer;
+                padding: 10px 15px;
+                border: none;
+                text-align: center;
+                outline: none;
+                font-size: 16px;
+                border-radius: 5px;
+                transition: background-color 0.3s ease, box-shadow 0.3s ease;
+                text-decoration: none;
+                flex: 0 0 auto;
+                margin-bottom: 10px;
+            }
+            .top-button:hover {
+                background-color: #45a049;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            }
+            .top-button.active {
+                background-color: #2E7D32; /* Different color for active state */
+            }
+        
+            .back-to-top {
+                display: none;
+                position: fixed;
+                bottom: 20px;
+                right: 30px;
+                z-index: 99;
+                border: none;
+                outline: none;
+                background-color: #4CAF50;
+                color: white;
+                cursor: pointer;
+                padding: 15px;
+                border-radius: 10px;
+                font-size: 18px;
+            }
+            .back-to-top:hover {
+                background-color: #45a049;
+            }
+        
+            .split-button {
+                display: flex;
+                justify-content: center;
+                margin-bottom: 20px;
+            }
+            .split-button-option {
+                background-color: #4CAF50;
+                color: white;
+                cursor: pointer;
+                padding: 10px 15px;
+                border: none;
+                text-align: center;
+                outline: none;
+                font-size: 16px;
+                border-radius: 0;
+                transition: background-color 0.3s ease, box-shadow 0.3s ease;
+                flex: 1;
+            }
+            .split-button-option:first-child {
+                border-top-left-radius: 5px;
+                border-bottom-left-radius: 5px;
+            }
+            .split-button-option:last-child {
+                border-top-right-radius: 5px;
+                border-bottom-right-radius: 5px;
+            }
+            .split-button-option:hover {
+                background-color: #45a049;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            }
+            .split-button-option.active {
+                background-color: #2E7D32;
+            }
+            
+            .container {
+                display: flex;
+                justify-content: space-between;
+            }
+            .column {
+                flex: 1;
+                margin: 10px;
+            }
+            h3 {
+                color: #555;
+            }
+            ul {
+                list-style-type: none;
+                padding: 0;
+            }
+            li {
+                margin-bottom: 5px;
+            }
+            .indented-skills {
+                margin-left: 20px; /* Adjust the value to your preference */
+            }
+        </style>
+    </head>
+    <body>
+        <div class="top-buttons">
+            <a href="hcHome.html" class="top-button">Home</a>
+            <a href="hcAmazon.html" class="top-button">Amazon</a>
+            <a href="hcAssassin.html" class="top-button">Assassin</a>
+            <a href="hcBarbarian.html" class="top-button">Barbarian</a>
+            <a href="hcDruid.html" class="top-button">Druid</a>
+            <a href="hcNecromancer.html" class="top-button">Necromancer</a>
+            <a href="hcPaladin.html" class="top-button">Paladin</a>
+            <a href="hcSorceress.html" class="top-button">Sorceress</a>
+            <div class="split-button">
+                <button id="SC" class="split-button-option" onclick="setActive('SC')">SC</button>
+                <button id="HC" class="split-button-option" onclick="setActive('HC')">HC</button>
+            </div>
+        </div>
+
+        <h1>Hardcore Unique Arrows and Bolts </h1>
+        <h3>Let's see which Unique projectiles are being used</h3>
+        <p class="indented-skills">Usage details:<br>Moonfire Bolts users favor the skills: Magic Arrow (20.0%), Fire Arrow (19.0%), Immolation Arrow (2.5%), Exploding Arrow (2.0%)<br>Dragonbreath Bolts users favor the skills: Magic Arrow (20.0%), Fire Arrow (20.0%), Exploding Arrow (1.0%), Immolation Arrow (1.0%)<br>Moonfire Arrows users favor the skills: Immolation Arrow (10.0%), Pierce (8.0%), Power Strike (5.0%), Lightning Bolt (5.0%)<br>Frostbite Arrows users favor the skills: Cold Arrow (20.0%), Freezing Arrow (20.0%), Immolation Arrow (19.0%), Ice Arrow (10.5%)<br>Hailstorm Bolts users favor the skills: Cold Arrow (20.0%), Freezing Arrow (20.0%), Ice Arrow (15.5%), Immolation Arrow (10.0%)<br>Dragonbreath Arrows users favor the skills: Magic Arrow (7.0%), Frost Nova (6.67%), Fire Arrow (6.0%), Immolation Arrow (1.33%) </p>
+
+        <hr>
+        
+        <h2>Moonfire Arrows make up 28.57%  of Unique Projectiles in use <br>Most popular skills used by characters with them equipped:<br><img src='icons/Immolation Arrow.png' alt='Immolation Arrow' width='20' height='20'> Immolation Arrow 50.00% (40)<br><img src='icons/Pierce.png' alt='Pierce' width='20' height='20'> Pierce 75.00% (32)<br><img src='icons/Power Strike.png' alt='Power Strike' width='20' height='20'> Power Strike 25.00% (20)<br><img src='icons/Lightning Bolt.png' alt='Lightning Bolt' width='20' height='20'> Lightning Bolt 25.00% (20)</h2>
+        <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='icons/Lightning Fury.png' alt='Lightning Fury' width='20' height='20'> Lightning Fury 25.0% (20.0)<br><img src='icons/Guided Arrow.png' alt='Guided Arrow' width='20' height='20'> Guided Arrow 25.0% (20.0)<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 25.0% (20.0)<br><img src='icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' width='20' height='20'> Summon Spirit Wolf 25.0% (20.0)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 25.0% (20.0)<br><img src='icons/Summon Dire Wolf.png' alt='Summon Dire Wolf' width='20' height='20'> Summon Dire Wolf 25.0% (20.0)</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>All Skills</strong></button>
+            <div class="content">
+                <div><img src='icons/Immolation Arrow.png' alt='Immolation Arrow' width='20' height='20'> Immolation Arrow 50.0% (40.0)<br><img src='icons/Pierce.png' alt='Pierce' width='20' height='20'> Pierce 75.0% (32.0)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 25.0% (20.0)<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 25.0% (20.0)<br><img src='icons/Power Strike.png' alt='Power Strike' width='20' height='20'> Power Strike 25.0% (20.0)<br><img src='icons/Lightning Bolt.png' alt='Lightning Bolt' width='20' height='20'> Lightning Bolt 25.0% (20.0)<br><img src='icons/Summon Grizzly.png' alt='Summon Grizzly' width='20' height='20'> Summon Grizzly 25.0% (20.0)<br><img src='icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' width='20' height='20'> Summon Spirit Wolf 25.0% (20.0)<br><img src='icons/Guided Arrow.png' alt='Guided Arrow' width='20' height='20'> Guided Arrow 25.0% (20.0)<br><img src='icons/Summon Dire Wolf.png' alt='Summon Dire Wolf' width='20' height='20'> Summon Dire Wolf 25.0% (20.0)<br><img src='icons/Lightning Fury.png' alt='Lightning Fury' width='20' height='20'> Lightning Fury 25.0% (20.0)<br><img src='icons/Plague Javelin.png' alt='Plague Javelin' width='20' height='20'> Plague Javelin 25.0% (17.0)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 75.0% (15.0)<br><img src='icons/Fire Arrow.png' alt='Fire Arrow' width='20' height='20'> Fire Arrow 50.0% (15.0)<br><img src='icons/Valkyrie.png' alt='Valkyrie' width='20' height='20'> Valkyrie 75.0% (12.0)<br><img src='icons/Exploding Arrow.png' alt='Exploding Arrow' width='20' height='20'> Exploding Arrow 50.0% (12.0)<br><img src='icons/Dodge.png' alt='Dodge' width='20' height='20'> Dodge 75.0% (7.0)<br><img src='icons/Avoid.png' alt='Avoid' width='20' height='20'> Avoid 75.0% (7.0)<br><img src='icons/Multiple Shot.png' alt='Multiple Shot' width='20' height='20'> Multiple Shot 50.0% (5.0)<br><img src='icons/Evade.png' alt='Evade' width='20' height='20'> Evade 75.0% (5.0)<br><img src='icons/Penetrate.png' alt='Penetrate' width='20' height='20'> Penetrate 75.0% (4.0)<br><img src='icons/Phase Run.png' alt='Phase Run' width='20' height='20'> Phase Run 75.0% (3.0)<br><img src='icons/Decoy.png' alt='Decoy' width='20' height='20'> Decoy 75.0% (3.0)<br><img src='icons/Inner Sight.png' alt='Inner Sight' width='20' height='20'> Inner Sight 75.0% (3.0)<br><img src='icons/Poison Javelin.png' alt='Poison Javelin' width='20' height='20'> Poison Javelin 50.0% (2.0)<br><img src='icons/Magic Arrow.png' alt='Magic Arrow' width='20' height='20'> Magic Arrow 50.0% (2.0)<br><img src='icons/Cold Arrow.png' alt='Cold Arrow' width='20' height='20'> Cold Arrow 50.0% (2.0)<br><img src='icons/Ice Arrow.png' alt='Ice Arrow' width='20' height='20'> Ice Arrow 25.0% (1.0)<br><img src='icons/Freezing Arrow.png' alt='Freezing Arrow' width='20' height='20'> Freezing Arrow 25.0% (1.0)<br><img src='icons/Jab.png' alt='Jab' width='20' height='20'> Jab 25.0% (1.0)<br><img src='icons/Spirit of Barbs.png' alt='Spirit of Barbs' width='20' height='20'> Spirit of Barbs 25.0% (1.0)<br><img src='icons/Raven.png' alt='Raven' width='20' height='20'> Raven 25.0% (1.0)<br><img src='icons/Molten Boulder.png' alt='Molten Boulder' width='20' height='20'> Molten Boulder 25.0% (1.0)<br><img src='icons/Firestorm.png' alt='Firestorm' width='20' height='20'> Firestorm 25.0% (1.0)<br><img src='icons/Flame Dash.png' alt='Flame Dash' width='20' height='20'> Flame Dash 25.0% (1.0)<br><img src='icons/Strafe.png' alt='Strafe' width='20' height='20'> Strafe 0.0% (0.0)<br><img src='icons/Warmth.png' alt='Warmth' width='20' height='20'> Warmth 0.0% (0.0)<br><img src='icons/Charged Bolt.png' alt='Charged Bolt' width='20' height='20'> Charged Bolt 0.0% (0.0)<br><img src='icons/Static Field.png' alt='Static Field' width='20' height='20'> Static Field 0.0% (0.0)<br><img src='icons/Telekinesis.png' alt='Telekinesis' width='20' height='20'> Telekinesis 0.0% (0.0)<br><img src='icons/Nova.png' alt='Nova' width='20' height='20'> Nova 0.0% (0.0)<br><img src='icons/Lightning Surge.png' alt='Lightning Surge' width='20' height='20'> Lightning Surge 0.0% (0.0)<br><img src='icons/Teleport.png' alt='Teleport' width='20' height='20'> Teleport 0.0% (0.0)<br><img src='icons/Chain Lightning.png' alt='Chain Lightning' width='20' height='20'> Chain Lightning 0.0% (0.0)<br><img src='icons/Energy Shield.png' alt='Energy Shield' width='20' height='20'> Energy Shield 0.0% (0.0)<br><img src='icons/Lightning Mastery.png' alt='Lightning Mastery' width='20' height='20'> Lightning Mastery 0.0% (0.0)<br><img src='icons/Frost Nova.png' alt='Frost Nova' width='20' height='20'> Frost Nova 0.0% (0.0)<br><img src='icons/Cold Mastery.png' alt='Cold Mastery' width='20' height='20'> Cold Mastery 0.0% (0.0)</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>Most Common Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Body</strong>: <br>Rain Dusk Shroud 0.00%<br>Tal Rasha's Guardianship Lacquered Plate 0.00%<br>Hustle Cuirass 0.00%<br>Smoke Ghost Armor 0.00%<br><strong>Gloves</strong>: <br>Laying of Hands Bramble Mitts 0.00%<br>Lancer's Gauntlets of Self-Repair Gauntlets 0.00%<br>Imp Hand Light Gauntlets 0.00%<br><strong>Belt</strong>: <br>Verdungo's Hearty Cord Mithril Coil 25.00%<br>Thundergod's Vigor War Belt 25.00%<br>Goldwrap Heavy Belt 25.00%<br>Credendum Mithril Coil 0.00%<br><strong>Ring</strong>: <br>Raven Frost Ring 50.00%<br>Nagelring Ring 25.00%<br>Carrion Wind Ring 25.00%<br>Manald Heal Ring 25.00%<br>Storm Grip Ring 0.00%<br><strong>Helmet</strong>: <br>Griffon's Eye Diadem 25.00%<br>Metamorphosis Falcon Mask 0.00%<br>Tal Rasha's Horadric Crest Death Mask 0.00%<br>Lore Bone Helm 0.00%<br><strong>Boots</strong>: <br>Gore Rider War Boots 25.00%<br>Aldur's Advance Battle Boots 0.00%<br>Immortal King's Pillar War Boots 0.00%<br>Sigon's Sabot Greaves 0.00%<br><strong>Amulet</strong>: <br>Atma's Scarab Amulet 25.00%<br>Mara's Kaleidoscope Amulet 25.00%<br>Metalgrid Amulet 25.00%<br>Maiden's Amulet of Sorcery Amulet 0.00%<br><strong>Left hand</strong>: <br>Witchwild String Short Siege Bow 25.00%<br>Titan's Revenge Ceremonial Javelin 25.00%<br>Spirit Crystal Sword 0.00%<br>Harmony Long Battle Bow 0.00%<br>Harmony Blade Bow 0.00%<br><strong>Offhand</strong>: <br>Moonfire Arrows 100.00%<br>Spirit Monarch 0.00%<br>Blood Eye Arrows 0.00%</div>
+            </div>
+        
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Body</strong>: Rain Dusk Shroud 0.00%, Tal Rasha's Guardianship Lacquered Plate 0.00%, Hustle Cuirass 0.00%, Smoke Ghost Armor 0.00%<br><strong>Gloves</strong>: Laying of Hands Bramble Mitts 0.00%, Lancer's Gauntlets of Self-Repair Gauntlets 0.00%, Imp Hand Light Gauntlets 0.00%<br><strong>Belt</strong>: Verdungo's Hearty Cord Mithril Coil 25.00%, Thundergod's Vigor War Belt 25.00%, Goldwrap Heavy Belt 25.00%, Credendum Mithril Coil 0.00%<br><strong>Ring</strong>: Raven Frost Ring 50.00%, Nagelring Ring 25.00%, Carrion Wind Ring 25.00%, Manald Heal Ring 25.00%, Storm Grip Ring 0.00%, Entropy Master Ring 0.00%, Raven Coil Ring 0.00%<br><strong>Helmet</strong>: Griffon's Eye Diadem 25.00%, Metamorphosis Falcon Mask 0.00%, Tal Rasha's Horadric Crest Death Mask 0.00%, Lore Bone Helm 0.00%<br><strong>Boots</strong>: Gore Rider War Boots 25.00%, Aldur's Advance Battle Boots 0.00%, Immortal King's Pillar War Boots 0.00%, Sigon's Sabot Greaves 0.00%<br><strong>Amulet</strong>: Atma's Scarab Amulet 25.00%, Mara's Kaleidoscope Amulet 25.00%, Metalgrid Amulet 25.00%, Maiden's Amulet of Sorcery Amulet 0.00%<br><strong>Left hand</strong>: Witchwild String Short Siege Bow 25.00%, Titan's Revenge Ceremonial Javelin 25.00%, Spirit Crystal Sword 0.00%, Harmony Long Battle Bow 0.00%, Harmony Blade Bow 0.00%, Melody Stag Bow 0.00%, Edge Ashwood Bow 0.00%<br><strong>Offhand</strong>: Moonfire Arrows 100.00%, Spirit Monarch 0.00%, Blood Eye Arrows 0.00%</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>4 Characters in this cluster:</strong></button>
+            <div class="content">
+                
+                <div class="character-info">
+                    <div class="character-link"><strong>Character Name:</strong> PencilPusher</div>
+                    <div>94</div>
+                    <div><a href="https://pathofdiablo.com/p/armory/?name=PencilPusher">Armory</a></div>
+                </div>
+            <p><strong>Skills:</strong> Oak Sage:20, Summon Spirit Wolf:20, Heart of Wolverine:20, Summon Dire Wolf:20, Summon Grizzly:20, Raven:1, Spirit of Barbs:1, Firestorm:1, Molten Boulder:1, Flame Dash:1</p>
+            <p><strong>Equipment:</strong> body: Rain Dusk Shroud x0, gloves: Laying of Hands Bramble Mitts x0, belt: Verdungo's Hearty Cord Mithril Coil x1, ring: Storm Grip Ring x0, ring: Raven Frost Ring x1, helmet: Metamorphosis Falcon Mask x0, boots: Aldur's Advance Battle Boots x0, amulet: Atma's Scarab Amulet x1, Left hand: Spirit Crystal Sword x0, Left hand: Witchwild String Short Siege Bow x1, Offhand: Spirit Monarch x0, Offhand: Moonfire Arrows x1</p>
+            <p><strong>Mercenary:</strong> Act 1 Rogue Scout - Hearth, Treachery, Harmony</p>
+            <br>
+       
+                <div class="character-info">
+                    <div class="character-link"><strong>Character Name:</strong> Ka</div>
+                    <div>88</div>
+                    <div><a href="https://pathofdiablo.com/p/armory/?name=Ka">Armory</a></div>
+                </div>
+            <p><strong>Skills:</strong> Power Strike:20, Lightning Bolt:20, Lightning Fury:20, Plague Javelin:17, Pierce:9, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Decoy:1, Evade:1, Valkyrie:1, Jab:1, Poison Javelin:1</p>
+            <p><strong>Equipment:</strong> boots: Immortal King's Pillar War Boots x0, gloves: Lancer's Gauntlets of Self-Repair Gauntlets x0, ring: Raven Frost Ring x1, ring: Entropy Master Ring x0, belt: Thundergod's Vigor War Belt x1, body: Tal Rasha's Guardianship Lacquered Plate x0, helmet: Griffon's Eye Diadem x1, amulet: Mara's Kaleidoscope Amulet x1, Left hand: Harmony Long Battle Bow x0, Left hand: Titan's Revenge Ceremonial Javelin x1, Offhand: Moonfire Arrows x1, Offhand: Spirit Monarch x0</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Treachery, Tal Rasha's Horadric Crest, Insight</p>
+            <br>
+       
+                <div class="character-info">
+                    <div class="character-link"><strong>Character Name:</strong> Alice_Weidel</div>
+                    <div>84</div>
+                    <div><a href="https://pathofdiablo.com/p/armory/?name=Alice_Weidel">Armory</a></div>
+                </div>
+            <p><strong>Skills:</strong> Guided Arrow:20, Immolation Arrow:20, Lethal Strike:13, Valkyrie:10, Pierce:10, Dodge:5, Avoid:5, Evade:3, Magic Arrow:1, Fire Arrow:1, Cold Arrow:1, Multiple Shot:1, Exploding Arrow:1, Inner Sight:1, Phase Run:1, Penetrate:1, Decoy:1</p>
+            <p><strong>Equipment:</strong> body: Hustle Cuirass x0, helmet: Tal Rasha's Horadric Crest Death Mask x0, ring: Nagelring Ring x1, ring: Carrion Wind Ring x1, gloves: Laying of Hands Bramble Mitts x0, belt: Credendum Mithril Coil x0, boots: Gore Rider War Boots x1, amulet: Metalgrid Amulet x1, Left hand: Harmony Blade Bow x0, Offhand: Moonfire Arrows x1</p>
+            <p><strong>Mercenary:</strong> Act 5 Barbarian - Shaftstop, Blackhorn's Face</p>
+            <br>
+       
+                <div class="character-info">
+                    <div class="character-link"><strong>Character Name:</strong> ItRubsTheLotion</div>
+                    <div>68</div>
+                    <div><a href="https://pathofdiablo.com/p/armory/?name=ItRubsTheLotion">Armory</a></div>
+                </div>
+            <p><strong>Skills:</strong> Immolation Arrow:20, Fire Arrow:14, Pierce:13, Exploding Arrow:11, Multiple Shot:4, Penetrate:2, Magic Arrow:1, Cold Arrow:1, Ice Arrow:1, Freezing Arrow:1, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Decoy:1, Evade:1, Valkyrie:1, Poison Javelin:1</p>
+            <p><strong>Equipment:</strong> ring: Manald Heal Ring x1, ring: Raven Coil Ring x0, body: Smoke Ghost Armor x0, helmet: Lore Bone Helm x0, boots: Sigon's Sabot Greaves x0, gloves: Imp Hand Light Gauntlets x0, amulet: Maiden's Amulet of Sorcery Amulet x0, belt: Goldwrap Heavy Belt x1, Left hand: Melody Stag Bow x0, Left hand: Edge Ashwood Bow x0, Offhand: Blood Eye Arrows x0, Offhand: Moonfire Arrows x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Isenhart's Horns, Isenhart's Case, Insight</p>
+            <br>
+       
+        </div>
+        <br>
+        <hr>
+        <br>
+        
+        <h2>Dragonbreath Arrows make up 21.43%  of Unique Projectiles in use <br>Most popular skills used by characters with them equipped:<br><img src='icons/Magic Arrow.png' alt='Magic Arrow' width='20' height='20'> Magic Arrow 66.67% (21)<br><img src='icons/Frost Nova.png' alt='Frost Nova' width='20' height='20'> Frost Nova 33.33% (20)<br><img src='icons/Fire Arrow.png' alt='Fire Arrow' width='20' height='20'> Fire Arrow 33.33% (18)<br><img src='icons/Immolation Arrow.png' alt='Immolation Arrow' width='20' height='20'> Immolation Arrow 33.33% (3)</h2>
+        <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='icons/Nova.png' alt='Nova' width='20' height='20'> Nova 33.33% (4.0)<br><img src='icons/Exploding Arrow.png' alt='Exploding Arrow' width='20' height='20'> Exploding Arrow 33.33% (3.0)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 66.67% (2.0)<br><img src='icons/Cold Mastery.png' alt='Cold Mastery' width='20' height='20'> Cold Mastery 33.33% (2.0)<br><img src='icons/Inner Sight.png' alt='Inner Sight' width='20' height='20'> Inner Sight 33.33% (1.0)<br><img src='icons/Cold Arrow.png' alt='Cold Arrow' width='20' height='20'> Cold Arrow 33.33% (1.0)</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>All Skills</strong></button>
+            <div class="content">
+                <div><img src='icons/Magic Arrow.png' alt='Magic Arrow' width='20' height='20'> Magic Arrow 66.67% (21.0)<br><img src='icons/Frost Nova.png' alt='Frost Nova' width='20' height='20'> Frost Nova 33.33% (20.0)<br><img src='icons/Fire Arrow.png' alt='Fire Arrow' width='20' height='20'> Fire Arrow 33.33% (18.0)<br><img src='icons/Immolation Arrow.png' alt='Immolation Arrow' width='20' height='20'> Immolation Arrow 33.33% (4.0)<br><img src='icons/Nova.png' alt='Nova' width='20' height='20'> Nova 33.33% (4.0)<br><img src='icons/Exploding Arrow.png' alt='Exploding Arrow' width='20' height='20'> Exploding Arrow 33.33% (3.0)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 66.67% (2.0)<br><img src='icons/Cold Mastery.png' alt='Cold Mastery' width='20' height='20'> Cold Mastery 33.33% (2.0)<br><img src='icons/Freezing Arrow.png' alt='Freezing Arrow' width='20' height='20'> Freezing Arrow 33.33% (1.0)<br><img src='icons/Static Field.png' alt='Static Field' width='20' height='20'> Static Field 33.33% (1.0)<br><img src='icons/Pierce.png' alt='Pierce' width='20' height='20'> Pierce 33.33% (1.0)<br><img src='icons/Energy Shield.png' alt='Energy Shield' width='20' height='20'> Energy Shield 33.33% (1.0)<br><img src='icons/Penetrate.png' alt='Penetrate' width='20' height='20'> Penetrate 33.33% (1.0)<br><img src='icons/Inner Sight.png' alt='Inner Sight' width='20' height='20'> Inner Sight 33.33% (1.0)<br><img src='icons/Cold Arrow.png' alt='Cold Arrow' width='20' height='20'> Cold Arrow 33.33% (1.0)<br><img src='icons/Ice Arrow.png' alt='Ice Arrow' width='20' height='20'> Ice Arrow 33.33% (1.0)<br><img src='icons/Warmth.png' alt='Warmth' width='20' height='20'> Warmth 33.33% (1.0)<br><img src='icons/Charged Bolt.png' alt='Charged Bolt' width='20' height='20'> Charged Bolt 33.33% (1.0)<br><img src='icons/Teleport.png' alt='Teleport' width='20' height='20'> Teleport 33.33% (1.0)<br><img src='icons/Chain Lightning.png' alt='Chain Lightning' width='20' height='20'> Chain Lightning 33.33% (1.0)<br><img src='icons/Telekinesis.png' alt='Telekinesis' width='20' height='20'> Telekinesis 33.33% (1.0)<br><img src='icons/Lightning Mastery.png' alt='Lightning Mastery' width='20' height='20'> Lightning Mastery 33.33% (1.0)<br><img src='icons/Lightning Surge.png' alt='Lightning Surge' width='20' height='20'> Lightning Surge 33.33% (1.0)<br><img src='icons/Avoid.png' alt='Avoid' width='20' height='20'> Avoid 0.0% (0.0)<br><img src='icons/Multiple Shot.png' alt='Multiple Shot' width='20' height='20'> Multiple Shot 0.0% (0.0)<br><img src='icons/Decoy.png' alt='Decoy' width='20' height='20'> Decoy 0.0% (0.0)<br><img src='icons/Evade.png' alt='Evade' width='20' height='20'> Evade 0.0% (0.0)<br><img src='icons/Valkyrie.png' alt='Valkyrie' width='20' height='20'> Valkyrie 0.0% (0.0)<br><img src='icons/Phase Run.png' alt='Phase Run' width='20' height='20'> Phase Run 0.0% (0.0)<br><img src='icons/Dodge.png' alt='Dodge' width='20' height='20'> Dodge 0.0% (0.0)<br><img src='icons/Poison Javelin.png' alt='Poison Javelin' width='20' height='20'> Poison Javelin 0.0% (0.0)<br><img src='icons/Jab.png' alt='Jab' width='20' height='20'> Jab 0.0% (0.0)<br><img src='icons/Spirit of Barbs.png' alt='Spirit of Barbs' width='20' height='20'> Spirit of Barbs 0.0% (0.0)<br><img src='icons/Summon Dire Wolf.png' alt='Summon Dire Wolf' width='20' height='20'> Summon Dire Wolf 0.0% (0.0)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 0.0% (0.0)<br><img src='icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' width='20' height='20'> Summon Spirit Wolf 0.0% (0.0)<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 0.0% (0.0)<br><img src='icons/Raven.png' alt='Raven' width='20' height='20'> Raven 0.0% (0.0)<br><img src='icons/Strafe.png' alt='Strafe' width='20' height='20'> Strafe 0.0% (0.0)<br><img src='icons/Guided Arrow.png' alt='Guided Arrow' width='20' height='20'> Guided Arrow 0.0% (0.0)<br><img src='icons/Lightning Fury.png' alt='Lightning Fury' width='20' height='20'> Lightning Fury 0.0% (0.0)<br><img src='icons/Plague Javelin.png' alt='Plague Javelin' width='20' height='20'> Plague Javelin 0.0% (0.0)<br><img src='icons/Lightning Bolt.png' alt='Lightning Bolt' width='20' height='20'> Lightning Bolt 0.0% (0.0)<br><img src='icons/Power Strike.png' alt='Power Strike' width='20' height='20'> Power Strike 0.0% (0.0)<br><img src='icons/Summon Grizzly.png' alt='Summon Grizzly' width='20' height='20'> Summon Grizzly 0.0% (0.0)<br><img src='icons/Firestorm.png' alt='Firestorm' width='20' height='20'> Firestorm 0.0% (0.0)<br><img src='icons/Molten Boulder.png' alt='Molten Boulder' width='20' height='20'> Molten Boulder 0.0% (0.0)<br><img src='icons/Flame Dash.png' alt='Flame Dash' width='20' height='20'> Flame Dash 0.0% (0.0)</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>Most Common Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Helmet</strong>: <br>Infernal Cranium Cap 0.00%<br>Arcanna's Head Skull Cap 0.00%<br>Holocaust Visor Circlet 0.00%<br><strong>Ring</strong>: <br>Chaos Whorl Ring 0.00%<br>Wraithra Whorl Ring 0.00%<br>Dread Grip Ring 0.00%<br>Shadow Band Ring 0.00%<br>Viridian Ring of Craftmanship Ring 0.00%<br><strong>Gloves</strong>: <br>Bloodfist Heavy Gloves 33.33%<br>The Hand of Broc Leather Gloves 33.33%<br>Skull Clutches Light Gauntlets 0.00%<br><strong>Amulet</strong>: <br>Vidala's Snare Amulet 0.00%<br>Arcanna's Sign Amulet 0.00%<br>Amulet of Frost Shield Amulet 0.00%<br><strong>Boots</strong>: <br>Hotspur Boots 33.33%<br>Vidala's Fetlock Light Plated Boots 0.00%<br>Hsarus' Iron Heel Chain Boots 0.00%<br><strong>Belt</strong>: <br>Razortail Sharkskin Belt 33.33%<br>Tangerine Belt of Frost Shield Belt 0.00%<br><strong>Body</strong>: <br>Heavenly Garb Light Plate 33.33%<br>Isenhart's Case Breast Plate 0.00%<br>Cruel Hide Breast Plate 0.00%<br><strong>Left hand</strong>: <br>Buriza-Do Kyanon Ballista 33.33%<br>Kuko Shakaku Cedar Bow 33.33%<br>The Iron Jang Bong War Staff 33.33%<br>War Staff of Teleportation War Staff 0.00%<br>Zephyr Stag Bow 0.00%<br><strong>Offhand</strong>: <br>Dragonbreath Arrows 100.00%<br>Moonfire Bolts 33.33%</div>
+            </div>
+        
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Helmet</strong>: Infernal Cranium Cap 0.00%, Arcanna's Head Skull Cap 0.00%, Holocaust Visor Circlet 0.00%<br><strong>Ring</strong>: Chaos Whorl Ring 0.00%, Wraithra Whorl Ring 0.00%, Dread Grip Ring 0.00%, Shadow Band Ring 0.00%, Viridian Ring of Craftmanship Ring 0.00%, Triumphant Ring of Worth Ring 0.00%<br><strong>Gloves</strong>: Bloodfist Heavy Gloves 33.33%, The Hand of Broc Leather Gloves 33.33%, Skull Clutches Light Gauntlets 0.00%<br><strong>Amulet</strong>: Vidala's Snare Amulet 0.00%, Arcanna's Sign Amulet 0.00%, Amulet of Frost Shield Amulet 0.00%<br><strong>Boots</strong>: Hotspur Boots 33.33%, Vidala's Fetlock Light Plated Boots 0.00%, Hsarus' Iron Heel Chain Boots 0.00%<br><strong>Belt</strong>: Razortail Sharkskin Belt 33.33%, Tangerine Belt of Frost Shield Belt 0.00%<br><strong>Body</strong>: Heavenly Garb Light Plate 33.33%, Isenhart's Case Breast Plate 0.00%, Cruel Hide Breast Plate 0.00%<br><strong>Left hand</strong>: Buriza-Do Kyanon Ballista 33.33%, Kuko Shakaku Cedar Bow 33.33%, The Iron Jang Bong War Staff 33.33%, War Staff of Teleportation War Staff 0.00%, Zephyr Stag Bow 0.00%<br><strong>Offhand</strong>: Dragonbreath Arrows 100.00%, Moonfire Bolts 33.33%</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>3 Characters in this cluster:</strong></button>
+            <div class="content">
+                
+                <div class="character-info">
+                    <div class="character-link"><strong>Character Name:</strong> SemenJuice</div>
+                    <div>46</div>
+                    <div><a href="https://pathofdiablo.com/p/armory/?name=SemenJuice">Armory</a></div>
+                </div>
+            <p><strong>Skills:</strong> Magic Arrow:20, Fire Arrow:18, Immolation Arrow:4, Exploding Arrow:3, Cold Arrow:1, Ice Arrow:1, Freezing Arrow:1, Lethal Strike:1</p>
+            <p><strong>Equipment:</strong> helmet: Infernal Cranium Cap x0, ring: Chaos Whorl Ring x0, ring: Wraithra Whorl Ring x0, gloves: Bloodfist Heavy Gloves x1, amulet: Vidala's Snare Amulet x0, boots: Vidala's Fetlock Light Plated Boots x0, belt: Razortail Sharkskin Belt x1, body: Heavenly Garb Light Plate x1, Left hand: Buriza-Do Kyanon Ballista x1, Left hand: Kuko Shakaku Cedar Bow x1, Offhand: Moonfire Bolts x1, Offhand: Dragonbreath Arrows x1</p>
+            <p><strong>Mercenary:</strong> Act 1 Rogue Scout - No equipment</p>
+            <br>
+       
+                <div class="character-info">
+                    <div class="character-link"><strong>Character Name:</strong> WhiteCreampie</div>
+                    <div>31</div>
+                    <div><a href="https://pathofdiablo.com/p/armory/?name=WhiteCreampie">Armory</a></div>
+                </div>
+            <p><strong>Skills:</strong> Frost Nova:20, Nova:4, Cold Mastery:2, Warmth:1, Charged Bolt:1, Static Field:1, Telekinesis:1, Lightning Surge:1, Teleport:1, Chain Lightning:1, Energy Shield:1, Lightning Mastery:1</p>
+            <p><strong>Equipment:</strong> ring: Dread Grip Ring x0, ring: Shadow Band Ring x0, body: Isenhart's Case Breast Plate x0, boots: Hsarus' Iron Heel Chain Boots x0, gloves: Skull Clutches Light Gauntlets x0, amulet: Arcanna's Sign Amulet x0, helmet: Arcanna's Head Skull Cap x0, Left hand: The Iron Jang Bong War Staff x1, Offhand: Dragonbreath Arrows x1</p>
+            <p><strong>Mercenary:</strong> Act 1 Rogue Scout - No equipment</p>
+            <br>
+       
+                <div class="character-info">
+                    <div class="character-link"><strong>Character Name:</strong> Redboobs</div>
+                    <div>30</div>
+                    <div><a href="https://pathofdiablo.com/p/armory/?name=Redboobs">Armory</a></div>
+                </div>
+            <p><strong>Skills:</strong> Magic Arrow:1, Inner Sight:1, Lethal Strike:1, Penetrate:1, Pierce:1</p>
+            <p><strong>Equipment:</strong> gloves: The Hand of Broc Leather Gloves x1, boots: Hotspur Boots x1, ring: Viridian Ring of Craftmanship Ring x0, ring: Triumphant Ring of Worth Ring x0, belt: Tangerine Belt of Frost Shield Belt x0, amulet: Amulet of Frost Shield Amulet x0, helmet: Holocaust Visor Circlet x0, Left hand: War Staff of Teleportation War Staff x0, Left hand: Zephyr Stag Bow x0, body: Cruel Hide Breast Plate x0, Offhand: Dragonbreath Arrows x1</p>
+            <p><strong>Mercenary:</strong> Act 1 Rogue Scout - Helm, Breast Plate, Edge</p>
+            <br>
+       
+        </div>
+        <br>
+        <hr>
+        <br>
+        
+        <h2>Frostbite Arrows make up 14.29%  of Unique Projectiles in use <br>Most popular skills used by characters with them equipped:<br><img src='icons/Cold Arrow.png' alt='Cold Arrow' width='20' height='20'> Cold Arrow 100.00% (40)<br><img src='icons/Freezing Arrow.png' alt='Freezing Arrow' width='20' height='20'> Freezing Arrow 100.00% (40)<br><img src='icons/Immolation Arrow.png' alt='Immolation Arrow' width='20' height='20'> Immolation Arrow 100.00% (38)<br><img src='icons/Ice Arrow.png' alt='Ice Arrow' width='20' height='20'> Ice Arrow 100.00% (21)</h2>
+        <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='icons/Fire Arrow.png' alt='Fire Arrow' width='20' height='20'> Fire Arrow 100.0% (11.0)<br><img src='icons/Pierce.png' alt='Pierce' width='20' height='20'> Pierce 100.0% (3.0)<br><img src='icons/Magic Arrow.png' alt='Magic Arrow' width='20' height='20'> Magic Arrow 100.0% (2.0)<br><img src='icons/Exploding Arrow.png' alt='Exploding Arrow' width='20' height='20'> Exploding Arrow 100.0% (2.0)<br><img src='icons/Inner Sight.png' alt='Inner Sight' width='20' height='20'> Inner Sight 100.0% (2.0)<br><img src='icons/Dodge.png' alt='Dodge' width='20' height='20'> Dodge 100.0% (2.0)</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>All Skills</strong></button>
+            <div class="content">
+                <div><img src='icons/Freezing Arrow.png' alt='Freezing Arrow' width='20' height='20'> Freezing Arrow 100.0% (40.0)<br><img src='icons/Cold Arrow.png' alt='Cold Arrow' width='20' height='20'> Cold Arrow 100.0% (40.0)<br><img src='icons/Immolation Arrow.png' alt='Immolation Arrow' width='20' height='20'> Immolation Arrow 100.0% (38.0)<br><img src='icons/Ice Arrow.png' alt='Ice Arrow' width='20' height='20'> Ice Arrow 100.0% (21.0)<br><img src='icons/Fire Arrow.png' alt='Fire Arrow' width='20' height='20'> Fire Arrow 100.0% (11.0)<br><img src='icons/Pierce.png' alt='Pierce' width='20' height='20'> Pierce 100.0% (3.0)<br><img src='icons/Magic Arrow.png' alt='Magic Arrow' width='20' height='20'> Magic Arrow 100.0% (2.0)<br><img src='icons/Inner Sight.png' alt='Inner Sight' width='20' height='20'> Inner Sight 100.0% (2.0)<br><img src='icons/Avoid.png' alt='Avoid' width='20' height='20'> Avoid 100.0% (2.0)<br><img src='icons/Phase Run.png' alt='Phase Run' width='20' height='20'> Phase Run 100.0% (2.0)<br><img src='icons/Dodge.png' alt='Dodge' width='20' height='20'> Dodge 100.0% (2.0)<br><img src='icons/Evade.png' alt='Evade' width='20' height='20'> Evade 100.0% (2.0)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 100.0% (2.0)<br><img src='icons/Exploding Arrow.png' alt='Exploding Arrow' width='20' height='20'> Exploding Arrow 100.0% (2.0)<br><img src='icons/Penetrate.png' alt='Penetrate' width='20' height='20'> Penetrate 100.0% (2.0)<br><img src='icons/Decoy.png' alt='Decoy' width='20' height='20'> Decoy 50.0% (1.0)<br><img src='icons/Multiple Shot.png' alt='Multiple Shot' width='20' height='20'> Multiple Shot 50.0% (1.0)<br><img src='icons/Valkyrie.png' alt='Valkyrie' width='20' height='20'> Valkyrie 50.0% (1.0)<br><img src='icons/Strafe.png' alt='Strafe' width='20' height='20'> Strafe 50.0% (1.0)<br><img src='icons/Guided Arrow.png' alt='Guided Arrow' width='20' height='20'> Guided Arrow 50.0% (1.0)<br><img src='icons/Power Strike.png' alt='Power Strike' width='20' height='20'> Power Strike 0.0% (0.0)<br><img src='icons/Lightning Bolt.png' alt='Lightning Bolt' width='20' height='20'> Lightning Bolt 0.0% (0.0)<br><img src='icons/Poison Javelin.png' alt='Poison Javelin' width='20' height='20'> Poison Javelin 0.0% (0.0)<br><img src='icons/Jab.png' alt='Jab' width='20' height='20'> Jab 0.0% (0.0)<br><img src='icons/Lightning Fury.png' alt='Lightning Fury' width='20' height='20'> Lightning Fury 0.0% (0.0)<br><img src='icons/Plague Javelin.png' alt='Plague Javelin' width='20' height='20'> Plague Javelin 0.0% (0.0)<br><img src='icons/Raven.png' alt='Raven' width='20' height='20'> Raven 0.0% (0.0)<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 0.0% (0.0)<br><img src='icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' width='20' height='20'> Summon Spirit Wolf 0.0% (0.0)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 0.0% (0.0)<br><img src='icons/Summon Dire Wolf.png' alt='Summon Dire Wolf' width='20' height='20'> Summon Dire Wolf 0.0% (0.0)<br><img src='icons/Spirit of Barbs.png' alt='Spirit of Barbs' width='20' height='20'> Spirit of Barbs 0.0% (0.0)<br><img src='icons/Summon Grizzly.png' alt='Summon Grizzly' width='20' height='20'> Summon Grizzly 0.0% (0.0)<br><img src='icons/Firestorm.png' alt='Firestorm' width='20' height='20'> Firestorm 0.0% (0.0)<br><img src='icons/Molten Boulder.png' alt='Molten Boulder' width='20' height='20'> Molten Boulder 0.0% (0.0)<br><img src='icons/Flame Dash.png' alt='Flame Dash' width='20' height='20'> Flame Dash 0.0% (0.0)<br><img src='icons/Warmth.png' alt='Warmth' width='20' height='20'> Warmth 0.0% (0.0)<br><img src='icons/Charged Bolt.png' alt='Charged Bolt' width='20' height='20'> Charged Bolt 0.0% (0.0)<br><img src='icons/Static Field.png' alt='Static Field' width='20' height='20'> Static Field 0.0% (0.0)<br><img src='icons/Telekinesis.png' alt='Telekinesis' width='20' height='20'> Telekinesis 0.0% (0.0)<br><img src='icons/Nova.png' alt='Nova' width='20' height='20'> Nova 0.0% (0.0)<br><img src='icons/Lightning Surge.png' alt='Lightning Surge' width='20' height='20'> Lightning Surge 0.0% (0.0)<br><img src='icons/Teleport.png' alt='Teleport' width='20' height='20'> Teleport 0.0% (0.0)<br><img src='icons/Chain Lightning.png' alt='Chain Lightning' width='20' height='20'> Chain Lightning 0.0% (0.0)<br><img src='icons/Energy Shield.png' alt='Energy Shield' width='20' height='20'> Energy Shield 0.0% (0.0)<br><img src='icons/Lightning Mastery.png' alt='Lightning Mastery' width='20' height='20'> Lightning Mastery 0.0% (0.0)<br><img src='icons/Frost Nova.png' alt='Frost Nova' width='20' height='20'> Frost Nova 0.0% (0.0)<br><img src='icons/Cold Mastery.png' alt='Cold Mastery' width='20' height='20'> Cold Mastery 0.0% (0.0)</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>Most Common Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Belt</strong>: <br>String of Ears Demonhide Sash 50.00%<br>M'avina's Tenet Sharkskin Belt 0.00%<br><strong>Body</strong>: <br>M'avina's Embrace Kraken Shell 0.00%<br>Hustle Breast Plate 0.00%<br><strong>Boots</strong>: <br>Sander's Riprap Heavy Boots 0.00%<br>Natalya's Soul Mesh Boots 0.00%<br><strong>Ring</strong>: <br>Manald Heal Ring 100.00%<br>Dwarf Star Ring 50.00%<br>Raven Frost Ring 50.00%<br><strong>Helmet</strong>: <br>Harlequin Crest Shako 50.00%<br>M'avina's True Sight Diadem 0.00%<br><strong>Amulet</strong>: <br>Mara's Kaleidoscope Amulet 50.00%<br>Chromatic Amulet of Excellence Amulet 0.00%<br><strong>Gloves</strong>: <br>M'avina's Icy Clutch Battle Gauntlets 0.00%<br>Viper Finger Light Gauntlets 0.00%<br><strong>Left hand</strong>: <br>M'avina's Caster Grand Matron Bow 0.00%<br>Holy Thunder War Scepter 0.00%<br>Harmony Matriarchal Bow 0.00%<br><strong>Offhand</strong>: <br>Frostbite Arrows 100.00%<br>The Ward Gothic Shield 50.00%</div>
+            </div>
+        
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Belt</strong>: String of Ears Demonhide Sash 50.00%, M'avina's Tenet Sharkskin Belt 0.00%<br><strong>Body</strong>: M'avina's Embrace Kraken Shell 0.00%, Hustle Breast Plate 0.00%<br><strong>Boots</strong>: Sander's Riprap Heavy Boots 0.00%, Natalya's Soul Mesh Boots 0.00%<br><strong>Ring</strong>: Manald Heal Ring 100.00%, Dwarf Star Ring 50.00%, Raven Frost Ring 50.00%<br><strong>Helmet</strong>: Harlequin Crest Shako 50.00%, M'avina's True Sight Diadem 0.00%<br><strong>Amulet</strong>: Mara's Kaleidoscope Amulet 50.00%, Chromatic Amulet of Excellence Amulet 0.00%<br><strong>Gloves</strong>: M'avina's Icy Clutch Battle Gauntlets 0.00%, Viper Finger Light Gauntlets 0.00%<br><strong>Left hand</strong>: M'avina's Caster Grand Matron Bow 0.00%, Holy Thunder War Scepter 0.00%, Harmony Matriarchal Bow 0.00%<br><strong>Offhand</strong>: Frostbite Arrows 100.00%, The Ward Gothic Shield 50.00%</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>2 Characters in this cluster:</strong></button>
+            <div class="content">
+                
+                <div class="character-info">
+                    <div class="character-link"><strong>Character Name:</strong> CTABKA</div>
+                    <div>80</div>
+                    <div><a href="https://pathofdiablo.com/p/armory/?name=CTABKA">Armory</a></div>
+                </div>
+            <p><strong>Skills:</strong> Cold Arrow:20, Ice Arrow:20, Freezing Arrow:20, Immolation Arrow:18, Magic Arrow:1, Fire Arrow:1, Exploding Arrow:1, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Decoy:1, Evade:1, Valkyrie:1, Pierce:1</p>
+            <p><strong>Equipment:</strong> belt: M'avina's Tenet Sharkskin Belt x0, body: M'avina's Embrace Kraken Shell x0, boots: Sander's Riprap Heavy Boots x0, ring: Manald Heal Ring x2, helmet: M'avina's True Sight Diadem x0, amulet: Chromatic Amulet of Excellence Amulet x0, gloves: M'avina's Icy Clutch Battle Gauntlets x0, Left hand: M'avina's Caster Grand Matron Bow x0, Offhand: Frostbite Arrows x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Skin of the Flayed One, Tal Rasha's Horadric Crest, Insight</p>
+            <br>
+       
+                <div class="character-info">
+                    <div class="character-link"><strong>Character Name:</strong> MorgiAma</div>
+                    <div>77</div>
+                    <div><a href="https://pathofdiablo.com/p/armory/?name=MorgiAma">Armory</a></div>
+                </div>
+            <p><strong>Skills:</strong> Cold Arrow:20, Immolation Arrow:20, Freezing Arrow:20, Fire Arrow:10, Pierce:2, Magic Arrow:1, Multiple Shot:1, Exploding Arrow:1, Ice Arrow:1, Guided Arrow:1, Strafe:1, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Evade:1</p>
+            <p><strong>Equipment:</strong> helmet: Harlequin Crest Shako x1, boots: Natalya's Soul Mesh Boots x0, body: Hustle Breast Plate x0, ring: Dwarf Star Ring x1, ring: Raven Frost Ring x1, belt: String of Ears Demonhide Sash x1, amulet: Mara's Kaleidoscope Amulet x1, gloves: Viper Finger Light Gauntlets x0, Left hand: Holy Thunder War Scepter x0, Left hand: Harmony Matriarchal Bow x0, Offhand: The Ward Gothic Shield x1, Offhand: Frostbite Arrows x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Griswold's Heart, Bulwark, Insight</p>
+            <br>
+       
+        </div>
+        <br>
+        <hr>
+        <br>
+        
+        <h2>Hailstorm Bolts make up 14.29%  of Unique Projectiles in use <br>Most popular skills used by characters with them equipped:<br><img src='icons/Cold Arrow.png' alt='Cold Arrow' width='20' height='20'> Cold Arrow 100.00% (40)<br><img src='icons/Freezing Arrow.png' alt='Freezing Arrow' width='20' height='20'> Freezing Arrow 100.00% (40)<br><img src='icons/Ice Arrow.png' alt='Ice Arrow' width='20' height='20'> Ice Arrow 100.00% (31)<br><img src='icons/Immolation Arrow.png' alt='Immolation Arrow' width='20' height='20'> Immolation Arrow 50.00% (20)</h2>
+        <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='icons/Strafe.png' alt='Strafe' width='20' height='20'> Strafe 50.0% (13.0)<br><img src='icons/Fire Arrow.png' alt='Fire Arrow' width='20' height='20'> Fire Arrow 50.0% (10.0)<br><img src='icons/Multiple Shot.png' alt='Multiple Shot' width='20' height='20'> Multiple Shot 50.0% (7.0)<br><img src='icons/Pierce.png' alt='Pierce' width='20' height='20'> Pierce 100.0% (6.0)<br><img src='icons/Magic Arrow.png' alt='Magic Arrow' width='20' height='20'> Magic Arrow 100.0% (2.0)<br><img src='icons/Inner Sight.png' alt='Inner Sight' width='20' height='20'> Inner Sight 100.0% (2.0)</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>All Skills</strong></button>
+            <div class="content">
+                <div><img src='icons/Freezing Arrow.png' alt='Freezing Arrow' width='20' height='20'> Freezing Arrow 100.0% (40.0)<br><img src='icons/Cold Arrow.png' alt='Cold Arrow' width='20' height='20'> Cold Arrow 100.0% (40.0)<br><img src='icons/Ice Arrow.png' alt='Ice Arrow' width='20' height='20'> Ice Arrow 100.0% (31.0)<br><img src='icons/Immolation Arrow.png' alt='Immolation Arrow' width='20' height='20'> Immolation Arrow 50.0% (20.0)<br><img src='icons/Strafe.png' alt='Strafe' width='20' height='20'> Strafe 50.0% (13.0)<br><img src='icons/Fire Arrow.png' alt='Fire Arrow' width='20' height='20'> Fire Arrow 50.0% (10.0)<br><img src='icons/Multiple Shot.png' alt='Multiple Shot' width='20' height='20'> Multiple Shot 50.0% (7.0)<br><img src='icons/Pierce.png' alt='Pierce' width='20' height='20'> Pierce 100.0% (6.0)<br><img src='icons/Evade.png' alt='Evade' width='20' height='20'> Evade 100.0% (2.0)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 100.0% (2.0)<br><img src='icons/Phase Run.png' alt='Phase Run' width='20' height='20'> Phase Run 100.0% (2.0)<br><img src='icons/Avoid.png' alt='Avoid' width='20' height='20'> Avoid 100.0% (2.0)<br><img src='icons/Magic Arrow.png' alt='Magic Arrow' width='20' height='20'> Magic Arrow 100.0% (2.0)<br><img src='icons/Penetrate.png' alt='Penetrate' width='20' height='20'> Penetrate 100.0% (2.0)<br><img src='icons/Inner Sight.png' alt='Inner Sight' width='20' height='20'> Inner Sight 100.0% (2.0)<br><img src='icons/Dodge.png' alt='Dodge' width='20' height='20'> Dodge 50.0% (1.0)<br><img src='icons/Decoy.png' alt='Decoy' width='20' height='20'> Decoy 50.0% (1.0)<br><img src='icons/Valkyrie.png' alt='Valkyrie' width='20' height='20'> Valkyrie 50.0% (1.0)<br><img src='icons/Exploding Arrow.png' alt='Exploding Arrow' width='20' height='20'> Exploding Arrow 50.0% (1.0)<br><img src='icons/Guided Arrow.png' alt='Guided Arrow' width='20' height='20'> Guided Arrow 50.0% (1.0)<br><img src='icons/Power Strike.png' alt='Power Strike' width='20' height='20'> Power Strike 0.0% (0.0)<br><img src='icons/Lightning Bolt.png' alt='Lightning Bolt' width='20' height='20'> Lightning Bolt 0.0% (0.0)<br><img src='icons/Poison Javelin.png' alt='Poison Javelin' width='20' height='20'> Poison Javelin 0.0% (0.0)<br><img src='icons/Jab.png' alt='Jab' width='20' height='20'> Jab 0.0% (0.0)<br><img src='icons/Lightning Fury.png' alt='Lightning Fury' width='20' height='20'> Lightning Fury 0.0% (0.0)<br><img src='icons/Plague Javelin.png' alt='Plague Javelin' width='20' height='20'> Plague Javelin 0.0% (0.0)<br><img src='icons/Raven.png' alt='Raven' width='20' height='20'> Raven 0.0% (0.0)<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 0.0% (0.0)<br><img src='icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' width='20' height='20'> Summon Spirit Wolf 0.0% (0.0)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 0.0% (0.0)<br><img src='icons/Summon Dire Wolf.png' alt='Summon Dire Wolf' width='20' height='20'> Summon Dire Wolf 0.0% (0.0)<br><img src='icons/Spirit of Barbs.png' alt='Spirit of Barbs' width='20' height='20'> Spirit of Barbs 0.0% (0.0)<br><img src='icons/Summon Grizzly.png' alt='Summon Grizzly' width='20' height='20'> Summon Grizzly 0.0% (0.0)<br><img src='icons/Firestorm.png' alt='Firestorm' width='20' height='20'> Firestorm 0.0% (0.0)<br><img src='icons/Molten Boulder.png' alt='Molten Boulder' width='20' height='20'> Molten Boulder 0.0% (0.0)<br><img src='icons/Flame Dash.png' alt='Flame Dash' width='20' height='20'> Flame Dash 0.0% (0.0)<br><img src='icons/Warmth.png' alt='Warmth' width='20' height='20'> Warmth 0.0% (0.0)<br><img src='icons/Charged Bolt.png' alt='Charged Bolt' width='20' height='20'> Charged Bolt 0.0% (0.0)<br><img src='icons/Static Field.png' alt='Static Field' width='20' height='20'> Static Field 0.0% (0.0)<br><img src='icons/Telekinesis.png' alt='Telekinesis' width='20' height='20'> Telekinesis 0.0% (0.0)<br><img src='icons/Nova.png' alt='Nova' width='20' height='20'> Nova 0.0% (0.0)<br><img src='icons/Lightning Surge.png' alt='Lightning Surge' width='20' height='20'> Lightning Surge 0.0% (0.0)<br><img src='icons/Teleport.png' alt='Teleport' width='20' height='20'> Teleport 0.0% (0.0)<br><img src='icons/Chain Lightning.png' alt='Chain Lightning' width='20' height='20'> Chain Lightning 0.0% (0.0)<br><img src='icons/Energy Shield.png' alt='Energy Shield' width='20' height='20'> Energy Shield 0.0% (0.0)<br><img src='icons/Lightning Mastery.png' alt='Lightning Mastery' width='20' height='20'> Lightning Mastery 0.0% (0.0)<br><img src='icons/Frost Nova.png' alt='Frost Nova' width='20' height='20'> Frost Nova 0.0% (0.0)<br><img src='icons/Cold Mastery.png' alt='Cold Mastery' width='20' height='20'> Cold Mastery 0.0% (0.0)</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>Most Common Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Ring</strong>: <br>Raven Frost Ring 50.00%<br>Chaos Touch Ring 0.00%<br>Entropy Loop Ring 0.00%<br>Skull Eye Ring 0.00%<br><strong>Belt</strong>: <br>M'avina's Tenet Sharkskin Belt 0.00%<br><strong>Gloves</strong>: <br>M'avina's Icy Clutch Battle Gauntlets 0.00%<br><strong>Body</strong>: <br>M'avina's Embrace Kraken Shell 0.00%<br><strong>Helmet</strong>: <br>M'avina's True Sight Diadem 0.00%<br><strong>Amulet</strong>: <br>Seraph's Hymn Amulet 50.00%<br>Vidala's Snare Amulet 0.00%<br><strong>Left hand</strong>: <br>Pus Spitter Siege Crossbow 50.00%<br>Soul Branch Light Crossbow 0.00%<br>M'avina's Caster Grand Matron Bow 0.00%<br><strong>Offhand</strong>: <br>Hailstorm Bolts 100.00%<br>Raven Eye Arrows 0.00%<br><strong>Boots</strong>: <br>Vidala's Fetlock Light Plated Boots 0.00%</div>
+            </div>
+        
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Ring</strong>: Raven Frost Ring 50.00%, Chaos Touch Ring 0.00%, Entropy Loop Ring 0.00%, Skull Eye Ring 0.00%<br><strong>Belt</strong>: M'avina's Tenet Sharkskin Belt 0.00%<br><strong>Gloves</strong>: M'avina's Icy Clutch Battle Gauntlets 0.00%<br><strong>Body</strong>: M'avina's Embrace Kraken Shell 0.00%<br><strong>Helmet</strong>: M'avina's True Sight Diadem 0.00%<br><strong>Amulet</strong>: Seraph's Hymn Amulet 50.00%, Vidala's Snare Amulet 0.00%<br><strong>Left hand</strong>: Pus Spitter Siege Crossbow 50.00%, Soul Branch Light Crossbow 0.00%, M'avina's Caster Grand Matron Bow 0.00%<br><strong>Offhand</strong>: Hailstorm Bolts 100.00%, Raven Eye Arrows 0.00%<br><strong>Boots</strong>: Vidala's Fetlock Light Plated Boots 0.00%</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>2 Characters in this cluster:</strong></button>
+            <div class="content">
+                
+                <div class="character-info">
+                    <div class="character-link"><strong>Character Name:</strong> JPCa</div>
+                    <div>83</div>
+                    <div><a href="https://pathofdiablo.com/p/armory/?name=JPCa">Armory</a></div>
+                </div>
+            <p><strong>Skills:</strong> Cold Arrow:20, Ice Arrow:20, Freezing Arrow:20, Strafe:13, Multiple Shot:7, Pierce:5, Magic Arrow:1, Guided Arrow:1, Inner Sight:1, Lethal Strike:1, Phase Run:1, Avoid:1, Penetrate:1, Evade:1</p>
+            <p><strong>Equipment:</strong> ring: Chaos Touch Ring x0, ring: Entropy Loop Ring x0, belt: M'avina's Tenet Sharkskin Belt x0, gloves: M'avina's Icy Clutch Battle Gauntlets x0, body: M'avina's Embrace Kraken Shell x0, helmet: M'avina's True Sight Diadem x0, amulet: Seraph's Hymn Amulet x1, Left hand: Soul Branch Light Crossbow x0, Left hand: M'avina's Caster Grand Matron Bow x0, Offhand: Hailstorm Bolts x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - No equipment</p>
+            <br>
+       
+                <div class="character-info">
+                    <div class="character-link"><strong>Character Name:</strong> bowscape</div>
+                    <div>82</div>
+                    <div><a href="https://pathofdiablo.com/p/armory/?name=bowscape">Armory</a></div>
+                </div>
+            <p><strong>Skills:</strong> Cold Arrow:20, Immolation Arrow:20, Freezing Arrow:20, Ice Arrow:11, Fire Arrow:10, Magic Arrow:1, Exploding Arrow:1, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Decoy:1, Evade:1, Valkyrie:1, Pierce:1</p>
+            <p><strong>Equipment:</strong> belt: M'avina's Tenet Sharkskin Belt x0, boots: Vidala's Fetlock Light Plated Boots x0, ring: Skull Eye Ring x0, ring: Raven Frost Ring x1, body: M'avina's Embrace Kraken Shell x0, gloves: M'avina's Icy Clutch Battle Gauntlets x0, helmet: M'avina's True Sight Diadem x0, amulet: Vidala's Snare Amulet x0, Left hand: Pus Spitter Siege Crossbow x1, Left hand: M'avina's Caster Grand Matron Bow x0, Offhand: Hailstorm Bolts x1, Offhand: Raven Eye Arrows x0</p>
+            <p><strong>Mercenary:</strong> Act 1 Rogue Scout - Rattlecage, Hearth, Pus Spitter</p>
+            <br>
+       
+        </div>
+        <br>
+        <hr>
+        <br>
+        
+        <h2>Moonfire Bolts make up 14.29%  of Unique Projectiles in use <br>Most popular skills used by characters with them equipped:<br><img src='icons/Magic Arrow.png' alt='Magic Arrow' width='20' height='20'> Magic Arrow 100.00% (40)<br><img src='icons/Fire Arrow.png' alt='Fire Arrow' width='20' height='20'> Fire Arrow 100.00% (38)<br><img src='icons/Immolation Arrow.png' alt='Immolation Arrow' width='20' height='20'> Immolation Arrow 100.00% (5)<br><img src='icons/Exploding Arrow.png' alt='Exploding Arrow' width='20' height='20'> Exploding Arrow 100.00% (4)</h2>
+        <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='icons/Inner Sight.png' alt='Inner Sight' width='20' height='20'> Inner Sight 50.0% (1.0)<br><img src='icons/Dodge.png' alt='Dodge' width='20' height='20'> Dodge 50.0% (1.0)<br><img src='icons/Phase Run.png' alt='Phase Run' width='20' height='20'> Phase Run 50.0% (1.0)<br><img src='icons/Avoid.png' alt='Avoid' width='20' height='20'> Avoid 50.0% (1.0)<br><img src='icons/Decoy.png' alt='Decoy' width='20' height='20'> Decoy 50.0% (1.0)<br><img src='icons/Evade.png' alt='Evade' width='20' height='20'> Evade 50.0% (1.0)</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>All Skills</strong></button>
+            <div class="content">
+                <div><img src='icons/Magic Arrow.png' alt='Magic Arrow' width='20' height='20'> Magic Arrow 100.0% (40.0)<br><img src='icons/Fire Arrow.png' alt='Fire Arrow' width='20' height='20'> Fire Arrow 100.0% (38.0)<br><img src='icons/Immolation Arrow.png' alt='Immolation Arrow' width='20' height='20'> Immolation Arrow 100.0% (5.0)<br><img src='icons/Exploding Arrow.png' alt='Exploding Arrow' width='20' height='20'> Exploding Arrow 100.0% (4.0)<br><img src='icons/Inner Sight.png' alt='Inner Sight' width='20' height='20'> Inner Sight 50.0% (1.0)<br><img src='icons/Dodge.png' alt='Dodge' width='20' height='20'> Dodge 50.0% (1.0)<br><img src='icons/Phase Run.png' alt='Phase Run' width='20' height='20'> Phase Run 50.0% (1.0)<br><img src='icons/Avoid.png' alt='Avoid' width='20' height='20'> Avoid 50.0% (1.0)<br><img src='icons/Decoy.png' alt='Decoy' width='20' height='20'> Decoy 50.0% (1.0)<br><img src='icons/Evade.png' alt='Evade' width='20' height='20'> Evade 50.0% (1.0)<br><img src='icons/Valkyrie.png' alt='Valkyrie' width='20' height='20'> Valkyrie 50.0% (1.0)<br><img src='icons/Cold Arrow.png' alt='Cold Arrow' width='20' height='20'> Cold Arrow 50.0% (1.0)<br><img src='icons/Ice Arrow.png' alt='Ice Arrow' width='20' height='20'> Ice Arrow 50.0% (1.0)<br><img src='icons/Freezing Arrow.png' alt='Freezing Arrow' width='20' height='20'> Freezing Arrow 50.0% (1.0)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 50.0% (1.0)<br><img src='icons/Multiple Shot.png' alt='Multiple Shot' width='20' height='20'> Multiple Shot 0.0% (0.0)<br><img src='icons/Penetrate.png' alt='Penetrate' width='20' height='20'> Penetrate 0.0% (0.0)<br><img src='icons/Pierce.png' alt='Pierce' width='20' height='20'> Pierce 0.0% (0.0)<br><img src='icons/Poison Javelin.png' alt='Poison Javelin' width='20' height='20'> Poison Javelin 0.0% (0.0)<br><img src='icons/Jab.png' alt='Jab' width='20' height='20'> Jab 0.0% (0.0)<br><img src='icons/Power Strike.png' alt='Power Strike' width='20' height='20'> Power Strike 0.0% (0.0)<br><img src='icons/Lightning Bolt.png' alt='Lightning Bolt' width='20' height='20'> Lightning Bolt 0.0% (0.0)<br><img src='icons/Plague Javelin.png' alt='Plague Javelin' width='20' height='20'> Plague Javelin 0.0% (0.0)<br><img src='icons/Lightning Fury.png' alt='Lightning Fury' width='20' height='20'> Lightning Fury 0.0% (0.0)<br><img src='icons/Guided Arrow.png' alt='Guided Arrow' width='20' height='20'> Guided Arrow 0.0% (0.0)<br><img src='icons/Strafe.png' alt='Strafe' width='20' height='20'> Strafe 0.0% (0.0)<br><img src='icons/Raven.png' alt='Raven' width='20' height='20'> Raven 0.0% (0.0)<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 0.0% (0.0)<br><img src='icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' width='20' height='20'> Summon Spirit Wolf 0.0% (0.0)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 0.0% (0.0)<br><img src='icons/Summon Dire Wolf.png' alt='Summon Dire Wolf' width='20' height='20'> Summon Dire Wolf 0.0% (0.0)<br><img src='icons/Spirit of Barbs.png' alt='Spirit of Barbs' width='20' height='20'> Spirit of Barbs 0.0% (0.0)<br><img src='icons/Summon Grizzly.png' alt='Summon Grizzly' width='20' height='20'> Summon Grizzly 0.0% (0.0)<br><img src='icons/Firestorm.png' alt='Firestorm' width='20' height='20'> Firestorm 0.0% (0.0)<br><img src='icons/Molten Boulder.png' alt='Molten Boulder' width='20' height='20'> Molten Boulder 0.0% (0.0)<br><img src='icons/Flame Dash.png' alt='Flame Dash' width='20' height='20'> Flame Dash 0.0% (0.0)<br><img src='icons/Warmth.png' alt='Warmth' width='20' height='20'> Warmth 0.0% (0.0)<br><img src='icons/Charged Bolt.png' alt='Charged Bolt' width='20' height='20'> Charged Bolt 0.0% (0.0)<br><img src='icons/Static Field.png' alt='Static Field' width='20' height='20'> Static Field 0.0% (0.0)<br><img src='icons/Telekinesis.png' alt='Telekinesis' width='20' height='20'> Telekinesis 0.0% (0.0)<br><img src='icons/Nova.png' alt='Nova' width='20' height='20'> Nova 0.0% (0.0)<br><img src='icons/Lightning Surge.png' alt='Lightning Surge' width='20' height='20'> Lightning Surge 0.0% (0.0)<br><img src='icons/Teleport.png' alt='Teleport' width='20' height='20'> Teleport 0.0% (0.0)<br><img src='icons/Chain Lightning.png' alt='Chain Lightning' width='20' height='20'> Chain Lightning 0.0% (0.0)<br><img src='icons/Energy Shield.png' alt='Energy Shield' width='20' height='20'> Energy Shield 0.0% (0.0)<br><img src='icons/Lightning Mastery.png' alt='Lightning Mastery' width='20' height='20'> Lightning Mastery 0.0% (0.0)<br><img src='icons/Frost Nova.png' alt='Frost Nova' width='20' height='20'> Frost Nova 0.0% (0.0)<br><img src='icons/Cold Mastery.png' alt='Cold Mastery' width='20' height='20'> Cold Mastery 0.0% (0.0)</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>Most Common Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Helmet</strong>: <br>Peasant Crown War Hat 50.00%<br>Infernal Cranium Cap 0.00%<br><strong>Ring</strong>: <br>Nagelring Ring 50.00%<br>Chaos Whorl Ring 0.00%<br>Wraithra Whorl Ring 0.00%<br>Angelic Halo Ring 0.00%<br><strong>Gloves</strong>: <br>Bloodfist Heavy Gloves 50.00%<br>Magefist Light Gauntlets 50.00%<br><strong>Amulet</strong>: <br>Vidala's Snare Amulet 0.00%<br>Angelic Wings Amulet 0.00%<br><strong>Boots</strong>: <br>Vidala's Fetlock Light Plated Boots 0.00%<br>Doom Brogues Chain Boots 0.00%<br><strong>Belt</strong>: <br>Razortail Sharkskin Belt 50.00%<br>String of Ears Demonhide Sash 50.00%<br><strong>Body</strong>: <br>Heavenly Garb Light Plate 50.00%<br>Hustle Mage Plate 0.00%<br><strong>Left hand</strong>: <br>Buriza-Do Kyanon Ballista 150.00%<br>Kuko Shakaku Cedar Bow 50.00%<br><strong>Offhand</strong>: <br>Moonfire Bolts 100.00%<br>Dragonbreath Arrows 50.00%<br>Dragonbreath Bolts 50.00%</div>
+            </div>
+        
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Helmet</strong>: Peasant Crown War Hat 50.00%, Infernal Cranium Cap 0.00%<br><strong>Ring</strong>: Nagelring Ring 50.00%, Chaos Whorl Ring 0.00%, Wraithra Whorl Ring 0.00%, Angelic Halo Ring 0.00%<br><strong>Gloves</strong>: Bloodfist Heavy Gloves 50.00%, Magefist Light Gauntlets 50.00%<br><strong>Amulet</strong>: Vidala's Snare Amulet 0.00%, Angelic Wings Amulet 0.00%<br><strong>Boots</strong>: Vidala's Fetlock Light Plated Boots 0.00%, Doom Brogues Chain Boots 0.00%<br><strong>Belt</strong>: Razortail Sharkskin Belt 50.00%, String of Ears Demonhide Sash 50.00%<br><strong>Body</strong>: Heavenly Garb Light Plate 50.00%, Hustle Mage Plate 0.00%<br><strong>Left hand</strong>: Buriza-Do Kyanon Ballista 150.00%, Kuko Shakaku Cedar Bow 50.00%<br><strong>Offhand</strong>: Moonfire Bolts 100.00%, Dragonbreath Arrows 50.00%, Dragonbreath Bolts 50.00%</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>2 Characters in this cluster:</strong></button>
+            <div class="content">
+                
+                <div class="character-info">
+                    <div class="character-link"><strong>Character Name:</strong> SemenJuice</div>
+                    <div>46</div>
+                    <div><a href="https://pathofdiablo.com/p/armory/?name=SemenJuice">Armory</a></div>
+                </div>
+            <p><strong>Skills:</strong> Magic Arrow:20, Fire Arrow:18, Immolation Arrow:4, Exploding Arrow:3, Cold Arrow:1, Ice Arrow:1, Freezing Arrow:1, Lethal Strike:1</p>
+            <p><strong>Equipment:</strong> helmet: Infernal Cranium Cap x0, ring: Chaos Whorl Ring x0, ring: Wraithra Whorl Ring x0, gloves: Bloodfist Heavy Gloves x1, amulet: Vidala's Snare Amulet x0, boots: Vidala's Fetlock Light Plated Boots x0, belt: Razortail Sharkskin Belt x1, body: Heavenly Garb Light Plate x1, Left hand: Buriza-Do Kyanon Ballista x1, Left hand: Kuko Shakaku Cedar Bow x1, Offhand: Moonfire Bolts x1, Offhand: Dragonbreath Arrows x1</p>
+            <p><strong>Mercenary:</strong> Act 1 Rogue Scout - No equipment</p>
+            <br>
+       
+                <div class="character-info">
+                    <div class="character-link"><strong>Character Name:</strong> Panamka</div>
+                    <div>44</div>
+                    <div><a href="https://pathofdiablo.com/p/armory/?name=Panamka">Armory</a></div>
+                </div>
+            <p><strong>Skills:</strong> Magic Arrow:20, Fire Arrow:20, Exploding Arrow:1, Immolation Arrow:1, Inner Sight:1, Dodge:1, Phase Run:1, Avoid:1, Decoy:1, Evade:1, Valkyrie:1</p>
+            <p><strong>Equipment:</strong> ring: Nagelring Ring x1, ring: Angelic Halo Ring x0, amulet: Angelic Wings Amulet x0, boots: Doom Brogues Chain Boots x0, helmet: Peasant Crown War Hat x1, gloves: Magefist Light Gauntlets x1, belt: String of Ears Demonhide Sash x1, body: Hustle Mage Plate x0, Left hand: Buriza-Do Kyanon Ballista x2, Offhand: Moonfire Bolts x1, Offhand: Dragonbreath Bolts x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Mask, Stealth, The Impaler</p>
+            <br>
+       
+        </div>
+        <br>
+        <hr>
+        <br>
+        
+        <h2>Dragonbreath Bolts make up 7.14%  of Unique Projectiles in use <br>Most popular skills used by characters with them equipped:<br><img src='icons/Magic Arrow.png' alt='Magic Arrow' width='20' height='20'> Magic Arrow 100.00% (20)<br><img src='icons/Fire Arrow.png' alt='Fire Arrow' width='20' height='20'> Fire Arrow 100.00% (20)<br><img src='icons/Exploding Arrow.png' alt='Exploding Arrow' width='20' height='20'> Exploding Arrow 100.00% (1)<br><img src='icons/Immolation Arrow.png' alt='Immolation Arrow' width='20' height='20'> Immolation Arrow 100.00% (1)</h2>
+        <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='icons/Inner Sight.png' alt='Inner Sight' width='20' height='20'> Inner Sight 100.0% (1.0)<br><img src='icons/Dodge.png' alt='Dodge' width='20' height='20'> Dodge 100.0% (1.0)<br><img src='icons/Phase Run.png' alt='Phase Run' width='20' height='20'> Phase Run 100.0% (1.0)<br><img src='icons/Avoid.png' alt='Avoid' width='20' height='20'> Avoid 100.0% (1.0)<br><img src='icons/Decoy.png' alt='Decoy' width='20' height='20'> Decoy 100.0% (1.0)<br><img src='icons/Evade.png' alt='Evade' width='20' height='20'> Evade 100.0% (1.0)</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>All Skills</strong></button>
+            <div class="content">
+                <div><img src='icons/Magic Arrow.png' alt='Magic Arrow' width='20' height='20'> Magic Arrow 100.0% (20.0)<br><img src='icons/Fire Arrow.png' alt='Fire Arrow' width='20' height='20'> Fire Arrow 100.0% (20.0)<br><img src='icons/Exploding Arrow.png' alt='Exploding Arrow' width='20' height='20'> Exploding Arrow 100.0% (1.0)<br><img src='icons/Immolation Arrow.png' alt='Immolation Arrow' width='20' height='20'> Immolation Arrow 100.0% (1.0)<br><img src='icons/Inner Sight.png' alt='Inner Sight' width='20' height='20'> Inner Sight 100.0% (1.0)<br><img src='icons/Dodge.png' alt='Dodge' width='20' height='20'> Dodge 100.0% (1.0)<br><img src='icons/Phase Run.png' alt='Phase Run' width='20' height='20'> Phase Run 100.0% (1.0)<br><img src='icons/Avoid.png' alt='Avoid' width='20' height='20'> Avoid 100.0% (1.0)<br><img src='icons/Decoy.png' alt='Decoy' width='20' height='20'> Decoy 100.0% (1.0)<br><img src='icons/Evade.png' alt='Evade' width='20' height='20'> Evade 100.0% (1.0)<br><img src='icons/Valkyrie.png' alt='Valkyrie' width='20' height='20'> Valkyrie 100.0% (1.0)<br><img src='icons/Cold Arrow.png' alt='Cold Arrow' width='20' height='20'> Cold Arrow 0.0% (0.0)<br><img src='icons/Multiple Shot.png' alt='Multiple Shot' width='20' height='20'> Multiple Shot 0.0% (0.0)<br><img src='icons/Ice Arrow.png' alt='Ice Arrow' width='20' height='20'> Ice Arrow 0.0% (0.0)<br><img src='icons/Freezing Arrow.png' alt='Freezing Arrow' width='20' height='20'> Freezing Arrow 0.0% (0.0)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 0.0% (0.0)<br><img src='icons/Penetrate.png' alt='Penetrate' width='20' height='20'> Penetrate 0.0% (0.0)<br><img src='icons/Pierce.png' alt='Pierce' width='20' height='20'> Pierce 0.0% (0.0)<br><img src='icons/Poison Javelin.png' alt='Poison Javelin' width='20' height='20'> Poison Javelin 0.0% (0.0)<br><img src='icons/Jab.png' alt='Jab' width='20' height='20'> Jab 0.0% (0.0)<br><img src='icons/Power Strike.png' alt='Power Strike' width='20' height='20'> Power Strike 0.0% (0.0)<br><img src='icons/Lightning Bolt.png' alt='Lightning Bolt' width='20' height='20'> Lightning Bolt 0.0% (0.0)<br><img src='icons/Plague Javelin.png' alt='Plague Javelin' width='20' height='20'> Plague Javelin 0.0% (0.0)<br><img src='icons/Lightning Fury.png' alt='Lightning Fury' width='20' height='20'> Lightning Fury 0.0% (0.0)<br><img src='icons/Guided Arrow.png' alt='Guided Arrow' width='20' height='20'> Guided Arrow 0.0% (0.0)<br><img src='icons/Strafe.png' alt='Strafe' width='20' height='20'> Strafe 0.0% (0.0)<br><img src='icons/Raven.png' alt='Raven' width='20' height='20'> Raven 0.0% (0.0)<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 0.0% (0.0)<br><img src='icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' width='20' height='20'> Summon Spirit Wolf 0.0% (0.0)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 0.0% (0.0)<br><img src='icons/Summon Dire Wolf.png' alt='Summon Dire Wolf' width='20' height='20'> Summon Dire Wolf 0.0% (0.0)<br><img src='icons/Spirit of Barbs.png' alt='Spirit of Barbs' width='20' height='20'> Spirit of Barbs 0.0% (0.0)<br><img src='icons/Summon Grizzly.png' alt='Summon Grizzly' width='20' height='20'> Summon Grizzly 0.0% (0.0)<br><img src='icons/Firestorm.png' alt='Firestorm' width='20' height='20'> Firestorm 0.0% (0.0)<br><img src='icons/Molten Boulder.png' alt='Molten Boulder' width='20' height='20'> Molten Boulder 0.0% (0.0)<br><img src='icons/Flame Dash.png' alt='Flame Dash' width='20' height='20'> Flame Dash 0.0% (0.0)<br><img src='icons/Warmth.png' alt='Warmth' width='20' height='20'> Warmth 0.0% (0.0)<br><img src='icons/Charged Bolt.png' alt='Charged Bolt' width='20' height='20'> Charged Bolt 0.0% (0.0)<br><img src='icons/Static Field.png' alt='Static Field' width='20' height='20'> Static Field 0.0% (0.0)<br><img src='icons/Telekinesis.png' alt='Telekinesis' width='20' height='20'> Telekinesis 0.0% (0.0)<br><img src='icons/Nova.png' alt='Nova' width='20' height='20'> Nova 0.0% (0.0)<br><img src='icons/Lightning Surge.png' alt='Lightning Surge' width='20' height='20'> Lightning Surge 0.0% (0.0)<br><img src='icons/Teleport.png' alt='Teleport' width='20' height='20'> Teleport 0.0% (0.0)<br><img src='icons/Chain Lightning.png' alt='Chain Lightning' width='20' height='20'> Chain Lightning 0.0% (0.0)<br><img src='icons/Energy Shield.png' alt='Energy Shield' width='20' height='20'> Energy Shield 0.0% (0.0)<br><img src='icons/Lightning Mastery.png' alt='Lightning Mastery' width='20' height='20'> Lightning Mastery 0.0% (0.0)<br><img src='icons/Frost Nova.png' alt='Frost Nova' width='20' height='20'> Frost Nova 0.0% (0.0)<br><img src='icons/Cold Mastery.png' alt='Cold Mastery' width='20' height='20'> Cold Mastery 0.0% (0.0)</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>Most Common Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Ring</strong>: <br>Nagelring Ring 100.00%<br>Angelic Halo Ring 0.00%<br><strong>Amulet</strong>: <br>Angelic Wings Amulet 0.00%<br><strong>Boots</strong>: <br>Doom Brogues Chain Boots 0.00%<br><strong>Helmet</strong>: <br>Peasant Crown War Hat 100.00%<br><strong>Gloves</strong>: <br>Magefist Light Gauntlets 100.00%<br><strong>Belt</strong>: <br>String of Ears Demonhide Sash 100.00%<br><strong>Body</strong>: <br>Hustle Mage Plate 0.00%<br><strong>Left hand</strong>: <br>Buriza-Do Kyanon Ballista 200.00%<br><strong>Offhand</strong>: <br>Moonfire Bolts 100.00%<br>Dragonbreath Bolts 100.00%</div>
+            </div>
+        
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Ring</strong>: Nagelring Ring 100.00%, Angelic Halo Ring 0.00%<br><strong>Amulet</strong>: Angelic Wings Amulet 0.00%<br><strong>Boots</strong>: Doom Brogues Chain Boots 0.00%<br><strong>Helmet</strong>: Peasant Crown War Hat 100.00%<br><strong>Gloves</strong>: Magefist Light Gauntlets 100.00%<br><strong>Belt</strong>: String of Ears Demonhide Sash 100.00%<br><strong>Body</strong>: Hustle Mage Plate 0.00%<br><strong>Left hand</strong>: Buriza-Do Kyanon Ballista 200.00%<br><strong>Offhand</strong>: Moonfire Bolts 100.00%, Dragonbreath Bolts 100.00%</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>1 Characters in this cluster:</strong></button>
+            <div class="content">
+                
+                <div class="character-info">
+                    <div class="character-link"><strong>Character Name:</strong> Panamka</div>
+                    <div>44</div>
+                    <div><a href="https://pathofdiablo.com/p/armory/?name=Panamka">Armory</a></div>
+                </div>
+            <p><strong>Skills:</strong> Magic Arrow:20, Fire Arrow:20, Exploding Arrow:1, Immolation Arrow:1, Inner Sight:1, Dodge:1, Phase Run:1, Avoid:1, Decoy:1, Evade:1, Valkyrie:1</p>
+            <p><strong>Equipment:</strong> ring: Nagelring Ring x1, ring: Angelic Halo Ring x0, amulet: Angelic Wings Amulet x0, boots: Doom Brogues Chain Boots x0, helmet: Peasant Crown War Hat x1, gloves: Magefist Light Gauntlets x1, belt: String of Ears Demonhide Sash x1, body: Hustle Mage Plate x0, Left hand: Buriza-Do Kyanon Ballista x2, Offhand: Moonfire Bolts x1, Offhand: Dragonbreath Bolts x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Mask, Stealth, The Impaler</p>
+            <br>
+       
+        </div>
+        <br>
+        <hr>
+        <br>
+        
+        <!--
+            <h3>Top 5 Most Popular Unique_Bolts_and_Arrows Skills:</h3>
+        <ul>
+        </ul>
+
+        <h3>Bottom 5 Least Popular Unique_Bolts_and_Arrows Skills:</h3>
+        <ul>
+        </ul> -->
+        <!-- Embed the Plotly pie chart -->
+        <div>
+            <img src="charts/hcUnique_Bolts_and_Arrows-clusters_distribution_pie.png" alt="Unique_Bolts_and_Arrows Skills Distribution">
+        </div>
+
+        <!-- Embed the Plotly scatter plot 
+        <div>
+            <img src="charts/hcUnique_Bolts_and_Arrows-clusters_with_avg_points.png" alt="Unique_Bolts_and_Arrows Skill Clusters Scatter Plot">
+        </div> -->
+        <button onclick="topFunction()" id="backToTopBtn" class="back-to-top">Top</button>
+        
+
+        <script>
+            var coll = document.getElementsByClassName("collapsible");
+            for (var i = 0; i < coll.length; i++) {
+                coll[i].addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var content = this.nextElementSibling;
+                    var openIcon = this.querySelector("img.icon[alt='Open']");
+                    var closeIcon = this.querySelector("img.icon[alt='Close']");
+
+                    if (content.style.display === "block") {
+                        content.style.display = "none";
+                        openIcon.classList.remove("hidden");
+                        closeIcon.classList.add("hidden");
+                    } else {
+                        content.style.display = "block";
+                        openIcon.classList.add("hidden");
+                        closeIcon.classList.remove("hidden");
+                    }
+                });
+            }
+        </script>
+
+        <script>
+            //Get the button
+            var backToTopBtn = document.getElementById("backToTopBtn");
+
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function() {scrollFunction()};
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    backToTopBtn.style.display = "block";
+                } else {
+                    backToTopBtn.style.display = "none";
+                }
+            }
+
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+                document.body.scrollTop = 0; // For Safari
+                document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+            }
+        </script>
+
+        <script>
+            function setActive(id) {
+                // Remove active class from both buttons
+                document.getElementById("SC").classList.remove("active");
+                document.getElementById("HC").classList.remove("active");
+                
+                // Add active class to the selected button
+                document.getElementById(id).classList.add("active");
+                
+                // Get the current URL
+                var currentUrl = window.location.href;
+                
+                // Determine the new URL based on the selected mode
+                var newUrl;
+                if (id === "SC") {
+                    if (currentUrl.includes('hc')) {
+                        newUrl = currentUrl.replace(/hc/gi, '');
+                    } else {
+                        newUrl = currentUrl;
+                    }
+                } else if (id === "HC") {
+                    if (!currentUrl.includes('hc')) {
+                        newUrl = currentUrl.replace(/(\w+)\.html$/, 'hc$1.html');
+                    } else {
+                        newUrl = currentUrl;
+                    }
+                }
+                
+                // Redirect to the new URL if it has changed
+                if (newUrl !== currentUrl) {
+                    window.location.href = newUrl;
+                }
+            }
+
+            // Set default active button based on the current URL
+            window.onload = function() {
+                if (window.location.href.includes('hc')) {
+                    setActive("HC");
+                } else {
+                    setActive("SC");
+                }
+            }
+        </script>
+
+
+
+
+    </body>
+    </html>
+    
