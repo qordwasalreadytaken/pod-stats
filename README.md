@@ -1,4 +1,4 @@
-# Qords Info/Stats/Analytics for Path of Diablo(https://qordwasalreadytaken.github.io/pod-stats/Home.html)
+# [Qords Info/Stats/Analytics for Path of Diablo](https://qordwasalreadytaken.github.io/pod-stats/Home.html)
 Data analysis for the current PoD season
 
 The Path of Diablo analytics site seems to have been orphaned, at least temporarily, leaving a gap in available data and trends on PoD builds. This is my attempt to provide similar information, and although it's done in a different manner, the hope is that it helps users come to the same conclusions through statistics and data analysis.
