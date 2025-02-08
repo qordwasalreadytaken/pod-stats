@@ -1,0 +1,422 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Pod Hardcore Stats</title>
+        <style>
+            body { 
+                font-family: Arial, sans-serif; 
+                margin: 20px; 
+                line-height: 1.6; 
+                margin-left: 200px; /* Adjust this value to the width of your fixed buttons + some extra space */
+            }
+            h1 { color: #333; }
+            h2 { color: #555; margin-top: 20px; clear: both; }
+            p { clear: both; }
+            .character-info { display: flex; margin-bottom: 10px; }
+            .character-info div { flex: 1; padding: 5px; }
+            .character-link { flex: 1; }
+        
+            .collapsible {
+                background-color: #f1f1f1;
+                color: black;
+                cursor: pointer;
+                padding: 10px;
+                width: 100%;
+                border: none;
+                text-align: left;
+                outline: none;
+                font-size: 15px;
+                border-radius: 5px;
+                transition: background-color 0.3s ease, box-shadow 0.3s ease;
+                display: flex;
+                align-items: center;
+            }
+            .collapsible img.icon {
+                margin-right: 10px;
+                width: 20px;
+                height: 20px;
+            }
+            .collapsible img.icon.hidden {
+                display: none;
+            }
+            .collapsible:hover {
+                background-color: #45a049;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            }
+            .active, .collapsible:focus {
+                background-color: #45a049;
+            }
+        
+            .content {
+                padding: 0 18px;
+                display: none;
+                overflow: hidden;
+                background-color: #f9f9f9;
+            }
+            iframe {
+                width: 100%;
+                height: 600px;
+                border: none;
+            }
+        
+            .top-buttons {
+                position: fixed;
+                top: 20px;
+                left: 10px;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                margin-right: 20px;
+            }
+            .top-button {
+                background-color: #f1f1f1;
+                color: black;
+                cursor: pointer;
+                padding: 10px 15px;
+                border: none;
+                text-align: center;
+                outline: none;
+                font-size: 16px;
+                border-radius: 5px;
+                transition: background-color 0.3s ease, box-shadow 0.3s ease;
+                text-decoration: none;
+                flex: 0 0 auto;
+                margin-bottom: 10px;
+            }
+            .top-button:hover {
+                background-color: #45a049;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            }
+            .top-button.active {
+                background-color: #2E7D32; /* Different color for active state */
+            }
+        
+            .back-to-top {
+                display: none;
+                position: fixed;
+                bottom: 20px;
+                right: 30px;
+                z-index: 99;
+                border: none;
+                outline: none;
+                background-color: #4CAF50;
+                color: white;
+                cursor: pointer;
+                padding: 15px;
+                border-radius: 10px;
+                font-size: 18px;
+            }
+            .back-to-top:hover {
+                background-color: #45a049;
+            }
+        
+            .split-button {
+                display: flex;
+                justify-content: center;
+                margin-bottom: 20px;
+            }
+            .split-button-option {
+                background-color: #4CAF50;
+                color: white;
+                cursor: pointer;
+                padding: 10px 15px;
+                border: none;
+                text-align: center;
+                outline: none;
+                font-size: 16px;
+                border-radius: 0;
+                transition: background-color 0.3s ease, box-shadow 0.3s ease;
+                flex: 1;
+            }
+            .split-button-option:first-child {
+                border-top-left-radius: 5px;
+                border-bottom-left-radius: 5px;
+            }
+            .split-button-option:last-child {
+                border-top-right-radius: 5px;
+                border-bottom-right-radius: 5px;
+            }
+            .split-button-option:hover {
+                background-color: #45a049;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            }
+            .split-button-option.active {
+                background-color: #2E7D32;
+            }
+            
+            .container {
+                display: flex;
+                justify-content: space-between;
+            }
+            .column {
+                flex: 1;
+                margin: 10px;
+            }
+            h3 {
+                color: #555;
+            }
+            ul {
+                list-style-type: none;
+                padding: 0;
+            }
+            li {
+                margin-bottom: 5px;
+            }
+            .indented-skills {
+                margin-left: 20px; /* Adjust the value to your preference */
+            }
+            .merccolumn {
+                float: left; 
+                width: 25%;
+            } 
+            .row:after {
+                content: "";    
+                display: table; 
+                clear: both;
+            }
+        </style>
+        
+        
+    </head>
+    <body>
+        <div class="top-buttons">
+            <a href="Home.html" class="top-button" onclick="setActive('Home')">Home</a>
+            <a href="hcAmazon.html" class="top-button">Amazon</a>
+            <a href="hcAssassin.html" class="top-button">Assassin</a>
+            <a href="hcBarbarian.html" class="top-button">Barbarian</a>
+            <a href="hcDruid.html" class="top-button">Druid</a>
+            <a href="hcNecromancer.html" class="top-button">Necromancer</a>
+            <a href="hcPaladin.html" class="top-button">Paladin</a>
+            <a href="hcSorceress.html" class="top-button">Sorceress</a>
+            <div class="split-button">
+                <button id="SC" class="split-button-option" onclick="setActive('SC')">SC</button>
+                <button id="HC" class="split-button-option" onclick="setActive('HC')">HC</button>
+            </div>
+        </div>
+
+        <h1>Pod Hardcore Stats </h1>
+        <br>
+        <h2>Hardcore stats may be skewed by high numbers of low level characters on the ladder</h2>
+        <!-- Embed the Plotly pie chart -->
+    <!--     <h2>Pick a class below for more detail</h2>-->
+    <!--     <iframe src="cluster_analysis_report.html"></iframe>  -->
+        <div>
+            <img src="charts/hcclass_distribution.png">
+        </div>
+        
+        <!-- Embed the Plotly scatter plot at the bottom -->
+        <button onclick="topFunction()" id="backToTopBtn" class="back-to-top">Top</button>
+        <hr> 
+        <h1>Non-Class specific hardcore reporting</h1>
+        <h3>Most and least popular Runewords, Uniques, and Set items</h3>
+
+        <button type="button" class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>Runewords</strong>
+        </button>
+        <div class="content">
+        <div id="runewords" class="container">
+            <div class="column">
+                <h3>Most Popular HC Runewords:</h3>
+                <ul id="most-popular-runewords">
+                    <li>Spirit: 293</li><li>Stealth: 92</li><li>Lore: 76</li><li>Ancients' Pledge: 62</li><li>Heart of the Oak: 52</li><li>Rhyme: 40</li><li>Call to Arms: 32</li><li>Smoke: 31</li><li>Enigma: 29</li><li>Fortitude: 28</li>
+                </ul>
+            </div>
+            <div class="column">
+                <h3>Least Popular HC Runewords:</h3>
+                <ul id="least_popular_runewords">
+                    <li>Hearth: 1</li><li>Beast: 1</li><li>Dream: 1</li><li>Ground: 1</li><li>Lawbringer: 1</li><li>2693: 1</li><li>Obedience: 1</li><li>Doom: 1</li><li>Melody: 1</li><li>Nadir: 2</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+        <br>
+        <button type="button" class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>Uniques</strong>
+        </button>    
+        <div class="content">   
+        <div id="uniques" class="container">
+            <div class="column">
+                <h3>Most Popular HC Uniques:</h3>
+                <ul id="most-popular-uniques">
+                    <li>Magefist: 75</li><li>Raven Frost: 75</li><li>Harlequin Crest: 65</li><li>Skin of the Vipermagi: 59</li><li>Manald Heal: 53</li><li>Nagelring: 49</li><li>String of Ears: 47</li><li>Stormshield: 38</li><li>Dwarf Star: 36</li><li>Arachnid Mesh: 35</li>
+                </ul>
+            </div>
+            <div class="column">
+                <h3>Least Popular HC Uniques:</h3>
+                <ul id="least_popular_uniques">
+                    <li>Sandstorm Trek: 1</li><li>Gimmershred: 1</li><li>Black Hades: 1</li><li>Death's Fathom: 1</li><li>Razortine: 1</li><li>Bing Sz Wang: 1</li><li>Plague Bearer: 1</li><li>Stealskull: 1</li><li>Coif of Glory: 1</li><li>Spirit Keeper: 1</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+        <br>
+        <button type="button" class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>Sets</strong>
+        </button>  
+        <div class="content">  
+        <div id="sets" class="container">
+            <div class="column">
+                <h3>Most Popular HC Set Items:</h3>
+                <ul id="most-popular-set-items">
+                    <li>Trang-Oul's Claws: 61</li><li>Aldur's Advance: 52</li><li>Angelic Halo: 51</li><li>Laying of Hands: 37</li><li>Hsarus' Iron Heel: 35</li><li>Sigon's Wrap: 34</li><li>Natalya's Soul: 34</li><li>Angelic Wings: 30</li><li>Sigon's Gage: 29</li><li>Sander's Riprap: 29</li>
+                </ul>
+            </div>
+            <div class="column">
+                <h3>Least Popular HC Set Items:</h3>
+                <ul id="least_popular_set_items">
+                    <li>Cathan's Rule: 1</li><li>Arcanna's Deathwand: 1</li><li>Arcanna's Flesh: 1</li><li>Cleglaw's Tooth: 1</li><li>Aldur's Rhythm: 1</li><li>Civerb's Ward: 1</li><li>Hwanin's Refuge: 1</li><li>Ondal's Almighty: 1</li><li>Isenhart's Parry: 1</li><li>Hwanin's Blessing: 1</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+        <br>
+        <hr>
+        <h1>Mercenary reporting</h1>
+        <h3>Most and least popular Runewords, Uniques, and Set items</h3>
+
+        <button type="button" class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>Hardcore Mercenary Details</strong>
+        </button>
+        <div class="content">
+        <div id="mercequips">
+            <p><h2>Mercenary Analysis and Popular Equipment</h2></p><p><h3>Mercenary Type Counts</h3></p><ul><li>Act 2 Desert Mercenary: 521</li><li>Act 1 Rogue Scout: 143</li><li>Act 3 Eastern Sorceror: 54</li><li>Act 5 Barbarian: 67</li></ul><p><h3>Popular Equipment by Mercenary Type</h3></p<br><div class='row'><p><strong>Act 2 Desert Mercenary</strong></p><div class=merccolumn><strong>Most Common Helmets:</strong><ul><li>Tal Rasha's Horadric Crest: 77</li><li>Steel Shade: 23</li><li>Vampire Gaze: 19</li><li>Duskdeep: 18</li><li>Crown of Thieves: 17</li></ul></div><div class=merccolumn><strong>Most Common Armors:</strong><ul><li>Treachery: 57</li><li>Duriel's Shell: 23</li><li>Smoke: 15</li><li>Fortitude: 14</li><li>Leviathan: 13</li></ul></div><div class=merccolumn><strong>Most Common Weapons:</strong><ul><li>Insight: 232</li><li>Infinity: 20</li><li>The Reaper's Toll: 16</li><li>Voulge: 14</li><li>Trident: 8</li></ul></div></div><br><div class='row'><p><strong>Act 3 Eastern Sorceror</strong></p><div class=merccolumn><strong>Most Common Armors:</strong><ul><li>Stealth: 4</li><li>Rockfleece: 3</li><li>Skin of the Vipermagi: 2</li><li>Sparking Mail: 2</li><li>Darkglow: 2</li></ul></div><div class=merccolumn><strong>Most Common Helmets:</strong><ul><li>Rockstopper: 4</li><li>Vampire Gaze: 2</li><li>Duskdeep: 2</li><li>Sazabi's Mental Sheath: 2</li><li>Helm: 2</li></ul></div><div class=merccolumn><strong>Most Common Weapons:</strong><ul><li>Spirit: 5</li><li>Culwen's Point: 2</li><li>Hexfire: 2</li><li>Last Wish: 1</li><li>The Atlantean: 1</li></ul></div><div class=merccolumn><strong>Most Common Offhands:</strong><ul><li>Gerke's Sanctuary: 4</li><li>Ancients' Pledge: 4</li><li>Moser's Blessed Circle: 3</li><li>The Ward: 3</li><li>Steelclash: 2</li></ul></div></div><br><div class='row'><p><strong>Act 5 Barbarian</strong></p><div class=merccolumn><strong>Most Common Armors:</strong><ul><li>Treachery: 14</li><li>Duriel's Shell: 6</li><li>Shaftstop: 4</li><li>The Gladiator's Bane: 3</li><li>Smoke: 2</li></ul></div><div class=merccolumn><strong>Most Common Helmets:</strong><ul><li>Tal Rasha's Horadric Crest: 13</li><li>Steel Shade: 9</li><li>Andariel's Visage: 4</li><li>Crown of Thieves: 2</li><li>Vampire Gaze: 2</li></ul></div><div class=merccolumn><strong>Most Common Weapons:</strong><ul><li>Lawbringer: 20</li><li>Silence: 7</li><li>Todesfaelle Flamme: 2</li><li>Crainte Vomir: 2</li><li>Headstriker: 2</li></ul></div></div><br><div class='row'><p><strong>Act 1 Rogue Scout</strong></p><div class=merccolumn><strong>Most Common Armors:</strong><ul><li>Hard Leather Armor: 4</li><li>Treachery: 4</li><li>Hustle: 3</li><li>Fortitude: 2</li><li>Hawkmail: 2</li></ul></div><div class=merccolumn><strong>Most Common Helmets:</strong><ul><li>Tal Rasha's Horadric Crest: 8</li><li>Hearth: 8</li><li>Skull Cap: 3</li><li>Cap: 2</li><li>Azure Skull Cap: 2</li></ul></div><div class=merccolumn><strong>Most Common Weapons:</strong><ul><li>Harmony: 10</li><li>Hunter's Bow: 5</li><li>Edge: 5</li><li>Short Bow: 4</li><li>Insight: 4</li></ul></div></div>
+        </div>
+        </div>
+    
+        <br>
+        <hr>
+        <h3>Non-Amazon Bow Users</h3>
+        <a href="hcNotazons.html" class="top-button">Non-Zon Bow Users</a>
+        <br>
+        <h3>Possibly Chargers</h3>
+        <a href="hcCharge.html" class="top-button">Chargers?</a>
+        <br>
+        <h3>Dashing Strikers</h3>
+        <a href="hcDashadin.html" class="top-button">Dashing Strike</a>
+        <br>
+        <h3>Iron Jang Bong & Warpspear</h3>
+        <a href="hcBong_and_Warpspear.html" class="top-button">Iron Jang Bong & Warpspear</a>
+        <br>
+        <h3>Unique Arrows & Bolts</h3>
+        <a href="hcUnique_Bolts_and_Arrows.html" class="top-button">Unique Arrows & Bolts</a>
+        <br><br>
+        <hr>
+        <br><br><br><br>
+        <script>
+            var coll = document.getElementsByClassName("collapsible");
+            for (var i = 0; i < coll.length; i++) {
+                coll[i].addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var content = this.nextElementSibling;
+                    var openIcon = this.querySelector("img.icon[alt='Open']");
+                    var closeIcon = this.querySelector("img.icon[alt='Close']");
+
+                    if (content.style.display === "block") {
+                        content.style.display = "none";
+                        openIcon.classList.remove("hidden");
+                        closeIcon.classList.add("hidden");
+                    } else {
+                        content.style.display = "block";
+                        openIcon.classList.add("hidden");
+                        closeIcon.classList.remove("hidden");
+                    }
+                });
+            }
+        </script>
+
+
+        <script>
+            //Get the button
+            var backToTopBtn = document.getElementById("backToTopBtn");
+
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function() {scrollFunction()};
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    backToTopBtn.style.display = "block";
+                } else {
+                    backToTopBtn.style.display = "none";
+                }
+            }
+
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+                document.body.scrollTop = 0; // For Safari
+                document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+            }
+        </script>
+
+        <script>
+            function setActive(id) {
+                // Remove active class from both buttons
+                document.getElementById("SC").classList.remove("active");
+                document.getElementById("HC").classList.remove("active");
+                
+                // Add active class to the selected button
+                document.getElementById(id).classList.add("active");
+                
+                // Get the current URL
+                var currentUrl = window.location.href;
+                
+                // Determine the new URL based on the selected mode
+                var newUrl;
+                if (id === "SC") {
+                    if (currentUrl.includes('hc')) {
+                        newUrl = currentUrl.replace(/hc/gi, '');
+                    } else {
+                        newUrl = currentUrl;
+                    }
+                } else if (id === "HC") {
+                    if (!currentUrl.includes('hc')) {
+                        newUrl = currentUrl.replace(/(\w+)\.html$/, 'hc$1.html');
+                    } else {
+                        newUrl = currentUrl;
+                    }
+                }
+                
+                // Redirect to the new URL if it has changed
+                if (newUrl !== currentUrl) {
+                    window.location.href = newUrl;
+                }
+            }
+
+            // Set default active button based on the current URL
+            window.onload = function() {
+                if (window.location.href.includes('hc')) {
+                    setActive("HC");
+                } else {
+                    setActive("SC");
+                }
+            }
+        </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const currentLocation = window.location.href;
+            const menuItems = document.querySelectorAll(".top-button");
+            
+            menuItems.forEach(item => {
+                if (item.href === currentLocation) {
+                    item.classList.add("active");
+                }
+            });
+        });
+    </script>
+
+
+
+    </body>
+    </html>
+    
