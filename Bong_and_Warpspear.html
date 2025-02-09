@@ -166,6 +166,42 @@
             .indented-skills {
                 margin-left: 20px; /* Adjust the value to your preference */
             }
+            .hover-trigger {
+                width: auto;
+                display: inline-block;
+                padding: 10px 20px;
+                background-color: #2E7D32;
+                color: white;
+                cursor: pointer;
+                border-radius: 5px;
+            }
+
+            .popup {
+                display: none; /* Initially hidden */
+                position: fixed; /* Keeps it positioned relative to the viewport */
+                top: 50%; /* Adjust as needed */
+                left: 50%; /* Center it */
+                transform: translate(-50%, -50%); /* Perfect centering */
+                width: 600px;
+                height: 500px;
+                background-color: white;
+                border: 1px solid #ddd;
+                box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+                padding: 10px;
+                z-index: 1000;
+            }
+
+            /* Ensure interactions inside the popup don't close it */
+            .popup iframe {
+                width: 100%;
+                height: 100%;
+                border: none;
+            }
+
+            /* Optional: Style for when the popup is visible */
+            .popup.active {
+                display: block;
+            }
         </style>
     </head>
     <body>
@@ -219,77 +255,169 @@
         <button class="collapsible">
             <img src="icons/closed.png" alt="Open" class="icon">
             <img src="icons/open.png" alt="Close" class="icon hidden">
-            <strong>7 Characters in this cluster:</strong></button>
-            <div class="content">
-                
-                <div class="character-info">
-                    <div class="character-link"><strong>Character Name:</strong> HHLLL</div>
-                    <div>96</div>
-                    <div><a href="https://pathofdiablo.com/p/armory/?name=HHLLL">Armory</a></div>
+            <strong>7 Characters in this cluster:</strong>
+        </button>
+        <div class="content">
+            
+            <div class="character-info">
+                <div><strong>Character: HHLLL</strong></div>
+                <div>Level 96</div>
+                <div>Sorceress</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=HHLLL">HHLLL's Armory</a></div>
+                <div class="hover-trigger" data-character-name="HHLLL">
+                    Armory Quickview
                 </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
             <p><strong>Skills:</strong> Telekinesis:20, Lightning Surge:20, Teleport:20, Lightning Mastery:20, Thunder Storm:20, Energy Shield:3, Warmth:1, Charged Bolt:1, Static Field:1, Chain Lightning:1</p>
             <p><strong>Equipment:</strong> amulet: Tal Rasha's Adjudication x1, gloves: Chance Guards x1, ring: Nature's Peace x1, ring: Nagelring x1, body: Tal Rasha's Guardianship x1, Left hand: Warpspear x1, Left hand: Spirit x1, boots: Gale Trample x1, belt: Tal Rasha's Fine-Spun Cloth x1, Offhand: The Oculus x1</p>
             <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Treachery, Steel Shade</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
             <br>
         
-                <div class="character-info">
-                    <div class="character-link"><strong>Character Name:</strong> dischargeadin</div>
-                    <div>93</div>
-                    <div><a href="https://pathofdiablo.com/p/armory/?name=dischargeadin">Armory</a></div>
+            <div class="character-info">
+                <div><strong>Character: dischargeadin</strong></div>
+                <div>Level 93</div>
+                <div>Sorceress</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=dischargeadin">dischargeadin's Armory</a></div>
+                <div class="hover-trigger" data-character-name="dischargeadin">
+                    Armory Quickview
                 </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
             <p><strong>Skills:</strong> Telekinesis:20, Lightning Surge:20, Teleport:20, Lightning Mastery:20, Thunder Storm:20, Warmth:1, Charged Bolt:1, Chain Lightning:1, Energy Shield:1</p>
             <p><strong>Equipment:</strong> boots: Storm Shank x1, gloves: Magefist x1, helmet: Harlequin Crest x1, amulet: Mara's Kaleidoscope x1, belt: Arachnid Mesh x1, ring: Bul-Kathos' Wedding Band x1, ring: Wisp Projector x1, body: Skin of the Vipermagi x1, Left hand: Death's Fathom x1, Left hand: Warpspear x1, Offhand: Spirit x1</p>
             <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Fortitude, Steel Shade, Infinity</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
             <br>
         
-                <div class="character-info">
-                    <div class="character-link"><strong>Character Name:</strong> Zarmith</div>
-                    <div>93</div>
-                    <div><a href="https://pathofdiablo.com/p/armory/?name=Zarmith">Armory</a></div>
+            <div class="character-info">
+                <div><strong>Character: Zarmith</strong></div>
+                <div>Level 93</div>
+                <div>Sorceress</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Zarmith">Zarmith's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Zarmith">
+                    Armory Quickview
                 </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
             <p><strong>Skills:</strong> Telekinesis:20, Lightning Surge:20, Teleport:20, Lightning Mastery:20, Thunder Storm:20, Warmth:1, Charged Bolt:1, Chain Lightning:1, Energy Shield:1</p>
             <p><strong>Equipment:</strong> boots: Silkweave x1, gloves: Magefist x1, ring: Raven Frost x1, ring: Bone Turn x1, amulet: Tal Rasha's Adjudication x1, helmet: Harlequin Crest x1, belt: Arachnid Mesh x1, body: Chains of Honor x1, Left hand: Call to Arms x1, Left hand: Warpspear x1, Offhand: Medusa's Gaze x1</p>
             <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Treachery, Vampire Gaze, Infinity</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
             <br>
         
-                <div class="character-info">
-                    <div class="character-link"><strong>Character Name:</strong> scrempo</div>
-                    <div>93</div>
-                    <div><a href="https://pathofdiablo.com/p/armory/?name=scrempo">Armory</a></div>
+            <div class="character-info">
+                <div><strong>Character: scrempo</strong></div>
+                <div>Level 93</div>
+                <div>Sorceress</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=scrempo">scrempo's Armory</a></div>
+                <div class="hover-trigger" data-character-name="scrempo">
+                    Armory Quickview
                 </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
             <p><strong>Skills:</strong> Telekinesis:20, Teleport:20, Lightning Mastery:20, Thunder Storm:20, Lightning Surge:19, Warmth:1, Charged Bolt:1, Static Field:1, Chain Lightning:1, Energy Shield:1</p>
             <p><strong>Equipment:</strong> body: Enigma x1, helmet: Griffon's Eye x1, ring: PlagueRI Knot x1, ring: The Stone of Jordan x1, amulet: Mara's Kaleidoscope x1, boots: Silkweave x1, belt: Arachnid Mesh x1, gloves: Immortal King's Forge x1, Left hand: Call to Arms x1, Left hand: Warpspear x1, Offhand: Spirit x1</p>
             <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Andariel's Visage, Fortitude, Infinity</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
             <br>
         
-                <div class="character-info">
-                    <div class="character-link"><strong>Character Name:</strong> Teleworking</div>
-                    <div>92</div>
-                    <div><a href="https://pathofdiablo.com/p/armory/?name=Teleworking">Armory</a></div>
+            <div class="character-info">
+                <div><strong>Character: Teleworking</strong></div>
+                <div>Level 92</div>
+                <div>Sorceress</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Teleworking">Teleworking's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Teleworking">
+                    Armory Quickview
                 </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
             <p><strong>Skills:</strong> Telekinesis:20, Teleport:20, Lightning Mastery:20, Thunder Storm:20, Lightning Surge:16, Energy Shield:3, Warmth:1, Charged Bolt:1, Chain Lightning:1, Frigerate:1</p>
             <p><strong>Equipment:</strong> belt: Tal Rasha's Fine-Spun Cloth x1, ring: Beast Loop x1, ring: Dread Turn x1, body: Tal Rasha's Guardianship x1, boots: War Traveler x1, amulet: Tal Rasha's Adjudication x1, helmet: Harlequin Crest x1, gloves: Magefist x1, Left hand: Warpspear x1, Left hand: Ondal's Wisdom x1</p>
             <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Guardian Angel, Tal Rasha's Horadric Crest, Infinity</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
             <br>
         
-                <div class="character-info">
-                    <div class="character-link"><strong>Character Name:</strong> QuiBish</div>
-                    <div>90</div>
-                    <div><a href="https://pathofdiablo.com/p/armory/?name=QuiBish">Armory</a></div>
+            <div class="character-info">
+                <div><strong>Character: QuiBish</strong></div>
+                <div>Level 90</div>
+                <div>Sorceress</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=QuiBish">QuiBish's Armory</a></div>
+                <div class="hover-trigger" data-character-name="QuiBish">
+                    Armory Quickview
                 </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
             <p><strong>Skills:</strong> Telekinesis:20, Lightning Surge:20, Teleport:20, Thunder Storm:20, Lightning Mastery:17, Warmth:1, Charged Bolt:1, Chain Lightning:1, Energy Shield:1</p>
             <p><strong>Equipment:</strong> gloves: Magefist x1, belt: Arachnid Mesh x1, body: Skin of the Vipermagi x1, ring: Wraithra Turn x1, Left hand: Griswold's Edge x1, Left hand: Warpspear x1, Offhand: Medusa's Gaze x1</p>
             <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - No equipment</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
             <br>
         
-                <div class="character-info">
-                    <div class="character-link"><strong>Character Name:</strong> kfc-ice</div>
-                    <div>90</div>
-                    <div><a href="https://pathofdiablo.com/p/armory/?name=kfc-ice">Armory</a></div>
+            <div class="character-info">
+                <div><strong>Character: kfc-ice</strong></div>
+                <div>Level 90</div>
+                <div>Sorceress</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=kfc-ice">kfc-ice's Armory</a></div>
+                <div class="hover-trigger" data-character-name="kfc-ice">
+                    Armory Quickview
                 </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
             <p><strong>Skills:</strong> Telekinesis:20, Lightning Surge:20, Teleport:20, Thunder Storm:20, Lightning Mastery:16, Warmth:1, Charged Bolt:1, Static Field:1, Chain Lightning:1, Energy Shield:1</p>
             <p><strong>Equipment:</strong> ring: The Stone of Jordan x1, ring: Nagelring x1, boots: Silkweave x1, amulet: Tal Rasha's Adjudication x1, body: Tal Rasha's Guardianship x1, gloves: Chance Guards x1, helmet: Harlequin Crest x1, belt: Tal Rasha's Fine-Spun Cloth x1, Left hand: Warpspear x1, Left hand: The Oculus x1, Offhand: Spirit x1</p>
             <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Fortitude, Andariel's Visage, Infinity</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
             <br>
         
         </div>
@@ -326,37 +454,77 @@
         <button class="collapsible">
             <img src="icons/closed.png" alt="Open" class="icon">
             <img src="icons/open.png" alt="Close" class="icon hidden">
-            <strong>3 Characters in this cluster:</strong></button>
-            <div class="content">
-                
-                <div class="character-info">
-                    <div class="character-link"><strong>Character Name:</strong> Ella_Mental</div>
-                    <div>96</div>
-                    <div><a href="https://pathofdiablo.com/p/armory/?name=Ella_Mental">Armory</a></div>
+            <strong>3 Characters in this cluster:</strong>
+        </button>
+        <div class="content">
+            
+            <div class="character-info">
+                <div><strong>Character: Ella_Mental</strong></div>
+                <div>Level 96</div>
+                <div>Sorceress</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Ella_Mental">Ella_Mental's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Ella_Mental">
+                    Armory Quickview
                 </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
             <p><strong>Skills:</strong> Telekinesis:20, Nova:20, Frost Nova:20, Shiver Armor:20, Ice Blast:7, Discharge:5, Lightning Mastery:5, Cold Mastery:5, Warmth:1, Static Field:1, Teleport:1, Ice Bolt:1, Frigerate:1</p>
             <p><strong>Equipment:</strong> body: Skin of the Vipermagi x1, amulet: Mara's Kaleidoscope x1, boots: Silkweave x1, ring: The Stone of Jordan x2, belt: Arachnid Mesh x1, helmet: Harlequin Crest x1, gloves: Frostburn x1, Left hand: Memory x1, Left hand: The Iron Jang Bong x1</p>
             <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Treachery, Steel Shade, Insight</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
             <br>
         
-                <div class="character-info">
-                    <div class="character-link"><strong>Character Name:</strong> Heklo</div>
-                    <div>92</div>
-                    <div><a href="https://pathofdiablo.com/p/armory/?name=Heklo">Armory</a></div>
+            <div class="character-info">
+                <div><strong>Character: Heklo</strong></div>
+                <div>Level 92</div>
+                <div>Sorceress</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Heklo">Heklo's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Heklo">
+                    Armory Quickview
                 </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
             <p><strong>Skills:</strong> Nova:20, Lightning Mastery:20, Frost Nova:20, Shiver Armor:20, Telekinesis:7, Cold Mastery:6, Warmth:1, Charged Bolt:1, Static Field:1, Lightning Surge:1, Teleport:1, Chain Lightning:1, Energy Shield:1, Ice Bolt:1, Frigerate:1, Ice Blast:1</p>
             <p><strong>Equipment:</strong> amulet: Mara's Kaleidoscope x1, helmet: Harlequin Crest x1, body: Ormus' Robes x1, belt: Arachnid Mesh x1, ring: The Stone of Jordan x2, boots: Silkweave x1, gloves: Magefist x1, Left hand: Spire of Lazarus x1, Left hand: The Iron Jang Bong x1</p>
             <p><strong>Mercenary:</strong> Act 3 Eastern Sorceror - Shaftstop, Dream, Phoenix, Dream</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
             <br>
         
-                <div class="character-info">
-                    <div class="character-link"><strong>Character Name:</strong> Lee_Speed</div>
-                    <div>91</div>
-                    <div><a href="https://pathofdiablo.com/p/armory/?name=Lee_Speed">Armory</a></div>
+            <div class="character-info">
+                <div><strong>Character: Lee_Speed</strong></div>
+                <div>Level 91</div>
+                <div>Amazon</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Lee_Speed">Lee_Speed's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Lee_Speed">
+                    Armory Quickview
                 </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
             <p><strong>Skills:</strong> Magic Arrow:20, Multiple Shot:20, Lethal Strike:20, Penetrate:20, Guided Arrow:12, Cold Arrow:1, Inner Sight:1, Dodge:1, Phase Run:1, Avoid:1, Decoy:1, Evade:1, Valkyrie:1, Pierce:1</p>
             <p><strong>Equipment:</strong> gloves: Laying of Hands x1, boots: War Traveler x1, amulet: Atma's Scarab x1, body: Fortitude x1, belt: Razortail x1, helmet: Guillaume's Face x1, ring: Order Eye x1, ring: Raven Frost x1, Left hand: The Iron Jang Bong x1, Left hand: Witchwild String x1, Offhand: Bitter Eye x1</p>
             <p><strong>Mercenary:</strong> Act 5 Barbarian - Andariel's Visage, Treachery, Swordguard</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
             <br>
         
         </div>
@@ -469,6 +637,46 @@
                     setActive("SC");
                 }
             }
+        </script>
+        <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const hoverTriggers = document.querySelectorAll(".hover-trigger");
+                    let activePopup = null;
+
+                    hoverTriggers.forEach(trigger => {
+                        trigger.addEventListener("click", function (event) {
+                            event.stopPropagation();
+                            const characterName = this.getAttribute("data-character-name");
+
+                            // Close any open popup first
+                            if (activePopup) {
+                                activePopup.classList.remove("active");
+                            }
+
+                            // Find the popup within the same character container
+                            const popup = this.closest(".character-info").nextElementSibling.querySelector(".popup");
+                            const iframe = popup.querySelector("iframe");
+
+                            console.log('Popup:', popup); // Debugging line
+                            console.log('Character Name:', characterName); // Debugging line
+
+                            // Set the correct iframe URL
+                            iframe.src = `./armory/video_component.html?charName=${encodeURIComponent(characterName)}`;
+
+                            // Show the popup
+                            popup.classList.add("active");
+                            activePopup = popup;
+                        });
+                    });
+
+                    // Close the popup when clicking anywhere outside it
+                    document.addEventListener("click", function (event) {
+                        if (activePopup && !activePopup.contains(event.target)) {
+                            activePopup.classList.remove("active");
+                            activePopup = null;
+                        }
+                    });
+                });
         </script>
 
 

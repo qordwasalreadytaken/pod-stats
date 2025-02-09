@@ -166,6 +166,42 @@
             .indented-skills {
                 margin-left: 20px; /* Adjust the value to your preference */
             }
+            .hover-trigger {
+                width: auto;
+                display: inline-block;
+                padding: 10px 20px;
+                background-color: #2E7D32;
+                color: white;
+                cursor: pointer;
+                border-radius: 5px;
+            }
+
+            .popup {
+                display: none; /* Initially hidden */
+                position: fixed; /* Keeps it positioned relative to the viewport */
+                top: 50%; /* Adjust as needed */
+                left: 50%; /* Center it */
+                transform: translate(-50%, -50%); /* Perfect centering */
+                width: 600px;
+                height: 500px;
+                background-color: white;
+                border: 1px solid #ddd;
+                box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+                padding: 10px;
+                z-index: 1000;
+            }
+
+            /* Ensure interactions inside the popup don't close it */
+            .popup iframe {
+                width: 100%;
+                height: 100%;
+                border: none;
+            }
+
+            /* Optional: Style for when the popup is visible */
+            .popup.active {
+                display: block;
+            }
         </style>
     </head>
     <body>
@@ -219,158 +255,339 @@
         <button class="collapsible">
             <img src="icons/closed.png" alt="Open" class="icon">
             <img src="icons/open.png" alt="Close" class="icon hidden">
-            <strong>15 Characters in this cluster:</strong></button>
-            <div class="content">
-                
-                <div class="character-info">
-                    <div class="character-link"><strong>Character Name:</strong> ABUCHA</div>
-                    <div>97</div>
-                    <div><a href="https://pathofdiablo.com/p/armory/?name=ABUCHA">Armory</a></div>
+            <strong>15 Characters in this cluster:</strong>
+        </button>
+        <div class="content">
+            
+            <div class="character-info">
+                <div><strong>Character: ABUCHA</strong></div>
+                <div>Level 97</div>
+                <div>Amazon</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=ABUCHA">ABUCHA's Armory</a></div>
+                <div class="hover-trigger" data-character-name="ABUCHA">
+                    Armory Quickview
                 </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
             <p><strong>Skills:</strong> Strafe:20, Penetrate:19, Lethal Strike:16, Pierce:16, Evade:13, Phase Run:10, Avoid:8, Magic Arrow:1, Cold Arrow:1, Multiple Shot:1, Guided Arrow:1, Inner Sight:1, Dodge:1</p>
             <p><strong>Equipment:</strong> helmet: Dream Demonhead x0, boots: Goblin Toe Battle Boots x1, belt: M'avina's Tenet Vampirefang Belt x0, ring: Dwarf Star Ring x1, body: Chains of Honor Dusk Shroud x0, amulet: The Cat's Eye Amulet x1, Left hand: Wrath Grand Matron Bow x0, Offhand: Hailstorm Arrows x1</p>
             <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Fortitude, Steel Shade, Infinity</p>
-            <br>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
        
-                <div class="character-info">
-                    <div class="character-link"><strong>Character Name:</strong> Liya_SC</div>
-                    <div>95</div>
-                    <div><a href="https://pathofdiablo.com/p/armory/?name=Liya_SC">Armory</a></div>
+            <div class="character-info">
+                <div><strong>Character: Liya_SC</strong></div>
+                <div>Level 95</div>
+                <div>Amazon</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Liya_SC">Liya_SC's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Liya_SC">
+                    Armory Quickview
                 </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
             <p><strong>Skills:</strong> Multiple Shot:20, Guided Arrow:20, Strafe:20, Valkyrie:20, Penetrate:13, Lethal Strike:4, Magic Arrow:1, Cold Arrow:1, Inner Sight:1, Dodge:1, Phase Run:1, Avoid:1, Decoy:1, Evade:1, Pierce:1</p>
             <p><strong>Equipment:</strong> ring: Raven Frost Ring x1, ring: Dwarf Star Ring x1, amulet: Crescent Moon Amulet x1, gloves: Laying of Hands Bramble Mitts x0, boots: War Traveler Battle Boots x1, belt: String of Ears Demonhide Sash x1, helmet: Crown of Ages Corona x1, body: Fortitude Kraken Shell x0, Left hand: Windforce Hydra Bow x2, Offhand: Hailstorm Arrows x1, Offhand: Moonfire Arrows x1</p>
             <p><strong>Mercenary:</strong> Act 1 Rogue Scout - The Gladiator's Bane, Tal Rasha's Horadric Crest, Faith</p>
-            <br>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
        
-                <div class="character-info">
-                    <div class="character-link"><strong>Character Name:</strong> Staerle</div>
-                    <div>93</div>
-                    <div><a href="https://pathofdiablo.com/p/armory/?name=Staerle">Armory</a></div>
+            <div class="character-info">
+                <div><strong>Character: Staerle</strong></div>
+                <div>Level 93</div>
+                <div>Amazon</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Staerle">Staerle's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Staerle">
+                    Armory Quickview
                 </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
             <p><strong>Skills:</strong> Cold Arrow:20, Exploding Arrow:20, Immolation Arrow:20, Freezing Arrow:20, Pierce:7, Ice Arrow:6, Magic Arrow:1, Fire Arrow:1, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Evade:1</p>
             <p><strong>Equipment:</strong> ring: Raven Frost Ring x1, ring: Grim Master Ring x0, amulet: The Cat's Eye Amulet x1, boots: Aldur's Advance Battle Boots x0, belt: M'avina's Tenet Sharkskin Belt x0, gloves: M'avina's Icy Clutch Battle Gauntlets x0, body: M'avina's Embrace Kraken Shell x0, helmet: M'avina's True Sight Diadem x0, Left hand: Harmony Crusader Bow x0, Left hand: M'avina's Caster Grand Matron Bow x0, Offhand: Dragonbreath Arrows x1, Offhand: Hailstorm Arrows x1</p>
             <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Hustle, Vampire Gaze, Insight</p>
-            <br>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
        
-                <div class="character-info">
-                    <div class="character-link"><strong>Character Name:</strong> Waelcyrie</div>
-                    <div>92</div>
-                    <div><a href="https://pathofdiablo.com/p/armory/?name=Waelcyrie">Armory</a></div>
+            <div class="character-info">
+                <div><strong>Character: Waelcyrie</strong></div>
+                <div>Level 92</div>
+                <div>Amazon</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Waelcyrie">Waelcyrie's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Waelcyrie">
+                    Armory Quickview
                 </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
             <p><strong>Skills:</strong> Strafe:20, Immolation Arrow:20, Penetrate:20, Fire Arrow:15, Pierce:13, Magic Arrow:1, Cold Arrow:1, Multiple Shot:1, Exploding Arrow:1, Guided Arrow:1, Lethal Strike:1, Dodge:1, Avoid:1, Evade:1</p>
             <p><strong>Equipment:</strong> belt: String of Ears Demonhide Sash x1, ring: Bitter Whorl Ring x0, gloves: Laying of Hands Bramble Mitts x0, Left hand: Wrath Matriarchal Bow x0, Offhand: Hailstorm Arrows x1, Offhand: Hailstorm Bolts x1</p>
             <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Leviathan, Steel Shade, The Reaper's Toll</p>
-            <br>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
        
-                <div class="character-info">
-                    <div class="character-link"><strong>Character Name:</strong> LightninMissile</div>
-                    <div>92</div>
-                    <div><a href="https://pathofdiablo.com/p/armory/?name=LightninMissile">Armory</a></div>
+            <div class="character-info">
+                <div><strong>Character: LightninMissile</strong></div>
+                <div>Level 92</div>
+                <div>Amazon</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=LightninMissile">LightninMissile's Armory</a></div>
+                <div class="hover-trigger" data-character-name="LightninMissile">
+                    Armory Quickview
                 </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
             <p><strong>Skills:</strong> Strafe:20, Valkyrie:20, Lightning Bolt:20, Lightning Fury:20, Power Strike:7, Magic Arrow:1, Cold Arrow:1, Multiple Shot:1, Guided Arrow:1, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Decoy:1, Evade:1, Pierce:1, Jab:1, Poison Javelin:1, Plague Javelin:1</p>
             <p><strong>Equipment:</strong> amulet: Highlord's Wrath Amulet x1, ring: GhoulRI Grasp Ring x0, ring: Skull Spiral Ring x0, body: Fortitude Archon Plate x0, helmet: Dream Diadem x0, gloves: Wraithra Hand Chain Gloves x0, boots: War Traveler Battle Boots x1, belt: Thundergod's Vigor War Belt x1, Left hand: Titan's Revenge Matriarchal Javelin x1, Left hand: Windforce Hydra Bow x1, Offhand: Lidless Wall Grim Shield x1, Offhand: Hailstorm Arrows x1</p>
             <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - The Gladiator's Bane, Stealskull, Insight</p>
-            <br>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
        
-                <div class="character-info">
-                    <div class="character-link"><strong>Character Name:</strong> Koopazon</div>
-                    <div>92</div>
-                    <div><a href="https://pathofdiablo.com/p/armory/?name=Koopazon">Armory</a></div>
+            <div class="character-info">
+                <div><strong>Character: Koopazon</strong></div>
+                <div>Level 92</div>
+                <div>Amazon</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Koopazon">Koopazon's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Koopazon">
+                    Armory Quickview
                 </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
             <p><strong>Skills:</strong> Strafe:20, Inner Sight:20, Lethal Strike:20, Penetrate:20, Avoid:8, Dodge:3, Pierce:3, Magic Arrow:1, Cold Arrow:1, Multiple Shot:1, Ice Arrow:1, Guided Arrow:1, Phase Run:1, Decoy:1, Evade:1, Valkyrie:1</p>
             <p><strong>Equipment:</strong> helmet: M'avina's True Sight Diadem x0, ring: Rainbow Ring of the Lamprey Ring x0, ring: Bul-Kathos' Wedding Band Ring x1, amulet: Valkyrie's Amulet of Measure Amulet x0, body: M'avina's Embrace Kraken Shell x0, boots: Gore Rider War Boots x1, gloves: M'avina's Icy Clutch Battle Gauntlets x0, belt: M'avina's Tenet Sharkskin Belt x0, Left hand: Naj's Puzzler Elder Staff x0, Left hand: M'avina's Caster Grand Matron Bow x0, Offhand: Hailstorm Arrows x1</p>
             <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Leviathan, Andariel's Visage, Tomb Reaver</p>
-            <br>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
        
-                <div class="character-info">
-                    <div class="character-link"><strong>Character Name:</strong> Stormshild</div>
-                    <div>91</div>
-                    <div><a href="https://pathofdiablo.com/p/armory/?name=Stormshild">Armory</a></div>
+            <div class="character-info">
+                <div><strong>Character: Stormshild</strong></div>
+                <div>Level 91</div>
+                <div>Amazon</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Stormshild">Stormshild's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Stormshild">
+                    Armory Quickview
                 </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
             <p><strong>Skills:</strong> Cold Arrow:20, Ice Arrow:20, Immolation Arrow:20, Phase Run:19, Valkyrie:10, Magic Arrow:1, Fire Arrow:1, Multiple Shot:1, Exploding Arrow:1, Freezing Arrow:1, Inner Sight:1, Lethal Strike:1, Dodge:1, Avoid:1, Penetrate:1, Decoy:1, Evade:1, Pierce:1</p>
             <p><strong>Equipment:</strong> ring: Raven Frost Ring x1, ring: Wisp Projector Ring x1, helmet: Andariel's Visage Demonhead x1, amulet: Seraph's Hymn Amulet x1, boots: Aldur's Advance Battle Boots x0, gloves: Shadow Hold Heavy Gloves x0, belt: Razortail Sharkskin Belt x1, body: Twitchthroe Wire Fleece x1, Left hand: Rogue's Bow Synthesized Great Bow x1, Left hand: Windforce Hydra Bow x1, Offhand: Bone Eye Arrows x0, Offhand: Hailstorm Arrows x1</p>
             <p><strong>Mercenary:</strong> Act 5 Barbarian - Steel Shade, Fortitude, Plague</p>
-            <br>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
        
-                <div class="character-info">
-                    <div class="character-link"><strong>Character Name:</strong> NippleTits</div>
-                    <div>90</div>
-                    <div><a href="https://pathofdiablo.com/p/armory/?name=NippleTits">Armory</a></div>
+            <div class="character-info">
+                <div><strong>Character: NippleTits</strong></div>
+                <div>Level 90</div>
+                <div>Amazon</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=NippleTits">NippleTits's Armory</a></div>
+                <div class="hover-trigger" data-character-name="NippleTits">
+                    Armory Quickview
                 </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
             <p><strong>Skills:</strong> Fire Arrow:20, Multiple Shot:20, Exploding Arrow:20, Immolation Arrow:20, Ice Arrow:7, Magic Arrow:1, Cold Arrow:1, Freezing Arrow:1, Inner Sight:1, Lethal Strike:1, Dodge:1, Avoid:1, Penetrate:1, Evade:1, Pierce:1</p>
             <p><strong>Equipment:</strong> belt: Razortail Sharkskin Belt x1, ring: Raven Frost Ring x1, ring: Bone Master Ring x0, body: Fortitude Archon Plate x0, gloves: Laying of Hands Bramble Mitts x0, boots: Gore Rider War Boots x1, helmet: Guillaume's Face Winged Helm x0, amulet: Highlord's Wrath Amulet x1, Left hand: Harmony Grand Matron Bow x0, Left hand: Faith Grand Matron Bow x0, Offhand: Hailstorm Arrows x1, Offhand: Doom Eye Arrows x0</p>
             <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Tal Rasha's Horadric Crest, Leviathan</p>
-            <br>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
        
-                <div class="character-info">
-                    <div class="character-link"><strong>Character Name:</strong> bebesec</div>
-                    <div>90</div>
-                    <div><a href="https://pathofdiablo.com/p/armory/?name=bebesec">Armory</a></div>
+            <div class="character-info">
+                <div><strong>Character: bebesec</strong></div>
+                <div>Level 90</div>
+                <div>Amazon</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=bebesec">bebesec's Armory</a></div>
+                <div class="hover-trigger" data-character-name="bebesec">
+                    Armory Quickview
                 </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
             <p><strong>Skills:</strong> Strafe:20, Immolation Arrow:20, Penetrate:20, Fire Arrow:15, Lethal Strike:9, Pierce:7, Magic Arrow:1, Cold Arrow:1, Multiple Shot:1, Exploding Arrow:1, Guided Arrow:1, Inner Sight:1, Dodge:1, Phase Run:1, Avoid:1, Evade:1</p>
             <p><strong>Equipment:</strong> belt: Razortail Sharkskin Belt x1, ring: Grim Whorl Ring x0, ring: Raven Frost Ring x1, gloves: Laying of Hands Bramble Mitts x0, helmet: Kira's Guardian Tiara x1, body: Fortitude Wire Fleece x0, amulet: Highlord's Wrath Amulet x1, boots: Soul Tread Chain Boots x0, Left hand: Battle Staff of Teleportation Battle Staff x0, Left hand: Ice Grand Matron Bow x0, Offhand: Hailstorm Arrows x1</p>
             <p><strong>Mercenary:</strong> Act 5 Barbarian - Kira's Guardian, Steel Carapace, The Grandfather</p>
-            <br>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
        
-                <div class="character-info">
-                    <div class="character-link"><strong>Character Name:</strong> Goat_TaintIV</div>
-                    <div>90</div>
-                    <div><a href="https://pathofdiablo.com/p/armory/?name=Goat_TaintIV">Armory</a></div>
+            <div class="character-info">
+                <div><strong>Character: Goat_TaintIV</strong></div>
+                <div>Level 90</div>
+                <div>Amazon</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Goat_TaintIV">Goat_TaintIV's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Goat_TaintIV">
+                    Armory Quickview
                 </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
             <p><strong>Skills:</strong> Fire Arrow:20, Exploding Arrow:20, Strafe:20, Immolation Arrow:20, Lethal Strike:14, Magic Arrow:1, Cold Arrow:1, Multiple Shot:1, Guided Arrow:1, Inner Sight:1, Penetrate:1, Pierce:1</p>
             <p><strong>Equipment:</strong> belt: Razortail Sharkskin Belt x1, ring: Scintillating Ring of Performance Ring x0, ring: Cobalt Ring of the Titan Ring x0, boots: War Traveler Battle Boots x1, helmet: Bone Brow Coronet x0, gloves: Laying of Hands Bramble Mitts x0, amulet: Chromatic Amulet of Nirvana Amulet x0, body: Naj's Light Plate Hellforge Plate x0, Left hand: Naj's Puzzler Elder Staff x0, Left hand: Kuko Shakaku Synthesized Shadow Bow x1, Offhand: Hailstorm Arrows x1</p>
             <p><strong>Mercenary:</strong> Act 5 Barbarian - Steel Carapace, Tal Rasha's Horadric Crest, Honor</p>
-            <br>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
        
-                <div class="character-info">
-                    <div class="character-link"><strong>Character Name:</strong> totamBow</div>
-                    <div>89</div>
-                    <div><a href="https://pathofdiablo.com/p/armory/?name=totamBow">Armory</a></div>
+            <div class="character-info">
+                <div><strong>Character: totamBow</strong></div>
+                <div>Level 89</div>
+                <div>Amazon</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=totamBow">totamBow's Armory</a></div>
+                <div class="hover-trigger" data-character-name="totamBow">
+                    Armory Quickview
                 </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
             <p><strong>Skills:</strong> Multiple Shot:20, Immolation Arrow:20, Fire Arrow:17, Lethal Strike:13, Pierce:9, Exploding Arrow:5, Magic Arrow:1, Cold Arrow:1, Ice Arrow:1, Guided Arrow:1, Strafe:1, Inner Sight:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Decoy:1, Evade:1</p>
             <p><strong>Equipment:</strong> amulet: Highlord's Wrath Amulet x1, ring: Raven Frost Ring x1, ring: Dread Knot Ring x0, helmet: Andariel's Visage Demonhead x1, boots: Aldur's Advance Mirrored Boots x0, belt: Verdungo's Hearty Cord Mithril Coil x1, body: Fortitude Dusk Shroud x0, gloves: Laying of Hands Bramble Mitts x0, Left hand: Harmony Great Bow x0, Left hand: Faith Matriarchal Bow x0, Offhand: Hailstorm Arrows x1, Offhand: Raven Eye Arrows x0</p>
             <p><strong>Mercenary:</strong> Act 5 Barbarian - Vampire Gaze, Treachery, Lawbringer</p>
-            <br>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
        
-                <div class="character-info">
-                    <div class="character-link"><strong>Character Name:</strong> MeowShoot</div>
-                    <div>89</div>
-                    <div><a href="https://pathofdiablo.com/p/armory/?name=MeowShoot">Armory</a></div>
+            <div class="character-info">
+                <div><strong>Character: MeowShoot</strong></div>
+                <div>Level 89</div>
+                <div>Amazon</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=MeowShoot">MeowShoot's Armory</a></div>
+                <div class="hover-trigger" data-character-name="MeowShoot">
+                    Armory Quickview
                 </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
             <p><strong>Skills:</strong> Strafe:20, Penetrate:20, Valkyrie:20, Pierce:9, Lethal Strike:7, Dodge:5, Avoid:5, Decoy:3, Magic Arrow:1, Cold Arrow:1, Multiple Shot:1, Guided Arrow:1, Inner Sight:1, Phase Run:1, Evade:1</p>
             <p><strong>Equipment:</strong> ring: Chaos Loop Ring x0, ring: Doom Loop Ring x0, body: Tyrael's Might Sacred Armor x1, belt: String of Ears Demonhide Sash x1, gloves: Storm Knuckle Bramble Mitts x0, amulet: Chromatic Amulet Amulet x0, boots: Skull Shank Mesh Boots x0, helmet: Valkyrie's Diadem Diadem x0, Left hand: Long Staff of Teleportation Long Staff x0, Left hand: Insight Blade Bow x0, Offhand: Hailstorm Arrows x1</p>
             <p><strong>Mercenary:</strong> Act 5 Barbarian - Arkaine's Valor, Stone Circlet, Lawbringer</p>
-            <br>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
        
-                <div class="character-info">
-                    <div class="character-link"><strong>Character Name:</strong> Soo_Nice</div>
-                    <div>88</div>
-                    <div><a href="https://pathofdiablo.com/p/armory/?name=Soo_Nice">Armory</a></div>
+            <div class="character-info">
+                <div><strong>Character: Soo_Nice</strong></div>
+                <div>Level 88</div>
+                <div>Amazon</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Soo_Nice">Soo_Nice's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Soo_Nice">
+                    Armory Quickview
                 </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
             <p><strong>Skills:</strong> Strafe:20, Lethal Strike:20, Penetrate:20, Pierce:20, Valkyrie:6, Magic Arrow:1, Fire Arrow:1, Cold Arrow:1, Multiple Shot:1, Exploding Arrow:1, Guided Arrow:1, Immolation Arrow:1, Inner Sight:1, Dodge:1, Phase Run:1, Avoid:1, Decoy:1, Evade:1</p>
             <p><strong>Equipment:</strong> ring: Raven Frost Ring x1, ring: Entropy Coil Ring x0, amulet: Atma's Scarab Amulet x1, boots: Gore Rider War Boots x1, helmet: M'avina's True Sight Diadem x0, body: M'avina's Embrace Kraken Shell x0, gloves: M'avina's Icy Clutch Battle Gauntlets x0, Left hand: Frostwind Cryptic Sword x1, Left hand: M'avina's Caster Grand Matron Bow x0, Offhand: Medusa's Gaze Aegis x1, Offhand: Hailstorm Arrows x1, belt: M'avina's Tenet Sharkskin Belt x0</p>
             <p><strong>Mercenary:</strong> Act 1 Rogue Scout - Treachery, Andariel's Visage, Faith</p>
-            <br>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
        
-                <div class="character-info">
-                    <div class="character-link"><strong>Character Name:</strong> BlazedFlurry</div>
-                    <div>87</div>
-                    <div><a href="https://pathofdiablo.com/p/armory/?name=BlazedFlurry">Armory</a></div>
+            <div class="character-info">
+                <div><strong>Character: BlazedFlurry</strong></div>
+                <div>Level 87</div>
+                <div>Amazon</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=BlazedFlurry">BlazedFlurry's Armory</a></div>
+                <div class="hover-trigger" data-character-name="BlazedFlurry">
+                    Armory Quickview
                 </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
             <p><strong>Skills:</strong> Strafe:20, Inner Sight:20, Lethal Strike:20, Penetrate:16, Pierce:6, Dodge:4, Avoid:3, Evade:2, Magic Arrow:1, Cold Arrow:1, Multiple Shot:1, Guided Arrow:1, Phase Run:1, Decoy:1, Valkyrie:1</p>
             <p><strong>Equipment:</strong> body: Heavenly Garb Light Plate x1, helmet: Vampire Gaze Grim Helm x1, boots: War Traveler Battle Boots x1, Left hand: Todesfaelle Flamme Zweihander x1, Left hand: Windforce Hydra Bow x1, Offhand: Hailstorm Arrows x1</p>
             <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Naj's Light Plate, Vampire Gaze, Insight</p>
-            <br>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
        
-                <div class="character-info">
-                    <div class="character-link"><strong>Character Name:</strong> SosO_Sha</div>
-                    <div>87</div>
-                    <div><a href="https://pathofdiablo.com/p/armory/?name=SosO_Sha">Armory</a></div>
+            <div class="character-info">
+                <div><strong>Character: SosO_Sha</strong></div>
+                <div>Level 87</div>
+                <div>Amazon</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=SosO_Sha">SosO_Sha's Armory</a></div>
+                <div class="hover-trigger" data-character-name="SosO_Sha">
+                    Armory Quickview
                 </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
             <p><strong>Skills:</strong> Power Strike:20, Charged Strike:20, Lightning Strike:20, Lightning Fury:20, Lightning Bolt:9, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Penetrate:1, Pierce:1, Jab:1, Poison Javelin:1, Plague Javelin:1</p>
             <p><strong>Equipment:</strong> ring: Raven Frost Ring x1, ring: PlagueRI Gyre Ring x0, gloves: Laying of Hands Bramble Mitts x0, belt: Thundergod's Vigor War Belt x1, helmet: Griffon's Eye Diadem x1, amulet: Highlord's Wrath Amulet x1, boots: Silkweave Mesh Boots x1, body: Enigma Mage Plate x0, Left hand: Edge Hunter's Bow x0, Left hand: Thunderstroke Matriarchal Javelin x1, Offhand: Hailstorm Arrows x1, Offhand: Phoenix Monarch x0</p>
             <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Andariel's Visage, The Gladiator's Bane, Infinity</p>
-            <br>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
        
         </div>
         <br>
@@ -406,78 +623,163 @@
         <button class="collapsible">
             <img src="icons/closed.png" alt="Open" class="icon">
             <img src="icons/open.png" alt="Close" class="icon hidden">
-            <strong>7 Characters in this cluster:</strong></button>
-            <div class="content">
-                
-                <div class="character-info">
-                    <div class="character-link"><strong>Character Name:</strong> Liya_SC</div>
-                    <div>95</div>
-                    <div><a href="https://pathofdiablo.com/p/armory/?name=Liya_SC">Armory</a></div>
+            <strong>7 Characters in this cluster:</strong>
+        </button>
+        <div class="content">
+            
+            <div class="character-info">
+                <div><strong>Character: Liya_SC</strong></div>
+                <div>Level 95</div>
+                <div>Amazon</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Liya_SC">Liya_SC's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Liya_SC">
+                    Armory Quickview
                 </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
             <p><strong>Skills:</strong> Multiple Shot:20, Guided Arrow:20, Strafe:20, Valkyrie:20, Penetrate:13, Lethal Strike:4, Magic Arrow:1, Cold Arrow:1, Inner Sight:1, Dodge:1, Phase Run:1, Avoid:1, Decoy:1, Evade:1, Pierce:1</p>
             <p><strong>Equipment:</strong> ring: Raven Frost Ring x1, ring: Dwarf Star Ring x1, amulet: Crescent Moon Amulet x1, gloves: Laying of Hands Bramble Mitts x0, boots: War Traveler Battle Boots x1, belt: String of Ears Demonhide Sash x1, helmet: Crown of Ages Corona x1, body: Fortitude Kraken Shell x0, Left hand: Windforce Hydra Bow x2, Offhand: Hailstorm Arrows x1, Offhand: Moonfire Arrows x1</p>
             <p><strong>Mercenary:</strong> Act 1 Rogue Scout - The Gladiator's Bane, Tal Rasha's Horadric Crest, Faith</p>
-            <br>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
        
-                <div class="character-info">
-                    <div class="character-link"><strong>Character Name:</strong> LE_AMA</div>
-                    <div>94</div>
-                    <div><a href="https://pathofdiablo.com/p/armory/?name=LE_AMA">Armory</a></div>
+            <div class="character-info">
+                <div><strong>Character: LE_AMA</strong></div>
+                <div>Level 94</div>
+                <div>Amazon</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=LE_AMA">LE_AMA's Armory</a></div>
+                <div class="hover-trigger" data-character-name="LE_AMA">
+                    Armory Quickview
                 </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
             <p><strong>Skills:</strong> Magic Arrow:20, Guided Arrow:20, Penetrate:20, Lethal Strike:13, Decoy:12, Multiple Shot:8, Pierce:4, Phase Run:3, Cold Arrow:1, Inner Sight:1, Dodge:1, Avoid:1, Evade:1</p>
             <p><strong>Equipment:</strong> belt: Razortail Sharkskin Belt x1, Left hand: Magewrath Ward Bow x1, Offhand: Moonfire Arrows x1</p>
             <p><strong>Mercenary:</strong> Act 5 Barbarian - No equipment</p>
-            <br>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
        
-                <div class="character-info">
-                    <div class="character-link"><strong>Character Name:</strong> mddd</div>
-                    <div>92</div>
-                    <div><a href="https://pathofdiablo.com/p/armory/?name=mddd">Armory</a></div>
+            <div class="character-info">
+                <div><strong>Character: mddd</strong></div>
+                <div>Level 92</div>
+                <div>Amazon</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=mddd">mddd's Armory</a></div>
+                <div class="hover-trigger" data-character-name="mddd">
+                    Armory Quickview
                 </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
             <p><strong>Skills:</strong> Multiple Shot:20, Guided Arrow:20, Penetrate:20, Valkyrie:20, Pierce:7, Lethal Strike:6, Magic Arrow:1, Fire Arrow:1, Cold Arrow:1, Inner Sight:1, Dodge:1, Phase Run:1, Avoid:1, Decoy:1, Evade:1</p>
             <p><strong>Equipment:</strong> amulet: Atma's Scarab Amulet x1, boots: Aldur's Advance Battle Boots x0, Offhand: Moonfire Arrows x1, Offhand: Viper Eye Arrows x0, gloves: Laying of Hands Bramble Mitts x0, belt: Razortail Sharkskin Belt x1, helmet: Tal Rasha's Horadric Crest Death Mask x0, ring: Raven Frost Ring x1</p>
             <p><strong>Mercenary:</strong> Act 5 Barbarian - Arreat's Face</p>
-            <br>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
        
-                <div class="character-info">
-                    <div class="character-link"><strong>Character Name:</strong> Goat_DurfIII</div>
-                    <div>91</div>
-                    <div><a href="https://pathofdiablo.com/p/armory/?name=Goat_DurfIII">Armory</a></div>
+            <div class="character-info">
+                <div><strong>Character: Goat_DurfIII</strong></div>
+                <div>Level 91</div>
+                <div>Druid</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Goat_DurfIII">Goat_DurfIII's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Goat_DurfIII">
+                    Armory Quickview
                 </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
             <p><strong>Skills:</strong> Summon Spirit Wolf:20, Heart of Wolverine:20, Summon Dire Wolf:20, Summon Grizzly:20, Maul:10, Flame Dash:8, Raven:1, Werebear:1, Firestorm:1, Molten Boulder:1</p>
             <p><strong>Equipment:</strong> amulet: Keeper's Amulet of Protection Amulet x0, body: Rain Archon Plate x0, gloves: Hailstone Grip Heavy Gloves x0, boots: War Traveler Battle Boots x1, belt: Arachnid Mesh Spiderweb Sash x1, helmet: 2693 Antlers x0, ring: Bul-Kathos' Wedding Band Ring x1, ring: Nagelring Ring x1, Left hand: Widowmaker Ward Bow x1, Left hand: Heart of the Oak Flail x0, Offhand: Moonfire Arrows x1, Offhand: Spirit Monarch x0</p>
             <p><strong>Mercenary:</strong> Act 1 Rogue Scout - Hearth, Naj's Light Plate, Edge</p>
-            <br>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
        
-                <div class="character-info">
-                    <div class="character-link"><strong>Character Name:</strong> QEKoaqeKIN</div>
-                    <div>91</div>
-                    <div><a href="https://pathofdiablo.com/p/armory/?name=QEKoaqeKIN">Armory</a></div>
+            <div class="character-info">
+                <div><strong>Character: QEKoaqeKIN</strong></div>
+                <div>Level 91</div>
+                <div>Druid</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=QEKoaqeKIN">QEKoaqeKIN's Armory</a></div>
+                <div class="hover-trigger" data-character-name="QEKoaqeKIN">
+                    Armory Quickview
                 </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
             <p><strong>Skills:</strong> Oak Sage:20, Heart of Wolverine:20, Summon Grizzly:20, Maul:16, Summon Spirit Wolf:10, Summon Dire Wolf:7, Raven:1, Poison Creeper:1, Carrion Vine:1, Werebear:1, Shock Wave:1, Firestorm:1, Molten Boulder:1, Flame Dash:1</p>
             <p><strong>Equipment:</strong> ring: Bul-Kathos' Wedding Band Ring x1, ring: Blood Knot Ring x0, boots: Aldur's Advance Battle Boots x0, gloves: Death's Hand Leather Gloves x0, belt: Death's Guard Demonhide Sash x0, amulet: Storm Clasp Amulet x0, helmet: Harlequin Crest Shako x1, body: Rain Archon Plate x0, Left hand: Heart of the Oak Flail x0, Left hand: Witchwild String Short Siege Bow x1, Offhand: Spirit Monarch x0, Offhand: Moonfire Arrows x1</p>
             <p><strong>Mercenary:</strong> Act 5 Barbarian - Immortal King's Will, Skullder's Ire, Lawbringer</p>
-            <br>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
        
-                <div class="character-info">
-                    <div class="character-link"><strong>Character Name:</strong> MOON_A</div>
-                    <div>88</div>
-                    <div><a href="https://pathofdiablo.com/p/armory/?name=MOON_A">Armory</a></div>
+            <div class="character-info">
+                <div><strong>Character: MOON_A</strong></div>
+                <div>Level 88</div>
+                <div>Amazon</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=MOON_A">MOON_A's Armory</a></div>
+                <div class="hover-trigger" data-character-name="MOON_A">
+                    Armory Quickview
                 </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
             <p><strong>Skills:</strong> Cold Arrow:20, Ice Arrow:20, Immolation Arrow:20, Freezing Arrow:20, Fire Arrow:7, Exploding Arrow:2, Lethal Strike:2, Penetrate:2, Pierce:2, Magic Arrow:1, Dodge:1, Avoid:1, Evade:1</p>
             <p><strong>Equipment:</strong> amulet: Highlord's Wrath Amulet x1, belt: Nosferatu's Coil Vampirefang Belt x1, ring: Chaos Turn Ring x0, ring: PlagueRI Hold Ring x0, body: Smoke Serpentskin Armor x0, helmet: Kira's Guardian Tiara x1, gloves: Laying of Hands Bramble Mitts x0, boots: Aldur's Advance Battle Boots x0, Left hand: Windforce Hydra Bow x1, Left hand: Faith Grand Matron Bow x0, Offhand: Moonfire Arrows x1, Offhand: Viper Eye Arrows x0</p>
             <p><strong>Mercenary:</strong> Act 3 Eastern Sorceror - Smoke, Crown of Thieves, Hexfire, Rhyme</p>
-            <br>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
        
-                <div class="character-info">
-                    <div class="character-link"><strong>Character Name:</strong> HolyBender</div>
-                    <div>88</div>
-                    <div><a href="https://pathofdiablo.com/p/armory/?name=HolyBender">Armory</a></div>
+            <div class="character-info">
+                <div><strong>Character: HolyBender</strong></div>
+                <div>Level 88</div>
+                <div>Paladin</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=HolyBender">HolyBender's Armory</a></div>
+                <div class="hover-trigger" data-character-name="HolyBender">
+                    Armory Quickview
                 </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
             <p><strong>Skills:</strong> Holy Freeze:20, Holy Shock:20, Resist Lightning:20, Salvation:20, Resist Cold:14, Might:1, Holy Fire:1</p>
             <p><strong>Equipment:</strong> helmet: Vampire Gaze Grim Helm x1, ring: Raven Frost Ring x1, ring: Grim Spiral Ring x0, boots: War Traveler Battle Boots x1, belt: String of Ears Demonhide Sash x1, gloves: Raven Finger Sharkskin Gloves x0, body: Principle Mage Plate x0, amulet: Mara's Kaleidoscope Amulet x1, Left hand: Witchwild String Diamond Bow x1, Offhand: Moonfire Arrows x1</p>
             <p><strong>Mercenary:</strong> Act 1 Rogue Scout - No equipment</p>
-            <br>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
        
         </div>
         <br>
@@ -513,48 +815,97 @@
         <button class="collapsible">
             <img src="icons/closed.png" alt="Open" class="icon">
             <img src="icons/open.png" alt="Close" class="icon hidden">
-            <strong>4 Characters in this cluster:</strong></button>
-            <div class="content">
-                
-                <div class="character-info">
-                    <div class="character-link"><strong>Character Name:</strong> Staerle</div>
-                    <div>93</div>
-                    <div><a href="https://pathofdiablo.com/p/armory/?name=Staerle">Armory</a></div>
+            <strong>4 Characters in this cluster:</strong>
+        </button>
+        <div class="content">
+            
+            <div class="character-info">
+                <div><strong>Character: Staerle</strong></div>
+                <div>Level 93</div>
+                <div>Amazon</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Staerle">Staerle's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Staerle">
+                    Armory Quickview
                 </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
             <p><strong>Skills:</strong> Cold Arrow:20, Exploding Arrow:20, Immolation Arrow:20, Freezing Arrow:20, Pierce:7, Ice Arrow:6, Magic Arrow:1, Fire Arrow:1, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Evade:1</p>
             <p><strong>Equipment:</strong> ring: Raven Frost Ring x1, ring: Grim Master Ring x0, amulet: The Cat's Eye Amulet x1, boots: Aldur's Advance Battle Boots x0, belt: M'avina's Tenet Sharkskin Belt x0, gloves: M'avina's Icy Clutch Battle Gauntlets x0, body: M'avina's Embrace Kraken Shell x0, helmet: M'avina's True Sight Diadem x0, Left hand: Harmony Crusader Bow x0, Left hand: M'avina's Caster Grand Matron Bow x0, Offhand: Dragonbreath Arrows x1, Offhand: Hailstorm Arrows x1</p>
             <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Hustle, Vampire Gaze, Insight</p>
-            <br>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
        
-                <div class="character-info">
-                    <div class="character-link"><strong>Character Name:</strong> PIG_ASN</div>
-                    <div>90</div>
-                    <div><a href="https://pathofdiablo.com/p/armory/?name=PIG_ASN">Armory</a></div>
+            <div class="character-info">
+                <div><strong>Character: PIG_ASN</strong></div>
+                <div>Level 90</div>
+                <div>Assassin</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=PIG_ASN">PIG_ASN's Armory</a></div>
+                <div class="hover-trigger" data-character-name="PIG_ASN">
+                    Armory Quickview
                 </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
             <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Lightning Sentry:20, Wake of Inferno:20, Death Sentry:14, Shock Web:1, Charged Bolt Sentry:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Cloak of Shadows:1, Mind Blast:1</p>
             <p><strong>Equipment:</strong> amulet: Grim Clasp Amulet x0, gloves: Magefist Light Gauntlets x1, Left hand: Edge Short Bow x0, Left hand: Plague Feral Claws x0, Offhand: Dragonbreath Arrows x1, Offhand: Natalya's Mark Scissors Suwayyah x0, helmet: Natalya's Totem Grim Helm x0, boots: Natalya's Soul Mesh Boots x0, body: Natalya's Shadow Loricated Mail x0, ring: Shadow Eye Ring x0, ring: Rune Turn Ring x0, belt: Credendum Mithril Coil x0</p>
             <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Duriel's Shell, Steel Shade, Insight</p>
-            <br>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
        
-                <div class="character-info">
-                    <div class="character-link"><strong>Character Name:</strong> ELK_Dru</div>
-                    <div>89</div>
-                    <div><a href="https://pathofdiablo.com/p/armory/?name=ELK_Dru">Armory</a></div>
+            <div class="character-info">
+                <div><strong>Character: ELK_Dru</strong></div>
+                <div>Level 89</div>
+                <div>Druid</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=ELK_Dru">ELK_Dru's Armory</a></div>
+                <div class="hover-trigger" data-character-name="ELK_Dru">
+                    Armory Quickview
                 </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
             <p><strong>Skills:</strong> Oak Sage:20, Heart of Wolverine:20, Lycanthropy:20, Fury:20, Werewolf:16, Feral Rage:1, Rabies:1</p>
             <p><strong>Equipment:</strong> body: Fortitude Great Hauberk x0, helmet: Jalal's Mane Totemic Mask x1, ring: Order Spiral Ring x0, ring: Raven Frost Ring x1, Left hand: Edge Short Bow x0, Offhand: Dragonbreath Arrows x1, gloves: Trang-Oul's Claws Heavy Bracers x0, belt: Verdungo's Hearty Cord Mithril Coil x1, amulet: Hierophant's Amulet of the Apprentice Amulet x0, boots: Sandstorm Trek Scarabshell Boots x1</p>
             <p><strong>Mercenary:</strong> Act 5 Barbarian - Rockstopper, Fortitude, The Grandfather</p>
-            <br>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
        
-                <div class="character-info">
-                    <div class="character-link"><strong>Character Name:</strong> CthrZon</div>
-                    <div>88</div>
-                    <div><a href="https://pathofdiablo.com/p/armory/?name=CthrZon">Armory</a></div>
+            <div class="character-info">
+                <div><strong>Character: CthrZon</strong></div>
+                <div>Level 88</div>
+                <div>Amazon</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=CthrZon">CthrZon's Armory</a></div>
+                <div class="hover-trigger" data-character-name="CthrZon">
+                    Armory Quickview
                 </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
             <p><strong>Skills:</strong> Magic Arrow:20, Fire Arrow:20, Valkyrie:20, Cold Arrow:14, Freezing Arrow:14, Exploding Arrow:1, Ice Arrow:1, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Decoy:1, Evade:1, Pierce:1</p>
             <p><strong>Equipment:</strong> ring: Havoc Gyre Ring x0, ring: Dwarf Star Ring x1, boots: Raven Stalker Scarabshell Boots x0, amulet: Highlord's Wrath Amulet x1, belt: Trang-Oul's Girth Troll Belt x0, helmet: Harlequin Crest Shako x1, gloves: Skull Grip Light Gauntlets x0, Left hand: War Staff of Teleportation War Staff x0, Left hand: Edge Stag Bow x0, body: Dusk Shroud Dusk Shroud x0, Offhand: Dragonbreath Arrows x1</p>
             <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Tal Rasha's Horadric Crest, Treachery, Insight</p>
-            <br>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
        
         </div>
         <br>
@@ -590,38 +941,75 @@
         <button class="collapsible">
             <img src="icons/closed.png" alt="Open" class="icon">
             <img src="icons/open.png" alt="Close" class="icon hidden">
-            <strong>3 Characters in this cluster:</strong></button>
-            <div class="content">
-                
-                <div class="character-info">
-                    <div class="character-link"><strong>Character Name:</strong> eSosa</div>
-                    <div>94</div>
-                    <div><a href="https://pathofdiablo.com/p/armory/?name=eSosa">Armory</a></div>
+            <strong>3 Characters in this cluster:</strong>
+        </button>
+        <div class="content">
+            
+            <div class="character-info">
+                <div><strong>Character: eSosa</strong></div>
+                <div>Level 94</div>
+                <div>Sorceress</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=eSosa">eSosa's Armory</a></div>
+                <div class="hover-trigger" data-character-name="eSosa">
+                    Armory Quickview
                 </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
             <p><strong>Skills:</strong> Warmth:20, Enflame:20, Frigerate:20, Shiver Armor:17, Fire Mastery:11, Cold Mastery:11, Fire Bolt:1, Fire Ball:1, Telekinesis:1, Teleport:1, Ice Bolt:1, Ice Blast:1</p>
             <p><strong>Equipment:</strong> ring: Raven Frost Ring x1, ring: Wisp Projector Ring x1, gloves: Death Fist Demonhide Gloves x0, belt: Razortail Sharkskin Belt x1, boots: Blood Stalker Sharkskin Boots x0, helmet: Andariel's Visage Demonhead x1, body: Enigma Breast Plate x0, amulet: Mara's Kaleidoscope Amulet x1, Left hand: Doomslinger Demon Crossbow x1, Left hand: Harmony Long Bow x0, Offhand: Swiftheart Bolts x1</p>
             <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Steel Shade, Shaftstop, Infinity</p>
-            <br>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
        
-                <div class="character-info">
-                    <div class="character-link"><strong>Character Name:</strong> DeathBySneak</div>
-                    <div>93</div>
-                    <div><a href="https://pathofdiablo.com/p/armory/?name=DeathBySneak">Armory</a></div>
+            <div class="character-info">
+                <div><strong>Character: DeathBySneak</strong></div>
+                <div>Level 93</div>
+                <div>Assassin</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=DeathBySneak">DeathBySneak's Armory</a></div>
+                <div class="hover-trigger" data-character-name="DeathBySneak">
+                    Armory Quickview
                 </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
             <p><strong>Skills:</strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Fury:15, Blade Throw:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1, Venom:1</p>
             <p><strong>Equipment:</strong> boots: Natalya's Soul Mesh Boots x0, ring: Raven Frost Ring x1, ring: Havoc Gyre Ring x0, amulet: Metalgrid Amulet x1, belt: String of Ears Demonhide Sash x1, helmet: Natalya's Totem Bone Visage x0, body: Natalya's Shadow Loricated Mail x0, gloves: Laying of Hands Bramble Mitts x0, Left hand: Hellrack Colossus Crossbow x1, Left hand: Natalya's Mark Scissors Suwayyah x0, Offhand: Swiftheart Bolts x1, Offhand: Bartuc's Cut-Throat Runic Talons x1</p>
             <p><strong>Mercenary:</strong> Act 5 Barbarian - Tal Rasha's Horadric Crest, Duriel's Shell, Lawbringer</p>
-            <br>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
        
-                <div class="character-info">
-                    <div class="character-link"><strong>Character Name:</strong> Fastboii</div>
-                    <div>83</div>
-                    <div><a href="https://pathofdiablo.com/p/armory/?name=Fastboii">Armory</a></div>
+            <div class="character-info">
+                <div><strong>Character: Fastboii</strong></div>
+                <div>Level 83</div>
+                <div>Druid</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Fastboii">Fastboii's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Fastboii">
+                    Armory Quickview
                 </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
             <p><strong>Skills:</strong> Fire Claws:20, Firestorm:20, Molten Boulder:20, Armageddon:20, Volcano:3, Oak Sage:1, Heart of Wolverine:1, Werewolf:1, Lycanthropy:1, Werebear:1, Feral Rage:1, Maul:1, Fissure:1, Flame Dash:1</p>
             <p><strong>Equipment:</strong> boots: Vidala's Fetlock Light Plated Boots x0, ring: Blood Hold Ring x0, ring: Storm Grip Ring x0, amulet: Terra's Amulet of the Apprentice Amulet x0, body: Shaftstop Mesh Armor x1, belt: String of Ears Demonhide Sash x1, helmet: Jalal's Mane Totemic Mask x1, gloves: Steelrend Ogre Gauntlets x1, Left hand: Pus Spitter Siege Crossbow x1, Left hand: Baezil's Vortex Synthesized Scourge x1, Offhand: Swiftheart Bolts x1, Offhand: Stormshield Monarch x1</p>
             <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - No equipment</p>
-            <br>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
        
         </div>
         <br>
@@ -657,28 +1045,53 @@
         <button class="collapsible">
             <img src="icons/closed.png" alt="Open" class="icon">
             <img src="icons/open.png" alt="Close" class="icon hidden">
-            <strong>2 Characters in this cluster:</strong></button>
-            <div class="content">
-                
-                <div class="character-info">
-                    <div class="character-link"><strong>Character Name:</strong> zanchan</div>
-                    <div>90</div>
-                    <div><a href="https://pathofdiablo.com/p/armory/?name=zanchan">Armory</a></div>
+            <strong>2 Characters in this cluster:</strong>
+        </button>
+        <div class="content">
+            
+            <div class="character-info">
+                <div><strong>Character: zanchan</strong></div>
+                <div>Level 90</div>
+                <div>Amazon</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=zanchan">zanchan's Armory</a></div>
+                <div class="hover-trigger" data-character-name="zanchan">
+                    Armory Quickview
                 </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
             <p><strong>Skills:</strong> Power Strike:20, Lightning Bolt:20, Charged Strike:20, Lightning Fury:20, Lethal Strike:1, Dodge:1, Avoid:1, Penetrate:1, Evade:1, Pierce:1, Jab:1, Poison Javelin:1, Plague Javelin:1</p>
             <p><strong>Equipment:</strong> boots: Natalya's Soul Mesh Boots x0, body: Smoke Mage Plate x0, ring: Manald Heal Ring x1, ring: Wraithra Spiral Ring x0, amulet: The Cat's Eye Amulet x1, gloves: Gale Knuckle Chain Gloves x0, belt: Razortail Sharkskin Belt x1, Left hand: Hellcast Heavy Crossbow x1, Left hand: Titan's Revenge Ceremonial Javelin x1, Offhand: Dragonbreath Bolts x1, Offhand: Ancients' Pledge Kite Shield x0, helmet: Harlequin Crest Shako x1</p>
             <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Steel Shade, Shaftstop, Insight</p>
-            <br>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
        
-                <div class="character-info">
-                    <div class="character-link"><strong>Character Name:</strong> WheelOfTheWorst</div>
-                    <div>90</div>
-                    <div><a href="https://pathofdiablo.com/p/armory/?name=WheelOfTheWorst">Armory</a></div>
+            <div class="character-info">
+                <div><strong>Character: WheelOfTheWorst</strong></div>
+                <div>Level 90</div>
+                <div>Druid</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=WheelOfTheWorst">WheelOfTheWorst's Armory</a></div>
+                <div class="hover-trigger" data-character-name="WheelOfTheWorst">
+                    Armory Quickview
                 </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
             <p><strong>Skills:</strong> Summon Spirit Wolf:20, Heart of Wolverine:20, Summon Dire Wolf:20, Summon Grizzly:20, Poison Creeper:16, Oak Sage:3, Raven:1, Carrion Vine:1</p>
             <p><strong>Equipment:</strong> belt: Immortal King's Detail War Belt x0, ring: Ocher Ring of Fortune Ring x0, ring: Doom Master Ring x0, boots: Storm Shank Heavy Boots x0, gloves: Chance Guards Chain Gloves x1, amulet: Keeper's Amulet of Fortune Amulet x0, helmet: Jalal's Mane Totemic Mask x1, Left hand: Buriza-Do Kyanon Colossus Crossbow x1, Left hand: Spirit Crystal Sword x0, Offhand: Dragonbreath Bolts x1, Offhand: Spirit Monarch x0, body: Rain Boneweave x0</p>
             <p><strong>Mercenary:</strong> Act 5 Barbarian - Tal Rasha's Horadric Crest, Leviathan, Lawbringer</p>
-            <br>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
        
         </div>
         <br>
@@ -714,28 +1127,53 @@
         <button class="collapsible">
             <img src="icons/closed.png" alt="Open" class="icon">
             <img src="icons/open.png" alt="Close" class="icon hidden">
-            <strong>2 Characters in this cluster:</strong></button>
-            <div class="content">
-                
-                <div class="character-info">
-                    <div class="character-link"><strong>Character Name:</strong> SCplebsMack</div>
-                    <div>99</div>
-                    <div><a href="https://pathofdiablo.com/p/armory/?name=SCplebsMack">Armory</a></div>
+            <strong>2 Characters in this cluster:</strong>
+        </button>
+        <div class="content">
+            
+            <div class="character-info">
+                <div><strong>Character: SCplebsMack</strong></div>
+                <div>Level 99</div>
+                <div>Amazon</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=SCplebsMack">SCplebsMack's Armory</a></div>
+                <div class="hover-trigger" data-character-name="SCplebsMack">
+                    Armory Quickview
                 </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
             <p><strong>Skills:</strong> Fire Arrow:20, Cold Arrow:20, Immolation Arrow:20, Freezing Arrow:20, Ice Arrow:12, Pierce:8, Magic Arrow:1, Exploding Arrow:1, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Evade:1</p>
             <p><strong>Equipment:</strong> ring: The Stone of Jordan Ring x2, body: M'avina's Embrace Kraken Shell x0, amulet: Eagle Collar Amulet x0, helmet: Nightwing's Veil Spired Helm x1, boots: Skull Nails War Boots x0, belt: Snowclash Battle Belt x1, Left hand: Harmony Grand Matron Bow x0, Left hand: Ice Matriarchal Bow x0, Offhand: Beast Eye Arrows x0, Offhand: Frostbite Arrows x1, gloves: Pain Grip Gauntlets x0</p>
             <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Vampire Gaze, Treachery, Insight</p>
-            <br>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
        
-                <div class="character-info">
-                    <div class="character-link"><strong>Character Name:</strong> Icetips</div>
-                    <div>87</div>
-                    <div><a href="https://pathofdiablo.com/p/armory/?name=Icetips">Armory</a></div>
+            <div class="character-info">
+                <div><strong>Character: Icetips</strong></div>
+                <div>Level 87</div>
+                <div>Amazon</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Icetips">Icetips's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Icetips">
+                    Armory Quickview
                 </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
             <p><strong>Skills:</strong> Fire Arrow:20, Cold Arrow:20, Immolation Arrow:20, Freezing Arrow:20, Pierce:4, Magic Arrow:1, Multiple Shot:1, Exploding Arrow:1, Ice Arrow:1, Guided Arrow:1, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Decoy:1, Evade:1, Valkyrie:1</p>
             <p><strong>Equipment:</strong> amulet: Chaos Noose Amulet x0, belt: M'avina's Tenet Sharkskin Belt x0, gloves: M'avina's Icy Clutch Battle Gauntlets x0, helmet: M'avina's True Sight Diadem x0, boots: Vidala's Fetlock Light Plated Boots x0, body: M'avina's Embrace Kraken Shell x0, ring: Nagelring Ring x1, Left hand: M'avina's Caster Grand Matron Bow x0, Offhand: Frostbite Arrows x1</p>
             <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - No equipment</p>
-            <br>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
        
         </div>
         <br>
@@ -771,28 +1209,53 @@
         <button class="collapsible">
             <img src="icons/closed.png" alt="Open" class="icon">
             <img src="icons/open.png" alt="Close" class="icon hidden">
-            <strong>2 Characters in this cluster:</strong></button>
-            <div class="content">
-                
-                <div class="character-info">
-                    <div class="character-link"><strong>Character Name:</strong> Waelcyrie</div>
-                    <div>92</div>
-                    <div><a href="https://pathofdiablo.com/p/armory/?name=Waelcyrie">Armory</a></div>
+            <strong>2 Characters in this cluster:</strong>
+        </button>
+        <div class="content">
+            
+            <div class="character-info">
+                <div><strong>Character: Waelcyrie</strong></div>
+                <div>Level 92</div>
+                <div>Amazon</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Waelcyrie">Waelcyrie's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Waelcyrie">
+                    Armory Quickview
                 </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
             <p><strong>Skills:</strong> Strafe:20, Immolation Arrow:20, Penetrate:20, Fire Arrow:15, Pierce:13, Magic Arrow:1, Cold Arrow:1, Multiple Shot:1, Exploding Arrow:1, Guided Arrow:1, Lethal Strike:1, Dodge:1, Avoid:1, Evade:1</p>
             <p><strong>Equipment:</strong> belt: String of Ears Demonhide Sash x1, ring: Bitter Whorl Ring x0, gloves: Laying of Hands Bramble Mitts x0, Left hand: Wrath Matriarchal Bow x0, Offhand: Hailstorm Arrows x1, Offhand: Hailstorm Bolts x1</p>
             <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Leviathan, Steel Shade, The Reaper's Toll</p>
-            <br>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
        
-                <div class="character-info">
-                    <div class="character-link"><strong>Character Name:</strong> Bangh</div>
-                    <div>90</div>
-                    <div><a href="https://pathofdiablo.com/p/armory/?name=Bangh">Armory</a></div>
+            <div class="character-info">
+                <div><strong>Character: Bangh</strong></div>
+                <div>Level 90</div>
+                <div>Sorceress</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Bangh">Bangh's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Bangh">
+                    Armory Quickview
                 </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
             <p><strong>Skills:</strong> Fire Mastery:20, Frigerate:20, Cold Mastery:20, Telekinesis:19, Shiver Armor:18, Warmth:1, Teleport:1, Ice Bolt:1, Ice Blast:1</p>
             <p><strong>Equipment:</strong> amulet: Glacial Amulet of the Bat Amulet x0, gloves: Dire Fist Chain Gloves x0, boots: Vidala's Fetlock Light Plated Boots x0, belt: Gloom's Trap Mesh Belt x1, body: Tal Rasha's Guardianship Lacquered Plate x0, helmet: Tal Rasha's Horadric Crest Death Mask x0, Left hand: Pus Spitter Siege Crossbow x1, Left hand: Hellrack Colossus Crossbow x1, Offhand: Eagle Eye Bolts x0, Offhand: Hailstorm Bolts x1</p>
             <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - No equipment</p>
-            <br>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
        
         </div>
         <br>
@@ -828,28 +1291,53 @@
         <button class="collapsible">
             <img src="icons/closed.png" alt="Open" class="icon">
             <img src="icons/open.png" alt="Close" class="icon hidden">
-            <strong>2 Characters in this cluster:</strong></button>
-            <div class="content">
-                
-                <div class="character-info">
-                    <div class="character-link"><strong>Character Name:</strong> Swish-MS</div>
-                    <div>90</div>
-                    <div><a href="https://pathofdiablo.com/p/armory/?name=Swish-MS">Armory</a></div>
+            <strong>2 Characters in this cluster:</strong>
+        </button>
+        <div class="content">
+            
+            <div class="character-info">
+                <div><strong>Character: Swish-MS</strong></div>
+                <div>Level 90</div>
+                <div>Amazon</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Swish-MS">Swish-MS's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Swish-MS">
+                    Armory Quickview
                 </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
             <p><strong>Skills:</strong> Multiple Shot:20, Guided Arrow:20, Penetrate:20, Lethal Strike:18, Pierce:9, Dodge:2, Avoid:2, Evade:2, Magic Arrow:1, Cold Arrow:1, Inner Sight:1, Phase Run:1, Decoy:1, Valkyrie:1</p>
             <p><strong>Equipment:</strong> helmet: Andariel's Visage Demonhead x1, ring: Raven Loop Ring x0, ring: Raven Frost Ring x1, amulet: Highlord's Wrath Amulet x1, Left hand: Buriza-Do Kyanon Ballista x1, Left hand: Faith Grand Matron Bow x0, Offhand: Moonfire Bolts x1, Offhand: Rune Eye Arrows x0, gloves: Laying of Hands Bramble Mitts x0, belt: Nosferatu's Coil Vampirefang Belt x1, boots: War Traveler Battle Boots x1, body: Fortitude Dusk Shroud x0</p>
             <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Leviathan, Andariel's Visage, The Reaper's Toll</p>
-            <br>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
        
-                <div class="character-info">
-                    <div class="character-link"><strong>Character Name:</strong> Samokbower</div>
-                    <div>86</div>
-                    <div><a href="https://pathofdiablo.com/p/armory/?name=Samokbower">Armory</a></div>
+            <div class="character-info">
+                <div><strong>Character: Samokbower</strong></div>
+                <div>Level 86</div>
+                <div>Amazon</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Samokbower">Samokbower's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Samokbower">
+                    Armory Quickview
                 </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
             <p><strong>Skills:</strong> Cold Arrow:20, Ice Arrow:20, Freezing Arrow:20, Immolation Arrow:11, Lethal Strike:11, Magic Arrow:1, Fire Arrow:1, Exploding Arrow:1, Inner Sight:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Decoy:1, Evade:1, Valkyrie:1, Pierce:1</p>
             <p><strong>Equipment:</strong> ring: Order Band Ring x0, ring: Raven Eye Ring x0, boots: War Traveler Battle Boots x1, gloves: Laying of Hands Bramble Mitts x0, body: Skullder's Ire Russet Armor x1, helmet: Glyph Shell Diadem x0, belt: Tal Rasha's Fine-Spun Cloth Mesh Belt x0, amulet: The Cat's Eye Amulet x1, Left hand: Hellrack Colossus Crossbow x1, Left hand: Goldstrike Arch Gothic Bow x1, Offhand: Moonfire Bolts x1, Offhand: Shadow Eye Arrows x0</p>
             <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Crow Caw, Andariel's Visage, Insight</p>
-            <br>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
        
         </div>
         <br>
@@ -962,6 +1450,46 @@
                     setActive("SC");
                 }
             }
+        </script>
+        <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const hoverTriggers = document.querySelectorAll(".hover-trigger");
+                    let activePopup = null;
+
+                    hoverTriggers.forEach(trigger => {
+                        trigger.addEventListener("click", function (event) {
+                            event.stopPropagation();
+                            const characterName = this.getAttribute("data-character-name");
+
+                            // Close any open popup first
+                            if (activePopup) {
+                                activePopup.classList.remove("active");
+                            }
+
+                            // Find the popup within the same character container
+                            const popup = this.closest(".character-info").nextElementSibling.querySelector(".popup");
+                            const iframe = popup.querySelector("iframe");
+
+                            console.log('Popup:', popup); // Debugging line
+                            console.log('Character Name:', characterName); // Debugging line
+
+                            // Set the correct iframe URL
+                            iframe.src = `./armory/video_component.html?charName=${encodeURIComponent(characterName)}`;
+
+                            // Show the popup
+                            popup.classList.add("active");
+                            activePopup = popup;
+                        });
+                    });
+
+                    // Close the popup when clicking anywhere outside it
+                    document.addEventListener("click", function (event) {
+                        if (activePopup && !activePopup.contains(event.target)) {
+                            activePopup.classList.remove("active");
+                            activePopup = null;
+                        }
+                    });
+                });
         </script>
 
 

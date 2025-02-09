@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hover Popup</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .hover-trigger {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 50px;
+        }
+
+        .popup-container {
+            display: none;
+            position: absolute;
+            width: 600px;
+            height: 500px;
+            background-color: white;
+            border: 1px solid #ddd;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            z-index: 1000;
+        }
+
+        .popup-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hover-trigger">Hover Over Me</div>
+    <div class="popup-container" id="popup">
+        <iframe src="./video_component.html"></iframe>
+    </div>
+
+    <script>
+        const trigger = document.querySelector(".hover-trigger");
+        const popup = document.getElementById("popup");
+
+        // Show the popup when hovering over the trigger
+        trigger.addEventListener("mouseover", function(event) {
+            popup.style.display = "block";
+            popup.style.left = `${event.pageX + 10}px`;
+            popup.style.top = `${event.pageY + 10}px`;
+        });
+
+        // Keep the popup open when moving the mouse over it
+        popup.addEventListener("mouseover", function() {
+            popup.style.display = "block";
+        });
+
+        // Hide the popup when clicking anywhere on the page
+        document.addEventListener("click", function(event) {
+            if (!popup.contains(event.target) && !trigger.contains(event.target)) {
+                popup.style.display = "none";
+            }
+        });
+    </script>
+
+</body>
+</html>
