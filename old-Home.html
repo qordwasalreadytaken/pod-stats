@@ -1,0 +1,461 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pod Softcore Stats</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 20px; 
+            line-height: 1.6; 
+            margin-left: 200px; /* Adjust this value to the width of your fixed buttons + some extra space */
+        }
+        h1 { color: #333; }
+        h2 { color: #555; margin-top: 20px; clear: both; }
+        p { clear: both; }
+        .character-info { display: flex; margin-bottom: 10px; }
+        .character-info div { flex: 1; padding: 5px; }
+        .character-link { flex: 1; }
+    
+        .collapsible {
+            background-color: #f1f1f1;
+            color: black;
+            cursor: pointer;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+        .collapsible img.icon {
+            margin-right: 10px;
+            width: 20px;
+            height: 20px;
+        }
+        .collapsible img.icon.hidden {
+            display: none;
+        }
+        .collapsible:hover {
+            background-color: #45a049;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .active, .collapsible:focus {
+            background-color: #45a049;
+        }
+    
+        .content {
+            padding: 0 18px;
+            display: none;
+            overflow: hidden;
+            background-color: #f9f9f9;
+        }
+        iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+        }
+    
+        .top-buttons {
+            position: fixed;
+            top: 20px;
+            left: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            margin-right: 20px;
+        }
+        .top-button {
+            background-color: #f1f1f1;
+            color: black;
+            cursor: pointer;
+            padding: 10px 15px;
+            border: none;
+            text-align: center;
+            outline: none;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            flex: 0 0 auto;
+            margin-bottom: 10px;
+        }
+        .top-button:hover {
+            background-color: #45a049;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .top-button.active {
+            background-color: #2E7D32; /* Different color for active state */
+        }
+    
+        .back-to-top {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 30px;
+            z-index: 99;
+            border: none;
+            outline: none;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 18px;
+        }
+        .back-to-top:hover {
+            background-color: #45a049;
+        }
+    
+        .split-button {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .split-button-option {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            padding: 10px 15px;
+            border: none;
+            text-align: center;
+            outline: none;
+            font-size: 16px;
+            border-radius: 0;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            flex: 1;
+        }
+        .split-button-option:first-child {
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+        }
+        .split-button-option:last-child {
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+        .split-button-option:hover {
+            background-color: #45a049;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .split-button-option.active {
+            background-color: #2E7D32;
+        }
+        
+        .container {
+            display: flex;
+            justify-content: space-between;
+        }
+        .column {
+            flex: 1;
+            margin: 10px;
+        }
+        h3 {
+            color: #555;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+        .indented-skills {
+            margin-left: 50px; /* Adjust the value to your preference */
+        }
+        .merccolumn {
+            float: left; 
+            width: 25%;
+        } 
+        .row:after {
+            content: "";    
+            display: table; 
+            clear: both;
+        }
+    </style>
+    
+    
+</head>
+<body>
+    <div class="top-buttons">
+        <a href="Home.html" class="top-button" onclick="setActive('Home')">Home</a>
+        <a href="Amazon.html" class="top-button">Amazon</a>
+        <a href="Assassin.html" class="top-button">Assassin</a>
+        <a href="Barbarian.html" class="top-button">Barbarian</a>
+        <a href="Druid.html" class="top-button">Druid</a>
+        <a href="Necromancer.html" class="top-button">Necromancer</a>
+        <a href="Paladin.html" class="top-button">Paladin</a>
+        <a href="Sorceress.html" class="top-button">Sorceress</a>
+        <div class="split-button">
+            <button id="SC" class="split-button-option" onclick="setActive('SC')">SC</button>
+            <button id="HC" class="split-button-option" onclick="setActive('HC')">HC</button>
+        </div>
+        <a href="https://github.com/qordwasalreadytaken/pod-stats/blob/main/README.md" class="top-button">About</a>
+    </div>
+
+    <h1>Pod Softcore Stats </h1>
+    <!-- Embed the Plotly pie chart -->
+<!--     <h2>Pick a class below for more detail</h2>-->
+<!--     <iframe src="cluster_analysis_report.html"></iframe>  -->
+    <div>
+        <img src="charts/class_distribution.png">
+    </div>
+    
+    <!-- Embed the Plotly scatter plot at the bottom -->
+    <button onclick="topFunction()" id="backToTopBtn" class="back-to-top">Top</button>
+    <hr> 
+    <h1>Non-Class specific reporting</h1>
+    <h3>Most and least popular Runewords, Uniques, and Set items</h3>
+
+    <button type="button" class="collapsible">
+        <img src="icons/closed.png" alt="Open" class="icon">
+        <img src="icons/open.png" alt="Close" class="icon hidden">
+        <strong>Runewords</strong>
+    </button>
+    <div class="content">
+        <div id="runewords" class="container">
+            <div class="column">
+                <h3>Most Popular Runewords:</h3>
+                <ul id="most-popular-runewords">
+                    <li>Spirit: 501</li><li>Heart of the Oak: 247</li><li>Enigma: 193</li><li>Call to Arms: 184</li><li>Phoenix: 121</li><li>Fortitude: 100</li><li>Plague: 66</li><li>Edge: 60</li><li>Silence: 48</li><li>Breath of the Dying: 42</li>
+                </ul>
+            </div>
+            <div class="column">
+                <h3>Least Popular Runewords:</h3>
+                <ul id="least-popular-runewords">
+                    <li>Wrath: 1</li><li>Stealth: 1</li><li>Wealth: 1</li><li>Mist: 1</li><li>Prudence: 1</li><li>Eternity: 1</li><li>Strength: 1</li><li>Crescent Moon: 1</li><li>Pattern: 2</li><li>Enlightenment: 2</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- The nested collapsible should be outside the columns -->
+        <button type="button" class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>ALL Runewords</strong>
+        </button>
+        <div class="content">
+            <div id="allrunewords">
+                <li>Spirit: 501</li><li>Heart of the Oak: 247</li><li>Enigma: 193</li><li>Call to Arms: 184</li><li>Phoenix: 121</li><li>Fortitude: 100</li><li>Plague: 66</li><li>Edge: 60</li><li>Silence: 48</li><li>Breath of the Dying: 42</li><li>Faith: 41</li><li>Chains of Honor: 34</li><li>Grief: 34</li><li>Holy Thunder: 32</li><li>Bone: 30</li><li>Harmony: 25</li><li>Metamorphosis: 24</li><li>Memory: 23</li><li>Rain: 19</li><li>Treachery: 18</li><li>Rhyme: 17</li><li>Dragon: 14</li><li>Bramble: 10</li><li>Splendor: 9</li><li>Mosaic: 9</li><li>Hand of Justice: 9</li><li>Smoke: 8</li><li>Ice: 8</li><li>Ancients' Pledge: 7</li><li>Lore: 7</li><li>Beast: 6</li><li>Death: 6</li><li>Dream: 6</li><li>Duress: 5</li><li>White: 5</li><li>Lawbringer: 4</li><li>Doom: 4</li><li>Peace: 4</li><li>2693: 3</li><li>Hustle: 3</li><li>Obedience: 3</li><li>Exile: 3</li><li>Chaos: 3</li><li>Myth: 2</li><li>Leaf: 2</li><li>Wisdom: 2</li><li>Last Wish: 2</li><li>Oath: 2</li><li>Black: 2</li><li>Enlightenment: 2</li><li>Pattern: 2</li><li>Crescent Moon: 1</li><li>Strength: 1</li><li>Eternity: 1</li><li>Prudence: 1</li><li>Mist: 1</li><li>Wealth: 1</li><li>Stealth: 1</li><li>Wrath: 1</li>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <button type="button" class="collapsible">
+        <img src="icons/closed.png" alt="Open" class="icon">
+        <img src="icons/open.png" alt="Close" class="icon hidden">
+        <strong>Uniques</strong>
+    </button>    
+    <div class="content">   
+    <div id="uniques" class="container">
+        <div class="column">
+            <h3>Most Popular Uniques:</h3>
+            <ul id="most-popular-uniques">
+                <li>Harlequin Crest: 326</li><li>Arachnid Mesh: 321</li><li>Raven Frost: 301</li><li>Magefist: 240</li><li>War Traveler: 201</li><li>The Stone of Jordan: 198</li><li>Mara's Kaleidoscope: 189</li><li>Bul-Kathos' Wedding Band: 163</li><li>Silkweave: 156</li><li>Wisp Projector: 145</li>
+            </ul>
+        </div>
+        <div class="column">
+            <h3>Least Popular Uniques:</h3>
+            <ul id="least_popular_uniques">
+                <li>Maelstrom: 1</li><li>Biggin's Bonnet: 1</li><li>Goldskin: 1</li><li>Zakarum's Hand: 1</li><li>Wizendraw: 1</li><li>Earth Shifter: 1</li><li>Fleshripper: 1</li><li>Veil of Steel: 1</li><li>Rockstopper: 1</li><li>Blood Crescent: 1</li>
+            </ul>
+        </div>
+    </div>
+        <button type="button" class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>ALL Uniques</strong>
+        </button>
+        <div class="content">
+            <div id="alluniques">
+                <li>Harlequin Crest: 326</li><li>Arachnid Mesh: 321</li><li>Raven Frost: 301</li><li>Magefist: 240</li><li>War Traveler: 201</li><li>The Stone of Jordan: 198</li><li>Mara's Kaleidoscope: 189</li><li>Bul-Kathos' Wedding Band: 163</li><li>Silkweave: 156</li><li>Wisp Projector: 145</li><li>Homunculus: 143</li><li>Skin of the Vipermagi: 132</li><li>Nagelring: 110</li><li>Medusa's Gaze: 108</li><li>Verdungo's Hearty Cord: 91</li><li>Highlord's Wrath: 89</li><li>Stormshield: 88</li><li>String of Ears: 77</li><li>Gore Rider: 77</li><li>Razortail: 70</li><li>Thundergod's Vigor: 64</li><li>Griffon's Eye: 63</li><li>Arreat's Face: 60</li><li>Dwarf Star: 58</li><li>Dracul's Grasp: 53</li><li>Lidless Wall: 52</li><li>Chance Guards: 50</li><li>Sandstorm Trek: 49</li><li>The Cat's Eye: 46</li><li>Goldwrap: 45</li><li>Ondal's Wisdom: 41</li><li>Andariel's Visage: 38</li><li>Carrion Wind: 34</li><li>The Oculus: 33</li><li>Titan's Revenge: 33</li><li>Jalal's Mane: 30</li><li>Demon Limb: 26</li><li>Herald of Zakarum: 25</li><li>Manald Heal: 24</li><li>Nightwing's Veil: 23</li><li>Seraph's Hymn: 23</li><li>Skullder's Ire: 21</li><li>Eschuta's Temper: 20</li><li>Thunderstroke: 20</li><li>Radament's Sphere: 18</li><li>Que-Hegan's Wisdom: 18</li><li>Blade of Ali Baba: 17</li><li>Nature's Peace: 17</li><li>Frostburn: 17</li><li>Shadow Dancer: 17</li><li>Soul Drainer: 16</li><li>Death's Fathom: 15</li><li>Bartuc's Cut-Throat: 15</li><li>Steelrend: 15</li><li>Arkaine's Valor: 13</li><li>Ravenlore: 13</li><li>Atma's Scarab: 13</li><li>Death's Web: 12</li><li>Marrowwalk: 11</li><li>Mang Song's Lesson: 11</li><li>Wizardspike: 11</li><li>Metalgrid: 10</li><li>Hailstorm: 10</li><li>Vampire Gaze: 10</li><li>Headstriker: 10</li><li>Lightsabre: 10</li><li>Kira's Guardian: 9</li><li>Waterwalk: 9</li><li>Warpspear: 9</li><li>Gull: 8</li><li>Windforce: 8</li><li>Crown of Ages: 8</li><li>Ormus' Robes: 8</li><li>Doomslinger: 8</li><li>Snowclash: 7</li><li>The Gladiator's Bane: 7</li><li>Valkyrie Wing: 7</li><li>Guardian Angel: 7</li><li>The Grandfather: 7</li><li>Moonfire: 6</li><li>The Reaper's Toll: 6</li><li>Tyrael's Might: 6</li><li>The Ward: 5</li><li>Hexfire: 5</li><li>Frostwind: 5</li><li>Nightsmoke: 5</li><li>Boneflame: 5</li><li>Dragonbreath: 5</li><li>Skull Collector: 5</li><li>Buriza-Do Kyanon: 4</li><li>Nosferatu's Coil: 4</li><li>Tearhaunch: 4</li><li>Infernostride: 4</li><li>Warshrike: 4</li><li>Goblin Toe: 4</li><li>Astreon's Iron Ward: 4</li><li>Duriel's Shell: 4</li><li>Bloodfist: 4</li><li>Alma Negra: 4</li><li>Saracen's Chance: 3</li><li>Boneshade: 3</li><li>Razorswitch: 3</li><li>Tarnhelm: 3</li><li>Gloom's Trap: 3</li><li>Arm of King Leoric: 3</li><li>Lava Gout: 3</li><li>Steel Shade: 3</li><li>Templar's Might: 3</li><li>Wall of the Eyeless: 3</li><li>Spire of Lazarus: 3</li><li>Shaftstop: 3</li><li>Dark Clan Crusher: 3</li><li>Death Cleaver: 3</li><li>Jade Talon: 3</li><li>Torch of Iro: 3</li><li>Azurewrath: 3</li><li>Widowmaker: 3</li><li>Wolfhowl: 3</li><li>Spellsteel: 3</li><li>Heart Carver: 3</li><li>The Iron Jang Bong: 3</li><li>Hellrack: 2</li><li>Bladebuckle: 2</li><li>Shadow Killer: 2</li><li>Suicide Branch: 2</li><li>Lenymo: 2</li><li>Hotspur: 2</li><li>Blackoak Shield: 2</li><li>Gerke's Sanctuary: 2</li><li>Executioner's Justice: 2</li><li>Lance Guard: 2</li><li>Carin Shard: 2</li><li>Flamebellow: 2</li><li>Islestrike: 2</li><li>Ume's Lament: 2</li><li>Ironstone: 2</li><li>Kuko Shakaku: 2</li><li>Moser's Blessed Circle: 2</li><li>Crescent Moon: 2</li><li>Culwen's Point: 2</li><li>Witchwild String: 2</li><li>Bloodletter: 2</li><li>Swiftheart: 2</li><li>Twitchthroe: 2</li><li>The Cranium Basher: 2</li><li>Halaberd's Reign: 1</li><li>Peasant Crown: 1</li><li>The Rising Sun: 1</li><li>Pus Spitter: 1</li><li>Eaglehorn: 1</li>
+            </div>
+        </div>
+
+    </div>
+    <br>
+    <button type="button" class="collapsible">
+        <img src="icons/closed.png" alt="Open" class="icon">
+        <img src="icons/open.png" alt="Close" class="icon hidden">
+        <strong>Sets</strong>
+    </button>  
+    <div class="content">  
+    <div id="sets" class="container">
+        <div class="column">
+            <h3>Most Popular Set Items:</h3>
+            <ul id="most-popular-set-items">
+                <li>Trang-Oul's Claws: 254</li><li>Aldur's Advance: 147</li><li>Laying of Hands: 138</li><li>Tal Rasha's Guardianship: 97</li><li>Tal Rasha's Fine-Spun Cloth: 92</li><li>Tal Rasha's Adjudication: 86</li><li>Natalya's Soul: 85</li><li>Tal Rasha's Horadric Crest: 73</li><li>Trang-Oul's Girth: 51</li><li>Tal Rasha's Lidless Eye: 50</li>
+            </ul>
+        </div>
+        <div class="column">
+            <h3>Least Popular Set Items:</h3>
+            <ul id="least_popular_set_items">
+                <li>Tancred's Hobnails: 1</li><li>Death's Guard: 1</li><li>Telling of Beads: 1</li><li>Sigon's Shelter: 1</li><li>Sazabi's Mental Sheath: 1</li><li>Dangoon's Teaching: 1</li><li>Cathan's Seal: 1</li><li>Hsarus' Iron Fist: 1</li><li>Bul-Kathos' Sacred Charge: 1</li><li>Bul-Kathos' Tribal Guardian: 1</li>
+            </ul>
+        </div>
+    </div>
+                <button type="button" class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>ALL Set Items</strong>
+        </button>
+        <div class="content">
+            <div id="allset">
+                <li>Trang-Oul's Claws: 254</li><li>Aldur's Advance: 147</li><li>Laying of Hands: 138</li><li>Tal Rasha's Guardianship: 97</li><li>Tal Rasha's Fine-Spun Cloth: 92</li><li>Tal Rasha's Adjudication: 86</li><li>Natalya's Soul: 85</li><li>Tal Rasha's Horadric Crest: 73</li><li>Trang-Oul's Girth: 51</li><li>Tal Rasha's Lidless Eye: 50</li><li>Angelic Halo: 49</li><li>Natalya's Mark: 48</li><li>Natalya's Shadow: 44</li><li>Natalya's Totem: 44</li><li>Trang-Oul's Scales: 39</li><li>Trang-Oul's Wing: 39</li><li>Trang-Oul's Guise: 37</li><li>Angelic Wings: 32</li><li>Immortal King's Detail: 30</li><li>Naj's Puzzler: 25</li><li>Immortal King's Forge: 23</li><li>Immortal King's Pillar: 19</li><li>M'avina's Tenet: 16</li><li>Guillaume's Face: 15</li><li>Immortal King's Will: 12</li><li>Immortal King's Stone Crusher: 11</li><li>Immortal King's Soul Cage: 10</li><li>M'avina's True Sight: 9</li><li>Naj's Light Plate: 8</li><li>M'avina's Icy Clutch: 7</li><li>M'avina's Embrace: 7</li><li>Credendum: 7</li><li>Sigon's Guard: 7</li><li>Milabrega's Orb: 6</li><li>M'avina's Caster: 5</li><li>Sander's Riprap: 5</li><li>Vidala's Fetlock: 3</li><li>Cow King's Hooves: 3</li><li>Cleglaw's Claw: 2</li><li>Ondal's Almighty: 2</li><li>Vidala's Snare: 2</li><li>Death's Hand: 2</li><li>Sigon's Gage: 1</li><li>Sigon's Wrap: 1</li><li>Whitstan's Guard: 1</li><li>Hsarus' Iron Heel: 1</li><li>Hsarus' Iron Stay: 1</li><li>Griswold's Valor: 1</li><li>Cleglaw's Pincers: 1</li><li>Naj's Circlet: 1</li><li>Bul-Kathos' Tribal Guardian: 1</li><li>Bul-Kathos' Sacred Charge: 1</li><li>Hsarus' Iron Fist: 1</li><li>Cathan's Seal: 1</li><li>Dangoon's Teaching: 1</li><li>Sazabi's Mental Sheath: 1</li><li>Sigon's Shelter: 1</li><li>Telling of Beads: 1</li><li>Death's Guard: 1</li><li>Tancred's Hobnails: 1</li>
+            </div>
+        </div>
+
+    </div>
+    <br>
+    <hr> 
+    <h1>Mercenary reporting</h1>
+    <h3>Most and least popular Runewords, Uniques, and Set items</h3>
+
+    <button type="button" class="collapsible">
+        <img src="icons/closed.png" alt="Open" class="icon">
+        <img src="icons/open.png" alt="Close" class="icon hidden">
+        <strong>Mercenary Details</strong>
+    </button>
+    <div class="content">
+    <div id="mercequips">
+        <p><h2>Mercenary Analysis and Popular Equipment</h2></p><p><h3>Mercenary Type Counts</h3></p><ul><li>Act 2 Desert Mercenary: 753</li><li>Act 1 Rogue Scout: 82</li><li>Act 3 Eastern Sorceror: 48</li><li>Act 5 Barbarian: 105</li></ul><p><h3>Popular Equipment by Mercenary Type</h3></p<br><div class='row'><p><strong>Act 2 Desert Mercenary</strong></p><div class=merccolumn><strong>Most Common Armors:</strong><ul><li>Treachery: 178</li><li>Fortitude: 105</li><li>Shaftstop: 101</li><li>Duriel's Shell: 53</li><li>The Gladiator's Bane: 41</li><li>Leviathan: 40</li><li>Guardian Angel: 20</li><li>Smoke: 16</li><li>Black Hades: 7</li><li>Naj's Light Plate: 6</li></ul></div><div class=merccolumn><strong>Most Common Helmets:</strong><ul><li>Steel Shade: 169</li><li>Tal Rasha's Horadric Crest: 157</li><li>Andariel's Visage: 94</li><li>Vampire Gaze: 89</li><li>Crown of Thieves: 27</li><li>Crown of Ages: 14</li><li>Guillaume's Face: 11</li><li>Kira's Guardian: 9</li><li>Bulwark: 8</li><li>Veil of Steel: 6</li></ul></div><div class=merccolumn><strong>Most Common Weapons:</strong><ul><li>Infinity: 238</li><li>Insight: 223</li><li>The Reaper's Toll: 72</li><li>Obedience: 32</li><li>Tomb Reaver: 16</li><li>Doom: 10</li><li>Silence: 7</li><li>Bonehew: 7</li><li>Pride: 4</li><li>Breath of the Dying: 4</li></ul></div></div><br><div class='row'><p><strong>Act 1 Rogue Scout</strong></p><div class=merccolumn><strong>Most Common Helmets:</strong><ul><li>Andariel's Visage: 9</li><li>Vampire Gaze: 9</li><li>Tal Rasha's Horadric Crest: 9</li><li>Crown of Thieves: 4</li><li>Hearth: 4</li><li>Stealskull: 4</li><li>Steel Shade: 3</li><li>Guillaume's Face: 3</li><li>Radiance: 1</li><li>Giant Skull: 1</li></ul></div><div class=merccolumn><strong>Most Common Armors:</strong><ul><li>Treachery: 10</li><li>Duriel's Shell: 8</li><li>Fortitude: 5</li><li>The Gladiator's Bane: 5</li><li>Smoke: 3</li><li>Guardian Angel: 3</li><li>Griswold's Heart: 2</li><li>Arkaine's Valor: 2</li><li>Gloom: 2</li><li>Skin of the Vipermagi: 2</li></ul></div><div class=merccolumn><strong>Most Common Weapons:</strong><ul><li>Harmony: 35</li><li>Insight: 7</li><li>Faith: 4</li><li>Buriza-Do Kyanon: 4</li><li>Edge: 2</li><li>Riphook: 1</li><li>Pus Spitter: 1</li><li>Storm Quill: 1</li><li>Hellrack: 1</li><li>Goldstrike Arch: 1</li></ul></div></div><br><div class='row'><p><strong>Act 3 Eastern Sorceror</strong></p><div class=merccolumn><strong>Most Common Armors:</strong><ul><li>Guardian Angel: 4</li><li>Skin of the Vipermagi: 4</li><li>Shaftstop: 4</li><li>Treachery: 3</li><li>The Gladiator's Bane: 3</li><li>Duriel's Shell: 2</li><li>Que-Hegan's Wisdom: 2</li><li>Fortitude: 2</li><li>Naj's Light Plate: 2</li><li>Leviathan: 1</li></ul></div><div class=merccolumn><strong>Most Common Helmets:</strong><ul><li>Tal Rasha's Horadric Crest: 6</li><li>Vampire Gaze: 5</li><li>Hwanin's Splendor: 4</li><li>Andariel's Visage: 4</li><li>Griffon's Eye: 2</li><li>Harlequin Crest: 2</li><li>Rockstopper: 2</li><li>Natalya's Totem: 2</li><li>Crown of Thieves: 1</li><li>Crown of Ages: 1</li></ul></div><div class=merccolumn><strong>Most Common Weapons:</strong><ul><li>Lawbringer: 9</li><li>Spirit: 9</li><li>Silence: 5</li><li>Azurewrath: 4</li><li>Plague: 3</li><li>Headstriker: 2</li><li>Culwen's Point: 2</li><li>Frostwind: 1</li><li>Fortitude: 1</li><li>Sazabi's Cobalt Redeemer: 1</li></ul></div><div class=merccolumn><strong>Most Common Offhands:</strong><ul><li>Spirit: 11</li><li>Stormshield: 9</li><li>Gerke's Sanctuary: 5</li><li>Phoenix: 3</li><li>Tiamat's Rebuke: 3</li><li>The Ward: 3</li><li>Sigon's Guard: 1</li><li>Spike Thorn: 1</li><li>Lance Guard: 1</li><li>Lidless Wall: 1</li></ul></div></div><br><div class='row'><p><strong>Act 5 Barbarian</strong></p><div class=merccolumn><strong>Most Common Helmets:</strong><ul><li>Tal Rasha's Horadric Crest: 26</li><li>Steel Shade: 18</li><li>Andariel's Visage: 13</li><li>Vampire Gaze: 9</li><li>Arreat's Face: 6</li><li>Crown of Thieves: 3</li><li>Kira's Guardian: 2</li><li>Guillaume's Face: 2</li><li>Crown of Ages: 1</li><li>Hailstone Cowl: 1</li></ul></div><div class=merccolumn><strong>Most Common Armors:</strong><ul><li>Treachery: 23</li><li>Fortitude: 18</li><li>Shaftstop: 8</li><li>Duriel's Shell: 8</li><li>The Gladiator's Bane: 7</li><li>Guardian Angel: 6</li><li>Steel Carapace: 5</li><li>Leviathan: 5</li><li>Smoke: 2</li><li>Natalya's Shadow: 1</li></ul></div><div class=merccolumn><strong>Most Common Weapons:</strong><ul><li>Lawbringer: 40</li><li>Silence: 16</li><li>Plague: 8</li><li>The Grandfather: 7</li><li>Todesfaelle Flamme: 4</li><li>Unbending Will: 4</li><li>Headstriker: 3</li><li>Bing Sz Wang: 2</li><li>Azurewrath: 2</li><li>Breath of the Dying: 1</li></ul></div></div>
+    </div>
+    </div>
+
+    <br>
+    <hr>
+    <h3>Non-Amazon Bow Users</h3>
+    <a href="Notazons.html" class="top-button">Non-Zon Bow Users</a>
+    <br>
+    <h3>Possibly Chargers</h3>
+    <a href="Charge.html" class="top-button">Chargers?</a>
+    <br>
+    <h3>Dashing Strikers</h3>
+    <a href="Dashadin.html" class="top-button">Dashing Strike</a>
+    <br>
+    <h3>Iron Jang Bong & Warpspear</h3>
+    <a href="Bong_and_Warpspear.html" class="top-button">Iron Jang Bong & Warpspear</a>
+    <br>
+    <h3>Unique Arrows & Bolts</h3>
+    <a href="Unique_Bolts_and_Arrows.html" class="top-button">Unique Arrows & Bolts</a>
+    <br><br>
+    <hr>
+    <h2>Softcore Fun Facts</h2>
+    <ul style="list-style-type:circle; padding-left: 40px;">
+            <li>Only one Dangoon, one Eternity, and one Delerium spotted in the wild.</li>
+            <li>5 ladder characters on softcore ladder have not died.</li>
+            <li>There are 61 Synthesized weapons equipped.</li>
+    </ul>  
+    <br><br><br><br>
+    <script>
+        var coll = document.getElementsByClassName("collapsible");
+        for (var i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                var openIcon = this.querySelector("img.icon[alt='Open']");
+                var closeIcon = this.querySelector("img.icon[alt='Close']");
+
+                if (content.style.display === "block") {
+                    content.style.display = "none";
+                    openIcon.classList.remove("hidden");
+                    closeIcon.classList.add("hidden");
+                } else {
+                    content.style.display = "block";
+                    openIcon.classList.add("hidden");
+                    closeIcon.classList.remove("hidden");
+                }
+            });
+        }
+    </script>
+
+
+    <script>
+        //Get the button
+        var backToTopBtn = document.getElementById("backToTopBtn");
+
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {scrollFunction()};
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                backToTopBtn.style.display = "block";
+            } else {
+                backToTopBtn.style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        }
+    </script>
+
+    <script>
+        function setActive(id) {
+            // Remove active class from both buttons
+            document.getElementById("SC").classList.remove("active");
+            document.getElementById("HC").classList.remove("active");
+            
+            // Add active class to the selected button
+            document.getElementById(id).classList.add("active");
+            
+            // Get the current URL
+            var currentUrl = window.location.href;
+            
+            // Determine the new URL based on the selected mode
+            var newUrl;
+            if (id === "SC") {
+                if (currentUrl.includes('hc')) {
+                    newUrl = currentUrl.replace(/hc/gi, '');
+                } else {
+                    newUrl = currentUrl;
+                }
+            } else if (id === "HC") {
+                if (!currentUrl.includes('hc')) {
+                    newUrl = currentUrl.replace(/(\w+)\.html$/, 'hc$1.html');
+                } else {
+                    newUrl = currentUrl;
+                }
+            }
+            
+            // Redirect to the new URL if it has changed
+            if (newUrl !== currentUrl) {
+                window.location.href = newUrl;
+            }
+        }
+
+        // Set default active button based on the current URL
+        window.onload = function() {
+            if (window.location.href.includes('hc')) {
+                setActive("HC");
+            } else {
+                setActive("SC");
+            }
+        }
+    </script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const currentLocation = window.location.href;
+        const menuItems = document.querySelectorAll(".top-button");
+        
+        menuItems.forEach(item => {
+            if (item.href === currentLocation) {
+                item.classList.add("active");
+            }
+        });
+    });
+</script>
+
+
+
+</body>
+</html>
