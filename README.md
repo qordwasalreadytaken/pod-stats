@@ -16,3 +16,7 @@ Let Qord know, Qord @ PoD Discord
     * Hardcore floor changed to level 60, should it be higher still?
 * The number of clusters (builds) to use was decided by cluster analysis, silhouette, and gap analysis, followed by just eyeballing them to see if the made sense. Can this be more automatic AND reliable?
 * Reused names can cause duplicate character info to fall into multiple class buckets, fixing this has been manual; need to automate that so Zon's don't show up in sorc build breakdowns. 
+
+# Credits
+Armory quickview pop ups powered by PoD Gear Twitch extension by Vinthian, Sizzles & Qord, adapted for use here by Qord
+
