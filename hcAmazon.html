@@ -3,151 +3,8 @@
         <html>
         <head>
             <title>Hardcore Amazon Analysis Report</title>
-                <style>
-            body { 
-                font-family: Arial, sans-serif; 
-                margin: 20px; 
-                line-height: 1.6; 
-                margin-left: 200px; /* Adjust this value to the width of your fixed buttons + some extra space */
-            }
-            h1 { color: #333; }
-            h2 { color: #555; margin-top: 20px; clear: both; }
-            p { clear: both; }
-            .character-info { display: flex; margin-bottom: 10px; }
-            .character-info div { flex: 1; padding: 5px; }
-            .character-link { flex: 1; }
-        
-            .collapsible {
-                background-color: #f1f1f1;
-                color: black;
-                cursor: pointer;
-                padding: 10px;
-                width: 100%;
-                border: none;
-                text-align: left;
-                outline: none;
-                font-size: 15px;
-                border-radius: 5px;
-                transition: background-color 0.3s ease, box-shadow 0.3s ease;
-                display: flex;
-                align-items: center;
-            }
-            .collapsible img.icon {
-                margin-right: 10px;
-                width: 20px;
-                height: 20px;
-            }
-            .collapsible img.icon.hidden {
-                display: none;
-            }
-            .collapsible:hover {
-                background-color: #45a049;
-                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            }
-            .active, .collapsible:focus {
-                background-color: #45a049;
-            }
-        
-            .content {
-                padding: 0 18px;
-                display: none;
-                overflow: hidden;
-                background-color: #f9f9f9;
-            }
-            iframe {
-                width: 100%;
-                height: 600px;
-                border: none;
-            }
-        
-            .top-buttons {
-                position: fixed;
-                top: 20px;
-                left: 10px;
-                display: flex;
-                flex-direction: column;
-                justify-content: flex-start;
-                margin-right: 20px;
-            }
-            .top-button {
-                background-color: #f1f1f1;
-                color: black;
-                cursor: pointer;
-                padding: 10px 15px;
-                border: none;
-                text-align: center;
-                outline: none;
-                font-size: 16px;
-                border-radius: 5px;
-                transition: background-color 0.3s ease, box-shadow 0.3s ease;
-                text-decoration: none;
-                flex: 0 0 auto;
-                margin-bottom: 10px;
-            }
-            .top-button:hover {
-                background-color: #45a049;
-                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            }
-            .top-button.active {
-                background-color: #2E7D32; /* Different color for active state */
-            }
-        
-            .back-to-top {
-                display: none;
-                position: fixed;
-                bottom: 20px;
-                right: 30px;
-                z-index: 99;
-                border: none;
-                outline: none;
-                background-color: #4CAF50;
-                color: white;
-                cursor: pointer;
-                padding: 15px;
-                border-radius: 10px;
-                font-size: 18px;
-            }
-            .back-to-top:hover {
-                background-color: #45a049;
-            }
-        
-            .split-button {
-                display: flex;
-                justify-content: center;
-                margin-bottom: 20px;
-            }
-            .split-button-option {
-                background-color: #4CAF50;
-                color: white;
-                cursor: pointer;
-                padding: 10px 15px;
-                border: none;
-                text-align: center;
-                outline: none;
-                font-size: 16px;
-                border-radius: 0;
-                transition: background-color 0.3s ease, box-shadow 0.3s ease;
-                flex: 1;
-            }
-            .split-button-option:first-child {
-                border-top-left-radius: 5px;
-                border-bottom-left-radius: 5px;
-            }
-            .split-button-option:last-child {
-                border-top-right-radius: 5px;
-                border-bottom-right-radius: 5px;
-            }
-            .split-button-option:hover {
-                background-color: #45a049;
-                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            }
-            .split-button-option.active {
-                background-color: #2E7D32;
-            }
-            .indented-skills {
-                margin-left: 20px; /* Adjust the value to your preference */
-            }
-        </style>
+        <link rel="stylesheet" type="text/css" href="./css/pod-stats.css">
+
         </head>
         <body>
             <div class="top-buttons">
@@ -168,9 +25,22 @@
             <h1>Amazon Hardcore Skill Distribution </h1>
             <p class="indented-skills">Popular builds include:<br>18.00% of Amazon's invest heavily in Plague Javelin, Lightning Fury, Poison Javelin, Pierce, Lightning Bolt<br>16.00% of Amazon's invest heavily in Lightning Bolt, Lightning Fury, Power Strike, Pierce, Phase Run<br>14.00% of Amazon's invest heavily in Multiple Shot, Lethal Strike, Penetrate, Pierce, Phase Run<br>10.00% of Amazon's invest heavily in Multiple Shot, Immolation Arrow, Lethal Strike, Fire Arrow, Pierce<br>10.00% of Amazon's invest heavily in Freezing Arrow, Cold Arrow, Ice Arrow, Multiple Shot, Lightning Fury<br>8.00% of Amazon's invest heavily in Immolation Arrow, Cold Arrow, Freezing Arrow, Fire Arrow, Ice Arrow<br>8.00% of Amazon's invest heavily in Immolation Arrow, Multiple Shot, Exploding Arrow, Fire Arrow, Penetrate<br>4.00% of Amazon's invest heavily in Power Strike, Charged Strike, Lightning Strike, Jab, Avoid<br>4.00% of Amazon's invest heavily in Power Strike, Lightning Bolt, Charged Strike, Lightning Fury, Lightning Strike<br>2.00% of Amazon's invest heavily in Multiple Shot, Guided Arrow, Lethal Strike, Penetrate, Pierce<br>2.00% of Amazon's invest heavily in Inner Sight, Valkyrie, Power Strike, Multiple Shot, Penetrate<br>2.00% of Amazon's invest heavily in Jab, Molten Strike, Fend, Lethal Strike, Avoid<br>2.00% of Amazon's invest heavily in Guided Arrow, Immolation Arrow, Lethal Strike, Valkyrie, Pierce </p>
             <hr>
-            
-            <h2>18.00%  of Amazon's Main Skills:<br><img src='icons/Plague Javelin.png' alt='Plague Javelin' width='20' height='20'> Plague Javelin 100.00% (177)<br><img src='icons/Lightning Fury.png' alt='Lightning Fury' width='20' height='20'> Lightning Fury 88.89% (155)<br><img src='icons/Poison Javelin.png' alt='Poison Javelin' width='20' height='20'> Poison Javelin 100.00% (135)<br><img src='icons/Pierce.png' alt='Pierce' width='20' height='20'> Pierce 100.00% (69)<br><img src='icons/Lightning Bolt.png' alt='Lightning Bolt' width='20' height='20'> Lightning Bolt 100.00% (63)</h2>
-            <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='icons/Power Strike.png' alt='Power Strike' width='20' height='20'> Power Strike 100.0% (37.0)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 100.0% (16.0)<br><img src='icons/Dodge.png' alt='Dodge' width='20' height='20'> Dodge 88.89% (13.0)<br><img src='icons/Avoid.png' alt='Avoid' width='20' height='20'> Avoid 88.89% (12.0)<br><img src='icons/Penetrate.png' alt='Penetrate' width='20' height='20'> Penetrate 100.0% (10.0)<br><img src='icons/Evade.png' alt='Evade' width='20' height='20'> Evade 77.78% (9.0)</p>
+        
+        <!--<h2>18.00%  of Amazon's Main Skills:<br><img src='icons/Plague Javelin.png' alt='Plague Javelin' width='20' height='20'> Plague Javelin 100.00% (177)<br><img src='icons/Lightning Fury.png' alt='Lightning Fury' width='20' height='20'> Lightning Fury 88.89% (155)<br><img src='icons/Poison Javelin.png' alt='Poison Javelin' width='20' height='20'> Poison Javelin 100.00% (135)<br><img src='icons/Pierce.png' alt='Pierce' width='20' height='20'> Pierce 100.00% (69)<br><img src='icons/Lightning Bolt.png' alt='Lightning Bolt' width='20' height='20'> Lightning Bolt 100.00% (63)</h2>
+        <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='icons/Power Strike.png' alt='Power Strike' width='20' height='20'> Power Strike 100.0% (37.0)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 100.0% (16.0)<br><img src='icons/Dodge.png' alt='Dodge' width='20' height='20'> Dodge 88.89% (13.0)<br><img src='icons/Avoid.png' alt='Avoid' width='20' height='20'> Avoid 88.89% (12.0)<br><img src='icons/Penetrate.png' alt='Penetrate' width='20' height='20'> Penetrate 100.0% (10.0)<br><img src='icons/Evade.png' alt='Evade' width='20' height='20'> Evade 77.78% (9.0)</p> -->
+        <div id="skills" class="skills-container">
+            <div class="column">
+                <ul id="most-popular-skills">
+                    <h2>18.00%  of Amazon's Main Skills:<br><img src='icons/Plague Javelin.png' alt='Plague Javelin' width='20' height='20'> Plague Javelin 100.00% (177)<br><img src='icons/Lightning Fury.png' alt='Lightning Fury' width='20' height='20'> Lightning Fury 88.89% (155)<br><img src='icons/Poison Javelin.png' alt='Poison Javelin' width='20' height='20'> Poison Javelin 100.00% (135)<br><img src='icons/Pierce.png' alt='Pierce' width='20' height='20'> Pierce 100.00% (69)<br><img src='icons/Lightning Bolt.png' alt='Lightning Bolt' width='20' height='20'> Lightning Bolt 100.00% (63)</h2>
+                </ul>
+            </div>
+            <div class="column">
+                <ul id="other-skills">
+                    <h2>Other common skills in this group:</h2> <img src='icons/Power Strike.png' alt='Power Strike' width='20' height='20'> Power Strike 100.0% (37.0)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 100.0% (16.0)<br><img src='icons/Dodge.png' alt='Dodge' width='20' height='20'> Dodge 88.89% (13.0)<br><img src='icons/Avoid.png' alt='Avoid' width='20' height='20'> Avoid 88.89% (12.0)<br><img src='icons/Penetrate.png' alt='Penetrate' width='20' height='20'> Penetrate 100.0% (10.0)<br><img src='icons/Evade.png' alt='Evade' width='20' height='20'> Evade 77.78% (9.0)
+                </ul>
+            </div>
+        </div>
+
             <button class="collapsible">
                 <img src="icons/closed.png" alt="Open" class="icon">
                 <img src="icons/open.png" alt="Close" class="icon hidden">
@@ -195,98 +65,238 @@
                     <div><strong>Ring</strong>: Manald Heal 22.22%, Chaos Gyre 11.11%, Dread Whorl 11.11%, Dwarf Star 11.11%, Viper Hold 11.11%, Stone Grip 11.11%, Shadow Coil 11.11%, Havoc Gyre 11.11%, Viper Grip 11.11%, Russet Ring of Chance 11.11%, Skull Eye 11.11%, Ocher Ring 11.11%, Crimson Ring 11.11%, Order Master 11.11%, Storm Whorl 11.11%<br><strong>Boots</strong>: Silkweave 11.11%, Brimstone Stalker 11.11%, Soul Tread 11.11%, Hsarus' Iron Heel 11.11%, Sander's Riprap 11.11%, Vidala's Fetlock 11.11%, Shadow Tread 11.11%<br><strong>Helmet</strong>: Lore 44.44%, Harlequin Crest 11.11%, Tal Rasha's Horadric Crest 11.11%, Stone Hood 11.11%, Skull Cap 11.11%<br><strong>Amulet</strong>: Highlord's Wrath 11.11%, Entropy Collar 11.11%, Order Talisman 11.11%, The Eye of Etlich 11.11%, Maiden's Amulet of Chance 11.11%, Amulet of Fortune 11.11%, Raven Noose 11.11%, Chromatic Amulet 11.11%<br><strong>Gloves</strong>: Lancer's War Gauntlets of Alacrity 11.11%, Bone Knuckle 11.11%, Arctic Mitts 11.11%, Eagle Claw 11.11%, Sander's Taboo 11.11%, Death's Hand 11.11%, Brimstone Knuckle 11.11%<br><strong>Body</strong>: Peace 33.33%, Smoke 11.11%, Hustle 11.11%, Arctic Furs 11.11%, Hawkmail 11.11%, Stealth 11.11%<br><strong>Belt</strong>: Razortail 11.11%, Rune Lash 11.11%, Arctic Binding 11.11%, Hsarus' Iron Stay 11.11%, Sigon's Wrap 11.11%, Death's Guard 11.11%, Eagle Winding 11.11%<br><strong>Left hand</strong>: Titan's Revenge 33.33%, Coral Gnarled Staff of Teleportation 11.11%, Bone Wand of Lower Resistance 11.11%, Yew Wand of Lower Resistance 11.11%, Rhyme 11.11%, Grim Wand of Lower Resistance 11.11%, Storm Thirst 11.11%, Eagle Picket 11.11%, Loath Picket 11.11%, Viper Barb 11.11%, Javelin 11.11%, War Staff of Teleportation 11.11%<br><strong>Offhand</strong>: Rhyme 33.33%, The Ward 22.22%, Spirit 11.11%, Dread Scratch 11.11%, Ancients' Pledge 11.11%, Moser's Blessed Circle 11.11%</div>
                 </div>
 
-            <button class="collapsible">
-                <img src="icons/closed.png" alt="Open" class="icon">
-                <img src="icons/open.png" alt="Close" class="icon hidden">
-                <strong>9 Characters in this cluster:</strong></button>
-                <div class="content">
-                    
-                    <div class="character-info">
-                        <div class="character-link"><strong>Character Name:</strong> essen</div>
-                        <div>90</div>
-                        <div><a href="https://pathofdiablo.com/p/armory/?name=essen">Armory</a></div>
-                    </div>
-                <p><strong>Skills:</strong> Power Strike:20, Lightning Bolt:20, Plague Javelin:20, Lightning Fury:20, Poison Javelin:14, Lethal Strike:1, Dodge:1, Avoid:1, Penetrate:1, Evade:1, Pierce:1, Jab:1</p>
-                <p><strong>Equipment:</strong> ring: Chaos Gyre x1, ring: Dread Whorl x1, boots: Silkweave x1, helmet: Harlequin Crest x1, amulet: Highlord's Wrath x1, gloves: Lancer's War Gauntlets of Alacrity x1, body: Smoke x1, belt: Razortail x1, Left hand: Coral Gnarled Staff of Teleportation x1, Left hand: Titan's Revenge x1, Offhand: Spirit x1</p>
-                <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Hustle, Tal Rasha's Horadric Crest, Arioc's Needle</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>9 Characters in this cluster:</strong>
+        </button>
+        <div class="content">
             
-                    <div class="character-info">
-                        <div class="character-link"><strong>Character Name:</strong> PLsMoreBuilds</div>
-                        <div>85</div>
-                        <div><a href="https://pathofdiablo.com/p/armory/?name=PLsMoreBuilds">Armory</a></div>
-                    </div>
-                <p><strong>Skills:</strong> Pierce:20, Poison Javelin:20, Plague Javelin:20, Lightning Fury:20, Dodge:4, Avoid:3, Evade:2, Inner Sight:1, Lethal Strike:1, Phase Run:1, Penetrate:1, Jab:1, Power Strike:1, Lightning Bolt:1</p>
-                <p><strong>Equipment:</strong> </p>
-                <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Tal Rasha's Horadric Crest, Duriel's Shell, Insight</p>
+            <div class="character-info">
+                <div><strong>Character: essen</strong></div>
+                <div>Level 90</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=essen">essen's Armory</a></div>
+                <div class="hover-trigger" data-character-name="essen">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Power Strike:20, Lightning Bolt:20, Plague Javelin:20, Lightning Fury:20, Poison Javelin:14, Lethal Strike:1, Dodge:1, Avoid:1, Penetrate:1, Evade:1, Pierce:1, Jab:1</p>
+            <p><strong>Equipment:</strong> ring: Chaos Gyre x1, ring: Dread Whorl x1, boots: Silkweave x1, helmet: Harlequin Crest x1, amulet: Highlord's Wrath x1, gloves: Lancer's War Gauntlets of Alacrity x1, body: Smoke x1, belt: Razortail x1, Left hand: Coral Gnarled Staff of Teleportation x1, Left hand: Titan's Revenge x1, Offhand: Spirit x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Hustle, Tal Rasha's Horadric Crest, Arioc's Needle</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
             
-                    <div class="character-info">
-                        <div class="character-link"><strong>Character Name:</strong> Illusory</div>
-                        <div>83</div>
-                        <div><a href="https://pathofdiablo.com/p/armory/?name=Illusory">Armory</a></div>
-                    </div>
-                <p><strong>Skills:</strong> Plague Javelin:20, Lightning Fury:20, Lightning Bolt:15, Pierce:14, Lethal Strike:8, Dodge:3, Avoid:3, Penetrate:2, Evade:2, Inner Sight:1, Phase Run:1, Decoy:1, Valkyrie:1, Jab:1, Power Strike:1, Poison Javelin:1</p>
-                <p><strong>Equipment:</strong> ring: Manald Heal x1, ring: Dwarf Star x1, body: Hustle x1, amulet: Entropy Collar x1, belt: Rune Lash x1, gloves: Bone Knuckle x1, boots: Brimstone Stalker x1, helmet: Tal Rasha's Horadric Crest x1, Left hand: Titan's Revenge x1, Left hand: Bone Wand of Lower Resistance x1, Offhand: Rhyme x2</p>
-                <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Toothrow, Tal Rasha's Horadric Crest, Husoldal Evo</p>
+            <div class="character-info">
+                <div><strong>Character: PLsMoreBuilds</strong></div>
+                <div>Level 85</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=PLsMoreBuilds">PLsMoreBuilds's Armory</a></div>
+                <div class="hover-trigger" data-character-name="PLsMoreBuilds">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Pierce:20, Poison Javelin:20, Plague Javelin:20, Lightning Fury:20, Dodge:4, Avoid:3, Evade:2, Inner Sight:1, Lethal Strike:1, Phase Run:1, Penetrate:1, Jab:1, Power Strike:1, Lightning Bolt:1</p>
+            <p><strong>Equipment:</strong> </p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Tal Rasha's Horadric Crest, Duriel's Shell, Insight</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
             
-                    <div class="character-info">
-                        <div class="character-link"><strong>Character Name:</strong> Cupnoodle</div>
-                        <div>78</div>
-                        <div><a href="https://pathofdiablo.com/p/armory/?name=Cupnoodle">Armory</a></div>
-                    </div>
-                <p><strong>Skills:</strong> Poison Javelin:20, Plague Javelin:20, Lightning Fury:20, Lightning Bolt:9, Pierce:6, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Decoy:1, Evade:1, Valkyrie:1, Jab:1, Power Strike:1</p>
-                <p><strong>Equipment:</strong> belt: Arctic Binding x1, ring: Viper Hold x1, ring: Manald Heal x1, helmet: Stone Hood x1, boots: Soul Tread x1, Left hand: Yew Wand of Lower Resistance x1, Left hand: Rhyme x1, body: Arctic Furs x1, gloves: Arctic Mitts x1, amulet: Order Talisman x1, Offhand: Dread Scratch x1</p>
-                <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Silks of the Victor, Stealskull, Insight</p>
+            <div class="character-info">
+                <div><strong>Character: Illusory</strong></div>
+                <div>Level 83</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Illusory">Illusory's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Illusory">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Plague Javelin:20, Lightning Fury:20, Lightning Bolt:15, Pierce:14, Lethal Strike:8, Dodge:3, Avoid:3, Penetrate:2, Evade:2, Inner Sight:1, Phase Run:1, Decoy:1, Valkyrie:1, Jab:1, Power Strike:1, Poison Javelin:1</p>
+            <p><strong>Equipment:</strong> ring: Manald Heal x1, ring: Dwarf Star x1, body: Hustle x1, amulet: Entropy Collar x1, belt: Rune Lash x1, gloves: Bone Knuckle x1, boots: Brimstone Stalker x1, helmet: Tal Rasha's Horadric Crest x1, Left hand: Titan's Revenge x1, Left hand: Bone Wand of Lower Resistance x1, Offhand: Rhyme x2</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Toothrow, Tal Rasha's Horadric Crest, Husoldal Evo</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
             
-                    <div class="character-info">
-                        <div class="character-link"><strong>Character Name:</strong> HayerenG</div>
-                        <div>74</div>
-                        <div><a href="https://pathofdiablo.com/p/armory/?name=HayerenG">Armory</a></div>
-                    </div>
-                <p><strong>Skills:</strong> Poison Javelin:20, Plague Javelin:20, Lightning Fury:20, Lightning Bolt:14, Inner Sight:1, Lethal Strike:1, Phase Run:1, Penetrate:1, Decoy:1, Valkyrie:1, Pierce:1, Jab:1, Power Strike:1</p>
-                <p><strong>Equipment:</strong> ring: Stone Grip x1, ring: Shadow Coil x1, boots: Hsarus' Iron Heel x1, belt: Hsarus' Iron Stay x1, amulet: The Eye of Etlich x1, helmet: Lore x1, body: Peace x1, gloves: Eagle Claw x1, Left hand: Grim Wand of Lower Resistance x1, Left hand: Storm Thirst x1, Offhand: Ancients' Pledge x1</p>
-                <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - No equipment</p>
+            <div class="character-info">
+                <div><strong>Character: Cupnoodle</strong></div>
+                <div>Level 78</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Cupnoodle">Cupnoodle's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Cupnoodle">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Poison Javelin:20, Plague Javelin:20, Lightning Fury:20, Lightning Bolt:9, Pierce:6, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Decoy:1, Evade:1, Valkyrie:1, Jab:1, Power Strike:1</p>
+            <p><strong>Equipment:</strong> belt: Arctic Binding x1, ring: Viper Hold x1, ring: Manald Heal x1, helmet: Stone Hood x1, boots: Soul Tread x1, Left hand: Yew Wand of Lower Resistance x1, Left hand: Rhyme x1, body: Arctic Furs x1, gloves: Arctic Mitts x1, amulet: Order Talisman x1, Offhand: Dread Scratch x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Silks of the Victor, Stealskull, Insight</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
             
-                    <div class="character-info">
-                        <div class="character-link"><strong>Character Name:</strong> MeatStick</div>
-                        <div>65</div>
-                        <div><a href="https://pathofdiablo.com/p/armory/?name=MeatStick">Armory</a></div>
-                    </div>
-                <p><strong>Skills:</strong> Poison Javelin:20, Plague Javelin:20, Lightning Fury:16, Pierce:4, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Decoy:1, Valkyrie:1, Jab:1, Power Strike:1, Lightning Bolt:1</p>
-                <p><strong>Equipment:</strong> ring: Havoc Gyre x1, ring: Viper Grip x1, Left hand: Eagle Picket x1, Left hand: Loath Picket x1, amulet: Maiden's Amulet of Chance x1, body: Peace x1, helmet: Lore x1, Offhand: The Ward x1</p>
-                <p><strong>Mercenary:</strong> Act 1 Rogue Scout - No equipment</p>
+            <div class="character-info">
+                <div><strong>Character: HayerenG</strong></div>
+                <div>Level 74</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=HayerenG">HayerenG's Armory</a></div>
+                <div class="hover-trigger" data-character-name="HayerenG">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Poison Javelin:20, Plague Javelin:20, Lightning Fury:20, Lightning Bolt:14, Inner Sight:1, Lethal Strike:1, Phase Run:1, Penetrate:1, Decoy:1, Valkyrie:1, Pierce:1, Jab:1, Power Strike:1</p>
+            <p><strong>Equipment:</strong> ring: Stone Grip x1, ring: Shadow Coil x1, boots: Hsarus' Iron Heel x1, belt: Hsarus' Iron Stay x1, amulet: The Eye of Etlich x1, helmet: Lore x1, body: Peace x1, gloves: Eagle Claw x1, Left hand: Grim Wand of Lower Resistance x1, Left hand: Storm Thirst x1, Offhand: Ancients' Pledge x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - No equipment</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
             
-                    <div class="character-info">
-                        <div class="character-link"><strong>Character Name:</strong> Fofa</div>
-                        <div>65</div>
-                        <div><a href="https://pathofdiablo.com/p/armory/?name=Fofa">Armory</a></div>
-                    </div>
-                <p><strong>Skills:</strong> Poison Javelin:20, Plague Javelin:20, Lightning Fury:20, Pierce:5, Lethal Strike:1, Dodge:1, Avoid:1, Penetrate:1, Evade:1, Jab:1, Power Strike:1, Lightning Bolt:1</p>
-                <p><strong>Equipment:</strong> ring: Russet Ring of Chance x1, ring: Skull Eye x1, amulet: Amulet of Fortune x1, body: Hawkmail x1, belt: Sigon's Wrap x1, gloves: Sander's Taboo x1, boots: Sander's Riprap x1, helmet: Lore x1, Left hand: Viper Barb x1, Offhand: Rhyme x1</p>
-                <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Mask, Hwanin's Refuge, Insight</p>
+            <div class="character-info">
+                <div><strong>Character: MeatStick</strong></div>
+                <div>Level 65</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=MeatStick">MeatStick's Armory</a></div>
+                <div class="hover-trigger" data-character-name="MeatStick">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Poison Javelin:20, Plague Javelin:20, Lightning Fury:16, Pierce:4, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Decoy:1, Valkyrie:1, Jab:1, Power Strike:1, Lightning Bolt:1</p>
+            <p><strong>Equipment:</strong> ring: Havoc Gyre x1, ring: Viper Grip x1, Left hand: Eagle Picket x1, Left hand: Loath Picket x1, amulet: Maiden's Amulet of Chance x1, body: Peace x1, helmet: Lore x1, Offhand: The Ward x1</p>
+            <p><strong>Mercenary:</strong> Act 1 Rogue Scout - No equipment</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
             
-                    <div class="character-info">
-                        <div class="character-link"><strong>Character Name:</strong> SCplebsCows</div>
-                        <div>64</div>
-                        <div><a href="https://pathofdiablo.com/p/armory/?name=SCplebsCows">Armory</a></div>
-                    </div>
-                <p><strong>Skills:</strong> Poison Javelin:20, Plague Javelin:20, Pierce:17, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Evade:1, Jab:1, Power Strike:1, Lightning Bolt:1</p>
-                <p><strong>Equipment:</strong> belt: Death's Guard x1, gloves: Death's Hand x1, helmet: Skull Cap x1, ring: Ocher Ring x1, ring: Crimson Ring x1, body: Stealth x1, boots: Vidala's Fetlock x1, amulet: Raven Noose x1, Left hand: Javelin x1, Offhand: Moser's Blessed Circle x1</p>
-                <p><strong>Mercenary:</strong> Act 1 Rogue Scout - No equipment</p>
+            <div class="character-info">
+                <div><strong>Character: Fofa</strong></div>
+                <div>Level 65</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Fofa">Fofa's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Fofa">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Poison Javelin:20, Plague Javelin:20, Lightning Fury:20, Pierce:5, Lethal Strike:1, Dodge:1, Avoid:1, Penetrate:1, Evade:1, Jab:1, Power Strike:1, Lightning Bolt:1</p>
+            <p><strong>Equipment:</strong> ring: Russet Ring of Chance x1, ring: Skull Eye x1, amulet: Amulet of Fortune x1, body: Hawkmail x1, belt: Sigon's Wrap x1, gloves: Sander's Taboo x1, boots: Sander's Riprap x1, helmet: Lore x1, Left hand: Viper Barb x1, Offhand: Rhyme x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Mask, Hwanin's Refuge, Insight</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
             
-                    <div class="character-info">
-                        <div class="character-link"><strong>Character Name:</strong> tittez</div>
-                        <div>60</div>
-                        <div><a href="https://pathofdiablo.com/p/armory/?name=tittez">Armory</a></div>
-                    </div>
-                <p><strong>Skills:</strong> Lightning Fury:20, Plague Javelin:17, Power Strike:10, Valkyrie:5, Lightning Bolt:2, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Decoy:1, Evade:1, Pierce:1, Jab:1, Poison Javelin:1</p>
-                <p><strong>Equipment:</strong> Left hand: War Staff of Teleportation x1, Left hand: Titan's Revenge x1, gloves: Brimstone Knuckle x1, amulet: Chromatic Amulet x1, belt: Eagle Winding x1, boots: Shadow Tread x1, ring: Order Master x1, ring: Storm Whorl x1, body: Peace x1, helmet: Lore x1, Offhand: The Ward x1</p>
-                <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Iron Pelt, Arcanna's Head, Insight</p>
+            <div class="character-info">
+                <div><strong>Character: SCplebsCows</strong></div>
+                <div>Level 64</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=SCplebsCows">SCplebsCows's Armory</a></div>
+                <div class="hover-trigger" data-character-name="SCplebsCows">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Poison Javelin:20, Plague Javelin:20, Pierce:17, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Evade:1, Jab:1, Power Strike:1, Lightning Bolt:1</p>
+            <p><strong>Equipment:</strong> belt: Death's Guard x1, gloves: Death's Hand x1, helmet: Skull Cap x1, ring: Ocher Ring x1, ring: Crimson Ring x1, body: Stealth x1, boots: Vidala's Fetlock x1, amulet: Raven Noose x1, Left hand: Javelin x1, Offhand: Moser's Blessed Circle x1</p>
+            <p><strong>Mercenary:</strong> Act 1 Rogue Scout - No equipment</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Character: tittez</strong></div>
+                <div>Level 60</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=tittez">tittez's Armory</a></div>
+                <div class="hover-trigger" data-character-name="tittez">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Lightning Fury:20, Plague Javelin:17, Power Strike:10, Valkyrie:5, Lightning Bolt:2, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Decoy:1, Evade:1, Pierce:1, Jab:1, Poison Javelin:1</p>
+            <p><strong>Equipment:</strong> Left hand: War Staff of Teleportation x1, Left hand: Titan's Revenge x1, gloves: Brimstone Knuckle x1, amulet: Chromatic Amulet x1, belt: Eagle Winding x1, boots: Shadow Tread x1, ring: Order Master x1, ring: Storm Whorl x1, body: Peace x1, helmet: Lore x1, Offhand: The Ward x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Iron Pelt, Arcanna's Head, Insight</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
             
             </div>
             <hr>
             
-            <h2>16.00%  of Amazon's Main Skills:<br><img src='icons/Lightning Bolt.png' alt='Lightning Bolt' width='20' height='20'> Lightning Bolt 100.00% (160)<br><img src='icons/Lightning Fury.png' alt='Lightning Fury' width='20' height='20'> Lightning Fury 100.00% (160)<br><img src='icons/Power Strike.png' alt='Power Strike' width='20' height='20'> Power Strike 100.00% (155)<br><img src='icons/Pierce.png' alt='Pierce' width='20' height='20'> Pierce 100.00% (71)<br><img src='icons/Phase Run.png' alt='Phase Run' width='20' height='20'> Phase Run 100.00% (26)</h2>
-            <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='icons/Plague Javelin.png' alt='Plague Javelin' width='20' height='20'> Plague Javelin 100.0% (24.0)<br><img src='icons/Valkyrie.png' alt='Valkyrie' width='20' height='20'> Valkyrie 37.5% (22.0)<br><img src='icons/Evade.png' alt='Evade' width='20' height='20'> Evade 100.0% (21.0)<br><img src='icons/Dodge.png' alt='Dodge' width='20' height='20'> Dodge 100.0% (14.0)<br><img src='icons/Avoid.png' alt='Avoid' width='20' height='20'> Avoid 100.0% (13.0)<br><img src='icons/Charged Strike.png' alt='Charged Strike' width='20' height='20'> Charged Strike 37.5% (12.0)</p>
+        <!--<h2>16.00%  of Amazon's Main Skills:<br><img src='icons/Lightning Bolt.png' alt='Lightning Bolt' width='20' height='20'> Lightning Bolt 100.00% (160)<br><img src='icons/Lightning Fury.png' alt='Lightning Fury' width='20' height='20'> Lightning Fury 100.00% (160)<br><img src='icons/Power Strike.png' alt='Power Strike' width='20' height='20'> Power Strike 100.00% (155)<br><img src='icons/Pierce.png' alt='Pierce' width='20' height='20'> Pierce 100.00% (71)<br><img src='icons/Phase Run.png' alt='Phase Run' width='20' height='20'> Phase Run 100.00% (26)</h2>
+        <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='icons/Plague Javelin.png' alt='Plague Javelin' width='20' height='20'> Plague Javelin 100.0% (24.0)<br><img src='icons/Valkyrie.png' alt='Valkyrie' width='20' height='20'> Valkyrie 37.5% (22.0)<br><img src='icons/Evade.png' alt='Evade' width='20' height='20'> Evade 100.0% (21.0)<br><img src='icons/Dodge.png' alt='Dodge' width='20' height='20'> Dodge 100.0% (14.0)<br><img src='icons/Avoid.png' alt='Avoid' width='20' height='20'> Avoid 100.0% (13.0)<br><img src='icons/Charged Strike.png' alt='Charged Strike' width='20' height='20'> Charged Strike 37.5% (12.0)</p> -->
+        <div id="skills" class="skills-container">
+            <div class="column">
+                <ul id="most-popular-skills">
+                    <h2>16.00%  of Amazon's Main Skills:<br><img src='icons/Lightning Bolt.png' alt='Lightning Bolt' width='20' height='20'> Lightning Bolt 100.00% (160)<br><img src='icons/Lightning Fury.png' alt='Lightning Fury' width='20' height='20'> Lightning Fury 100.00% (160)<br><img src='icons/Power Strike.png' alt='Power Strike' width='20' height='20'> Power Strike 100.00% (155)<br><img src='icons/Pierce.png' alt='Pierce' width='20' height='20'> Pierce 100.00% (71)<br><img src='icons/Phase Run.png' alt='Phase Run' width='20' height='20'> Phase Run 100.00% (26)</h2>
+                </ul>
+            </div>
+            <div class="column">
+                <ul id="other-skills">
+                    <h2>Other common skills in this group:</h2> <img src='icons/Plague Javelin.png' alt='Plague Javelin' width='20' height='20'> Plague Javelin 100.0% (24.0)<br><img src='icons/Valkyrie.png' alt='Valkyrie' width='20' height='20'> Valkyrie 37.5% (22.0)<br><img src='icons/Evade.png' alt='Evade' width='20' height='20'> Evade 100.0% (21.0)<br><img src='icons/Dodge.png' alt='Dodge' width='20' height='20'> Dodge 100.0% (14.0)<br><img src='icons/Avoid.png' alt='Avoid' width='20' height='20'> Avoid 100.0% (13.0)<br><img src='icons/Charged Strike.png' alt='Charged Strike' width='20' height='20'> Charged Strike 37.5% (12.0)
+                </ul>
+            </div>
+        </div>
+
             <button class="collapsible">
                 <img src="icons/closed.png" alt="Open" class="icon">
                 <img src="icons/open.png" alt="Close" class="icon hidden">
@@ -311,89 +321,215 @@
                     <div><strong>Helmet</strong>: Valkyrie Wing 25.00%, Griffon's Eye 12.50%, Jeweler's Great Helm of Energy 12.50%, Stone Cowl 12.50%, Lore 12.50%, Peasant Crown 12.50%<br><strong>Body</strong>: Peace 25.00%, Smoke 12.50%, Tal Rasha's Guardianship 12.50%, Hustle 12.50%, Shadow Hide 12.50%, Trang-Oul's Scales 12.50%<br><strong>Ring</strong>: Raven Frost 50.00%, Manald Heal 12.50%, Entropy Master 12.50%, Eagle Whorl 12.50%, Death Whorl 12.50%, Cobalt Ring of the Fox 12.50%, Bitter Whorl 12.50%, PlagueRI Band 12.50%, Viper Master 12.50%, Blood Coil 12.50%<br><strong>Gloves</strong>: Glyph Clutches 12.50%, Lancer's Gauntlets of Self-Repair 12.50%, Lancer's Gauntlets of Alacrity 12.50%, Bramble Knuckle 12.50%, Coral Light Gauntlets of Flame 12.50%, Lancer's Light Gauntlets of Readiness 12.50%, Blood Hand 12.50%<br><strong>Boots</strong>: Sander's Riprap 12.50%, Immortal King's Pillar 12.50%, Vidala's Fetlock 12.50%, Storm Tread 12.50%, Ruby Chain Boots 12.50%, Storm Trample 12.50%, Natalya's Soul 12.50%<br><strong>Amulet</strong>: Chromatic Amulet 12.50%, Mara's Kaleidoscope 12.50%, Rune Talisman 12.50%, Stone Wing 12.50%, Amulet of the Bat 12.50%, The Cat's Eye 12.50%<br><strong>Left hand</strong>: Titan's Revenge 62.50%, Edge 12.50%, Harmony 12.50%, Garnet War Staff of Teleportation 12.50%, Artificer's Gnarled Staff of Teleportation 12.50%, Hunter's Bow 12.50%, Deadly Ceremonial Javelin 12.50%, Consecrated Maiden Javelin of Lightning 12.50%, Felloak 12.50%<br><strong>Belt</strong>: Thundergod's Vigor 25.00%, Loath Lock 12.50%, Cobalt Plated Belt of the Fox 12.50%, Demon Fringe 12.50%, Razortail 12.50%<br><strong>Offhand</strong>: Spirit 25.00%, Moser's Blessed Circle 25.00%, Moonfire 12.50%, Ancients' Pledge 12.50%, The Ward 12.50%, Lidless Wall 12.50%</div>
                 </div>
 
-            <button class="collapsible">
-                <img src="icons/closed.png" alt="Open" class="icon">
-                <img src="icons/open.png" alt="Close" class="icon hidden">
-                <strong>8 Characters in this cluster:</strong></button>
-                <div class="content">
-                    
-                    <div class="character-info">
-                        <div class="character-link"><strong>Character Name:</strong> Trolinacion</div>
-                        <div>91</div>
-                        <div><a href="https://pathofdiablo.com/p/armory/?name=Trolinacion">Armory</a></div>
-                    </div>
-                <p><strong>Skills:</strong> Valkyrie:20, Power Strike:20, Lightning Bolt:20, Lightning Fury:20, Dodge:5, Avoid:4, Evade:4, Inner Sight:1, Lethal Strike:1, Phase Run:1, Penetrate:1, Decoy:1, Pierce:1, Jab:1, Poison Javelin:1, Plague Javelin:1</p>
-                <p><strong>Equipment:</strong> </p>
-                <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Naj's Light Plate, Tal Rasha's Horadric Crest, Obedience</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>8 Characters in this cluster:</strong>
+        </button>
+        <div class="content">
             
-                    <div class="character-info">
-                        <div class="character-link"><strong>Character Name:</strong> High-Voltage</div>
-                        <div>89</div>
-                        <div><a href="https://pathofdiablo.com/p/armory/?name=High-Voltage">Armory</a></div>
-                    </div>
-                <p><strong>Skills:</strong> Power Strike:20, Lightning Bolt:20, Lightning Fury:20, Phase Run:19, Pierce:5, Molten Strike:2, Inner Sight:1, Lethal Strike:1, Dodge:1, Avoid:1, Penetrate:1, Evade:1, Jab:1, Poison Javelin:1, Charged Strike:1, Plague Javelin:1, Fend:1, Lightning Strike:1</p>
-                <p><strong>Equipment:</strong> helmet: Valkyrie Wing x1, body: Smoke x1, ring: Manald Heal x1, gloves: Glyph Clutches x1, boots: Sander's Riprap x1, amulet: Chromatic Amulet x1, Left hand: Edge x1, Left hand: Titan's Revenge x1</p>
-                <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Rockstopper, Insight</p>
+            <div class="character-info">
+                <div><strong>Character: Trolinacion</strong></div>
+                <div>Level 91</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Trolinacion">Trolinacion's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Trolinacion">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Valkyrie:20, Power Strike:20, Lightning Bolt:20, Lightning Fury:20, Dodge:5, Avoid:4, Evade:4, Inner Sight:1, Lethal Strike:1, Phase Run:1, Penetrate:1, Decoy:1, Pierce:1, Jab:1, Poison Javelin:1, Plague Javelin:1</p>
+            <p><strong>Equipment:</strong> </p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Naj's Light Plate, Tal Rasha's Horadric Crest, Obedience</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
             
-                    <div class="character-info">
-                        <div class="character-link"><strong>Character Name:</strong> Ka</div>
-                        <div>88</div>
-                        <div><a href="https://pathofdiablo.com/p/armory/?name=Ka">Armory</a></div>
-                    </div>
-                <p><strong>Skills:</strong> Power Strike:20, Lightning Bolt:20, Lightning Fury:20, Plague Javelin:17, Pierce:9, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Decoy:1, Evade:1, Valkyrie:1, Jab:1, Poison Javelin:1</p>
-                <p><strong>Equipment:</strong> boots: Immortal King's Pillar x1, gloves: Lancer's Gauntlets of Self-Repair x1, ring: Raven Frost x1, ring: Entropy Master x1, belt: Thundergod's Vigor x1, body: Tal Rasha's Guardianship x1, helmet: Griffon's Eye x1, amulet: Mara's Kaleidoscope x1, Left hand: Harmony x1, Left hand: Titan's Revenge x1, Offhand: Moonfire x1, Offhand: Spirit x1</p>
-                <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Treachery, Tal Rasha's Horadric Crest, Insight</p>
+            <div class="character-info">
+                <div><strong>Character: High-Voltage</strong></div>
+                <div>Level 89</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=High-Voltage">High-Voltage's Armory</a></div>
+                <div class="hover-trigger" data-character-name="High-Voltage">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Power Strike:20, Lightning Bolt:20, Lightning Fury:20, Phase Run:19, Pierce:5, Molten Strike:2, Inner Sight:1, Lethal Strike:1, Dodge:1, Avoid:1, Penetrate:1, Evade:1, Jab:1, Poison Javelin:1, Charged Strike:1, Plague Javelin:1, Fend:1, Lightning Strike:1</p>
+            <p><strong>Equipment:</strong> helmet: Valkyrie Wing x1, body: Smoke x1, ring: Manald Heal x1, gloves: Glyph Clutches x1, boots: Sander's Riprap x1, amulet: Chromatic Amulet x1, Left hand: Edge x1, Left hand: Titan's Revenge x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Rockstopper, Insight</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
             
-                    <div class="character-info">
-                        <div class="character-link"><strong>Character Name:</strong> ShiftClickDexx</div>
-                        <div>86</div>
-                        <div><a href="https://pathofdiablo.com/p/armory/?name=ShiftClickDexx">Armory</a></div>
-                    </div>
-                <p><strong>Skills:</strong> Power Strike:20, Lightning Bolt:20, Lightning Fury:20, Pierce:13, Evade:7, Dodge:3, Avoid:3, Charged Strike:3, Inner Sight:1, Lethal Strike:1, Phase Run:1, Penetrate:1, Jab:1, Poison Javelin:1, Plague Javelin:1</p>
-                <p><strong>Equipment:</strong> body: Peace x1, ring: Raven Frost x1, ring: Eagle Whorl x1, gloves: Lancer's Gauntlets of Alacrity x1, belt: Thundergod's Vigor x1, helmet: Jeweler's Great Helm of Energy x1, amulet: Rune Talisman x1, Left hand: Garnet War Staff of Teleportation x1, Left hand: Titan's Revenge x1, boots: Vidala's Fetlock x1, Offhand: Spirit x1</p>
-                <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Lionheart, Sazabi's Mental Sheath, Bonehew</p>
+            <div class="character-info">
+                <div><strong>Character: Ka</strong></div>
+                <div>Level 88</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Ka">Ka's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Ka">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Power Strike:20, Lightning Bolt:20, Lightning Fury:20, Plague Javelin:17, Pierce:9, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Decoy:1, Evade:1, Valkyrie:1, Jab:1, Poison Javelin:1</p>
+            <p><strong>Equipment:</strong> boots: Immortal King's Pillar x1, gloves: Lancer's Gauntlets of Self-Repair x1, ring: Raven Frost x1, ring: Entropy Master x1, belt: Thundergod's Vigor x1, body: Tal Rasha's Guardianship x1, helmet: Griffon's Eye x1, amulet: Mara's Kaleidoscope x1, Left hand: Harmony x1, Left hand: Titan's Revenge x1, Offhand: Moonfire x1, Offhand: Spirit x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Treachery, Tal Rasha's Horadric Crest, Insight</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
             
-                    <div class="character-info">
-                        <div class="character-link"><strong>Character Name:</strong> Ama_JohnCena</div>
-                        <div>84</div>
-                        <div><a href="https://pathofdiablo.com/p/armory/?name=Ama_JohnCena">Armory</a></div>
-                    </div>
-                <p><strong>Skills:</strong> Pierce:20, Power Strike:20, Lightning Bolt:20, Lightning Fury:20, Evade:5, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Jab:1, Poison Javelin:1, Plague Javelin:1</p>
-                <p><strong>Equipment:</strong> ring: Raven Frost x1, ring: Death Whorl x1, amulet: Stone Wing x1, body: Hustle x1, helmet: Valkyrie Wing x1, boots: Storm Tread x1, gloves: Bramble Knuckle x1, Left hand: Artificer's Gnarled Staff of Teleportation x1, Left hand: Titan's Revenge x1, belt: Loath Lock x1, Offhand: Moser's Blessed Circle x1</p>
-                <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Undead Crown, Toothrow, Insight</p>
+            <div class="character-info">
+                <div><strong>Character: ShiftClickDexx</strong></div>
+                <div>Level 86</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=ShiftClickDexx">ShiftClickDexx's Armory</a></div>
+                <div class="hover-trigger" data-character-name="ShiftClickDexx">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Power Strike:20, Lightning Bolt:20, Lightning Fury:20, Pierce:13, Evade:7, Dodge:3, Avoid:3, Charged Strike:3, Inner Sight:1, Lethal Strike:1, Phase Run:1, Penetrate:1, Jab:1, Poison Javelin:1, Plague Javelin:1</p>
+            <p><strong>Equipment:</strong> body: Peace x1, ring: Raven Frost x1, ring: Eagle Whorl x1, gloves: Lancer's Gauntlets of Alacrity x1, belt: Thundergod's Vigor x1, helmet: Jeweler's Great Helm of Energy x1, amulet: Rune Talisman x1, Left hand: Garnet War Staff of Teleportation x1, Left hand: Titan's Revenge x1, boots: Vidala's Fetlock x1, Offhand: Spirit x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Lionheart, Sazabi's Mental Sheath, Bonehew</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
             
-                    <div class="character-info">
-                        <div class="character-link"><strong>Character Name:</strong> XaH</div>
-                        <div>77</div>
-                        <div><a href="https://pathofdiablo.com/p/armory/?name=XaH">Armory</a></div>
-                    </div>
-                <p><strong>Skills:</strong> Power Strike:20, Lightning Bolt:20, Lightning Fury:20, Pierce:12, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Decoy:1, Evade:1, Valkyrie:1, Jab:1, Poison Javelin:1, Plague Javelin:1</p>
-                <p><strong>Equipment:</strong> ring: Cobalt Ring of the Fox x1, ring: Bitter Whorl x1, amulet: Amulet of the Bat x1, helmet: Stone Cowl x1, boots: Ruby Chain Boots x1, body: Shadow Hide x1, belt: Cobalt Plated Belt of the Fox x1, gloves: Coral Light Gauntlets of Flame x1, Left hand: Hunter's Bow x1, Left hand: Deadly Ceremonial Javelin x1, Offhand: Ancients' Pledge x1</p>
-                <p><strong>Mercenary:</strong> Act 1 Rogue Scout - No equipment</p>
+            <div class="character-info">
+                <div><strong>Character: Ama_JohnCena</strong></div>
+                <div>Level 84</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Ama_JohnCena">Ama_JohnCena's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Ama_JohnCena">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Pierce:20, Power Strike:20, Lightning Bolt:20, Lightning Fury:20, Evade:5, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Jab:1, Poison Javelin:1, Plague Javelin:1</p>
+            <p><strong>Equipment:</strong> ring: Raven Frost x1, ring: Death Whorl x1, amulet: Stone Wing x1, body: Hustle x1, helmet: Valkyrie Wing x1, boots: Storm Tread x1, gloves: Bramble Knuckle x1, Left hand: Artificer's Gnarled Staff of Teleportation x1, Left hand: Titan's Revenge x1, belt: Loath Lock x1, Offhand: Moser's Blessed Circle x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Undead Crown, Toothrow, Insight</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
             
-                    <div class="character-info">
-                        <div class="character-link"><strong>Character Name:</strong> OrbitalCum</div>
-                        <div>71</div>
-                        <div><a href="https://pathofdiablo.com/p/armory/?name=OrbitalCum">Armory</a></div>
-                    </div>
-                <p><strong>Skills:</strong> Power Strike:20, Lightning Bolt:20, Lightning Fury:20, Charged Strike:8, Pierce:3, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Evade:1, Jab:1, Poison Javelin:1, Plague Javelin:1</p>
-                <p><strong>Equipment:</strong> ring: PlagueRI Band x1, ring: Viper Master x1, body: Peace x1, boots: Storm Trample x1, belt: Demon Fringe x1, helmet: Lore x1, gloves: Lancer's Light Gauntlets of Readiness x1, Left hand: Consecrated Maiden Javelin of Lightning x1, Left hand: Felloak x1, Offhand: Moser's Blessed Circle x1</p>
-                <p><strong>Mercenary:</strong> Act 1 Rogue Scout - No equipment</p>
+            <div class="character-info">
+                <div><strong>Character: XaH</strong></div>
+                <div>Level 77</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=XaH">XaH's Armory</a></div>
+                <div class="hover-trigger" data-character-name="XaH">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Power Strike:20, Lightning Bolt:20, Lightning Fury:20, Pierce:12, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Decoy:1, Evade:1, Valkyrie:1, Jab:1, Poison Javelin:1, Plague Javelin:1</p>
+            <p><strong>Equipment:</strong> ring: Cobalt Ring of the Fox x1, ring: Bitter Whorl x1, amulet: Amulet of the Bat x1, helmet: Stone Cowl x1, boots: Ruby Chain Boots x1, body: Shadow Hide x1, belt: Cobalt Plated Belt of the Fox x1, gloves: Coral Light Gauntlets of Flame x1, Left hand: Hunter's Bow x1, Left hand: Deadly Ceremonial Javelin x1, Offhand: Ancients' Pledge x1</p>
+            <p><strong>Mercenary:</strong> Act 1 Rogue Scout - No equipment</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
             
-                    <div class="character-info">
-                        <div class="character-link"><strong>Character Name:</strong> ZonHo</div>
-                        <div>67</div>
-                        <div><a href="https://pathofdiablo.com/p/armory/?name=ZonHo">Armory</a></div>
-                    </div>
-                <p><strong>Skills:</strong> Lightning Bolt:20, Lightning Fury:20, Power Strike:15, Pierce:8, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Evade:1, Jab:1, Poison Javelin:1, Plague Javelin:1</p>
-                <p><strong>Equipment:</strong> helmet: Peasant Crown x1, belt: Razortail x1, ring: Blood Coil x1, ring: Raven Frost x1, Offhand: The Ward x1, Offhand: Lidless Wall x1, gloves: Blood Hand x1, amulet: The Cat's Eye x1, boots: Natalya's Soul x1, body: Trang-Oul's Scales x1, Left hand: Titan's Revenge x1</p>
-                <p><strong>Mercenary:</strong> Act 3 Eastern Sorceror - Milabrega's Diadem</p>
+            <div class="character-info">
+                <div><strong>Character: OrbitalCum</strong></div>
+                <div>Level 71</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=OrbitalCum">OrbitalCum's Armory</a></div>
+                <div class="hover-trigger" data-character-name="OrbitalCum">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Power Strike:20, Lightning Bolt:20, Lightning Fury:20, Charged Strike:8, Pierce:3, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Evade:1, Jab:1, Poison Javelin:1, Plague Javelin:1</p>
+            <p><strong>Equipment:</strong> ring: PlagueRI Band x1, ring: Viper Master x1, body: Peace x1, boots: Storm Trample x1, belt: Demon Fringe x1, helmet: Lore x1, gloves: Lancer's Light Gauntlets of Readiness x1, Left hand: Consecrated Maiden Javelin of Lightning x1, Left hand: Felloak x1, Offhand: Moser's Blessed Circle x1</p>
+            <p><strong>Mercenary:</strong> Act 1 Rogue Scout - No equipment</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Character: ZonHo</strong></div>
+                <div>Level 67</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=ZonHo">ZonHo's Armory</a></div>
+                <div class="hover-trigger" data-character-name="ZonHo">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Lightning Bolt:20, Lightning Fury:20, Power Strike:15, Pierce:8, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Evade:1, Jab:1, Poison Javelin:1, Plague Javelin:1</p>
+            <p><strong>Equipment:</strong> helmet: Peasant Crown x1, belt: Razortail x1, ring: Blood Coil x1, ring: Raven Frost x1, Offhand: The Ward x1, Offhand: Lidless Wall x1, gloves: Blood Hand x1, amulet: The Cat's Eye x1, boots: Natalya's Soul x1, body: Trang-Oul's Scales x1, Left hand: Titan's Revenge x1</p>
+            <p><strong>Mercenary:</strong> Act 3 Eastern Sorceror - Milabrega's Diadem</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
             
             </div>
             <hr>
             
-            <h2>14.00%  of Amazon's Main Skills:<br><img src='icons/Multiple Shot.png' alt='Multiple Shot' width='20' height='20'> Multiple Shot 100.00% (140)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 100.00% (136)<br><img src='icons/Penetrate.png' alt='Penetrate' width='20' height='20'> Penetrate 100.00% (119)<br><img src='icons/Pierce.png' alt='Pierce' width='20' height='20'> Pierce 100.00% (97)<br><img src='icons/Phase Run.png' alt='Phase Run' width='20' height='20'> Phase Run 85.71% (52)</h2>
-            <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='icons/Magic Arrow.png' alt='Magic Arrow' width='20' height='20'> Magic Arrow 100.0% (30.0)<br><img src='icons/Immolation Arrow.png' alt='Immolation Arrow' width='20' height='20'> Immolation Arrow 14.29% (20.0)<br><img src='icons/Dodge.png' alt='Dodge' width='20' height='20'> Dodge 100.0% (18.0)<br><img src='icons/Avoid.png' alt='Avoid' width='20' height='20'> Avoid 100.0% (17.0)<br><img src='icons/Evade.png' alt='Evade' width='20' height='20'> Evade 100.0% (15.0)<br><img src='icons/Guided Arrow.png' alt='Guided Arrow' width='20' height='20'> Guided Arrow 28.57% (6.0)</p>
+        <!--<h2>14.00%  of Amazon's Main Skills:<br><img src='icons/Multiple Shot.png' alt='Multiple Shot' width='20' height='20'> Multiple Shot 100.00% (140)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 100.00% (136)<br><img src='icons/Penetrate.png' alt='Penetrate' width='20' height='20'> Penetrate 100.00% (119)<br><img src='icons/Pierce.png' alt='Pierce' width='20' height='20'> Pierce 100.00% (97)<br><img src='icons/Phase Run.png' alt='Phase Run' width='20' height='20'> Phase Run 85.71% (52)</h2>
+        <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='icons/Magic Arrow.png' alt='Magic Arrow' width='20' height='20'> Magic Arrow 100.0% (30.0)<br><img src='icons/Immolation Arrow.png' alt='Immolation Arrow' width='20' height='20'> Immolation Arrow 14.29% (20.0)<br><img src='icons/Dodge.png' alt='Dodge' width='20' height='20'> Dodge 100.0% (18.0)<br><img src='icons/Avoid.png' alt='Avoid' width='20' height='20'> Avoid 100.0% (17.0)<br><img src='icons/Evade.png' alt='Evade' width='20' height='20'> Evade 100.0% (15.0)<br><img src='icons/Guided Arrow.png' alt='Guided Arrow' width='20' height='20'> Guided Arrow 28.57% (6.0)</p> -->
+        <div id="skills" class="skills-container">
+            <div class="column">
+                <ul id="most-popular-skills">
+                    <h2>14.00%  of Amazon's Main Skills:<br><img src='icons/Multiple Shot.png' alt='Multiple Shot' width='20' height='20'> Multiple Shot 100.00% (140)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 100.00% (136)<br><img src='icons/Penetrate.png' alt='Penetrate' width='20' height='20'> Penetrate 100.00% (119)<br><img src='icons/Pierce.png' alt='Pierce' width='20' height='20'> Pierce 100.00% (97)<br><img src='icons/Phase Run.png' alt='Phase Run' width='20' height='20'> Phase Run 85.71% (52)</h2>
+                </ul>
+            </div>
+            <div class="column">
+                <ul id="other-skills">
+                    <h2>Other common skills in this group:</h2> <img src='icons/Magic Arrow.png' alt='Magic Arrow' width='20' height='20'> Magic Arrow 100.0% (30.0)<br><img src='icons/Immolation Arrow.png' alt='Immolation Arrow' width='20' height='20'> Immolation Arrow 14.29% (20.0)<br><img src='icons/Dodge.png' alt='Dodge' width='20' height='20'> Dodge 100.0% (18.0)<br><img src='icons/Avoid.png' alt='Avoid' width='20' height='20'> Avoid 100.0% (17.0)<br><img src='icons/Evade.png' alt='Evade' width='20' height='20'> Evade 100.0% (15.0)<br><img src='icons/Guided Arrow.png' alt='Guided Arrow' width='20' height='20'> Guided Arrow 28.57% (6.0)
+                </ul>
+            </div>
+        </div>
+
             <button class="collapsible">
                 <img src="icons/closed.png" alt="Open" class="icon">
                 <img src="icons/open.png" alt="Close" class="icon hidden">
@@ -418,80 +554,192 @@
                     <div><strong>Body</strong>: Fortitude 42.86%, Smoke 14.29%<br><strong>Boots</strong>: Gore Rider 28.57%, War Traveler 28.57%<br><strong>Gloves</strong>: Laying of Hands 57.14%<br><strong>Ring</strong>: Raven Frost 42.86%, Wisp Projector 28.57%, Wraithra Band 14.29%, Corruption Knot 14.29%, Bitter Grip 14.29%<br><strong>Helmet</strong>: Andariel's Visage 14.29%, Vampire Gaze 14.29%, Kira's Guardian 14.29%, Tal Rasha's Horadric Crest 14.29%<br><strong>Amulet</strong>: The Cat's Eye 28.57%, Atma's Scarab 14.29%, Highlord's Wrath 14.29%<br><strong>Belt</strong>: Razortail 28.57%, Verdungo's Hearty Cord 14.29%, Nosferatu's Coil 14.29%<br><strong>Left hand</strong>: Faith 57.14%, Call to Arms 28.57%, Emerald Gnarled Staff of Teleportation 14.29%, Snowflake Battle Staff of Teleportation 14.29%<br><strong>Offhand</strong>: Lidless Wall 28.57%, Beast Eye 28.57%, Grim Eye 14.29%, Eagle Eye 14.29%</div>
                 </div>
 
-            <button class="collapsible">
-                <img src="icons/closed.png" alt="Open" class="icon">
-                <img src="icons/open.png" alt="Close" class="icon hidden">
-                <strong>7 Characters in this cluster:</strong></button>
-                <div class="content">
-                    
-                    <div class="character-info">
-                        <div class="character-link"><strong>Character Name:</strong> LastWAY</div>
-                        <div>94</div>
-                        <div><a href="https://pathofdiablo.com/p/armory/?name=LastWAY">Armory</a></div>
-                    </div>
-                <p><strong>Skills:</strong> Multiple Shot:20, Lethal Strike:20, Phase Run:20, Pierce:20, Penetrate:18, Magic Arrow:1, Inner Sight:1, Dodge:1, Avoid:1, Decoy:1, Evade:1, Valkyrie:1</p>
-                <p><strong>Equipment:</strong> body: Fortitude x1, boots: Gore Rider x1, gloves: Laying of Hands x1, ring: Wisp Projector x1, ring: Raven Frost x1, helmet: Andariel's Visage x1, amulet: Atma's Scarab x1, belt: Razortail x1, Left hand: Call to Arms x1, Left hand: Faith x1, Offhand: Lidless Wall x1, Offhand: Grim Eye x1</p>
-                <p><strong>Mercenary:</strong> Act 5 Barbarian - Treachery, Steel Shade, Silence</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>7 Characters in this cluster:</strong>
+        </button>
+        <div class="content">
             
-                    <div class="character-info">
-                        <div class="character-link"><strong>Character Name:</strong> Fleche</div>
-                        <div>94</div>
-                        <div><a href="https://pathofdiablo.com/p/armory/?name=Fleche">Armory</a></div>
-                    </div>
-                <p><strong>Skills:</strong> Multiple Shot:20, Lethal Strike:20, Penetrate:20, Pierce:20, Phase Run:14, Guided Arrow:5, Magic Arrow:1, Cold Arrow:1, Inner Sight:1, Dodge:1, Avoid:1, Evade:1</p>
-                <p><strong>Equipment:</strong> ring: Raven Frost x1, ring: Wisp Projector x1, belt: Verdungo's Hearty Cord x1, boots: War Traveler x1, gloves: Laying of Hands x1, helmet: Vampire Gaze x1, body: Fortitude x1, amulet: The Cat's Eye x1, Left hand: Call to Arms x1, Left hand: Faith x1, Offhand: Lidless Wall x1, Offhand: Beast Eye x1</p>
-                <p><strong>Mercenary:</strong> Act 5 Barbarian - Treachery, Steel Shade, Silence</p>
+            <div class="character-info">
+                <div><strong>Character: LastWAY</strong></div>
+                <div>Level 94</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=LastWAY">LastWAY's Armory</a></div>
+                <div class="hover-trigger" data-character-name="LastWAY">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Multiple Shot:20, Lethal Strike:20, Phase Run:20, Pierce:20, Penetrate:18, Magic Arrow:1, Inner Sight:1, Dodge:1, Avoid:1, Decoy:1, Evade:1, Valkyrie:1</p>
+            <p><strong>Equipment:</strong> body: Fortitude x1, boots: Gore Rider x1, gloves: Laying of Hands x1, ring: Wisp Projector x1, ring: Raven Frost x1, helmet: Andariel's Visage x1, amulet: Atma's Scarab x1, belt: Razortail x1, Left hand: Call to Arms x1, Left hand: Faith x1, Offhand: Lidless Wall x1, Offhand: Grim Eye x1</p>
+            <p><strong>Mercenary:</strong> Act 5 Barbarian - Treachery, Steel Shade, Silence</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
             
-                    <div class="character-info">
-                        <div class="character-link"><strong>Character Name:</strong> Bowasonen</div>
-                        <div>90</div>
-                        <div><a href="https://pathofdiablo.com/p/armory/?name=Bowasonen">Armory</a></div>
-                    </div>
-                <p><strong>Skills:</strong> Multiple Shot:20, Immolation Arrow:20, Penetrate:20, Lethal Strike:16, Pierce:9, Magic Arrow:5, Phase Run:4, Fire Arrow:1, Exploding Arrow:1, Inner Sight:1, Dodge:1, Avoid:1, Evade:1</p>
-                <p><strong>Equipment:</strong> </p>
-                <p><strong>Mercenary:</strong> Act 5 Barbarian - Tal Rasha's Horadric Crest, Treachery, Crainte Vomir</p>
+            <div class="character-info">
+                <div><strong>Character: Fleche</strong></div>
+                <div>Level 94</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Fleche">Fleche's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Fleche">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Multiple Shot:20, Lethal Strike:20, Penetrate:20, Pierce:20, Phase Run:14, Guided Arrow:5, Magic Arrow:1, Cold Arrow:1, Inner Sight:1, Dodge:1, Avoid:1, Evade:1</p>
+            <p><strong>Equipment:</strong> ring: Raven Frost x1, ring: Wisp Projector x1, belt: Verdungo's Hearty Cord x1, boots: War Traveler x1, gloves: Laying of Hands x1, helmet: Vampire Gaze x1, body: Fortitude x1, amulet: The Cat's Eye x1, Left hand: Call to Arms x1, Left hand: Faith x1, Offhand: Lidless Wall x1, Offhand: Beast Eye x1</p>
+            <p><strong>Mercenary:</strong> Act 5 Barbarian - Treachery, Steel Shade, Silence</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
             
-                    <div class="character-info">
-                        <div class="character-link"><strong>Character Name:</strong> PodBack</div>
-                        <div>88</div>
-                        <div><a href="https://pathofdiablo.com/p/armory/?name=PodBack">Armory</a></div>
-                    </div>
-                <p><strong>Skills:</strong> Multiple Shot:20, Lethal Strike:20, Pierce:20, Penetrate:11, Dodge:8, Avoid:8, Evade:6, Phase Run:2, Magic Arrow:1, Inner Sight:1, Decoy:1, Valkyrie:1</p>
-                <p><strong>Equipment:</strong> </p>
-                <p><strong>Mercenary:</strong> Act 1 Rogue Scout - Hearth, Hustle, Insight</p>
+            <div class="character-info">
+                <div><strong>Character: Bowasonen</strong></div>
+                <div>Level 90</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Bowasonen">Bowasonen's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Bowasonen">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Multiple Shot:20, Immolation Arrow:20, Penetrate:20, Lethal Strike:16, Pierce:9, Magic Arrow:5, Phase Run:4, Fire Arrow:1, Exploding Arrow:1, Inner Sight:1, Dodge:1, Avoid:1, Evade:1</p>
+            <p><strong>Equipment:</strong> </p>
+            <p><strong>Mercenary:</strong> Act 5 Barbarian - Tal Rasha's Horadric Crest, Treachery, Crainte Vomir</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
             
-                    <div class="character-info">
-                        <div class="character-link"><strong>Character Name:</strong> eG-Altyshka</div>
-                        <div>85</div>
-                        <div><a href="https://pathofdiablo.com/p/armory/?name=eG-Altyshka">Armory</a></div>
-                    </div>
-                <p><strong>Skills:</strong> Magic Arrow:20, Multiple Shot:20, Lethal Strike:20, Penetrate:11, Pierce:10, Dodge:5, Avoid:4, Evade:4</p>
-                <p><strong>Equipment:</strong> belt: Nosferatu's Coil x1, gloves: Laying of Hands x1, boots: War Traveler x1, ring: Wraithra Band x1, ring: Corruption Knot x1, amulet: Highlord's Wrath x1, helmet: Kira's Guardian x1, body: Fortitude x1, Left hand: Emerald Gnarled Staff of Teleportation x1, Left hand: Faith x1, Offhand: Eagle Eye x1</p>
-                <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Treachery, Guillaume's Face, The Reaper's Toll</p>
+            <div class="character-info">
+                <div><strong>Character: PodBack</strong></div>
+                <div>Level 88</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=PodBack">PodBack's Armory</a></div>
+                <div class="hover-trigger" data-character-name="PodBack">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Multiple Shot:20, Lethal Strike:20, Pierce:20, Penetrate:11, Dodge:8, Avoid:8, Evade:6, Phase Run:2, Magic Arrow:1, Inner Sight:1, Decoy:1, Valkyrie:1</p>
+            <p><strong>Equipment:</strong> </p>
+            <p><strong>Mercenary:</strong> Act 1 Rogue Scout - Hearth, Hustle, Insight</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
             
-                    <div class="character-info">
-                        <div class="character-link"><strong>Character Name:</strong> Amirul_GoAgain</div>
-                        <div>80</div>
-                        <div><a href="https://pathofdiablo.com/p/armory/?name=Amirul_GoAgain">Armory</a></div>
-                    </div>
-                <p><strong>Skills:</strong> Multiple Shot:20, Lethal Strike:20, Penetrate:20, Phase Run:12, Pierce:8, Magic Arrow:1, Inner Sight:1, Dodge:1, Avoid:1, Decoy:1, Evade:1, Valkyrie:1</p>
-                <p><strong>Equipment:</strong> amulet: The Cat's Eye x1, belt: Razortail x1, helmet: Tal Rasha's Horadric Crest x1, gloves: Laying of Hands x1, body: Smoke x1, boots: Gore Rider x1, Left hand: Snowflake Battle Staff of Teleportation x1, Left hand: Faith x1, ring: Raven Frost x1, ring: Bitter Grip x1, Offhand: Beast Eye x1</p>
-                <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Toothrow, Tal Rasha's Horadric Crest, Insight</p>
+            <div class="character-info">
+                <div><strong>Character: eG-Altyshka</strong></div>
+                <div>Level 85</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=eG-Altyshka">eG-Altyshka's Armory</a></div>
+                <div class="hover-trigger" data-character-name="eG-Altyshka">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Magic Arrow:20, Multiple Shot:20, Lethal Strike:20, Penetrate:11, Pierce:10, Dodge:5, Avoid:4, Evade:4</p>
+            <p><strong>Equipment:</strong> belt: Nosferatu's Coil x1, gloves: Laying of Hands x1, boots: War Traveler x1, ring: Wraithra Band x1, ring: Corruption Knot x1, amulet: Highlord's Wrath x1, helmet: Kira's Guardian x1, body: Fortitude x1, Left hand: Emerald Gnarled Staff of Teleportation x1, Left hand: Faith x1, Offhand: Eagle Eye x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Treachery, Guillaume's Face, The Reaper's Toll</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
             
-                    <div class="character-info">
-                        <div class="character-link"><strong>Character Name:</strong> Amirul</div>
-                        <div>77</div>
-                        <div><a href="https://pathofdiablo.com/p/armory/?name=Amirul">Armory</a></div>
-                    </div>
-                <p><strong>Skills:</strong> Multiple Shot:20, Lethal Strike:20, Penetrate:20, Pierce:10, Magic Arrow:1, Cold Arrow:1, Guided Arrow:1, Inner Sight:1, Dodge:1, Phase Run:1, Avoid:1, Decoy:1, Evade:1, Valkyrie:1</p>
-                <p><strong>Equipment:</strong> </p>
-                <p><strong>Mercenary:</strong> Act 5 Barbarian - Guillaume's Face, Rockfleece, Lawbringer</p>
+            <div class="character-info">
+                <div><strong>Character: Amirul_GoAgain</strong></div>
+                <div>Level 80</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Amirul_GoAgain">Amirul_GoAgain's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Amirul_GoAgain">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Multiple Shot:20, Lethal Strike:20, Penetrate:20, Phase Run:12, Pierce:8, Magic Arrow:1, Inner Sight:1, Dodge:1, Avoid:1, Decoy:1, Evade:1, Valkyrie:1</p>
+            <p><strong>Equipment:</strong> amulet: The Cat's Eye x1, belt: Razortail x1, helmet: Tal Rasha's Horadric Crest x1, gloves: Laying of Hands x1, body: Smoke x1, boots: Gore Rider x1, Left hand: Snowflake Battle Staff of Teleportation x1, Left hand: Faith x1, ring: Raven Frost x1, ring: Bitter Grip x1, Offhand: Beast Eye x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Toothrow, Tal Rasha's Horadric Crest, Insight</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Character: Amirul</strong></div>
+                <div>Level 77</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Amirul">Amirul's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Amirul">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Multiple Shot:20, Lethal Strike:20, Penetrate:20, Pierce:10, Magic Arrow:1, Cold Arrow:1, Guided Arrow:1, Inner Sight:1, Dodge:1, Phase Run:1, Avoid:1, Decoy:1, Evade:1, Valkyrie:1</p>
+            <p><strong>Equipment:</strong> </p>
+            <p><strong>Mercenary:</strong> Act 5 Barbarian - Guillaume's Face, Rockfleece, Lawbringer</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
             
             </div>
             <hr>
             
-            <h2>10.00%  of Amazon's Main Skills:<br><img src='icons/Multiple Shot.png' alt='Multiple Shot' width='20' height='20'> Multiple Shot 100.00% (100)<br><img src='icons/Immolation Arrow.png' alt='Immolation Arrow' width='20' height='20'> Immolation Arrow 100.00% (100)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 100.00% (79)<br><img src='icons/Fire Arrow.png' alt='Fire Arrow' width='20' height='20'> Fire Arrow 100.00% (61)<br><img src='icons/Pierce.png' alt='Pierce' width='20' height='20'> Pierce 100.00% (51)</h2>
-            <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='icons/Penetrate.png' alt='Penetrate' width='20' height='20'> Penetrate 100.0% (24.0)<br><img src='icons/Strafe.png' alt='Strafe' width='20' height='20'> Strafe 20.0% (20.0)<br><img src='icons/Exploding Arrow.png' alt='Exploding Arrow' width='20' height='20'> Exploding Arrow 100.0% (10.0)<br><img src='icons/Magic Arrow.png' alt='Magic Arrow' width='20' height='20'> Magic Arrow 100.0% (5.0)<br><img src='icons/Inner Sight.png' alt='Inner Sight' width='20' height='20'> Inner Sight 100.0% (5.0)<br><img src='icons/Dodge.png' alt='Dodge' width='20' height='20'> Dodge 100.0% (5.0)</p>
+        <!--<h2>10.00%  of Amazon's Main Skills:<br><img src='icons/Multiple Shot.png' alt='Multiple Shot' width='20' height='20'> Multiple Shot 100.00% (100)<br><img src='icons/Immolation Arrow.png' alt='Immolation Arrow' width='20' height='20'> Immolation Arrow 100.00% (100)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 100.00% (79)<br><img src='icons/Fire Arrow.png' alt='Fire Arrow' width='20' height='20'> Fire Arrow 100.00% (61)<br><img src='icons/Pierce.png' alt='Pierce' width='20' height='20'> Pierce 100.00% (51)</h2>
+        <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='icons/Penetrate.png' alt='Penetrate' width='20' height='20'> Penetrate 100.0% (24.0)<br><img src='icons/Strafe.png' alt='Strafe' width='20' height='20'> Strafe 20.0% (20.0)<br><img src='icons/Exploding Arrow.png' alt='Exploding Arrow' width='20' height='20'> Exploding Arrow 100.0% (10.0)<br><img src='icons/Magic Arrow.png' alt='Magic Arrow' width='20' height='20'> Magic Arrow 100.0% (5.0)<br><img src='icons/Inner Sight.png' alt='Inner Sight' width='20' height='20'> Inner Sight 100.0% (5.0)<br><img src='icons/Dodge.png' alt='Dodge' width='20' height='20'> Dodge 100.0% (5.0)</p> -->
+        <div id="skills" class="skills-container">
+            <div class="column">
+                <ul id="most-popular-skills">
+                    <h2>10.00%  of Amazon's Main Skills:<br><img src='icons/Multiple Shot.png' alt='Multiple Shot' width='20' height='20'> Multiple Shot 100.00% (100)<br><img src='icons/Immolation Arrow.png' alt='Immolation Arrow' width='20' height='20'> Immolation Arrow 100.00% (100)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 100.00% (79)<br><img src='icons/Fire Arrow.png' alt='Fire Arrow' width='20' height='20'> Fire Arrow 100.00% (61)<br><img src='icons/Pierce.png' alt='Pierce' width='20' height='20'> Pierce 100.00% (51)</h2>
+                </ul>
+            </div>
+            <div class="column">
+                <ul id="other-skills">
+                    <h2>Other common skills in this group:</h2> <img src='icons/Penetrate.png' alt='Penetrate' width='20' height='20'> Penetrate 100.0% (24.0)<br><img src='icons/Strafe.png' alt='Strafe' width='20' height='20'> Strafe 20.0% (20.0)<br><img src='icons/Exploding Arrow.png' alt='Exploding Arrow' width='20' height='20'> Exploding Arrow 100.0% (10.0)<br><img src='icons/Magic Arrow.png' alt='Magic Arrow' width='20' height='20'> Magic Arrow 100.0% (5.0)<br><img src='icons/Inner Sight.png' alt='Inner Sight' width='20' height='20'> Inner Sight 100.0% (5.0)<br><img src='icons/Dodge.png' alt='Dodge' width='20' height='20'> Dodge 100.0% (5.0)
+                </ul>
+            </div>
+        </div>
+
             <button class="collapsible">
                 <img src="icons/closed.png" alt="Open" class="icon">
                 <img src="icons/open.png" alt="Close" class="icon hidden">
@@ -516,62 +764,146 @@
                     <div><strong>Belt</strong>: M'avina's Tenet 20.00%, String of Ears 20.00%, Nosferatu's Coil 20.00%, Verdungo's Hearty Cord 20.00%<br><strong>Ring</strong>: Raven Frost 40.00%, Wisp Projector 20.00%, Doom Turn 20.00%, Dwarf Star 20.00%, Death Touch 20.00%, Manald Heal 20.00%, Chaos Gyre 20.00%<br><strong>Helmet</strong>: Andariel's Visage 40.00%, Tal Rasha's Horadric Crest 40.00%<br><strong>Amulet</strong>: The Cat's Eye 20.00%, Highlord's Wrath 20.00%, Bitter Gorget 20.00%, Atma's Scarab 20.00%<br><strong>Boots</strong>: War Traveler 40.00%, Gore Rider 20.00%<br><strong>Gloves</strong>: Laying of Hands 80.00%<br><strong>Body</strong>: Fortitude 40.00%, Smoke 20.00%<br><strong>Left hand</strong>: Harmony 60.00%, Faith 40.00%, Windforce 20.00%, Grim Wand of Lower Resistance 20.00%<br><strong>Offhand</strong>: Storm Eye 40.00%, Death Eye 20.00%, Viper Eye 20.00%, Ancients' Pledge 20.00%, Shadow Eye 20.00%</div>
                 </div>
 
-            <button class="collapsible">
-                <img src="icons/closed.png" alt="Open" class="icon">
-                <img src="icons/open.png" alt="Close" class="icon hidden">
-                <strong>5 Characters in this cluster:</strong></button>
-                <div class="content">
-                    
-                    <div class="character-info">
-                        <div class="character-link"><strong>Character Name:</strong> BambukasHC</div>
-                        <div>94</div>
-                        <div><a href="https://pathofdiablo.com/p/armory/?name=BambukasHC">Armory</a></div>
-                    </div>
-                <p><strong>Skills:</strong> Fire Arrow:20, Multiple Shot:20, Immolation Arrow:20, Lethal Strike:20, Pierce:10, Exploding Arrow:5, Magic Arrow:1, Inner Sight:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Decoy:1, Evade:1, Valkyrie:1</p>
-                <p><strong>Equipment:</strong> belt: M'avina's Tenet x1, ring: Wisp Projector x1, ring: Raven Frost x1, helmet: Andariel's Visage x1, amulet: The Cat's Eye x1, boots: War Traveler x1, gloves: Laying of Hands x1, body: Fortitude x1, Left hand: Harmony x1, Left hand: Faith x1, Offhand: Storm Eye x1</p>
-                <p><strong>Mercenary:</strong> Act 5 Barbarian - Shaftstop, Tal Rasha's Horadric Crest, Silence</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>5 Characters in this cluster:</strong>
+        </button>
+        <div class="content">
             
-                    <div class="character-info">
-                        <div class="character-link"><strong>Character Name:</strong> VaIkyrie</div>
-                        <div>93</div>
-                        <div><a href="https://pathofdiablo.com/p/armory/?name=VaIkyrie">Armory</a></div>
-                    </div>
-                <p><strong>Skills:</strong> Multiple Shot:20, Immolation Arrow:20, Penetrate:20, Fire Arrow:14, Lethal Strike:12, Pierce:9, Magic Arrow:1, Exploding Arrow:1, Inner Sight:1, Dodge:1, Phase Run:1, Avoid:1, Decoy:1, Evade:1, Valkyrie:1</p>
-                <p><strong>Equipment:</strong> amulet: Highlord's Wrath x1, ring: Raven Frost x1, ring: Doom Turn x1, gloves: Laying of Hands x1, belt: String of Ears x1, body: Fortitude x1, boots: War Traveler x1, helmet: Andariel's Visage x1, Left hand: Harmony x1, Left hand: Windforce x1, Offhand: Death Eye x1, Offhand: Viper Eye x1</p>
-                <p><strong>Mercenary:</strong> Act 5 Barbarian - Steel Shade, The Gladiator's Bane, Silence</p>
+            <div class="character-info">
+                <div><strong>Character: BambukasHC</strong></div>
+                <div>Level 94</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=BambukasHC">BambukasHC's Armory</a></div>
+                <div class="hover-trigger" data-character-name="BambukasHC">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Fire Arrow:20, Multiple Shot:20, Immolation Arrow:20, Lethal Strike:20, Pierce:10, Exploding Arrow:5, Magic Arrow:1, Inner Sight:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Decoy:1, Evade:1, Valkyrie:1</p>
+            <p><strong>Equipment:</strong> belt: M'avina's Tenet x1, ring: Wisp Projector x1, ring: Raven Frost x1, helmet: Andariel's Visage x1, amulet: The Cat's Eye x1, boots: War Traveler x1, gloves: Laying of Hands x1, body: Fortitude x1, Left hand: Harmony x1, Left hand: Faith x1, Offhand: Storm Eye x1</p>
+            <p><strong>Mercenary:</strong> Act 5 Barbarian - Shaftstop, Tal Rasha's Horadric Crest, Silence</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
             
-                    <div class="character-info">
-                        <div class="character-link"><strong>Character Name:</strong> SSF_Amazon</div>
-                        <div>85</div>
-                        <div><a href="https://pathofdiablo.com/p/armory/?name=SSF_Amazon">Armory</a></div>
-                    </div>
-                <p><strong>Skills:</strong> Multiple Shot:20, Immolation Arrow:20, Lethal Strike:20, Pierce:20, Fire Arrow:6, Magic Arrow:1, Exploding Arrow:1, Inner Sight:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Decoy:1, Evade:1, Valkyrie:1</p>
-                <p><strong>Equipment:</strong> ring: Dwarf Star x1, ring: Death Touch x1, amulet: Bitter Gorget x1, helmet: Tal Rasha's Horadric Crest x1, belt: Nosferatu's Coil x1, Left hand: Grim Wand of Lower Resistance x1, Left hand: Faith x1, Offhand: Ancients' Pledge x1, Offhand: Storm Eye x1, gloves: Laying of Hands x1</p>
-                <p><strong>Mercenary:</strong> Act 5 Barbarian - Treachery, Tal Rasha's Horadric Crest, Lawbringer</p>
+            <div class="character-info">
+                <div><strong>Character: VaIkyrie</strong></div>
+                <div>Level 93</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=VaIkyrie">VaIkyrie's Armory</a></div>
+                <div class="hover-trigger" data-character-name="VaIkyrie">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Multiple Shot:20, Immolation Arrow:20, Penetrate:20, Fire Arrow:14, Lethal Strike:12, Pierce:9, Magic Arrow:1, Exploding Arrow:1, Inner Sight:1, Dodge:1, Phase Run:1, Avoid:1, Decoy:1, Evade:1, Valkyrie:1</p>
+            <p><strong>Equipment:</strong> amulet: Highlord's Wrath x1, ring: Raven Frost x1, ring: Doom Turn x1, gloves: Laying of Hands x1, belt: String of Ears x1, body: Fortitude x1, boots: War Traveler x1, helmet: Andariel's Visage x1, Left hand: Harmony x1, Left hand: Windforce x1, Offhand: Death Eye x1, Offhand: Viper Eye x1</p>
+            <p><strong>Mercenary:</strong> Act 5 Barbarian - Steel Shade, The Gladiator's Bane, Silence</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
             
-                    <div class="character-info">
-                        <div class="character-link"><strong>Character Name:</strong> Don_Amazon</div>
-                        <div>83</div>
-                        <div><a href="https://pathofdiablo.com/p/armory/?name=Don_Amazon">Armory</a></div>
-                    </div>
-                <p><strong>Skills:</strong> Multiple Shot:20, Strafe:20, Immolation Arrow:20, Lethal Strike:16, Pierce:7, Exploding Arrow:2, Magic Arrow:1, Fire Arrow:1, Cold Arrow:1, Guided Arrow:1, Inner Sight:1, Dodge:1, Avoid:1, Penetrate:1, Evade:1</p>
-                <p><strong>Equipment:</strong> </p>
-                <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Goldskin, Darksight Helm, Viperfork</p>
+            <div class="character-info">
+                <div><strong>Character: SSF_Amazon</strong></div>
+                <div>Level 85</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=SSF_Amazon">SSF_Amazon's Armory</a></div>
+                <div class="hover-trigger" data-character-name="SSF_Amazon">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Multiple Shot:20, Immolation Arrow:20, Lethal Strike:20, Pierce:20, Fire Arrow:6, Magic Arrow:1, Exploding Arrow:1, Inner Sight:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Decoy:1, Evade:1, Valkyrie:1</p>
+            <p><strong>Equipment:</strong> ring: Dwarf Star x1, ring: Death Touch x1, amulet: Bitter Gorget x1, helmet: Tal Rasha's Horadric Crest x1, belt: Nosferatu's Coil x1, Left hand: Grim Wand of Lower Resistance x1, Left hand: Faith x1, Offhand: Ancients' Pledge x1, Offhand: Storm Eye x1, gloves: Laying of Hands x1</p>
+            <p><strong>Mercenary:</strong> Act 5 Barbarian - Treachery, Tal Rasha's Horadric Crest, Lawbringer</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
             
-                    <div class="character-info">
-                        <div class="character-link"><strong>Character Name:</strong> Gaeng_AMA</div>
-                        <div>78</div>
-                        <div><a href="https://pathofdiablo.com/p/armory/?name=Gaeng_AMA">Armory</a></div>
-                    </div>
-                <p><strong>Skills:</strong> Fire Arrow:20, Multiple Shot:20, Immolation Arrow:20, Lethal Strike:11, Pierce:5, Magic Arrow:1, Cold Arrow:1, Exploding Arrow:1, Inner Sight:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Evade:1</p>
-                <p><strong>Equipment:</strong> ring: Manald Heal x1, ring: Chaos Gyre x1, boots: Gore Rider x1, amulet: Atma's Scarab x1, gloves: Laying of Hands x1, body: Smoke x1, helmet: Tal Rasha's Horadric Crest x1, belt: Verdungo's Hearty Cord x1, Left hand: Harmony x1, Offhand: Shadow Eye x1</p>
-                <p><strong>Mercenary:</strong> Act 5 Barbarian - Smoke, Crown of Thieves, Lawbringer</p>
+            <div class="character-info">
+                <div><strong>Character: Don_Amazon</strong></div>
+                <div>Level 83</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Don_Amazon">Don_Amazon's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Don_Amazon">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Multiple Shot:20, Strafe:20, Immolation Arrow:20, Lethal Strike:16, Pierce:7, Exploding Arrow:2, Magic Arrow:1, Fire Arrow:1, Cold Arrow:1, Guided Arrow:1, Inner Sight:1, Dodge:1, Avoid:1, Penetrate:1, Evade:1</p>
+            <p><strong>Equipment:</strong> </p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Goldskin, Darksight Helm, Viperfork</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Character: Gaeng_AMA</strong></div>
+                <div>Level 78</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Gaeng_AMA">Gaeng_AMA's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Gaeng_AMA">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Fire Arrow:20, Multiple Shot:20, Immolation Arrow:20, Lethal Strike:11, Pierce:5, Magic Arrow:1, Cold Arrow:1, Exploding Arrow:1, Inner Sight:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Evade:1</p>
+            <p><strong>Equipment:</strong> ring: Manald Heal x1, ring: Chaos Gyre x1, boots: Gore Rider x1, amulet: Atma's Scarab x1, gloves: Laying of Hands x1, body: Smoke x1, helmet: Tal Rasha's Horadric Crest x1, belt: Verdungo's Hearty Cord x1, Left hand: Harmony x1, Offhand: Shadow Eye x1</p>
+            <p><strong>Mercenary:</strong> Act 5 Barbarian - Smoke, Crown of Thieves, Lawbringer</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
             
             </div>
             <hr>
             
-            <h2>10.00%  of Amazon's Main Skills:<br><img src='icons/Freezing Arrow.png' alt='Freezing Arrow' width='20' height='20'> Freezing Arrow 100.00% (92)<br><img src='icons/Cold Arrow.png' alt='Cold Arrow' width='20' height='20'> Cold Arrow 100.00% (81)<br><img src='icons/Ice Arrow.png' alt='Ice Arrow' width='20' height='20'> Ice Arrow 100.00% (81)<br><img src='icons/Multiple Shot.png' alt='Multiple Shot' width='20' height='20'> Multiple Shot 60.00% (28)<br><img src='icons/Lightning Fury.png' alt='Lightning Fury' width='20' height='20'> Lightning Fury 20.00% (20)</h2>
-            <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='icons/Immolation Arrow.png' alt='Immolation Arrow' width='20' height='20'> Immolation Arrow 20.0% (18.0)<br><img src='icons/Strafe.png' alt='Strafe' width='20' height='20'> Strafe 40.0% (14.0)<br><img src='icons/Valkyrie.png' alt='Valkyrie' width='20' height='20'> Valkyrie 80.0% (13.0)<br><img src='icons/Pierce.png' alt='Pierce' width='20' height='20'> Pierce 100.0% (11.0)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 100.0% (6.0)<br><img src='icons/Dodge.png' alt='Dodge' width='20' height='20'> Dodge 80.0% (6.0)</p>
+        <!--<h2>10.00%  of Amazon's Main Skills:<br><img src='icons/Freezing Arrow.png' alt='Freezing Arrow' width='20' height='20'> Freezing Arrow 100.00% (92)<br><img src='icons/Cold Arrow.png' alt='Cold Arrow' width='20' height='20'> Cold Arrow 100.00% (81)<br><img src='icons/Ice Arrow.png' alt='Ice Arrow' width='20' height='20'> Ice Arrow 100.00% (81)<br><img src='icons/Multiple Shot.png' alt='Multiple Shot' width='20' height='20'> Multiple Shot 60.00% (28)<br><img src='icons/Lightning Fury.png' alt='Lightning Fury' width='20' height='20'> Lightning Fury 20.00% (20)</h2>
+        <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='icons/Immolation Arrow.png' alt='Immolation Arrow' width='20' height='20'> Immolation Arrow 20.0% (18.0)<br><img src='icons/Strafe.png' alt='Strafe' width='20' height='20'> Strafe 40.0% (14.0)<br><img src='icons/Valkyrie.png' alt='Valkyrie' width='20' height='20'> Valkyrie 80.0% (13.0)<br><img src='icons/Pierce.png' alt='Pierce' width='20' height='20'> Pierce 100.0% (11.0)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 100.0% (6.0)<br><img src='icons/Dodge.png' alt='Dodge' width='20' height='20'> Dodge 80.0% (6.0)</p> -->
+        <div id="skills" class="skills-container">
+            <div class="column">
+                <ul id="most-popular-skills">
+                    <h2>10.00%  of Amazon's Main Skills:<br><img src='icons/Freezing Arrow.png' alt='Freezing Arrow' width='20' height='20'> Freezing Arrow 100.00% (92)<br><img src='icons/Cold Arrow.png' alt='Cold Arrow' width='20' height='20'> Cold Arrow 100.00% (81)<br><img src='icons/Ice Arrow.png' alt='Ice Arrow' width='20' height='20'> Ice Arrow 100.00% (81)<br><img src='icons/Multiple Shot.png' alt='Multiple Shot' width='20' height='20'> Multiple Shot 60.00% (28)<br><img src='icons/Lightning Fury.png' alt='Lightning Fury' width='20' height='20'> Lightning Fury 20.00% (20)</h2>
+                </ul>
+            </div>
+            <div class="column">
+                <ul id="other-skills">
+                    <h2>Other common skills in this group:</h2> <img src='icons/Immolation Arrow.png' alt='Immolation Arrow' width='20' height='20'> Immolation Arrow 20.0% (18.0)<br><img src='icons/Strafe.png' alt='Strafe' width='20' height='20'> Strafe 40.0% (14.0)<br><img src='icons/Valkyrie.png' alt='Valkyrie' width='20' height='20'> Valkyrie 80.0% (13.0)<br><img src='icons/Pierce.png' alt='Pierce' width='20' height='20'> Pierce 100.0% (11.0)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 100.0% (6.0)<br><img src='icons/Dodge.png' alt='Dodge' width='20' height='20'> Dodge 80.0% (6.0)
+                </ul>
+            </div>
+        </div>
+
             <button class="collapsible">
                 <img src="icons/closed.png" alt="Open" class="icon">
                 <img src="icons/open.png" alt="Close" class="icon hidden">
@@ -596,62 +928,146 @@
                     <div><strong>Ring</strong>: Manald Heal 40.00%, Chaos Touch 20.00%, Entropy Loop 20.00%, Dread Coil 20.00%, Blood Gyre 20.00%<br><strong>Belt</strong>: M'avina's Tenet 40.00%, Immortal King's Detail 20.00%, Nosferatu's Coil 20.00%<br><strong>Gloves</strong>: M'avina's Icy Clutch 40.00%, Carrion Hold 20.00%<br><strong>Body</strong>: M'avina's Embrace 40.00%, Smoke 20.00%<br><strong>Helmet</strong>: M'avina's True Sight 40.00%, Vampire Gaze 20.00%<br><strong>Amulet</strong>: Seraph's Hymn 20.00%, Chromatic Amulet of Excellence 20.00%, Highlord's Wrath 20.00%, PlagueRI Mark 20.00%<br><strong>Left hand</strong>: M'avina's Caster 40.00%, Soul Branch 20.00%, Harmony 20.00%, Buriza-Do Kyanon 20.00%<br><strong>Offhand</strong>: Hailstorm 20.00%, Frostbite 20.00%, Stone Eye 20.00%, Doom Eye 20.00%<br><strong>Boots</strong>: Sander's Riprap 20.00%, War Traveler 20.00%</div>
                 </div>
 
-            <button class="collapsible">
-                <img src="icons/closed.png" alt="Open" class="icon">
-                <img src="icons/open.png" alt="Close" class="icon hidden">
-                <strong>5 Characters in this cluster:</strong></button>
-                <div class="content">
-                    
-                    <div class="character-info">
-                        <div class="character-link"><strong>Character Name:</strong> JPCa</div>
-                        <div>83</div>
-                        <div><a href="https://pathofdiablo.com/p/armory/?name=JPCa">Armory</a></div>
-                    </div>
-                <p><strong>Skills:</strong> Cold Arrow:20, Ice Arrow:20, Freezing Arrow:20, Strafe:13, Multiple Shot:7, Pierce:5, Magic Arrow:1, Guided Arrow:1, Inner Sight:1, Lethal Strike:1, Phase Run:1, Avoid:1, Penetrate:1, Evade:1</p>
-                <p><strong>Equipment:</strong> ring: Chaos Touch x1, ring: Entropy Loop x1, belt: M'avina's Tenet x1, gloves: M'avina's Icy Clutch x1, body: M'avina's Embrace x1, helmet: M'avina's True Sight x1, amulet: Seraph's Hymn x1, Left hand: Soul Branch x1, Left hand: M'avina's Caster x1, Offhand: Hailstorm x1</p>
-                <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - No equipment</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>5 Characters in this cluster:</strong>
+        </button>
+        <div class="content">
             
-                    <div class="character-info">
-                        <div class="character-link"><strong>Character Name:</strong> CTABKA</div>
-                        <div>80</div>
-                        <div><a href="https://pathofdiablo.com/p/armory/?name=CTABKA">Armory</a></div>
-                    </div>
-                <p><strong>Skills:</strong> Cold Arrow:20, Ice Arrow:20, Freezing Arrow:20, Immolation Arrow:18, Magic Arrow:1, Fire Arrow:1, Exploding Arrow:1, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Decoy:1, Evade:1, Valkyrie:1, Pierce:1</p>
-                <p><strong>Equipment:</strong> belt: M'avina's Tenet x1, body: M'avina's Embrace x1, boots: Sander's Riprap x1, ring: Manald Heal x2, helmet: M'avina's True Sight x1, amulet: Chromatic Amulet of Excellence x1, gloves: M'avina's Icy Clutch x1, Left hand: M'avina's Caster x1, Offhand: Frostbite x1</p>
-                <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Skin of the Flayed One, Tal Rasha's Horadric Crest, Insight</p>
+            <div class="character-info">
+                <div><strong>Character: JPCa</strong></div>
+                <div>Level 83</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=JPCa">JPCa's Armory</a></div>
+                <div class="hover-trigger" data-character-name="JPCa">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Cold Arrow:20, Ice Arrow:20, Freezing Arrow:20, Strafe:13, Multiple Shot:7, Pierce:5, Magic Arrow:1, Guided Arrow:1, Inner Sight:1, Lethal Strike:1, Phase Run:1, Avoid:1, Penetrate:1, Evade:1</p>
+            <p><strong>Equipment:</strong> ring: Chaos Touch x1, ring: Entropy Loop x1, belt: M'avina's Tenet x1, gloves: M'avina's Icy Clutch x1, body: M'avina's Embrace x1, helmet: M'avina's True Sight x1, amulet: Seraph's Hymn x1, Left hand: Soul Branch x1, Left hand: M'avina's Caster x1, Offhand: Hailstorm x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - No equipment</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
             
-                    <div class="character-info">
-                        <div class="character-link"><strong>Character Name:</strong> Molinaro</div>
-                        <div>74</div>
-                        <div><a href="https://pathofdiablo.com/p/armory/?name=Molinaro">Armory</a></div>
-                    </div>
-                <p><strong>Skills:</strong> Cold Arrow:20, Multiple Shot:20, Freezing Arrow:20, Valkyrie:10, Lethal Strike:2, Magic Arrow:1, Ice Arrow:1, Inner Sight:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Decoy:1, Evade:1, Pierce:1</p>
-                <p><strong>Equipment:</strong> helmet: Vampire Gaze x1, boots: War Traveler x1, amulet: Highlord's Wrath x1, ring: Dread Coil x1, ring: Blood Gyre x1, body: Smoke x1, gloves: Carrion Hold x1, belt: Immortal King's Detail x1, Left hand: Harmony x1, Offhand: Stone Eye x1</p>
-                <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Smoke, Tal Rasha's Horadric Crest, Insight</p>
+            <div class="character-info">
+                <div><strong>Character: CTABKA</strong></div>
+                <div>Level 80</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=CTABKA">CTABKA's Armory</a></div>
+                <div class="hover-trigger" data-character-name="CTABKA">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Cold Arrow:20, Ice Arrow:20, Freezing Arrow:20, Immolation Arrow:18, Magic Arrow:1, Fire Arrow:1, Exploding Arrow:1, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Decoy:1, Evade:1, Valkyrie:1, Pierce:1</p>
+            <p><strong>Equipment:</strong> belt: M'avina's Tenet x1, body: M'avina's Embrace x1, boots: Sander's Riprap x1, ring: Manald Heal x2, helmet: M'avina's True Sight x1, amulet: Chromatic Amulet of Excellence x1, gloves: M'avina's Icy Clutch x1, Left hand: M'avina's Caster x1, Offhand: Frostbite x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Skin of the Flayed One, Tal Rasha's Horadric Crest, Insight</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
             
-                    <div class="character-info">
-                        <div class="character-link"><strong>Character Name:</strong> eG-eNduro</div>
-                        <div>73</div>
-                        <div><a href="https://pathofdiablo.com/p/armory/?name=eG-eNduro">Armory</a></div>
-                    </div>
-                <p><strong>Skills:</strong> Cold Arrow:20, Ice Arrow:20, Freezing Arrow:20, Dodge:3, Pierce:3, Avoid:2, Evade:2, Magic Arrow:1, Multiple Shot:1, Guided Arrow:1, Strafe:1, Inner Sight:1, Lethal Strike:1, Phase Run:1, Penetrate:1, Decoy:1, Valkyrie:1</p>
-                <p><strong>Equipment:</strong> amulet: PlagueRI Mark x1, belt: Nosferatu's Coil x1, Left hand: Buriza-Do Kyanon x1, Offhand: Doom Eye x1</p>
-                <p><strong>Mercenary:</strong> Act 1 Rogue Scout - Spirit Forge, Tal Rasha's Horadric Crest</p>
+            <div class="character-info">
+                <div><strong>Character: Molinaro</strong></div>
+                <div>Level 74</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Molinaro">Molinaro's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Molinaro">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Cold Arrow:20, Multiple Shot:20, Freezing Arrow:20, Valkyrie:10, Lethal Strike:2, Magic Arrow:1, Ice Arrow:1, Inner Sight:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Decoy:1, Evade:1, Pierce:1</p>
+            <p><strong>Equipment:</strong> helmet: Vampire Gaze x1, boots: War Traveler x1, amulet: Highlord's Wrath x1, ring: Dread Coil x1, ring: Blood Gyre x1, body: Smoke x1, gloves: Carrion Hold x1, belt: Immortal King's Detail x1, Left hand: Harmony x1, Offhand: Stone Eye x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Smoke, Tal Rasha's Horadric Crest, Insight</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
             
-                    <div class="character-info">
-                        <div class="character-link"><strong>Character Name:</strong> SuperLube</div>
-                        <div>63</div>
-                        <div><a href="https://pathofdiablo.com/p/armory/?name=SuperLube">Armory</a></div>
-                    </div>
-                <p><strong>Skills:</strong> Ice Arrow:20, Lightning Fury:20, Freezing Arrow:12, Lightning Strike:2, Cold Arrow:1, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Decoy:1, Evade:1, Valkyrie:1, Pierce:1, Jab:1, Power Strike:1, Poison Javelin:1, Lightning Bolt:1, Charged Strike:1, Plague Javelin:1</p>
-                <p><strong>Equipment:</strong> </p>
-                <p><strong>Mercenary:</strong> Act 3 Eastern Sorceror - Duskdeep, Stealth, Dimensional Blade, Glyph Aegis</p>
+            <div class="character-info">
+                <div><strong>Character: eG-eNduro</strong></div>
+                <div>Level 73</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=eG-eNduro">eG-eNduro's Armory</a></div>
+                <div class="hover-trigger" data-character-name="eG-eNduro">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Cold Arrow:20, Ice Arrow:20, Freezing Arrow:20, Dodge:3, Pierce:3, Avoid:2, Evade:2, Magic Arrow:1, Multiple Shot:1, Guided Arrow:1, Strafe:1, Inner Sight:1, Lethal Strike:1, Phase Run:1, Penetrate:1, Decoy:1, Valkyrie:1</p>
+            <p><strong>Equipment:</strong> amulet: PlagueRI Mark x1, belt: Nosferatu's Coil x1, Left hand: Buriza-Do Kyanon x1, Offhand: Doom Eye x1</p>
+            <p><strong>Mercenary:</strong> Act 1 Rogue Scout - Spirit Forge, Tal Rasha's Horadric Crest</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Character: SuperLube</strong></div>
+                <div>Level 63</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=SuperLube">SuperLube's Armory</a></div>
+                <div class="hover-trigger" data-character-name="SuperLube">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Ice Arrow:20, Lightning Fury:20, Freezing Arrow:12, Lightning Strike:2, Cold Arrow:1, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Decoy:1, Evade:1, Valkyrie:1, Pierce:1, Jab:1, Power Strike:1, Poison Javelin:1, Lightning Bolt:1, Charged Strike:1, Plague Javelin:1</p>
+            <p><strong>Equipment:</strong> </p>
+            <p><strong>Mercenary:</strong> Act 3 Eastern Sorceror - Duskdeep, Stealth, Dimensional Blade, Glyph Aegis</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
             
             </div>
             <hr>
             
-            <h2>8.00%  of Amazon's Main Skills:<br><img src='icons/Immolation Arrow.png' alt='Immolation Arrow' width='20' height='20'> Immolation Arrow 100.00% (80)<br><img src='icons/Cold Arrow.png' alt='Cold Arrow' width='20' height='20'> Cold Arrow 100.00% (78)<br><img src='icons/Freezing Arrow.png' alt='Freezing Arrow' width='20' height='20'> Freezing Arrow 100.00% (61)<br><img src='icons/Fire Arrow.png' alt='Fire Arrow' width='20' height='20'> Fire Arrow 100.00% (56)<br><img src='icons/Ice Arrow.png' alt='Ice Arrow' width='20' height='20'> Ice Arrow 100.00% (33)</h2>
-            <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='icons/Pierce.png' alt='Pierce' width='20' height='20'> Pierce 100.0% (7.0)<br><img src='icons/Magic Arrow.png' alt='Magic Arrow' width='20' height='20'> Magic Arrow 100.0% (4.0)<br><img src='icons/Inner Sight.png' alt='Inner Sight' width='20' height='20'> Inner Sight 100.0% (4.0)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 100.0% (4.0)<br><img src='icons/Phase Run.png' alt='Phase Run' width='20' height='20'> Phase Run 100.0% (4.0)<br><img src='icons/Penetrate.png' alt='Penetrate' width='20' height='20'> Penetrate 100.0% (4.0)</p>
+        <!--<h2>8.00%  of Amazon's Main Skills:<br><img src='icons/Immolation Arrow.png' alt='Immolation Arrow' width='20' height='20'> Immolation Arrow 100.00% (80)<br><img src='icons/Cold Arrow.png' alt='Cold Arrow' width='20' height='20'> Cold Arrow 100.00% (78)<br><img src='icons/Freezing Arrow.png' alt='Freezing Arrow' width='20' height='20'> Freezing Arrow 100.00% (61)<br><img src='icons/Fire Arrow.png' alt='Fire Arrow' width='20' height='20'> Fire Arrow 100.00% (56)<br><img src='icons/Ice Arrow.png' alt='Ice Arrow' width='20' height='20'> Ice Arrow 100.00% (33)</h2>
+        <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='icons/Pierce.png' alt='Pierce' width='20' height='20'> Pierce 100.0% (7.0)<br><img src='icons/Magic Arrow.png' alt='Magic Arrow' width='20' height='20'> Magic Arrow 100.0% (4.0)<br><img src='icons/Inner Sight.png' alt='Inner Sight' width='20' height='20'> Inner Sight 100.0% (4.0)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 100.0% (4.0)<br><img src='icons/Phase Run.png' alt='Phase Run' width='20' height='20'> Phase Run 100.0% (4.0)<br><img src='icons/Penetrate.png' alt='Penetrate' width='20' height='20'> Penetrate 100.0% (4.0)</p> -->
+        <div id="skills" class="skills-container">
+            <div class="column">
+                <ul id="most-popular-skills">
+                    <h2>8.00%  of Amazon's Main Skills:<br><img src='icons/Immolation Arrow.png' alt='Immolation Arrow' width='20' height='20'> Immolation Arrow 100.00% (80)<br><img src='icons/Cold Arrow.png' alt='Cold Arrow' width='20' height='20'> Cold Arrow 100.00% (78)<br><img src='icons/Freezing Arrow.png' alt='Freezing Arrow' width='20' height='20'> Freezing Arrow 100.00% (61)<br><img src='icons/Fire Arrow.png' alt='Fire Arrow' width='20' height='20'> Fire Arrow 100.00% (56)<br><img src='icons/Ice Arrow.png' alt='Ice Arrow' width='20' height='20'> Ice Arrow 100.00% (33)</h2>
+                </ul>
+            </div>
+            <div class="column">
+                <ul id="other-skills">
+                    <h2>Other common skills in this group:</h2> <img src='icons/Pierce.png' alt='Pierce' width='20' height='20'> Pierce 100.0% (7.0)<br><img src='icons/Magic Arrow.png' alt='Magic Arrow' width='20' height='20'> Magic Arrow 100.0% (4.0)<br><img src='icons/Inner Sight.png' alt='Inner Sight' width='20' height='20'> Inner Sight 100.0% (4.0)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 100.0% (4.0)<br><img src='icons/Phase Run.png' alt='Phase Run' width='20' height='20'> Phase Run 100.0% (4.0)<br><img src='icons/Penetrate.png' alt='Penetrate' width='20' height='20'> Penetrate 100.0% (4.0)
+                </ul>
+            </div>
+        </div>
+
             <button class="collapsible">
                 <img src="icons/closed.png" alt="Open" class="icon">
                 <img src="icons/open.png" alt="Close" class="icon hidden">
@@ -676,53 +1092,123 @@
                     <div><strong>Belt</strong>: M'avina's Tenet 25.00%, Thundergod's Vigor 25.00%, String of Ears 25.00%, GhoulRI Strap 25.00%<br><strong>Boots</strong>: Vidala's Fetlock 25.00%, Aldur's Advance 25.00%, Natalya's Soul 25.00%, Blood Tread 25.00%<br><strong>Ring</strong>: Raven Frost 50.00%, Skull Eye 25.00%, GhoulRI Spiral 25.00%, Wraithra Circle 25.00%, Dwarf Star 25.00%, Chaos Loop 25.00%, Order Turn 25.00%<br><strong>Body</strong>: M'avina's Embrace 25.00%, Smoke 25.00%, Hustle 25.00%, Peace 25.00%<br><strong>Gloves</strong>: M'avina's Icy Clutch 25.00%, Beast Touch 25.00%, Viper Finger 25.00%, Laying of Hands 25.00%<br><strong>Helmet</strong>: M'avina's True Sight 25.00%, Peasant Crown 25.00%, Harlequin Crest 25.00%, Hearth 25.00%<br><strong>Amulet</strong>: Vidala's Snare 25.00%, Saracen's Chance 25.00%, Mara's Kaleidoscope 25.00%, Lizard's Amulet of Life Everlasting 25.00%<br><strong>Left hand</strong>: Lycander's Aim 50.00%, Pus Spitter 25.00%, M'avina's Caster 25.00%, Gnarled Staff of Teleportation 25.00%, Holy Thunder 25.00%, Harmony 25.00%, Shivering Battle Staff of Teleportation 25.00%<br><strong>Offhand</strong>: Raven Eye 50.00%, Hailstorm 25.00%, Stone Eye 25.00%, The Ward 25.00%, Frostbite 25.00%</div>
                 </div>
 
-            <button class="collapsible">
-                <img src="icons/closed.png" alt="Open" class="icon">
-                <img src="icons/open.png" alt="Close" class="icon hidden">
-                <strong>4 Characters in this cluster:</strong></button>
-                <div class="content">
-                    
-                    <div class="character-info">
-                        <div class="character-link"><strong>Character Name:</strong> bowscape</div>
-                        <div>82</div>
-                        <div><a href="https://pathofdiablo.com/p/armory/?name=bowscape">Armory</a></div>
-                    </div>
-                <p><strong>Skills:</strong> Cold Arrow:20, Immolation Arrow:20, Freezing Arrow:20, Ice Arrow:11, Fire Arrow:10, Magic Arrow:1, Exploding Arrow:1, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Decoy:1, Evade:1, Valkyrie:1, Pierce:1</p>
-                <p><strong>Equipment:</strong> belt: M'avina's Tenet x1, boots: Vidala's Fetlock x1, ring: Skull Eye x1, ring: Raven Frost x1, body: M'avina's Embrace x1, gloves: M'avina's Icy Clutch x1, helmet: M'avina's True Sight x1, amulet: Vidala's Snare x1, Left hand: Pus Spitter x1, Left hand: M'avina's Caster x1, Offhand: Hailstorm x1, Offhand: Raven Eye x1</p>
-                <p><strong>Mercenary:</strong> Act 1 Rogue Scout - Rattlecage, Hearth, Pus Spitter</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>4 Characters in this cluster:</strong>
+        </button>
+        <div class="content">
             
-                    <div class="character-info">
-                        <div class="character-link"><strong>Character Name:</strong> Ranghan_A</div>
-                        <div>81</div>
-                        <div><a href="https://pathofdiablo.com/p/armory/?name=Ranghan_A">Armory</a></div>
-                    </div>
-                <p><strong>Skills:</strong> Cold Arrow:20, Immolation Arrow:20, Freezing Arrow:20, Fire Arrow:19, Pierce:3, Magic Arrow:1, Exploding Arrow:1, Ice Arrow:1, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Evade:1</p>
-                <p><strong>Equipment:</strong> boots: Aldur's Advance x1, body: Smoke x1, belt: Thundergod's Vigor x1, ring: GhoulRI Spiral x1, ring: Wraithra Circle x1, helmet: Peasant Crown x1, amulet: Saracen's Chance x1, gloves: Beast Touch x1, Left hand: Gnarled Staff of Teleportation x1, Left hand: Lycander's Aim x1, Offhand: Stone Eye x1</p>
-                <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Guardian Angel, Shadow Circlet, Insight</p>
+            <div class="character-info">
+                <div><strong>Character: bowscape</strong></div>
+                <div>Level 82</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=bowscape">bowscape's Armory</a></div>
+                <div class="hover-trigger" data-character-name="bowscape">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Cold Arrow:20, Immolation Arrow:20, Freezing Arrow:20, Ice Arrow:11, Fire Arrow:10, Magic Arrow:1, Exploding Arrow:1, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Decoy:1, Evade:1, Valkyrie:1, Pierce:1</p>
+            <p><strong>Equipment:</strong> belt: M'avina's Tenet x1, boots: Vidala's Fetlock x1, ring: Skull Eye x1, ring: Raven Frost x1, body: M'avina's Embrace x1, gloves: M'avina's Icy Clutch x1, helmet: M'avina's True Sight x1, amulet: Vidala's Snare x1, Left hand: Pus Spitter x1, Left hand: M'avina's Caster x1, Offhand: Hailstorm x1, Offhand: Raven Eye x1</p>
+            <p><strong>Mercenary:</strong> Act 1 Rogue Scout - Rattlecage, Hearth, Pus Spitter</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
             
-                    <div class="character-info">
-                        <div class="character-link"><strong>Character Name:</strong> MorgiAma</div>
-                        <div>77</div>
-                        <div><a href="https://pathofdiablo.com/p/armory/?name=MorgiAma">Armory</a></div>
-                    </div>
-                <p><strong>Skills:</strong> Cold Arrow:20, Immolation Arrow:20, Freezing Arrow:20, Fire Arrow:10, Pierce:2, Magic Arrow:1, Multiple Shot:1, Exploding Arrow:1, Ice Arrow:1, Guided Arrow:1, Strafe:1, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Evade:1</p>
-                <p><strong>Equipment:</strong> helmet: Harlequin Crest x1, boots: Natalya's Soul x1, body: Hustle x1, ring: Dwarf Star x1, ring: Raven Frost x1, belt: String of Ears x1, amulet: Mara's Kaleidoscope x1, gloves: Viper Finger x1, Left hand: Holy Thunder x1, Left hand: Harmony x1, Offhand: The Ward x1, Offhand: Frostbite x1</p>
-                <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Griswold's Heart, Bulwark, Insight</p>
+            <div class="character-info">
+                <div><strong>Character: Ranghan_A</strong></div>
+                <div>Level 81</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Ranghan_A">Ranghan_A's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Ranghan_A">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Cold Arrow:20, Immolation Arrow:20, Freezing Arrow:20, Fire Arrow:19, Pierce:3, Magic Arrow:1, Exploding Arrow:1, Ice Arrow:1, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Evade:1</p>
+            <p><strong>Equipment:</strong> boots: Aldur's Advance x1, body: Smoke x1, belt: Thundergod's Vigor x1, ring: GhoulRI Spiral x1, ring: Wraithra Circle x1, helmet: Peasant Crown x1, amulet: Saracen's Chance x1, gloves: Beast Touch x1, Left hand: Gnarled Staff of Teleportation x1, Left hand: Lycander's Aim x1, Offhand: Stone Eye x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Guardian Angel, Shadow Circlet, Insight</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
             
-                    <div class="character-info">
-                        <div class="character-link"><strong>Character Name:</strong> Wafflezon</div>
-                        <div>74</div>
-                        <div><a href="https://pathofdiablo.com/p/armory/?name=Wafflezon">Armory</a></div>
-                    </div>
-                <p><strong>Skills:</strong> Ice Arrow:20, Immolation Arrow:20, Cold Arrow:18, Fire Arrow:17, Magic Arrow:1, Exploding Arrow:1, Freezing Arrow:1, Inner Sight:1, Lethal Strike:1, Phase Run:1, Penetrate:1, Decoy:1, Valkyrie:1, Pierce:1</p>
-                <p><strong>Equipment:</strong> boots: Blood Tread x1, body: Peace x1, amulet: Lizard's Amulet of Life Everlasting x1, ring: Chaos Loop x1, ring: Order Turn x1, helmet: Hearth x1, gloves: Laying of Hands x1, belt: GhoulRI Strap x1, Left hand: Shivering Battle Staff of Teleportation x1, Left hand: Lycander's Aim x1, Offhand: Raven Eye x1</p>
-                <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Holocaust Casque, Haemosu's Adamant, Pierre Tombale Couant</p>
+            <div class="character-info">
+                <div><strong>Character: MorgiAma</strong></div>
+                <div>Level 77</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=MorgiAma">MorgiAma's Armory</a></div>
+                <div class="hover-trigger" data-character-name="MorgiAma">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Cold Arrow:20, Immolation Arrow:20, Freezing Arrow:20, Fire Arrow:10, Pierce:2, Magic Arrow:1, Multiple Shot:1, Exploding Arrow:1, Ice Arrow:1, Guided Arrow:1, Strafe:1, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Evade:1</p>
+            <p><strong>Equipment:</strong> helmet: Harlequin Crest x1, boots: Natalya's Soul x1, body: Hustle x1, ring: Dwarf Star x1, ring: Raven Frost x1, belt: String of Ears x1, amulet: Mara's Kaleidoscope x1, gloves: Viper Finger x1, Left hand: Holy Thunder x1, Left hand: Harmony x1, Offhand: The Ward x1, Offhand: Frostbite x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Griswold's Heart, Bulwark, Insight</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Character: Wafflezon</strong></div>
+                <div>Level 74</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Wafflezon">Wafflezon's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Wafflezon">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Ice Arrow:20, Immolation Arrow:20, Cold Arrow:18, Fire Arrow:17, Magic Arrow:1, Exploding Arrow:1, Freezing Arrow:1, Inner Sight:1, Lethal Strike:1, Phase Run:1, Penetrate:1, Decoy:1, Valkyrie:1, Pierce:1</p>
+            <p><strong>Equipment:</strong> boots: Blood Tread x1, body: Peace x1, amulet: Lizard's Amulet of Life Everlasting x1, ring: Chaos Loop x1, ring: Order Turn x1, helmet: Hearth x1, gloves: Laying of Hands x1, belt: GhoulRI Strap x1, Left hand: Shivering Battle Staff of Teleportation x1, Left hand: Lycander's Aim x1, Offhand: Raven Eye x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Holocaust Casque, Haemosu's Adamant, Pierre Tombale Couant</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
             
             </div>
             <hr>
             
-            <h2>8.00%  of Amazon's Main Skills:<br><img src='icons/Immolation Arrow.png' alt='Immolation Arrow' width='20' height='20'> Immolation Arrow 100.00% (80)<br><img src='icons/Multiple Shot.png' alt='Multiple Shot' width='20' height='20'> Multiple Shot 100.00% (64)<br><img src='icons/Exploding Arrow.png' alt='Exploding Arrow' width='20' height='20'> Exploding Arrow 100.00% (64)<br><img src='icons/Fire Arrow.png' alt='Fire Arrow' width='20' height='20'> Fire Arrow 100.00% (55)<br><img src='icons/Penetrate.png' alt='Penetrate' width='20' height='20'> Penetrate 100.00% (27)</h2>
-            <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='icons/Pierce.png' alt='Pierce' width='20' height='20'> Pierce 100.0% (25.0)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 100.0% (10.0)<br><img src='icons/Phase Run.png' alt='Phase Run' width='20' height='20'> Phase Run 100.0% (10.0)<br><img src='icons/Magic Arrow.png' alt='Magic Arrow' width='20' height='20'> Magic Arrow 100.0% (4.0)<br><img src='icons/Inner Sight.png' alt='Inner Sight' width='20' height='20'> Inner Sight 100.0% (4.0)<br><img src='icons/Dodge.png' alt='Dodge' width='20' height='20'> Dodge 100.0% (4.0)</p>
+        <!--<h2>8.00%  of Amazon's Main Skills:<br><img src='icons/Immolation Arrow.png' alt='Immolation Arrow' width='20' height='20'> Immolation Arrow 100.00% (80)<br><img src='icons/Multiple Shot.png' alt='Multiple Shot' width='20' height='20'> Multiple Shot 100.00% (64)<br><img src='icons/Exploding Arrow.png' alt='Exploding Arrow' width='20' height='20'> Exploding Arrow 100.00% (64)<br><img src='icons/Fire Arrow.png' alt='Fire Arrow' width='20' height='20'> Fire Arrow 100.00% (55)<br><img src='icons/Penetrate.png' alt='Penetrate' width='20' height='20'> Penetrate 100.00% (27)</h2>
+        <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='icons/Pierce.png' alt='Pierce' width='20' height='20'> Pierce 100.0% (25.0)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 100.0% (10.0)<br><img src='icons/Phase Run.png' alt='Phase Run' width='20' height='20'> Phase Run 100.0% (10.0)<br><img src='icons/Magic Arrow.png' alt='Magic Arrow' width='20' height='20'> Magic Arrow 100.0% (4.0)<br><img src='icons/Inner Sight.png' alt='Inner Sight' width='20' height='20'> Inner Sight 100.0% (4.0)<br><img src='icons/Dodge.png' alt='Dodge' width='20' height='20'> Dodge 100.0% (4.0)</p> -->
+        <div id="skills" class="skills-container">
+            <div class="column">
+                <ul id="most-popular-skills">
+                    <h2>8.00%  of Amazon's Main Skills:<br><img src='icons/Immolation Arrow.png' alt='Immolation Arrow' width='20' height='20'> Immolation Arrow 100.00% (80)<br><img src='icons/Multiple Shot.png' alt='Multiple Shot' width='20' height='20'> Multiple Shot 100.00% (64)<br><img src='icons/Exploding Arrow.png' alt='Exploding Arrow' width='20' height='20'> Exploding Arrow 100.00% (64)<br><img src='icons/Fire Arrow.png' alt='Fire Arrow' width='20' height='20'> Fire Arrow 100.00% (55)<br><img src='icons/Penetrate.png' alt='Penetrate' width='20' height='20'> Penetrate 100.00% (27)</h2>
+                </ul>
+            </div>
+            <div class="column">
+                <ul id="other-skills">
+                    <h2>Other common skills in this group:</h2> <img src='icons/Pierce.png' alt='Pierce' width='20' height='20'> Pierce 100.0% (25.0)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 100.0% (10.0)<br><img src='icons/Phase Run.png' alt='Phase Run' width='20' height='20'> Phase Run 100.0% (10.0)<br><img src='icons/Magic Arrow.png' alt='Magic Arrow' width='20' height='20'> Magic Arrow 100.0% (4.0)<br><img src='icons/Inner Sight.png' alt='Inner Sight' width='20' height='20'> Inner Sight 100.0% (4.0)<br><img src='icons/Dodge.png' alt='Dodge' width='20' height='20'> Dodge 100.0% (4.0)
+                </ul>
+            </div>
+        </div>
+
             <button class="collapsible">
                 <img src="icons/closed.png" alt="Open" class="icon">
                 <img src="icons/open.png" alt="Close" class="icon hidden">
@@ -747,53 +1233,123 @@
                     <div><strong>Ring</strong>: Raven Frost 50.00%, PlagueRI Circle 25.00%, Rainbow Ring of Dim Vision 25.00%, Manald Heal 25.00%, Raven Coil 25.00%<br><strong>Belt</strong>: Razortail 25.00%, Coral Belt of the Whale 25.00%, Goldwrap 25.00%<br><strong>Boots</strong>: War Traveler 25.00%, Silkweave 25.00%, Sigon's Sabot 25.00%<br><strong>Amulet</strong>: Highlord's Wrath 25.00%, Saracen's Chance 25.00%, Maiden's Amulet of Sorcery 25.00%<br><strong>Helmet</strong>: Andariel's Visage 25.00%, Ground 25.00%, Lore 25.00%<br><strong>Gloves</strong>: Soul Hand 25.00%, Laying of Hands 25.00%, Imp Hand 25.00%<br><strong>Left hand</strong>: Naj's Puzzler 25.00%, Faith 25.00%, Holy Thunder 25.00%, Insight 25.00%, Melody 25.00%, Edge 25.00%<br><strong>Body</strong>: Smoke 50.00%, Fortitude 25.00%<br><strong>Offhand</strong>: Bone Eye 25.00%, Sigon's Guard 25.00%, Rune Eye 25.00%, Blood Eye 25.00%, Moonfire 25.00%</div>
                 </div>
 
-            <button class="collapsible">
-                <img src="icons/closed.png" alt="Open" class="icon">
-                <img src="icons/open.png" alt="Close" class="icon hidden">
-                <strong>4 Characters in this cluster:</strong></button>
-                <div class="content">
-                    
-                    <div class="character-info">
-                        <div class="character-link"><strong>Character Name:</strong> Nickfic</div>
-                        <div>95</div>
-                        <div><a href="https://pathofdiablo.com/p/armory/?name=Nickfic">Armory</a></div>
-                    </div>
-                <p><strong>Skills:</strong> Fire Arrow:20, Multiple Shot:20, Immolation Arrow:20, Exploding Arrow:15, Penetrate:10, Lethal Strike:7, Phase Run:7, Pierce:2, Magic Arrow:1, Inner Sight:1, Dodge:1, Avoid:1, Evade:1</p>
-                <p><strong>Equipment:</strong> </p>
-                <p><strong>Mercenary:</strong> Act 5 Barbarian - Treachery, Steel Shade, Plague</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>4 Characters in this cluster:</strong>
+        </button>
+        <div class="content">
             
-                    <div class="character-info">
-                        <div class="character-link"><strong>Character Name:</strong> Diszon</div>
-                        <div>93</div>
-                        <div><a href="https://pathofdiablo.com/p/armory/?name=Diszon">Armory</a></div>
-                    </div>
-                <p><strong>Skills:</strong> Fire Arrow:20, Multiple Shot:20, Exploding Arrow:20, Immolation Arrow:20, Penetrate:14, Magic Arrow:1, Cold Arrow:1, Guided Arrow:1, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Evade:1, Pierce:1</p>
-                <p><strong>Equipment:</strong> ring: Raven Frost x1, ring: PlagueRI Circle x1, belt: Razortail x1, boots: War Traveler x1, amulet: Highlord's Wrath x1, helmet: Andariel's Visage x1, gloves: Soul Hand x1, Left hand: Naj's Puzzler x1, Left hand: Faith x1, body: Fortitude x1, Offhand: Bone Eye x1</p>
-                <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Treachery, Guillaume's Face, Pride</p>
+            <div class="character-info">
+                <div><strong>Character: Nickfic</strong></div>
+                <div>Level 95</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Nickfic">Nickfic's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Nickfic">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Fire Arrow:20, Multiple Shot:20, Immolation Arrow:20, Exploding Arrow:15, Penetrate:10, Lethal Strike:7, Phase Run:7, Pierce:2, Magic Arrow:1, Inner Sight:1, Dodge:1, Avoid:1, Evade:1</p>
+            <p><strong>Equipment:</strong> </p>
+            <p><strong>Mercenary:</strong> Act 5 Barbarian - Treachery, Steel Shade, Plague</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
             
-                    <div class="character-info">
-                        <div class="character-link"><strong>Character Name:</strong> Ajira</div>
-                        <div>69</div>
-                        <div><a href="https://pathofdiablo.com/p/armory/?name=Ajira">Armory</a></div>
-                    </div>
-                <p><strong>Skills:</strong> Multiple Shot:20, Immolation Arrow:20, Exploding Arrow:18, Pierce:9, Magic Arrow:1, Fire Arrow:1, Cold Arrow:1, Guided Arrow:1, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Evade:1</p>
-                <p><strong>Equipment:</strong> ring: Rainbow Ring of Dim Vision x1, ring: Raven Frost x1, body: Smoke x1, amulet: Saracen's Chance x1, belt: Coral Belt of the Whale x1, gloves: Laying of Hands x1, boots: Silkweave x1, Left hand: Holy Thunder x1, Left hand: Insight x1, Offhand: Sigon's Guard x1, Offhand: Rune Eye x1, helmet: Ground x1</p>
-                <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Griswold's Heart, Bulwark, Hwanin's Justice</p>
+            <div class="character-info">
+                <div><strong>Character: Diszon</strong></div>
+                <div>Level 93</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Diszon">Diszon's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Diszon">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Fire Arrow:20, Multiple Shot:20, Exploding Arrow:20, Immolation Arrow:20, Penetrate:14, Magic Arrow:1, Cold Arrow:1, Guided Arrow:1, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Evade:1, Pierce:1</p>
+            <p><strong>Equipment:</strong> ring: Raven Frost x1, ring: PlagueRI Circle x1, belt: Razortail x1, boots: War Traveler x1, amulet: Highlord's Wrath x1, helmet: Andariel's Visage x1, gloves: Soul Hand x1, Left hand: Naj's Puzzler x1, Left hand: Faith x1, body: Fortitude x1, Offhand: Bone Eye x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Treachery, Guillaume's Face, Pride</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
             
-                    <div class="character-info">
-                        <div class="character-link"><strong>Character Name:</strong> ItRubsTheLotion</div>
-                        <div>68</div>
-                        <div><a href="https://pathofdiablo.com/p/armory/?name=ItRubsTheLotion">Armory</a></div>
-                    </div>
-                <p><strong>Skills:</strong> Immolation Arrow:20, Fire Arrow:14, Pierce:13, Exploding Arrow:11, Multiple Shot:4, Penetrate:2, Magic Arrow:1, Cold Arrow:1, Ice Arrow:1, Freezing Arrow:1, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Decoy:1, Evade:1, Valkyrie:1, Poison Javelin:1</p>
-                <p><strong>Equipment:</strong> ring: Manald Heal x1, ring: Raven Coil x1, body: Smoke x1, helmet: Lore x1, boots: Sigon's Sabot x1, gloves: Imp Hand x1, amulet: Maiden's Amulet of Sorcery x1, belt: Goldwrap x1, Left hand: Melody x1, Left hand: Edge x1, Offhand: Blood Eye x1, Offhand: Moonfire x1</p>
-                <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Isenhart's Horns, Isenhart's Case, Insight</p>
+            <div class="character-info">
+                <div><strong>Character: Ajira</strong></div>
+                <div>Level 69</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Ajira">Ajira's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Ajira">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Multiple Shot:20, Immolation Arrow:20, Exploding Arrow:18, Pierce:9, Magic Arrow:1, Fire Arrow:1, Cold Arrow:1, Guided Arrow:1, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Evade:1</p>
+            <p><strong>Equipment:</strong> ring: Rainbow Ring of Dim Vision x1, ring: Raven Frost x1, body: Smoke x1, amulet: Saracen's Chance x1, belt: Coral Belt of the Whale x1, gloves: Laying of Hands x1, boots: Silkweave x1, Left hand: Holy Thunder x1, Left hand: Insight x1, Offhand: Sigon's Guard x1, Offhand: Rune Eye x1, helmet: Ground x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Griswold's Heart, Bulwark, Hwanin's Justice</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Character: ItRubsTheLotion</strong></div>
+                <div>Level 68</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=ItRubsTheLotion">ItRubsTheLotion's Armory</a></div>
+                <div class="hover-trigger" data-character-name="ItRubsTheLotion">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Immolation Arrow:20, Fire Arrow:14, Pierce:13, Exploding Arrow:11, Multiple Shot:4, Penetrate:2, Magic Arrow:1, Cold Arrow:1, Ice Arrow:1, Freezing Arrow:1, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Decoy:1, Evade:1, Valkyrie:1, Poison Javelin:1</p>
+            <p><strong>Equipment:</strong> ring: Manald Heal x1, ring: Raven Coil x1, body: Smoke x1, helmet: Lore x1, boots: Sigon's Sabot x1, gloves: Imp Hand x1, amulet: Maiden's Amulet of Sorcery x1, belt: Goldwrap x1, Left hand: Melody x1, Left hand: Edge x1, Offhand: Blood Eye x1, Offhand: Moonfire x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Isenhart's Horns, Isenhart's Case, Insight</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
             
             </div>
             <hr>
             
-            <h2>4.00%  of Amazon's Main Skills:<br><img src='icons/Power Strike.png' alt='Power Strike' width='20' height='20'> Power Strike 100.00% (40)<br><img src='icons/Charged Strike.png' alt='Charged Strike' width='20' height='20'> Charged Strike 100.00% (40)<br><img src='icons/Lightning Strike.png' alt='Lightning Strike' width='20' height='20'> Lightning Strike 100.00% (40)<br><img src='icons/Jab.png' alt='Jab' width='20' height='20'> Jab 100.00% (21)<br><img src='icons/Avoid.png' alt='Avoid' width='20' height='20'> Avoid 100.00% (12)</h2>
-            <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='icons/Dodge.png' alt='Dodge' width='20' height='20'> Dodge 100.0% (10.0)<br><img src='icons/Molten Strike.png' alt='Molten Strike' width='20' height='20'> Molten Strike 50.0% (5.0)<br><img src='icons/Evade.png' alt='Evade' width='20' height='20'> Evade 100.0% (3.0)<br><img src='icons/Inner Sight.png' alt='Inner Sight' width='20' height='20'> Inner Sight 100.0% (2.0)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 100.0% (2.0)<br><img src='icons/Phase Run.png' alt='Phase Run' width='20' height='20'> Phase Run 100.0% (2.0)</p>
+        <!--<h2>4.00%  of Amazon's Main Skills:<br><img src='icons/Power Strike.png' alt='Power Strike' width='20' height='20'> Power Strike 100.00% (40)<br><img src='icons/Charged Strike.png' alt='Charged Strike' width='20' height='20'> Charged Strike 100.00% (40)<br><img src='icons/Lightning Strike.png' alt='Lightning Strike' width='20' height='20'> Lightning Strike 100.00% (40)<br><img src='icons/Jab.png' alt='Jab' width='20' height='20'> Jab 100.00% (21)<br><img src='icons/Avoid.png' alt='Avoid' width='20' height='20'> Avoid 100.00% (12)</h2>
+        <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='icons/Dodge.png' alt='Dodge' width='20' height='20'> Dodge 100.0% (10.0)<br><img src='icons/Molten Strike.png' alt='Molten Strike' width='20' height='20'> Molten Strike 50.0% (5.0)<br><img src='icons/Evade.png' alt='Evade' width='20' height='20'> Evade 100.0% (3.0)<br><img src='icons/Inner Sight.png' alt='Inner Sight' width='20' height='20'> Inner Sight 100.0% (2.0)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 100.0% (2.0)<br><img src='icons/Phase Run.png' alt='Phase Run' width='20' height='20'> Phase Run 100.0% (2.0)</p> -->
+        <div id="skills" class="skills-container">
+            <div class="column">
+                <ul id="most-popular-skills">
+                    <h2>4.00%  of Amazon's Main Skills:<br><img src='icons/Power Strike.png' alt='Power Strike' width='20' height='20'> Power Strike 100.00% (40)<br><img src='icons/Charged Strike.png' alt='Charged Strike' width='20' height='20'> Charged Strike 100.00% (40)<br><img src='icons/Lightning Strike.png' alt='Lightning Strike' width='20' height='20'> Lightning Strike 100.00% (40)<br><img src='icons/Jab.png' alt='Jab' width='20' height='20'> Jab 100.00% (21)<br><img src='icons/Avoid.png' alt='Avoid' width='20' height='20'> Avoid 100.00% (12)</h2>
+                </ul>
+            </div>
+            <div class="column">
+                <ul id="other-skills">
+                    <h2>Other common skills in this group:</h2> <img src='icons/Dodge.png' alt='Dodge' width='20' height='20'> Dodge 100.0% (10.0)<br><img src='icons/Molten Strike.png' alt='Molten Strike' width='20' height='20'> Molten Strike 50.0% (5.0)<br><img src='icons/Evade.png' alt='Evade' width='20' height='20'> Evade 100.0% (3.0)<br><img src='icons/Inner Sight.png' alt='Inner Sight' width='20' height='20'> Inner Sight 100.0% (2.0)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 100.0% (2.0)<br><img src='icons/Phase Run.png' alt='Phase Run' width='20' height='20'> Phase Run 100.0% (2.0)
+                </ul>
+            </div>
+        </div>
+
             <button class="collapsible">
                 <img src="icons/closed.png" alt="Open" class="icon">
                 <img src="icons/open.png" alt="Close" class="icon hidden">
@@ -818,35 +1374,77 @@
                     <div><strong>Gloves</strong>: Cruel Claw 50.00%<br><strong>Belt</strong>: Thundergod's Vigor 50.00%<br><strong>Ring</strong>: Dwarf Star 50.00%, PlagueRI Coil 50.00%<br><strong>Boots</strong>: Natalya's Soul 50.00%<br><strong>Helmet</strong>: Valkyrie Wing 50.00%<br><strong>Body</strong>: Black Hades 50.00%<br><strong>Amulet</strong>: Chromatic Amulet of Wealth 50.00%<br><strong>Left hand</strong>: Titan's Revenge 50.00%<br><strong>Offhand</strong>: Rhyme 50.00%</div>
                 </div>
 
-            <button class="collapsible">
-                <img src="icons/closed.png" alt="Open" class="icon">
-                <img src="icons/open.png" alt="Close" class="icon hidden">
-                <strong>2 Characters in this cluster:</strong></button>
-                <div class="content">
-                    
-                    <div class="character-info">
-                        <div class="character-link"><strong>Character Name:</strong> Amalitsa</div>
-                        <div>83</div>
-                        <div><a href="https://pathofdiablo.com/p/armory/?name=Amalitsa">Armory</a></div>
-                    </div>
-                <p><strong>Skills:</strong> Jab:20, Power Strike:20, Charged Strike:20, Lightning Strike:20, Molten Strike:5, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Evade:1, Pierce:1, Fend:1</p>
-                <p><strong>Equipment:</strong> gloves: Cruel Claw x1, belt: Thundergod's Vigor x1, ring: Dwarf Star x1, ring: PlagueRI Coil x1, boots: Natalya's Soul x1, helmet: Valkyrie Wing x1, body: Black Hades x1, amulet: Chromatic Amulet of Wealth x1, Left hand: Titan's Revenge x1, Offhand: Rhyme x1</p>
-                <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - No equipment</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>2 Characters in this cluster:</strong>
+        </button>
+        <div class="content">
             
-                    <div class="character-info">
-                        <div class="character-link"><strong>Character Name:</strong> eZ-LightZ</div>
-                        <div>81</div>
-                        <div><a href="https://pathofdiablo.com/p/armory/?name=eZ-LightZ">Armory</a></div>
-                    </div>
-                <p><strong>Skills:</strong> Power Strike:20, Charged Strike:20, Lightning Strike:20, Avoid:11, Dodge:9, Evade:2, Inner Sight:1, Lethal Strike:1, Phase Run:1, Penetrate:1, Decoy:1, Valkyrie:1, Pierce:1, Jab:1</p>
-                <p><strong>Equipment:</strong> </p>
-                <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Leviathan, Tal Rasha's Horadric Crest, Insight</p>
+            <div class="character-info">
+                <div><strong>Character: Amalitsa</strong></div>
+                <div>Level 83</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Amalitsa">Amalitsa's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Amalitsa">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Jab:20, Power Strike:20, Charged Strike:20, Lightning Strike:20, Molten Strike:5, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Evade:1, Pierce:1, Fend:1</p>
+            <p><strong>Equipment:</strong> gloves: Cruel Claw x1, belt: Thundergod's Vigor x1, ring: Dwarf Star x1, ring: PlagueRI Coil x1, boots: Natalya's Soul x1, helmet: Valkyrie Wing x1, body: Black Hades x1, amulet: Chromatic Amulet of Wealth x1, Left hand: Titan's Revenge x1, Offhand: Rhyme x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - No equipment</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Character: eZ-LightZ</strong></div>
+                <div>Level 81</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=eZ-LightZ">eZ-LightZ's Armory</a></div>
+                <div class="hover-trigger" data-character-name="eZ-LightZ">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Power Strike:20, Charged Strike:20, Lightning Strike:20, Avoid:11, Dodge:9, Evade:2, Inner Sight:1, Lethal Strike:1, Phase Run:1, Penetrate:1, Decoy:1, Valkyrie:1, Pierce:1, Jab:1</p>
+            <p><strong>Equipment:</strong> </p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Leviathan, Tal Rasha's Horadric Crest, Insight</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
             
             </div>
             <hr>
             
-            <h2>4.00%  of Amazon's Main Skills:<br><img src='icons/Power Strike.png' alt='Power Strike' width='20' height='20'> Power Strike 100.00% (40)<br><img src='icons/Lightning Bolt.png' alt='Lightning Bolt' width='20' height='20'> Lightning Bolt 100.00% (40)<br><img src='icons/Charged Strike.png' alt='Charged Strike' width='20' height='20'> Charged Strike 100.00% (40)<br><img src='icons/Lightning Fury.png' alt='Lightning Fury' width='20' height='20'> Lightning Fury 100.00% (40)<br><img src='icons/Lightning Strike.png' alt='Lightning Strike' width='20' height='20'> Lightning Strike 50.00% (15)</h2>
-            <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='icons/Plague Javelin.png' alt='Plague Javelin' width='20' height='20'> Plague Javelin 100.0% (7.0)<br><img src='icons/Inner Sight.png' alt='Inner Sight' width='20' height='20'> Inner Sight 100.0% (2.0)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 100.0% (2.0)<br><img src='icons/Dodge.png' alt='Dodge' width='20' height='20'> Dodge 100.0% (2.0)<br><img src='icons/Phase Run.png' alt='Phase Run' width='20' height='20'> Phase Run 100.0% (2.0)<br><img src='icons/Avoid.png' alt='Avoid' width='20' height='20'> Avoid 100.0% (2.0)</p>
+        <!--<h2>4.00%  of Amazon's Main Skills:<br><img src='icons/Power Strike.png' alt='Power Strike' width='20' height='20'> Power Strike 100.00% (40)<br><img src='icons/Lightning Bolt.png' alt='Lightning Bolt' width='20' height='20'> Lightning Bolt 100.00% (40)<br><img src='icons/Charged Strike.png' alt='Charged Strike' width='20' height='20'> Charged Strike 100.00% (40)<br><img src='icons/Lightning Fury.png' alt='Lightning Fury' width='20' height='20'> Lightning Fury 100.00% (40)<br><img src='icons/Lightning Strike.png' alt='Lightning Strike' width='20' height='20'> Lightning Strike 50.00% (15)</h2>
+        <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='icons/Plague Javelin.png' alt='Plague Javelin' width='20' height='20'> Plague Javelin 100.0% (7.0)<br><img src='icons/Inner Sight.png' alt='Inner Sight' width='20' height='20'> Inner Sight 100.0% (2.0)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 100.0% (2.0)<br><img src='icons/Dodge.png' alt='Dodge' width='20' height='20'> Dodge 100.0% (2.0)<br><img src='icons/Phase Run.png' alt='Phase Run' width='20' height='20'> Phase Run 100.0% (2.0)<br><img src='icons/Avoid.png' alt='Avoid' width='20' height='20'> Avoid 100.0% (2.0)</p> -->
+        <div id="skills" class="skills-container">
+            <div class="column">
+                <ul id="most-popular-skills">
+                    <h2>4.00%  of Amazon's Main Skills:<br><img src='icons/Power Strike.png' alt='Power Strike' width='20' height='20'> Power Strike 100.00% (40)<br><img src='icons/Lightning Bolt.png' alt='Lightning Bolt' width='20' height='20'> Lightning Bolt 100.00% (40)<br><img src='icons/Charged Strike.png' alt='Charged Strike' width='20' height='20'> Charged Strike 100.00% (40)<br><img src='icons/Lightning Fury.png' alt='Lightning Fury' width='20' height='20'> Lightning Fury 100.00% (40)<br><img src='icons/Lightning Strike.png' alt='Lightning Strike' width='20' height='20'> Lightning Strike 50.00% (15)</h2>
+                </ul>
+            </div>
+            <div class="column">
+                <ul id="other-skills">
+                    <h2>Other common skills in this group:</h2> <img src='icons/Plague Javelin.png' alt='Plague Javelin' width='20' height='20'> Plague Javelin 100.0% (7.0)<br><img src='icons/Inner Sight.png' alt='Inner Sight' width='20' height='20'> Inner Sight 100.0% (2.0)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 100.0% (2.0)<br><img src='icons/Dodge.png' alt='Dodge' width='20' height='20'> Dodge 100.0% (2.0)<br><img src='icons/Phase Run.png' alt='Phase Run' width='20' height='20'> Phase Run 100.0% (2.0)<br><img src='icons/Avoid.png' alt='Avoid' width='20' height='20'> Avoid 100.0% (2.0)
+                </ul>
+            </div>
+        </div>
+
             <button class="collapsible">
                 <img src="icons/closed.png" alt="Open" class="icon">
                 <img src="icons/open.png" alt="Close" class="icon hidden">
@@ -871,35 +1469,77 @@
                     <div><strong>Helmet</strong>: Andariel's Visage 100.00%<br><strong>Body</strong>: Naj's Light Plate 50.00%, Enigma 50.00%<br><strong>Ring</strong>: The Stone of Jordan 50.00%, Raven Frost 50.00%, Blood Loop 50.00%, Doom Coil 50.00%<br><strong>Gloves</strong>: Grim Finger 50.00%, Storm Touch 50.00%<br><strong>Boots</strong>: Aldur's Advance 50.00%, Silkweave 50.00%<br><strong>Belt</strong>: Thundergod's Vigor 50.00%, Razortail 50.00%<br><strong>Left hand</strong>: Titan's Revenge 150.00%<br><strong>Amulet</strong>: The Cat's Eye 100.00%<br><strong>Offhand</strong>: Stormshield 100.00%, Spirit 50.00%</div>
                 </div>
 
-            <button class="collapsible">
-                <img src="icons/closed.png" alt="Open" class="icon">
-                <img src="icons/open.png" alt="Close" class="icon hidden">
-                <strong>2 Characters in this cluster:</strong></button>
-                <div class="content">
-                    
-                    <div class="character-info">
-                        <div class="character-link"><strong>Character Name:</strong> Oggzon</div>
-                        <div>95</div>
-                        <div><a href="https://pathofdiablo.com/p/armory/?name=Oggzon">Armory</a></div>
-                    </div>
-                <p><strong>Skills:</strong> Power Strike:20, Lightning Bolt:20, Charged Strike:20, Lightning Fury:20, Lightning Strike:15, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Evade:1, Pierce:1, Jab:1, Poison Javelin:1, Plague Javelin:1</p>
-                <p><strong>Equipment:</strong> helmet: Andariel's Visage x1, body: Naj's Light Plate x1, ring: The Stone of Jordan x1, ring: Raven Frost x1, gloves: Grim Finger x1, boots: Aldur's Advance x1, belt: Thundergod's Vigor x1, Left hand: Titan's Revenge x2, amulet: The Cat's Eye x1, Offhand: Stormshield x1</p>
-                <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Andariel's Visage, Fortitude, Infinity</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>2 Characters in this cluster:</strong>
+        </button>
+        <div class="content">
             
-                    <div class="character-info">
-                        <div class="character-link"><strong>Character Name:</strong> YosterZon</div>
-                        <div>89</div>
-                        <div><a href="https://pathofdiablo.com/p/armory/?name=YosterZon">Armory</a></div>
-                    </div>
-                <p><strong>Skills:</strong> Power Strike:20, Lightning Bolt:20, Charged Strike:20, Lightning Fury:20, Plague Javelin:6, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Evade:1, Jab:1, Poison Javelin:1</p>
-                <p><strong>Equipment:</strong> boots: Silkweave x1, body: Enigma x1, belt: Razortail x1, helmet: Andariel's Visage x1, amulet: The Cat's Eye x1, gloves: Storm Touch x1, ring: Blood Loop x1, ring: Doom Coil x1, Offhand: Spirit x1, Offhand: Stormshield x1, Left hand: Titan's Revenge x1</p>
-                <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Tal Rasha's Horadric Crest, Infinity</p>
+            <div class="character-info">
+                <div><strong>Character: Oggzon</strong></div>
+                <div>Level 95</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Oggzon">Oggzon's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Oggzon">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Power Strike:20, Lightning Bolt:20, Charged Strike:20, Lightning Fury:20, Lightning Strike:15, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Evade:1, Pierce:1, Jab:1, Poison Javelin:1, Plague Javelin:1</p>
+            <p><strong>Equipment:</strong> helmet: Andariel's Visage x1, body: Naj's Light Plate x1, ring: The Stone of Jordan x1, ring: Raven Frost x1, gloves: Grim Finger x1, boots: Aldur's Advance x1, belt: Thundergod's Vigor x1, Left hand: Titan's Revenge x2, amulet: The Cat's Eye x1, Offhand: Stormshield x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Andariel's Visage, Fortitude, Infinity</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Character: YosterZon</strong></div>
+                <div>Level 89</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=YosterZon">YosterZon's Armory</a></div>
+                <div class="hover-trigger" data-character-name="YosterZon">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Power Strike:20, Lightning Bolt:20, Charged Strike:20, Lightning Fury:20, Plague Javelin:6, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Evade:1, Jab:1, Poison Javelin:1</p>
+            <p><strong>Equipment:</strong> boots: Silkweave x1, body: Enigma x1, belt: Razortail x1, helmet: Andariel's Visage x1, amulet: The Cat's Eye x1, gloves: Storm Touch x1, ring: Blood Loop x1, ring: Doom Coil x1, Offhand: Spirit x1, Offhand: Stormshield x1, Left hand: Titan's Revenge x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Tal Rasha's Horadric Crest, Infinity</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
             
             </div>
             <hr>
             
-            <h2>2.00%  of Amazon's Main Skills:<br><img src='icons/Multiple Shot.png' alt='Multiple Shot' width='20' height='20'> Multiple Shot 100.00% (20)<br><img src='icons/Guided Arrow.png' alt='Guided Arrow' width='20' height='20'> Guided Arrow 100.00% (20)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 100.00% (20)<br><img src='icons/Penetrate.png' alt='Penetrate' width='20' height='20'> Penetrate 100.00% (17)<br><img src='icons/Pierce.png' alt='Pierce' width='20' height='20'> Pierce 100.00% (8)</h2>
-            <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='icons/Magic Arrow.png' alt='Magic Arrow' width='20' height='20'> Magic Arrow 100.0% (1.0)<br><img src='icons/Cold Arrow.png' alt='Cold Arrow' width='20' height='20'> Cold Arrow 100.0% (1.0)<br><img src='icons/Inner Sight.png' alt='Inner Sight' width='20' height='20'> Inner Sight 100.0% (1.0)<br><img src='icons/Dodge.png' alt='Dodge' width='20' height='20'> Dodge 100.0% (1.0)<br><img src='icons/Phase Run.png' alt='Phase Run' width='20' height='20'> Phase Run 100.0% (1.0)<br><img src='icons/Avoid.png' alt='Avoid' width='20' height='20'> Avoid 100.0% (1.0)</p>
+        <!--<h2>2.00%  of Amazon's Main Skills:<br><img src='icons/Multiple Shot.png' alt='Multiple Shot' width='20' height='20'> Multiple Shot 100.00% (20)<br><img src='icons/Guided Arrow.png' alt='Guided Arrow' width='20' height='20'> Guided Arrow 100.00% (20)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 100.00% (20)<br><img src='icons/Penetrate.png' alt='Penetrate' width='20' height='20'> Penetrate 100.00% (17)<br><img src='icons/Pierce.png' alt='Pierce' width='20' height='20'> Pierce 100.00% (8)</h2>
+        <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='icons/Magic Arrow.png' alt='Magic Arrow' width='20' height='20'> Magic Arrow 100.0% (1.0)<br><img src='icons/Cold Arrow.png' alt='Cold Arrow' width='20' height='20'> Cold Arrow 100.0% (1.0)<br><img src='icons/Inner Sight.png' alt='Inner Sight' width='20' height='20'> Inner Sight 100.0% (1.0)<br><img src='icons/Dodge.png' alt='Dodge' width='20' height='20'> Dodge 100.0% (1.0)<br><img src='icons/Phase Run.png' alt='Phase Run' width='20' height='20'> Phase Run 100.0% (1.0)<br><img src='icons/Avoid.png' alt='Avoid' width='20' height='20'> Avoid 100.0% (1.0)</p> -->
+        <div id="skills" class="skills-container">
+            <div class="column">
+                <ul id="most-popular-skills">
+                    <h2>2.00%  of Amazon's Main Skills:<br><img src='icons/Multiple Shot.png' alt='Multiple Shot' width='20' height='20'> Multiple Shot 100.00% (20)<br><img src='icons/Guided Arrow.png' alt='Guided Arrow' width='20' height='20'> Guided Arrow 100.00% (20)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 100.00% (20)<br><img src='icons/Penetrate.png' alt='Penetrate' width='20' height='20'> Penetrate 100.00% (17)<br><img src='icons/Pierce.png' alt='Pierce' width='20' height='20'> Pierce 100.00% (8)</h2>
+                </ul>
+            </div>
+            <div class="column">
+                <ul id="other-skills">
+                    <h2>Other common skills in this group:</h2> <img src='icons/Magic Arrow.png' alt='Magic Arrow' width='20' height='20'> Magic Arrow 100.0% (1.0)<br><img src='icons/Cold Arrow.png' alt='Cold Arrow' width='20' height='20'> Cold Arrow 100.0% (1.0)<br><img src='icons/Inner Sight.png' alt='Inner Sight' width='20' height='20'> Inner Sight 100.0% (1.0)<br><img src='icons/Dodge.png' alt='Dodge' width='20' height='20'> Dodge 100.0% (1.0)<br><img src='icons/Phase Run.png' alt='Phase Run' width='20' height='20'> Phase Run 100.0% (1.0)<br><img src='icons/Avoid.png' alt='Avoid' width='20' height='20'> Avoid 100.0% (1.0)
+                </ul>
+            </div>
+        </div>
+
             <button class="collapsible">
                 <img src="icons/closed.png" alt="Open" class="icon">
                 <img src="icons/open.png" alt="Close" class="icon hidden">
@@ -924,26 +1564,54 @@
                     <div></div>
                 </div>
 
-            <button class="collapsible">
-                <img src="icons/closed.png" alt="Open" class="icon">
-                <img src="icons/open.png" alt="Close" class="icon hidden">
-                <strong>1 Characters in this cluster:</strong></button>
-                <div class="content">
-                    
-                    <div class="character-info">
-                        <div class="character-link"><strong>Character Name:</strong> XD</div>
-                        <div>85</div>
-                        <div><a href="https://pathofdiablo.com/p/armory/?name=XD">Armory</a></div>
-                    </div>
-                <p><strong>Skills:</strong> Multiple Shot:20, Guided Arrow:20, Lethal Strike:20, Penetrate:17, Pierce:8, Magic Arrow:1, Cold Arrow:1, Inner Sight:1, Dodge:1, Phase Run:1, Avoid:1, Decoy:1, Evade:1, Valkyrie:1</p>
-                <p><strong>Equipment:</strong> </p>
-                <p><strong>Mercenary:</strong> Act 1 Rogue Scout - Fortitude, Tal Rasha's Horadric Crest, Faith</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>1 Characters in this cluster:</strong>
+        </button>
+        <div class="content">
+            
+            <div class="character-info">
+                <div><strong>Character: XD</strong></div>
+                <div>Level 85</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=XD">XD's Armory</a></div>
+                <div class="hover-trigger" data-character-name="XD">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Multiple Shot:20, Guided Arrow:20, Lethal Strike:20, Penetrate:17, Pierce:8, Magic Arrow:1, Cold Arrow:1, Inner Sight:1, Dodge:1, Phase Run:1, Avoid:1, Decoy:1, Evade:1, Valkyrie:1</p>
+            <p><strong>Equipment:</strong> </p>
+            <p><strong>Mercenary:</strong> Act 1 Rogue Scout - Fortitude, Tal Rasha's Horadric Crest, Faith</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
             
             </div>
             <hr>
             
-            <h2>2.00%  of Amazon's Main Skills:<br><img src='icons/Inner Sight.png' alt='Inner Sight' width='20' height='20'> Inner Sight 100.00% (20)<br><img src='icons/Valkyrie.png' alt='Valkyrie' width='20' height='20'> Valkyrie 100.00% (20)<br><img src='icons/Power Strike.png' alt='Power Strike' width='20' height='20'> Power Strike 100.00% (20)<br><img src='icons/Multiple Shot.png' alt='Multiple Shot' width='20' height='20'> Multiple Shot 100.00% (8)<br><img src='icons/Penetrate.png' alt='Penetrate' width='20' height='20'> Penetrate 100.00% (6)</h2>
-            <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 100.0% (5.0)<br><img src='icons/Lightning Strike.png' alt='Lightning Strike' width='20' height='20'> Lightning Strike 100.0% (5.0)<br><img src='icons/Magic Arrow.png' alt='Magic Arrow' width='20' height='20'> Magic Arrow 100.0% (1.0)<br><img src='icons/Dodge.png' alt='Dodge' width='20' height='20'> Dodge 100.0% (1.0)<br><img src='icons/Phase Run.png' alt='Phase Run' width='20' height='20'> Phase Run 100.0% (1.0)<br><img src='icons/Avoid.png' alt='Avoid' width='20' height='20'> Avoid 100.0% (1.0)</p>
+        <!--<h2>2.00%  of Amazon's Main Skills:<br><img src='icons/Inner Sight.png' alt='Inner Sight' width='20' height='20'> Inner Sight 100.00% (20)<br><img src='icons/Valkyrie.png' alt='Valkyrie' width='20' height='20'> Valkyrie 100.00% (20)<br><img src='icons/Power Strike.png' alt='Power Strike' width='20' height='20'> Power Strike 100.00% (20)<br><img src='icons/Multiple Shot.png' alt='Multiple Shot' width='20' height='20'> Multiple Shot 100.00% (8)<br><img src='icons/Penetrate.png' alt='Penetrate' width='20' height='20'> Penetrate 100.00% (6)</h2>
+        <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 100.0% (5.0)<br><img src='icons/Lightning Strike.png' alt='Lightning Strike' width='20' height='20'> Lightning Strike 100.0% (5.0)<br><img src='icons/Magic Arrow.png' alt='Magic Arrow' width='20' height='20'> Magic Arrow 100.0% (1.0)<br><img src='icons/Dodge.png' alt='Dodge' width='20' height='20'> Dodge 100.0% (1.0)<br><img src='icons/Phase Run.png' alt='Phase Run' width='20' height='20'> Phase Run 100.0% (1.0)<br><img src='icons/Avoid.png' alt='Avoid' width='20' height='20'> Avoid 100.0% (1.0)</p> -->
+        <div id="skills" class="skills-container">
+            <div class="column">
+                <ul id="most-popular-skills">
+                    <h2>2.00%  of Amazon's Main Skills:<br><img src='icons/Inner Sight.png' alt='Inner Sight' width='20' height='20'> Inner Sight 100.00% (20)<br><img src='icons/Valkyrie.png' alt='Valkyrie' width='20' height='20'> Valkyrie 100.00% (20)<br><img src='icons/Power Strike.png' alt='Power Strike' width='20' height='20'> Power Strike 100.00% (20)<br><img src='icons/Multiple Shot.png' alt='Multiple Shot' width='20' height='20'> Multiple Shot 100.00% (8)<br><img src='icons/Penetrate.png' alt='Penetrate' width='20' height='20'> Penetrate 100.00% (6)</h2>
+                </ul>
+            </div>
+            <div class="column">
+                <ul id="other-skills">
+                    <h2>Other common skills in this group:</h2> <img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 100.0% (5.0)<br><img src='icons/Lightning Strike.png' alt='Lightning Strike' width='20' height='20'> Lightning Strike 100.0% (5.0)<br><img src='icons/Magic Arrow.png' alt='Magic Arrow' width='20' height='20'> Magic Arrow 100.0% (1.0)<br><img src='icons/Dodge.png' alt='Dodge' width='20' height='20'> Dodge 100.0% (1.0)<br><img src='icons/Phase Run.png' alt='Phase Run' width='20' height='20'> Phase Run 100.0% (1.0)<br><img src='icons/Avoid.png' alt='Avoid' width='20' height='20'> Avoid 100.0% (1.0)
+                </ul>
+            </div>
+        </div>
+
             <button class="collapsible">
                 <img src="icons/closed.png" alt="Open" class="icon">
                 <img src="icons/open.png" alt="Close" class="icon hidden">
@@ -968,26 +1636,54 @@
                     <div></div>
                 </div>
 
-            <button class="collapsible">
-                <img src="icons/closed.png" alt="Open" class="icon">
-                <img src="icons/open.png" alt="Close" class="icon hidden">
-                <strong>1 Characters in this cluster:</strong></button>
-                <div class="content">
-                    
-                    <div class="character-info">
-                        <div class="character-link"><strong>Character Name:</strong> Bredik</div>
-                        <div>83</div>
-                        <div><a href="https://pathofdiablo.com/p/armory/?name=Bredik">Armory</a></div>
-                    </div>
-                <p><strong>Skills:</strong> Inner Sight:20, Valkyrie:20, Power Strike:20, Multiple Shot:8, Penetrate:6, Lethal Strike:5, Lightning Strike:5, Magic Arrow:1, Dodge:1, Phase Run:1, Avoid:1, Decoy:1, Evade:1, Pierce:1, Jab:1, Charged Strike:1, Fend:1</p>
-                <p><strong>Equipment:</strong> </p>
-                <p><strong>Mercenary:</strong> Act 3 Eastern Sorceror - Que-Hegan's Wisdom, Rockstopper, Ginther's Rift, Havoc Ward</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>1 Characters in this cluster:</strong>
+        </button>
+        <div class="content">
+            
+            <div class="character-info">
+                <div><strong>Character: Bredik</strong></div>
+                <div>Level 83</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Bredik">Bredik's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Bredik">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Inner Sight:20, Valkyrie:20, Power Strike:20, Multiple Shot:8, Penetrate:6, Lethal Strike:5, Lightning Strike:5, Magic Arrow:1, Dodge:1, Phase Run:1, Avoid:1, Decoy:1, Evade:1, Pierce:1, Jab:1, Charged Strike:1, Fend:1</p>
+            <p><strong>Equipment:</strong> </p>
+            <p><strong>Mercenary:</strong> Act 3 Eastern Sorceror - Que-Hegan's Wisdom, Rockstopper, Ginther's Rift, Havoc Ward</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
             
             </div>
             <hr>
             
-            <h2>2.00%  of Amazon's Main Skills:<br><img src='icons/Jab.png' alt='Jab' width='20' height='20'> Jab 100.00% (20)<br><img src='icons/Molten Strike.png' alt='Molten Strike' width='20' height='20'> Molten Strike 100.00% (20)<br><img src='icons/Fend.png' alt='Fend' width='20' height='20'> Fend 100.00% (20)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 100.00% (5)<br><img src='icons/Avoid.png' alt='Avoid' width='20' height='20'> Avoid 100.00% (5)</h2>
-            <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='icons/Evade.png' alt='Evade' width='20' height='20'> Evade 100.0% (4.0)<br><img src='icons/Dodge.png' alt='Dodge' width='20' height='20'> Dodge 100.0% (2.0)<br><img src='icons/Inner Sight.png' alt='Inner Sight' width='20' height='20'> Inner Sight 100.0% (1.0)<br><img src='icons/Phase Run.png' alt='Phase Run' width='20' height='20'> Phase Run 100.0% (1.0)<br><img src='icons/Penetrate.png' alt='Penetrate' width='20' height='20'> Penetrate 100.0% (1.0)<br><img src='icons/Magic Arrow.png' alt='Magic Arrow' width='20' height='20'> Magic Arrow 0.0% (0.0)</p>
+        <!--<h2>2.00%  of Amazon's Main Skills:<br><img src='icons/Jab.png' alt='Jab' width='20' height='20'> Jab 100.00% (20)<br><img src='icons/Molten Strike.png' alt='Molten Strike' width='20' height='20'> Molten Strike 100.00% (20)<br><img src='icons/Fend.png' alt='Fend' width='20' height='20'> Fend 100.00% (20)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 100.00% (5)<br><img src='icons/Avoid.png' alt='Avoid' width='20' height='20'> Avoid 100.00% (5)</h2>
+        <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='icons/Evade.png' alt='Evade' width='20' height='20'> Evade 100.0% (4.0)<br><img src='icons/Dodge.png' alt='Dodge' width='20' height='20'> Dodge 100.0% (2.0)<br><img src='icons/Inner Sight.png' alt='Inner Sight' width='20' height='20'> Inner Sight 100.0% (1.0)<br><img src='icons/Phase Run.png' alt='Phase Run' width='20' height='20'> Phase Run 100.0% (1.0)<br><img src='icons/Penetrate.png' alt='Penetrate' width='20' height='20'> Penetrate 100.0% (1.0)<br><img src='icons/Magic Arrow.png' alt='Magic Arrow' width='20' height='20'> Magic Arrow 0.0% (0.0)</p> -->
+        <div id="skills" class="skills-container">
+            <div class="column">
+                <ul id="most-popular-skills">
+                    <h2>2.00%  of Amazon's Main Skills:<br><img src='icons/Jab.png' alt='Jab' width='20' height='20'> Jab 100.00% (20)<br><img src='icons/Molten Strike.png' alt='Molten Strike' width='20' height='20'> Molten Strike 100.00% (20)<br><img src='icons/Fend.png' alt='Fend' width='20' height='20'> Fend 100.00% (20)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 100.00% (5)<br><img src='icons/Avoid.png' alt='Avoid' width='20' height='20'> Avoid 100.00% (5)</h2>
+                </ul>
+            </div>
+            <div class="column">
+                <ul id="other-skills">
+                    <h2>Other common skills in this group:</h2> <img src='icons/Evade.png' alt='Evade' width='20' height='20'> Evade 100.0% (4.0)<br><img src='icons/Dodge.png' alt='Dodge' width='20' height='20'> Dodge 100.0% (2.0)<br><img src='icons/Inner Sight.png' alt='Inner Sight' width='20' height='20'> Inner Sight 100.0% (1.0)<br><img src='icons/Phase Run.png' alt='Phase Run' width='20' height='20'> Phase Run 100.0% (1.0)<br><img src='icons/Penetrate.png' alt='Penetrate' width='20' height='20'> Penetrate 100.0% (1.0)<br><img src='icons/Magic Arrow.png' alt='Magic Arrow' width='20' height='20'> Magic Arrow 0.0% (0.0)
+                </ul>
+            </div>
+        </div>
+
             <button class="collapsible">
                 <img src="icons/closed.png" alt="Open" class="icon">
                 <img src="icons/open.png" alt="Close" class="icon hidden">
@@ -1012,26 +1708,54 @@
                     <div><strong>Ring</strong>: Order Grip 100.00%, Manald Heal 100.00%<br><strong>Amulet</strong>: Iratha's Collar 100.00%<br><strong>Body</strong>: Hustle 100.00%<br><strong>Helmet</strong>: Iratha's Coil 100.00%<br><strong>Boots</strong>: Immortal King's Pillar 100.00%<br><strong>Left hand</strong>: Battle Staff of Teleportation 100.00%, The Impaler 100.00%<br><strong>Gloves</strong>: Iratha's Cuff 100.00%<br><strong>Belt</strong>: Iratha's Cord 100.00%</div>
                 </div>
 
-            <button class="collapsible">
-                <img src="icons/closed.png" alt="Open" class="icon">
-                <img src="icons/open.png" alt="Close" class="icon hidden">
-                <strong>1 Characters in this cluster:</strong></button>
-                <div class="content">
-                    
-                    <div class="character-info">
-                        <div class="character-link"><strong>Character Name:</strong> Blow_Jab</div>
-                        <div>71</div>
-                        <div><a href="https://pathofdiablo.com/p/armory/?name=Blow_Jab">Armory</a></div>
-                    </div>
-                <p><strong>Skills:</strong> Jab:20, Molten Strike:20, Fend:20, Lethal Strike:5, Avoid:5, Evade:4, Dodge:2, Inner Sight:1, Phase Run:1, Penetrate:1</p>
-                <p><strong>Equipment:</strong> ring: Order Grip x1, ring: Manald Heal x1, amulet: Iratha's Collar x1, body: Hustle x1, helmet: Iratha's Coil x1, boots: Immortal King's Pillar x1, Left hand: Battle Staff of Teleportation x1, Left hand: The Impaler x1, gloves: Iratha's Cuff x1, belt: Iratha's Cord x1</p>
-                <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Eagle Horn, Hawkmail, Insight</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>1 Characters in this cluster:</strong>
+        </button>
+        <div class="content">
+            
+            <div class="character-info">
+                <div><strong>Character: Blow_Jab</strong></div>
+                <div>Level 71</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Blow_Jab">Blow_Jab's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Blow_Jab">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Jab:20, Molten Strike:20, Fend:20, Lethal Strike:5, Avoid:5, Evade:4, Dodge:2, Inner Sight:1, Phase Run:1, Penetrate:1</p>
+            <p><strong>Equipment:</strong> ring: Order Grip x1, ring: Manald Heal x1, amulet: Iratha's Collar x1, body: Hustle x1, helmet: Iratha's Coil x1, boots: Immortal King's Pillar x1, Left hand: Battle Staff of Teleportation x1, Left hand: The Impaler x1, gloves: Iratha's Cuff x1, belt: Iratha's Cord x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Eagle Horn, Hawkmail, Insight</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
             
             </div>
             <hr>
             
-            <h2>2.00%  of Amazon's Main Skills:<br><img src='icons/Guided Arrow.png' alt='Guided Arrow' width='20' height='20'> Guided Arrow 100.00% (20)<br><img src='icons/Immolation Arrow.png' alt='Immolation Arrow' width='20' height='20'> Immolation Arrow 100.00% (20)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 100.00% (13)<br><img src='icons/Valkyrie.png' alt='Valkyrie' width='20' height='20'> Valkyrie 100.00% (10)<br><img src='icons/Pierce.png' alt='Pierce' width='20' height='20'> Pierce 100.00% (10)</h2>
-            <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='icons/Dodge.png' alt='Dodge' width='20' height='20'> Dodge 100.0% (5.0)<br><img src='icons/Avoid.png' alt='Avoid' width='20' height='20'> Avoid 100.0% (5.0)<br><img src='icons/Evade.png' alt='Evade' width='20' height='20'> Evade 100.0% (3.0)<br><img src='icons/Magic Arrow.png' alt='Magic Arrow' width='20' height='20'> Magic Arrow 100.0% (1.0)<br><img src='icons/Cold Arrow.png' alt='Cold Arrow' width='20' height='20'> Cold Arrow 100.0% (1.0)<br><img src='icons/Multiple Shot.png' alt='Multiple Shot' width='20' height='20'> Multiple Shot 100.0% (1.0)</p>
+        <!--<h2>2.00%  of Amazon's Main Skills:<br><img src='icons/Guided Arrow.png' alt='Guided Arrow' width='20' height='20'> Guided Arrow 100.00% (20)<br><img src='icons/Immolation Arrow.png' alt='Immolation Arrow' width='20' height='20'> Immolation Arrow 100.00% (20)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 100.00% (13)<br><img src='icons/Valkyrie.png' alt='Valkyrie' width='20' height='20'> Valkyrie 100.00% (10)<br><img src='icons/Pierce.png' alt='Pierce' width='20' height='20'> Pierce 100.00% (10)</h2>
+        <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='icons/Dodge.png' alt='Dodge' width='20' height='20'> Dodge 100.0% (5.0)<br><img src='icons/Avoid.png' alt='Avoid' width='20' height='20'> Avoid 100.0% (5.0)<br><img src='icons/Evade.png' alt='Evade' width='20' height='20'> Evade 100.0% (3.0)<br><img src='icons/Magic Arrow.png' alt='Magic Arrow' width='20' height='20'> Magic Arrow 100.0% (1.0)<br><img src='icons/Cold Arrow.png' alt='Cold Arrow' width='20' height='20'> Cold Arrow 100.0% (1.0)<br><img src='icons/Multiple Shot.png' alt='Multiple Shot' width='20' height='20'> Multiple Shot 100.0% (1.0)</p> -->
+        <div id="skills" class="skills-container">
+            <div class="column">
+                <ul id="most-popular-skills">
+                    <h2>2.00%  of Amazon's Main Skills:<br><img src='icons/Guided Arrow.png' alt='Guided Arrow' width='20' height='20'> Guided Arrow 100.00% (20)<br><img src='icons/Immolation Arrow.png' alt='Immolation Arrow' width='20' height='20'> Immolation Arrow 100.00% (20)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 100.00% (13)<br><img src='icons/Valkyrie.png' alt='Valkyrie' width='20' height='20'> Valkyrie 100.00% (10)<br><img src='icons/Pierce.png' alt='Pierce' width='20' height='20'> Pierce 100.00% (10)</h2>
+                </ul>
+            </div>
+            <div class="column">
+                <ul id="other-skills">
+                    <h2>Other common skills in this group:</h2> <img src='icons/Dodge.png' alt='Dodge' width='20' height='20'> Dodge 100.0% (5.0)<br><img src='icons/Avoid.png' alt='Avoid' width='20' height='20'> Avoid 100.0% (5.0)<br><img src='icons/Evade.png' alt='Evade' width='20' height='20'> Evade 100.0% (3.0)<br><img src='icons/Magic Arrow.png' alt='Magic Arrow' width='20' height='20'> Magic Arrow 100.0% (1.0)<br><img src='icons/Cold Arrow.png' alt='Cold Arrow' width='20' height='20'> Cold Arrow 100.0% (1.0)<br><img src='icons/Multiple Shot.png' alt='Multiple Shot' width='20' height='20'> Multiple Shot 100.0% (1.0)
+                </ul>
+            </div>
+        </div>
+
             <button class="collapsible">
                 <img src="icons/closed.png" alt="Open" class="icon">
                 <img src="icons/open.png" alt="Close" class="icon hidden">
@@ -1056,20 +1780,35 @@
                     <div><strong>Body</strong>: Hustle 100.00%<br><strong>Helmet</strong>: Tal Rasha's Horadric Crest 100.00%<br><strong>Ring</strong>: Nagelring 100.00%, Carrion Wind 100.00%<br><strong>Gloves</strong>: Laying of Hands 100.00%<br><strong>Belt</strong>: Credendum 100.00%<br><strong>Boots</strong>: Gore Rider 100.00%<br><strong>Amulet</strong>: Metalgrid 100.00%<br><strong>Left hand</strong>: Harmony 100.00%<br><strong>Offhand</strong>: Moonfire 100.00%</div>
                 </div>
 
-            <button class="collapsible">
-                <img src="icons/closed.png" alt="Open" class="icon">
-                <img src="icons/open.png" alt="Close" class="icon hidden">
-                <strong>1 Characters in this cluster:</strong></button>
-                <div class="content">
-                    
-                    <div class="character-info">
-                        <div class="character-link"><strong>Character Name:</strong> Alice_Weidel</div>
-                        <div>84</div>
-                        <div><a href="https://pathofdiablo.com/p/armory/?name=Alice_Weidel">Armory</a></div>
-                    </div>
-                <p><strong>Skills:</strong> Guided Arrow:20, Immolation Arrow:20, Lethal Strike:13, Valkyrie:10, Pierce:10, Dodge:5, Avoid:5, Evade:3, Magic Arrow:1, Fire Arrow:1, Cold Arrow:1, Multiple Shot:1, Exploding Arrow:1, Inner Sight:1, Phase Run:1, Penetrate:1, Decoy:1</p>
-                <p><strong>Equipment:</strong> body: Hustle x1, helmet: Tal Rasha's Horadric Crest x1, ring: Nagelring x1, ring: Carrion Wind x1, gloves: Laying of Hands x1, belt: Credendum x1, boots: Gore Rider x1, amulet: Metalgrid x1, Left hand: Harmony x1, Offhand: Moonfire x1</p>
-                <p><strong>Mercenary:</strong> Act 5 Barbarian - Shaftstop, Blackhorn's Face</p>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>1 Characters in this cluster:</strong>
+        </button>
+        <div class="content">
+            
+            <div class="character-info">
+                <div><strong>Character: Alice_Weidel</strong></div>
+                <div>Level 84</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Alice_Weidel">Alice_Weidel's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Alice_Weidel">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Guided Arrow:20, Immolation Arrow:20, Lethal Strike:13, Valkyrie:10, Pierce:10, Dodge:5, Avoid:5, Evade:3, Magic Arrow:1, Fire Arrow:1, Cold Arrow:1, Multiple Shot:1, Exploding Arrow:1, Inner Sight:1, Phase Run:1, Penetrate:1, Decoy:1</p>
+            <p><strong>Equipment:</strong> body: Hustle x1, helmet: Tal Rasha's Horadric Crest x1, ring: Nagelring x1, ring: Carrion Wind x1, gloves: Laying of Hands x1, belt: Credendum x1, boots: Gore Rider x1, amulet: Metalgrid x1, Left hand: Harmony x1, Offhand: Moonfire x1</p>
+            <p><strong>Mercenary:</strong> Act 5 Barbarian - Shaftstop, Blackhorn's Face</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
             
             </div>
             <hr>
@@ -1214,7 +1953,46 @@
             });
         });
     </script>
+        <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const hoverTriggers = document.querySelectorAll(".hover-trigger");
+                    let activePopup = null;
 
+                    hoverTriggers.forEach(trigger => {
+                        trigger.addEventListener("click", function (event) {
+                            event.stopPropagation();
+                            const characterName = this.getAttribute("data-character-name");
+
+                            // Close any open popup first
+                            if (activePopup) {
+                                activePopup.classList.remove("active");
+                            }
+
+                            // Find the popup within the same character container
+                            const popup = this.closest(".character-info").nextElementSibling.querySelector(".popup");
+                            const iframe = popup.querySelector("iframe");
+
+                            console.log('Popup:', popup); // Debugging line
+                            console.log('Character Name:', characterName); // Debugging line
+
+                            // Set the correct iframe URL
+                            iframe.src = `./armory/video_component.html?charName=${encodeURIComponent(characterName)}`;
+
+                            // Show the popup
+                            popup.classList.add("active");
+                            activePopup = popup;
+                        });
+                    });
+
+                    // Close the popup when clicking anywhere outside it
+                    document.addEventListener("click", function (event) {
+                        if (activePopup && !activePopup.contains(event.target)) {
+                            activePopup.classList.remove("active");
+                            activePopup = null;
+                        }
+                    });
+                });
+        </script>
 
 
         </body>
