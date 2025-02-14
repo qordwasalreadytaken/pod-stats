@@ -11,6 +11,7 @@ The data used to create these is not real time, it's a snapshot in time that is 
 Let Qord know, Qord @ PoD Discord 
 
 # Known Issues to address
+* Some item images in the pop up aren't displaying even though they work in the original twitch extension, looks like it's only the regex'd/text-replace ones? Can't be something I did, blame regex right? 
 * Pie Charts not displayed properly, covered by labels
 * Hardcore had a low player base so the HC data includes a lot of low level characters, skewing data. Should it be floored at lvl 60? Some other level?
     * Hardcore floor changed to level 60, should it be higher still?
