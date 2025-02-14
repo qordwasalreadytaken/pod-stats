@@ -10,6 +10,10 @@ The data used to create these is not real time, it's a snapshot in time that is 
 # Feedback?
 Let Qord know, Qord @ PoD Discord 
 
+# To-do
+Make Armory links open in new tab instead of same tab
+    * Done for SC
+
 # Known Issues to address
 * Some item images in the pop up aren't displaying even though they work in the original twitch extension, looks like it's only the regex'd/text-replace ones? Can't be something I did, blame regex right? 
 * Pie Charts not displayed properly, covered by labels
