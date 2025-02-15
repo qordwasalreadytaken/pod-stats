@@ -11,11 +11,11 @@ The data used to create these is not real time, it's a snapshot in time that is 
 Let Qord know, Qord @ PoD Discord 
 
 # To-do from community
-Make Armory links open in new tab instead of same tab
+* Make Armory links open in new tab instead of same tab
     * Done for SC and HC
-Move HC/SC toggle up to below home
+* Move HC/SC toggle up to below home
     * Done for SC and HC
-Better way to present the "More detailed breakdown:" sections
+* Better way to present the "More detailed breakdown:" sections
     * Maybe give skills weight so, for example, a freezing pulse cluster presents itslef as a freezing pulse cluster so users don't have to read between the lines to see it
 
 # Known Issues to address
