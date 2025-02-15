@@ -11,12 +11,19 @@ The data used to create these is not real time, it's a snapshot in time that is 
 Let Qord know, Qord @ PoD Discord 
 
 # To-do from community
+* Better way to present the "More detailed breakdown:" sections
+    * Maybe give skills weight so, for example, a freezing pulse cluster presents itslef as a freezing pulse cluster so users don't have to read between the lines to see it
+* Item displays for characters:
+    * Add colors (blue for magic, gold for unique, etc.)
+        * Done for SC
+    * Remove the "x1" from display
+        * Done for SC
+
+# To-do from community - Completed
 * Make Armory links open in new tab instead of same tab
     * Done for SC and HC
 * Move HC/SC toggle up to below home
     * Done for SC and HC
-* Better way to present the "More detailed breakdown:" sections
-    * Maybe give skills weight so, for example, a freezing pulse cluster presents itslef as a freezing pulse cluster so users don't have to read between the lines to see it
 
 # Known Issues to address
 * Some item images in the pop up aren't displaying even though they work in the original twitch extension, looks like it's only the regex'd/text-replace ones? Can't be something I did, blame regex right? 
