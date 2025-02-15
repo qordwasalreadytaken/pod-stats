@@ -10,9 +10,13 @@ The data used to create these is not real time, it's a snapshot in time that is 
 # Feedback?
 Let Qord know, Qord @ PoD Discord 
 
-# To-do
+# To-do from community
 Make Armory links open in new tab instead of same tab
-    * Done for SC
+    * Done for SC and HC
+Move HC/SC toggle up to below home
+    * Done for SC and HC
+Better way to present the "More detailed breakdown:" sections
+    * Maybe give skills weight so, for example, a freezing pulse cluster presents itslef as a freezing pulse cluster so users don't have to read between the lines to see it
 
 # Known Issues to address
 * Some item images in the pop up aren't displaying even though they work in the original twitch extension, looks like it's only the regex'd/text-replace ones? Can't be something I did, blame regex right? 
