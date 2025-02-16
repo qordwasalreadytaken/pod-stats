@@ -13,24 +13,31 @@ Let Qord know, Qord @ PoD Discord
 # To-do from community
 * Better way to present the "More detailed breakdown:" sections
     * Maybe give skills weight so, for example, a freezing pulse cluster presents itslef as a freezing pulse cluster so users don't have to read between the lines to see it
+    * Weights added to MakeClassPages function; looks ok but will need care and feeding
 * Item displays for characters:
     * Add colors (blue for magic, gold for unique, etc.)
         * Done for SC class page, but not others
+        * Item displays good for class pages, but breaks the clustering for specialty pages
     * Remove the "x1" from display
         * Done for SC class pages, but not others
 * Rotating Synth highlight in the fun facts?
-* Add timestamp
-    * Added to main page pie chart and footer to others in SC
+
 
 # To-do from community - Completed
+* Better way to present the "More detailed breakdown:" sections
+    * Maybe give skills weight so, for example, a freezing pulse cluster presents itslef as a freezing pulse cluster so users don't have to read between the lines to see it
+    * Weights added to MakeClassPages function; looks ok but will need care and feeding
 * Make Armory links open in new tab instead of same tab
     * Done for SC and HC
 * Move HC/SC toggle up to below home
     * Done for SC and HC
+* Add timestamp
+    * Added to main page pie chart and footer to others in SC
 
 # Known Issues to address
 * Some item images in the pop up aren't displaying even though they work in the original twitch extension, looks like it's only the regex'd/text-replace ones? Can't be something I did, blame regex right? 
 * Pie Charts not displayed properly, covered by labels
+    * Removed most pie charts for now, they're still generated but the div to show them is commented out in the htnl's
 * Hardcore had a low player base so the HC data includes a lot of low level characters, skewing data. Should it be floored at lvl 60? Some other level?
     * Hardcore floor changed to level 60, should it be higher still?
 * The number of clusters (builds) to use was decided by cluster analysis, silhouette, and gap analysis, followed by just eyeballing them to see if the made sense. Can this be more automatic AND reliable?
@@ -41,8 +48,9 @@ Let Qord know, Qord @ PoD Discord
     * Changed armory quickview button to reflect "dead" status
     * Is that adequate?
 * Item displays for characters:
-    * Item count for Dashadin not right, removed
+    * Item count for Dashadin not right, removed.
+    * Item displays good for class pages, but breaks the clustering for specialty pages
 
 # Credits
 Armory quickview pop ups powered by PoD Gear Twitch extension by Vinthian, Sizzles & Qord, adapted for use here by Qord
-
+Thanks to Zardoz, GD, myang26, TheHornBlower
