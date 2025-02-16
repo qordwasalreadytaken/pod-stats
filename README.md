@@ -40,6 +40,8 @@ Let Qord know, Qord @ PoD Discord
 * HC characters that have died don't have equipment, how best to address?
     * Changed armory quickview button to reflect "dead" status
     * Is that adequate?
+* Item displays for characters:
+    * Item count for Dashadin not right, removed
 
 # Credits
 Armory quickview pop ups powered by PoD Gear Twitch extension by Vinthian, Sizzles & Qord, adapted for use here by Qord
