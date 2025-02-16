@@ -52,7 +52,7 @@ Let Qord know, Qord @ PoD Discord
     * Item displays good for class pages, but breaks the clustering for specialty pages
 
 # Credits
-Armory quickview pop ups powered by PoD Gear Twitch extension by Vinthian, Sizzles & Qord, adapted for use here by Qord
+Armory quickview pop ups are powered by the PoD Gear Twitch extension by Vinthian, Sizzles & Qord, adapted for use here by Qord
 
 Thanks to Zardoz, GD, myang26, TheHornBlower
 
