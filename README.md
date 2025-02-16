@@ -86,8 +86,8 @@ Current Folder Structure:
 ├── README.md
 └── All of the individual html files (25-30 of them)
 ```
-Running the get char data functions (GetAllCharData, GetClassCharData, GetAllhcCharData, GethcClassCharData) pull down json files and drops them in the relevant SC/HC subfolders. 
-Running other get/make functions uses data in the relevant SC/HC subfolders to creates html files and charts, html files are saved inside PoD-Stats folder, and all pie and scatter charts are saved inside PoD-Stats\charts folder.
+Running the get char data functions (GetAllCharData, GetClassCharData, GetAllhcCharData, GethcClassCharData) pull down json files and drops them in the relevant SC/HC subfolders.  
+Running other get/make functions uses data in the relevant SC/HC subfolders to creates html files and charts, html files are saved inside PoD-Stats folder, and all pie and scatter charts are saved inside PoD-Stats\charts folder.  
 Running the GitHubSync function pushes the contents of PoD-Stats folder up to github. (this functionality would need to be set by the user, this is not universal)
 
 To execute these python files you will need to install python and these libraries:
