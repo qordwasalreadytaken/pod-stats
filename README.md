@@ -15,9 +15,12 @@ Let Qord know, Qord @ PoD Discord
     * Maybe give skills weight so, for example, a freezing pulse cluster presents itslef as a freezing pulse cluster so users don't have to read between the lines to see it
 * Item displays for characters:
     * Add colors (blue for magic, gold for unique, etc.)
-        * Done for SC
+        * Done for SC class page, but not others
     * Remove the "x1" from display
-        * Done for SC
+        * Done for SC class pages, but not others
+* Rotating Synth highlight in the fun facts?
+* Add timestamp
+    * Added to main page pie chart and footer to others in SC
 
 # To-do from community - Completed
 * Make Armory links open in new tab instead of same tab
