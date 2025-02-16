@@ -14,14 +14,15 @@ Let Qord know, Qord @ PoD Discord
 * Item displays for characters:
     * Add colors (blue for magic, gold for unique, etc.)
         * Done for SC class page, but not others
+        * HC done?
         * Item displays good for class pages, but breaks the clustering for specialty pages
     * Remove the "x1" from display
         * Done for SC class pages, but not others
-        * Still need HC
+        * HC done?
 * Rotating Synth highlight in the fun facts?
 * Add timestamp
     * Added to main page pie chart and footer to others in SC
-    * Still need HC
+    * HC done?
 
 
 # To-do from community - Completed
