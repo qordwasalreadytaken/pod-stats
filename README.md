@@ -16,6 +16,8 @@ Let Qord know, Qord @ PoD Discord
         * Done for SC class page, but not others
         * HC done?
         * Item displays good for class pages, but breaks the clustering for specialty pages
+            * Working: Notazons, Dashadin, 
+            * Not working: Warpspear, Unique Arrows and Bolts, Offensive Aura items, Charge
     * Remove the "x1" from display
         * Done for SC class pages, but not others
         * HC done?
