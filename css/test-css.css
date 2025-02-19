@@ -12,24 +12,40 @@
         margin: 20px; 
         line-height: 1.6; 
         margin-left: 300px; /* Adjust this value to the width of your fixed buttons + some extra space */
+        background-image: url("../icons/stone_background_mobile.jpg");
+        background-position: bottom center;
+        background-repeat: repeat;
+        background-size: auto;
+        background-color: #232323;
+        font-family: 'armory', sans-serif;
+        color: white;
+    }
+
+    .special-background {  
         background-image: url("../icons/Header_background.jpg"),url("../icons/stone_background_mobile.jpg");
         background-position: top 0px left 0px, bottom center;
         background-repeat: no-repeat, repeat;
         background-size: contain, auto;
-        background-color: #232323;
-        font-family: 'd2', sans-serif;
-        color: white;
     }
-    h1 { color: #d5f2e3; }
+    .not-main {
+        padding-top: 50px; /* Adjust the value as needed */
+    }
+    
+    
+    h1 { color: #d5f2e3;         
+        font-family: 'd2', sans-serif;
+    }
     h2, h3 { 
         color: #d5f2e3; 
         margin-top: 20px; 
         clear: both; 
-        font-family: 'newFont', serif;
+        font-family: 'armory', serif;
+        
     }
     p { 
         clear: both; 
-        font-family: 'newFont', serif;
+        font-family: 'armory', serif;
+        color: white; 
     }
     .main {
         margin-left: 200;
@@ -38,7 +54,7 @@
         margin-left: 200;
     }
     .main img {
-        max-width: 600px;
+        max-width: 800px;
         width: 100%;
         height: auto;
         display: block;
@@ -96,6 +112,8 @@
     .collapsible strong {
         font-size: 16px;
         margin-left: 10px;
+        color: #d5f2e3; 
+        font-family: 'd2', sans-serif;
     }
     
 
