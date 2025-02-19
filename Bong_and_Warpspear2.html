@@ -1,0 +1,662 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Bong_and_Warpspear Analysis Report</title>
+        <link rel="stylesheet" type="text/css" href="./css/test-css.css">
+
+    </head>
+    <body>
+        <div class="top-buttons">
+            <a href="Home2.html" class="top-button home-button" onclick="setActive('Home')"></a>
+            <a href="#" id="SC_HC" class="top-button"> </a>
+            <a href="Amazon2.html" id="Amazon" class="top-button amazon-button"></a>
+            <a href="Assassin2.html" id="Assassin" class="top-button assassin-button"></a>
+            <a href="Barbarian2.html" id="Barbarian" class="top-button barbarian-button"></a>
+            <a href="Druid2.html" id="Druid" class="top-button druid-button"></a>
+            <a href="Necromancer2.html" id="Necromancer" class="top-button necromancer-button"></a>
+            <a href="Paladin2.html" id="Paladin" class="top-button paladin-button"></a>
+            <a href="Sorceress2.html" id="Sorceress" class="top-button sorceress-button"></a>
+            <a href="https://github.com/qordwasalreadytaken/pod-stats/blob/main/README.md" class="top-button about-button" target="_blank"></a>
+        </div>
+
+        <h1>Warpspear and The Iron Jang Bong Usage </h1>
+        <h3>This is characters who have Warpspear or The Iron Jang Bong equipped</h3>
+        <p class="indented-skills">Skills used:<br>The Iron Jang Bong users favor the skills: Magic Arrow (10.0%), Multiple Shot (10.0%), Lethal Strike (10.0%), Penetrate (10.0%)<br>Warpspear users favor the skills: Teleport (20.0%), Thunder Storm (20.0%), Telekinesis (19.05%), Lightning Mastery (18.9%) </p>
+
+        <hr>
+        
+        <!--<h2>Warpspear users:<br><img src='icons/Teleport.png' alt='Teleport' width='20' height='20'> Teleport 100.00% (400)<br><img src='icons/Thunder Storm.png' alt='Thunder Storm' width='20' height='20'> Thunder Storm 100.00% (400)<br><img src='icons/Telekinesis.png' alt='Telekinesis' width='20' height='20'> Telekinesis 100.00% (381)<br><img src='icons/Lightning Mastery.png' alt='Lightning Mastery' width='20' height='20'> Lightning Mastery 100.00% (378)</h2>
+        <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='icons/Lightning Surge.png' alt='Lightning Surge' width='20' height='20'> Lightning Surge 100.0% (330.0)<br><img src='icons/Energy Shield.png' alt='Energy Shield' width='20' height='20'> Energy Shield 100.0% (57.0)<br><img src='icons/Charged Bolt.png' alt='Charged Bolt' width='20' height='20'> Charged Bolt 100.0% (39.0)<br><img src='icons/Chain Lightning.png' alt='Chain Lightning' width='20' height='20'> Chain Lightning 100.0% (21.0)<br><img src='icons/Warmth.png' alt='Warmth' width='20' height='20'> Warmth 95.0% (20.0)<br><img src='icons/Nova.png' alt='Nova' width='20' height='20'> Nova 10.0% (20.0)</p> -->
+        <div id="skills" class="skills-container">
+            <div class="column">
+                <ul id="most-popular-skills">
+                    <h2>Warpspear users:<br><img src='icons/Teleport.png' alt='Teleport' width='20' height='20'> Teleport 100.00% (400)<br><img src='icons/Thunder Storm.png' alt='Thunder Storm' width='20' height='20'> Thunder Storm 100.00% (400)<br><img src='icons/Telekinesis.png' alt='Telekinesis' width='20' height='20'> Telekinesis 100.00% (381)<br><img src='icons/Lightning Mastery.png' alt='Lightning Mastery' width='20' height='20'> Lightning Mastery 100.00% (378)</h2>
+                </ul>
+            </div>
+            <div class="column">
+                <ul id="other-skills">
+                    <h2>Other common skills in this group:</h2> <img src='icons/Lightning Surge.png' alt='Lightning Surge' width='20' height='20'> Lightning Surge 100.0% (330.0)<br><img src='icons/Energy Shield.png' alt='Energy Shield' width='20' height='20'> Energy Shield 100.0% (57.0)<br><img src='icons/Charged Bolt.png' alt='Charged Bolt' width='20' height='20'> Charged Bolt 100.0% (39.0)<br><img src='icons/Chain Lightning.png' alt='Chain Lightning' width='20' height='20'> Chain Lightning 100.0% (21.0)<br><img src='icons/Warmth.png' alt='Warmth' width='20' height='20'> Warmth 95.0% (20.0)<br><img src='icons/Nova.png' alt='Nova' width='20' height='20'> Nova 10.0% (20.0)
+                </ul>
+            </div>
+        </div>
+            <button type="button" class="collapsible small-collapsible">
+        <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+            <strong>All Skills</strong></button>
+            <div class="content">
+                <div><img src='icons/Teleport.png' alt='Teleport' width='20' height='20'> Teleport 100.0% (400.0)<br><img src='icons/Thunder Storm.png' alt='Thunder Storm' width='20' height='20'> Thunder Storm 100.0% (400.0)<br><img src='icons/Telekinesis.png' alt='Telekinesis' width='20' height='20'> Telekinesis 100.0% (381.0)<br><img src='icons/Lightning Mastery.png' alt='Lightning Mastery' width='20' height='20'> Lightning Mastery 100.0% (378.0)<br><img src='icons/Lightning Surge.png' alt='Lightning Surge' width='20' height='20'> Lightning Surge 100.0% (330.0)<br><img src='icons/Energy Shield.png' alt='Energy Shield' width='20' height='20'> Energy Shield 100.0% (57.0)<br><img src='icons/Charged Bolt.png' alt='Charged Bolt' width='20' height='20'> Charged Bolt 100.0% (39.0)<br><img src='icons/Chain Lightning.png' alt='Chain Lightning' width='20' height='20'> Chain Lightning 100.0% (21.0)<br><img src='icons/Nova.png' alt='Nova' width='20' height='20'> Nova 10.0% (20.0)<br><img src='icons/Warmth.png' alt='Warmth' width='20' height='20'> Warmth 95.0% (20.0)<br><img src='icons/Hydra.png' alt='Hydra' width='20' height='20'> Hydra 10.0% (10.0)<br><img src='icons/Static Field.png' alt='Static Field' width='20' height='20'> Static Field 25.0% (5.0)<br><img src='icons/Frigerate.png' alt='Frigerate' width='20' height='20'> Frigerate 10.0% (2.0)<br><img src='icons/Enflame.png' alt='Enflame' width='20' height='20'> Enflame 10.0% (2.0)<br><img src='icons/Fire Ball.png' alt='Fire Ball' width='20' height='20'> Fire Ball 10.0% (2.0)<br><img src='icons/Discharge.png' alt='Discharge' width='20' height='20'> Discharge 10.0% (2.0)<br><img src='icons/Fire Mastery.png' alt='Fire Mastery' width='20' height='20'> Fire Mastery 10.0% (2.0)<br><img src='icons/Fire Bolt.png' alt='Fire Bolt' width='20' height='20'> Fire Bolt 10.0% (2.0)<br><img src='icons/Shiver Armor.png' alt='Shiver Armor' width='20' height='20'> Shiver Armor 5.0% (1.0)<br><img src='icons/Ice Blast.png' alt='Ice Blast' width='20' height='20'> Ice Blast 5.0% (1.0)<br><img src='icons/Ice Bolt.png' alt='Ice Bolt' width='20' height='20'> Ice Bolt 5.0% (1.0)<br><img src='icons/Inner Sight.png' alt='Inner Sight' width='20' height='20'> Inner Sight 0.0% (0.0)<br><img src='icons/Guided Arrow.png' alt='Guided Arrow' width='20' height='20'> Guided Arrow 0.0% (0.0)<br><img src='icons/Multiple Shot.png' alt='Multiple Shot' width='20' height='20'> Multiple Shot 0.0% (0.0)<br><img src='icons/Cold Arrow.png' alt='Cold Arrow' width='20' height='20'> Cold Arrow 0.0% (0.0)<br><img src='icons/Magic Arrow.png' alt='Magic Arrow' width='20' height='20'> Magic Arrow 0.0% (0.0)<br><img src='icons/Pierce.png' alt='Pierce' width='20' height='20'> Pierce 0.0% (0.0)<br><img src='icons/Evade.png' alt='Evade' width='20' height='20'> Evade 0.0% (0.0)<br><img src='icons/Valkyrie.png' alt='Valkyrie' width='20' height='20'> Valkyrie 0.0% (0.0)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 0.0% (0.0)<br><img src='icons/Dodge.png' alt='Dodge' width='20' height='20'> Dodge 0.0% (0.0)<br><img src='icons/Phase Run.png' alt='Phase Run' width='20' height='20'> Phase Run 0.0% (0.0)<br><img src='icons/Avoid.png' alt='Avoid' width='20' height='20'> Avoid 0.0% (0.0)<br><img src='icons/Penetrate.png' alt='Penetrate' width='20' height='20'> Penetrate 0.0% (0.0)<br><img src='icons/Decoy.png' alt='Decoy' width='20' height='20'> Decoy 0.0% (0.0)<br><img src='icons/Frost Nova.png' alt='Frost Nova' width='20' height='20'> Frost Nova 0.0% (0.0)<br><img src='icons/Cold Mastery.png' alt='Cold Mastery' width='20' height='20'> Cold Mastery 0.0% (0.0)</div>
+            </div>
+
+            <button type="button" class="collapsible small-collapsible">
+        <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+            <strong>Most Common Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Ring</strong>: <br>The Stone of Jordan 55.00%<br>Nature's Peace 15.00%<br>Raven Frost 15.00%<br>Bul-Kathos' Wedding Band 15.00%<br>Manald Heal 10.00%<br><strong>Boots</strong>: <br>Silkweave 30.00%<br>War Traveler 20.00%<br>Infernostride 10.00%<br>Gale Trample 5.00%<br>PlagueRI Trample 5.00%<br><strong>Belt</strong>: <br>Arachnid Mesh 80.00%<br>Tal Rasha's Fine-Spun Cloth 15.00%<br>Verdungo's Hearty Cord 5.00%<br><strong>Body</strong>: <br>Skin of the Vipermagi 70.00%<br>Tal Rasha's Guardianship 10.00%<br>Chains of Honor 10.00%<br>Treachery 5.00%<br>Enigma 5.00%<br><strong>Amulet</strong>: <br>Mara's Kaleidoscope 50.00%<br>Tal Rasha's Adjudication 25.00%<br>Beast Beads 5.00%<br>Corruption Gorget 5.00%<br>Raven Emblem 5.00%<br><strong>Gloves</strong>: <br>Magefist 50.00%<br>Frostburn 30.00%<br>Trang-Oul's Claws 10.00%<br>Dracul's Grasp 10.00%<br><strong>Helmet</strong>: <br>Harlequin Crest 55.00%<br>Griffon's Eye 35.00%<br>Rockstopper 5.00%<br><strong>Left hand</strong>: <br>Warpspear 100.00%<br>Memory 20.00%<br>Call to Arms 15.00%<br>Grim Wand of Lower Resistance 10.00%<br>Ondal's Wisdom 10.00%<br><strong>Offhand</strong>: <br>Spirit 15.00%<br>Lidless Wall 15.00%<br>Medusa's Gaze 10.00%<br>The Oculus 5.00%<br>Wall of the Eyeless 5.00%</div>
+            </div>
+        
+            <button type="button" class="collapsible small-collapsible">
+        <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Ring</strong>: The Stone of Jordan 55.00%, Nature's Peace 15.00%, Raven Frost 15.00%, Bul-Kathos' Wedding Band 15.00%, Manald Heal 10.00%, PlagueRI Gyre 5.00%, Doom Circle 5.00%, Order Eye 5.00%, Raven Touch 5.00%, Entropy Band 5.00%, Bone Turn 5.00%, Wisp Projector 5.00%, Beast Loop 5.00%, Dread Turn 5.00%, Havoc Eye 5.00%, Bone Hold 5.00%, Rune Loop 5.00%, Grim Circle 5.00%, Havoc Whorl 5.00%, Eagle Band 5.00%, Wraithra Turn 5.00%<br><strong>Boots</strong>: Silkweave 30.00%, War Traveler 20.00%, Infernostride 10.00%, Gale Trample 5.00%, PlagueRI Trample 5.00%, Carrion Nails 5.00%, Storm Shank 5.00%, Bitter Shank 5.00%, Sandstorm Trek 5.00%, PlagueRI Track 5.00%<br><strong>Belt</strong>: Arachnid Mesh 80.00%, Tal Rasha's Fine-Spun Cloth 15.00%, Verdungo's Hearty Cord 5.00%<br><strong>Body</strong>: Skin of the Vipermagi 70.00%, Tal Rasha's Guardianship 10.00%, Chains of Honor 10.00%, Treachery 5.00%, Enigma 5.00%<br><strong>Amulet</strong>: Mara's Kaleidoscope 50.00%, Tal Rasha's Adjudication 25.00%, Beast Beads 5.00%, Corruption Gorget 5.00%, Raven Emblem 5.00%, PlagueRI Torc 5.00%<br><strong>Gloves</strong>: Magefist 50.00%, Frostburn 30.00%, Trang-Oul's Claws 10.00%, Dracul's Grasp 10.00%<br><strong>Helmet</strong>: Harlequin Crest 55.00%, Griffon's Eye 35.00%, Rockstopper 5.00%<br><strong>Left hand</strong>: Warpspear 100.00%, Memory 20.00%, Call to Arms 15.00%, Grim Wand of Lower Resistance 10.00%, Ondal's Wisdom 10.00%, Spirit 5.00%, War Staff of Burning 5.00%, Sapphire Bone Wand of Lower Resistance 5.00%, Glowing Grave Wand of Lower Resistance 5.00%, Death's Fathom 5.00%, Tal Rasha's Lidless Eye 5.00%, Smoked Sphere 5.00%, Griswold's Edge 5.00%<br><strong>Offhand</strong>: Spirit 15.00%, Lidless Wall 15.00%, Medusa's Gaze 10.00%, The Oculus 5.00%, Wall of the Eyeless 5.00%, Ondal's Wisdom 5.00%</div>
+            </div>
+
+            <button type="button" class="collapsible small-collapsible">
+        <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+            <strong>20 Characters in this cluster:</strong>
+        </button>
+        <div class="content">
+            
+            <div class="character-info">
+                <div><strong>Character: HHLLL</strong></div>
+                <div>Level 96</div>
+                <div>Sorceress</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=HHLLL" target="_blank">HHLLL's Armory</a></div>
+                <div class="hover-trigger" data-character-name="HHLLL">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Telekinesis:20, Lightning Surge:20, Teleport:20, Lightning Mastery:20, Thunder Storm:20, Energy Shield:3, Warmth:1, Charged Bolt:1, Static Field:1, Chain Lightning:1</p>
+            <p><strong>Equipment:</strong> ring: Nature's Peace x1, boots: Gale Trample x1, belt: Tal Rasha's Fine-Spun Cloth x1, body: Treachery x1, amulet: Tal Rasha's Adjudication x1, gloves: Trang-Oul's Claws x1, helmet: Rockstopper x1, Left hand: Spirit x1, Left hand: Warpspear x1, Offhand: The Oculus x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - No equipment</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+        
+            <div class="character-info">
+                <div><strong>Character: Ella_Mental</strong></div>
+                <div>Level 96</div>
+                <div>Sorceress</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Ella_Mental" target="_blank">Ella_Mental's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Ella_Mental">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Telekinesis:20, Lightning Surge:20, Teleport:20, Thunder Storm:20, Lightning Mastery:10, Hydra:9, Fire Bolt:1, Warmth:1, Fire Ball:1, Enflame:1, Fire Mastery:1, Charged Bolt:1, Chain Lightning:1, Energy Shield:1</p>
+            <p><strong>Equipment:</strong> body: Skin of the Vipermagi x1, belt: Arachnid Mesh x1, ring: The Stone of Jordan x2, gloves: Dracul's Grasp x1, amulet: Tal Rasha's Adjudication x1, helmet: Griffon's Eye x1, boots: Silkweave x1, Left hand: War Staff of Burning x1, Left hand: Warpspear x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Treachery, Steel Shade, Infinity</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+        
+            <div class="character-info">
+                <div><strong>Character: aguchang</strong></div>
+                <div>Level 95</div>
+                <div>Sorceress</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=aguchang" target="_blank">aguchang's Armory</a></div>
+                <div class="hover-trigger" data-character-name="aguchang">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Telekinesis:20, Teleport:20, Lightning Mastery:20, Thunder Storm:20, Nova:12, Energy Shield:8, Warmth:1, Charged Bolt:1, Static Field:1, Lightning Surge:1, Chain Lightning:1, Discharge:1</p>
+            <p><strong>Equipment:</strong> boots: Silkweave x1, belt: Arachnid Mesh x1, amulet: Mara's Kaleidoscope x1, gloves: Magefist x1, body: Skin of the Vipermagi x1, helmet: Griffon's Eye x1, ring: The Stone of Jordan x2, Left hand: Memory x1, Left hand: Warpspear x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Fortitude, Vampire Gaze, Infinity</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+        
+            <div class="character-info">
+                <div><strong>Character: MarkyM</strong></div>
+                <div>Level 94</div>
+                <div>Sorceress</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=MarkyM" target="_blank">MarkyM's Armory</a></div>
+                <div class="hover-trigger" data-character-name="MarkyM">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Telekinesis:20, Lightning Surge:20, Teleport:20, Lightning Mastery:20, Thunder Storm:20, Chain Lightning:2, Warmth:1, Charged Bolt:1, Energy Shield:1</p>
+            <p><strong>Equipment:</strong> belt: Arachnid Mesh x1, boots: Infernostride x1, gloves: Magefist x1, ring: PlagueRI Gyre x1, ring: Doom Circle x1, helmet: Griffon's Eye x1, amulet: Beast Beads x1, body: Skin of the Vipermagi x1, Left hand: Grim Wand of Lower Resistance x1, Left hand: Warpspear x1, Offhand: Spirit x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Veil of Steel, Treachery, Insight</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+        
+            <div class="character-info">
+                <div><strong>Character: SorPower</strong></div>
+                <div>Level 94</div>
+                <div>Sorceress</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=SorPower" target="_blank">SorPower's Armory</a></div>
+                <div class="hover-trigger" data-character-name="SorPower">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Telekinesis:20, Lightning Surge:20, Teleport:20, Lightning Mastery:20, Thunder Storm:20, Warmth:1, Charged Bolt:1, Chain Lightning:1, Energy Shield:1</p>
+            <p><strong>Equipment:</strong> boots: Silkweave x1, belt: Arachnid Mesh x1, helmet: Harlequin Crest x1, ring: The Stone of Jordan x1, ring: Manald Heal x1, body: Skin of the Vipermagi x1, gloves: Dracul's Grasp x1, amulet: Corruption Gorget x1, Left hand: Call to Arms x1, Left hand: Warpspear x1, Offhand: Lidless Wall x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Treachery, Steel Shade, Infinity</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+        
+            <div class="character-info">
+                <div><strong>Character: TunderSorky</strong></div>
+                <div>Level 94</div>
+                <div>Sorceress</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=TunderSorky" target="_blank">TunderSorky's Armory</a></div>
+                <div class="hover-trigger" data-character-name="TunderSorky">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Telekinesis:20, Lightning Surge:20, Teleport:20, Lightning Mastery:20, Thunder Storm:20, Warmth:1, Charged Bolt:1, Chain Lightning:1, Energy Shield:1</p>
+            <p><strong>Equipment:</strong> helmet: Griffon's Eye x1, amulet: Tal Rasha's Adjudication x1, body: Tal Rasha's Guardianship x1, belt: Tal Rasha's Fine-Spun Cloth x1, boots: PlagueRI Trample x1, ring: Order Eye x1, ring: Nature's Peace x1, gloves: Trang-Oul's Claws x1, Left hand: Sapphire Bone Wand of Lower Resistance x1, Left hand: Warpspear x1, Offhand: Wall of the Eyeless x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Steel Shade, Fortitude, Infinity</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+        
+            <div class="character-info">
+                <div><strong>Character: Yossarien</strong></div>
+                <div>Level 94</div>
+                <div>Sorceress</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Yossarien" target="_blank">Yossarien's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Yossarien">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Telekinesis:20, Lightning Surge:20, Teleport:20, Lightning Mastery:20, Thunder Storm:20, Warmth:1, Charged Bolt:1, Chain Lightning:1, Energy Shield:1</p>
+            <p><strong>Equipment:</strong> helmet: Harlequin Crest x1, amulet: Mara's Kaleidoscope x1, ring: Raven Touch x1, ring: Entropy Band x1, gloves: Frostburn x1, belt: Arachnid Mesh x1, body: Skin of the Vipermagi x1, boots: Infernostride x1, Left hand: Grim Wand of Lower Resistance x1, Left hand: Warpspear x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Fortitude, Tal Rasha's Horadric Crest, Insight</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+        
+            <div class="character-info">
+                <div><strong>Character: KIA_Stinger</strong></div>
+                <div>Level 94</div>
+                <div>Sorceress</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=KIA_Stinger" target="_blank">KIA_Stinger's Armory</a></div>
+                <div class="hover-trigger" data-character-name="KIA_Stinger">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Charged Bolt:20, Lightning Surge:20, Teleport:20, Lightning Mastery:20, Thunder Storm:20, Warmth:1, Static Field:1, Telekinesis:1, Chain Lightning:1, Energy Shield:1</p>
+            <p><strong>Equipment:</strong> belt: Arachnid Mesh x1, amulet: Mara's Kaleidoscope x1, gloves: Magefist x1, helmet: Harlequin Crest x1, boots: Carrion Nails x1, body: Skin of the Vipermagi x1, ring: The Stone of Jordan x2, Left hand: Call to Arms x1, Left hand: Warpspear x1, Offhand: Lidless Wall x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Giant Skull, Leviathan, Infinity</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+        
+            <div class="character-info">
+                <div><strong>Character: Zardostrologer</strong></div>
+                <div>Level 93</div>
+                <div>Sorceress</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Zardostrologer" target="_blank">Zardostrologer's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Zardostrologer">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Telekinesis:20, Lightning Surge:20, Teleport:20, Lightning Mastery:20, Thunder Storm:20, Warmth:1, Charged Bolt:1, Chain Lightning:1, Energy Shield:1</p>
+            <p><strong>Equipment:</strong> boots: Silkweave x1, ring: The Stone of Jordan x1, ring: Nature's Peace x1, amulet: Raven Emblem x1, body: Chains of Honor x1, helmet: Harlequin Crest x1, belt: Verdungo's Hearty Cord x1, gloves: Frostburn x1, Left hand: Memory x1, Left hand: Warpspear x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Treachery, Vampire Gaze, Infinity</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+        
+            <div class="character-info">
+                <div><strong>Character: Zarmith</strong></div>
+                <div>Level 93</div>
+                <div>Sorceress</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Zarmith" target="_blank">Zarmith's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Zarmith">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Telekinesis:20, Lightning Surge:20, Teleport:20, Lightning Mastery:20, Thunder Storm:20, Warmth:1, Charged Bolt:1, Chain Lightning:1, Energy Shield:1</p>
+            <p><strong>Equipment:</strong> gloves: Magefist x1, ring: Bone Turn x1, ring: Raven Frost x1, belt: Arachnid Mesh x1, boots: Silkweave x1, helmet: Harlequin Crest x1, Left hand: Call to Arms x1, Left hand: Warpspear x1, Offhand: Medusa's Gaze x1, body: Chains of Honor x1, amulet: Tal Rasha's Adjudication x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Treachery, Vampire Gaze, Infinity</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+        
+            <div class="character-info">
+                <div><strong>Character: Mel_Apocalypse</strong></div>
+                <div>Level 93</div>
+                <div>Sorceress</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Mel_Apocalypse" target="_blank">Mel_Apocalypse's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Mel_Apocalypse">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Telekinesis:20, Lightning Surge:20, Teleport:20, Lightning Mastery:20, Thunder Storm:20, Warmth:1, Charged Bolt:1, Chain Lightning:1, Energy Shield:1</p>
+            <p><strong>Equipment:</strong> ring: Raven Frost x1, ring: The Stone of Jordan x1, boots: War Traveler x1, amulet: Mara's Kaleidoscope x1, helmet: Harlequin Crest x1, Left hand: Glowing Grave Wand of Lower Resistance x1, Left hand: Warpspear x1, gloves: Frostburn x1, belt: Arachnid Mesh x1, body: Enigma x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Vampire Gaze, Fortitude, Infinity</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+        
+            <div class="character-info">
+                <div><strong>Character: dischargeadin</strong></div>
+                <div>Level 93</div>
+                <div>Sorceress</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=dischargeadin" target="_blank">dischargeadin's Armory</a></div>
+                <div class="hover-trigger" data-character-name="dischargeadin">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Telekinesis:20, Lightning Surge:20, Teleport:20, Lightning Mastery:20, Thunder Storm:20, Warmth:1, Charged Bolt:1, Chain Lightning:1, Energy Shield:1</p>
+            <p><strong>Equipment:</strong> boots: Storm Shank x1, gloves: Magefist x1, helmet: Harlequin Crest x1, amulet: Mara's Kaleidoscope x1, belt: Arachnid Mesh x1, ring: Bul-Kathos' Wedding Band x1, ring: Wisp Projector x1, body: Skin of the Vipermagi x1, Left hand: Death's Fathom x1, Left hand: Warpspear x1, Offhand: Spirit x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Fortitude, Steel Shade, Infinity</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+        
+            <div class="character-info">
+                <div><strong>Character: Electric-Shock</strong></div>
+                <div>Level 92</div>
+                <div>Sorceress</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Electric-Shock" target="_blank">Electric-Shock's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Electric-Shock">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Telekinesis:20, Teleport:20, Lightning Mastery:20, Thunder Storm:20, Energy Shield:10, Nova:8, Charged Bolt:1, Static Field:1, Lightning Surge:1, Chain Lightning:1, Discharge:1</p>
+            <p><strong>Equipment:</strong> body: Skin of the Vipermagi x1, ring: The Stone of Jordan x2, boots: War Traveler x1, gloves: Magefist x1, helmet: Griffon's Eye x1, amulet: Mara's Kaleidoscope x1, belt: Arachnid Mesh x1, Left hand: Memory x1, Left hand: Warpspear x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Shaftstop, Kira's Guardian, Infinity</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+        
+            <div class="character-info">
+                <div><strong>Character: Teleworking</strong></div>
+                <div>Level 92</div>
+                <div>Sorceress</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Teleworking" target="_blank">Teleworking's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Teleworking">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Telekinesis:20, Teleport:20, Lightning Mastery:20, Thunder Storm:20, Lightning Surge:16, Energy Shield:3, Warmth:1, Charged Bolt:1, Chain Lightning:1, Frigerate:1</p>
+            <p><strong>Equipment:</strong> belt: Tal Rasha's Fine-Spun Cloth x1, ring: Beast Loop x1, ring: Dread Turn x1, body: Tal Rasha's Guardianship x1, boots: War Traveler x1, amulet: Tal Rasha's Adjudication x1, helmet: Harlequin Crest x1, gloves: Magefist x1, Left hand: Warpspear x1, Left hand: Ondal's Wisdom x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Guardian Angel, Tal Rasha's Horadric Crest, Infinity</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+        
+            <div class="character-info">
+                <div><strong>Character: TS_Pk</strong></div>
+                <div>Level 92</div>
+                <div>Sorceress</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=TS_Pk" target="_blank">TS_Pk's Armory</a></div>
+                <div class="hover-trigger" data-character-name="TS_Pk">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Telekinesis:20, Lightning Surge:20, Teleport:20, Thunder Storm:20, Lightning Mastery:19, Warmth:1, Charged Bolt:1, Chain Lightning:1, Energy Shield:1</p>
+            <p><strong>Equipment:</strong> gloves: Frostburn x1, ring: Raven Frost x1, ring: Manald Heal x1, body: Skin of the Vipermagi x1, boots: Bitter Shank x1, helmet: Griffon's Eye x1, belt: Arachnid Mesh x1, amulet: Mara's Kaleidoscope x1, Left hand: Tal Rasha's Lidless Eye x1, Left hand: Warpspear x1, Offhand: Spirit x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Leviathan, Tal Rasha's Horadric Crest, Infinity</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+        
+            <div class="character-info">
+                <div><strong>Character: NaturesWrath</strong></div>
+                <div>Level 92</div>
+                <div>Sorceress</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=NaturesWrath" target="_blank">NaturesWrath's Armory</a></div>
+                <div class="hover-trigger" data-character-name="NaturesWrath">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Telekinesis:20, Teleport:20, Lightning Mastery:20, Thunder Storm:20, Lightning Surge:10, Energy Shield:10, Warmth:1, Charged Bolt:1, Chain Lightning:1</p>
+            <p><strong>Equipment:</strong> helmet: Harlequin Crest x1, ring: Havoc Eye x1, ring: Bul-Kathos' Wedding Band x1, amulet: PlagueRI Torc x1, body: Skin of the Vipermagi x1, belt: Arachnid Mesh x1, boots: Silkweave x1, gloves: Magefist x1, Left hand: Memory x1, Left hand: Warpspear x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Crown of Ages, Shaftstop, Infinity</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+        
+            <div class="character-info">
+                <div><strong>Character: Mortttttty</strong></div>
+                <div>Level 91</div>
+                <div>Sorceress</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Mortttttty" target="_blank">Mortttttty's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Mortttttty">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Telekinesis:20, Teleport:20, Lightning Mastery:20, Thunder Storm:20, Lightning Surge:13, Warmth:2, Charged Bolt:1, Chain Lightning:1, Energy Shield:1, Ice Bolt:1, Frigerate:1, Ice Blast:1, Shiver Armor:1</p>
+            <p><strong>Equipment:</strong> helmet: Harlequin Crest x1, belt: Arachnid Mesh x1, gloves: Frostburn x1, amulet: Mara's Kaleidoscope x1, ring: Bone Hold x1, ring: Rune Loop x1, boots: War Traveler x1, body: Skin of the Vipermagi x1, Offhand: Ondal's Wisdom x1, Left hand: Warpspear x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Steel Shade, Duriel's Shell, Infinity</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+        
+            <div class="character-info">
+                <div><strong>Character: CamiIa</strong></div>
+                <div>Level 91</div>
+                <div>Sorceress</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=CamiIa" target="_blank">CamiIa's Armory</a></div>
+                <div class="hover-trigger" data-character-name="CamiIa">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Telekinesis:20, Lightning Surge:20, Teleport:20, Thunder Storm:20, Lightning Mastery:12, Fire Bolt:1, Warmth:1, Fire Ball:1, Enflame:1, Fire Mastery:1, Hydra:1, Charged Bolt:1, Static Field:1, Chain Lightning:1, Energy Shield:1</p>
+            <p><strong>Equipment:</strong> belt: Arachnid Mesh x1, amulet: Mara's Kaleidoscope x1, helmet: Griffon's Eye x1, boots: Sandstorm Trek x1, gloves: Magefist x1, body: Skin of the Vipermagi x1, ring: Grim Circle x1, ring: Havoc Whorl x1, Left hand: Smoked Sphere x1, Left hand: Warpspear x1, Offhand: Lidless Wall x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Andariel's Visage, Fortitude, Infinity</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+        
+            <div class="character-info">
+                <div><strong>Character: Fresus_LT</strong></div>
+                <div>Level 90</div>
+                <div>Sorceress</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Fresus_LT" target="_blank">Fresus_LT's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Fresus_LT">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Telekinesis:20, Teleport:20, Lightning Mastery:20, Thunder Storm:20, Lightning Surge:9, Energy Shield:9, Warmth:1, Charged Bolt:1, Chain Lightning:1</p>
+            <p><strong>Equipment:</strong> ring: Eagle Band x1, ring: Bul-Kathos' Wedding Band x1, body: Skin of the Vipermagi x1, gloves: Frostburn x1, belt: Arachnid Mesh x1, helmet: Harlequin Crest x1, amulet: Mara's Kaleidoscope x1, boots: PlagueRI Track x1, Left hand: Ondal's Wisdom x1, Left hand: Warpspear x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Treachery, Steel Shade, Infinity</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+        
+            <div class="character-info">
+                <div><strong>Character: QuiBish</strong></div>
+                <div>Level 90</div>
+                <div>Sorceress</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=QuiBish" target="_blank">QuiBish's Armory</a></div>
+                <div class="hover-trigger" data-character-name="QuiBish">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Telekinesis:20, Lightning Surge:20, Teleport:20, Thunder Storm:20, Lightning Mastery:17, Warmth:1, Charged Bolt:1, Chain Lightning:1, Energy Shield:1</p>
+            <p><strong>Equipment:</strong> gloves: Magefist x1, belt: Arachnid Mesh x1, body: Skin of the Vipermagi x1, ring: Wraithra Turn x1, Left hand: Griswold's Edge x1, Left hand: Warpspear x1, Offhand: Medusa's Gaze x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - No equipment</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+        
+        </div>
+        <br>
+        <hr>
+        <br>
+        
+        <!--<h2>The Iron Jang Bong users:<br><img src='icons/Magic Arrow.png' alt='Magic Arrow' width='20' height='20'> Magic Arrow 50.00% (20)<br><img src='icons/Multiple Shot.png' alt='Multiple Shot' width='20' height='20'> Multiple Shot 50.00% (20)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 50.00% (20)<br><img src='icons/Penetrate.png' alt='Penetrate' width='20' height='20'> Penetrate 50.00% (20)</h2>
+        <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='icons/Nova.png' alt='Nova' width='20' height='20'> Nova 50.0% (20.0)<br><img src='icons/Lightning Mastery.png' alt='Lightning Mastery' width='20' height='20'> Lightning Mastery 50.0% (20.0)<br><img src='icons/Shiver Armor.png' alt='Shiver Armor' width='20' height='20'> Shiver Armor 50.0% (20.0)<br><img src='icons/Frost Nova.png' alt='Frost Nova' width='20' height='20'> Frost Nova 50.0% (20.0)<br><img src='icons/Guided Arrow.png' alt='Guided Arrow' width='20' height='20'> Guided Arrow 50.0% (12.0)<br><img src='icons/Telekinesis.png' alt='Telekinesis' width='20' height='20'> Telekinesis 50.0% (7.0)</p> -->
+        <div id="skills" class="skills-container">
+            <div class="column">
+                <ul id="most-popular-skills">
+                    <h2>The Iron Jang Bong users:<br><img src='icons/Magic Arrow.png' alt='Magic Arrow' width='20' height='20'> Magic Arrow 50.00% (20)<br><img src='icons/Multiple Shot.png' alt='Multiple Shot' width='20' height='20'> Multiple Shot 50.00% (20)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 50.00% (20)<br><img src='icons/Penetrate.png' alt='Penetrate' width='20' height='20'> Penetrate 50.00% (20)</h2>
+                </ul>
+            </div>
+            <div class="column">
+                <ul id="other-skills">
+                    <h2>Other common skills in this group:</h2> <img src='icons/Nova.png' alt='Nova' width='20' height='20'> Nova 50.0% (20.0)<br><img src='icons/Lightning Mastery.png' alt='Lightning Mastery' width='20' height='20'> Lightning Mastery 50.0% (20.0)<br><img src='icons/Shiver Armor.png' alt='Shiver Armor' width='20' height='20'> Shiver Armor 50.0% (20.0)<br><img src='icons/Frost Nova.png' alt='Frost Nova' width='20' height='20'> Frost Nova 50.0% (20.0)<br><img src='icons/Guided Arrow.png' alt='Guided Arrow' width='20' height='20'> Guided Arrow 50.0% (12.0)<br><img src='icons/Telekinesis.png' alt='Telekinesis' width='20' height='20'> Telekinesis 50.0% (7.0)
+                </ul>
+            </div>
+        </div>
+            <button type="button" class="collapsible small-collapsible">
+        <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+            <strong>All Skills</strong></button>
+            <div class="content">
+                <div><img src='icons/Magic Arrow.png' alt='Magic Arrow' width='20' height='20'> Magic Arrow 50.0% (20.0)<br><img src='icons/Multiple Shot.png' alt='Multiple Shot' width='20' height='20'> Multiple Shot 50.0% (20.0)<br><img src='icons/Nova.png' alt='Nova' width='20' height='20'> Nova 50.0% (20.0)<br><img src='icons/Penetrate.png' alt='Penetrate' width='20' height='20'> Penetrate 50.0% (20.0)<br><img src='icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> Lethal Strike 50.0% (20.0)<br><img src='icons/Shiver Armor.png' alt='Shiver Armor' width='20' height='20'> Shiver Armor 50.0% (20.0)<br><img src='icons/Frost Nova.png' alt='Frost Nova' width='20' height='20'> Frost Nova 50.0% (20.0)<br><img src='icons/Lightning Mastery.png' alt='Lightning Mastery' width='20' height='20'> Lightning Mastery 50.0% (20.0)<br><img src='icons/Guided Arrow.png' alt='Guided Arrow' width='20' height='20'> Guided Arrow 50.0% (12.0)<br><img src='icons/Telekinesis.png' alt='Telekinesis' width='20' height='20'> Telekinesis 50.0% (7.0)<br><img src='icons/Cold Mastery.png' alt='Cold Mastery' width='20' height='20'> Cold Mastery 50.0% (6.0)<br><img src='icons/Inner Sight.png' alt='Inner Sight' width='20' height='20'> Inner Sight 50.0% (1.0)<br><img src='icons/Cold Arrow.png' alt='Cold Arrow' width='20' height='20'> Cold Arrow 50.0% (1.0)<br><img src='icons/Valkyrie.png' alt='Valkyrie' width='20' height='20'> Valkyrie 50.0% (1.0)<br><img src='icons/Evade.png' alt='Evade' width='20' height='20'> Evade 50.0% (1.0)<br><img src='icons/Pierce.png' alt='Pierce' width='20' height='20'> Pierce 50.0% (1.0)<br><img src='icons/Warmth.png' alt='Warmth' width='20' height='20'> Warmth 50.0% (1.0)<br><img src='icons/Avoid.png' alt='Avoid' width='20' height='20'> Avoid 50.0% (1.0)<br><img src='icons/Decoy.png' alt='Decoy' width='20' height='20'> Decoy 50.0% (1.0)<br><img src='icons/Phase Run.png' alt='Phase Run' width='20' height='20'> Phase Run 50.0% (1.0)<br><img src='icons/Dodge.png' alt='Dodge' width='20' height='20'> Dodge 50.0% (1.0)<br><img src='icons/Teleport.png' alt='Teleport' width='20' height='20'> Teleport 50.0% (1.0)<br><img src='icons/Lightning Surge.png' alt='Lightning Surge' width='20' height='20'> Lightning Surge 50.0% (1.0)<br><img src='icons/Charged Bolt.png' alt='Charged Bolt' width='20' height='20'> Charged Bolt 50.0% (1.0)<br><img src='icons/Static Field.png' alt='Static Field' width='20' height='20'> Static Field 50.0% (1.0)<br><img src='icons/Ice Blast.png' alt='Ice Blast' width='20' height='20'> Ice Blast 50.0% (1.0)<br><img src='icons/Chain Lightning.png' alt='Chain Lightning' width='20' height='20'> Chain Lightning 50.0% (1.0)<br><img src='icons/Energy Shield.png' alt='Energy Shield' width='20' height='20'> Energy Shield 50.0% (1.0)<br><img src='icons/Ice Bolt.png' alt='Ice Bolt' width='20' height='20'> Ice Bolt 50.0% (1.0)<br><img src='icons/Frigerate.png' alt='Frigerate' width='20' height='20'> Frigerate 50.0% (1.0)<br><img src='icons/Discharge.png' alt='Discharge' width='20' height='20'> Discharge 0.0% (0.0)<br><img src='icons/Thunder Storm.png' alt='Thunder Storm' width='20' height='20'> Thunder Storm 0.0% (0.0)<br><img src='icons/Fire Bolt.png' alt='Fire Bolt' width='20' height='20'> Fire Bolt 0.0% (0.0)<br><img src='icons/Enflame.png' alt='Enflame' width='20' height='20'> Enflame 0.0% (0.0)<br><img src='icons/Fire Ball.png' alt='Fire Ball' width='20' height='20'> Fire Ball 0.0% (0.0)<br><img src='icons/Hydra.png' alt='Hydra' width='20' height='20'> Hydra 0.0% (0.0)<br><img src='icons/Fire Mastery.png' alt='Fire Mastery' width='20' height='20'> Fire Mastery 0.0% (0.0)</div>
+            </div>
+
+            <button type="button" class="collapsible small-collapsible">
+        <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+            <strong>Most Common Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Amulet</strong>: <br>Mara's Kaleidoscope 50.00%<br>Atma's Scarab 50.00%<br><strong>Helmet</strong>: <br>Harlequin Crest 50.00%<br>Andariel's Visage 50.00%<br><strong>Body</strong>: <br>Ormus' Robes 50.00%<br>Fortitude 50.00%<br><strong>Belt</strong>: <br>Arachnid Mesh 50.00%<br>Razortail 50.00%<br><strong>Ring</strong>: <br>The Stone of Jordan 100.00%<br>Order Eye 50.00%<br>Raven Frost 50.00%<br><strong>Boots</strong>: <br>Silkweave 50.00%<br>War Traveler 50.00%<br><strong>Gloves</strong>: <br>Magefist 50.00%<br>Laying of Hands 50.00%<br><strong>Left hand</strong>: <br>The Iron Jang Bong 100.00%<br>Spire of Lazarus 50.00%<br>Windforce 50.00%<br><strong>Offhand</strong>: <br>Moonfire 50.00%</div>
+            </div>
+        
+            <button type="button" class="collapsible small-collapsible">
+        <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Amulet</strong>: Mara's Kaleidoscope 50.00%, Atma's Scarab 50.00%<br><strong>Helmet</strong>: Harlequin Crest 50.00%, Andariel's Visage 50.00%<br><strong>Body</strong>: Ormus' Robes 50.00%, Fortitude 50.00%<br><strong>Belt</strong>: Arachnid Mesh 50.00%, Razortail 50.00%<br><strong>Ring</strong>: The Stone of Jordan 100.00%, Order Eye 50.00%, Raven Frost 50.00%<br><strong>Boots</strong>: Silkweave 50.00%, War Traveler 50.00%<br><strong>Gloves</strong>: Magefist 50.00%, Laying of Hands 50.00%<br><strong>Left hand</strong>: The Iron Jang Bong 100.00%, Spire of Lazarus 50.00%, Windforce 50.00%<br><strong>Offhand</strong>: Moonfire 50.00%</div>
+            </div>
+
+            <button type="button" class="collapsible small-collapsible">
+        <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+            <strong>2 Characters in this cluster:</strong>
+        </button>
+        <div class="content">
+            
+            <div class="character-info">
+                <div><strong>Character: Heklo</strong></div>
+                <div>Level 92</div>
+                <div>Sorceress</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Heklo" target="_blank">Heklo's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Heklo">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Nova:20, Lightning Mastery:20, Frost Nova:20, Shiver Armor:20, Telekinesis:7, Cold Mastery:6, Warmth:1, Charged Bolt:1, Static Field:1, Lightning Surge:1, Teleport:1, Chain Lightning:1, Energy Shield:1, Ice Bolt:1, Frigerate:1, Ice Blast:1</p>
+            <p><strong>Equipment:</strong> amulet: Mara's Kaleidoscope x1, helmet: Harlequin Crest x1, body: Ormus' Robes x1, belt: Arachnid Mesh x1, ring: The Stone of Jordan x2, boots: Silkweave x1, gloves: Magefist x1, Left hand: Spire of Lazarus x1, Left hand: The Iron Jang Bong x1</p>
+            <p><strong>Mercenary:</strong> Act 3 Eastern Sorceror - Shaftstop, Dream, Phoenix, Dream</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+        
+            <div class="character-info">
+                <div><strong>Character: Lee_Speed</strong></div>
+                <div>Level 91</div>
+                <div>Amazon</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Lee_Speed" target="_blank">Lee_Speed's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Lee_Speed">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Magic Arrow:20, Multiple Shot:20, Lethal Strike:20, Penetrate:20, Guided Arrow:12, Cold Arrow:1, Inner Sight:1, Dodge:1, Phase Run:1, Avoid:1, Decoy:1, Evade:1, Valkyrie:1, Pierce:1</p>
+            <p><strong>Equipment:</strong> gloves: Laying of Hands x1, boots: War Traveler x1, amulet: Atma's Scarab x1, body: Fortitude x1, belt: Razortail x1, ring: Order Eye x1, ring: Raven Frost x1, helmet: Andariel's Visage x1, Left hand: The Iron Jang Bong x1, Left hand: Windforce x1, Offhand: Moonfire x1</p>
+            <p><strong>Mercenary:</strong> Act 5 Barbarian - Andariel's Visage, Treachery, Swordguard</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+        
+        </div>
+        <br>
+        <hr>
+        <br>
+        
+        <!--    <h3>Top 5 Most Popular Bong_and_Warpspear Skills:</h3>
+        <ul>
+        </ul>
+
+        <h3>Bottom 5 Least Popular Bong_and_Warpspear Skills:</h3>
+        <ul>
+        </ul> -->
+        <!-- Embed the Plotly pie chart -->
+        <div>
+            <img src="charts/Bong_and_Warpspear-clusters_distribution_pie.png" alt="Bong_and_Warpspear Skills Distribution">
+        </div>
+
+        <!-- Embed the Plotly scatter plot 
+        <div>
+            <img src="charts/Bong_and_Warpspear-clusters_with_avg_points.png" alt="Bong_and_Warpspear Skill Clusters Scatter Plot">
+        </div> -->
+        <button onclick="topFunction()" id="backToTopBtn" class="back-to-top">Top</button>
+            <div class="footer">
+            <p>PoD data current as of 2025-02-19 07:37</p>
+            </div>
+        
+
+  <script src="../pod-stats.js"></script>
+
+
+    </body>
+    </html>
+    

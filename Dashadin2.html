@@ -1,0 +1,362 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Dashadin Analysis Report</title>
+        <link rel="stylesheet" type="text/css" href="./css/test-css.css">
+
+    </head>
+    <body>
+        <div class="top-buttons">
+            <a href="Home2.html" class="top-button home-button" onclick="setActive('Home')"></a>
+            <a href="#" id="SC_HC" class="top-button"> </a>
+            <a href="Amazon2.html" id="Amazon" class="top-button amazon-button"></a>
+            <a href="Assassin2.html" id="Assassin" class="top-button assassin-button"></a>
+            <a href="Barbarian2.html" id="Barbarian" class="top-button barbarian-button"></a>
+            <a href="Druid2.html" id="Druid" class="top-button druid-button"></a>
+            <a href="Necromancer2.html" id="Necromancer" class="top-button necromancer-button"></a>
+            <a href="Paladin2.html" id="Paladin" class="top-button paladin-button"></a>
+            <a href="Sorceress2.html" id="Sorceress" class="top-button sorceress-button"></a>
+            <a href="https://github.com/qordwasalreadytaken/pod-stats/blob/main/README.md" class="top-button about-button" target="_blank"></a>
+        </div>
+
+        <h1>Dashadin Softcore Skill Distribution </h1>
+        <h3>This group includes anyone with 10 or more points in Dashing Strike</h3>
+        <p class="indented-skills">Popular builds include:<br>55.56% of Dashadin's invest heavily in Dashing Strike, Sanctuary, Cleansing, Holy Bolt<br>44.44% of Dashadin's invest heavily in Smite, Dashing Strike, Holy Shield, Charge </p>
+
+        <hr>
+        
+        <!--<h2>55.56%  of Dashadin's Main Skills:<br><img src='icons/Dashing Strike.png' alt='Dashing Strike' width='20' height='20'> Dashing Strike 100.00% (100)<br><img src='icons/Sanctuary.png' alt='Sanctuary' width='20' height='20'> Sanctuary 100.00% (100)<br><img src='icons/Cleansing.png' alt='Cleansing' width='20' height='20'> Cleansing 100.00% (100)<br><img src='icons/Holy Bolt.png' alt='Holy Bolt' width='20' height='20'> Holy Bolt 100.00% (36)</h2>
+        <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='icons/Prayer.png' alt='Prayer' width='20' height='20'> Prayer 100.0% (26.0)<br><img src='icons/Redemption.png' alt='Redemption' width='20' height='20'> Redemption 60.0% (22.0)<br><img src='icons/Resist Lightning.png' alt='Resist Lightning' width='20' height='20'> Resist Lightning 20.0% (20.0)<br><img src='icons/Fist of the Heavens.png' alt='Fist of the Heavens' width='20' height='20'> Fist of the Heavens 40.0% (14.0)<br><img src='icons/Holy Shield.png' alt='Holy Shield' width='20' height='20'> Holy Shield 100.0% (9.0)<br><img src='icons/Conviction.png' alt='Conviction' width='20' height='20'> Conviction 40.0% (8.0)</p> -->
+        <div id="skills" class="skills-container">
+            <div class="column">
+                <ul id="most-popular-skills">
+                    <h2>55.56%  of Dashadin's Main Skills:<br><img src='icons/Dashing Strike.png' alt='Dashing Strike' width='20' height='20'> Dashing Strike 100.00% (100)<br><img src='icons/Sanctuary.png' alt='Sanctuary' width='20' height='20'> Sanctuary 100.00% (100)<br><img src='icons/Cleansing.png' alt='Cleansing' width='20' height='20'> Cleansing 100.00% (100)<br><img src='icons/Holy Bolt.png' alt='Holy Bolt' width='20' height='20'> Holy Bolt 100.00% (36)</h2>
+                </ul>
+            </div>
+            <div class="column">
+                <ul id="other-skills">
+                    <h2>Other common skills in this group:</h2> <img src='icons/Prayer.png' alt='Prayer' width='20' height='20'> Prayer 100.0% (26.0)<br><img src='icons/Redemption.png' alt='Redemption' width='20' height='20'> Redemption 60.0% (22.0)<br><img src='icons/Resist Lightning.png' alt='Resist Lightning' width='20' height='20'> Resist Lightning 20.0% (20.0)<br><img src='icons/Fist of the Heavens.png' alt='Fist of the Heavens' width='20' height='20'> Fist of the Heavens 40.0% (14.0)<br><img src='icons/Holy Shield.png' alt='Holy Shield' width='20' height='20'> Holy Shield 100.0% (9.0)<br><img src='icons/Conviction.png' alt='Conviction' width='20' height='20'> Conviction 40.0% (8.0)
+                </ul>
+            </div>
+        </div>
+            <button type="button" class="collapsible small-collapsible">
+
+        <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+            <strong>All Skills</strong></button>
+            <div class="content">
+                <div><img src='icons/Dashing Strike.png' alt='Dashing Strike' width='20' height='20'> Dashing Strike 100.0% (100.0)<br><img src='icons/Sanctuary.png' alt='Sanctuary' width='20' height='20'> Sanctuary 100.0% (100.0)<br><img src='icons/Cleansing.png' alt='Cleansing' width='20' height='20'> Cleansing 100.0% (100.0)<br><img src='icons/Holy Bolt.png' alt='Holy Bolt' width='20' height='20'> Holy Bolt 100.0% (36.0)<br><img src='icons/Prayer.png' alt='Prayer' width='20' height='20'> Prayer 100.0% (26.0)<br><img src='icons/Redemption.png' alt='Redemption' width='20' height='20'> Redemption 60.0% (22.0)<br><img src='icons/Resist Lightning.png' alt='Resist Lightning' width='20' height='20'> Resist Lightning 20.0% (20.0)<br><img src='icons/Fist of the Heavens.png' alt='Fist of the Heavens' width='20' height='20'> Fist of the Heavens 40.0% (14.0)<br><img src='icons/Holy Shield.png' alt='Holy Shield' width='20' height='20'> Holy Shield 100.0% (9.0)<br><img src='icons/Conviction.png' alt='Conviction' width='20' height='20'> Conviction 40.0% (8.0)<br><img src='icons/Might.png' alt='Might' width='20' height='20'> Might 100.0% (6.0)<br><img src='icons/Smite.png' alt='Smite' width='20' height='20'> Smite 100.0% (5.0)<br><img src='icons/Blessed Hammer.png' alt='Blessed Hammer' width='20' height='20'> Blessed Hammer 100.0% (5.0)<br><img src='icons/Charge.png' alt='Charge' width='20' height='20'> Charge 100.0% (5.0)<br><img src='icons/Holy Freeze.png' alt='Holy Freeze' width='20' height='20'> Holy Freeze 100.0% (5.0)<br><img src='icons/Holy Fire.png' alt='Holy Fire' width='20' height='20'> Holy Fire 100.0% (5.0)<br><img src='icons/Precision.png' alt='Precision' width='20' height='20'> Precision 100.0% (5.0)<br><img src='icons/Vigor.png' alt='Vigor' width='20' height='20'> Vigor 80.0% (5.0)<br><img src='icons/Holy Shock.png' alt='Holy Shock' width='20' height='20'> Holy Shock 20.0% (5.0)<br><img src='icons/Defiance.png' alt='Defiance' width='20' height='20'> Defiance 80.0% (4.0)<br><img src='icons/Salvation.png' alt='Salvation' width='20' height='20'> Salvation 80.0% (4.0)<br><img src='icons/Absolution.png' alt='Absolution' width='20' height='20'> Absolution 40.0% (2.0)<br><img src='icons/Vengeance.png' alt='Vengeance' width='20' height='20'> Vengeance 40.0% (2.0)<br><img src='icons/Zeal.png' alt='Zeal' width='20' height='20'> Zeal 40.0% (2.0)<br><img src='icons/Sacrifice.png' alt='Sacrifice' width='20' height='20'> Sacrifice 40.0% (2.0)<br><img src='icons/Fanaticism.png' alt='Fanaticism' width='20' height='20'> Fanaticism 20.0% (1.0)<br><img src='icons/Concentration.png' alt='Concentration' width='20' height='20'> Concentration 20.0% (1.0)<br><img src='icons/Blessed Aim.png' alt='Blessed Aim' width='20' height='20'> Blessed Aim 20.0% (1.0)<br><img src='icons/Meditation.png' alt='Meditation' width='20' height='20'> Meditation 20.0% (1.0)</div>
+            </div>
+
+            <button type="button" class="collapsible small-collapsible">
+
+        <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+            <strong>Most Common Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Armor</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Skullder's Ire</span> 20.00%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Guardian Angel</span> 20.00%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Skin of the Vipermagi</span> 20.00%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Arkaine's Valor</span> 20.00%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Enigma</span> 20.00%<br><strong>Ring</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Nagelring</span> 30.00%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>GhoulRI Band</span> 10.00%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Raven Frost</span> 10.00%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Dwarf Star</span> 10.00%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Bitter Master</span> 10.00%<br><strong>Belt</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Verdungo's Hearty Cord</span> 20.00%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Goldwrap</span> 20.00%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: green;'>Tal Rasha's Fine-Spun Cloth</span> 20.00%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Bone Buckle</span> 20.00%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Arachnid Mesh</span> 20.00%<br><strong>Boots</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>War Traveler</span> 20.00%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>GhoulRI Brogues</span> 20.00%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Waterwalk</span> 20.00%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: orange;'>Havoc Slippers</span> 20.00%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Beast Brogues</span> 20.00%<br><strong>Amulet</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Seraph's Hymn</span> 25.00%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: blue;'>Marshal's Amulet of Perfection</span> 25.00%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: blue;'>Marshal's Amulet of Absorption</span> 25.00%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Mara's Kaleidoscope</span> 25.00%<br><strong>Gloves</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Chance Guards</span> 20.00%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Brimstone Grip</span> 20.00%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Bloodfist</span> 20.00%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: orange;'>Pain Grasp</span> 20.00%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: green;'>Trang-Oul's Claws</span> 20.00%<br><strong>Helmet</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Harlequin Crest</span> 60.00%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Brimstone Brow</span> 20.00%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: blue;'>Marshal's Coronet of Twister</span> 20.00%<br><strong>Left hand</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Heaven's Light</span> 55.56%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Ondal's Wisdom</span> 11.11%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Holy Thunder</span> 11.11%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: green;'>Naj's Puzzler</span> 11.11%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>The Redeemer</span> 11.11%<br><strong>Offhand</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Spirit</span> 33.33%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Herald of Zakarum</span> 33.33%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Stormshield</span> 16.67%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Medusa's Gaze</span> 16.67%</div>
+            </div>
+        
+            <button type="button" class="collapsible small-collapsible">
+
+        <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Armor</strong>: <span style='color: olive;'>Skullder's Ire</span> 20.00%, <span style='color: olive;'>Guardian Angel</span> 20.00%, <span style='color: olive;'>Skin of the Vipermagi</span> 20.00%, <span style='color: olive;'>Arkaine's Valor</span> 20.00%, <span style='color: olive;'>Enigma</span> 20.00%<br><strong>Ring</strong>: <span style='color: olive;'>Nagelring</span> 30.00%, <span style='color: yellow;'>GhoulRI Band</span> 10.00%, <span style='color: olive;'>Raven Frost</span> 10.00%, <span style='color: olive;'>Dwarf Star</span> 10.00%, <span style='color: yellow;'>Bitter Master</span> 10.00%, <span style='color: yellow;'>Bitter Knot</span> 10.00%, <span style='color: olive;'>The Stone of Jordan</span> 10.00%, <span style='color: olive;'>Bul-Kathos' Wedding Band</span> 10.00%<br><strong>Belt</strong>: <span style='color: olive;'>Verdungo's Hearty Cord</span> 20.00%, <span style='color: olive;'>Goldwrap</span> 20.00%, <span style='color: green;'>Tal Rasha's Fine-Spun Cloth</span> 20.00%, <span style='color: yellow;'>Bone Buckle</span> 20.00%, <span style='color: olive;'>Arachnid Mesh</span> 20.00%<br><strong>Boots</strong>: <span style='color: olive;'>War Traveler</span> 20.00%, <span style='color: yellow;'>GhoulRI Brogues</span> 20.00%, <span style='color: olive;'>Waterwalk</span> 20.00%, <span style='color: orange;'>Havoc Slippers</span> 20.00%, <span style='color: yellow;'>Beast Brogues</span> 20.00%<br><strong>Amulet</strong>: <span style='color: olive;'>Seraph's Hymn</span> 25.00%, <span style='color: blue;'>Marshal's Amulet of Perfection</span> 25.00%, <span style='color: blue;'>Marshal's Amulet of Absorption</span> 25.00%, <span style='color: olive;'>Mara's Kaleidoscope</span> 25.00%<br><strong>Gloves</strong>: <span style='color: olive;'>Chance Guards</span> 20.00%, <span style='color: yellow;'>Brimstone Grip</span> 20.00%, <span style='color: olive;'>Bloodfist</span> 20.00%, <span style='color: orange;'>Pain Grasp</span> 20.00%, <span style='color: green;'>Trang-Oul's Claws</span> 20.00%<br><strong>Helmet</strong>: <span style='color: olive;'>Harlequin Crest</span> 60.00%, <span style='color: yellow;'>Brimstone Brow</span> 20.00%, <span style='color: blue;'>Marshal's Coronet of Twister</span> 20.00%<br><strong>Left hand</strong>: <span style='color: olive;'>Heaven's Light</span> 55.56%, <span style='color: olive;'>Ondal's Wisdom</span> 11.11%, <span style='color: olive;'>Holy Thunder</span> 11.11%, <span style='color: green;'>Naj's Puzzler</span> 11.11%, <span style='color: olive;'>The Redeemer</span> 11.11%<br><strong>Offhand</strong>: <span style='color: olive;'>Spirit</span> 33.33%, <span style='color: olive;'>Herald of Zakarum</span> 33.33%, <span style='color: olive;'>Stormshield</span> 16.67%, <span style='color: olive;'>Medusa's Gaze</span> 16.67%</div>
+            </div>
+
+            <button type="button" class="collapsible small-collapsible">
+
+        <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+            <strong>5 Characters in this cluster:</strong>
+        </button>
+        <div class="content">
+            
+            <div class="character-info">
+                <div><strong>Character: Azaraih</strong></div>
+                <div>Level 95</div>
+                <div>Paladin</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Azaraih" target="_blank" target="_blank">Azaraih's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Azaraih">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Dashing Strike:20, Sanctuary:20, Prayer:20, Cleansing:20, Conviction:7, Vigor:2, Smite:1, Holy Bolt:1, Charge:1, Blessed Hammer:1, Holy Shield:1, Might:1, Holy Fire:1, Precision:1, Blessed Aim:1, Concentration:1, Holy Freeze:1, Fanaticism:1, Defiance:1, Meditation:1, Redemption:1, Salvation:1</p>
+            <p><strong>Equipment:</strong> Armor: <span style='color: olive;'>Skullder's Ire</span>, ring: <span style='color: olive;'>Nagelring</span> x2, Belt: <span style='color: olive;'>Verdungo's Hearty Cord</span>, boots: <span style='color: olive;'>War Traveler</span>, Amulet: <span style='color: olive;'>Seraph's Hymn</span>, Gloves: <span style='color: olive;'>Chance Guards</span>, Helmet: <span style='color: olive;'>Harlequin Crest</span>, Left hand: <span style='color: olive;'>Ondal's Wisdom</span>, Left hand: <span style='color: olive;'>Heaven's Light</span>, Offhand: <span style='color: olive;'>Stormshield</span></p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Steel Shade, Shaftstop, The Reaper's Toll</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+        
+            <div class="character-info">
+                <div><strong>Character: oKANATASo</strong></div>
+                <div>Level 89</div>
+                <div>Paladin</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=oKANATASo" target="_blank" target="_blank">oKANATASo's Armory</a></div>
+                <div class="hover-trigger" data-character-name="oKANATASo">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Dashing Strike:20, Sanctuary:20, Cleansing:20, Redemption:20, Holy Shield:5, Prayer:3, Might:2, Smite:1, Holy Bolt:1, Charge:1, Blessed Hammer:1, Holy Fire:1, Precision:1, Holy Freeze:1, Defiance:1, Vigor:1, Salvation:1</p>
+            <p><strong>Equipment:</strong> ring: <span style='color: olive;'>Nagelring</span>, ring: <span style='color: yellow;'>GhoulRI Band</span>, boots: <span style='color: yellow;'>GhoulRI Brogues</span>, Gloves: <span style='color: yellow;'>Brimstone Grip</span>, Amulet: <span style='color: blue;'>Marshal's Amulet of Perfection</span>, Helmet: <span style='color: yellow;'>Brimstone Brow</span>, Armor: <span style='color: olive;'>Guardian Angel</span>, Belt: <span style='color: olive;'>Goldwrap</span>, Left hand: <span style='color: olive;'>Holy Thunder</span>, Left hand: <span style='color: olive;'>Heaven's Light</span>, Offhand: <span style='color: olive;'>Spirit</span></p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Steel Shade, Shaftstop, Tomb Reaver</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+        
+            <div class="character-info">
+                <div><strong>Character: MagnarnHammer</strong></div>
+                <div>Level 89</div>
+                <div>Paladin</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=MagnarnHammer" target="_blank" target="_blank">MagnarnHammer's Armory</a></div>
+                <div class="hover-trigger" data-character-name="MagnarnHammer">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Holy Bolt:20, Dashing Strike:20, Sanctuary:20, Cleansing:20, Fist of the Heavens:3, Sacrifice:1, Smite:1, Zeal:1, Charge:1, Vengeance:1, Blessed Hammer:1, Absolution:1, Holy Shield:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Prayer:1, Defiance:1, Vigor:1, Redemption:1, Salvation:1</p>
+            <p><strong>Equipment:</strong> Gloves: <span style='color: olive;'>Bloodfist</span>, ring: <span style='color: olive;'>Raven Frost</span>, ring: <span style='color: olive;'>Dwarf Star</span>, boots: <span style='color: olive;'>Waterwalk</span>, Left hand: <span style='color: green;'>Naj's Puzzler</span>, Left hand: <span style='color: olive;'>Heaven's Light</span>, Belt: <span style='color: green;'>Tal Rasha's Fine-Spun Cloth</span>, Helmet: <span style='color: olive;'>Harlequin Crest</span>, Armor: <span style='color: olive;'>Skin of the Vipermagi</span>, Offhand: <span style='color: olive;'>Herald of Zakarum</span></p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Dread Bite</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+        
+            <div class="character-info">
+                <div><strong>Character: Chamdin</strong></div>
+                <div>Level 88</div>
+                <div>Paladin</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Chamdin" target="_blank" target="_blank">Chamdin's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Chamdin">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Dashing Strike:20, Sanctuary:20, Cleansing:20, Resist Lightning:20, Holy Shock:5, Smite:1, Holy Bolt:1, Charge:1, Blessed Hammer:1, Holy Shield:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Conviction:1, Prayer:1, Defiance:1, Vigor:1, Salvation:1</p>
+            <p><strong>Equipment:</strong> ring: <span style='color: yellow;'>Bitter Master</span>, ring: <span style='color: yellow;'>Bitter Knot</span>, Amulet: <span style='color: blue;'>Marshal's Amulet of Absorption</span>, Armor: <span style='color: olive;'>Arkaine's Valor</span>, Gloves: <span style='color: orange;'>Pain Grasp</span>, boots: <span style='color: orange;'>Havoc Slippers</span>, Belt: <span style='color: yellow;'>Bone Buckle</span>, Helmet: <span style='color: blue;'>Marshal's Coronet of Twister</span>, Left hand: <span style='color: olive;'>Heaven's Light</span>, Offhand: <span style='color: olive;'>Spirit</span></p>
+            <p><strong>Mercenary:</strong> Act 1 Rogue Scout - No equipment</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+        
+            <div class="character-info">
+                <div><strong>Character: metenacity</strong></div>
+                <div>Level 87</div>
+                <div>Paladin</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=metenacity" target="_blank" target="_blank">metenacity's Armory</a></div>
+                <div class="hover-trigger" data-character-name="metenacity">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Dashing Strike:20, Sanctuary:20, Cleansing:20, Holy Bolt:13, Fist of the Heavens:11, Sacrifice:1, Smite:1, Zeal:1, Charge:1, Vengeance:1, Blessed Hammer:1, Absolution:1, Holy Shield:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Prayer:1</p>
+            <p><strong>Equipment:</strong> ring: <span style='color: olive;'>The Stone of Jordan</span>, ring: <span style='color: olive;'>Bul-Kathos' Wedding Band</span>, Gloves: <span style='color: green;'>Trang-Oul's Claws</span>, Armor: <span style='color: olive;'>Enigma</span>, Belt: <span style='color: olive;'>Arachnid Mesh</span>, Amulet: <span style='color: olive;'>Mara's Kaleidoscope</span>, Helmet: <span style='color: olive;'>Harlequin Crest</span>, boots: <span style='color: yellow;'>Beast Brogues</span>, Left hand: <span style='color: olive;'>Heaven's Light</span>, Left hand: <span style='color: olive;'>The Redeemer</span>, Offhand: <span style='color: olive;'>Medusa's Gaze</span>, Offhand: <span style='color: olive;'>Herald of Zakarum</span></p>
+            <p><strong>Mercenary:</strong> Act 5 Barbarian - Andariel's Visage, Hustle, The Grandfather</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+        
+        </div>
+        <hr>
+        
+        <!--<h2>44.44%  of Dashadin's Main Skills:<br><img src='icons/Smite.png' alt='Smite' width='20' height='20'> Smite 100.00% (80)<br><img src='icons/Dashing Strike.png' alt='Dashing Strike' width='20' height='20'> Dashing Strike 100.00% (71)<br><img src='icons/Holy Shield.png' alt='Holy Shield' width='20' height='20'> Holy Shield 100.00% (68)<br><img src='icons/Charge.png' alt='Charge' width='20' height='20'> Charge 100.00% (42)</h2>
+        <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='icons/Fanaticism.png' alt='Fanaticism' width='20' height='20'> Fanaticism 75.0% (41.0)<br><img src='icons/Defiance.png' alt='Defiance' width='20' height='20'> Defiance 50.0% (28.0)<br><img src='icons/Absolution.png' alt='Absolution' width='20' height='20'> Absolution 25.0% (20.0)<br><img src='icons/Sanctuary.png' alt='Sanctuary' width='20' height='20'> Sanctuary 25.0% (19.0)<br><img src='icons/Salvation.png' alt='Salvation' width='20' height='20'> Salvation 50.0% (6.0)<br><img src='icons/Holy Bolt.png' alt='Holy Bolt' width='20' height='20'> Holy Bolt 100.0% (4.0)</p> -->
+        <div id="skills" class="skills-container">
+            <div class="column">
+                <ul id="most-popular-skills">
+                    <h2>44.44%  of Dashadin's Main Skills:<br><img src='icons/Smite.png' alt='Smite' width='20' height='20'> Smite 100.00% (80)<br><img src='icons/Dashing Strike.png' alt='Dashing Strike' width='20' height='20'> Dashing Strike 100.00% (71)<br><img src='icons/Holy Shield.png' alt='Holy Shield' width='20' height='20'> Holy Shield 100.00% (68)<br><img src='icons/Charge.png' alt='Charge' width='20' height='20'> Charge 100.00% (42)</h2>
+                </ul>
+            </div>
+            <div class="column">
+                <ul id="other-skills">
+                    <h2>Other common skills in this group:</h2> <img src='icons/Fanaticism.png' alt='Fanaticism' width='20' height='20'> Fanaticism 75.0% (41.0)<br><img src='icons/Defiance.png' alt='Defiance' width='20' height='20'> Defiance 50.0% (28.0)<br><img src='icons/Absolution.png' alt='Absolution' width='20' height='20'> Absolution 25.0% (20.0)<br><img src='icons/Sanctuary.png' alt='Sanctuary' width='20' height='20'> Sanctuary 25.0% (19.0)<br><img src='icons/Salvation.png' alt='Salvation' width='20' height='20'> Salvation 50.0% (6.0)<br><img src='icons/Holy Bolt.png' alt='Holy Bolt' width='20' height='20'> Holy Bolt 100.0% (4.0)
+                </ul>
+            </div>
+        </div>
+            <button type="button" class="collapsible small-collapsible">
+
+        <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+            <strong>All Skills</strong></button>
+            <div class="content">
+                <div><img src='icons/Smite.png' alt='Smite' width='20' height='20'> Smite 100.0% (80.0)<br><img src='icons/Dashing Strike.png' alt='Dashing Strike' width='20' height='20'> Dashing Strike 100.0% (71.0)<br><img src='icons/Holy Shield.png' alt='Holy Shield' width='20' height='20'> Holy Shield 100.0% (68.0)<br><img src='icons/Charge.png' alt='Charge' width='20' height='20'> Charge 100.0% (42.0)<br><img src='icons/Fanaticism.png' alt='Fanaticism' width='20' height='20'> Fanaticism 75.0% (41.0)<br><img src='icons/Defiance.png' alt='Defiance' width='20' height='20'> Defiance 50.0% (28.0)<br><img src='icons/Absolution.png' alt='Absolution' width='20' height='20'> Absolution 25.0% (20.0)<br><img src='icons/Sanctuary.png' alt='Sanctuary' width='20' height='20'> Sanctuary 25.0% (19.0)<br><img src='icons/Salvation.png' alt='Salvation' width='20' height='20'> Salvation 50.0% (6.0)<br><img src='icons/Blessed Hammer.png' alt='Blessed Hammer' width='20' height='20'> Blessed Hammer 100.0% (4.0)<br><img src='icons/Holy Bolt.png' alt='Holy Bolt' width='20' height='20'> Holy Bolt 100.0% (4.0)<br><img src='icons/Might.png' alt='Might' width='20' height='20'> Might 100.0% (4.0)<br><img src='icons/Blessed Aim.png' alt='Blessed Aim' width='20' height='20'> Blessed Aim 75.0% (3.0)<br><img src='icons/Concentration.png' alt='Concentration' width='20' height='20'> Concentration 75.0% (3.0)<br><img src='icons/Vigor.png' alt='Vigor' width='20' height='20'> Vigor 50.0% (2.0)<br><img src='icons/Cleansing.png' alt='Cleansing' width='20' height='20'> Cleansing 50.0% (2.0)<br><img src='icons/Prayer.png' alt='Prayer' width='20' height='20'> Prayer 50.0% (2.0)<br><img src='icons/Holy Freeze.png' alt='Holy Freeze' width='20' height='20'> Holy Freeze 25.0% (1.0)<br><img src='icons/Precision.png' alt='Precision' width='20' height='20'> Precision 25.0% (1.0)<br><img src='icons/Holy Fire.png' alt='Holy Fire' width='20' height='20'> Holy Fire 25.0% (1.0)<br><img src='icons/Redemption.png' alt='Redemption' width='20' height='20'> Redemption 25.0% (1.0)<br><img src='icons/Vengeance.png' alt='Vengeance' width='20' height='20'> Vengeance 25.0% (1.0)<br><img src='icons/Zeal.png' alt='Zeal' width='20' height='20'> Zeal 25.0% (1.0)<br><img src='icons/Sacrifice.png' alt='Sacrifice' width='20' height='20'> Sacrifice 25.0% (1.0)<br><img src='icons/Fist of the Heavens.png' alt='Fist of the Heavens' width='20' height='20'> Fist of the Heavens 0.0% (0.0)<br><img src='icons/Holy Shock.png' alt='Holy Shock' width='20' height='20'> Holy Shock 0.0% (0.0)<br><img src='icons/Conviction.png' alt='Conviction' width='20' height='20'> Conviction 0.0% (0.0)<br><img src='icons/Resist Lightning.png' alt='Resist Lightning' width='20' height='20'> Resist Lightning 0.0% (0.0)<br><img src='icons/Meditation.png' alt='Meditation' width='20' height='20'> Meditation 0.0% (0.0)</div>
+            </div>
+
+            <button type="button" class="collapsible small-collapsible">
+
+        <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+            <strong>Most Common Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Ring</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Raven Frost</span> 40.00%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>The Stone of Jordan</span> 20.00%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Beast Knot</span> 20.00%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Rune Loop</span> 20.00%<br><strong>Armor</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Tyrael's Might</span> 66.67%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Dragon</span> 33.33%<br><strong>Helmet</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: green;'>Ondal's Almighty</span> 66.67%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: green;'>Guillaume's Face</span> 33.33%<br><strong>Boots</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Viper Stalker</span> 33.33%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Gore Rider</span> 33.33%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: green;'>Aldur's Advance</span> 33.33%<br><strong>Gloves</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Rune Finger</span> 33.33%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Dracul's Grasp</span> 33.33%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Steelrend</span> 33.33%<br><strong>Belt</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Goldwrap</span> 25.00%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Thundergod's Vigor</span> 25.00%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Verdungo's Hearty Cord</span> 25.00%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: green;'>M'avina's Tenet</span> 25.00%<br><strong>Amulet</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: blue;'>Rose Branded Amulet of the Wraith</span> 50.00%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Wraithra Clasp</span> 50.00%<br><strong>Left hand</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Holy Thunder</span> 20.00%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Astreon's Iron Ward</span> 20.00%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Fleshripper</span> 20.00%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Call to Arms</span> 20.00%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Last Wish</span> 20.00%<br><strong>Offhand</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Spirit</span> 50.00%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Alma Negra</span> 25.00%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Dragon</span> 12.50%<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Herald of Zakarum</span> 12.50%</div>
+            </div>
+        
+            <button type="button" class="collapsible small-collapsible">
+
+        <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Ring</strong>: <span style='color: olive;'>Raven Frost</span> 40.00%, <span style='color: olive;'>The Stone of Jordan</span> 20.00%, <span style='color: yellow;'>Beast Knot</span> 20.00%, <span style='color: yellow;'>Rune Loop</span> 20.00%<br><strong>Armor</strong>: <span style='color: olive;'>Tyrael's Might</span> 66.67%, <span style='color: olive;'>Dragon</span> 33.33%<br><strong>Helmet</strong>: <span style='color: green;'>Ondal's Almighty</span> 66.67%, <span style='color: green;'>Guillaume's Face</span> 33.33%<br><strong>Boots</strong>: <span style='color: yellow;'>Viper Stalker</span> 33.33%, <span style='color: olive;'>Gore Rider</span> 33.33%, <span style='color: green;'>Aldur's Advance</span> 33.33%<br><strong>Gloves</strong>: <span style='color: yellow;'>Rune Finger</span> 33.33%, <span style='color: olive;'>Dracul's Grasp</span> 33.33%, <span style='color: olive;'>Steelrend</span> 33.33%<br><strong>Belt</strong>: <span style='color: olive;'>Goldwrap</span> 25.00%, <span style='color: olive;'>Thundergod's Vigor</span> 25.00%, <span style='color: olive;'>Verdungo's Hearty Cord</span> 25.00%, <span style='color: green;'>M'avina's Tenet</span> 25.00%<br><strong>Amulet</strong>: <span style='color: blue;'>Rose Branded Amulet of the Wraith</span> 50.00%, <span style='color: yellow;'>Wraithra Clasp</span> 50.00%<br><strong>Left hand</strong>: <span style='color: olive;'>Holy Thunder</span> 20.00%, <span style='color: olive;'>Astreon's Iron Ward</span> 20.00%, <span style='color: olive;'>Fleshripper</span> 20.00%, <span style='color: olive;'>Call to Arms</span> 20.00%, <span style='color: olive;'>Last Wish</span> 20.00%<br><strong>Offhand</strong>: <span style='color: olive;'>Spirit</span> 50.00%, <span style='color: olive;'>Alma Negra</span> 25.00%, <span style='color: olive;'>Dragon</span> 12.50%, <span style='color: olive;'>Herald of Zakarum</span> 12.50%</div>
+            </div>
+
+            <button type="button" class="collapsible small-collapsible">
+
+        <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+            <strong>4 Characters in this cluster:</strong>
+        </button>
+        <div class="content">
+            
+            <div class="character-info">
+                <div><strong>Character: TOTALLY_AFK</strong></div>
+                <div>Level 94</div>
+                <div>Paladin</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=TOTALLY_AFK" target="_blank" target="_blank">TOTALLY_AFK's Armory</a></div>
+                <div class="hover-trigger" data-character-name="TOTALLY_AFK">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Smite:20, Charge:20, Holy Shield:20, Dashing Strike:20, Sanctuary:19, Holy Bolt:1, Blessed Hammer:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1</p>
+            <p><strong>Equipment:</strong> ring: <span style='color: olive;'>The Stone of Jordan</span>, ring: <span style='color: yellow;'>Beast Knot</span>, Armor: <span style='color: olive;'>Tyrael's Might</span>, Helmet: <span style='color: green;'>Ondal's Almighty</span>, boots: <span style='color: yellow;'>Viper Stalker</span>, Gloves: <span style='color: yellow;'>Rune Finger</span>, Belt: <span style='color: olive;'>Goldwrap</span>, Amulet: <span style='color: blue;'>Rose Branded Amulet of the Wraith</span>, Left hand: <span style='color: olive;'>Holy Thunder</span>, Left hand: <span style='color: olive;'>Astreon's Iron Ward</span>, Offhand: <span style='color: olive;'>Spirit</span>, Offhand: <span style='color: olive;'>Alma Negra</span></p>
+            <p><strong>Mercenary:</strong> Act 3 Eastern Sorceror - Shaftstop, Andariel's Visage, Silence, Stormshield</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+        
+            <div class="character-info">
+                <div><strong>Character: Diffex</strong></div>
+                <div>Level 92</div>
+                <div>Paladin</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Diffex" target="_blank" target="_blank">Diffex's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Diffex">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Smite:20, Charge:20, Holy Shield:20, Dashing Strike:20, Defiance:8, Salvation:5, Holy Bolt:1, Blessed Hammer:1, Might:1, Blessed Aim:1, Concentration:1, Fanaticism:1, Prayer:1, Cleansing:1, Vigor:1, Redemption:1</p>
+            <p><strong>Equipment:</strong> Offhand: <span style='color: olive;'>Spirit</span>, Offhand: <span style='color: olive;'>Dragon</span>, boots: <span style='color: olive;'>Gore Rider</span>, Armor: <span style='color: olive;'>Dragon</span>, ring: <span style='color: olive;'>Raven Frost</span>, Gloves: <span style='color: olive;'>Dracul's Grasp</span>, Belt: <span style='color: olive;'>Thundergod's Vigor</span>, Helmet: <span style='color: green;'>Guillaume's Face</span>, Left hand: <span style='color: olive;'>Fleshripper</span></p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - No equipment</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+        
+            <div class="character-info">
+                <div><strong>Character: Kreuz</strong></div>
+                <div>Level 90</div>
+                <div>Paladin</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Kreuz" target="_blank" target="_blank">Kreuz's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Kreuz">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Smite:20, Holy Shield:20, Fanaticism:20, Defiance:20, Dashing Strike:11, Holy Bolt:1, Charge:1, Blessed Hammer:1, Might:1, Blessed Aim:1, Concentration:1, Prayer:1, Cleansing:1, Vigor:1</p>
+            <p><strong>Equipment:</strong> ring: <span style='color: olive;'>Raven Frost</span>, ring: <span style='color: yellow;'>Rune Loop</span>, Amulet: <span style='color: yellow;'>Wraithra Clasp</span>, Gloves: <span style='color: olive;'>Steelrend</span>, Armor: <span style='color: olive;'>Tyrael's Might</span>, Left hand: <span style='color: olive;'>Call to Arms</span>, Left hand: <span style='color: olive;'>Last Wish</span>, Offhand: <span style='color: olive;'>Spirit</span>, Offhand: <span style='color: olive;'>Alma Negra</span>, Helmet: <span style='color: green;'>Ondal's Almighty</span>, Belt: <span style='color: olive;'>Verdungo's Hearty Cord</span>, boots: <span style='color: green;'>Aldur's Advance</span></p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Veil of Steel, Treachery, Pride</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+        
+            <div class="character-info">
+                <div><strong>Character: Reath</strong></div>
+                <div>Level 87</div>
+                <div>Paladin</div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Reath" target="_blank" target="_blank">Reath's Armory</a></div>
+                <div class="hover-trigger" data-character-name="Reath">
+                    Armory Quickview
+                </div>
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Smite:20, Absolution:20, Dashing Strike:20, Fanaticism:20, Holy Shield:8, Sacrifice:1, Holy Bolt:1, Zeal:1, Charge:1, Vengeance:1, Blessed Hammer:1, Might:1, Blessed Aim:1, Concentration:1, Salvation:1</p>
+            <p><strong>Equipment:</strong> Belt: <span style='color: green;'>M'avina's Tenet</span>, Offhand: <span style='color: olive;'>Spirit</span>, Offhand: <span style='color: olive;'>Herald of Zakarum</span></p>
+            <p><strong>Mercenary:</strong> Act 3 Eastern Sorceror - No equipment</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+        
+        </div>
+        <hr>
+        
+        <!--    <h3>Top 5 Most Popular Dashadin Skills:</h3>
+        <ul>
+        </ul>
+
+        <h3>Bottom 5 Least Popular Dashadin Skills:</h3>
+        <ul>
+        </ul> -->
+        <!-- Embed the Plotly pie chart -->
+        <div>
+            <img src="charts/Dashadin-clusters_distribution_pie.png" alt="Dashadin Skills Distribution">
+        </div>
+
+        <!-- Embed the Plotly scatter plot -->
+        <div>
+            <img src="charts/Dashadin-clusters_with_avg_points.png" alt="Dashadin Skill Clusters Scatter Plot">
+        </div>
+        <button onclick="topFunction()" id="backToTopBtn" class="back-to-top">Top</button>
+            <div class="footer">
+            <p>PoD data current as of 2025-02-19 07:37</p>
+            </div>
+        
+
+  <script src="../pod-stats.js"></script>
+
+
+
+
+
+
+    </body>
+    </html>
+    
