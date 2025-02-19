@@ -217,13 +217,19 @@
     }
     
     .top-button#SC_HC.softcore {
-        background-image: url('../icons/Softcore_click.png');
+        background-image: url('../icons/Softcore_click.png'); /* Image for SC */
     }
     
     .top-button#SC_HC.hardcore {
-        background-image: url('../icons/Hardcore_click.png');
+        background-image: url('../icons/Hardcore_click.png'); /* Image for HC */
     }
-    
+    .top-button#SC_HC {
+        width: 150px;
+        height: 50px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        display: inline-block; /* Ensure it shows up */
+    }
 
     .small-grey-open {
         background-image: url('../icons/open-grey.png'); /* Image for HC */
