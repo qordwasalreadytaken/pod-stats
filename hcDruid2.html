@@ -1,0 +1,2047 @@
+
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Hardcore Druid Analysis Report</title>
+        <link rel="stylesheet" type="text/css" href="./css/test-css.css">
+
+        </head>
+        <body class="not-main">
+                <div class="is-clipped"><nav class="navbar is-fixed-top is-dark" style="height: 50px;">
+
+            <div class="navbar-brand">
+            <a class="" href="https://pathofdiablo.com/p/"><img src="icons/pod.ico" alt="Path of Diablo: Web Portal" width="48" height="48" class="is-48x48" style="max-height: none;"></a>
+            <div class="navbar-burger burger" data-target="podNavbar"><span></span><span></span><span></span></div></div>
+            <div id="podNavbar" class="navbar-menu">
+            <div class="navbar-start">
+            <a class="navbar-item" href="https://beta.pathofdiablo.com/trade-search">Trade</a>
+            <a class="navbar-item" href="https://pathofdiablo.com/p/?servers">Servers</a>
+            <a class="navbar-item" href="https://beta.pathofdiablo.com/ladder">Ladder</a>
+            <a class="navbar-item" href="https://beta.pathofdiablo.com/public-games">Public Games</a>
+            <a class="navbar-item" href="https://beta.pathofdiablo.com/runewizard">Runewizard</a>
+            <a class="navbar-item" href="https://pathofdiablo.com/p/armory">Armory</a>
+            <a class="navbar-item" href="https://build.pathofdiablo.com">Build Planner</a>
+            <a class="navbar-item" href="https://pathofdiablo.com/p/?live" style="width: 90px;"><span><img src="https://beta.pathofdiablo.com/images/twitchico.png"></span></a></div>
+            <div class="navbar-end">
+
+            <div class="navbar-start">	
+            <a class="navbar-item-right" href="https://beta.pathofdiablo.com/my-toons">Character Storage</a>
+        <!--	<a class="navbar-item" href="https://pathofdiablo.com/p/?ticket"><span><svg class="svg-inline--fa fa-exclamation-circle fa-w-16" aria-hidden="true" data-prefix="fas" data-icon="exclamation-circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"></path></svg><!-- <i class="fas fa-exclamation-circle"></i> /span></a> -->
+            </div>
+
+
+            </div></div></nav>  
+
+    <div class="top-buttons">
+        <a href="Home2.html" class="top-button home-button" onclick="setActive('Home')"></a>
+        <a href="#" id="SC_HC" class="top-button"> </a>
+        <a href="hcAmazon2.html" id="Amazon" class="top-button amazon-button"></a>
+        <a href="hcAssassin2.html" id="Assassin" class="top-button assassin-button"></a>
+        <a href="hcBarbarian2.html" id="Barbarian" class="top-button barbarian-button"></a>
+        <a href="hcDruid2.html" id="Druid" class="top-button druid-button"></a>
+        <a href="hcNecromancer2.html" id="Necromancer" class="top-button necromancer-button"></a>
+        <a href="hcPaladin2.html" id="Paladin" class="top-button paladin-button"></a>
+        <a href="hcSorceress2.html" id="Sorceress" class="top-button sorceress-button"></a>
+        <a href="https://github.com/qordwasalreadytaken/pod-stats/blob/main/README.md" class="top-button about-button" target="_blank"></a>
+    </div>           
+            <h1>Druid Hardcore Skill Distribution </h1>
+
+                <div class="summary-container">
+                <br>
+                
+        <h2>Build Trends</h2>
+        <p><br><strong>18.87% of all Druids favor Elemental Skills</strong><br> &nbsp;&nbsp;- 9.43% use Armageddon, Firestorm, Fissure, Hurricane, Volcano<br> &nbsp;&nbsp;- 5.66% use Twister, Hurricane, Tornado, Cyclone Armor, Oak Sage<br> &nbsp;&nbsp;- 3.77% use Molten Boulder, Armageddon, Oak Sage, Fissure, Volcano<br><br><strong>26.42% of all Druids favor Shape Shifting Skills</strong><br> &nbsp;&nbsp;- 26.42% use Lycanthropy, Maul, Shock Wave, Werebear, Oak Sage<br><br><strong>54.72% of all Druids favor Summoning Skills</strong><br> &nbsp;&nbsp;- 33.96% use Summon Dire Wolf, Summon Grizzly, Summon Spirit Wolf, Oak Sage, Heart of Wolverine<br> &nbsp;&nbsp;- 16.98% use Rabies, Summon Dire Wolf, Poison Creeper, Lycanthropy, Oak Sage<br> &nbsp;&nbsp;- 3.77% use Cyclone Armor, Raven, Arctic Blast, Twister, Oak Sage</p>
+        <hr>
+        <h2>Detailed Grouping Information, Ordered Highest to Lowest %</h2>
+        <p>&nbsp;&nbsp;- 33.96% use Summon Dire Wolf, Summon Grizzly, Summon Spirit Wolf, Oak Sage, Heart of Wolverine<br>&nbsp;&nbsp;- 26.42% use Lycanthropy, Maul, Shock Wave, Werebear, Oak Sage<br>&nbsp;&nbsp;- 16.98% use Rabies, Summon Dire Wolf, Poison Creeper, Lycanthropy, Oak Sage<br>&nbsp;&nbsp;- 9.43% use Armageddon, Firestorm, Fissure, Hurricane, Volcano<br>&nbsp;&nbsp;- 5.66% use Twister, Hurricane, Tornado, Cyclone Armor, Oak Sage<br>&nbsp;&nbsp;- 3.77% use Cyclone Armor, Raven, Arctic Blast, Twister, Oak Sage<br>&nbsp;&nbsp;- 3.77% use Molten Boulder, Armageddon, Oak Sage, Fissure, Volcano</p>
+        
+            </div>
+            <p class="indented-skills"> </p>
+            <hr>
+
+<!--        <h2>Detailed Grouping Information, Ordered Highest to Lowest %</h2>-->
+
+        
+        <!--<h2>33.96%  of Druid's Main Skills:<br><img src='icons/Summon Dire Wolf.png' alt='Summon Dire Wolf' width='20' height='20'> Summon Dire Wolf 100.00% (352)<br><img src='icons/Summon Grizzly.png' alt='Summon Grizzly' width='20' height='20'> Summon Grizzly 100.00% (340)<br><img src='icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' width='20' height='20'> Summon Spirit Wolf 100.00% (302)<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 100.00% (239)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 100.00% (199)</h2>
+        <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='icons/Flame Dash.png' alt='Flame Dash' width='20' height='20'> Flame Dash 77.78% (47.0)<br><img src='icons/Spirit of Barbs.png' alt='Spirit of Barbs' width='20' height='20'> Spirit of Barbs 50.0% (28.0)<br><img src='icons/Hurricane.png' alt='Hurricane' width='20' height='20'> Hurricane 5.56% (20.0)<br><img src='icons/Raven.png' alt='Raven' width='20' height='20'> Raven 100.0% (18.0)<br><img src='icons/Firestorm.png' alt='Firestorm' width='20' height='20'> Firestorm 77.78% (14.0)<br><img src='icons/Molten Boulder.png' alt='Molten Boulder' width='20' height='20'> Molten Boulder 77.78% (14.0)</p> -->
+        <div id="skills" class="skills-container">
+            <div class="column">
+                <ul id="most-popular-skills">
+                    <h2>33.96%  of Druid's Main Skills:<br><img src='icons/Summon Dire Wolf.png' alt='Summon Dire Wolf' width='20' height='20'> Summon Dire Wolf 100.00% (352)<br><img src='icons/Summon Grizzly.png' alt='Summon Grizzly' width='20' height='20'> Summon Grizzly 100.00% (340)<br><img src='icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' width='20' height='20'> Summon Spirit Wolf 100.00% (302)<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 100.00% (239)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 100.00% (199)</h2>
+                </ul>
+            </div>
+            <div class="column">
+                <ul id="other-skills">
+                    <h2>Other common skills in this group:</h2> <img src='icons/Flame Dash.png' alt='Flame Dash' width='20' height='20'> Flame Dash 77.78% (47.0)<br><img src='icons/Spirit of Barbs.png' alt='Spirit of Barbs' width='20' height='20'> Spirit of Barbs 50.0% (28.0)<br><img src='icons/Hurricane.png' alt='Hurricane' width='20' height='20'> Hurricane 5.56% (20.0)<br><img src='icons/Raven.png' alt='Raven' width='20' height='20'> Raven 100.0% (18.0)<br><img src='icons/Firestorm.png' alt='Firestorm' width='20' height='20'> Firestorm 77.78% (14.0)<br><img src='icons/Molten Boulder.png' alt='Molten Boulder' width='20' height='20'> Molten Boulder 77.78% (14.0)
+                </ul>
+            </div>
+        </div>
+
+    <button type="button" class="collapsible small-collapsible">
+        <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+                <strong>All Skills</strong></button>
+                <div class="content">
+                    <div><img src='icons/Summon Dire Wolf.png' alt='Summon Dire Wolf' width='20' height='20'> Summon Dire Wolf 100.0% (352.0)<br><img src='icons/Summon Grizzly.png' alt='Summon Grizzly' width='20' height='20'> Summon Grizzly 100.0% (341.0)<br><img src='icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' width='20' height='20'> Summon Spirit Wolf 100.0% (302.0)<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 100.0% (240.0)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 100.0% (199.0)<br><img src='icons/Flame Dash.png' alt='Flame Dash' width='20' height='20'> Flame Dash 77.78% (47.0)<br><img src='icons/Spirit of Barbs.png' alt='Spirit of Barbs' width='20' height='20'> Spirit of Barbs 50.0% (28.0)<br><img src='icons/Hurricane.png' alt='Hurricane' width='20' height='20'> Hurricane 5.56% (20.0)<br><img src='icons/Raven.png' alt='Raven' width='20' height='20'> Raven 100.0% (18.0)<br><img src='icons/Molten Boulder.png' alt='Molten Boulder' width='20' height='20'> Molten Boulder 77.78% (14.0)<br><img src='icons/Firestorm.png' alt='Firestorm' width='20' height='20'> Firestorm 77.78% (14.0)<br><img src='icons/Maul.png' alt='Maul' width='20' height='20'> Maul 38.89% (12.0)<br><img src='icons/Poison Creeper.png' alt='Poison Creeper' width='20' height='20'> Poison Creeper 44.44% (9.0)<br><img src='icons/Werebear.png' alt='Werebear' width='20' height='20'> Werebear 38.89% (7.0)<br><img src='icons/Cyclone Armor.png' alt='Cyclone Armor' width='20' height='20'> Cyclone Armor 33.33% (6.0)<br><img src='icons/Arctic Blast.png' alt='Arctic Blast' width='20' height='20'> Arctic Blast 33.33% (6.0)<br><img src='icons/Carrion Vine.png' alt='Carrion Vine' width='20' height='20'> Carrion Vine 27.78% (5.0)<br><img src='icons/Solar Creeper.png' alt='Solar Creeper' width='20' height='20'> Solar Creeper 11.11% (2.0)<br><img src='icons/Lycanthropy.png' alt='Lycanthropy' width='20' height='20'> Lycanthropy 11.11% (2.0)<br><img src='icons/Werewolf.png' alt='Werewolf' width='20' height='20'> Werewolf 11.11% (2.0)<br><img src='icons/Feral Rage.png' alt='Feral Rage' width='20' height='20'> Feral Rage 5.56% (1.0)<br><img src='icons/Twister.png' alt='Twister' width='20' height='20'> Twister 5.56% (1.0)<br><img src='icons/Tornado.png' alt='Tornado' width='20' height='20'> Tornado 5.56% (1.0)<br><img src='icons/Shock Wave.png' alt='Shock Wave' width='20' height='20'> Shock Wave 5.56% (1.0)<br><img src='icons/Rabies.png' alt='Rabies' width='20' height='20'> Rabies 0.0% (0.0)<br><img src='icons/Fury.png' alt='Fury' width='20' height='20'> Fury 0.0% (0.0)<br><img src='icons/Fissure.png' alt='Fissure' width='20' height='20'> Fissure 0.0% (0.0)<br><img src='icons/Volcano.png' alt='Volcano' width='20' height='20'> Volcano 0.0% (0.0)<br><img src='icons/Armageddon.png' alt='Armageddon' width='20' height='20'> Armageddon 0.0% (0.0)<br><img src='icons/Fire Claws.png' alt='Fire Claws' width='20' height='20'> Fire Claws 0.0% (0.0)</div>
+                </div>
+
+                <button type="button" class="collapsible small-collapsible">
+        <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+                <strong>Most Common Equipment:</strong></button>
+                <div class="content">
+                    <div><strong>Ring</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Raven Frost</span> 11.11% (3)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Nagelring</span> 11.11% (3)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Bul-Kathos' Wedding Band</span> 7.41% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Dwarf Star</span> 7.41% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Storm Grip</span> 3.70% (1)<br><strong>Armor</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Rain</span> 35.71% (5)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Stealth</span> 14.29% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Enigma</span> 7.14% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Shaftstop</span> 7.14% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Skullder's Ire</span> 7.14% (1)<br><strong>Gloves</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Chance Guards</span> 28.57% (4)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: green;'>Laying of Hands</span> 14.29% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Ghoulhide</span> 7.14% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Magefist</span> 7.14% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Lava Gout</span> 7.14% (1)<br><strong>Left hand</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Spirit</span> 28.00% (7)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Heart of the Oak</span> 12.00% (3)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Holy Thunder</span> 8.00% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Mang Song's Lesson</span> 4.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Goldstrike Arch</span> 4.00% (1)<br><strong>Helmet</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Jalal's Mane</span> 13.33% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Peasant Crown</span> 13.33% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Kira's Guardian</span> 6.67% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Metamorphosis</span> 6.67% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: white;'>Dream Spirit</span> 6.67% (1)<br><strong>Boots</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: green;'>Aldur's Advance</span> 33.33% (4)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Gore Rider</span> 16.67% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>War Traveler</span> 8.33% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Eagle Track</span> 8.33% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: lightblue;'>Garnet Light Plated Boots of Haste</span> 8.33% (1)<br><strong>Belt</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>String of Ears</span> 15.38% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Verdungo's Hearty Cord</span> 15.38% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: lightblue;'>Coral Plated Belt of the Whale</span> 15.38% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Hailstone Chain</span> 7.69% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Goldwrap</span> 7.69% (1)<br><strong>Amulet</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Metalgrid</span> 6.67% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Atma's Scarab</span> 6.67% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: orange;'>Wraithra Noose</span> 6.67% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Highlord's Wrath</span> 6.67% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Eagle Wing</span> 6.67% (1)<br><strong>Offhand</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Spirit</span> 35.00% (7)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Rhyme</span> 15.00% (3)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: white;'>Large Shield</span> 10.00% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: orange;'>Wraithra Eye</span> 5.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Moonfire</span> 5.00% (1)</div>
+                </div>
+            
+                <button type="button" class="collapsible small-collapsible">
+        <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+                <strong>ALL Equipment:</strong></button>
+                <div class="content">
+                    <div><strong>Ring</strong>: <span style='color: olive;'>Raven Frost</span> 11.11%, <span style='color: olive;'>Nagelring</span> 11.11%, <span style='color: olive;'>Bul-Kathos' Wedding Band</span> 7.41%, <span style='color: olive;'>Dwarf Star</span> 7.41%, <span style='color: yellow;'>Storm Grip</span> 3.70%, <span style='color: yellow;'>Havoc Circle</span> 3.70%, <span style='color: yellow;'>Bitter Eye</span> 3.70%, <span style='color: yellow;'>Eagle Finger</span> 3.70%, <span style='color: yellow;'>Blood Spiral</span> 3.70%, <span style='color: lightblue;'>Coral Ring of Chance</span> 3.70%, <span style='color: yellow;'>Viper Hold</span> 3.70%, <span style='color: lightblue;'>Scintillating Ring of Fortune</span> 3.70%, <span style='color: yellow;'>Bone Turn</span> 3.70%, <span style='color: yellow;'>Raven Turn</span> 3.70%, <span style='color: yellow;'>Order Loop</span> 3.70%, <span style='color: yellow;'>Storm Loop</span> 3.70%, <span style='color: yellow;'>Storm Grasp</span> 3.70%, <span style='color: green;'>Angelic Halo</span> 3.70%, <span style='color: olive;'>Manald Heal</span> 3.70%, <span style='color: yellow;'>PlagueRI Eye</span> 3.70%, <span style='color: lightblue;'>Platinum Ring of Worth</span> 3.70%<br><strong>Armor</strong>: <span style='color: olive;'>Rain</span> 35.71%, <span style='color: olive;'>Stealth</span> 14.29%, <span style='color: olive;'>Enigma</span> 7.14%, <span style='color: olive;'>Shaftstop</span> 7.14%, <span style='color: olive;'>Skullder's Ire</span> 7.14%, <span style='color: green;'>Tal Rasha's Guardianship</span> 7.14%, <span style='color: olive;'>Smoke</span> 7.14%, <span style='color: olive;'>Skin of the Vipermagi</span> 7.14%, <span style='color: olive;'>Lionheart</span> 7.14%<br><strong>Gloves</strong>: <span style='color: olive;'>Chance Guards</span> 28.57%, <span style='color: green;'>Laying of Hands</span> 14.29%, <span style='color: olive;'>Ghoulhide</span> 7.14%, <span style='color: olive;'>Magefist</span> 7.14%, <span style='color: olive;'>Lava Gout</span> 7.14%, <span style='color: yellow;'>Brimstone Fist</span> 7.14%, <span style='color: yellow;'>Corpse Grasp</span> 7.14%, <span style='color: lightblue;'>Garnet Gauntlets</span> 7.14%, <span style='color: yellow;'>Havoc Grasp</span> 7.14%, <span style='color: olive;'>Bloodfist</span> 7.14%<br><strong>Left hand</strong>: <span style='color: olive;'>Spirit</span> 28.00%, <span style='color: olive;'>Heart of the Oak</span> 12.00%, <span style='color: olive;'>Holy Thunder</span> 8.00%, <span style='color: olive;'>Mang Song's Lesson</span> 4.00%, <span style='color: olive;'>Goldstrike Arch</span> 4.00%, <span style='color: olive;'>Witchwild String</span> 4.00%, <span style='color: olive;'>Tomb Reaver</span> 4.00%, <span style='color: olive;'>Gull</span> 4.00%, <span style='color: olive;'>Wizardspike</span> 4.00%, <span style='color: yellow;'>Raven Bar</span> 4.00%, <span style='color: olive;'>Blade of Ali Baba</span> 4.00%, <span style='color: olive;'>Demon Limb</span> 4.00%, <span style='color: olive;'>Spellsteel</span> 4.00%, <span style='color: yellow;'>Wraithra Crusher</span> 4.00%, <span style='color: olive;'>Dark Clan Crusher</span> 4.00%, <span style='color: lightblue;'>Bone Wand of Life Tap</span> 4.00%<br><strong>Helmet</strong>: <span style='color: olive;'>Jalal's Mane</span> 13.33%, <span style='color: olive;'>Peasant Crown</span> 13.33%, <span style='color: olive;'>Kira's Guardian</span> 6.67%, <span style='color: olive;'>Metamorphosis</span> 6.67%, <span style='color: white;'>Dream Spirit</span> 6.67%, <span style='color: olive;'>Spirit Keeper</span> 6.67%, <span style='color: olive;'>Tarnhelm</span> 6.67%, <span style='color: white;'>Death Mask</span> 6.67%, <span style='color: yellow;'>Skull Circlet</span> 6.67%, <span style='color: olive;'>Lore</span> 6.67%, <span style='color: yellow;'>Demon Shell</span> 6.67%, <span style='color: yellow;'>Spirit Cowl</span> 6.67%, <span style='color: green;'>Tancred's Skull</span> 6.67%<br><strong>Boots</strong>: <span style='color: green;'>Aldur's Advance</span> 33.33%, <span style='color: olive;'>Gore Rider</span> 16.67%, <span style='color: olive;'>War Traveler</span> 8.33%, <span style='color: yellow;'>Eagle Track</span> 8.33%, <span style='color: lightblue;'>Garnet Light Plated Boots of Haste</span> 8.33%, <span style='color: yellow;'>Cruel Track</span> 8.33%, <span style='color: green;'>Sander's Riprap</span> 8.33%, <span style='color: green;'>Tancred's Hobnails</span> 8.33%<br><strong>Belt</strong>: <span style='color: olive;'>String of Ears</span> 15.38%, <span style='color: olive;'>Verdungo's Hearty Cord</span> 15.38%, <span style='color: lightblue;'>Coral Plated Belt of the Whale</span> 15.38%, <span style='color: yellow;'>Hailstone Chain</span> 7.69%, <span style='color: olive;'>Goldwrap</span> 7.69%, <span style='color: green;'>Tal Rasha's Fine-Spun Cloth</span> 7.69%, <span style='color: olive;'>Bladebuckle</span> 7.69%, <span style='color: green;'>Immortal King's Detail</span> 7.69%, <span style='color: olive;'>Nightsmoke</span> 7.69%, <span style='color: lightblue;'>Belt of the Colossus</span> 7.69%<br><strong>Amulet</strong>: <span style='color: olive;'>Metalgrid</span> 6.67%, <span style='color: olive;'>Atma's Scarab</span> 6.67%, <span style='color: orange;'>Wraithra Noose</span> 6.67%, <span style='color: olive;'>Highlord's Wrath</span> 6.67%, <span style='color: yellow;'>Eagle Wing</span> 6.67%, <span style='color: lightblue;'>Keeper's Amulet of the Mammoth</span> 6.67%, <span style='color: lightblue;'>Chromatic Amulet of Fortune</span> 6.67%, <span style='color: yellow;'>Corruption Emblem</span> 6.67%, <span style='color: yellow;'>Eagle Talisman</span> 6.67%, <span style='color: lightblue;'>Keeper's Amulet of the Vampire</span> 6.67%, <span style='color: lightblue;'>Keeper's Amulet</span> 6.67%, <span style='color: lightblue;'>Viridian Amulet of Leadership</span> 6.67%, <span style='color: yellow;'>Raven Noose</span> 6.67%, <span style='color: lightblue;'>Caretaker's Amulet</span> 6.67%, <span style='color: lightblue;'>Keeper's Amulet of Brilliance</span> 6.67%<br><strong>Offhand</strong>: <span style='color: olive;'>Spirit</span> 35.00%, <span style='color: olive;'>Rhyme</span> 15.00%, <span style='color: white;'>Large Shield</span> 10.00%, <span style='color: orange;'>Wraithra Eye</span> 5.00%, <span style='color: olive;'>Moonfire</span> 5.00%, <span style='color: olive;'>Head Hunter's Glory</span> 5.00%, <span style='color: olive;'>Ancients' Pledge</span> 5.00%, <span style='color: olive;'>The Ward</span> 5.00%, <span style='color: olive;'>Stormshield</span> 5.00%, <span style='color: olive;'>Pelta Lunata</span> 5.00%, <span style='color: yellow;'>Loath Shield</span> 5.00%</div>
+                </div>
+
+            <button type="button" class="collapsible small-collapsible">
+        <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+            <strong>18 Characters in this cluster:</strong>
+        </button>
+        <div class="content">
+            
+            <div class="character-info">
+                <div><strong>Name: Oggi</strong></div>
+                <div>Level 97</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Oggi" target="_blank">Oggi's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="Oggi">
+                        <!--Armory Quickview -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Oak Sage:20, Summon Spirit Wolf:20, Heart of Wolverine:20, Summon Dire Wolf:20, Summon Grizzly:20, Raven:1, Spirit of Barbs:1</p>
+            <p><strong>Equipment:<br></strong> ring: <span style='color: olive;'>Bul-Kathos' Wedding Band</span> x2, Armor: <span style='color: olive;'>Enigma</span>, Gloves: <span style='color: olive;'>Ghoulhide</span>, Left hand: <span style='color: olive;'>Mang Song's Lesson</span>, Left hand: <span style='color: olive;'>Goldstrike Arch</span>, Helmet: <span style='color: olive;'>Kira's Guardian</span>, Boots: <span style='color: olive;'>Gore Rider</span>, Belt: <span style='color: olive;'>String of Ears</span>, Amulet: <span style='color: olive;'>Metalgrid</span>, Offhand: <span style='color: orange;'>Wraithra Eye</span></p>
+            <p><strong>Mercenary:</strong> Act 1 Rogue Scout - Hearth, Fortitude, Faith</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Name: PencilPusher</strong></div>
+                <div>Level 94</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=PencilPusher" target="_blank">PencilPusher's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="PencilPusher">
+                        <!--Armory Quickview -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Oak Sage:20, Summon Spirit Wolf:20, Heart of Wolverine:20, Summon Dire Wolf:20, Summon Grizzly:20, Raven:1, Spirit of Barbs:1, Firestorm:1, Molten Boulder:1, Flame Dash:1</p>
+            <p><strong>Equipment:<br></strong> Armor: <span style='color: olive;'>Rain</span>, Gloves: <span style='color: green;'>Laying of Hands</span>, Belt: <span style='color: olive;'>Verdungo's Hearty Cord</span>, ring: <span style='color: yellow;'>Storm Grip</span>, ring: <span style='color: olive;'>Raven Frost</span>, Helmet: <span style='color: olive;'>Metamorphosis</span>, Boots: <span style='color: green;'>Aldur's Advance</span>, Amulet: <span style='color: olive;'>Atma's Scarab</span>, Left hand: <span style='color: olive;'>Spirit</span>, Left hand: <span style='color: olive;'>Witchwild String</span>, Offhand: <span style='color: olive;'>Spirit</span>, Offhand: <span style='color: olive;'>Moonfire</span></p>
+            <p><strong>Mercenary:</strong> Act 1 Rogue Scout - Hearth, Treachery, Harmony</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Name: KATAMAPAHOB</strong></div>
+                <div>Level 90</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=KATAMAPAHOB" target="_blank">KATAMAPAHOB's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="KATAMAPAHOB">
+                        <!--Armory Quickview -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Oak Sage:20, Heart of Wolverine:20, Summon Dire Wolf:20, Summon Grizzly:20, Flame Dash:15, Raven:1, Summon Spirit Wolf:1, Firestorm:1, Molten Boulder:1, Arctic Blast:1, Cyclone Armor:1</p>
+            <p><strong>Equipment:<br></strong> Belt: <span style='color: yellow;'>Hailstone Chain</span>, Gloves: <span style='color: olive;'>Magefist</span>, ring: <span style='color: yellow;'>Havoc Circle</span>, ring: <span style='color: yellow;'>Bitter Eye</span>, Boots: <span style='color: green;'>Aldur's Advance</span>, Helmet: <span style='color: white;'>Dream Spirit</span>, Armor: <span style='color: olive;'>Rain</span>, Amulet: <span style='color: orange;'>Wraithra Noose</span>, Left hand: <span style='color: olive;'>Heart of the Oak</span>, Offhand: <span style='color: olive;'>Spirit</span></p>
+            <p><strong>Mercenary:</strong> Act 5 Barbarian - Hustle, War Hat, Lawbringer</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Name: Flea_Bag</strong></div>
+                <div>Level 90</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Flea_Bag" target="_blank">Flea_Bag's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="Flea_Bag">
+                        <!--Armory Quickview -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Oak Sage:20, Summon Spirit Wolf:20, Heart of Wolverine:20, Summon Grizzly:20, Summon Dire Wolf:16, Raven:1, Spirit of Barbs:1, Werewolf:1, Lycanthropy:1, Feral Rage:1</p>
+            <p><strong>Equipment:<br></strong> Amulet: <span style='color: olive;'>Highlord's Wrath</span>, Belt: <span style='color: olive;'>String of Ears</span>, Boots: <span style='color: olive;'>Gore Rider</span>, ring: <span style='color: olive;'>Raven Frost</span>, ring: <span style='color: yellow;'>Eagle Finger</span>, Gloves: <span style='color: olive;'>Lava Gout</span>, Armor: <span style='color: olive;'>Shaftstop</span>, Helmet: <span style='color: olive;'>Jalal's Mane</span>, Left hand: <span style='color: olive;'>Tomb Reaver</span>, Left hand: <span style='color: olive;'>Holy Thunder</span>, Offhand: <span style='color: olive;'>Spirit</span></p>
+            <p><strong>Mercenary:</strong> Act 1 Rogue Scout - Hustle, Hearth, Harmony</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Name: BananaCream</strong></div>
+                <div>Level 88</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=BananaCream" target="_blank">BananaCream's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="BananaCream">
+                        <!--Armory Quickview -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Summon Dire Wolf:20, Summon Grizzly:20, Flame Dash:20, Heart of Wolverine:18, Oak Sage:7, Summon Spirit Wolf:7, Poison Creeper:2, Raven:1, Werebear:1, Maul:1, Firestorm:1, Molten Boulder:1</p>
+            <p><strong>Equipment:<br></strong> ring: <span style='color: olive;'>Nagelring</span>, ring: <span style='color: yellow;'>Blood Spiral</span>, Armor: <span style='color: olive;'>Skullder's Ire</span>, Boots: <span style='color: green;'>Aldur's Advance</span>, Belt: <span style='color: olive;'>Goldwrap</span>, Gloves: <span style='color: olive;'>Chance Guards</span>, Left hand: <span style='color: olive;'>Spirit</span>, Left hand: <span style='color: olive;'>Gull</span>, Offhand: <span style='color: olive;'>Spirit</span>, Offhand: <span style='color: olive;'>Head Hunter's Glory</span>, Helmet: <span style='color: olive;'>Spirit Keeper</span>, Amulet: <span style='color: yellow;'>Eagle Wing</span></p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Andariel's Visage, Duriel's Shell, The Reaper's Toll</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Name: much_Dmg</strong></div>
+                <div>Level 88</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=much_Dmg" target="_blank">much_Dmg's Armory</a></div>
+
+                
+                    <div class="hover-trigger-dead" data-character-name="much_Dmg">
+                        <!--Dead -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Summon Spirit Wolf:20, Heart of Wolverine:20, Summon Dire Wolf:20, Summon Grizzly:20, Oak Sage:10, Raven:1, Poison Creeper:1, Carrion Vine:1, Spirit of Barbs:1, Firestorm:1, Molten Boulder:1, Arctic Blast:1, Cyclone Armor:1, Flame Dash:1</p>
+            <p><strong>Equipment:<br></strong> </p>
+            <p><strong>Mercenary:</strong> Act 5 Barbarian - Andariel's Visage, Treachery, Lawbringer</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Name: RadagastBrown</strong></div>
+                <div>Level 86</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=RadagastBrown" target="_blank">RadagastBrown's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="RadagastBrown">
+                        <!--Armory Quickview -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Summon Spirit Wolf:20, Heart of Wolverine:20, Summon Dire Wolf:20, Summon Grizzly:20, Oak Sage:12, Raven:1, Firestorm:1, Molten Boulder:1, Flame Dash:1</p>
+            <p><strong>Equipment:<br></strong> Amulet: <span style='color: lightblue;'>Keeper's Amulet of the Mammoth</span>, Left hand: <span style='color: olive;'>Wizardspike</span></p>
+            <p><strong>Mercenary:</strong> Act 1 Rogue Scout - No equipment</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Name: CowsDudu</strong></div>
+                <div>Level 85</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=CowsDudu" target="_blank">CowsDudu's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="CowsDudu">
+                        <!--Armory Quickview -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Oak Sage:20, Summon Spirit Wolf:20, Summon Dire Wolf:20, Summon Grizzly:20, Maul:5, Heart of Wolverine:4, Raven:1, Spirit of Barbs:1, Werebear:1, Shock Wave:1, Firestorm:1, Molten Boulder:1, Flame Dash:1</p>
+            <p><strong>Equipment:<br></strong> Gloves: <span style='color: olive;'>Chance Guards</span>, Helmet: <span style='color: olive;'>Tarnhelm</span>, ring: <span style='color: olive;'>Nagelring</span> x2, Boots: <span style='color: olive;'>War Traveler</span>, Belt: <span style='color: green;'>Tal Rasha's Fine-Spun Cloth</span>, Armor: <span style='color: green;'>Tal Rasha's Guardianship</span>, Amulet: <span style='color: lightblue;'>Chromatic Amulet of Fortune</span>, Left hand: <span style='color: yellow;'>Raven Bar</span>, Left hand: <span style='color: olive;'>Blade of Ali Baba</span>, Offhand: <span style='color: olive;'>Ancients' Pledge</span></p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Undead Crown, Hustle, Bitter Goad</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Name: LaHorde</strong></div>
+                <div>Level 84</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=LaHorde" target="_blank">LaHorde's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="LaHorde">
+                        <!--Armory Quickview -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Oak Sage:20, Summon Spirit Wolf:20, Summon Dire Wolf:20, Summon Grizzly:20, Heart of Wolverine:5, Raven:1, Poison Creeper:1, Carrion Vine:1, Solar Creeper:1, Spirit of Barbs:1, Firestorm:1, Molten Boulder:1, Arctic Blast:1, Cyclone Armor:1, Flame Dash:1</p>
+            <p><strong>Equipment:<br></strong> Amulet: <span style='color: yellow;'>Corruption Emblem</span>, ring: <span style='color: olive;'>Raven Frost</span>, ring: <span style='color: olive;'>Dwarf Star</span>, Boots: <span style='color: green;'>Aldur's Advance</span>, Belt: <span style='color: olive;'>Verdungo's Hearty Cord</span>, Gloves: <span style='color: yellow;'>Brimstone Fist</span>, Helmet: <span style='color: olive;'>Jalal's Mane</span>, Left hand: <span style='color: olive;'>Demon Limb</span>, Left hand: <span style='color: olive;'>Heart of the Oak</span>, Offhand: <span style='color: olive;'>The Ward</span>, Offhand: <span style='color: olive;'>Stormshield</span>, Armor: <span style='color: olive;'>Rain</span></p>
+            <p><strong>Mercenary:</strong> Act 5 Barbarian - Guillaume's Face, Treachery, Lawbringer</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Name: canvas_dr</strong></div>
+                <div>Level 83</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=canvas_dr" target="_blank">canvas_dr's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="canvas_dr">
+                        <!--Armory Quickview -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Spirit of Barbs:20, Summon Grizzly:20, Heart of Wolverine:18, Summon Dire Wolf:16, Oak Sage:8, Summon Spirit Wolf:3, Maul:2, Raven:1, Werebear:1, Firestorm:1, Molten Boulder:1, Arctic Blast:1, Cyclone Armor:1, Flame Dash:1</p>
+            <p><strong>Equipment:<br></strong> Gloves: <span style='color: olive;'>Chance Guards</span>, ring: <span style='color: lightblue;'>Coral Ring of Chance</span>, ring: <span style='color: yellow;'>Viper Hold</span>, Helmet: <span style='color: white;'>Death Mask</span>, Amulet: <span style='color: yellow;'>Eagle Talisman</span>, Belt: <span style='color: olive;'>Bladebuckle</span>, Armor: <span style='color: olive;'>Rain</span>, Left hand: <span style='color: olive;'>Spellsteel</span>, Left hand: <span style='color: olive;'>Spirit</span>, Boots: <span style='color: yellow;'>Eagle Track</span>, Offhand: <span style='color: olive;'>Rhyme</span></p>
+            <p><strong>Mercenary:</strong> Act 5 Barbarian - Leviathan, Andariel's Visage, Lawbringer</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Name: NorthD</strong></div>
+                <div>Level 83</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=NorthD" target="_blank">NorthD's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="NorthD">
+                        <!--Armory Quickview -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Oak Sage:20, Summon Spirit Wolf:20, Summon Dire Wolf:20, Summon Grizzly:20, Heart of Wolverine:5, Raven:1, Poison Creeper:1, Carrion Vine:1, Solar Creeper:1, Werebear:1, Maul:1, Firestorm:1, Molten Boulder:1, Flame Dash:1</p>
+            <p><strong>Equipment:<br></strong> Belt: <span style='color: lightblue;'>Coral Plated Belt of the Whale</span>, Helmet: <span style='color: yellow;'>Skull Circlet</span>, ring: <span style='color: lightblue;'>Scintillating Ring of Fortune</span>, ring: <span style='color: yellow;'>Bone Turn</span>, Amulet: <span style='color: lightblue;'>Keeper's Amulet of the Vampire</span>, Gloves: <span style='color: yellow;'>Corpse Grasp</span>, Boots: <span style='color: lightblue;'>Garnet Light Plated Boots of Haste</span>, Armor: <span style='color: olive;'>Stealth</span>, Left hand: <span style='color: olive;'>Spirit</span>, Offhand: <span style='color: olive;'>Rhyme</span></p>
+            <p><strong>Mercenary:</strong> Act 5 Barbarian - Tal Rasha's Horadric Crest, Venom Ward, Todesfaelle Flamme</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Name: Kust</strong></div>
+                <div>Level 80</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Kust" target="_blank">Kust's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="Kust">
+                        <!--Armory Quickview -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Oak Sage:20, Summon Spirit Wolf:20, Summon Dire Wolf:20, Summon Grizzly:20, Raven:1, Poison Creeper:1, Carrion Vine:1, Heart of Wolverine:1, Werewolf:1, Lycanthropy:1, Werebear:1, Maul:1</p>
+            <p><strong>Equipment:<br></strong> ring: <span style='color: olive;'>Dwarf Star</span>, ring: <span style='color: yellow;'>Raven Turn</span>, Armor: <span style='color: olive;'>Smoke</span>, Gloves: <span style='color: green;'>Laying of Hands</span>, Helmet: <span style='color: olive;'>Lore</span>, Belt: <span style='color: green;'>Immortal King's Detail</span>, Boots: <span style='color: yellow;'>Cruel Track</span>, Amulet: <span style='color: lightblue;'>Keeper's Amulet</span>, Left hand: <span style='color: olive;'>Holy Thunder</span>, Left hand: <span style='color: olive;'>Spirit</span>, Offhand: <span style='color: olive;'>Rhyme</span>, Offhand: <span style='color: olive;'>Spirit</span></p>
+            <p><strong>Mercenary:</strong> Act 3 Eastern Sorceror - Hawkmail</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Name: MoltenCumShots</strong></div>
+                <div>Level 78</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=MoltenCumShots" target="_blank">MoltenCumShots's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="MoltenCumShots">
+                        <!--Armory Quickview -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Oak Sage:20, Summon Spirit Wolf:20, Summon Dire Wolf:20, Summon Grizzly:20, Heart of Wolverine:6, Raven:1, Werebear:1, Maul:1</p>
+            <p><strong>Equipment:<br></strong> ring: <span style='color: yellow;'>Order Loop</span>, ring: <span style='color: yellow;'>Storm Loop</span>, Armor: <span style='color: olive;'>Rain</span>, Helmet: <span style='color: yellow;'>Demon Shell</span>, Amulet: <span style='color: lightblue;'>Viridian Amulet of Leadership</span>, Gloves: <span style='color: lightblue;'>Garnet Gauntlets</span>, Belt: <span style='color: lightblue;'>Coral Plated Belt of the Whale</span>, Left hand: <span style='color: olive;'>Heart of the Oak</span>, Offhand: <span style='color: olive;'>Spirit</span></p>
+            <p><strong>Mercenary:</strong> Act 5 Barbarian - Iratha's Coil, Iceblink, Lawbringer</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Name: Wnuczek</strong></div>
+                <div>Level 70</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Wnuczek" target="_blank">Wnuczek's Armory</a></div>
+
+                
+                    <div class="hover-trigger-dead" data-character-name="Wnuczek">
+                        <!--Dead -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Summon Spirit Wolf:20, Summon Dire Wolf:20, Summon Grizzly:20, Oak Sage:10, Heart of Wolverine:2, Raven:1, Poison Creeper:1, Carrion Vine:1, Firestorm:1, Molten Boulder:1, Flame Dash:1</p>
+            <p><strong>Equipment:<br></strong> </p>
+            <p><strong>Mercenary:</strong> Act 5 Barbarian - Pain Shell, Haemosu's Adamant, Demon Gutter</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Name: FooXP</strong></div>
+                <div>Level 68</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=FooXP" target="_blank">FooXP's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="FooXP">
+                        <!--Armory Quickview -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Summon Spirit Wolf:20, Summon Dire Wolf:20, Summon Grizzly:20, Heart of Wolverine:12, Raven:1, Oak Sage:1, Werebear:1, Maul:1, Firestorm:1, Molten Boulder:1, Flame Dash:1</p>
+            <p><strong>Equipment:<br></strong> Armor: <span style='color: olive;'>Stealth</span>, Gloves: <span style='color: yellow;'>Havoc Grasp</span>, ring: <span style='color: yellow;'>Storm Grasp</span>, Amulet: <span style='color: yellow;'>Raven Noose</span>, Helmet: <span style='color: olive;'>Peasant Crown</span>, Left hand: <span style='color: olive;'>Spirit</span>, Offhand: <span style='color: olive;'>Spirit</span></p>
+            <p><strong>Mercenary:</strong> Act 5 Barbarian - Scale Mail, Stone Circlet, Dire Razor</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Name: ezdd</strong></div>
+                <div>Level 67</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=ezdd" target="_blank">ezdd's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="ezdd">
+                        <!--Armory Quickview -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Summon Spirit Wolf:20, Summon Dire Wolf:20, Hurricane:20, Oak Sage:5, Raven:1, Heart of Wolverine:1, Spirit of Barbs:1, Summon Grizzly:1, Firestorm:1, Molten Boulder:1, Arctic Blast:1, Cyclone Armor:1, Twister:1, Tornado:1, Flame Dash:1</p>
+            <p><strong>Equipment:<br></strong> ring: <span style='color: green;'>Angelic Halo</span>, ring: <span style='color: olive;'>Manald Heal</span>, Helmet: <span style='color: olive;'>Peasant Crown</span>, Boots: <span style='color: green;'>Sander's Riprap</span>, Left hand: <span style='color: yellow;'>Wraithra Crusher</span>, Left hand: <span style='color: olive;'>Dark Clan Crusher</span>, Offhand: <span style='color: olive;'>Pelta Lunata</span>, Offhand: <span style='color: yellow;'>Loath Shield</span>, Armor: <span style='color: olive;'>Skin of the Vipermagi</span>, Belt: <span style='color: olive;'>Nightsmoke</span>, Gloves: <span style='color: olive;'>Chance Guards</span>, Amulet: <span style='color: lightblue;'>Caretaker's Amulet</span></p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Mask, Rattlecage, Insight</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Name: Hayabusa</strong></div>
+                <div>Level 64</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Hayabusa" target="_blank">Hayabusa's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="Hayabusa">
+                        <!--Armory Quickview -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Summon Dire Wolf:20, Summon Grizzly:20, Summon Spirit Wolf:11, Oak Sage:6, Heart of Wolverine:6, Raven:1, Poison Creeper:1, Spirit of Barbs:1, Firestorm:1, Molten Boulder:1, Arctic Blast:1, Cyclone Armor:1, Flame Dash:1</p>
+            <p><strong>Equipment:<br></strong> Helmet: <span style='color: yellow;'>Spirit Cowl</span></p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Brimstone Shroud, Glyph Casque, Dread Picket</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Name: Redflok</strong></div>
+                <div>Level 62</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Redflok" target="_blank">Redflok's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="Redflok">
+                        <!--Armory Quickview -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Summon Spirit Wolf:20, Summon Dire Wolf:20, Summon Grizzly:20, Raven:1, Poison Creeper:1, Oak Sage:1, Heart of Wolverine:1, Firestorm:1, Molten Boulder:1, Flame Dash:1</p>
+            <p><strong>Equipment:<br></strong> ring: <span style='color: yellow;'>PlagueRI Eye</span>, ring: <span style='color: lightblue;'>Platinum Ring of Worth</span>, Belt: <span style='color: lightblue;'>Belt of the Colossus</span>, Gloves: <span style='color: olive;'>Bloodfist</span>, Boots: <span style='color: green;'>Tancred's Hobnails</span>, Armor: <span style='color: olive;'>Lionheart</span>, Amulet: <span style='color: lightblue;'>Keeper's Amulet of Brilliance</span>, Helmet: <span style='color: green;'>Tancred's Skull</span>, Left hand: <span style='color: lightblue;'>Bone Wand of Life Tap</span>, Left hand: <span style='color: olive;'>Spirit</span>, Offhand: <span style='color: white;'>Large Shield</span> x2</p>
+            <p><strong>Mercenary:</strong> Act 1 Rogue Scout - Great Helm, Dusk Shroud, Edge</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            </div>
+            <hr width="90%">
+            <br>
+            
+        <!--<h2>26.42%  of Druid's Main Skills:<br><img src='icons/Lycanthropy.png' alt='Lycanthropy' width='20' height='20'> Lycanthropy 100.00% (280)<br><img src='icons/Maul.png' alt='Maul' width='20' height='20'> Maul 100.00% (260)<br><img src='icons/Shock Wave.png' alt='Shock Wave' width='20' height='20'> Shock Wave 92.86% (259)<br><img src='icons/Werebear.png' alt='Werebear' width='20' height='20'> Werebear 100.00% (205)<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 92.86% (119)</h2>
+        <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 100.0% (50.0)<br><img src='icons/Summon Grizzly.png' alt='Summon Grizzly' width='20' height='20'> Summon Grizzly 85.71% (50.0)<br><img src='icons/Summon Dire Wolf.png' alt='Summon Dire Wolf' width='20' height='20'> Summon Dire Wolf 85.71% (48.0)<br><img src='icons/Werewolf.png' alt='Werewolf' width='20' height='20'> Werewolf 100.0% (14.0)<br><img src='icons/Raven.png' alt='Raven' width='20' height='20'> Raven 85.71% (12.0)<br><img src='icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' width='20' height='20'> Summon Spirit Wolf 85.71% (12.0)</p> -->
+        <div id="skills" class="skills-container">
+            <div class="column">
+                <ul id="most-popular-skills">
+                    <h2>26.42%  of Druid's Main Skills:<br><img src='icons/Lycanthropy.png' alt='Lycanthropy' width='20' height='20'> Lycanthropy 100.00% (280)<br><img src='icons/Maul.png' alt='Maul' width='20' height='20'> Maul 100.00% (260)<br><img src='icons/Shock Wave.png' alt='Shock Wave' width='20' height='20'> Shock Wave 92.86% (259)<br><img src='icons/Werebear.png' alt='Werebear' width='20' height='20'> Werebear 100.00% (205)<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 92.86% (119)</h2>
+                </ul>
+            </div>
+            <div class="column">
+                <ul id="other-skills">
+                    <h2>Other common skills in this group:</h2> <img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 100.0% (50.0)<br><img src='icons/Summon Grizzly.png' alt='Summon Grizzly' width='20' height='20'> Summon Grizzly 85.71% (50.0)<br><img src='icons/Summon Dire Wolf.png' alt='Summon Dire Wolf' width='20' height='20'> Summon Dire Wolf 85.71% (48.0)<br><img src='icons/Werewolf.png' alt='Werewolf' width='20' height='20'> Werewolf 100.0% (14.0)<br><img src='icons/Raven.png' alt='Raven' width='20' height='20'> Raven 85.71% (12.0)<br><img src='icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' width='20' height='20'> Summon Spirit Wolf 85.71% (12.0)
+                </ul>
+            </div>
+        </div>
+
+    <button type="button" class="collapsible small-collapsible">
+        <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+                <strong>All Skills</strong></button>
+                <div class="content">
+                    <div><img src='icons/Lycanthropy.png' alt='Lycanthropy' width='20' height='20'> Lycanthropy 100.0% (280.0)<br><img src='icons/Maul.png' alt='Maul' width='20' height='20'> Maul 100.0% (261.0)<br><img src='icons/Shock Wave.png' alt='Shock Wave' width='20' height='20'> Shock Wave 92.86% (260.0)<br><img src='icons/Werebear.png' alt='Werebear' width='20' height='20'> Werebear 100.0% (206.0)<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 92.86% (120.0)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 100.0% (50.0)<br><img src='icons/Summon Grizzly.png' alt='Summon Grizzly' width='20' height='20'> Summon Grizzly 85.71% (50.0)<br><img src='icons/Summon Dire Wolf.png' alt='Summon Dire Wolf' width='20' height='20'> Summon Dire Wolf 85.71% (48.0)<br><img src='icons/Werewolf.png' alt='Werewolf' width='20' height='20'> Werewolf 100.0% (14.0)<br><img src='icons/Raven.png' alt='Raven' width='20' height='20'> Raven 85.71% (12.0)<br><img src='icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' width='20' height='20'> Summon Spirit Wolf 85.71% (12.0)<br><img src='icons/Spirit of Barbs.png' alt='Spirit of Barbs' width='20' height='20'> Spirit of Barbs 7.14% (1.0)<br><img src='icons/Arctic Blast.png' alt='Arctic Blast' width='20' height='20'> Arctic Blast 0.0% (0.0)<br><img src='icons/Feral Rage.png' alt='Feral Rage' width='20' height='20'> Feral Rage 0.0% (0.0)<br><img src='icons/Hurricane.png' alt='Hurricane' width='20' height='20'> Hurricane 0.0% (0.0)<br><img src='icons/Tornado.png' alt='Tornado' width='20' height='20'> Tornado 0.0% (0.0)<br><img src='icons/Cyclone Armor.png' alt='Cyclone Armor' width='20' height='20'> Cyclone Armor 0.0% (0.0)<br><img src='icons/Twister.png' alt='Twister' width='20' height='20'> Twister 0.0% (0.0)<br><img src='icons/Poison Creeper.png' alt='Poison Creeper' width='20' height='20'> Poison Creeper 0.0% (0.0)<br><img src='icons/Rabies.png' alt='Rabies' width='20' height='20'> Rabies 0.0% (0.0)<br><img src='icons/Carrion Vine.png' alt='Carrion Vine' width='20' height='20'> Carrion Vine 0.0% (0.0)<br><img src='icons/Firestorm.png' alt='Firestorm' width='20' height='20'> Firestorm 0.0% (0.0)<br><img src='icons/Molten Boulder.png' alt='Molten Boulder' width='20' height='20'> Molten Boulder 0.0% (0.0)<br><img src='icons/Flame Dash.png' alt='Flame Dash' width='20' height='20'> Flame Dash 0.0% (0.0)<br><img src='icons/Fury.png' alt='Fury' width='20' height='20'> Fury 0.0% (0.0)<br><img src='icons/Solar Creeper.png' alt='Solar Creeper' width='20' height='20'> Solar Creeper 0.0% (0.0)<br><img src='icons/Fissure.png' alt='Fissure' width='20' height='20'> Fissure 0.0% (0.0)<br><img src='icons/Volcano.png' alt='Volcano' width='20' height='20'> Volcano 0.0% (0.0)<br><img src='icons/Armageddon.png' alt='Armageddon' width='20' height='20'> Armageddon 0.0% (0.0)<br><img src='icons/Fire Claws.png' alt='Fire Claws' width='20' height='20'> Fire Claws 0.0% (0.0)</div>
+                </div>
+
+                <button type="button" class="collapsible small-collapsible">
+        <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+                <strong>Most Common Equipment:</strong></button>
+                <div class="content">
+                    <div><strong>Ring</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Raven Frost</span> 11.54% (3)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Nature's Peace</span> 7.69% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: orange;'>Order Hold</span> 3.85% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Stone Master</span> 3.85% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Doom Band</span> 3.85% (1)<br><strong>Belt</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>String of Ears</span> 30.77% (4)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Verdungo's Hearty Cord</span> 15.38% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Arachnid Mesh</span> 15.38% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Gloom's Trap</span> 7.69% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: orange;'>Storm Cord</span> 7.69% (1)<br><strong>Amulet</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Mara's Kaleidoscope</span> 15.38% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Atma's Scarab</span> 15.38% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: orange;'>Eagle Necklace</span> 7.69% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: lightblue;'>Communal Amulet of the Mind</span> 7.69% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: lightblue;'>Communal Amulet of Maiming</span> 7.69% (1)<br><strong>Boots</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Gore Rider</span> 61.54% (8)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: green;'>Aldur's Advance</span> 15.38% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: green;'>Natalya's Soul</span> 7.69% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>War Traveler</span> 7.69% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Infernostride</span> 7.69% (1)<br><strong>Gloves</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: green;'>Laying of Hands</span> 30.77% (4)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Dracul's Grasp</span> 23.08% (3)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Ghoulhide</span> 15.38% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: green;'>Trang-Oul's Claws</span> 15.38% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Grim Claw</span> 7.69% (1)<br><strong>Helmet</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Jalal's Mane</span> 69.23% (9)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Metamorphosis</span> 15.38% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Lore</span> 7.69% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Bone Horn</span> 7.69% (1)<br><strong>Armor</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Fortitude</span> 61.54% (8)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Rain</span> 15.38% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Smoke</span> 15.38% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Skin of the Vipermagi</span> 7.69% (1)<br><strong>Left hand</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Headstriker</span> 27.27% (6)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Fleshrender</span> 18.18% (4)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Fortitude</span> 13.64% (3)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Spirit</span> 9.09% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Death</span> 4.55% (1)<br><strong>Offhand</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Spirit</span> 40.00% (8)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Stormshield</span> 25.00% (5)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Lidless Wall</span> 10.00% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: green;'>Whitstan's Guard</span> 5.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Medusa's Gaze</span> 5.00% (1)</div>
+                </div>
+            
+                <button type="button" class="collapsible small-collapsible">
+        <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+                <strong>ALL Equipment:</strong></button>
+                <div class="content">
+                    <div><strong>Ring</strong>: <span style='color: olive;'>Raven Frost</span> 11.54%, <span style='color: olive;'>Nature's Peace</span> 7.69%, <span style='color: orange;'>Order Hold</span> 3.85%, <span style='color: yellow;'>Stone Master</span> 3.85%, <span style='color: yellow;'>Doom Band</span> 3.85%, <span style='color: yellow;'>Stone Touch</span> 3.85%, <span style='color: yellow;'>Storm Spiral</span> 3.85%, <span style='color: yellow;'>Beast Coil</span> 3.85%, <span style='color: yellow;'>Entropy Touch</span> 3.85%, <span style='color: lightblue;'>Scintillating Ring of the Lamprey</span> 3.85%, <span style='color: yellow;'>Raven Grip</span> 3.85%, <span style='color: yellow;'>Rune Circle</span> 3.85%, <span style='color: yellow;'>Beast Grasp</span> 3.85%, <span style='color: yellow;'>Eagle Eye</span> 3.85%, <span style='color: yellow;'>Chaos Grasp</span> 3.85%, <span style='color: yellow;'>Order Turn</span> 3.85%, <span style='color: yellow;'>Corruption Knot</span> 3.85%, <span style='color: yellow;'>Corruption Master</span> 3.85%, <span style='color: yellow;'>Eagle Grasp</span> 3.85%, <span style='color: green;'>Angelic Halo</span> 3.85%, <span style='color: yellow;'>Entropy Turn</span> 3.85%, <span style='color: yellow;'>Skull Circle</span> 3.85%, <span style='color: yellow;'>Wraithra Circle</span> 3.85%<br><strong>Belt</strong>: <span style='color: olive;'>String of Ears</span> 30.77%, <span style='color: olive;'>Verdungo's Hearty Cord</span> 15.38%, <span style='color: olive;'>Arachnid Mesh</span> 15.38%, <span style='color: olive;'>Gloom's Trap</span> 7.69%, <span style='color: orange;'>Storm Cord</span> 7.69%, <span style='color: yellow;'>Pain Chain</span> 7.69%, <span style='color: olive;'>Thundergod's Vigor</span> 7.69%, <span style='color: olive;'>Goldwrap</span> 7.69%<br><strong>Amulet</strong>: <span style='color: olive;'>Mara's Kaleidoscope</span> 15.38%, <span style='color: olive;'>Atma's Scarab</span> 15.38%, <span style='color: orange;'>Eagle Necklace</span> 7.69%, <span style='color: lightblue;'>Communal Amulet of the Mind</span> 7.69%, <span style='color: lightblue;'>Communal Amulet of Maiming</span> 7.69%, <span style='color: yellow;'>Bitter Mark</span> 7.69%, <span style='color: olive;'>Highlord's Wrath</span> 7.69%, <span style='color: yellow;'>Doom Clasp</span> 7.69%, <span style='color: lightblue;'>Communal Amulet of the Ox</span> 7.69%, <span style='color: yellow;'>Bone Noose</span> 7.69%, <span style='color: yellow;'>PlagueRI Scarab</span> 7.69%<br><strong>Boots</strong>: <span style='color: olive;'>Gore Rider</span> 61.54%, <span style='color: green;'>Aldur's Advance</span> 15.38%, <span style='color: green;'>Natalya's Soul</span> 7.69%, <span style='color: olive;'>War Traveler</span> 7.69%, <span style='color: olive;'>Infernostride</span> 7.69%<br><strong>Gloves</strong>: <span style='color: green;'>Laying of Hands</span> 30.77%, <span style='color: olive;'>Dracul's Grasp</span> 23.08%, <span style='color: olive;'>Ghoulhide</span> 15.38%, <span style='color: green;'>Trang-Oul's Claws</span> 15.38%, <span style='color: yellow;'>Grim Claw</span> 7.69%, <span style='color: yellow;'>Blood Touch</span> 7.69%<br><strong>Helmet</strong>: <span style='color: olive;'>Jalal's Mane</span> 69.23%, <span style='color: olive;'>Metamorphosis</span> 15.38%, <span style='color: olive;'>Lore</span> 7.69%, <span style='color: yellow;'>Bone Horn</span> 7.69%<br><strong>Armor</strong>: <span style='color: olive;'>Fortitude</span> 61.54%, <span style='color: olive;'>Rain</span> 15.38%, <span style='color: olive;'>Smoke</span> 15.38%, <span style='color: olive;'>Skin of the Vipermagi</span> 7.69%<br><strong>Left hand</strong>: <span style='color: olive;'>Headstriker</span> 27.27%, <span style='color: olive;'>Fleshrender</span> 18.18%, <span style='color: olive;'>Fortitude</span> 13.64%, <span style='color: olive;'>Spirit</span> 9.09%, <span style='color: olive;'>Death</span> 4.55%, <span style='color: olive;'>Wizardspike</span> 4.55%, <span style='color: olive;'>Grief</span> 4.55%, <span style='color: lightblue;'>Gnarled Staff of Teleportation</span> 4.55%, <span style='color: olive;'>Mang Song's Lesson</span> 4.55%, <span style='color: olive;'>Holy Thunder</span> 4.55%, <span style='color: olive;'>Lightsabre</span> 4.55%<br><strong>Offhand</strong>: <span style='color: olive;'>Spirit</span> 40.00%, <span style='color: olive;'>Stormshield</span> 25.00%, <span style='color: olive;'>Lidless Wall</span> 10.00%, <span style='color: green;'>Whitstan's Guard</span> 5.00%, <span style='color: olive;'>Medusa's Gaze</span> 5.00%, <span style='color: green;'>Sigon's Guard</span> 5.00%, <span style='color: olive;'>Moser's Blessed Circle</span> 5.00%, <span style='color: olive;'>Rhyme</span> 5.00%</div>
+                </div>
+
+            <button type="button" class="collapsible small-collapsible">
+        <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+            <strong>14 Characters in this cluster:</strong>
+        </button>
+        <div class="content">
+            
+            <div class="character-info">
+                <div><strong>Name: Quadrober</strong></div>
+                <div>Level 91</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Quadrober" target="_blank">Quadrober's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="Quadrober">
+                        <!--Armory Quickview -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Lycanthropy:20, Werebear:20, Maul:20, Shock Wave:20, Summon Grizzly:10, Summon Dire Wolf:7, Raven:1, Oak Sage:1, Summon Spirit Wolf:1, Heart of Wolverine:1, Werewolf:1</p>
+            <p><strong>Equipment:<br></strong> ring: <span style='color: olive;'>Nature's Peace</span>, ring: <span style='color: orange;'>Order Hold</span>, Belt: <span style='color: olive;'>String of Ears</span>, Amulet: <span style='color: orange;'>Eagle Necklace</span>, Boots: <span style='color: olive;'>Gore Rider</span>, Gloves: <span style='color: olive;'>Ghoulhide</span>, Helmet: <span style='color: olive;'>Metamorphosis</span>, Armor: <span style='color: olive;'>Fortitude</span>, Left hand: <span style='color: olive;'>Fleshrender</span>, Left hand: <span style='color: olive;'>Fortitude</span>, Offhand: <span style='color: olive;'>Lidless Wall</span>, Offhand: <span style='color: olive;'>Stormshield</span></p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Kira's Guardian, Hustle, The Reaper's Toll</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Name: FoaminAtDaMouth</strong></div>
+                <div>Level 90</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=FoaminAtDaMouth" target="_blank">FoaminAtDaMouth's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="FoaminAtDaMouth">
+                        <!--Armory Quickview -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Oak Sage:20, Lycanthropy:20, Maul:20, Shock Wave:20, Summon Dire Wolf:10, Heart of Wolverine:5, Summon Grizzly:2, Raven:1, Summon Spirit Wolf:1, Werewolf:1, Werebear:1</p>
+            <p><strong>Equipment:<br></strong> Amulet: <span style='color: lightblue;'>Communal Amulet of the Mind</span>, Boots: <span style='color: green;'>Aldur's Advance</span>, Armor: <span style='color: olive;'>Fortitude</span>, Belt: <span style='color: olive;'>Verdungo's Hearty Cord</span>, ring: <span style='color: olive;'>Raven Frost</span>, ring: <span style='color: yellow;'>Stone Master</span>, Helmet: <span style='color: olive;'>Jalal's Mane</span>, Gloves: <span style='color: green;'>Laying of Hands</span>, Left hand: <span style='color: olive;'>Death</span>, Offhand: <span style='color: green;'>Whitstan's Guard</span></p>
+            <p><strong>Mercenary:</strong> Act 5 Barbarian - Vampire Gaze, Leviathan, Lawbringer</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Name: BadMuti</strong></div>
+                <div>Level 90</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=BadMuti" target="_blank">BadMuti's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="BadMuti">
+                        <!--Armory Quickview -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Lycanthropy:20, Werebear:20, Maul:20, Shock Wave:20, Oak Sage:9, Summon Grizzly:6, Heart of Wolverine:2, Raven:1, Summon Spirit Wolf:1, Summon Dire Wolf:1, Werewolf:1</p>
+            <p><strong>Equipment:<br></strong> Boots: <span style='color: olive;'>Gore Rider</span>, ring: <span style='color: yellow;'>Doom Band</span>, ring: <span style='color: yellow;'>Stone Touch</span>, Helmet: <span style='color: olive;'>Jalal's Mane</span>, Belt: <span style='color: olive;'>Gloom's Trap</span>, Amulet: <span style='color: olive;'>Mara's Kaleidoscope</span>, Armor: <span style='color: olive;'>Skin of the Vipermagi</span>, Gloves: <span style='color: green;'>Trang-Oul's Claws</span>, Left hand: <span style='color: olive;'>Wizardspike</span>, Left hand: <span style='color: olive;'>Headstriker</span>, Offhand: <span style='color: olive;'>Medusa's Gaze</span>, Offhand: <span style='color: olive;'>Spirit</span></p>
+            <p><strong>Mercenary:</strong> Act 5 Barbarian - Tal Rasha's Horadric Crest, Treachery, Lawbringer</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Name: ytj_ggg</strong></div>
+                <div>Level 90</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=ytj_ggg" target="_blank">ytj_ggg's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="ytj_ggg">
+                        <!--Armory Quickview -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Lycanthropy:20, Werebear:20, Maul:20, Shock Wave:20, Summon Grizzly:15, Raven:1, Oak Sage:1, Summon Spirit Wolf:1, Heart of Wolverine:1, Summon Dire Wolf:1, Werewolf:1</p>
+            <p><strong>Equipment:<br></strong> Gloves: <span style='color: olive;'>Dracul's Grasp</span>, Boots: <span style='color: olive;'>Gore Rider</span>, Helmet: <span style='color: olive;'>Jalal's Mane</span>, ring: <span style='color: yellow;'>Storm Spiral</span>, ring: <span style='color: yellow;'>Beast Coil</span>, Belt: <span style='color: olive;'>Arachnid Mesh</span>, Amulet: <span style='color: lightblue;'>Communal Amulet of Maiming</span>, Armor: <span style='color: olive;'>Fortitude</span>, Left hand: <span style='color: olive;'>Spirit</span>, Left hand: <span style='color: olive;'>Headstriker</span>, Offhand: <span style='color: olive;'>Spirit</span>, Offhand: <span style='color: olive;'>Stormshield</span></p>
+            <p><strong>Mercenary:</strong> Act 5 Barbarian - Steel Shade, Treachery, Lawbringer</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Name: eG-RAVENIIX</strong></div>
+                <div>Level 90</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=eG-RAVENIIX" target="_blank">eG-RAVENIIX's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="eG-RAVENIIX">
+                        <!--Armory Quickview -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Lycanthropy:20, Werebear:20, Maul:20, Shock Wave:20, Oak Sage:15, Raven:1, Summon Spirit Wolf:1, Heart of Wolverine:1, Summon Dire Wolf:1, Summon Grizzly:1, Werewolf:1</p>
+            <p><strong>Equipment:<br></strong> Belt: <span style='color: olive;'>Arachnid Mesh</span>, ring: <span style='color: olive;'>Raven Frost</span>, ring: <span style='color: yellow;'>Entropy Touch</span>, Boots: <span style='color: olive;'>Gore Rider</span>, Amulet: <span style='color: yellow;'>Bitter Mark</span>, Helmet: <span style='color: olive;'>Jalal's Mane</span>, Armor: <span style='color: olive;'>Rain</span>, Gloves: <span style='color: olive;'>Dracul's Grasp</span>, Left hand: <span style='color: olive;'>Grief</span>, Offhand: <span style='color: olive;'>Spirit</span></p>
+            <p><strong>Mercenary:</strong> Act 1 Rogue Scout - Tal Rasha's Horadric Crest, Treachery, Harmony</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Name: GripItAndRipIt</strong></div>
+                <div>Level 89</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=GripItAndRipIt" target="_blank">GripItAndRipIt's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="GripItAndRipIt">
+                        <!--Armory Quickview -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Lycanthropy:20, Werebear:20, Maul:20, Shock Wave:20, Heart of Wolverine:13, Raven:1, Oak Sage:1, Summon Spirit Wolf:1, Summon Dire Wolf:1, Spirit of Barbs:1, Summon Grizzly:1, Werewolf:1</p>
+            <p><strong>Equipment:<br></strong> Armor: <span style='color: olive;'>Smoke</span>, ring: <span style='color: lightblue;'>Scintillating Ring of the Lamprey</span>, ring: <span style='color: yellow;'>Raven Grip</span>, Amulet: <span style='color: olive;'>Highlord's Wrath</span>, Belt: <span style='color: orange;'>Storm Cord</span>, Helmet: <span style='color: olive;'>Jalal's Mane</span>, Boots: <span style='color: green;'>Aldur's Advance</span>, Gloves: <span style='color: yellow;'>Grim Claw</span>, Left hand: <span style='color: olive;'>Fleshrender</span>, Left hand: <span style='color: olive;'>Headstriker</span>, Offhand: <span style='color: olive;'>Spirit</span> x2</p>
+            <p><strong>Mercenary:</strong> Act 5 Barbarian - Treachery, Avenger Guard, Lawbringer</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Name: kepDru</strong></div>
+                <div>Level 86</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=kepDru" target="_blank">kepDru's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="kepDru">
+                        <!--Armory Quickview -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Summon Dire Wolf:20, Lycanthropy:20, Maul:20, Shock Wave:20, Oak Sage:11, Raven:1, Summon Spirit Wolf:1, Heart of Wolverine:1, Summon Grizzly:1, Werewolf:1, Werebear:1</p>
+            <p><strong>Equipment:<br></strong> Helmet: <span style='color: olive;'>Jalal's Mane</span>, ring: <span style='color: olive;'>Raven Frost</span>, ring: <span style='color: yellow;'>Rune Circle</span>, Belt: <span style='color: yellow;'>Pain Chain</span>, Boots: <span style='color: olive;'>Gore Rider</span>, Amulet: <span style='color: yellow;'>Doom Clasp</span>, Gloves: <span style='color: green;'>Laying of Hands</span>, Armor: <span style='color: olive;'>Fortitude</span>, Left hand: <span style='color: lightblue;'>Gnarled Staff of Teleportation</span>, Left hand: <span style='color: olive;'>Fleshrender</span>, Offhand: <span style='color: olive;'>Spirit</span></p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Rune Wrap, Duskdeep, The Reaper's Toll</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Name: AnniForEveryone</strong></div>
+                <div>Level 85</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=AnniForEveryone" target="_blank">AnniForEveryone's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="AnniForEveryone">
+                        <!--Armory Quickview -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Lycanthropy:20, Werebear:20, Maul:20, Shock Wave:20, Oak Sage:10, Raven:1, Summon Spirit Wolf:1, Heart of Wolverine:1, Summon Dire Wolf:1, Summon Grizzly:1, Werewolf:1</p>
+            <p><strong>Equipment:<br></strong> ring: <span style='color: yellow;'>Beast Grasp</span>, ring: <span style='color: yellow;'>Eagle Eye</span>, Helmet: <span style='color: olive;'>Jalal's Mane</span>, Belt: <span style='color: olive;'>Thundergod's Vigor</span>, Amulet: <span style='color: olive;'>Mara's Kaleidoscope</span>, Boots: <span style='color: olive;'>Gore Rider</span>, Armor: <span style='color: olive;'>Fortitude</span>, Gloves: <span style='color: green;'>Laying of Hands</span>, Left hand: <span style='color: olive;'>Mang Song's Lesson</span>, Left hand: <span style='color: olive;'>Headstriker</span>, Offhand: <span style='color: olive;'>Stormshield</span></p>
+            <p><strong>Mercenary:</strong> Act 5 Barbarian - Tal Rasha's Horadric Crest, Treachery, Lawbringer</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Name: ORBAN_VIKTOR</strong></div>
+                <div>Level 85</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=ORBAN_VIKTOR" target="_blank">ORBAN_VIKTOR's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="ORBAN_VIKTOR">
+                        <!--Armory Quickview -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Lycanthropy:20, Werebear:20, Maul:20, Shock Wave:20, Oak Sage:10, Raven:1, Summon Spirit Wolf:1, Heart of Wolverine:1, Summon Dire Wolf:1, Summon Grizzly:1, Werewolf:1</p>
+            <p><strong>Equipment:<br></strong> </p>
+            <p><strong>Mercenary:</strong> Act 1 Rogue Scout - No equipment</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Name: Varax</strong></div>
+                <div>Level 83</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Varax" target="_blank">Varax's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="Varax">
+                        <!--Armory Quickview -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Lycanthropy:20, Werebear:20, Maul:20, Shock Wave:20, Summon Grizzly:6, Summon Dire Wolf:3, Raven:1, Oak Sage:1, Summon Spirit Wolf:1, Heart of Wolverine:1, Werewolf:1</p>
+            <p><strong>Equipment:<br></strong> Belt: <span style='color: olive;'>String of Ears</span>, Amulet: <span style='color: lightblue;'>Communal Amulet of the Ox</span>, Boots: <span style='color: olive;'>Gore Rider</span>, Gloves: <span style='color: olive;'>Ghoulhide</span>, Armor: <span style='color: olive;'>Fortitude</span>, ring: <span style='color: yellow;'>Chaos Grasp</span>, ring: <span style='color: yellow;'>Order Turn</span>, Helmet: <span style='color: olive;'>Metamorphosis</span>, Left hand: <span style='color: olive;'>Fleshrender</span>, Left hand: <span style='color: olive;'>Fortitude</span>, Offhand: <span style='color: olive;'>Lidless Wall</span>, Offhand: <span style='color: olive;'>Stormshield</span></p>
+            <p><strong>Mercenary:</strong> Act 5 Barbarian - Hustle, Tal Rasha's Horadric Crest, Lawbringer</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Name: DisSoundwave</strong></div>
+                <div>Level 81</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=DisSoundwave" target="_blank">DisSoundwave's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="DisSoundwave">
+                        <!--Armory Quickview -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Oak Sage:20, Lycanthropy:20, Maul:20, Shock Wave:20, Werebear:10, Heart of Wolverine:1, Werewolf:1</p>
+            <p><strong>Equipment:<br></strong> Helmet: <span style='color: olive;'>Jalal's Mane</span>, Gloves: <span style='color: olive;'>Dracul's Grasp</span>, ring: <span style='color: olive;'>Nature's Peace</span>, ring: <span style='color: yellow;'>Corruption Knot</span>, Belt: <span style='color: olive;'>String of Ears</span>, Armor: <span style='color: olive;'>Fortitude</span>, Boots: <span style='color: olive;'>Gore Rider</span>, Amulet: <span style='color: olive;'>Atma's Scarab</span>, Left hand: <span style='color: olive;'>Fortitude</span>, Offhand: <span style='color: olive;'>Stormshield</span></p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Wormskull, Skin of the Flayed One, The Battlebranch</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Name: Gucci_Clothing</strong></div>
+                <div>Level 80</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Gucci_Clothing" target="_blank">Gucci_Clothing's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="Gucci_Clothing">
+                        <!--Armory Quickview -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Oak Sage:20, Lycanthropy:20, Werebear:20, Shock Wave:20, Summon Grizzly:5, Raven:1, Summon Spirit Wolf:1, Heart of Wolverine:1, Summon Dire Wolf:1, Werewolf:1, Maul:1</p>
+            <p><strong>Equipment:<br></strong> Armor: <span style='color: olive;'>Rain</span>, Gloves: <span style='color: green;'>Laying of Hands</span>, Helmet: <span style='color: olive;'>Jalal's Mane</span>, ring: <span style='color: yellow;'>Corruption Master</span>, ring: <span style='color: yellow;'>Eagle Grasp</span>, Amulet: <span style='color: olive;'>Atma's Scarab</span>, Belt: <span style='color: olive;'>Verdungo's Hearty Cord</span>, Left hand: <span style='color: olive;'>Holy Thunder</span>, Left hand: <span style='color: olive;'>Headstriker</span>, Offhand: <span style='color: green;'>Sigon's Guard</span>, Offhand: <span style='color: olive;'>Spirit</span>, Boots: <span style='color: green;'>Natalya's Soul</span></p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Hustle, Bulwark, Insight</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Name: SHOKY_I</strong></div>
+                <div>Level 65</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=SHOKY_I" target="_blank">SHOKY_I's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="SHOKY_I">
+                        <!--Armory Quickview -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Lycanthropy:20, Maul:20, Shock Wave:20, Werebear:9, Oak Sage:1, Heart of Wolverine:1, Werewolf:1</p>
+            <p><strong>Equipment:<br></strong> ring: <span style='color: green;'>Angelic Halo</span>, ring: <span style='color: yellow;'>Entropy Turn</span>, Amulet: <span style='color: yellow;'>Bone Noose</span>, Belt: <span style='color: olive;'>Goldwrap</span>, Gloves: <span style='color: green;'>Trang-Oul's Claws</span>, Helmet: <span style='color: olive;'>Lore</span>, Boots: <span style='color: olive;'>War Traveler</span>, Armor: <span style='color: olive;'>Fortitude</span>, Left hand: <span style='color: olive;'>Spirit</span>, Left hand: <span style='color: olive;'>Headstriker</span>, Offhand: <span style='color: olive;'>Spirit</span>, Offhand: <span style='color: olive;'>Moser's Blessed Circle</span></p>
+            <p><strong>Mercenary:</strong> Act 3 Eastern Sorceror - No equipment</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Name: MACTEP</strong></div>
+                <div>Level 62</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=MACTEP" target="_blank">MACTEP's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="MACTEP">
+                        <!--Armory Quickview -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Heart of Wolverine:20, Lycanthropy:20, Maul:20, Werebear:5, Raven:1, Summon Spirit Wolf:1, Summon Dire Wolf:1, Summon Grizzly:1, Werewolf:1</p>
+            <p><strong>Equipment:<br></strong> Boots: <span style='color: olive;'>Infernostride</span>, Gloves: <span style='color: yellow;'>Blood Touch</span>, ring: <span style='color: yellow;'>Skull Circle</span>, ring: <span style='color: yellow;'>Wraithra Circle</span>, Belt: <span style='color: olive;'>String of Ears</span>, Armor: <span style='color: olive;'>Smoke</span>, Helmet: <span style='color: yellow;'>Bone Horn</span>, Amulet: <span style='color: yellow;'>PlagueRI Scarab</span>, Left hand: <span style='color: olive;'>Lightsabre</span>, Offhand: <span style='color: olive;'>Rhyme</span></p>
+            <p><strong>Mercenary:</strong> Act 1 Rogue Scout - Hearth, Hawkmail, Harmony</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            </div>
+            <hr width="90%">
+            <br>
+            
+        <!--<h2>16.98%  of Druid's Main Skills:<br><img src='icons/Rabies.png' alt='Rabies' width='20' height='20'> Rabies 100.00% (180)<br><img src='icons/Summon Dire Wolf.png' alt='Summon Dire Wolf' width='20' height='20'> Summon Dire Wolf 100.00% (172)<br><img src='icons/Poison Creeper.png' alt='Poison Creeper' width='20' height='20'> Poison Creeper 100.00% (169)<br><img src='icons/Lycanthropy.png' alt='Lycanthropy' width='20' height='20'> Lycanthropy 100.00% (143)<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 100.00% (86)</h2>
+        <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='icons/Werewolf.png' alt='Werewolf' width='20' height='20'> Werewolf 100.0% (14.0)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 100.0% (13.0)<br><img src='icons/Feral Rage.png' alt='Feral Rage' width='20' height='20'> Feral Rage 100.0% (9.0)<br><img src='icons/Raven.png' alt='Raven' width='20' height='20'> Raven 100.0% (9.0)<br><img src='icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' width='20' height='20'> Summon Spirit Wolf 100.0% (9.0)<br><img src='icons/Summon Grizzly.png' alt='Summon Grizzly' width='20' height='20'> Summon Grizzly 77.78% (7.0)</p> -->
+        <div id="skills" class="skills-container">
+            <div class="column">
+                <ul id="most-popular-skills">
+                    <h2>16.98%  of Druid's Main Skills:<br><img src='icons/Rabies.png' alt='Rabies' width='20' height='20'> Rabies 100.00% (180)<br><img src='icons/Summon Dire Wolf.png' alt='Summon Dire Wolf' width='20' height='20'> Summon Dire Wolf 100.00% (172)<br><img src='icons/Poison Creeper.png' alt='Poison Creeper' width='20' height='20'> Poison Creeper 100.00% (169)<br><img src='icons/Lycanthropy.png' alt='Lycanthropy' width='20' height='20'> Lycanthropy 100.00% (143)<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 100.00% (86)</h2>
+                </ul>
+            </div>
+            <div class="column">
+                <ul id="other-skills">
+                    <h2>Other common skills in this group:</h2> <img src='icons/Werewolf.png' alt='Werewolf' width='20' height='20'> Werewolf 100.0% (14.0)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 100.0% (13.0)<br><img src='icons/Feral Rage.png' alt='Feral Rage' width='20' height='20'> Feral Rage 100.0% (9.0)<br><img src='icons/Raven.png' alt='Raven' width='20' height='20'> Raven 100.0% (9.0)<br><img src='icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' width='20' height='20'> Summon Spirit Wolf 100.0% (9.0)<br><img src='icons/Summon Grizzly.png' alt='Summon Grizzly' width='20' height='20'> Summon Grizzly 77.78% (7.0)
+                </ul>
+            </div>
+        </div>
+
+    <button type="button" class="collapsible small-collapsible">
+        <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+                <strong>All Skills</strong></button>
+                <div class="content">
+                    <div><img src='icons/Rabies.png' alt='Rabies' width='20' height='20'> Rabies 100.0% (180.0)<br><img src='icons/Summon Dire Wolf.png' alt='Summon Dire Wolf' width='20' height='20'> Summon Dire Wolf 100.0% (173.0)<br><img src='icons/Poison Creeper.png' alt='Poison Creeper' width='20' height='20'> Poison Creeper 100.0% (169.0)<br><img src='icons/Lycanthropy.png' alt='Lycanthropy' width='20' height='20'> Lycanthropy 100.0% (143.0)<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 100.0% (86.0)<br><img src='icons/Werewolf.png' alt='Werewolf' width='20' height='20'> Werewolf 100.0% (14.0)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 100.0% (13.0)<br><img src='icons/Raven.png' alt='Raven' width='20' height='20'> Raven 100.0% (9.0)<br><img src='icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' width='20' height='20'> Summon Spirit Wolf 100.0% (9.0)<br><img src='icons/Feral Rage.png' alt='Feral Rage' width='20' height='20'> Feral Rage 100.0% (9.0)<br><img src='icons/Summon Grizzly.png' alt='Summon Grizzly' width='20' height='20'> Summon Grizzly 77.78% (7.0)<br><img src='icons/Fury.png' alt='Fury' width='20' height='20'> Fury 22.22% (2.0)<br><img src='icons/Spirit of Barbs.png' alt='Spirit of Barbs' width='20' height='20'> Spirit of Barbs 11.11% (1.0)<br><img src='icons/Solar Creeper.png' alt='Solar Creeper' width='20' height='20'> Solar Creeper 11.11% (1.0)<br><img src='icons/Carrion Vine.png' alt='Carrion Vine' width='20' height='20'> Carrion Vine 11.11% (1.0)<br><img src='icons/Hurricane.png' alt='Hurricane' width='20' height='20'> Hurricane 0.0% (0.0)<br><img src='icons/Cyclone Armor.png' alt='Cyclone Armor' width='20' height='20'> Cyclone Armor 0.0% (0.0)<br><img src='icons/Twister.png' alt='Twister' width='20' height='20'> Twister 0.0% (0.0)<br><img src='icons/Arctic Blast.png' alt='Arctic Blast' width='20' height='20'> Arctic Blast 0.0% (0.0)<br><img src='icons/Tornado.png' alt='Tornado' width='20' height='20'> Tornado 0.0% (0.0)<br><img src='icons/Shock Wave.png' alt='Shock Wave' width='20' height='20'> Shock Wave 0.0% (0.0)<br><img src='icons/Maul.png' alt='Maul' width='20' height='20'> Maul 0.0% (0.0)<br><img src='icons/Firestorm.png' alt='Firestorm' width='20' height='20'> Firestorm 0.0% (0.0)<br><img src='icons/Werebear.png' alt='Werebear' width='20' height='20'> Werebear 0.0% (0.0)<br><img src='icons/Flame Dash.png' alt='Flame Dash' width='20' height='20'> Flame Dash 0.0% (0.0)<br><img src='icons/Molten Boulder.png' alt='Molten Boulder' width='20' height='20'> Molten Boulder 0.0% (0.0)<br><img src='icons/Fissure.png' alt='Fissure' width='20' height='20'> Fissure 0.0% (0.0)<br><img src='icons/Volcano.png' alt='Volcano' width='20' height='20'> Volcano 0.0% (0.0)<br><img src='icons/Armageddon.png' alt='Armageddon' width='20' height='20'> Armageddon 0.0% (0.0)<br><img src='icons/Fire Claws.png' alt='Fire Claws' width='20' height='20'> Fire Claws 0.0% (0.0)</div>
+                </div>
+
+                <button type="button" class="collapsible small-collapsible">
+        <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+                <strong>Most Common Equipment:</strong></button>
+                <div class="content">
+                    <div><strong>Ring</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Raven Frost</span> 13.33% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Manald Heal</span> 13.33% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Bul-Kathos' Wedding Band</span> 6.67% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Death Coil</span> 6.67% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Corruption Hold</span> 6.67% (1)<br><strong>Boots</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: green;'>Aldur's Advance</span> 37.50% (3)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>War Traveler</span> 12.50% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Doom Brogues</span> 12.50% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Waterwalk</span> 12.50% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: green;'>Natalya's Soul</span> 12.50% (1)<br><strong>Gloves</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: green;'>Trang-Oul's Claws</span> 87.50% (7)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Bloodfist</span> 12.50% (1)<br><strong>Helmet</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Metamorphosis</span> 50.00% (4)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Jalal's Mane</span> 37.50% (3)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Cerebus' Bite</span> 12.50% (1)<br><strong>Amulet</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Mara's Kaleidoscope</span> 25.00% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: lightblue;'>Communal Amulet of the Colossus</span> 12.50% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Blood Noose</span> 12.50% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Corruption Emblem</span> 12.50% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: lightblue;'>Communal Amulet of Atlas</span> 12.50% (1)<br><strong>Belt</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>String of Ears</span> 37.50% (3)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Verdungo's Hearty Cord</span> 12.50% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Thundergod's Vigor</span> 12.50% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Nightsmoke</span> 12.50% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Goldwrap</span> 12.50% (1)<br><strong>Armor</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: green;'>Naj's Light Plate</span> 25.00% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Rain</span> 25.00% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Skin of the Vipermagi</span> 25.00% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Shaftstop</span> 12.50% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Duriel's Shell</span> 12.50% (1)<br><strong>Left hand</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Grief</span> 25.00% (4)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Mang Song's Lesson</span> 12.50% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Spirit</span> 12.50% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Demon Limb</span> 6.25% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Call to Arms</span> 6.25% (1)<br><strong>Offhand</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Stormshield</span> 38.46% (5)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Spirit</span> 15.38% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: green;'>Hsarus' Iron Fist</span> 7.69% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Moser's Blessed Circle</span> 7.69% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Stormguild</span> 7.69% (1)</div>
+                </div>
+            
+                <button type="button" class="collapsible small-collapsible">
+        <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+                <strong>ALL Equipment:</strong></button>
+                <div class="content">
+                    <div><strong>Ring</strong>: <span style='color: olive;'>Raven Frost</span> 13.33%, <span style='color: olive;'>Manald Heal</span> 13.33%, <span style='color: olive;'>Bul-Kathos' Wedding Band</span> 6.67%, <span style='color: yellow;'>Death Coil</span> 6.67%, <span style='color: yellow;'>Corruption Hold</span> 6.67%, <span style='color: yellow;'>Bone Knot</span> 6.67%, <span style='color: yellow;'>PlagueRI Touch</span> 6.67%, <span style='color: olive;'>Carrion Wind</span> 6.67%, <span style='color: yellow;'>Skull Circle</span> 6.67%, <span style='color: yellow;'>Chaos Turn</span> 6.67%, <span style='color: yellow;'>Rune Spiral</span> 6.67%, <span style='color: olive;'>Nagelring</span> 6.67%, <span style='color: olive;'>Dwarf Star</span> 6.67%<br><strong>Boots</strong>: <span style='color: green;'>Aldur's Advance</span> 37.50%, <span style='color: olive;'>War Traveler</span> 12.50%, <span style='color: yellow;'>Doom Brogues</span> 12.50%, <span style='color: olive;'>Waterwalk</span> 12.50%, <span style='color: green;'>Natalya's Soul</span> 12.50%, <span style='color: yellow;'>Grim Stalker</span> 12.50%<br><strong>Gloves</strong>: <span style='color: green;'>Trang-Oul's Claws</span> 87.50%, <span style='color: olive;'>Bloodfist</span> 12.50%<br><strong>Helmet</strong>: <span style='color: olive;'>Metamorphosis</span> 50.00%, <span style='color: olive;'>Jalal's Mane</span> 37.50%, <span style='color: olive;'>Cerebus' Bite</span> 12.50%<br><strong>Amulet</strong>: <span style='color: olive;'>Mara's Kaleidoscope</span> 25.00%, <span style='color: lightblue;'>Communal Amulet of the Colossus</span> 12.50%, <span style='color: yellow;'>Blood Noose</span> 12.50%, <span style='color: yellow;'>Corruption Emblem</span> 12.50%, <span style='color: lightblue;'>Communal Amulet of Atlas</span> 12.50%, <span style='color: yellow;'>Shadow Torc</span> 12.50%, <span style='color: lightblue;'>Communal Amulet</span> 12.50%<br><strong>Belt</strong>: <span style='color: olive;'>String of Ears</span> 37.50%, <span style='color: olive;'>Verdungo's Hearty Cord</span> 12.50%, <span style='color: olive;'>Thundergod's Vigor</span> 12.50%, <span style='color: olive;'>Nightsmoke</span> 12.50%, <span style='color: olive;'>Goldwrap</span> 12.50%, <span style='color: green;'>Arctic Binding</span> 12.50%<br><strong>Armor</strong>: <span style='color: green;'>Naj's Light Plate</span> 25.00%, <span style='color: olive;'>Rain</span> 25.00%, <span style='color: olive;'>Skin of the Vipermagi</span> 25.00%, <span style='color: olive;'>Shaftstop</span> 12.50%, <span style='color: olive;'>Duriel's Shell</span> 12.50%<br><strong>Left hand</strong>: <span style='color: olive;'>Grief</span> 25.00%, <span style='color: olive;'>Mang Song's Lesson</span> 12.50%, <span style='color: olive;'>Spirit</span> 12.50%, <span style='color: olive;'>Demon Limb</span> 6.25%, <span style='color: olive;'>Call to Arms</span> 6.25%, <span style='color: olive;'>Dark Clan Crusher</span> 6.25%, <span style='color: olive;'>Skull Splitter</span> 6.25%, <span style='color: olive;'>Zakarum's Hand</span> 6.25%, <span style='color: white;'>Broad Sword</span> 6.25%, <span style='color: olive;'>Fleshrender</span> 6.25%, <span style='color: olive;'>Pus Spitter</span> 6.25%<br><strong>Offhand</strong>: <span style='color: olive;'>Stormshield</span> 38.46%, <span style='color: olive;'>Spirit</span> 15.38%, <span style='color: green;'>Hsarus' Iron Fist</span> 7.69%, <span style='color: olive;'>Moser's Blessed Circle</span> 7.69%, <span style='color: olive;'>Stormguild</span> 7.69%, <span style='color: olive;'>Rhyme</span> 7.69%, <span style='color: olive;'>Steelclash</span> 7.69%, <span style='color: yellow;'>Bitter Eye</span> 7.69%</div>
+                </div>
+
+            <button type="button" class="collapsible small-collapsible">
+        <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+            <strong>9 Characters in this cluster:</strong>
+        </button>
+        <div class="content">
+            
+            <div class="character-info">
+                <div><strong>Name: JPCg</strong></div>
+                <div>Level 94</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=JPCg" target="_blank">JPCg's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="JPCg">
+                        <!--Armory Quickview -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Poison Creeper:20, Summon Dire Wolf:20, Lycanthropy:20, Rabies:20, Oak Sage:18, Raven:1, Summon Spirit Wolf:1, Heart of Wolverine:1, Summon Grizzly:1, Werewolf:1, Feral Rage:1, Fury:1</p>
+            <p><strong>Equipment:<br></strong> ring: <span style='color: olive;'>Bul-Kathos' Wedding Band</span>, ring: <span style='color: olive;'>Raven Frost</span>, Boots: <span style='color: green;'>Aldur's Advance</span>, Gloves: <span style='color: green;'>Trang-Oul's Claws</span>, Helmet: <span style='color: olive;'>Jalal's Mane</span>, Amulet: <span style='color: olive;'>Mara's Kaleidoscope</span>, Belt: <span style='color: olive;'>Verdungo's Hearty Cord</span>, Armor: <span style='color: green;'>Naj's Light Plate</span>, Left hand: <span style='color: olive;'>Demon Limb</span>, Left hand: <span style='color: olive;'>Grief</span>, Offhand: <span style='color: green;'>Hsarus' Iron Fist</span>, Offhand: <span style='color: olive;'>Stormshield</span></p>
+            <p><strong>Mercenary:</strong> Act 1 Rogue Scout - Tal Rasha's Horadric Crest, Duriel's Shell, Harmony</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Name: ScabiesnRabies</strong></div>
+                <div>Level 93</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=ScabiesnRabies" target="_blank">ScabiesnRabies's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="ScabiesnRabies">
+                        <!--Armory Quickview -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Poison Creeper:20, Summon Dire Wolf:20, Lycanthropy:20, Rabies:20, Oak Sage:18, Raven:1, Summon Spirit Wolf:1, Heart of Wolverine:1, Summon Grizzly:1, Werewolf:1, Feral Rage:1</p>
+            <p><strong>Equipment:<br></strong> Gloves: <span style='color: green;'>Trang-Oul's Claws</span>, ring: <span style='color: yellow;'>Death Coil</span>, ring: <span style='color: yellow;'>Corruption Hold</span>, Boots: <span style='color: olive;'>War Traveler</span>, Helmet: <span style='color: olive;'>Metamorphosis</span>, Armor: <span style='color: green;'>Naj's Light Plate</span>, Belt: <span style='color: olive;'>String of Ears</span>, Amulet: <span style='color: lightblue;'>Communal Amulet of the Colossus</span>, Left hand: <span style='color: olive;'>Call to Arms</span>, Left hand: <span style='color: olive;'>Grief</span>, Offhand: <span style='color: olive;'>Spirit</span>, Offhand: <span style='color: olive;'>Stormshield</span></p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Tal Rasha's Horadric Crest, Lionheart, The Reaper's Toll</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Name: Caratacus</strong></div>
+                <div>Level 93</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Caratacus" target="_blank">Caratacus's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="Caratacus">
+                        <!--Armory Quickview -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Poison Creeper:20, Summon Dire Wolf:20, Lycanthropy:20, Rabies:20, Oak Sage:13, Werewolf:6, Raven:1, Summon Spirit Wolf:1, Heart of Wolverine:1, Summon Grizzly:1, Feral Rage:1</p>
+            <p><strong>Equipment:<br></strong> Gloves: <span style='color: green;'>Trang-Oul's Claws</span>, Armor: <span style='color: olive;'>Shaftstop</span>, Boots: <span style='color: green;'>Aldur's Advance</span>, Amulet: <span style='color: olive;'>Mara's Kaleidoscope</span>, Helmet: <span style='color: olive;'>Metamorphosis</span>, ring: <span style='color: olive;'>Raven Frost</span>, ring: <span style='color: yellow;'>Bone Knot</span>, Belt: <span style='color: olive;'>String of Ears</span>, Left hand: <span style='color: olive;'>Grief</span>, Left hand: <span style='color: olive;'>Mang Song's Lesson</span>, Offhand: <span style='color: olive;'>Stormshield</span></p>
+            <p><strong>Mercenary:</strong> Act 1 Rogue Scout - Crown of Thieves, Chains of Honor, Harmony</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Name: Shaneequa</strong></div>
+                <div>Level 83</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Shaneequa" target="_blank">Shaneequa's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="Shaneequa">
+                        <!--Armory Quickview -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Poison Creeper:20, Summon Dire Wolf:20, Lycanthropy:20, Rabies:20, Oak Sage:8, Raven:1, Summon Spirit Wolf:1, Heart of Wolverine:1, Summon Grizzly:1, Werewolf:1, Feral Rage:1</p>
+            <p><strong>Equipment:<br></strong> Left hand: <span style='color: olive;'>Dark Clan Crusher</span></p>
+            <p><strong>Mercenary:</strong> Act 5 Barbarian - No equipment</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Name: IcanBear</strong></div>
+                <div>Level 83</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=IcanBear" target="_blank">IcanBear's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="IcanBear">
+                        <!--Armory Quickview -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Poison Creeper:20, Summon Dire Wolf:20, Lycanthropy:20, Rabies:20, Heart of Wolverine:5, Oak Sage:4, Raven:1, Summon Spirit Wolf:1, Summon Grizzly:1, Werewolf:1, Feral Rage:1</p>
+            <p><strong>Equipment:<br></strong> Gloves: <span style='color: green;'>Trang-Oul's Claws</span>, Helmet: <span style='color: olive;'>Metamorphosis</span>, Amulet: <span style='color: yellow;'>Blood Noose</span>, Belt: <span style='color: olive;'>Thundergod's Vigor</span>, ring: <span style='color: yellow;'>PlagueRI Touch</span>, ring: <span style='color: olive;'>Carrion Wind</span>, Boots: <span style='color: yellow;'>Doom Brogues</span>, Armor: <span style='color: olive;'>Rain</span>, Left hand: <span style='color: olive;'>Spirit</span>, Left hand: <span style='color: olive;'>Skull Splitter</span>, Offhand: <span style='color: olive;'>Spirit</span>, Offhand: <span style='color: olive;'>Stormshield</span></p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Blackhorn's Face, Hustle, The Meat Scraper</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Name: Mup_Prodigy</strong></div>
+                <div>Level 82</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Mup_Prodigy" target="_blank">Mup_Prodigy's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="Mup_Prodigy">
+                        <!--Armory Quickview -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Poison Creeper:20, Summon Dire Wolf:20, Rabies:20, Oak Sage:19, Lycanthropy:8, Raven:1, Summon Spirit Wolf:1, Heart of Wolverine:1, Summon Grizzly:1, Werewolf:1, Feral Rage:1</p>
+            <p><strong>Equipment:<br></strong> Boots: <span style='color: green;'>Aldur's Advance</span>, Gloves: <span style='color: green;'>Trang-Oul's Claws</span>, Armor: <span style='color: olive;'>Rain</span>, Amulet: <span style='color: yellow;'>Corruption Emblem</span>, Belt: <span style='color: olive;'>String of Ears</span>, ring: <span style='color: yellow;'>Skull Circle</span>, ring: <span style='color: yellow;'>Chaos Turn</span>, Helmet: <span style='color: olive;'>Metamorphosis</span>, Left hand: <span style='color: olive;'>Mang Song's Lesson</span>, Left hand: <span style='color: olive;'>Grief</span>, Offhand: <span style='color: olive;'>Stormshield</span></p>
+            <p><strong>Mercenary:</strong> Act 1 Rogue Scout - Duriel's Shell, Tal Rasha's Horadric Crest, Harmony</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Name: DruIsBadChoice</strong></div>
+                <div>Level 70</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=DruIsBadChoice" target="_blank">DruIsBadChoice's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="DruIsBadChoice">
+                        <!--Armory Quickview -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Poison Creeper:20, Summon Dire Wolf:20, Rabies:20, Lycanthropy:10, Raven:1, Oak Sage:1, Summon Spirit Wolf:1, Carrion Vine:1, Heart of Wolverine:1, Solar Creeper:1, Spirit of Barbs:1, Summon Grizzly:1, Werewolf:1, Feral Rage:1</p>
+            <p><strong>Equipment:<br></strong> Belt: <span style='color: olive;'>Nightsmoke</span>, Boots: <span style='color: olive;'>Waterwalk</span>, Helmet: <span style='color: olive;'>Jalal's Mane</span>, Armor: <span style='color: olive;'>Skin of the Vipermagi</span>, Gloves: <span style='color: olive;'>Bloodfist</span>, ring: <span style='color: olive;'>Manald Heal</span>, Amulet: <span style='color: lightblue;'>Communal Amulet of Atlas</span>, Left hand: <span style='color: olive;'>Zakarum's Hand</span>, Offhand: <span style='color: olive;'>Moser's Blessed Circle</span></p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Duskdeep, Hwanin's Justice</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Name: Furball</strong></div>
+                <div>Level 65</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Furball" target="_blank">Furball's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="Furball">
+                        <!--Armory Quickview -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Rabies:20, Poison Creeper:15, Lycanthropy:14, Summon Dire Wolf:13, Oak Sage:4, Raven:1, Summon Spirit Wolf:1, Heart of Wolverine:1, Werewolf:1, Feral Rage:1, Fury:1</p>
+            <p><strong>Equipment:<br></strong> ring: <span style='color: olive;'>Manald Heal</span>, ring: <span style='color: yellow;'>Rune Spiral</span>, Boots: <span style='color: green;'>Natalya's Soul</span>, Helmet: <span style='color: olive;'>Jalal's Mane</span>, Belt: <span style='color: olive;'>Goldwrap</span>, Gloves: <span style='color: green;'>Trang-Oul's Claws</span>, Amulet: <span style='color: yellow;'>Shadow Torc</span>, Armor: <span style='color: olive;'>Duriel's Shell</span>, Left hand: <span style='color: white;'>Broad Sword</span>, Left hand: <span style='color: olive;'>Fleshrender</span>, Offhand: <span style='color: olive;'>Stormguild</span>, Offhand: <span style='color: olive;'>Rhyme</span></p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Stone Shell, Demon Horn, Insight</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Name: Incased</strong></div>
+                <div>Level 64</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Incased" target="_blank">Incased's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="Incased">
+                        <!--Armory Quickview -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Summon Dire Wolf:20, Rabies:20, Poison Creeper:14, Lycanthropy:11, Raven:1, Oak Sage:1, Summon Spirit Wolf:1, Heart of Wolverine:1, Werewolf:1, Feral Rage:1</p>
+            <p><strong>Equipment:<br></strong> Belt: <span style='color: green;'>Arctic Binding</span>, ring: <span style='color: olive;'>Nagelring</span>, ring: <span style='color: olive;'>Dwarf Star</span>, Boots: <span style='color: yellow;'>Grim Stalker</span>, Armor: <span style='color: olive;'>Skin of the Vipermagi</span>, Helmet: <span style='color: olive;'>Cerebus' Bite</span>, Amulet: <span style='color: lightblue;'>Communal Amulet</span>, Left hand: <span style='color: olive;'>Spirit</span>, Left hand: <span style='color: olive;'>Pus Spitter</span>, Offhand: <span style='color: olive;'>Steelclash</span>, Offhand: <span style='color: yellow;'>Bitter Eye</span>, Gloves: <span style='color: green;'>Trang-Oul's Claws</span></p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Berserker's Headgear, Sigon's Shelter, Kelpie Snare</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            </div>
+            <hr width="90%">
+            <br>
+            
+        <!--<h2>9.43%  of Druid's Main Skills:<br><img src='icons/Armageddon.png' alt='Armageddon' width='20' height='20'> Armageddon 40.00% (27)<br><img src='icons/Firestorm.png' alt='Firestorm' width='20' height='20'> Firestorm 40.00% (21)<br><img src='icons/Fissure.png' alt='Fissure' width='20' height='20'> Fissure 40.00% (21)<br><img src='icons/Hurricane.png' alt='Hurricane' width='20' height='20'> Hurricane 20.00% (20)<br><img src='icons/Volcano.png' alt='Volcano' width='20' height='20'> Volcano 40.00% (17)</h2>
+        <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' width='20' height='20'> Summon Spirit Wolf 40.0% (8.0)<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 40.0% (6.0)<br><img src='icons/Summon Dire Wolf.png' alt='Summon Dire Wolf' width='20' height='20'> Summon Dire Wolf 40.0% (4.0)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 60.0% (3.0)<br><img src='icons/Raven.png' alt='Raven' width='20' height='20'> Raven 40.0% (2.0)<br><img src='icons/Summon Grizzly.png' alt='Summon Grizzly' width='20' height='20'> Summon Grizzly 40.0% (2.0)</p> -->
+        <div id="skills" class="skills-container">
+            <div class="column">
+                <ul id="most-popular-skills">
+                    <h2>9.43%  of Druid's Main Skills:<br><img src='icons/Armageddon.png' alt='Armageddon' width='20' height='20'> Armageddon 40.00% (27)<br><img src='icons/Firestorm.png' alt='Firestorm' width='20' height='20'> Firestorm 40.00% (21)<br><img src='icons/Fissure.png' alt='Fissure' width='20' height='20'> Fissure 40.00% (21)<br><img src='icons/Hurricane.png' alt='Hurricane' width='20' height='20'> Hurricane 20.00% (20)<br><img src='icons/Volcano.png' alt='Volcano' width='20' height='20'> Volcano 40.00% (17)</h2>
+                </ul>
+            </div>
+            <div class="column">
+                <ul id="other-skills">
+                    <h2>Other common skills in this group:</h2> <img src='icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' width='20' height='20'> Summon Spirit Wolf 40.0% (8.0)<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 40.0% (6.0)<br><img src='icons/Summon Dire Wolf.png' alt='Summon Dire Wolf' width='20' height='20'> Summon Dire Wolf 40.0% (4.0)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 60.0% (3.0)<br><img src='icons/Raven.png' alt='Raven' width='20' height='20'> Raven 40.0% (2.0)<br><img src='icons/Summon Grizzly.png' alt='Summon Grizzly' width='20' height='20'> Summon Grizzly 40.0% (2.0)
+                </ul>
+            </div>
+        </div>
+
+    <button type="button" class="collapsible small-collapsible">
+        <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+                <strong>All Skills</strong></button>
+                <div class="content">
+                    <div><img src='icons/Armageddon.png' alt='Armageddon' width='20' height='20'> Armageddon 40.0% (27.0)<br><img src='icons/Firestorm.png' alt='Firestorm' width='20' height='20'> Firestorm 40.0% (21.0)<br><img src='icons/Fissure.png' alt='Fissure' width='20' height='20'> Fissure 40.0% (21.0)<br><img src='icons/Hurricane.png' alt='Hurricane' width='20' height='20'> Hurricane 20.0% (20.0)<br><img src='icons/Volcano.png' alt='Volcano' width='20' height='20'> Volcano 40.0% (17.0)<br><img src='icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' width='20' height='20'> Summon Spirit Wolf 40.0% (8.0)<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 40.0% (6.0)<br><img src='icons/Summon Dire Wolf.png' alt='Summon Dire Wolf' width='20' height='20'> Summon Dire Wolf 40.0% (4.0)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 60.0% (3.0)<br><img src='icons/Molten Boulder.png' alt='Molten Boulder' width='20' height='20'> Molten Boulder 40.0% (2.0)<br><img src='icons/Summon Grizzly.png' alt='Summon Grizzly' width='20' height='20'> Summon Grizzly 40.0% (2.0)<br><img src='icons/Poison Creeper.png' alt='Poison Creeper' width='20' height='20'> Poison Creeper 40.0% (2.0)<br><img src='icons/Raven.png' alt='Raven' width='20' height='20'> Raven 40.0% (2.0)<br><img src='icons/Arctic Blast.png' alt='Arctic Blast' width='20' height='20'> Arctic Blast 20.0% (1.0)<br><img src='icons/Twister.png' alt='Twister' width='20' height='20'> Twister 20.0% (1.0)<br><img src='icons/Tornado.png' alt='Tornado' width='20' height='20'> Tornado 20.0% (1.0)<br><img src='icons/Cyclone Armor.png' alt='Cyclone Armor' width='20' height='20'> Cyclone Armor 20.0% (1.0)<br><img src='icons/Spirit of Barbs.png' alt='Spirit of Barbs' width='20' height='20'> Spirit of Barbs 20.0% (1.0)<br><img src='icons/Flame Dash.png' alt='Flame Dash' width='20' height='20'> Flame Dash 20.0% (1.0)<br><img src='icons/Lycanthropy.png' alt='Lycanthropy' width='20' height='20'> Lycanthropy 0.0% (0.0)<br><img src='icons/Feral Rage.png' alt='Feral Rage' width='20' height='20'> Feral Rage 0.0% (0.0)<br><img src='icons/Werewolf.png' alt='Werewolf' width='20' height='20'> Werewolf 0.0% (0.0)<br><img src='icons/Carrion Vine.png' alt='Carrion Vine' width='20' height='20'> Carrion Vine 0.0% (0.0)<br><img src='icons/Rabies.png' alt='Rabies' width='20' height='20'> Rabies 0.0% (0.0)<br><img src='icons/Maul.png' alt='Maul' width='20' height='20'> Maul 0.0% (0.0)<br><img src='icons/Shock Wave.png' alt='Shock Wave' width='20' height='20'> Shock Wave 0.0% (0.0)<br><img src='icons/Werebear.png' alt='Werebear' width='20' height='20'> Werebear 0.0% (0.0)<br><img src='icons/Fury.png' alt='Fury' width='20' height='20'> Fury 0.0% (0.0)<br><img src='icons/Solar Creeper.png' alt='Solar Creeper' width='20' height='20'> Solar Creeper 0.0% (0.0)<br><img src='icons/Fire Claws.png' alt='Fire Claws' width='20' height='20'> Fire Claws 0.0% (0.0)</div>
+                </div>
+
+                <button type="button" class="collapsible small-collapsible">
+        <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+                <strong>Most Common Equipment:</strong></button>
+                <div class="content">
+                    <div><strong>Armor</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Rain</span> 33.33% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: green;'>Arctic Furs</span> 33.33% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Stealth</span> 33.33% (1)<br><strong>Ring</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Bitter Coil</span> 20.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Entropy Band</span> 20.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Dread Circle</span> 20.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: lightblue;'>Crimson Ring of Strength</span> 20.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: lightblue;'>Steel Ring of the Apprentice</span> 20.00% (1)<br><strong>Gloves</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: orange;'>Gale Fist</span> 33.33% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Magefist</span> 33.33% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Rune Grip</span> 33.33% (1)<br><strong>Helmet</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Lore</span> 66.67% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: lightblue;'>Keeper's Diadem of Atlas</span> 33.33% (1)<br><strong>Boots</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Infernostride</span> 33.33% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Bitter Slippers</span> 33.33% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: green;'>Sander's Riprap</span> 33.33% (1)<br><strong>Amulet</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: lightblue;'>Keeper's Amulet of Fortune</span> 25.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: lightblue;'>Chromatic Amulet</span> 25.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: lightblue;'>Gaea's Amulet of Revivification</span> 25.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>PlagueRI Torc</span> 25.00% (1)<br><strong>Belt</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>String of Ears</span> 33.33% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Bone Harness</span> 33.33% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Eagle Lash</span> 33.33% (1)<br><strong>Offhand</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: white;'>Buckler</span> 60.00% (3)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Ancients' Pledge</span> 40.00% (2)<br><strong>Left hand</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Spirit</span> 60.00% (3)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: white;'>Club</span> 20.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: white;'>Javelin</span> 20.00% (1)</div>
+                </div>
+            
+                <button type="button" class="collapsible small-collapsible">
+        <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+                <strong>ALL Equipment:</strong></button>
+                <div class="content">
+                    <div><strong>Armor</strong>: <span style='color: olive;'>Rain</span> 33.33%, <span style='color: green;'>Arctic Furs</span> 33.33%, <span style='color: olive;'>Stealth</span> 33.33%<br><strong>Ring</strong>: <span style='color: yellow;'>Bitter Coil</span> 20.00%, <span style='color: yellow;'>Entropy Band</span> 20.00%, <span style='color: yellow;'>Dread Circle</span> 20.00%, <span style='color: lightblue;'>Crimson Ring of Strength</span> 20.00%, <span style='color: lightblue;'>Steel Ring of the Apprentice</span> 20.00%<br><strong>Gloves</strong>: <span style='color: orange;'>Gale Fist</span> 33.33%, <span style='color: olive;'>Magefist</span> 33.33%, <span style='color: yellow;'>Rune Grip</span> 33.33%<br><strong>Helmet</strong>: <span style='color: olive;'>Lore</span> 66.67%, <span style='color: lightblue;'>Keeper's Diadem of Atlas</span> 33.33%<br><strong>Boots</strong>: <span style='color: olive;'>Infernostride</span> 33.33%, <span style='color: yellow;'>Bitter Slippers</span> 33.33%, <span style='color: green;'>Sander's Riprap</span> 33.33%<br><strong>Amulet</strong>: <span style='color: lightblue;'>Keeper's Amulet of Fortune</span> 25.00%, <span style='color: lightblue;'>Chromatic Amulet</span> 25.00%, <span style='color: lightblue;'>Gaea's Amulet of Revivification</span> 25.00%, <span style='color: yellow;'>PlagueRI Torc</span> 25.00%<br><strong>Belt</strong>: <span style='color: olive;'>String of Ears</span> 33.33%, <span style='color: yellow;'>Bone Harness</span> 33.33%, <span style='color: yellow;'>Eagle Lash</span> 33.33%<br><strong>Offhand</strong>: <span style='color: white;'>Buckler</span> 60.00%, <span style='color: olive;'>Ancients' Pledge</span> 40.00%<br><strong>Left hand</strong>: <span style='color: olive;'>Spirit</span> 60.00%, <span style='color: white;'>Club</span> 20.00%, <span style='color: white;'>Javelin</span> 20.00%</div>
+                </div>
+
+            <button type="button" class="collapsible small-collapsible">
+        <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+            <strong>5 Characters in this cluster:</strong>
+        </button>
+        <div class="content">
+            
+            <div class="character-info">
+                <div><strong>Name: magescape</strong></div>
+                <div>Level 80</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=magescape" target="_blank">magescape's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="magescape">
+                        <!--Armory Quickview -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Raven:1, Poison Creeper:1, Summon Spirit Wolf:1, Heart of Wolverine:1, Summon Dire Wolf:1, Summon Grizzly:1</p>
+            <p><strong>Equipment:<br></strong> Armor: <span style='color: olive;'>Rain</span>, ring: <span style='color: yellow;'>Bitter Coil</span>, ring: <span style='color: yellow;'>Entropy Band</span>, Gloves: <span style='color: orange;'>Gale Fist</span>, Helmet: <span style='color: lightblue;'>Keeper's Diadem of Atlas</span>, Boots: <span style='color: olive;'>Infernostride</span>, Amulet: <span style='color: lightblue;'>Keeper's Amulet of Fortune</span>, Belt: <span style='color: olive;'>String of Ears</span>, Offhand: <span style='color: olive;'>Ancients' Pledge</span>, Left hand: <span style='color: olive;'>Spirit</span></p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Tal Rasha's Horadric Crest, Obedience</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Name: ubercum</strong></div>
+                <div>Level 70</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=ubercum" target="_blank">ubercum's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="ubercum">
+                        <!--Armory Quickview -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Firestorm:20, Fissure:20, Volcano:16, Armageddon:7, Oak Sage:5, Heart of Wolverine:1, Molten Boulder:1</p>
+            <p><strong>Equipment:<br></strong> Armor: <span style='color: green;'>Arctic Furs</span>, Boots: <span style='color: yellow;'>Bitter Slippers</span>, Gloves: <span style='color: olive;'>Magefist</span>, Belt: <span style='color: yellow;'>Bone Harness</span>, Helmet: <span style='color: olive;'>Lore</span>, Amulet: <span style='color: lightblue;'>Chromatic Amulet</span>, ring: <span style='color: yellow;'>Dread Circle</span>, Left hand: <span style='color: olive;'>Spirit</span>, Offhand: <span style='color: olive;'>Ancients' Pledge</span></p>
+            <p><strong>Mercenary:</strong> Act 1 Rogue Scout - No equipment</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Name: MaG_Star</strong></div>
+                <div>Level 61</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=MaG_Star" target="_blank">MaG_Star's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="MaG_Star">
+                        <!--Armory Quickview -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Armageddon:20, Hurricane:20, Summon Spirit Wolf:7, Summon Dire Wolf:3, Raven:1, Poison Creeper:1, Oak Sage:1, Heart of Wolverine:1, Spirit of Barbs:1, Summon Grizzly:1, Firestorm:1, Molten Boulder:1, Arctic Blast:1, Fissure:1, Cyclone Armor:1, Twister:1, Volcano:1, Tornado:1, Flame Dash:1</p>
+            <p><strong>Equipment:<br></strong> ring: <span style='color: lightblue;'>Crimson Ring of Strength</span>, ring: <span style='color: lightblue;'>Steel Ring of the Apprentice</span>, Belt: <span style='color: yellow;'>Eagle Lash</span>, Gloves: <span style='color: yellow;'>Rune Grip</span>, Armor: <span style='color: olive;'>Stealth</span>, Helmet: <span style='color: olive;'>Lore</span>, Boots: <span style='color: green;'>Sander's Riprap</span>, Amulet: <span style='color: lightblue;'>Gaea's Amulet of Revivification</span>, Left hand: <span style='color: olive;'>Spirit</span>, Offhand: <span style='color: white;'>Buckler</span></p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Quilted Armor, Berserker's Headgear, Insight</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Name: KLD</strong></div>
+                <div>Level 1</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=KLD" target="_blank">KLD's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="KLD">
+                        <!--Armory Quickview -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> </p>
+            <p><strong>Equipment:<br></strong> Left hand: <span style='color: white;'>Club</span>, Offhand: <span style='color: white;'>Buckler</span></p>
+            <p><strong>Mercenary:</strong> Act 1 Rogue Scout - No equipment</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Name: iPat</strong></div>
+                <div>Level 1</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=iPat" target="_blank">iPat's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="iPat">
+                        <!--Armory Quickview -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> </p>
+            <p><strong>Equipment:<br></strong> Amulet: <span style='color: yellow;'>PlagueRI Torc</span>, Left hand: <span style='color: white;'>Javelin</span>, Offhand: <span style='color: white;'>Buckler</span></p>
+            <p><strong>Mercenary:</strong> Act 1 Rogue Scout - No equipment</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            </div>
+            <hr width="90%">
+            <br>
+            
+        <!--<h2>5.66%  of Druid's Main Skills:<br><img src='icons/Twister.png' alt='Twister' width='20' height='20'> Twister 100.00% (60)<br><img src='icons/Hurricane.png' alt='Hurricane' width='20' height='20'> Hurricane 100.00% (60)<br><img src='icons/Tornado.png' alt='Tornado' width='20' height='20'> Tornado 100.00% (42)<br><img src='icons/Cyclone Armor.png' alt='Cyclone Armor' width='20' height='20'> Cyclone Armor 100.00% (21)<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 66.67% (21)</h2>
+        <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='icons/Summon Grizzly.png' alt='Summon Grizzly' width='20' height='20'> Summon Grizzly 66.67% (21.0)<br><img src='icons/Arctic Blast.png' alt='Arctic Blast' width='20' height='20'> Arctic Blast 100.0% (17.0)<br><img src='icons/Summon Dire Wolf.png' alt='Summon Dire Wolf' width='20' height='20'> Summon Dire Wolf 66.67% (4.0)<br><img src='icons/Raven.png' alt='Raven' width='20' height='20'> Raven 66.67% (2.0)<br><img src='icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' width='20' height='20'> Summon Spirit Wolf 66.67% (2.0)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 66.67% (2.0)</p> -->
+        <div id="skills" class="skills-container">
+            <div class="column">
+                <ul id="most-popular-skills">
+                    <h2>5.66%  of Druid's Main Skills:<br><img src='icons/Twister.png' alt='Twister' width='20' height='20'> Twister 100.00% (60)<br><img src='icons/Hurricane.png' alt='Hurricane' width='20' height='20'> Hurricane 100.00% (60)<br><img src='icons/Tornado.png' alt='Tornado' width='20' height='20'> Tornado 100.00% (42)<br><img src='icons/Cyclone Armor.png' alt='Cyclone Armor' width='20' height='20'> Cyclone Armor 100.00% (21)<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 66.67% (21)</h2>
+                </ul>
+            </div>
+            <div class="column">
+                <ul id="other-skills">
+                    <h2>Other common skills in this group:</h2> <img src='icons/Summon Grizzly.png' alt='Summon Grizzly' width='20' height='20'> Summon Grizzly 66.67% (21.0)<br><img src='icons/Arctic Blast.png' alt='Arctic Blast' width='20' height='20'> Arctic Blast 100.0% (17.0)<br><img src='icons/Summon Dire Wolf.png' alt='Summon Dire Wolf' width='20' height='20'> Summon Dire Wolf 66.67% (4.0)<br><img src='icons/Raven.png' alt='Raven' width='20' height='20'> Raven 66.67% (2.0)<br><img src='icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' width='20' height='20'> Summon Spirit Wolf 66.67% (2.0)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 66.67% (2.0)
+                </ul>
+            </div>
+        </div>
+
+    <button type="button" class="collapsible small-collapsible">
+        <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+                <strong>All Skills</strong></button>
+                <div class="content">
+                    <div><img src='icons/Twister.png' alt='Twister' width='20' height='20'> Twister 100.0% (60.0)<br><img src='icons/Hurricane.png' alt='Hurricane' width='20' height='20'> Hurricane 100.0% (60.0)<br><img src='icons/Tornado.png' alt='Tornado' width='20' height='20'> Tornado 100.0% (43.0)<br><img src='icons/Cyclone Armor.png' alt='Cyclone Armor' width='20' height='20'> Cyclone Armor 100.0% (22.0)<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 66.67% (21.0)<br><img src='icons/Summon Grizzly.png' alt='Summon Grizzly' width='20' height='20'> Summon Grizzly 66.67% (21.0)<br><img src='icons/Arctic Blast.png' alt='Arctic Blast' width='20' height='20'> Arctic Blast 100.0% (17.0)<br><img src='icons/Summon Dire Wolf.png' alt='Summon Dire Wolf' width='20' height='20'> Summon Dire Wolf 66.67% (4.0)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 66.67% (2.0)<br><img src='icons/Raven.png' alt='Raven' width='20' height='20'> Raven 66.67% (2.0)<br><img src='icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' width='20' height='20'> Summon Spirit Wolf 66.67% (2.0)<br><img src='icons/Feral Rage.png' alt='Feral Rage' width='20' height='20'> Feral Rage 33.33% (1.0)<br><img src='icons/Werewolf.png' alt='Werewolf' width='20' height='20'> Werewolf 33.33% (1.0)<br><img src='icons/Lycanthropy.png' alt='Lycanthropy' width='20' height='20'> Lycanthropy 33.33% (1.0)<br><img src='icons/Spirit of Barbs.png' alt='Spirit of Barbs' width='20' height='20'> Spirit of Barbs 0.0% (0.0)<br><img src='icons/Werebear.png' alt='Werebear' width='20' height='20'> Werebear 0.0% (0.0)<br><img src='icons/Maul.png' alt='Maul' width='20' height='20'> Maul 0.0% (0.0)<br><img src='icons/Shock Wave.png' alt='Shock Wave' width='20' height='20'> Shock Wave 0.0% (0.0)<br><img src='icons/Poison Creeper.png' alt='Poison Creeper' width='20' height='20'> Poison Creeper 0.0% (0.0)<br><img src='icons/Rabies.png' alt='Rabies' width='20' height='20'> Rabies 0.0% (0.0)<br><img src='icons/Carrion Vine.png' alt='Carrion Vine' width='20' height='20'> Carrion Vine 0.0% (0.0)<br><img src='icons/Firestorm.png' alt='Firestorm' width='20' height='20'> Firestorm 0.0% (0.0)<br><img src='icons/Molten Boulder.png' alt='Molten Boulder' width='20' height='20'> Molten Boulder 0.0% (0.0)<br><img src='icons/Flame Dash.png' alt='Flame Dash' width='20' height='20'> Flame Dash 0.0% (0.0)<br><img src='icons/Fury.png' alt='Fury' width='20' height='20'> Fury 0.0% (0.0)<br><img src='icons/Solar Creeper.png' alt='Solar Creeper' width='20' height='20'> Solar Creeper 0.0% (0.0)<br><img src='icons/Fissure.png' alt='Fissure' width='20' height='20'> Fissure 0.0% (0.0)<br><img src='icons/Volcano.png' alt='Volcano' width='20' height='20'> Volcano 0.0% (0.0)<br><img src='icons/Armageddon.png' alt='Armageddon' width='20' height='20'> Armageddon 0.0% (0.0)<br><img src='icons/Fire Claws.png' alt='Fire Claws' width='20' height='20'> Fire Claws 0.0% (0.0)</div>
+                </div>
+
+                <button type="button" class="collapsible small-collapsible">
+        <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+                <strong>Most Common Equipment:</strong></button>
+                <div class="content">
+                    <div><strong>Ring</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Bul-Kathos' Wedding Band</span> 50.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Havoc Touch</span> 50.00% (1)<br><strong>Armor</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Smoke</span> 100.00% (1)<br><strong>Gloves</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Raven Grip</span> 100.00% (1)<br><strong>Helmet</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Jalal's Mane</span> 50.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Lore</span> 50.00% (1)<br><strong>Belt</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: lightblue;'>Plated Belt of the Whale</span> 100.00% (1)<br><strong>Boots</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Bitter Shank</span> 100.00% (1)<br><strong>Amulet</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Bone Collar</span> 50.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: orange;'>Wraithra Heart</span> 50.00% (1)<br><strong>Left hand</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: lightblue;'>Envenomed Gnarled Staff of Teleportation</span> 33.33% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Spirit</span> 33.33% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Harmony</span> 33.33% (1)<br><strong>Offhand</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Rhyme</span> 100.00% (1)</div>
+                </div>
+            
+                <button type="button" class="collapsible small-collapsible">
+        <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+                <strong>ALL Equipment:</strong></button>
+                <div class="content">
+                    <div><strong>Ring</strong>: <span style='color: olive;'>Bul-Kathos' Wedding Band</span> 50.00%, <span style='color: yellow;'>Havoc Touch</span> 50.00%<br><strong>Armor</strong>: <span style='color: olive;'>Smoke</span> 100.00%<br><strong>Gloves</strong>: <span style='color: yellow;'>Raven Grip</span> 100.00%<br><strong>Helmet</strong>: <span style='color: olive;'>Jalal's Mane</span> 50.00%, <span style='color: olive;'>Lore</span> 50.00%<br><strong>Belt</strong>: <span style='color: lightblue;'>Plated Belt of the Whale</span> 100.00%<br><strong>Boots</strong>: <span style='color: yellow;'>Bitter Shank</span> 100.00%<br><strong>Amulet</strong>: <span style='color: yellow;'>Bone Collar</span> 50.00%, <span style='color: orange;'>Wraithra Heart</span> 50.00%<br><strong>Left hand</strong>: <span style='color: lightblue;'>Envenomed Gnarled Staff of Teleportation</span> 33.33%, <span style='color: olive;'>Spirit</span> 33.33%, <span style='color: olive;'>Harmony</span> 33.33%<br><strong>Offhand</strong>: <span style='color: olive;'>Rhyme</span> 100.00%</div>
+                </div>
+
+            <button type="button" class="collapsible small-collapsible">
+        <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+            <strong>3 Characters in this cluster:</strong>
+        </button>
+        <div class="content">
+            
+            <div class="character-info">
+                <div><strong>Name: ThePound</strong></div>
+                <div>Level 86</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=ThePound" target="_blank">ThePound's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="ThePound">
+                        <!--Armory Quickview -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Oak Sage:20, Twister:20, Tornado:20, Hurricane:20, Cyclone Armor:11, Raven:1, Summon Spirit Wolf:1, Heart of Wolverine:1, Summon Dire Wolf:1, Summon Grizzly:1, Arctic Blast:1</p>
+            <p><strong>Equipment:<br></strong> ring: <span style='color: olive;'>Bul-Kathos' Wedding Band</span>, ring: <span style='color: yellow;'>Havoc Touch</span>, Armor: <span style='color: olive;'>Smoke</span>, Gloves: <span style='color: yellow;'>Raven Grip</span>, Helmet: <span style='color: olive;'>Jalal's Mane</span>, Belt: <span style='color: lightblue;'>Plated Belt of the Whale</span>, Boots: <span style='color: yellow;'>Bitter Shank</span>, Amulet: <span style='color: yellow;'>Bone Collar</span>, Left hand: <span style='color: lightblue;'>Envenomed Gnarled Staff of Teleportation</span>, Left hand: <span style='color: olive;'>Spirit</span>, Offhand: <span style='color: olive;'>Rhyme</span></p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Black Hades, Stealskull, Insight</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Name: TheDooDooDuDu</strong></div>
+                <div>Level 76</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=TheDooDooDuDu" target="_blank">TheDooDooDuDu's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="TheDooDooDuDu">
+                        <!--Armory Quickview -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Twister:20, Tornado:20, Hurricane:20, Arctic Blast:15, Werewolf:1, Lycanthropy:1, Feral Rage:1, Cyclone Armor:1</p>
+            <p><strong>Equipment:<br></strong> Left hand: <span style='color: olive;'>Harmony</span>, Amulet: <span style='color: orange;'>Wraithra Heart</span>, Helmet: <span style='color: olive;'>Lore</span></p>
+            <p><strong>Mercenary:</strong> Act 5 Barbarian - No equipment</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Name: Waffledu</strong></div>
+                <div>Level 70</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Waffledu" target="_blank">Waffledu's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="Waffledu">
+                        <!--Armory Quickview -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Summon Grizzly:20, Twister:20, Hurricane:20, Cyclone Armor:10, Summon Dire Wolf:3, Tornado:3, Raven:1, Oak Sage:1, Summon Spirit Wolf:1, Heart of Wolverine:1, Arctic Blast:1</p>
+            <p><strong>Equipment:<br></strong> </p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - No equipment</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            </div>
+            <hr width="90%">
+            <br>
+            
+        <!--<h2>3.77%  of Druid's Main Skills:<br><img src='icons/Cyclone Armor.png' alt='Cyclone Armor' width='20' height='20'> Cyclone Armor 100.00% (40)<br><img src='icons/Raven.png' alt='Raven' width='20' height='20'> Raven 100.00% (40)<br><img src='icons/Arctic Blast.png' alt='Arctic Blast' width='20' height='20'> Arctic Blast 100.00% (39)<br><img src='icons/Twister.png' alt='Twister' width='20' height='20'> Twister 100.00% (26)<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 100.00% (5)</h2>
+        <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 100.0% (2.0)<br><img src='icons/Firestorm.png' alt='Firestorm' width='20' height='20'> Firestorm 100.0% (2.0)<br><img src='icons/Molten Boulder.png' alt='Molten Boulder' width='20' height='20'> Molten Boulder 100.0% (2.0)<br><img src='icons/Flame Dash.png' alt='Flame Dash' width='20' height='20'> Flame Dash 100.0% (2.0)<br><img src='icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' width='20' height='20'> Summon Spirit Wolf 50.0% (1.0)<br><img src='icons/Summon Dire Wolf.png' alt='Summon Dire Wolf' width='20' height='20'> Summon Dire Wolf 50.0% (1.0)</p> -->
+        <div id="skills" class="skills-container">
+            <div class="column">
+                <ul id="most-popular-skills">
+                    <h2>3.77%  of Druid's Main Skills:<br><img src='icons/Cyclone Armor.png' alt='Cyclone Armor' width='20' height='20'> Cyclone Armor 100.00% (40)<br><img src='icons/Raven.png' alt='Raven' width='20' height='20'> Raven 100.00% (40)<br><img src='icons/Arctic Blast.png' alt='Arctic Blast' width='20' height='20'> Arctic Blast 100.00% (39)<br><img src='icons/Twister.png' alt='Twister' width='20' height='20'> Twister 100.00% (26)<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 100.00% (5)</h2>
+                </ul>
+            </div>
+            <div class="column">
+                <ul id="other-skills">
+                    <h2>Other common skills in this group:</h2> <img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 100.0% (2.0)<br><img src='icons/Firestorm.png' alt='Firestorm' width='20' height='20'> Firestorm 100.0% (2.0)<br><img src='icons/Molten Boulder.png' alt='Molten Boulder' width='20' height='20'> Molten Boulder 100.0% (2.0)<br><img src='icons/Flame Dash.png' alt='Flame Dash' width='20' height='20'> Flame Dash 100.0% (2.0)<br><img src='icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' width='20' height='20'> Summon Spirit Wolf 50.0% (1.0)<br><img src='icons/Summon Dire Wolf.png' alt='Summon Dire Wolf' width='20' height='20'> Summon Dire Wolf 50.0% (1.0)
+                </ul>
+            </div>
+        </div>
+
+    <button type="button" class="collapsible small-collapsible">
+        <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+                <strong>All Skills</strong></button>
+                <div class="content">
+                    <div><img src='icons/Cyclone Armor.png' alt='Cyclone Armor' width='20' height='20'> Cyclone Armor 100.0% (40.0)<br><img src='icons/Raven.png' alt='Raven' width='20' height='20'> Raven 100.0% (40.0)<br><img src='icons/Arctic Blast.png' alt='Arctic Blast' width='20' height='20'> Arctic Blast 100.0% (39.0)<br><img src='icons/Twister.png' alt='Twister' width='20' height='20'> Twister 100.0% (26.0)<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 100.0% (5.0)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 100.0% (2.0)<br><img src='icons/Molten Boulder.png' alt='Molten Boulder' width='20' height='20'> Molten Boulder 100.0% (2.0)<br><img src='icons/Flame Dash.png' alt='Flame Dash' width='20' height='20'> Flame Dash 100.0% (2.0)<br><img src='icons/Firestorm.png' alt='Firestorm' width='20' height='20'> Firestorm 100.0% (2.0)<br><img src='icons/Summon Dire Wolf.png' alt='Summon Dire Wolf' width='20' height='20'> Summon Dire Wolf 50.0% (1.0)<br><img src='icons/Summon Grizzly.png' alt='Summon Grizzly' width='20' height='20'> Summon Grizzly 50.0% (1.0)<br><img src='icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' width='20' height='20'> Summon Spirit Wolf 50.0% (1.0)<br><img src='icons/Werebear.png' alt='Werebear' width='20' height='20'> Werebear 50.0% (1.0)<br><img src='icons/Werewolf.png' alt='Werewolf' width='20' height='20'> Werewolf 0.0% (0.0)<br><img src='icons/Spirit of Barbs.png' alt='Spirit of Barbs' width='20' height='20'> Spirit of Barbs 0.0% (0.0)<br><img src='icons/Tornado.png' alt='Tornado' width='20' height='20'> Tornado 0.0% (0.0)<br><img src='icons/Hurricane.png' alt='Hurricane' width='20' height='20'> Hurricane 0.0% (0.0)<br><img src='icons/Feral Rage.png' alt='Feral Rage' width='20' height='20'> Feral Rage 0.0% (0.0)<br><img src='icons/Lycanthropy.png' alt='Lycanthropy' width='20' height='20'> Lycanthropy 0.0% (0.0)<br><img src='icons/Poison Creeper.png' alt='Poison Creeper' width='20' height='20'> Poison Creeper 0.0% (0.0)<br><img src='icons/Shock Wave.png' alt='Shock Wave' width='20' height='20'> Shock Wave 0.0% (0.0)<br><img src='icons/Maul.png' alt='Maul' width='20' height='20'> Maul 0.0% (0.0)<br><img src='icons/Carrion Vine.png' alt='Carrion Vine' width='20' height='20'> Carrion Vine 0.0% (0.0)<br><img src='icons/Rabies.png' alt='Rabies' width='20' height='20'> Rabies 0.0% (0.0)<br><img src='icons/Fury.png' alt='Fury' width='20' height='20'> Fury 0.0% (0.0)<br><img src='icons/Solar Creeper.png' alt='Solar Creeper' width='20' height='20'> Solar Creeper 0.0% (0.0)<br><img src='icons/Fissure.png' alt='Fissure' width='20' height='20'> Fissure 0.0% (0.0)<br><img src='icons/Volcano.png' alt='Volcano' width='20' height='20'> Volcano 0.0% (0.0)<br><img src='icons/Armageddon.png' alt='Armageddon' width='20' height='20'> Armageddon 0.0% (0.0)<br><img src='icons/Fire Claws.png' alt='Fire Claws' width='20' height='20'> Fire Claws 0.0% (0.0)</div>
+                </div>
+
+                <button type="button" class="collapsible small-collapsible">
+        <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+                <strong>Most Common Equipment:</strong></button>
+                <div class="content">
+                    <div><strong>Amulet</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: lightblue;'>Keeper's Amulet of the Wraith</span> 50.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: lightblue;'>Amulet of Leadership</span> 50.00% (1)<br><strong>Gloves</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Magefist</span> 100.00% (2)<br><strong>Belt</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Nightsmoke</span> 50.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Doom Chain</span> 50.00% (1)<br><strong>Armor</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Rain</span> 50.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Que-Hegan's Wisdom</span> 50.00% (1)<br><strong>Ring</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Grim Spiral</span> 25.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Stone Circle</span> 25.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Beast Grasp</span> 25.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Raven Frost</span> 25.00% (1)<br><strong>Boots</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: green;'>Aldur's Advance</span> 50.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Tearhaunch</span> 50.00% (1)<br><strong>Helmet</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Jalal's Mane</span> 50.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Rune Visage</span> 50.00% (1)<br><strong>Left hand</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Spirit</span> 100.00% (2)<br><strong>Offhand</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Spirit</span> 33.33% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: green;'>Sigon's Guard</span> 33.33% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Moser's Blessed Circle</span> 33.33% (1)</div>
+                </div>
+            
+                <button type="button" class="collapsible small-collapsible">
+        <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+                <strong>ALL Equipment:</strong></button>
+                <div class="content">
+                    <div><strong>Amulet</strong>: <span style='color: lightblue;'>Keeper's Amulet of the Wraith</span> 50.00%, <span style='color: lightblue;'>Amulet of Leadership</span> 50.00%<br><strong>Gloves</strong>: <span style='color: olive;'>Magefist</span> 100.00%<br><strong>Belt</strong>: <span style='color: olive;'>Nightsmoke</span> 50.00%, <span style='color: yellow;'>Doom Chain</span> 50.00%<br><strong>Armor</strong>: <span style='color: olive;'>Rain</span> 50.00%, <span style='color: olive;'>Que-Hegan's Wisdom</span> 50.00%<br><strong>Ring</strong>: <span style='color: yellow;'>Grim Spiral</span> 25.00%, <span style='color: yellow;'>Stone Circle</span> 25.00%, <span style='color: yellow;'>Beast Grasp</span> 25.00%, <span style='color: olive;'>Raven Frost</span> 25.00%<br><strong>Boots</strong>: <span style='color: green;'>Aldur's Advance</span> 50.00%, <span style='color: olive;'>Tearhaunch</span> 50.00%<br><strong>Helmet</strong>: <span style='color: olive;'>Jalal's Mane</span> 50.00%, <span style='color: yellow;'>Rune Visage</span> 50.00%<br><strong>Left hand</strong>: <span style='color: olive;'>Spirit</span> 100.00%<br><strong>Offhand</strong>: <span style='color: olive;'>Spirit</span> 33.33%, <span style='color: green;'>Sigon's Guard</span> 33.33%, <span style='color: olive;'>Moser's Blessed Circle</span> 33.33%</div>
+                </div>
+
+            <button type="button" class="collapsible small-collapsible">
+        <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+            <strong>2 Characters in this cluster:</strong>
+        </button>
+        <div class="content">
+            
+            <div class="character-info">
+                <div><strong>Name: BopoHa_black</strong></div>
+                <div>Level 80</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=BopoHa_black" target="_blank">BopoHa_black's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="BopoHa_black">
+                        <!--Armory Quickview -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Raven:20, Arctic Blast:20, Cyclone Armor:20, Twister:20, Oak Sage:4, Summon Spirit Wolf:1, Heart of Wolverine:1, Summon Dire Wolf:1, Summon Grizzly:1, Firestorm:1, Molten Boulder:1, Flame Dash:1</p>
+            <p><strong>Equipment:<br></strong> Amulet: <span style='color: lightblue;'>Keeper's Amulet of the Wraith</span>, Gloves: <span style='color: olive;'>Magefist</span>, Belt: <span style='color: olive;'>Nightsmoke</span>, Armor: <span style='color: olive;'>Rain</span>, ring: <span style='color: yellow;'>Grim Spiral</span>, ring: <span style='color: yellow;'>Stone Circle</span>, Boots: <span style='color: green;'>Aldur's Advance</span>, Helmet: <span style='color: olive;'>Jalal's Mane</span>, Left hand: <span style='color: olive;'>Spirit</span>, Offhand: <span style='color: olive;'>Spirit</span></p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Natalya's Totem, Smoke, Insight</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Name: Fluffmuffin</strong></div>
+                <div>Level 63</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Fluffmuffin" target="_blank">Fluffmuffin's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="Fluffmuffin">
+                        <!--Armory Quickview -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Raven:20, Cyclone Armor:20, Arctic Blast:19, Twister:6, Oak Sage:1, Heart of Wolverine:1, Werebear:1, Firestorm:1, Molten Boulder:1, Flame Dash:1</p>
+            <p><strong>Equipment:<br></strong> Gloves: <span style='color: olive;'>Magefist</span>, ring: <span style='color: yellow;'>Beast Grasp</span>, ring: <span style='color: olive;'>Raven Frost</span>, Amulet: <span style='color: lightblue;'>Amulet of Leadership</span>, Belt: <span style='color: yellow;'>Doom Chain</span>, Boots: <span style='color: olive;'>Tearhaunch</span>, Armor: <span style='color: olive;'>Que-Hegan's Wisdom</span>, Offhand: <span style='color: green;'>Sigon's Guard</span>, Offhand: <span style='color: olive;'>Moser's Blessed Circle</span>, Helmet: <span style='color: yellow;'>Rune Visage</span>, Left hand: <span style='color: olive;'>Spirit</span></p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Wormskull, Greyform, Insight</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            </div>
+            <hr width="90%">
+            <br>
+            
+        <!--<h2>3.77%  of Druid's Main Skills:<br><img src='icons/Molten Boulder.png' alt='Molten Boulder' width='20' height='20'> Molten Boulder 100.00% (40)<br><img src='icons/Armageddon.png' alt='Armageddon' width='20' height='20'> Armageddon 100.00% (40)<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 100.00% (34)<br><img src='icons/Fissure.png' alt='Fissure' width='20' height='20'> Fissure 100.00% (21)<br><img src='icons/Volcano.png' alt='Volcano' width='20' height='20'> Volcano 100.00% (21)</h2>
+        <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='icons/Fire Claws.png' alt='Fire Claws' width='20' height='20'> Fire Claws 50.0% (20.0)<br><img src='icons/Firestorm.png' alt='Firestorm' width='20' height='20'> Firestorm 100.0% (10.0)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 100.0% (2.0)<br><img src='icons/Poison Creeper.png' alt='Poison Creeper' width='20' height='20'> Poison Creeper 100.0% (2.0)<br><img src='icons/Carrion Vine.png' alt='Carrion Vine' width='20' height='20'> Carrion Vine 100.0% (2.0)<br><img src='icons/Solar Creeper.png' alt='Solar Creeper' width='20' height='20'> Solar Creeper 100.0% (2.0)</p> -->
+        <div id="skills" class="skills-container">
+            <div class="column">
+                <ul id="most-popular-skills">
+                    <h2>3.77%  of Druid's Main Skills:<br><img src='icons/Molten Boulder.png' alt='Molten Boulder' width='20' height='20'> Molten Boulder 100.00% (40)<br><img src='icons/Armageddon.png' alt='Armageddon' width='20' height='20'> Armageddon 100.00% (40)<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 100.00% (34)<br><img src='icons/Fissure.png' alt='Fissure' width='20' height='20'> Fissure 100.00% (21)<br><img src='icons/Volcano.png' alt='Volcano' width='20' height='20'> Volcano 100.00% (21)</h2>
+                </ul>
+            </div>
+            <div class="column">
+                <ul id="other-skills">
+                    <h2>Other common skills in this group:</h2> <img src='icons/Fire Claws.png' alt='Fire Claws' width='20' height='20'> Fire Claws 50.0% (20.0)<br><img src='icons/Firestorm.png' alt='Firestorm' width='20' height='20'> Firestorm 100.0% (10.0)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 100.0% (2.0)<br><img src='icons/Poison Creeper.png' alt='Poison Creeper' width='20' height='20'> Poison Creeper 100.0% (2.0)<br><img src='icons/Carrion Vine.png' alt='Carrion Vine' width='20' height='20'> Carrion Vine 100.0% (2.0)<br><img src='icons/Solar Creeper.png' alt='Solar Creeper' width='20' height='20'> Solar Creeper 100.0% (2.0)
+                </ul>
+            </div>
+        </div>
+
+    <button type="button" class="collapsible small-collapsible">
+        <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+                <strong>All Skills</strong></button>
+                <div class="content">
+                    <div><img src='icons/Molten Boulder.png' alt='Molten Boulder' width='20' height='20'> Molten Boulder 100.0% (40.0)<br><img src='icons/Armageddon.png' alt='Armageddon' width='20' height='20'> Armageddon 100.0% (40.0)<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 100.0% (34.0)<br><img src='icons/Volcano.png' alt='Volcano' width='20' height='20'> Volcano 100.0% (21.0)<br><img src='icons/Fissure.png' alt='Fissure' width='20' height='20'> Fissure 100.0% (21.0)<br><img src='icons/Fire Claws.png' alt='Fire Claws' width='20' height='20'> Fire Claws 50.0% (20.0)<br><img src='icons/Firestorm.png' alt='Firestorm' width='20' height='20'> Firestorm 100.0% (10.0)<br><img src='icons/Carrion Vine.png' alt='Carrion Vine' width='20' height='20'> Carrion Vine 100.0% (2.0)<br><img src='icons/Poison Creeper.png' alt='Poison Creeper' width='20' height='20'> Poison Creeper 100.0% (2.0)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 100.0% (2.0)<br><img src='icons/Solar Creeper.png' alt='Solar Creeper' width='20' height='20'> Solar Creeper 100.0% (2.0)<br><img src='icons/Raven.png' alt='Raven' width='20' height='20'> Raven 50.0% (1.0)<br><img src='icons/Werewolf.png' alt='Werewolf' width='20' height='20'> Werewolf 50.0% (1.0)<br><img src='icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' width='20' height='20'> Summon Spirit Wolf 50.0% (1.0)<br><img src='icons/Feral Rage.png' alt='Feral Rage' width='20' height='20'> Feral Rage 50.0% (1.0)<br><img src='icons/Summon Grizzly.png' alt='Summon Grizzly' width='20' height='20'> Summon Grizzly 50.0% (1.0)<br><img src='icons/Maul.png' alt='Maul' width='20' height='20'> Maul 50.0% (1.0)<br><img src='icons/Werebear.png' alt='Werebear' width='20' height='20'> Werebear 50.0% (1.0)<br><img src='icons/Flame Dash.png' alt='Flame Dash' width='20' height='20'> Flame Dash 50.0% (1.0)<br><img src='icons/Summon Dire Wolf.png' alt='Summon Dire Wolf' width='20' height='20'> Summon Dire Wolf 50.0% (1.0)<br><img src='icons/Cyclone Armor.png' alt='Cyclone Armor' width='20' height='20'> Cyclone Armor 0.0% (0.0)<br><img src='icons/Arctic Blast.png' alt='Arctic Blast' width='20' height='20'> Arctic Blast 0.0% (0.0)<br><img src='icons/Spirit of Barbs.png' alt='Spirit of Barbs' width='20' height='20'> Spirit of Barbs 0.0% (0.0)<br><img src='icons/Tornado.png' alt='Tornado' width='20' height='20'> Tornado 0.0% (0.0)<br><img src='icons/Hurricane.png' alt='Hurricane' width='20' height='20'> Hurricane 0.0% (0.0)<br><img src='icons/Twister.png' alt='Twister' width='20' height='20'> Twister 0.0% (0.0)<br><img src='icons/Lycanthropy.png' alt='Lycanthropy' width='20' height='20'> Lycanthropy 0.0% (0.0)<br><img src='icons/Shock Wave.png' alt='Shock Wave' width='20' height='20'> Shock Wave 0.0% (0.0)<br><img src='icons/Rabies.png' alt='Rabies' width='20' height='20'> Rabies 0.0% (0.0)<br><img src='icons/Fury.png' alt='Fury' width='20' height='20'> Fury 0.0% (0.0)</div>
+                </div>
+
+                <button type="button" class="collapsible small-collapsible">
+        <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+                <strong>Most Common Equipment:</strong></button>
+                <div class="content">
+                    <div><strong>Belt</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Arachnid Mesh</span> 50.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Thundergod's Vigor</span> 50.00% (1)<br><strong>Amulet</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Havoc Gorget</span> 50.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: lightblue;'>Gaea's Amulet of the Fox</span> 50.00% (1)<br><strong>Boots</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: green;'>Aldur's Advance</span> 100.00% (2)<br><strong>Armor</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Enigma</span> 50.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Rain</span> 50.00% (1)<br><strong>Helmet</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Metamorphosis</span> 50.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Jalal's Mane</span> 50.00% (1)<br><strong>Ring</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Blood Hold</span> 25.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Order Loop</span> 25.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Bul-Kathos' Wedding Band</span> 25.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Nagelring</span> 25.00% (1)<br><strong>Gloves</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Magefist</span> 100.00% (2)<br><strong>Left hand</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Mang Song's Lesson</span> 25.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Lightsabre</span> 25.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Spirit</span> 25.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Heart of the Oak</span> 25.00% (1)<br><strong>Offhand</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Stormshield</span> 50.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: olive;'>Spirit</span> 50.00% (1)</div>
+                </div>
+            
+                <button type="button" class="collapsible small-collapsible">
+        <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+                <strong>ALL Equipment:</strong></button>
+                <div class="content">
+                    <div><strong>Belt</strong>: <span style='color: olive;'>Arachnid Mesh</span> 50.00%, <span style='color: olive;'>Thundergod's Vigor</span> 50.00%<br><strong>Amulet</strong>: <span style='color: yellow;'>Havoc Gorget</span> 50.00%, <span style='color: lightblue;'>Gaea's Amulet of the Fox</span> 50.00%<br><strong>Boots</strong>: <span style='color: green;'>Aldur's Advance</span> 100.00%<br><strong>Armor</strong>: <span style='color: olive;'>Enigma</span> 50.00%, <span style='color: olive;'>Rain</span> 50.00%<br><strong>Helmet</strong>: <span style='color: olive;'>Metamorphosis</span> 50.00%, <span style='color: olive;'>Jalal's Mane</span> 50.00%<br><strong>Ring</strong>: <span style='color: yellow;'>Blood Hold</span> 25.00%, <span style='color: yellow;'>Order Loop</span> 25.00%, <span style='color: olive;'>Bul-Kathos' Wedding Band</span> 25.00%, <span style='color: olive;'>Nagelring</span> 25.00%<br><strong>Gloves</strong>: <span style='color: olive;'>Magefist</span> 100.00%<br><strong>Left hand</strong>: <span style='color: olive;'>Mang Song's Lesson</span> 25.00%, <span style='color: olive;'>Lightsabre</span> 25.00%, <span style='color: olive;'>Spirit</span> 25.00%, <span style='color: olive;'>Heart of the Oak</span> 25.00%<br><strong>Offhand</strong>: <span style='color: olive;'>Stormshield</span> 50.00%, <span style='color: olive;'>Spirit</span> 50.00%</div>
+                </div>
+
+            <button type="button" class="collapsible small-collapsible">
+        <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+            <strong>2 Characters in this cluster:</strong>
+        </button>
+        <div class="content">
+            
+            <div class="character-info">
+                <div><strong>Name: SCplebsTvert</strong></div>
+                <div>Level 92</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=SCplebsTvert" target="_blank">SCplebsTvert's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="SCplebsTvert">
+                        <!--Armory Quickview -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Oak Sage:20, Fire Claws:20, Molten Boulder:20, Armageddon:20, Firestorm:9, Raven:1, Poison Creeper:1, Summon Spirit Wolf:1, Carrion Vine:1, Heart of Wolverine:1, Summon Dire Wolf:1, Solar Creeper:1, Summon Grizzly:1, Werewolf:1, Werebear:1, Feral Rage:1, Maul:1, Fissure:1, Volcano:1</p>
+            <p><strong>Equipment:<br></strong> Belt: <span style='color: olive;'>Arachnid Mesh</span>, Amulet: <span style='color: yellow;'>Havoc Gorget</span>, Boots: <span style='color: green;'>Aldur's Advance</span>, Armor: <span style='color: olive;'>Enigma</span>, Helmet: <span style='color: olive;'>Metamorphosis</span>, ring: <span style='color: yellow;'>Blood Hold</span>, ring: <span style='color: yellow;'>Order Loop</span>, Gloves: <span style='color: olive;'>Magefist</span>, Left hand: <span style='color: olive;'>Mang Song's Lesson</span>, Left hand: <span style='color: olive;'>Lightsabre</span>, Offhand: <span style='color: olive;'>Stormshield</span></p>
+            <p><strong>Mercenary:</strong> Act 5 Barbarian - Steel Shade, Treachery, Plague</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            <div class="character-info">
+                <div><strong>Name: Fatal-Beasts</strong></div>
+                <div>Level 89</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Fatal-Beasts" target="_blank">Fatal-Beasts's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="Fatal-Beasts">
+                        <!--Armory Quickview -->
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Molten Boulder:20, Fissure:20, Volcano:20, Armageddon:20, Oak Sage:14, Poison Creeper:1, Carrion Vine:1, Heart of Wolverine:1, Solar Creeper:1, Firestorm:1, Flame Dash:1</p>
+            <p><strong>Equipment:<br></strong> ring: <span style='color: olive;'>Bul-Kathos' Wedding Band</span>, ring: <span style='color: olive;'>Nagelring</span>, Helmet: <span style='color: olive;'>Jalal's Mane</span>, Armor: <span style='color: olive;'>Rain</span>, Boots: <span style='color: green;'>Aldur's Advance</span>, Gloves: <span style='color: olive;'>Magefist</span>, Amulet: <span style='color: lightblue;'>Gaea's Amulet of the Fox</span>, Left hand: <span style='color: olive;'>Spirit</span>, Left hand: <span style='color: olive;'>Heart of the Oak</span>, Belt: <span style='color: olive;'>Thundergod's Vigor</span>, Offhand: <span style='color: olive;'>Spirit</span></p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Leviathan, Guillaume's Face, Insight</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+            </div>
+            <hr width="90%">
+            <br>
+            
+                <h3>Top 5 Most Popular Druid Skills:</h3>
+            <ul>
+                
+                <li>Summon Dire Wolf: 583.0</li>
+                
+                <li>Oak Sage: 512.0</li>
+                
+                <li>Lycanthropy: 426.0</li>
+                
+                <li>Summon Grizzly: 423.0</li>
+                
+                <li>Summon Spirit Wolf: 335.0</li>
+                
+            </ul>
+
+            <h3>Bottom 5 Least Popular Druid Skills:</h3>
+            <ul>
+                
+                <li>Fury: 2.0</li>
+                
+                <li>Solar Creeper: 5.0</li>
+                
+                <li>Carrion Vine: 8.0</li>
+                
+                <li>Feral Rage: 12.0</li>
+                
+                <li>Fire Claws: 20.0</li>
+                
+            </ul>
+            <br>
+            <hr>
+            <br>
+                    <!-- Embed the Plotly pie chart -->
+            <!--<div>
+                <img src="charts/Druid-clusters_distribution_pie.png" alt="Druid Skills Distribution">
+            </div> -->
+
+            <!-- Embed the Plotly scatter plot -->
+            <div>
+                <img src="charts/Druid-clusters_with_avg_points.png" alt="Druid Skill Clusters Scatter Plot">
+            </div>
+            <button onclick="topFunction()" id="backToTopBtn" class="back-to-top"></button>
+
+            <div class="footer">
+            <p>PoD class data current as of 2025-02-20 20:29</p>
+            </div>            
+
+<script>
+var coll = document.getElementsByClassName("collapsible");
+for (var i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        var openIcon = this.querySelector("img.icon[alt='Open']");
+        var closeIcon = this.querySelector("img.icon[alt='Close']");
+
+        if (content.style.display === "block") {
+            content.style.display = "none";
+            openIcon.classList.remove("hidden");
+            closeIcon.classList.add("hidden");
+        } else {
+            content.style.display = "block";
+            openIcon.classList.add("hidden");
+            closeIcon.classList.remove("hidden");
+        }
+    });
+}
+
+
+//Get the button
+var backToTopBtn = document.getElementById("backToTopBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+backToTopBtn.style.display = "block";
+} else {
+backToTopBtn.style.display = "none";
+}
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+document.body.scrollTop = 0; // For Safari
+document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+const scHcButton = document.getElementById("SC_HC");
+const currentUrl = window.location.href;
+const filename = currentUrl.split("/").pop(); // Get the last part of the URL
+
+// Check if the current page is Hardcore or Softcore
+const isHardcore = filename.startsWith("hc");
+
+// Update button appearance based on current mode
+if (isHardcore) {
+scHcButton.classList.add("hardcore");
+scHcButton.classList.remove("softcore");
+} else {
+scHcButton.classList.add("softcore");
+scHcButton.classList.remove("hardcore");
+}
+
+// Update background image based on mode
+updateButtonImage(isHardcore);
+
+// Add click event to toggle between SC and HC pages
+scHcButton.addEventListener("click", function () {
+let newUrl;
+
+if (isHardcore) {
+// Convert HC -> SC (remove "hc" from filename)
+newUrl = currentUrl.replace(/hc(\w+\.html)$/, "$1");
+} else {
+// Convert SC -> HC (prepend "hc" to the filename)
+newUrl = currentUrl.replace(/(\w+\.html)$/, "hc$1");
+}
+
+// Redirect to the new page
+if (newUrl !== currentUrl) {
+window.location.href = newUrl;
+}
+});
+
+// Function to update button background image
+function updateButtonImage(isHardcore) {
+if (isHardcore) {
+scHcButton.style.backgroundImage = "url('icons/Hardcore_click.png')";
+} else {
+scHcButton.style.backgroundImage = "url('icons/Softcore_click.png')";
+}
+}
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+const currentPage = window.location.pathname.split("/").pop(); // Get current page filename
+const menuItems = document.querySelectorAll(".top-button");
+
+menuItems.forEach(item => {
+const itemPage = item.getAttribute("href");
+if (itemPage && currentPage === itemPage) {
+item.classList.add("active");
+}
+});
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+let activePopup = null;
+
+document.querySelectorAll(".hover-trigger").forEach(trigger => {
+trigger.addEventListener("click", function (event) {
+event.stopPropagation();
+const characterName = this.getAttribute("data-character-name");
+
+// Close any open popup first
+if (activePopup) {
+activePopup.classList.remove("active");
+activePopup.innerHTML = ""; // Remove iframe for memory efficiency
+activePopup = null;
+}
+
+// Find the associated popup container
+const popup = this.closest(".character-info").nextElementSibling.querySelector(".popup");
+
+// If this popup was already active, just close it
+if (popup === activePopup) {
+return;
+}
+
+// Create an iframe and set its src
+const iframe = document.createElement("iframe");
+iframe.src = `./armory/video_component.html?charName=${encodeURIComponent(characterName)}`;
+iframe.setAttribute("id", "popupFrame");
+
+// Add iframe to the popup
+popup.appendChild(iframe);
+popup.classList.add("active");
+
+// Set this popup as the active one
+activePopup = popup;
+});
+});
+
+// Close the popup when clicking anywhere outside
+document.addEventListener("click", function (event) {
+if (activePopup && !activePopup.contains(event.target)) {
+activePopup.classList.remove("active");
+activePopup.innerHTML = ""; // Remove iframe to free memory
+activePopup = null;
+}
+});
+});
+
+</script>
+
+
+        </body>
+        </html>
+        

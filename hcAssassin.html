@@ -3,11 +3,35 @@
         <html>
         <head>
             <title>Hardcore Assassin Analysis Report</title>
-        <link rel="stylesheet" type="text/css" href="./css/pod-stats.css">
+        <link rel="stylesheet" type="text/css" href="./css/test-css.css">
 
         </head>
-        <body>
-            <div class="top-buttons">
+        <body class="not-main">
+                <div class="is-clipped"><nav class="navbar is-fixed-top is-dark" style="height: 50px;">
+
+            <div class="navbar-brand">
+            <a class="" href="https://pathofdiablo.com/p/"><img src="icons/pod.ico" alt="Path of Diablo: Web Portal" width="48" height="48" class="is-48x48" style="max-height: none;"></a>
+            <div class="navbar-burger burger" data-target="podNavbar"><span></span><span></span><span></span></div></div>
+            <div id="podNavbar" class="navbar-menu">
+            <div class="navbar-start">
+            <a class="navbar-item" href="https://beta.pathofdiablo.com/trade-search">Trade</a>
+            <a class="navbar-item" href="https://pathofdiablo.com/p/?servers">Servers</a>
+            <a class="navbar-item" href="https://beta.pathofdiablo.com/ladder">Ladder</a>
+            <a class="navbar-item" href="https://beta.pathofdiablo.com/public-games">Public Games</a>
+            <a class="navbar-item" href="https://beta.pathofdiablo.com/runewizard">Runewizard</a>
+            <a class="navbar-item" href="https://pathofdiablo.com/p/armory">Armory</a>
+            <a class="navbar-item" href="https://build.pathofdiablo.com">Build Planner</a>
+            <a class="navbar-item" href="https://pathofdiablo.com/p/?live" style="width: 90px;"><span><img src="https://beta.pathofdiablo.com/images/twitchico.png"></span></a></div>
+            <div class="navbar-end">
+
+            <div class="navbar-start">	
+            <a class="navbar-item-right" href="https://beta.pathofdiablo.com/my-toons">Character Storage</a>
+        <!--	<a class="navbar-item" href="https://pathofdiablo.com/p/?ticket"><span><svg class="svg-inline--fa fa-exclamation-circle fa-w-16" aria-hidden="true" data-prefix="fas" data-icon="exclamation-circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"></path></svg><!-- <i class="fas fa-exclamation-circle"></i> /span></a> -->
+            </div>
+
+
+            </div></div></nav>  
+                <div class="top-buttons">
                 <a href="hcHome.html" class="top-button">Home</a>
                 <div class="split-button">
                     <button id="SC" class="split-button-option" onclick="setActive('SC')">SC</button>
@@ -1770,148 +1794,159 @@
             <button onclick="topFunction()" id="backToTopBtn" class="back-to-top">Top</button>
             
             <div class="footer">
-            <p>PoD class data current as of 2025-02-16 14:18</p>
+            <p>PoD class data current as of 2025-02-20 17:11</p>
             </div>            
 
-            <script>
-                var coll = document.getElementsByClassName("collapsible");
-                for (var i = 0; i < coll.length; i++) {
-                    coll[i].addEventListener("click", function() {
-                        this.classList.toggle("active");
-                        var content = this.nextElementSibling;
-                        var openIcon = this.querySelector("img.icon[alt='Open']");
-                        var closeIcon = this.querySelector("img.icon[alt='Close']");
+<script>
+var coll = document.getElementsByClassName("collapsible");
+for (var i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        var openIcon = this.querySelector("img.icon[alt='Open']");
+        var closeIcon = this.querySelector("img.icon[alt='Close']");
 
-                        if (content.style.display === "block") {
-                            content.style.display = "none";
-                            openIcon.classList.remove("hidden");
-                            closeIcon.classList.add("hidden");
-                        } else {
-                            content.style.display = "block";
-                            openIcon.classList.add("hidden");
-                            closeIcon.classList.remove("hidden");
-                        }
-                    });
-                }
-            </script>
+        if (content.style.display === "block") {
+            content.style.display = "none";
+            openIcon.classList.remove("hidden");
+            closeIcon.classList.add("hidden");
+        } else {
+            content.style.display = "block";
+            openIcon.classList.add("hidden");
+            closeIcon.classList.remove("hidden");
+        }
+    });
+}
 
-            <script>
-                //Get the button
-                var backToTopBtn = document.getElementById("backToTopBtn");
 
-                // When the user scrolls down 20px from the top of the document, show the button
-                window.onscroll = function() {scrollFunction()};
+//Get the button
+var backToTopBtn = document.getElementById("backToTopBtn");
 
-                function scrollFunction() {
-                    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                        backToTopBtn.style.display = "block";
-                    } else {
-                        backToTopBtn.style.display = "none";
-                    }
-                }
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
 
-                // When the user clicks on the button, scroll to the top of the document
-                function topFunction() {
-                    document.body.scrollTop = 0; // For Safari
-                    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-                }
-            </script>
+function scrollFunction() {
+if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+backToTopBtn.style.display = "block";
+} else {
+backToTopBtn.style.display = "none";
+}
+}
 
-            <script>
-                function setActive(id) {
-                    // Remove active class from both buttons
-                    document.getElementById("SC").classList.remove("active");
-                    document.getElementById("HC").classList.remove("active");
-                    
-                    // Add active class to the selected button
-                    document.getElementById(id).classList.add("active");
-                    
-                    // Get the current URL
-                    var currentUrl = window.location.href;
-                    
-                    // Determine the new URL based on the selected mode
-                    var newUrl;
-                    if (id === "SC") {
-                        if (currentUrl.includes('hc')) {
-                            newUrl = currentUrl.replace(/hc/gi, '');
-                        } else {
-                            newUrl = currentUrl;
-                        }
-                    } else if (id === "HC") {
-                        if (!currentUrl.includes('hc')) {
-                            newUrl = currentUrl.replace(/(\w+)\.html$/, 'hc$1.html');
-                        } else {
-                            newUrl = currentUrl;
-                        }
-                    }
-                    
-                    // Redirect to the new URL if it has changed
-                    if (newUrl !== currentUrl) {
-                        window.location.href = newUrl;
-                    }
-                }
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+document.body.scrollTop = 0; // For Safari
+document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
 
-                // Set default active button based on the current URL
-                window.onload = function() {
-                    if (window.location.href.includes('hc')) {
-                        setActive("HC");
-                    } else {
-                        setActive("SC");
-                    }
-                }
-            </script>
-            <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const currentLocation = window.location.href;
-            const menuItems = document.querySelectorAll(".top-button");
-            
-            menuItems.forEach(item => {
-                if (item.href === currentLocation) {
-                    item.classList.add("active");
-                }
-            });
-        });
-    </script>
-        <script>
-                document.addEventListener("DOMContentLoaded", function () {
-                    const hoverTriggers = document.querySelectorAll(".hover-trigger");
-                    let activePopup = null;
+document.addEventListener("DOMContentLoaded", function () {
+const scHcButton = document.getElementById("SC_HC");
+const currentUrl = window.location.href;
+const filename = currentUrl.split("/").pop(); // Get the last part of the URL
 
-                    hoverTriggers.forEach(trigger => {
-                        trigger.addEventListener("click", function (event) {
-                            event.stopPropagation();
-                            const characterName = this.getAttribute("data-character-name");
+// Check if the current page is Hardcore or Softcore
+const isHardcore = filename.startsWith("hc");
 
-                            // Close any open popup first
-                            if (activePopup) {
-                                activePopup.classList.remove("active");
-                            }
+// Update button appearance based on current mode
+if (isHardcore) {
+scHcButton.classList.add("hardcore");
+scHcButton.classList.remove("softcore");
+} else {
+scHcButton.classList.add("softcore");
+scHcButton.classList.remove("hardcore");
+}
 
-                            // Find the popup within the same character container
-                            const popup = this.closest(".character-info").nextElementSibling.querySelector(".popup");
-                            const iframe = popup.querySelector("iframe");
+// Update background image based on mode
+updateButtonImage(isHardcore);
 
-                            console.log('Popup:', popup); // Debugging line
-                            console.log('Character Name:', characterName); // Debugging line
+// Add click event to toggle between SC and HC pages
+scHcButton.addEventListener("click", function () {
+let newUrl;
 
-                            // Set the correct iframe URL
-                            iframe.src = `./armory/video_component.html?charName=${encodeURIComponent(characterName)}`;
+if (isHardcore) {
+// Convert HC -> SC (remove "hc" from filename)
+newUrl = currentUrl.replace(/hc(\w+\.html)$/, "$1");
+} else {
+// Convert SC -> HC (prepend "hc" to the filename)
+newUrl = currentUrl.replace(/(\w+\.html)$/, "hc$1");
+}
 
-                            // Show the popup
-                            popup.classList.add("active");
-                            activePopup = popup;
-                        });
-                    });
+// Redirect to the new page
+if (newUrl !== currentUrl) {
+window.location.href = newUrl;
+}
+});
 
-                    // Close the popup when clicking anywhere outside it
-                    document.addEventListener("click", function (event) {
-                        if (activePopup && !activePopup.contains(event.target)) {
-                            activePopup.classList.remove("active");
-                            activePopup = null;
-                        }
-                    });
-                });
-        </script>
+// Function to update button background image
+function updateButtonImage(isHardcore) {
+if (isHardcore) {
+scHcButton.style.backgroundImage = "url('icons/Hardcore_click.png')";
+} else {
+scHcButton.style.backgroundImage = "url('icons/Softcore_click.png')";
+}
+}
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+const currentPage = window.location.pathname.split("/").pop(); // Get current page filename
+const menuItems = document.querySelectorAll(".top-button");
+
+menuItems.forEach(item => {
+const itemPage = item.getAttribute("href");
+if (itemPage && currentPage === itemPage) {
+item.classList.add("active");
+}
+});
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+let activePopup = null;
+
+document.querySelectorAll(".hover-trigger").forEach(trigger => {
+trigger.addEventListener("click", function (event) {
+event.stopPropagation();
+const characterName = this.getAttribute("data-character-name");
+
+// Close any open popup first
+if (activePopup) {
+activePopup.classList.remove("active");
+activePopup.innerHTML = ""; // Remove iframe for memory efficiency
+activePopup = null;
+}
+
+// Find the associated popup container
+const popup = this.closest(".character-info").nextElementSibling.querySelector(".popup");
+
+// If this popup was already active, just close it
+if (popup === activePopup) {
+return;
+}
+
+// Create an iframe and set its src
+const iframe = document.createElement("iframe");
+iframe.src = `./armory/video_component.html?charName=${encodeURIComponent(characterName)}`;
+iframe.setAttribute("id", "popupFrame");
+
+// Add iframe to the popup
+popup.appendChild(iframe);
+popup.classList.add("active");
+
+// Set this popup as the active one
+activePopup = popup;
+});
+});
+
+// Close the popup when clicking anywhere outside
+document.addEventListener("click", function (event) {
+if (activePopup && !activePopup.contains(event.target)) {
+activePopup.classList.remove("active");
+activePopup.innerHTML = ""; // Remove iframe to free memory
+activePopup = null;
+}
+});
+});
+
+</script>
 
 
         </body>
