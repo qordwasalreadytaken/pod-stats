@@ -25,7 +25,7 @@ Let Qord know, Qord @ PoD Discord
 * Add timestamp
     * Added to main page pie chart and footer to others in SC
     * HC done?
-
+* Add searches for crafted, synth
 
 # To-do from community - Completed
 * Better way to present the "More detailed breakdown:" sections
@@ -35,6 +35,7 @@ Let Qord know, Qord @ PoD Discord
     * Done for SC and HC
 * Move HC/SC toggle up to below home
     * Done for SC and HC
+
 
 # Known Issues to address
 * Some item images in the pop up aren't displaying even though they work in the original twitch extension, looks like it's only the regex'd/text-replace ones? Can't be something I did, blame regex right? 

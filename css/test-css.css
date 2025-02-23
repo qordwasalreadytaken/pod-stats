@@ -8,6 +8,10 @@
         src: url('../armory/font/avqest.ttf'); /*URL to font*/
     }
 
+    a {
+        color: #d5f2e3;  /* Change the link color */
+    }
+
     body {  
         margin: 20px; 
         line-height: 1.6; 
@@ -315,7 +319,7 @@
     }
     .summary-container {
         padding-left: 20px;
-        background-color: #2d2d2d;    
+        background-color: #3a3f44;    
     }
     .column {
         flex: 1;
@@ -344,12 +348,12 @@
         clear: both;
     }
     .hover-trigger {
+        height: 35px; /* Adjust based on your images */
         text-align: center;
-        width: auto;
         display: inline-block;
         padding: 10px 20px;
         background-image: url('../icons/Armoury.png'); /* Path to your PNG */
-        background-size: cover; /* Ensure the image covers the button */
+        background-size: contain; /* Ensure the image covers the button */
         background-repeat: no-repeat;
         background-position: center;
         color: white; /* Keeps text visible */
