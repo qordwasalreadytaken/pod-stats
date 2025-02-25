@@ -124,11 +124,12 @@
     
 
     .content {
-        padding: 0 18px;
+        padding: 18px 18px 18px 18px;
         color: #e0e0e2; 
         display: none;
         overflow: hidden;
         background-color: #2d2d2d;
+        margin-right: 18px;
     }
     iframe {
         width: 100%;
@@ -315,10 +316,14 @@
     .skills-container {
         display: flex;
         justify-content: space-between;
-        background-color: #2d2d2d;        
+        background-color: #2d2d2d;  
+        margin-right: 18px;      
     }
     .summary-container {
         padding-left: 20px;
+        background-color: #3a3f44;    
+    }
+    .text-area {
         background-color: #3a3f44;    
     }
     .column {
@@ -337,6 +342,7 @@
     }
     .indented-skills {
         margin-left: 50px; /* Adjust the value to your preference */
+        margin-right: 50px;
     }
     .merccolumn {
         float: left; 
