@@ -34,6 +34,55 @@
         background-repeat: no-repeat, repeat;
         background-size: contain, auto;
     }
+    .special-background-amazon {  
+        background-image: url("../icons/amazon_background_2600.jpg"), url("../icons/stone_background_2600.jpg");
+        background-position: top 0px left 0px, bottom center;
+        background-repeat: no-repeat, repeat;
+        background-size: contain, auto;
+    }
+    
+    .special-background-assassin {  
+        background-image: url("../icons/assassin_background_2600.jpg"), url("../icons/stone_background_2600.jpg");
+        background-position: top 0px left 0px, bottom center;
+        background-repeat: no-repeat, repeat;
+        background-size: contain, auto;
+    }
+    
+    .special-background-barbarian {  
+        background-image: url("../icons/barbarian_background_2600.jpg"), url("../icons/stone_background_2600.jpg");
+        background-position: top 0px left 0px, bottom center;
+        background-repeat: no-repeat, repeat;
+        background-size: contain, auto;
+    }
+    
+    .special-background-druid {  
+        background-image: url("../icons/druid_background_2600.jpg"), url("../icons/stone_background_2600.jpg");
+        background-position: top 0px left 0px, bottom center;
+        background-repeat: no-repeat, repeat;
+        background-size: contain, auto;
+    }
+    
+    .special-background-necromancer {  
+        background-image: url("../icons/necromancer_background_2600.jpg"), url("../icons/stone_background_2600.jpg");
+        background-position: top 0px left 0px, bottom center;
+        background-repeat: no-repeat, repeat;
+        background-size: contain, auto;
+    }
+    
+    .special-background-paladin {  
+        background-image: url("../icons/paladin_background_2600.jpg"), url("../icons/stone_background_2600.jpg");
+        background-position: top 0px left 0px, bottom center;
+        background-repeat: no-repeat, repeat;
+        background-size: contain, auto;
+    }
+    
+    .special-background-sorceress {  
+        background-image: url("../icons/sorceress_background_2600.jpg"), url("../icons/stone_background_2600.jpg");
+        background-position: top 0px left 0px, bottom center;
+        background-repeat: no-repeat, repeat;
+        background-size: contain, auto;
+    }
+     
     .not-main {
         padding-top: 50px; /* Adjust the value as needed */
     }
@@ -129,7 +178,6 @@
         display: none;
         overflow: hidden;
         background-color: #2d2d2d;
-        margin-right: 18px;
     }
     iframe {
         width: 100%;
@@ -332,6 +380,13 @@
     .char2 {
         background-color: #2d2d2d;    
     }
+    .character-container {
+        width: 100%;  /* ✅ Ensures it takes full width */
+        max-width: 100%;  /* ✅ Prevents unintended shrinking */
+        display: flex;
+        flex-direction: column;  /* ✅ Keeps content stacked properly */
+    }
+    
     .character-container.char1 {
         background-color: #3a3f44;    
         padding: 10px;  /* Optional: Adds spacing inside */
