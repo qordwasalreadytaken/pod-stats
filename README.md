@@ -13,19 +13,14 @@ Let Qord know, Qord @ PoD Discord
 # To-do from community
 * Item displays for characters:
     * Add colors (blue for magic, gold for unique, etc.)
-        * Done for SC class page, but not others
-        * HC done?
-        * Item displays good for class pages, but breaks the clustering for specialty pages
+        * Some specialty pages still need adjustment
             * Working: Notazons, Dashadin, 
             * Not working: Warpspear, Unique Arrows and Bolts, Offensive Aura items, Charge
     * Remove the "x1" from display
-        * Done for SC class pages, but not others
-        * HC done?
+        * Some specialty pages still need adjustment
 * Rotating Synth highlight in the fun facts?
-* Add timestamp
-    * Added to main page pie chart and footer to others in SC
-    * HC done?
-* Add searches for crafted, synth
+* Pie charts
+    * Some specialty pages still need adjustment
 
 # To-do from community - Completed
 * Better way to present the "More detailed breakdown:" sections
@@ -35,12 +30,27 @@ Let Qord know, Qord @ PoD Discord
     * Done for SC and HC
 * Move HC/SC toggle up to below home
     * Done for SC and HC
+* Add timestamp
+    * Added to main page pie chart and footer to others in SC
+    * HC done?
+* Add searches for crafted, synth
+* Custom backgrounds
+* Add sparation in long character lists to make it easier to see where one ends and the next begins
+* Item displays for characters:
+    * Add colors (blue for magic, gold for unique, etc.)
+        * Item displays done for class pages, but breaks the clustering for specialty pages
+            * Working: Notazons, Dashadin, 
+    * Remove the "x1" from display
+        * Done for class pages
+* Pie charts
+    * Class pages, some specialty pages done
 
 
 # Known Issues to address
 * Some item images in the pop up aren't displaying even though they work in the original twitch extension, looks like it's only the regex'd/text-replace ones? Can't be something I did, blame regex right? 
 * Pie Charts not displayed properly, covered by labels
-    * Removed most pie charts for now, they're still generated but the div to show them is commented out in the htnl's
+    * Removed most pie charts for now, they're still generated but the div to show them is commented out in the html's
+        * Most are fixed, a few specialty pages still need help
 * Hardcore had a low player base so the HC data includes a lot of low level characters, skewing data. Should it be floored at lvl 60? Some other level?
     * Hardcore floor changed to level 60, should it be higher still?
 * The number of clusters (builds) to use was decided by cluster analysis, silhouette, and gap analysis, followed by just eyeballing them to see if the made sense. Can this be more automatic AND reliable?
