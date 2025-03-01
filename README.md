@@ -12,6 +12,7 @@ Let Qord know, Qord @ PoD Discord
 
 # To-do from community
 * List of skills in a cluster/group could use better visibility, right now it's just a long list; not easy on the eyes
+    * Remove skills with zero points
     * Line break every 5?
     * Columns?
     * list the paragraph style instead of a top-down list?
@@ -23,6 +24,8 @@ Let Qord know, Qord @ PoD Discord
             * Not working: Unique arrows/bolts, Bong, Offensive Auras (need to fix title coloring)
     * Remove the "x1" from display
         * Not working: Chargers, Offensive Auras, Bong
+* Skill display for characters, add icons for each character
+    * Class pages done, need to do others
 * Rotating Synth highlight in the fun facts?
 * Charts
     * Some specialty pages still need adjustment
@@ -31,6 +34,7 @@ Let Qord know, Qord @ PoD Discord
 * Charge, non-zon - Change sort to class based groups and not skills
 
 # To-do from community - Completed
+* Make character list consistent with Name: Level: Class: text and line breaks 
 * Better way to present the "More detailed breakdown:" sections
     * Maybe give skills weight so, for example, a freezing pulse cluster presents itslef as a freezing pulse cluster so users don't have to read between the lines to see it
     * Weights added to MakeClassPages function; looks ok but will need care and feeding
