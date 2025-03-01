@@ -1,0 +1,489 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Hardcore Notazons Analysis Report</title>
+        <link rel="stylesheet" type="text/css" href="./css/pod-stats.css">
+
+    </head>
+    <body>
+        <div class="top-buttons">
+            <a href="hcHome.html" class="top-button">Home</a>
+            <div class="split-button">
+                <button id="SC" class="split-button-option" onclick="setActive('SC')">SC</button>
+                <button id="HC" class="split-button-option" onclick="setActive('HC')">HC</button>
+            </div>
+            <a href="hcAmazon.html" class="top-button">Amazon</a>
+            <a href="hcAssassin.html" class="top-button">Assassin</a>
+            <a href="hcBarbarian.html" class="top-button">Barbarian</a>
+            <a href="hcDruid.html" class="top-button">Druid</a>
+            <a href="hcNecromancer.html" class="top-button">Necromancer</a>
+            <a href="hcPaladin.html" class="top-button">Paladin</a>
+            <a href="hcSorceress.html" class="top-button">Sorceress</a>
+        </div>
+        <div class="summary-container">
+        <h1>Notazons Hardcore Skill Distribution </h1>
+        <h3>The Notazon is not a Zon, but has bolts or arrows equipped</h3>
+        <p class="indented-skills">Popular builds include:<br>25.00% of Notazons's invest heavily in Oak Sage, Summon Spirit Wolf, Heart of Wolverine, Summon Dire Wolf<br>25.00% of Notazons's invest heavily in Blessed Hammer, Concentration, Vigor, Smite<br>25.00% of Notazons's invest heavily in Summon Dire Wolf, Rabies, Poison Creeper, Lycanthropy<br>25.00% of Notazons's invest heavily in Oak Sage, Summon Spirit Wolf, Heart of Wolverine, Summon Dire Wolf </p>
+
+        <hr>
+        
+        <!--<h2>25.00%  of Notazons's Main Skills:<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 100.00% (20)<br><img src='icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' width='20' height='20'> Summon Spirit Wolf 100.00% (20)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 100.00% (20)<br><img src='icons/Summon Dire Wolf.png' alt='Summon Dire Wolf' width='20' height='20'> Summon Dire Wolf 100.00% (20)</h2>
+        <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='icons/Summon Grizzly.png' alt='Summon Grizzly' width='20' height='20'> Summon Grizzly 100.0% (20.0)<br><img src='icons/Raven.png' alt='Raven' width='20' height='20'> Raven 100.0% (1.0)<br><img src='icons/Spirit of Barbs.png' alt='Spirit of Barbs' width='20' height='20'> Spirit of Barbs 100.0% (1.0)<br><img src='icons/Firestorm.png' alt='Firestorm' width='20' height='20'> Firestorm 100.0% (1.0)<br><img src='icons/Molten Boulder.png' alt='Molten Boulder' width='20' height='20'> Molten Boulder 100.0% (1.0)<br><img src='icons/Flame Dash.png' alt='Flame Dash' width='20' height='20'> Flame Dash 100.0% (1.0)</p> -->
+        <div id="skills" class="skills-container">
+            <div class="column">
+                <ul id="most-popular-skills">
+                    <h2>25.00%  of Notazons's Main Skills:<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 100.00% (20)<br><img src='icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' width='20' height='20'> Summon Spirit Wolf 100.00% (20)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 100.00% (20)<br><img src='icons/Summon Dire Wolf.png' alt='Summon Dire Wolf' width='20' height='20'> Summon Dire Wolf 100.00% (20)</h2>
+                </ul>
+            </div>
+            <div class="column">
+                <ul id="other-skills">
+                    <h2>Other common skills in this group:</h2> <img src='icons/Summon Grizzly.png' alt='Summon Grizzly' width='20' height='20'> Summon Grizzly 100.0% (20.0)<br><img src='icons/Raven.png' alt='Raven' width='20' height='20'> Raven 100.0% (1.0)<br><img src='icons/Spirit of Barbs.png' alt='Spirit of Barbs' width='20' height='20'> Spirit of Barbs 100.0% (1.0)<br><img src='icons/Firestorm.png' alt='Firestorm' width='20' height='20'> Firestorm 100.0% (1.0)<br><img src='icons/Molten Boulder.png' alt='Molten Boulder' width='20' height='20'> Molten Boulder 100.0% (1.0)<br><img src='icons/Flame Dash.png' alt='Flame Dash' width='20' height='20'> Flame Dash 100.0% (1.0)
+                </ul>
+            </div>
+        </div>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>All Skills</strong></button>
+            <div class="content">
+                <div><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 100.0% (20.0)<br><img src='icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' width='20' height='20'> Summon Spirit Wolf 100.0% (20.0)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 100.0% (20.0)<br><img src='icons/Summon Dire Wolf.png' alt='Summon Dire Wolf' width='20' height='20'> Summon Dire Wolf 100.0% (20.0)<br><img src='icons/Summon Grizzly.png' alt='Summon Grizzly' width='20' height='20'> Summon Grizzly 100.0% (20.0)<br><img src='icons/Raven.png' alt='Raven' width='20' height='20'> Raven 100.0% (1.0)<br><img src='icons/Spirit of Barbs.png' alt='Spirit of Barbs' width='20' height='20'> Spirit of Barbs 100.0% (1.0)<br><img src='icons/Firestorm.png' alt='Firestorm' width='20' height='20'> Firestorm 100.0% (1.0)<br><img src='icons/Molten Boulder.png' alt='Molten Boulder' width='20' height='20'> Molten Boulder 100.0% (1.0)<br><img src='icons/Flame Dash.png' alt='Flame Dash' width='20' height='20'> Flame Dash 100.0% (1.0)<br><img src='icons/Poison Creeper.png' alt='Poison Creeper' width='20' height='20'> Poison Creeper 0.0% (0.0)<br><img src='icons/Werewolf.png' alt='Werewolf' width='20' height='20'> Werewolf 0.0% (0.0)<br><img src='icons/Lycanthropy.png' alt='Lycanthropy' width='20' height='20'> Lycanthropy 0.0% (0.0)<br><img src='icons/Feral Rage.png' alt='Feral Rage' width='20' height='20'> Feral Rage 0.0% (0.0)<br><img src='icons/Rabies.png' alt='Rabies' width='20' height='20'> Rabies 0.0% (0.0)<br><img src='icons/Smite.png' alt='Smite' width='20' height='20'> Smite 0.0% (0.0)<br><img src='icons/Holy Bolt.png' alt='Holy Bolt' width='20' height='20'> Holy Bolt 0.0% (0.0)<br><img src='icons/Charge.png' alt='Charge' width='20' height='20'> Charge 0.0% (0.0)<br><img src='icons/Blessed Hammer.png' alt='Blessed Hammer' width='20' height='20'> Blessed Hammer 0.0% (0.0)<br><img src='icons/Holy Shield.png' alt='Holy Shield' width='20' height='20'> Holy Shield 0.0% (0.0)<br><img src='icons/Might.png' alt='Might' width='20' height='20'> Might 0.0% (0.0)<br><img src='icons/Blessed Aim.png' alt='Blessed Aim' width='20' height='20'> Blessed Aim 0.0% (0.0)<br><img src='icons/Concentration.png' alt='Concentration' width='20' height='20'> Concentration 0.0% (0.0)<br><img src='icons/Prayer.png' alt='Prayer' width='20' height='20'> Prayer 0.0% (0.0)<br><img src='icons/Defiance.png' alt='Defiance' width='20' height='20'> Defiance 0.0% (0.0)<br><img src='icons/Cleansing.png' alt='Cleansing' width='20' height='20'> Cleansing 0.0% (0.0)<br><img src='icons/Vigor.png' alt='Vigor' width='20' height='20'> Vigor 0.0% (0.0)<br><img src='icons/Salvation.png' alt='Salvation' width='20' height='20'> Salvation 0.0% (0.0)</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>Most Common Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Body</strong>: <br>Rain 100.00%<br><strong>Gloves</strong>: <br>Laying of Hands 100.00%<br><strong>Belt</strong>: <br>Verdungo's Hearty Cord 100.00%<br><strong>Ring</strong>: <br>Storm Grip 100.00%<br>Raven Frost 100.00%<br><strong>Helmet</strong>: <br>Metamorphosis 100.00%<br><strong>Boots</strong>: <br>Aldur's Advance 100.00%<br><strong>Amulet</strong>: <br>Atma's Scarab 100.00%<br><strong>Left hand</strong>: <br>Spirit 100.00%<br>Witchwild String 100.00%<br><strong>Offhand</strong>: <br>Spirit 100.00%<br>Moonfire 100.00%</div>
+            </div>
+        
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Body</strong>: Rain 100.00%<br><strong>Gloves</strong>: Laying of Hands 100.00%<br><strong>Belt</strong>: Verdungo's Hearty Cord 100.00%<br><strong>Ring</strong>: Storm Grip 100.00%, Raven Frost 100.00%<br><strong>Helmet</strong>: Metamorphosis 100.00%<br><strong>Boots</strong>: Aldur's Advance 100.00%<br><strong>Amulet</strong>: Atma's Scarab 100.00%<br><strong>Left hand</strong>: Spirit 100.00%, Witchwild String 100.00%<br><strong>Offhand</strong>: Spirit 100.00%, Moonfire 100.00%</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>1 Characters in this cluster:</strong>
+        </button>
+        <div class="content">
+            
+            <div class="character-info">
+                <div><strong>Character: PencilPusher</strong></div>
+                <div>Level 94</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=PencilPusher" target="_blank">PencilPusher's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="PencilPusher">
+                        Armory Quickview
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Oak Sage:20, Summon Spirit Wolf:20, Heart of Wolverine:20, Summon Dire Wolf:20, Summon Grizzly:20, Raven:1, Spirit of Barbs:1, Firestorm:1, Molten Boulder:1, Flame Dash:1</p>
+            <p><strong>Equipment:</strong> body: Rain x1, gloves: Laying of Hands x1, belt: Verdungo's Hearty Cord x1, ring: Storm Grip x1, ring: Raven Frost x1, helmet: Metamorphosis x1, boots: Aldur's Advance x1, amulet: Atma's Scarab x1, Left hand: Spirit x1, Left hand: Witchwild String x1, Offhand: Spirit x1, Offhand: Moonfire x1</p>
+            <p><strong>Mercenary:</strong> Act 1 Rogue Scout - Hearth, Treachery, Harmony</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+        
+        </div>
+        <hr>
+        
+        <!--<h2>25.00%  of Notazons's Main Skills:<br><img src='icons/Blessed Hammer.png' alt='Blessed Hammer' width='20' height='20'> Blessed Hammer 100.00% (20)<br><img src='icons/Concentration.png' alt='Concentration' width='20' height='20'> Concentration 100.00% (20)<br><img src='icons/Vigor.png' alt='Vigor' width='20' height='20'> Vigor 100.00% (9)<br><img src='icons/Smite.png' alt='Smite' width='20' height='20'> Smite 100.00% (1)</h2>
+        <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='icons/Holy Bolt.png' alt='Holy Bolt' width='20' height='20'> Holy Bolt 100.0% (1.0)<br><img src='icons/Charge.png' alt='Charge' width='20' height='20'> Charge 100.0% (1.0)<br><img src='icons/Holy Shield.png' alt='Holy Shield' width='20' height='20'> Holy Shield 100.0% (1.0)<br><img src='icons/Might.png' alt='Might' width='20' height='20'> Might 100.0% (1.0)<br><img src='icons/Blessed Aim.png' alt='Blessed Aim' width='20' height='20'> Blessed Aim 100.0% (1.0)<br><img src='icons/Prayer.png' alt='Prayer' width='20' height='20'> Prayer 100.0% (1.0)</p> -->
+        <div id="skills" class="skills-container">
+            <div class="column">
+                <ul id="most-popular-skills">
+                    <h2>25.00%  of Notazons's Main Skills:<br><img src='icons/Blessed Hammer.png' alt='Blessed Hammer' width='20' height='20'> Blessed Hammer 100.00% (20)<br><img src='icons/Concentration.png' alt='Concentration' width='20' height='20'> Concentration 100.00% (20)<br><img src='icons/Vigor.png' alt='Vigor' width='20' height='20'> Vigor 100.00% (9)<br><img src='icons/Smite.png' alt='Smite' width='20' height='20'> Smite 100.00% (1)</h2>
+                </ul>
+            </div>
+            <div class="column">
+                <ul id="other-skills">
+                    <h2>Other common skills in this group:</h2> <img src='icons/Holy Bolt.png' alt='Holy Bolt' width='20' height='20'> Holy Bolt 100.0% (1.0)<br><img src='icons/Charge.png' alt='Charge' width='20' height='20'> Charge 100.0% (1.0)<br><img src='icons/Holy Shield.png' alt='Holy Shield' width='20' height='20'> Holy Shield 100.0% (1.0)<br><img src='icons/Might.png' alt='Might' width='20' height='20'> Might 100.0% (1.0)<br><img src='icons/Blessed Aim.png' alt='Blessed Aim' width='20' height='20'> Blessed Aim 100.0% (1.0)<br><img src='icons/Prayer.png' alt='Prayer' width='20' height='20'> Prayer 100.0% (1.0)
+                </ul>
+            </div>
+        </div>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>All Skills</strong></button>
+            <div class="content">
+                <div><img src='icons/Concentration.png' alt='Concentration' width='20' height='20'> Concentration 100.0% (20.0)<br><img src='icons/Blessed Hammer.png' alt='Blessed Hammer' width='20' height='20'> Blessed Hammer 100.0% (20.0)<br><img src='icons/Vigor.png' alt='Vigor' width='20' height='20'> Vigor 100.0% (9.0)<br><img src='icons/Might.png' alt='Might' width='20' height='20'> Might 100.0% (1.0)<br><img src='icons/Charge.png' alt='Charge' width='20' height='20'> Charge 100.0% (1.0)<br><img src='icons/Holy Bolt.png' alt='Holy Bolt' width='20' height='20'> Holy Bolt 100.0% (1.0)<br><img src='icons/Blessed Aim.png' alt='Blessed Aim' width='20' height='20'> Blessed Aim 100.0% (1.0)<br><img src='icons/Holy Shield.png' alt='Holy Shield' width='20' height='20'> Holy Shield 100.0% (1.0)<br><img src='icons/Smite.png' alt='Smite' width='20' height='20'> Smite 100.0% (1.0)<br><img src='icons/Cleansing.png' alt='Cleansing' width='20' height='20'> Cleansing 100.0% (1.0)<br><img src='icons/Defiance.png' alt='Defiance' width='20' height='20'> Defiance 100.0% (1.0)<br><img src='icons/Prayer.png' alt='Prayer' width='20' height='20'> Prayer 100.0% (1.0)<br><img src='icons/Salvation.png' alt='Salvation' width='20' height='20'> Salvation 100.0% (1.0)<br><img src='icons/Poison Creeper.png' alt='Poison Creeper' width='20' height='20'> Poison Creeper 0.0% (0.0)<br><img src='icons/Flame Dash.png' alt='Flame Dash' width='20' height='20'> Flame Dash 0.0% (0.0)<br><img src='icons/Molten Boulder.png' alt='Molten Boulder' width='20' height='20'> Molten Boulder 0.0% (0.0)<br><img src='icons/Werewolf.png' alt='Werewolf' width='20' height='20'> Werewolf 0.0% (0.0)<br><img src='icons/Summon Grizzly.png' alt='Summon Grizzly' width='20' height='20'> Summon Grizzly 0.0% (0.0)<br><img src='icons/Spirit of Barbs.png' alt='Spirit of Barbs' width='20' height='20'> Spirit of Barbs 0.0% (0.0)<br><img src='icons/Summon Dire Wolf.png' alt='Summon Dire Wolf' width='20' height='20'> Summon Dire Wolf 0.0% (0.0)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 0.0% (0.0)<br><img src='icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' width='20' height='20'> Summon Spirit Wolf 0.0% (0.0)<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 0.0% (0.0)<br><img src='icons/Raven.png' alt='Raven' width='20' height='20'> Raven 0.0% (0.0)<br><img src='icons/Firestorm.png' alt='Firestorm' width='20' height='20'> Firestorm 0.0% (0.0)<br><img src='icons/Feral Rage.png' alt='Feral Rage' width='20' height='20'> Feral Rage 0.0% (0.0)<br><img src='icons/Rabies.png' alt='Rabies' width='20' height='20'> Rabies 0.0% (0.0)<br><img src='icons/Lycanthropy.png' alt='Lycanthropy' width='20' height='20'> Lycanthropy 0.0% (0.0)</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>Most Common Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Gloves</strong>: <br>Sigon's Gage 100.00%<br><strong>Body</strong>: <br>Stealth 100.00%<br><strong>Belt</strong>: <br>Sigon's Wrap 100.00%<br><strong>Boots</strong>: <br>Sigon's Sabot 100.00%<br><strong>Helmet</strong>: <br>Lore 100.00%<br><strong>Ring</strong>: <br>Dread Loop 100.00%<br>Triumphant Ring of the Apprentice 100.00%<br><strong>Amulet</strong>: <br>Garnet Amulet 100.00%<br><strong>Left hand</strong>: <br>Long Bow 100.00%<br>Spirit 100.00%<br><strong>Offhand</strong>: <br>Arrows 100.00%<br>Spirit 100.00%</div>
+            </div>
+        
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Gloves</strong>: Sigon's Gage 100.00%<br><strong>Body</strong>: Stealth 100.00%<br><strong>Belt</strong>: Sigon's Wrap 100.00%<br><strong>Boots</strong>: Sigon's Sabot 100.00%<br><strong>Helmet</strong>: Lore 100.00%<br><strong>Ring</strong>: Dread Loop 100.00%, Triumphant Ring of the Apprentice 100.00%<br><strong>Amulet</strong>: Garnet Amulet 100.00%<br><strong>Left hand</strong>: Long Bow 100.00%, Spirit 100.00%<br><strong>Offhand</strong>: Arrows 100.00%, Spirit 100.00%</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>1 Characters in this cluster:</strong>
+        </button>
+        <div class="content">
+            
+            <div class="character-info">
+                <div><strong>Character: TPII</strong></div>
+                <div>Level 62</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=TPII" target="_blank">TPII's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="TPII">
+                        Armory Quickview
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Blessed Hammer:20, Concentration:20, Vigor:9, Smite:1, Holy Bolt:1, Charge:1, Holy Shield:1, Might:1, Blessed Aim:1, Prayer:1, Defiance:1, Cleansing:1, Salvation:1</p>
+            <p><strong>Equipment:</strong> gloves: Sigon's Gage x1, body: Stealth x1, belt: Sigon's Wrap x1, boots: Sigon's Sabot x1, helmet: Lore x1, ring: Dread Loop x1, ring: Triumphant Ring of the Apprentice x1, amulet: Garnet Amulet x1, Left hand: Long Bow x1, Left hand: Spirit x1, Offhand: Arrows x1, Offhand: Spirit x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - No equipment</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+        
+        </div>
+        <hr>
+        
+        <!--<h2>25.00%  of Notazons's Main Skills:<br><img src='icons/Summon Dire Wolf.png' alt='Summon Dire Wolf' width='20' height='20'> Summon Dire Wolf 100.00% (20)<br><img src='icons/Rabies.png' alt='Rabies' width='20' height='20'> Rabies 100.00% (20)<br><img src='icons/Poison Creeper.png' alt='Poison Creeper' width='20' height='20'> Poison Creeper 100.00% (14)<br><img src='icons/Lycanthropy.png' alt='Lycanthropy' width='20' height='20'> Lycanthropy 100.00% (11)</h2>
+        <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='icons/Raven.png' alt='Raven' width='20' height='20'> Raven 100.0% (1.0)<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 100.0% (1.0)<br><img src='icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' width='20' height='20'> Summon Spirit Wolf 100.0% (1.0)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 100.0% (1.0)<br><img src='icons/Werewolf.png' alt='Werewolf' width='20' height='20'> Werewolf 100.0% (1.0)<br><img src='icons/Feral Rage.png' alt='Feral Rage' width='20' height='20'> Feral Rage 100.0% (1.0)</p> -->
+        <div id="skills" class="skills-container">
+            <div class="column">
+                <ul id="most-popular-skills">
+                    <h2>25.00%  of Notazons's Main Skills:<br><img src='icons/Summon Dire Wolf.png' alt='Summon Dire Wolf' width='20' height='20'> Summon Dire Wolf 100.00% (20)<br><img src='icons/Rabies.png' alt='Rabies' width='20' height='20'> Rabies 100.00% (20)<br><img src='icons/Poison Creeper.png' alt='Poison Creeper' width='20' height='20'> Poison Creeper 100.00% (14)<br><img src='icons/Lycanthropy.png' alt='Lycanthropy' width='20' height='20'> Lycanthropy 100.00% (11)</h2>
+                </ul>
+            </div>
+            <div class="column">
+                <ul id="other-skills">
+                    <h2>Other common skills in this group:</h2> <img src='icons/Raven.png' alt='Raven' width='20' height='20'> Raven 100.0% (1.0)<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 100.0% (1.0)<br><img src='icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' width='20' height='20'> Summon Spirit Wolf 100.0% (1.0)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 100.0% (1.0)<br><img src='icons/Werewolf.png' alt='Werewolf' width='20' height='20'> Werewolf 100.0% (1.0)<br><img src='icons/Feral Rage.png' alt='Feral Rage' width='20' height='20'> Feral Rage 100.0% (1.0)
+                </ul>
+            </div>
+        </div>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>All Skills</strong></button>
+            <div class="content">
+                <div><img src='icons/Summon Dire Wolf.png' alt='Summon Dire Wolf' width='20' height='20'> Summon Dire Wolf 100.0% (20.0)<br><img src='icons/Rabies.png' alt='Rabies' width='20' height='20'> Rabies 100.0% (20.0)<br><img src='icons/Poison Creeper.png' alt='Poison Creeper' width='20' height='20'> Poison Creeper 100.0% (14.0)<br><img src='icons/Lycanthropy.png' alt='Lycanthropy' width='20' height='20'> Lycanthropy 100.0% (11.0)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 100.0% (1.0)<br><img src='icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' width='20' height='20'> Summon Spirit Wolf 100.0% (1.0)<br><img src='icons/Werewolf.png' alt='Werewolf' width='20' height='20'> Werewolf 100.0% (1.0)<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 100.0% (1.0)<br><img src='icons/Raven.png' alt='Raven' width='20' height='20'> Raven 100.0% (1.0)<br><img src='icons/Feral Rage.png' alt='Feral Rage' width='20' height='20'> Feral Rage 100.0% (1.0)<br><img src='icons/Firestorm.png' alt='Firestorm' width='20' height='20'> Firestorm 0.0% (0.0)<br><img src='icons/Spirit of Barbs.png' alt='Spirit of Barbs' width='20' height='20'> Spirit of Barbs 0.0% (0.0)<br><img src='icons/Molten Boulder.png' alt='Molten Boulder' width='20' height='20'> Molten Boulder 0.0% (0.0)<br><img src='icons/Flame Dash.png' alt='Flame Dash' width='20' height='20'> Flame Dash 0.0% (0.0)<br><img src='icons/Summon Grizzly.png' alt='Summon Grizzly' width='20' height='20'> Summon Grizzly 0.0% (0.0)<br><img src='icons/Smite.png' alt='Smite' width='20' height='20'> Smite 0.0% (0.0)<br><img src='icons/Holy Bolt.png' alt='Holy Bolt' width='20' height='20'> Holy Bolt 0.0% (0.0)<br><img src='icons/Charge.png' alt='Charge' width='20' height='20'> Charge 0.0% (0.0)<br><img src='icons/Blessed Hammer.png' alt='Blessed Hammer' width='20' height='20'> Blessed Hammer 0.0% (0.0)<br><img src='icons/Holy Shield.png' alt='Holy Shield' width='20' height='20'> Holy Shield 0.0% (0.0)<br><img src='icons/Might.png' alt='Might' width='20' height='20'> Might 0.0% (0.0)<br><img src='icons/Blessed Aim.png' alt='Blessed Aim' width='20' height='20'> Blessed Aim 0.0% (0.0)<br><img src='icons/Concentration.png' alt='Concentration' width='20' height='20'> Concentration 0.0% (0.0)<br><img src='icons/Prayer.png' alt='Prayer' width='20' height='20'> Prayer 0.0% (0.0)<br><img src='icons/Defiance.png' alt='Defiance' width='20' height='20'> Defiance 0.0% (0.0)<br><img src='icons/Cleansing.png' alt='Cleansing' width='20' height='20'> Cleansing 0.0% (0.0)<br><img src='icons/Vigor.png' alt='Vigor' width='20' height='20'> Vigor 0.0% (0.0)<br><img src='icons/Salvation.png' alt='Salvation' width='20' height='20'> Salvation 0.0% (0.0)</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>Most Common Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Belt</strong>: <br>Arctic Binding 100.00%<br><strong>Ring</strong>: <br>Nagelring 100.00%<br>Dwarf Star 100.00%<br><strong>Boots</strong>: <br>Grim Stalker 100.00%<br><strong>Body</strong>: <br>Skin of the Vipermagi 100.00%<br><strong>Helmet</strong>: <br>Cerebus' Bite 100.00%<br><strong>Amulet</strong>: <br>Communal Amulet 100.00%<br><strong>Left hand</strong>: <br>Spirit 100.00%<br>Pus Spitter 100.00%<br><strong>Offhand</strong>: <br>Steelclash 100.00%<br>Bitter Eye 100.00%<br><strong>Gloves</strong>: <br>Trang-Oul's Claws 100.00%</div>
+            </div>
+        
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Belt</strong>: Arctic Binding 100.00%<br><strong>Ring</strong>: Nagelring 100.00%, Dwarf Star 100.00%<br><strong>Boots</strong>: Grim Stalker 100.00%<br><strong>Body</strong>: Skin of the Vipermagi 100.00%<br><strong>Helmet</strong>: Cerebus' Bite 100.00%<br><strong>Amulet</strong>: Communal Amulet 100.00%<br><strong>Left hand</strong>: Spirit 100.00%, Pus Spitter 100.00%<br><strong>Offhand</strong>: Steelclash 100.00%, Bitter Eye 100.00%<br><strong>Gloves</strong>: Trang-Oul's Claws 100.00%</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>1 Characters in this cluster:</strong>
+        </button>
+        <div class="content">
+            
+            <div class="character-info">
+                <div><strong>Character: Incased</strong></div>
+                <div>Level 64</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Incased" target="_blank">Incased's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="Incased">
+                        Armory Quickview
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Summon Dire Wolf:20, Rabies:20, Poison Creeper:14, Lycanthropy:11, Raven:1, Oak Sage:1, Summon Spirit Wolf:1, Heart of Wolverine:1, Werewolf:1, Feral Rage:1</p>
+            <p><strong>Equipment:</strong> belt: Arctic Binding x1, ring: Nagelring x1, ring: Dwarf Star x1, boots: Grim Stalker x1, body: Skin of the Vipermagi x1, helmet: Cerebus' Bite x1, amulet: Communal Amulet x1, Left hand: Spirit x1, Left hand: Pus Spitter x1, Offhand: Steelclash x1, Offhand: Bitter Eye x1, gloves: Trang-Oul's Claws x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Berserker's Headgear, Sigon's Shelter, Kelpie Snare</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+        
+        </div>
+        <hr>
+        
+        <!--<h2>25.00%  of Notazons's Main Skills:<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 100.00% (20)<br><img src='icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' width='20' height='20'> Summon Spirit Wolf 100.00% (20)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 100.00% (20)<br><img src='icons/Summon Dire Wolf.png' alt='Summon Dire Wolf' width='20' height='20'> Summon Dire Wolf 100.00% (20)</h2>
+        <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='icons/Summon Grizzly.png' alt='Summon Grizzly' width='20' height='20'> Summon Grizzly 100.0% (20.0)<br><img src='icons/Raven.png' alt='Raven' width='20' height='20'> Raven 100.0% (1.0)<br><img src='icons/Spirit of Barbs.png' alt='Spirit of Barbs' width='20' height='20'> Spirit of Barbs 100.0% (1.0)<br><img src='icons/Firestorm.png' alt='Firestorm' width='20' height='20'> Firestorm 0.0% (0.0)<br><img src='icons/Molten Boulder.png' alt='Molten Boulder' width='20' height='20'> Molten Boulder 0.0% (0.0)<br><img src='icons/Flame Dash.png' alt='Flame Dash' width='20' height='20'> Flame Dash 0.0% (0.0)</p> -->
+        <div id="skills" class="skills-container">
+            <div class="column">
+                <ul id="most-popular-skills">
+                    <h2>25.00%  of Notazons's Main Skills:<br><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 100.00% (20)<br><img src='icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' width='20' height='20'> Summon Spirit Wolf 100.00% (20)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 100.00% (20)<br><img src='icons/Summon Dire Wolf.png' alt='Summon Dire Wolf' width='20' height='20'> Summon Dire Wolf 100.00% (20)</h2>
+                </ul>
+            </div>
+            <div class="column">
+                <ul id="other-skills">
+                    <h2>Other common skills in this group:</h2> <img src='icons/Summon Grizzly.png' alt='Summon Grizzly' width='20' height='20'> Summon Grizzly 100.0% (20.0)<br><img src='icons/Raven.png' alt='Raven' width='20' height='20'> Raven 100.0% (1.0)<br><img src='icons/Spirit of Barbs.png' alt='Spirit of Barbs' width='20' height='20'> Spirit of Barbs 100.0% (1.0)<br><img src='icons/Firestorm.png' alt='Firestorm' width='20' height='20'> Firestorm 0.0% (0.0)<br><img src='icons/Molten Boulder.png' alt='Molten Boulder' width='20' height='20'> Molten Boulder 0.0% (0.0)<br><img src='icons/Flame Dash.png' alt='Flame Dash' width='20' height='20'> Flame Dash 0.0% (0.0)
+                </ul>
+            </div>
+        </div>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>All Skills</strong></button>
+            <div class="content">
+                <div><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 100.0% (20.0)<br><img src='icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' width='20' height='20'> Summon Spirit Wolf 100.0% (20.0)<br><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 100.0% (20.0)<br><img src='icons/Summon Dire Wolf.png' alt='Summon Dire Wolf' width='20' height='20'> Summon Dire Wolf 100.0% (20.0)<br><img src='icons/Summon Grizzly.png' alt='Summon Grizzly' width='20' height='20'> Summon Grizzly 100.0% (20.0)<br><img src='icons/Raven.png' alt='Raven' width='20' height='20'> Raven 100.0% (1.0)<br><img src='icons/Spirit of Barbs.png' alt='Spirit of Barbs' width='20' height='20'> Spirit of Barbs 100.0% (1.0)<br><img src='icons/Firestorm.png' alt='Firestorm' width='20' height='20'> Firestorm 0.0% (0.0)<br><img src='icons/Molten Boulder.png' alt='Molten Boulder' width='20' height='20'> Molten Boulder 0.0% (0.0)<br><img src='icons/Flame Dash.png' alt='Flame Dash' width='20' height='20'> Flame Dash 0.0% (0.0)<br><img src='icons/Poison Creeper.png' alt='Poison Creeper' width='20' height='20'> Poison Creeper 0.0% (0.0)<br><img src='icons/Werewolf.png' alt='Werewolf' width='20' height='20'> Werewolf 0.0% (0.0)<br><img src='icons/Lycanthropy.png' alt='Lycanthropy' width='20' height='20'> Lycanthropy 0.0% (0.0)<br><img src='icons/Feral Rage.png' alt='Feral Rage' width='20' height='20'> Feral Rage 0.0% (0.0)<br><img src='icons/Rabies.png' alt='Rabies' width='20' height='20'> Rabies 0.0% (0.0)<br><img src='icons/Smite.png' alt='Smite' width='20' height='20'> Smite 0.0% (0.0)<br><img src='icons/Holy Bolt.png' alt='Holy Bolt' width='20' height='20'> Holy Bolt 0.0% (0.0)<br><img src='icons/Charge.png' alt='Charge' width='20' height='20'> Charge 0.0% (0.0)<br><img src='icons/Blessed Hammer.png' alt='Blessed Hammer' width='20' height='20'> Blessed Hammer 0.0% (0.0)<br><img src='icons/Holy Shield.png' alt='Holy Shield' width='20' height='20'> Holy Shield 0.0% (0.0)<br><img src='icons/Might.png' alt='Might' width='20' height='20'> Might 0.0% (0.0)<br><img src='icons/Blessed Aim.png' alt='Blessed Aim' width='20' height='20'> Blessed Aim 0.0% (0.0)<br><img src='icons/Concentration.png' alt='Concentration' width='20' height='20'> Concentration 0.0% (0.0)<br><img src='icons/Prayer.png' alt='Prayer' width='20' height='20'> Prayer 0.0% (0.0)<br><img src='icons/Defiance.png' alt='Defiance' width='20' height='20'> Defiance 0.0% (0.0)<br><img src='icons/Cleansing.png' alt='Cleansing' width='20' height='20'> Cleansing 0.0% (0.0)<br><img src='icons/Vigor.png' alt='Vigor' width='20' height='20'> Vigor 0.0% (0.0)<br><img src='icons/Salvation.png' alt='Salvation' width='20' height='20'> Salvation 0.0% (0.0)</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>Most Common Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Ring</strong>: <br>Bul-Kathos' Wedding Band 200.00%<br><strong>Body</strong>: <br>Enigma 100.00%<br><strong>Gloves</strong>: <br>Ghoulhide 100.00%<br><strong>Left hand</strong>: <br>Mang Song's Lesson 100.00%<br>Goldstrike Arch 100.00%<br><strong>Helmet</strong>: <br>Kira's Guardian 100.00%<br><strong>Boots</strong>: <br>Gore Rider 100.00%<br><strong>Belt</strong>: <br>String of Ears 100.00%<br><strong>Amulet</strong>: <br>Metalgrid 100.00%<br><strong>Offhand</strong>: <br>Wraithra Eye 100.00%</div>
+            </div>
+        
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Ring</strong>: Bul-Kathos' Wedding Band 200.00%<br><strong>Body</strong>: Enigma 100.00%<br><strong>Gloves</strong>: Ghoulhide 100.00%<br><strong>Left hand</strong>: Mang Song's Lesson 100.00%, Goldstrike Arch 100.00%<br><strong>Helmet</strong>: Kira's Guardian 100.00%<br><strong>Boots</strong>: Gore Rider 100.00%<br><strong>Belt</strong>: String of Ears 100.00%<br><strong>Amulet</strong>: Metalgrid 100.00%<br><strong>Offhand</strong>: Wraithra Eye 100.00%</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>1 Characters in this cluster:</strong>
+        </button>
+        <div class="content">
+            
+            <div class="character-info">
+                <div><strong>Character: Oggi</strong></div>
+                <div>Level 97</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Oggi" target="_blank">Oggi's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="Oggi">
+                        Armory Quickview
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Oak Sage:20, Summon Spirit Wolf:20, Heart of Wolverine:20, Summon Dire Wolf:20, Summon Grizzly:20, Raven:1, Spirit of Barbs:1</p>
+            <p><strong>Equipment:</strong> ring: Bul-Kathos' Wedding Band x2, body: Enigma x1, gloves: Ghoulhide x1, Left hand: Mang Song's Lesson x1, Left hand: Goldstrike Arch x1, helmet: Kira's Guardian x1, boots: Gore Rider x1, belt: String of Ears x1, amulet: Metalgrid x1, Offhand: Wraithra Eye x1</p>
+            <p><strong>Mercenary:</strong> Act 1 Rogue Scout - Hearth, Fortitude, Faith</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+            <br>
+            
+        
+        </div>
+        <hr>
+        
+            <h3>Top 5 Most Popular Notazons Skills:</h3>
+        <ul>
+        </ul>
+
+        <h3>Bottom 5 Least Popular Notazons Skills:</h3>
+        <ul>
+        </ul>
+<br>
+</div>
+<br><br>        
+        <!-- Embed the Plotly pie chart -->
+        <div>
+            <img src="charts/hcNotazons-clusters_distribution_pie.png" alt="Notazons Skills Distribution">
+        </div>
+
+        <!-- Embed the Plotly scatter plot -->
+        <div>
+            <img src="charts/hcNotazons-clusters_with_avg_points.png" alt="Notazons Skill Clusters Scatter Plot">
+        </div>
+        <button onclick="topFunction()" id="backToTopBtn" class="back-to-top">Top</button>
+        
+
+        <script>
+            var coll = document.getElementsByClassName("collapsible");
+            for (var i = 0; i < coll.length; i++) {
+                coll[i].addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var content = this.nextElementSibling;
+                    var openIcon = this.querySelector("img.icon[alt='Open']");
+                    var closeIcon = this.querySelector("img.icon[alt='Close']");
+
+                    if (content.style.display === "block") {
+                        content.style.display = "none";
+                        openIcon.classList.remove("hidden");
+                        closeIcon.classList.add("hidden");
+                    } else {
+                        content.style.display = "block";
+                        openIcon.classList.add("hidden");
+                        closeIcon.classList.remove("hidden");
+                    }
+                });
+            }
+        </script>
+
+        <script>
+            //Get the button
+            var backToTopBtn = document.getElementById("backToTopBtn");
+
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function() {scrollFunction()};
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    backToTopBtn.style.display = "block";
+                } else {
+                    backToTopBtn.style.display = "none";
+                }
+            }
+
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+                document.body.scrollTop = 0; // For Safari
+                document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+            }
+        </script>
+
+        <script>
+            function setActive(id) {
+                // Remove active class from both buttons
+                document.getElementById("SC").classList.remove("active");
+                document.getElementById("HC").classList.remove("active");
+                
+                // Add active class to the selected button
+                document.getElementById(id).classList.add("active");
+                
+                // Get the current URL
+                var currentUrl = window.location.href;
+                
+                // Determine the new URL based on the selected mode
+                var newUrl;
+                if (id === "SC") {
+                    if (currentUrl.includes('hc')) {
+                        newUrl = currentUrl.replace(/hc/gi, '');
+                    } else {
+                        newUrl = currentUrl;
+                    }
+                } else if (id === "HC") {
+                    if (!currentUrl.includes('hc')) {
+                        newUrl = currentUrl.replace(/(\w+)\.html$/, 'hc$1.html');
+                    } else {
+                        newUrl = currentUrl;
+                    }
+                }
+                
+                // Redirect to the new URL if it has changed
+                if (newUrl !== currentUrl) {
+                    window.location.href = newUrl;
+                }
+            }
+
+            // Set default active button based on the current URL
+            window.onload = function() {
+                if (window.location.href.includes('hc')) {
+                    setActive("HC");
+                } else {
+                    setActive("SC");
+                }
+            }
+        </script>
+                <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const hoverTriggers = document.querySelectorAll(".hover-trigger");
+                    let activePopup = null;
+
+                    hoverTriggers.forEach(trigger => {
+                        trigger.addEventListener("click", function (event) {
+                            event.stopPropagation();
+                            const characterName = this.getAttribute("data-character-name");
+
+                            // Close any open popup first
+                            if (activePopup) {
+                                activePopup.classList.remove("active");
+                            }
+
+                            // Find the popup within the same character container
+                            const popup = this.closest(".character-info").nextElementSibling.querySelector(".popup");
+                            const iframe = popup.querySelector("iframe");
+
+                            console.log('Popup:', popup); // Debugging line
+                            console.log('Character Name:', characterName); // Debugging line
+
+                            // Set the correct iframe URL
+                            iframe.src = `./armory/video_component.html?charName=${encodeURIComponent(characterName)}`;
+
+                            // Show the popup
+                            popup.classList.add("active");
+                            activePopup = popup;
+                        });
+                    });
+
+                    // Close the popup when clicking anywhere outside it
+                    document.addEventListener("click", function (event) {
+                        if (activePopup && !activePopup.contains(event.target)) {
+                            activePopup.classList.remove("active");
+                            activePopup = null;
+                        }
+                    });
+                });
+        </script>
+
+
+
+    </body>
+    </html>
+    

@@ -1,0 +1,490 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Hardcore Dashadin Analysis Report</title>
+        <link rel="stylesheet" type="text/css" href="./css/pod-stats.css">
+
+    </head>
+    <body>
+        <div class="top-buttons">
+            <a href="hcHome.html" class="top-button">Home</a>
+            <div class="split-button">
+                <button id="SC" class="split-button-option" onclick="setActive('SC')">SC</button>
+                <button id="HC" class="split-button-option" onclick="setActive('HC')">HC</button>
+            </div>
+            <a href="hcAmazon.html" class="top-button">Amazon</a>
+            <a href="hcAssassin.html" class="top-button">Assassin</a>
+            <a href="hcBarbarian.html" class="top-button">Barbarian</a>
+            <a href="hcDruid.html" class="top-button">Druid</a>
+            <a href="hcNecromancer.html" class="top-button">Necromancer</a>
+            <a href="hcPaladin.html" class="top-button">Paladin</a>
+            <a href="hcSorceress.html" class="top-button">Sorceress</a>
+        </div>
+
+        <div class="summary-container">
+        <h1>Hardcore Dashadin Skill Distribution </h1>
+        <h3>This group includes anyone with 10 or more points in Dashing Strike</h3>
+        <p class="indented-skills">Popular builds include:<br>62.50% of Dashadin's invest heavily in Dashing Strike, Sanctuary, Cleansing, Holy Bolt<br>37.50% of Dashadin's invest heavily in Dashing Strike, Sanctuary, Cleansing, Holy Shield </p>
+
+        <hr>
+        
+        <!--<h2>62.50%  of Dashadin's Main Skills:<br><img src='icons/Dashing Strike.png' alt='Dashing Strike' width='20' height='20'> Dashing Strike 100.00% (100)<br><img src='icons/Sanctuary.png' alt='Sanctuary' width='20' height='20'> Sanctuary 100.00% (100)<br><img src='icons/Cleansing.png' alt='Cleansing' width='20' height='20'> Cleansing 100.00% (100)<br><img src='icons/Holy Bolt.png' alt='Holy Bolt' width='20' height='20'> Holy Bolt 100.00% (27)</h2>
+        <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='icons/Holy Freeze.png' alt='Holy Freeze' width='20' height='20'> Holy Freeze 100.0% (26.0)<br><img src='icons/Holy Shield.png' alt='Holy Shield' width='20' height='20'> Holy Shield 100.0% (25.0)<br><img src='icons/Smite.png' alt='Smite' width='20' height='20'> Smite 100.0% (5.0)<br><img src='icons/Charge.png' alt='Charge' width='20' height='20'> Charge 100.0% (5.0)<br><img src='icons/Blessed Hammer.png' alt='Blessed Hammer' width='20' height='20'> Blessed Hammer 100.0% (5.0)<br><img src='icons/Might.png' alt='Might' width='20' height='20'> Might 100.0% (5.0)</p> -->
+        <div id="skills" class="skills-container">
+            <div class="column">
+                <ul id="most-popular-skills">
+                    <h2>62.50%  of Dashadin's Main Skills:<br><img src='icons/Dashing Strike.png' alt='Dashing Strike' width='20' height='20'> Dashing Strike 100.00% (100)<br><img src='icons/Sanctuary.png' alt='Sanctuary' width='20' height='20'> Sanctuary 100.00% (100)<br><img src='icons/Cleansing.png' alt='Cleansing' width='20' height='20'> Cleansing 100.00% (100)<br><img src='icons/Holy Bolt.png' alt='Holy Bolt' width='20' height='20'> Holy Bolt 100.00% (27)</h2>
+                </ul>
+            </div>
+            <div class="column">
+                <ul id="other-skills">
+                    <h2>Other common skills in this group:</h2> <img src='icons/Holy Freeze.png' alt='Holy Freeze' width='20' height='20'> Holy Freeze 100.0% (26.0)<br><img src='icons/Holy Shield.png' alt='Holy Shield' width='20' height='20'> Holy Shield 100.0% (25.0)<br><img src='icons/Smite.png' alt='Smite' width='20' height='20'> Smite 100.0% (5.0)<br><img src='icons/Charge.png' alt='Charge' width='20' height='20'> Charge 100.0% (5.0)<br><img src='icons/Blessed Hammer.png' alt='Blessed Hammer' width='20' height='20'> Blessed Hammer 100.0% (5.0)<br><img src='icons/Might.png' alt='Might' width='20' height='20'> Might 100.0% (5.0)
+                </ul>
+            </div>
+        </div>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>All Skills</strong></button>
+            <div class="content">
+                <div><img src='icons/Dashing Strike.png' alt='Dashing Strike' width='20' height='20'> Dashing Strike 100.0% (100.0)<br><img src='icons/Cleansing.png' alt='Cleansing' width='20' height='20'> Cleansing 100.0% (100.0)<br><img src='icons/Sanctuary.png' alt='Sanctuary' width='20' height='20'> Sanctuary 100.0% (100.0)<br><img src='icons/Holy Bolt.png' alt='Holy Bolt' width='20' height='20'> Holy Bolt 100.0% (27.0)<br><img src='icons/Holy Freeze.png' alt='Holy Freeze' width='20' height='20'> Holy Freeze 100.0% (26.0)<br><img src='icons/Holy Shield.png' alt='Holy Shield' width='20' height='20'> Holy Shield 100.0% (25.0)<br><img src='icons/Charge.png' alt='Charge' width='20' height='20'> Charge 100.0% (5.0)<br><img src='icons/Blessed Hammer.png' alt='Blessed Hammer' width='20' height='20'> Blessed Hammer 100.0% (5.0)<br><img src='icons/Smite.png' alt='Smite' width='20' height='20'> Smite 100.0% (5.0)<br><img src='icons/Might.png' alt='Might' width='20' height='20'> Might 100.0% (5.0)<br><img src='icons/Precision.png' alt='Precision' width='20' height='20'> Precision 100.0% (5.0)<br><img src='icons/Holy Fire.png' alt='Holy Fire' width='20' height='20'> Holy Fire 100.0% (5.0)<br><img src='icons/Prayer.png' alt='Prayer' width='20' height='20'> Prayer 100.0% (5.0)<br><img src='icons/Defiance.png' alt='Defiance' width='20' height='20'> Defiance 60.0% (3.0)<br><img src='icons/Vigor.png' alt='Vigor' width='20' height='20'> Vigor 60.0% (3.0)<br><img src='icons/Redemption.png' alt='Redemption' width='20' height='20'> Redemption 60.0% (3.0)<br><img src='icons/Conviction.png' alt='Conviction' width='20' height='20'> Conviction 20.0% (1.0)<br><img src='icons/Salvation.png' alt='Salvation' width='20' height='20'> Salvation 20.0% (1.0)<br><img src='icons/Sacrifice.png' alt='Sacrifice' width='20' height='20'> Sacrifice 20.0% (1.0)<br><img src='icons/Zeal.png' alt='Zeal' width='20' height='20'> Zeal 20.0% (1.0)<br><img src='icons/Resist Fire.png' alt='Resist Fire' width='20' height='20'> Resist Fire 20.0% (1.0)<br><img src='icons/Resist Cold.png' alt='Resist Cold' width='20' height='20'> Resist Cold 20.0% (1.0)</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>Most Common Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Gloves</strong>: <br>Beast Fist 20.00%<br>Immortal King's Forge 20.00%<br>Raven Grasp 20.00%<br>Rune Clutches 20.00%<br><strong>Belt</strong>: <br>Death Fringe 20.00%<br>Immortal King's Detail 20.00%<br>String of Ears 20.00%<br>Tal Rasha's Fine-Spun Cloth 20.00%<br><strong>Ring</strong>: <br>Raven Frost 40.00%<br>Wraithra Finger 20.00%<br>Dwarf Star 20.00%<br>Skull Whorl 20.00%<br>Storm Touch 20.00%<br><strong>Body</strong>: <br>Tal Rasha's Guardianship 20.00%<br>Dragon 20.00%<br>Haemosu's Adamant 20.00%<br>Embossed Plate 20.00%<br><strong>Boots</strong>: <br>Dire Blazer 20.00%<br>Gale Nails 20.00%<br>Dread Brogues 20.00%<br>Treads of Cthon 20.00%<br><strong>Amulet</strong>: <br>Marshal's Amulet 40.00%<br>Mara's Kaleidoscope 20.00%<br>Skull Wing 20.00%<br><strong>Helmet</strong>: <br>Lore 40.00%<br>Jeweler's Tiara of Precision 20.00%<br>Storm Hood 20.00%<br><strong>Left hand</strong>: <br>Spirit 80.00%<br>Naj's Puzzler 20.00%<br>Civerb's Cudgel 20.00%<br><strong>Offhand</strong>: <br>Spirit 80.00%<br>Civerb's Ward 20.00%</div>
+            </div>
+        
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Gloves</strong>: Beast Fist 20.00%, Immortal King's Forge 20.00%, Raven Grasp 20.00%, Rune Clutches 20.00%<br><strong>Belt</strong>: Death Fringe 20.00%, Immortal King's Detail 20.00%, String of Ears 20.00%, Tal Rasha's Fine-Spun Cloth 20.00%<br><strong>Ring</strong>: Raven Frost 40.00%, Wraithra Finger 20.00%, Dwarf Star 20.00%, Skull Whorl 20.00%, Storm Touch 20.00%, Nagelring 20.00%, Manald Heal 20.00%<br><strong>Body</strong>: Tal Rasha's Guardianship 20.00%, Dragon 20.00%, Haemosu's Adamant 20.00%, Embossed Plate 20.00%<br><strong>Boots</strong>: Dire Blazer 20.00%, Gale Nails 20.00%, Dread Brogues 20.00%, Treads of Cthon 20.00%<br><strong>Amulet</strong>: Marshal's Amulet 40.00%, Mara's Kaleidoscope 20.00%, Skull Wing 20.00%<br><strong>Helmet</strong>: Lore 40.00%, Jeweler's Tiara of Precision 20.00%, Storm Hood 20.00%<br><strong>Left hand</strong>: Spirit 80.00%, Naj's Puzzler 20.00%, Civerb's Cudgel 20.00%<br><strong>Offhand</strong>: Spirit 80.00%, Civerb's Ward 20.00%</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>5 Characters in this cluster:</strong>
+        </button>
+        <div class="content">
+            
+            <div class="character-info">
+                <div><strong>Character: when_reset</strong></div>
+                <div>Level 88</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=when_reset" target="_blank">when_reset's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="when_reset">
+                        Armory Quickview
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Holy Bolt:20, Dashing Strike:20, Sanctuary:20, Cleansing:20, Holy Shield:6, Sacrifice:1, Smite:1, Zeal:1, Charge:1, Blessed Hammer:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Prayer:1, Defiance:1, Vigor:1, Redemption:1</p>
+            <p><strong>Equipment:</strong> gloves: Beast Fist x1, belt: Death Fringe x1, ring: Wraithra Finger x1, ring: Dwarf Star x1, body: Tal Rasha's Guardianship x1, boots: Dire Blazer x1, amulet: Mara's Kaleidoscope x1, helmet: Jeweler's Tiara of Precision x1, Left hand: Naj's Puzzler x1, Left hand: Spirit x1, Offhand: Spirit x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Crown of Thieves, Smoke, Tomb Reaver</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+        
+            <div class="character-info">
+                <div><strong>Character: Butt_Plugg</strong></div>
+                <div>Level 83</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Butt_Plugg" target="_blank">Butt_Plugg's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="Butt_Plugg">
+                        Armory Quickview
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Dashing Strike:20, Sanctuary:20, Cleansing:20, Holy Shield:11, Holy Freeze:9, Holy Bolt:2, Smite:1, Charge:1, Blessed Hammer:1, Might:1, Holy Fire:1, Precision:1, Prayer:1, Resist Fire:1, Defiance:1, Resist Cold:1, Vigor:1, Redemption:1</p>
+            <p><strong>Equipment:</strong> ring: Raven Frost x1, ring: Skull Whorl x1, amulet: Marshal's Amulet x1, boots: Gale Nails x1, belt: Immortal King's Detail x1, gloves: Immortal King's Forge x1, Left hand: Civerb's Cudgel x1, Left hand: Spirit x1, Offhand: Civerb's Ward x1, Offhand: Spirit x1, helmet: Storm Hood x1, body: Dragon x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Crown of Thieves, Treachery, Hone Sundan</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+        
+            <div class="character-info">
+                <div><strong>Character: lilaura</strong></div>
+                <div>Level 75</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=lilaura" target="_blank">lilaura's Armory</a></div>
+
+                
+                    <div class="hover-trigger-dead" data-character-name="lilaura">
+                        Dead
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Dashing Strike:20, Sanctuary:20, Cleansing:20, Holy Freeze:14, Smite:1, Holy Bolt:1, Charge:1, Blessed Hammer:1, Holy Shield:1, Might:1, Holy Fire:1, Precision:1, Conviction:1, Prayer:1, Salvation:1</p>
+            <p><strong>Equipment:</strong> </p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Circlet of Regrowth, Hwanin's Refuge, The Meat Scraper</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+        
+            <div class="character-info">
+                <div><strong>Character: Chaos</strong></div>
+                <div>Level 71</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Chaos" target="_blank">Chaos's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="Chaos">
+                        Armory Quickview
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Dashing Strike:20, Sanctuary:20, Cleansing:20, Holy Shield:6, Smite:1, Holy Bolt:1, Charge:1, Blessed Hammer:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Prayer:1, Defiance:1, Vigor:1, Redemption:1</p>
+            <p><strong>Equipment:</strong> amulet: Skull Wing x1, helmet: Lore x1, belt: String of Ears x1, ring: Storm Touch x1, ring: Raven Frost x1, gloves: Raven Grasp x1, boots: Dread Brogues x1, body: Haemosu's Adamant x1, Left hand: Spirit x1, Offhand: Spirit x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Duriel's Shell, Imp Brow, Insight</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+        
+            <div class="character-info">
+                <div><strong>Character: Starso_Pal</strong></div>
+                <div>Level 64</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Starso_Pal" target="_blank">Starso_Pal's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="Starso_Pal">
+                        Armory Quickview
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Dashing Strike:20, Sanctuary:20, Cleansing:20, Holy Bolt:3, Smite:1, Charge:1, Blessed Hammer:1, Holy Shield:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Prayer:1</p>
+            <p><strong>Equipment:</strong> boots: Treads of Cthon x1, ring: Nagelring x1, ring: Manald Heal x1, helmet: Lore x1, amulet: Marshal's Amulet x1, gloves: Rune Clutches x1, belt: Tal Rasha's Fine-Spun Cloth x1, body: Embossed Plate x1, Left hand: Spirit x1, Offhand: Spirit x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Sigon's Visor, Sigon's Shelter, Pain Nails</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+        
+        </div>
+        <hr>
+        
+        <!--<h2>37.50%  of Dashadin's Main Skills:<br><img src='icons/Dashing Strike.png' alt='Dashing Strike' width='20' height='20'> Dashing Strike 100.00% (60)<br><img src='icons/Sanctuary.png' alt='Sanctuary' width='20' height='20'> Sanctuary 100.00% (60)<br><img src='icons/Cleansing.png' alt='Cleansing' width='20' height='20'> Cleansing 100.00% (60)<br><img src='icons/Holy Shield.png' alt='Holy Shield' width='20' height='20'> Holy Shield 100.00% (57)</h2>
+        <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='icons/Defiance.png' alt='Defiance' width='20' height='20'> Defiance 100.0% (10.0)<br><img src='icons/Holy Bolt.png' alt='Holy Bolt' width='20' height='20'> Holy Bolt 100.0% (8.0)<br><img src='icons/Smite.png' alt='Smite' width='20' height='20'> Smite 100.0% (3.0)<br><img src='icons/Charge.png' alt='Charge' width='20' height='20'> Charge 100.0% (3.0)<br><img src='icons/Blessed Hammer.png' alt='Blessed Hammer' width='20' height='20'> Blessed Hammer 100.0% (3.0)<br><img src='icons/Might.png' alt='Might' width='20' height='20'> Might 100.0% (3.0)</p> -->
+        <div id="skills" class="skills-container">
+            <div class="column">
+                <ul id="most-popular-skills">
+                    <h2>37.50%  of Dashadin's Main Skills:<br><img src='icons/Dashing Strike.png' alt='Dashing Strike' width='20' height='20'> Dashing Strike 100.00% (60)<br><img src='icons/Sanctuary.png' alt='Sanctuary' width='20' height='20'> Sanctuary 100.00% (60)<br><img src='icons/Cleansing.png' alt='Cleansing' width='20' height='20'> Cleansing 100.00% (60)<br><img src='icons/Holy Shield.png' alt='Holy Shield' width='20' height='20'> Holy Shield 100.00% (57)</h2>
+                </ul>
+            </div>
+            <div class="column">
+                <ul id="other-skills">
+                    <h2>Other common skills in this group:</h2> <img src='icons/Defiance.png' alt='Defiance' width='20' height='20'> Defiance 100.0% (10.0)<br><img src='icons/Holy Bolt.png' alt='Holy Bolt' width='20' height='20'> Holy Bolt 100.0% (8.0)<br><img src='icons/Smite.png' alt='Smite' width='20' height='20'> Smite 100.0% (3.0)<br><img src='icons/Charge.png' alt='Charge' width='20' height='20'> Charge 100.0% (3.0)<br><img src='icons/Blessed Hammer.png' alt='Blessed Hammer' width='20' height='20'> Blessed Hammer 100.0% (3.0)<br><img src='icons/Might.png' alt='Might' width='20' height='20'> Might 100.0% (3.0)
+                </ul>
+            </div>
+        </div>
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>All Skills</strong></button>
+            <div class="content">
+                <div><img src='icons/Dashing Strike.png' alt='Dashing Strike' width='20' height='20'> Dashing Strike 100.0% (60.0)<br><img src='icons/Cleansing.png' alt='Cleansing' width='20' height='20'> Cleansing 100.0% (60.0)<br><img src='icons/Sanctuary.png' alt='Sanctuary' width='20' height='20'> Sanctuary 100.0% (60.0)<br><img src='icons/Holy Shield.png' alt='Holy Shield' width='20' height='20'> Holy Shield 100.0% (57.0)<br><img src='icons/Defiance.png' alt='Defiance' width='20' height='20'> Defiance 100.0% (10.0)<br><img src='icons/Holy Bolt.png' alt='Holy Bolt' width='20' height='20'> Holy Bolt 100.0% (8.0)<br><img src='icons/Charge.png' alt='Charge' width='20' height='20'> Charge 100.0% (3.0)<br><img src='icons/Blessed Hammer.png' alt='Blessed Hammer' width='20' height='20'> Blessed Hammer 100.0% (3.0)<br><img src='icons/Smite.png' alt='Smite' width='20' height='20'> Smite 100.0% (3.0)<br><img src='icons/Might.png' alt='Might' width='20' height='20'> Might 100.0% (3.0)<br><img src='icons/Holy Freeze.png' alt='Holy Freeze' width='20' height='20'> Holy Freeze 100.0% (3.0)<br><img src='icons/Precision.png' alt='Precision' width='20' height='20'> Precision 100.0% (3.0)<br><img src='icons/Holy Fire.png' alt='Holy Fire' width='20' height='20'> Holy Fire 100.0% (3.0)<br><img src='icons/Prayer.png' alt='Prayer' width='20' height='20'> Prayer 100.0% (3.0)<br><img src='icons/Vigor.png' alt='Vigor' width='20' height='20'> Vigor 66.67% (2.0)<br><img src='icons/Redemption.png' alt='Redemption' width='20' height='20'> Redemption 66.67% (2.0)<br><img src='icons/Conviction.png' alt='Conviction' width='20' height='20'> Conviction 0.0% (0.0)<br><img src='icons/Salvation.png' alt='Salvation' width='20' height='20'> Salvation 0.0% (0.0)<br><img src='icons/Sacrifice.png' alt='Sacrifice' width='20' height='20'> Sacrifice 0.0% (0.0)<br><img src='icons/Zeal.png' alt='Zeal' width='20' height='20'> Zeal 0.0% (0.0)<br><img src='icons/Resist Fire.png' alt='Resist Fire' width='20' height='20'> Resist Fire 0.0% (0.0)<br><img src='icons/Resist Cold.png' alt='Resist Cold' width='20' height='20'> Resist Cold 0.0% (0.0)</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>Most Common Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Ring</strong>: <br>Raven Frost 100.00%<br>Bul-Kathos' Wedding Band 33.33%<br>Dwarf Star 33.33%<br>Order Hold 33.33%<br><strong>Body</strong>: <br>Chains of Honor 33.33%<br>Guardian Angel 33.33%<br>Tal Rasha's Guardianship 33.33%<br><strong>Belt</strong>: <br>Arachnid Mesh 66.67%<br>Credendum 33.33%<br><strong>Boots</strong>: <br>Dire Brogues 33.33%<br>Tearhaunch 33.33%<br>Waterwalk 33.33%<br><strong>Helmet</strong>: <br>Harlequin Crest 33.33%<br>Spirit Cowl 33.33%<br><strong>Gloves</strong>: <br>Chance Guards 66.67%<br>Magefist 33.33%<br><strong>Amulet</strong>: <br>Marshal's Amulet of Regrowth 33.33%<br>Marshal's Amulet 33.33%<br>Chromatic Amulet of Atlas 33.33%<br><strong>Left hand</strong>: <br>Heaven's Light 66.67%<br>Holy Thunder 33.33%<br>Heart of the Oak 33.33%<br><strong>Offhand</strong>: <br>Spirit 100.00%<br>Medusa's Gaze 33.33%<br>Herald of Zakarum 33.33%</div>
+            </div>
+        
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Ring</strong>: Raven Frost 100.00%, Bul-Kathos' Wedding Band 33.33%, Dwarf Star 33.33%, Order Hold 33.33%<br><strong>Body</strong>: Chains of Honor 33.33%, Guardian Angel 33.33%, Tal Rasha's Guardianship 33.33%<br><strong>Belt</strong>: Arachnid Mesh 66.67%, Credendum 33.33%<br><strong>Boots</strong>: Dire Brogues 33.33%, Tearhaunch 33.33%, Waterwalk 33.33%<br><strong>Helmet</strong>: Harlequin Crest 33.33%, Spirit Cowl 33.33%<br><strong>Gloves</strong>: Chance Guards 66.67%, Magefist 33.33%<br><strong>Amulet</strong>: Marshal's Amulet of Regrowth 33.33%, Marshal's Amulet 33.33%, Chromatic Amulet of Atlas 33.33%<br><strong>Left hand</strong>: Heaven's Light 66.67%, Holy Thunder 33.33%, Heart of the Oak 33.33%<br><strong>Offhand</strong>: Spirit 100.00%, Medusa's Gaze 33.33%, Herald of Zakarum 33.33%</div>
+            </div>
+
+        <button class="collapsible">
+            <img src="icons/closed.png" alt="Open" class="icon">
+            <img src="icons/open.png" alt="Close" class="icon hidden">
+            <strong>3 Characters in this cluster:</strong>
+        </button>
+        <div class="content">
+            
+            <div class="character-info">
+                <div><strong>Character: DropRunner</strong></div>
+                <div>Level 86</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=DropRunner" target="_blank">DropRunner's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="DropRunner">
+                        Armory Quickview
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Holy Shield:20, Dashing Strike:20, Sanctuary:20, Cleansing:20, Holy Bolt:6, Smite:1, Charge:1, Blessed Hammer:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Prayer:1, Defiance:1, Vigor:1, Redemption:1</p>
+            <p><strong>Equipment:</strong> ring: Bul-Kathos' Wedding Band x1, ring: Raven Frost x1, body: Chains of Honor x1, belt: Arachnid Mesh x1, boots: Dire Brogues x1, helmet: Harlequin Crest x1, gloves: Chance Guards x1, amulet: Marshal's Amulet of Regrowth x1, Left hand: Holy Thunder x1, Left hand: Heaven's Light x1, Offhand: Medusa's Gaze x1, Offhand: Spirit x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Tal Rasha's Horadric Crest, Leviathan, Obedience</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+        
+            <div class="character-info">
+                <div><strong>Character: Kra</strong></div>
+                <div>Level 86</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=Kra" target="_blank">Kra's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="Kra">
+                        Armory Quickview
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Holy Shield:20, Dashing Strike:20, Sanctuary:20, Cleansing:20, Defiance:8, Smite:1, Holy Bolt:1, Charge:1, Blessed Hammer:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Prayer:1</p>
+            <p><strong>Equipment:</strong> amulet: Marshal's Amulet x1, belt: Credendum x1, ring: Raven Frost x1, ring: Dwarf Star x1, Offhand: Spirit x1, Offhand: Herald of Zakarum x1, gloves: Chance Guards x1, boots: Tearhaunch x1, body: Guardian Angel x1, helmet: Spirit Cowl x1, Left hand: Heaven's Light x1</p>
+            <p><strong>Mercenary:</strong> Act 3 Eastern Sorceror - Darkglow, Lore, Spirit</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+        
+            <div class="character-info">
+                <div><strong>Character: When_The</strong></div>
+                <div>Level 81</div>
+                <div></div>
+                <div class="character-link"><a href="https://pathofdiablo.com/p/armory/?name=When_The" target="_blank">When_The's Armory</a></div>
+
+                
+                    <div class="hover-trigger" data-character-name="When_The">
+                        Armory Quickview
+                    </div>
+                
+
+            </div>
+            <div class="character">
+                <div class="popup">
+                    <iframe id="popupFrame" src=""></iframe>
+                </div>
+            </div>
+
+            <p><strong>Skills:</strong> Dashing Strike:20, Sanctuary:20, Cleansing:20, Holy Shield:17, Smite:1, Holy Bolt:1, Charge:1, Blessed Hammer:1, Might:1, Holy Fire:1, Precision:1, Holy Freeze:1, Prayer:1, Defiance:1, Vigor:1, Redemption:1</p>
+            <p><strong>Equipment:</strong> gloves: Magefist x1, belt: Arachnid Mesh x1, ring: Raven Frost x1, ring: Order Hold x1, boots: Waterwalk x1, amulet: Chromatic Amulet of Atlas x1, body: Tal Rasha's Guardianship x1, Left hand: Heart of the Oak x1, Offhand: Spirit x1</p>
+            <p><strong>Mercenary:</strong> Act 2 Desert Mercenary - Atma's Wail, Helm, Insight</p>
+
+            <div class="character-section" data-character-name=""></div>
+<br>
+        
+        </div>
+        <hr>
+        
+            <h3>Top 5 Most Popular Dashadin Skills:</h3>
+        <ul>
+        </ul>
+
+        <h3>Bottom 5 Least Popular Dashadin Skills:</h3>
+        <ul>
+        </ul>
+<br>
+</div>
+<br><br>        
+        <!-- Embed the Plotly pie chart -->
+        <div>
+            <img src="charts/hcDashadin-clusters_distribution_pie.png" alt="Dashadin Skills Distribution">
+        </div>
+
+        <!-- Embed the Plotly scatter plot -->
+        <div>
+            <img src="charts/hcDashadin-clusters_with_avg_points.png" alt="Dashadin Skill Clusters Scatter Plot">
+        </div>
+        <button onclick="topFunction()" id="backToTopBtn" class="back-to-top">Top</button>
+        
+
+        <script>
+            var coll = document.getElementsByClassName("collapsible");
+            for (var i = 0; i < coll.length; i++) {
+                coll[i].addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var content = this.nextElementSibling;
+                    var openIcon = this.querySelector("img.icon[alt='Open']");
+                    var closeIcon = this.querySelector("img.icon[alt='Close']");
+
+                    if (content.style.display === "block") {
+                        content.style.display = "none";
+                        openIcon.classList.remove("hidden");
+                        closeIcon.classList.add("hidden");
+                    } else {
+                        content.style.display = "block";
+                        openIcon.classList.add("hidden");
+                        closeIcon.classList.remove("hidden");
+                    }
+                });
+            }
+        </script>
+
+        <script>
+            //Get the button
+            var backToTopBtn = document.getElementById("backToTopBtn");
+
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function() {scrollFunction()};
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    backToTopBtn.style.display = "block";
+                } else {
+                    backToTopBtn.style.display = "none";
+                }
+            }
+
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+                document.body.scrollTop = 0; // For Safari
+                document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+            }
+        </script>
+
+        <script>
+            function setActive(id) {
+                // Remove active class from both buttons
+                document.getElementById("SC").classList.remove("active");
+                document.getElementById("HC").classList.remove("active");
+                
+                // Add active class to the selected button
+                document.getElementById(id).classList.add("active");
+                
+                // Get the current URL
+                var currentUrl = window.location.href;
+                
+                // Determine the new URL based on the selected mode
+                var newUrl;
+                if (id === "SC") {
+                    if (currentUrl.includes('hc')) {
+                        newUrl = currentUrl.replace(/hc/gi, '');
+                    } else {
+                        newUrl = currentUrl;
+                    }
+                } else if (id === "HC") {
+                    if (!currentUrl.includes('hc')) {
+                        newUrl = currentUrl.replace(/(\w+)\.html$/, 'hc$1.html');
+                    } else {
+                        newUrl = currentUrl;
+                    }
+                }
+                
+                // Redirect to the new URL if it has changed
+                if (newUrl !== currentUrl) {
+                    window.location.href = newUrl;
+                }
+            }
+
+            // Set default active button based on the current URL
+            window.onload = function() {
+                if (window.location.href.includes('hc')) {
+                    setActive("HC");
+                } else {
+                    setActive("SC");
+                }
+            }
+        </script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const hoverTriggers = document.querySelectorAll(".hover-trigger");
+                let activePopup = null;
+
+                hoverTriggers.forEach(trigger => {
+                    trigger.addEventListener("click", function (event) {
+                        event.stopPropagation();
+                        const characterName = this.getAttribute("data-character-name");
+
+                        // Close any open popup first
+                        if (activePopup) {
+                            activePopup.classList.remove("active");
+                        }
+
+                        // Find the popup within the same character container
+                        const popup = this.closest(".character-info").nextElementSibling.querySelector(".popup");
+                        const iframe = popup.querySelector("iframe");
+
+                        console.log('Popup:', popup); // Debugging line
+                        console.log('Character Name:', characterName); // Debugging line
+
+                        // Set the correct iframe URL
+                        iframe.src = `./armory/video_component.html?charName=${encodeURIComponent(characterName)}`;
+
+                        // Show the popup
+                        popup.classList.add("active");
+                        activePopup = popup;
+                    });
+                });
+
+                // Close the popup when clicking anywhere outside it
+                document.addEventListener("click", function (event) {
+                    if (activePopup && !activePopup.contains(event.target)) {
+                        activePopup.classList.remove("active");
+                        activePopup = null;
+                    }
+                });
+            });
+    </script>
+
+
+
+    </body>
+    </html>
+    
