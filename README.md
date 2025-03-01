@@ -11,16 +11,24 @@ The data used to create these is not real time, it's a snapshot in time that is 
 Let Qord know, Qord @ PoD Discord 
 
 # To-do from community
+* List of skills in a cluster/group could use better visibility, right now it's just a long list; not easy on the eyes
+    * Line break every 5?
+    * Columns?
+    * list the paragraph style instead of a top-down list?
+    * Smaller section with a scrollbar? If so then no reason to hide it behind a button
 * Item displays for characters:
     * Add colors (blue for magic, gold for unique, etc.)
-        * Some specialty pages still need adjustment
-            * Working: Notazons, Dashadin, 
-            * Not working: Warpspear, Unique Arrows and Bolts, Offensive Aura items, Charge
+        * Item displays colored font done for class pages, but breaks the clustering for specialty pages
+            * Working: Notazons, Dashadin, Chargers, Offensive Auras (but the title item is getting too...)
+            * Not working: Unique arrows/bolts, Bong, Offensive Auras (need to fix title coloring)
     * Remove the "x1" from display
-        * Some specialty pages still need adjustment
+        * Not working: Chargers, Offensive Auras, Bong
 * Rotating Synth highlight in the fun facts?
-* Pie charts
+* Charts
     * Some specialty pages still need adjustment
+        * Pie Charts SC Aurs,Bong  
+    * All scatter plots 
+* Charge, non-zon - Change sort to class based groups and not skills
 
 # To-do from community - Completed
 * Better way to present the "More detailed breakdown:" sections
@@ -40,7 +48,7 @@ Let Qord know, Qord @ PoD Discord
     * Add colors (blue for magic, gold for unique, etc.)
         * Item displays colored font done for class pages, but breaks the clustering for specialty pages
             * Working: Notazons, Dashadin, Chargers, Offensive Auras (but the title item is getting too...)
-            * Not working: Unique arrows/bolts, Bong
+            * Not working: Unique arrows/bolts, Bong, Offensive Auras (need to fix title coloring)
     * Remove the "x1" from display
         * Not working: Chargers, Offensive Auras, Bong
 * Pie charts
@@ -68,7 +76,7 @@ Let Qord know, Qord @ PoD Discord
 # Credits
 Armory quickview pop ups are powered by the PoD Gear Twitch extension by Vinthian, Sizzles & Qord, adapted for use here by Qord
 
-Thanks to Zardoz, GD, myang26, TheHornBlower
+Thanks to Zardoz, GD, myang26, TheHornBlower, Sizzles
 
 # About the process
 Preface: I am not a programmer, if you are and you see room for improvement please let us know!

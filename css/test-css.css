@@ -363,12 +363,20 @@
         display: flex;
         justify-content: space-between;
     }
-    .skills-container {
+    .skill-container {
         display: flex;
-        justify-content: space-between;
+        flex-wrap: wrap;  /* Allows wrapping into new rows */
+        gap: 10px;  /* Adjust spacing between skills */
         background-color: #2d2d2d;  
         margin-right: 18px;      
     }
+    
+    .skill-item {
+        display: inline-block;
+        width: 45%;  /* Adjust width to fit 2 skills per row */
+        padding: 5px;
+    }
+    
     .summary-container {
         padding-left: 20px;
         background-color: #141414;    
