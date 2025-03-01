@@ -38,10 +38,11 @@ Let Qord know, Qord @ PoD Discord
 * Add sparation in long character lists to make it easier to see where one ends and the next begins
 * Item displays for characters:
     * Add colors (blue for magic, gold for unique, etc.)
-        * Item displays done for class pages, but breaks the clustering for specialty pages
-            * Working: Notazons, Dashadin, 
+        * Item displays colored font done for class pages, but breaks the clustering for specialty pages
+            * Working: Notazons, Dashadin, Chargers, Offensive Auras (but the title item is getting too...)
+            * Not working: Unique arrows/bolts, Bong
     * Remove the "x1" from display
-        * Done for class pages
+        * Not working: Chargers, Offensive Auras, Bong
 * Pie charts
     * Class pages, some specialty pages done
 

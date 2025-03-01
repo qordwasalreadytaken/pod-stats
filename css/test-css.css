@@ -178,6 +178,8 @@
         display: none;
         overflow: hidden;
         background-color: #2d2d2d;
+        margin-right: 18px;
+        border-radius: 5px;  /* Optional: Softens the edges */
     }
     iframe {
         width: 100%;
@@ -369,26 +371,28 @@
     }
     .summary-container {
         padding-left: 20px;
-        background-color: #3a3f44;    
+        background-color: #141414;    
+        border-radius: 5px;  /* Optional: Softens the edges */
+        padding-top: 10px; 
     }
     .text-area {
-        background-color: #3a3f44;    
+        background-color: #141414;    
     }
     .char1 {
-        background-color: #3a3f44;    
+        background-color: #141414;    
     }
     .char2 {
         background-color: #2d2d2d;    
     }
     .character-container {
-        width: 100%;  /* ✅ Ensures it takes full width */
-        max-width: 100%;  /* ✅ Prevents unintended shrinking */
-        display: flex;
-        flex-direction: column;  /* ✅ Keeps content stacked properly */
-    }
-    
+    width: 100%;  /* ✅ Ensures it takes full width */
+    max-width: 100%;  /* ✅ Prevents unintended shrinking */
+    display: flex;
+    flex-direction: column;  /* ✅ Keeps content stacked properly */
+}
+
     .character-container.char1 {
-        background-color: #3a3f44;    
+        background-color: #141414;    
         padding: 10px;  /* Optional: Adds spacing inside */
         border-radius: 5px;  /* Optional: Softens the edges */
     }
@@ -488,9 +492,11 @@
         background-color: #2d2d2d;  
         padding-right: 20px;     
         margin-right: 20px; 
+        border-radius: 5px;  /* Optional: Softens the edges */
     }
     class-intro {
         background-color: #2d2d2d;        
+        border-radius: 5px;  /* Optional: Softens the edges */
     }
 
     .footer {
@@ -510,7 +516,7 @@
     min-width: 911px;
     }
     .navbar.is-dark {
-    background-color: #3a3f44 !important;
+    background-color: #141414 !important;
     }
     
     .navbar.is-dark.hover {
