@@ -44,6 +44,7 @@ Let Qord know, Qord @ PoD Discord
     * Item counts by equipment slot, head body etc. breakdown of quality (rare, runeword, unique etc)
 
 # To-do ++ community feedback - Completed
+* Skill lists, remove decimals
 * Make character list consistent with Name: Level: Class: text and line breaks 
 * Better way to present the "More detailed breakdown:" sections
     * Maybe give skills weight so, for example, a freezing pulse cluster presents itslef as a freezing pulse cluster so users don't have to read between the lines to see it
