@@ -19,7 +19,6 @@ Let Qord know, Qord @ PoD Discord
         * HR's in Non-zon
     * Go back to what it was before but add hr's?
 * List of skills in a cluster/group could use better visibility, right now it's just a long list; not easy on the eyes
-    * Remove skills with zero points
     * Line break every 5?
     * Columns?
     * list the paragraph style instead of a top-down list?
@@ -45,6 +44,7 @@ Let Qord know, Qord @ PoD Discord
 
 # To-do ++ community feedback - Completed
 * List of skills in a cluster/group could use better visibility, right now it's just a long list; not easy on the eyes
+    * Remove skills with zero points
     * Remove decimals
 * Make character list consistent with Name: Level: Class: text and line breaks 
 * Better way to present the "More detailed breakdown:" sections
