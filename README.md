@@ -29,7 +29,7 @@ Let Qord know, Qord @ PoD Discord
 * Rotating Synth highlight in the fun facts?
 * Charts
     * Some specialty pages still need adjustment
-        * Pie Charts SC Aurs,Bong  
+        * Pie Charts SC Aura,Bong  
     * All scatter plots 
 * Charge, non-zon - Change sort to class based groups and not skills
 
