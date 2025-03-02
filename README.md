@@ -10,7 +10,7 @@ The data used to create these is not real time, it's a snapshot in time that is 
 # Feedback?
 Let Qord know, Qord @ PoD Discord 
 
-# To-do from community
+# To-do from community++
 * List of skills in a cluster/group could use better visibility, right now it's just a long list; not easy on the eyes
     * Remove skills with zero points
     * Line break every 5?
@@ -29,11 +29,11 @@ Let Qord know, Qord @ PoD Discord
 * Rotating Synth highlight in the fun facts?
 * Charts
     * Some specialty pages still need adjustment
-        * Pie Charts SC Aura,Bong  
+        * Pie Charts - Bong removed, it'll always be 50/50 so...
     * All scatter plots 
 * Charge, non-zon - Change sort to class based groups and not skills
 
-# To-do from community - Completed
+# To-do from community++ - Completed
 * Make character list consistent with Name: Level: Class: text and line breaks 
 * Better way to present the "More detailed breakdown:" sections
     * Maybe give skills weight so, for example, a freezing pulse cluster presents itslef as a freezing pulse cluster so users don't have to read between the lines to see it
