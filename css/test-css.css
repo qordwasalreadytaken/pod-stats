@@ -176,9 +176,18 @@
         padding: 18px 18px 18px 18px;
         color: #e0e0e2; 
         display: none;
-        overflow: hidden;
+/*        overflow: hidden; */
         background-color: #2d2d2d;
         margin-right: 18px;
+        border-radius: 5px;  /* Optional: Softens the edges */
+    }
+    .content2 {
+/*        padding: 18px 18px 18px 18px; */
+        color: #e0e0e2; 
+        display: none;
+/*        overflow: hidden; */
+        background-color: #2d2d2d;
+/*        margin-right: 18px; */
         border-radius: 5px;  /* Optional: Softens the edges */
     }
     iframe {
@@ -409,6 +418,12 @@
         background-color: #2d2d2d;    
         padding: 10px;
         border-radius: 5px;
+    }
+    .character-container.char3 {
+        background-color: #2d2d2d;    
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #141414
     }
     
     .column {

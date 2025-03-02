@@ -10,7 +10,12 @@ The data used to create these is not real time, it's a snapshot in time that is 
 # Feedback?
 Let Qord know, Qord @ PoD Discord 
 
-# To-do from community++
+# To-do ++ community feedback
+* Add sparation in long character lists to make it easier to see where one ends and the next begins
+    * Done but not as helpful as it could be, borders are not full borders and leave some areas contiguous
+    * Stretch divs all the way across instead of boxes?
+        * Box text on Bong/Warpspear page
+    * Go back to what it was before but add hr's?
 * List of skills in a cluster/group could use better visibility, right now it's just a long list; not easy on the eyes
     * Remove skills with zero points
     * Line break every 5?
@@ -32,8 +37,11 @@ Let Qord know, Qord @ PoD Discord
         * Pie Charts - Bong removed, it'll always be 50/50 so...
     * All scatter plots 
 * Charge, non-zon - Change sort to class based groups and not skills
+* Items - 
+    * What exists for crafted, do that for magic and rare
+    * Item counts by equipment slot, head body etc. breakdown of quality (rare, runeword, unique etc)
 
-# To-do from community++ - Completed
+# To-do ++ community feedback - Completed
 * Make character list consistent with Name: Level: Class: text and line breaks 
 * Better way to present the "More detailed breakdown:" sections
     * Maybe give skills weight so, for example, a freezing pulse cluster presents itslef as a freezing pulse cluster so users don't have to read between the lines to see it
@@ -47,7 +55,6 @@ Let Qord know, Qord @ PoD Discord
     * HC done?
 * Add searches for crafted, synth
 * Custom backgrounds
-* Add sparation in long character lists to make it easier to see where one ends and the next begins
 * Item displays for characters:
     * Add colors (blue for magic, gold for unique, etc.)
         * Item displays colored font done for class pages, but breaks the clustering for specialty pages
