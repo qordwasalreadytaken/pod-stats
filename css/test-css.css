@@ -331,7 +331,23 @@
         background-image: url('../icons/Top_hover.png'); /* Changes image on hover */
     }
     
-    
+ 
+    .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 10px;
+        margin: 20px 0;
+    }
+    .skill-item {
+        padding: 5px;
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+    }
+    .skill-item img {
+        margin-right: 10px;
+    }
+   
     
 
     .split-button {
