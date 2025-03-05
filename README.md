@@ -11,18 +11,13 @@ The data used to create these is not real time, it's a snapshot in time that is 
 Let Qord know, Qord @ PoD Discord 
 
 # To-do ++ community feedback
-* Add sparation in long character lists to make it easier to see where one ends and the next begins
-    * Done but not as helpful as it could be, borders are not full borders and leave some areas contiguous
-    * Stretch divs all the way across instead of boxes?
-        * Box text on Bong/Warpspear page
-        * Stretch in Dashers
-        * HR's in Non-zon
-    * Go back to what it was before but add hr's?
 * List of skills in a cluster/group could use better visibility, right now it's just a long list; not easy on the eyes
-    * Line break every 5?
-    * Columns?
-    * list the paragraph style instead of a top-down list?
-    * Smaller section with a scrollbar? If so then no reason to hide it behind a button
+        * Line break every 5?
+        * Columns?
+        * list the paragraph style instead of a top-down list?
+        * Smaller section with a scrollbar? If so then no reason to hide it behind a button
+    * Settled on two columns with a line break after every 5 deep
+    * Maybe highlight the 100%'ers?
 * Item displays for characters:
     * Add colors (blue for magic, gold for unique, etc.)
         * Item displays colored font done for class pages, but breaks the clustering for specialty pages
@@ -30,8 +25,6 @@ Let Qord know, Qord @ PoD Discord
             * Not working: Unique arrows/bolts, Bong, Offensive Auras (need to fix title coloring)
     * Remove the "x1" from display
         * Not working: Chargers, Offensive Auras, Bong
-* Skill display for characters, add icons for each character
-    * Class pages done, need to do others
 * Rotating Synth highlight in the fun facts?
 * Charts
     * Some specialty pages still need adjustment
@@ -39,8 +32,17 @@ Let Qord know, Qord @ PoD Discord
     * All scatter plots 
 * Charge, non-zon - Change sort to class based groups and not skills
 * Items - 
-    * What exists for crafted, do that for magic and rare
+    * What exists for crafted, do that for magic and rare -Done
     * Item counts by equipment slot, head body etc. breakdown of quality (rare, runeword, unique etc)
+    * What's in sockets? Done but needs formatting help, some display oddities
+    * Items with sockets, which item has the greates numbers of cumulative sockets; which item is socketed the most often?
+    * Runeword bases
+* Mercs-    
+    * what's in merc sokets
+* Ladder top 1K-
+    * Character info/facts, stats on MF, GF, life, mana, STR, DEX, averages, etc.
+* Class specific-
+    * Character info/facts, stats on MF, GF, life, mana, STR, DEX, averages, etc.
 
 # To-do ++ community feedback - Completed
 * List of skills in a cluster/group could use better visibility, right now it's just a long list; not easy on the eyes
@@ -68,6 +70,16 @@ Let Qord know, Qord @ PoD Discord
         * Not working: Chargers, Offensive Auras, Bong
 * Pie charts
     * Class pages, some specialty pages done
+* Add sparation in long character lists to make it easier to see where one ends and the next begins
+    * Done but not as helpful as it could be, borders are not full borders and leave some areas contiguous
+    * Stretch divs all the way across instead of boxes?
+        * Box text on Bong/Warpspear page
+        * Stretch in Dashers
+        * HR's in Non-zon
+        * Settled on horizontal lines, looks ok
+    * Go back to what it was before but add hr's?
+* Skill display for characters, add icons for each character
+    * Class pages done, need to do others
 
 
 # Known Issues to address
