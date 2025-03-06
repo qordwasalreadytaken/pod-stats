@@ -385,9 +385,21 @@
     .skill-bar {
         height: 24px;
         border-radius: 3px;
-        background: linear-gradient(90deg, #d5f2e3, red);
+        background: linear-gradient(90deg, #d5f2e3, #cd5c5c);
         position: relative;
+        min-width: 300px;
         max-width: 600px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .skill-mini-bar {
+        height: 24px;
+        border-radius: 3px;
+        background: linear-gradient(90deg, #d5f2e3, #cd5c5c);
+        position: relative;
+        min-width: 10px;
+        max-width: 400px;
         display: flex;
         align-items: center;
         justify-content: center;
