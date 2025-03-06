@@ -352,7 +352,7 @@
    
     .highlight-100 {
     /*        background-color: #262626;  /* Light yellow background */
-        color: red; /* Match headers */
+        color: orange; /* Match headers */
 /*        text-shadow: 2px 2px 1px black;  */
 /*            1px 1px 2px black;  */
         font: bold;
@@ -361,7 +361,47 @@
     .normal-skill {
         color: inherit; /* Default text color */
     }    
-
+    .skillbar-container {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+    }
+    .skill-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;  /* Space between icon and bar */
+    }
+    
+    .skill-icon {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .skill-bar-container {
+        display: flex;
+        align-items: center;
+    }
+    
+    .skill-bar {
+        height: 24px;
+        border-radius: 3px;
+        background: linear-gradient(90deg, #d5f2e3, red);
+        position: relative;
+        max-width: 600px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .skill-label {
+        font-size: 20px;
+        font-weight: bold;
+        color: #232323; /* Dark color for contrast */
+        text-align: left;
+        position: absolute;
+        width: 100%;
+    }
+            
     .split-button {
         display: flex;
         justify-content: center;
