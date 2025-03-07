@@ -602,7 +602,25 @@
         background-color: #2d2d2d;        
         border-radius: 5px;  /* Optional: Softens the edges */
     }
-
+    .fun-facts-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px; /* Adjust spacing between columns */
+        margin-bottom: 20px; /* Space between rows */
+    }
+    
+    .fun-facts-column {
+        flex: 1; /* Make both columns equal width */
+/*        background: #232323; /* Match your existing theme */
+        padding: 15px;
+        border-radius: 8px;
+    }
+    
+    .fun-facts-column h3 {
+        color: #d5f2e3; /* Match heading color */
+        text-align: center;
+    }
+    
     .footer {
         left: 0;
         bottom: 0;
