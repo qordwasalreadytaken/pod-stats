@@ -12,12 +12,13 @@ Let Qord know, Qord @ PoD Discord
 
 # To-do ++ community feedback
 * List of skills in a cluster/group could use better visibility, right now it's just a long list; not easy on the eyes
-        * Line break every 5?
-        * Columns?
-        * list the paragraph style instead of a top-down list?
-        * Smaller section with a scrollbar? If so then no reason to hide it behind a button
-    * Settled on two columns with a line break after every 5 deep
-    * Maybe highlight the 100%'ers?
+    * Skills displays redesigned, added color gradient bar as well as condensed the long list into 2 columns
+        ~~* Line break every 5?~~ 
+        ~~* Columns?~~
+        ~~* list the paragraph style instead of a top-down list?~~
+        ~~* Smaller section with a scrollbar? If so then no reason to hide it behind a button~~
+    ~~* Settled on two columns with a line break after every 5 deep~~
+    ~~* Maybe highlight the 100%'ers?~~
 * Item displays for characters:
     * Add colors (blue for magic, gold for unique, etc.)
         * Item displays colored font done for class pages, but breaks the clustering for specialty pages
@@ -46,8 +47,8 @@ Let Qord know, Qord @ PoD Discord
 
 # To-do ++ community feedback - Completed
 * List of skills in a cluster/group could use better visibility, right now it's just a long list; not easy on the eyes
-    * Remove skills with zero points
-    * Remove decimals
+    ~~* Remove skills with zero points~~
+    ~~* Remove decimals~~
 * Make character list consistent with Name: Level: Class: text and line breaks 
 * Better way to present the "More detailed breakdown:" sections
     * Maybe give skills weight so, for example, a freezing pulse cluster presents itslef as a freezing pulse cluster so users don't have to read between the lines to see it
@@ -125,7 +126,7 @@ Current Folder Structure:
 │   │   ├── archived charts
 │   ├── archived versions of the html files
 ├── armory folder
-│   ├── Everything required to make the Armory Quickview pop-ups work (modified PoD Gear Twitch extention)
+│   ├── Everything required to make the Armory Quickview pop-ups work (modified PoD Gear Twitch extension)
 ├── charts folder
 │   ├── All the pie and scatter plot charts 
 ├── css folder
