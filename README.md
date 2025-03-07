@@ -104,7 +104,7 @@ Let Qord know, Qord @ PoD Discord
 # Credits
 Armory quickview pop ups are powered by the PoD Gear Twitch extension by Vinthian, Sizzles & Qord, adapted for use here by Qord
 
-Thanks to Zardoz, GD, myang26, TheHornBlower, Sizzles
+Thanks to lots of help from Zardoz, GD, myang26, TheHornBlower, Sizzles
 
 # About the process
 Preface: I am not a programmer, if you are and you see room for improvement please let us know!
