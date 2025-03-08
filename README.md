@@ -40,10 +40,6 @@ Let Qord know, Qord @ PoD Discord
     * Runeword bases
 * Mercs-    
     * what's in merc sokets
-* Ladder top 1K-
-    * Character info/facts, stats on MF, GF, life, mana, STR, DEX, averages, etc.
-* Class specific-
-    * Character info/facts, stats on MF, GF, life, mana, STR, DEX, averages, etc.
 
 # To-do ++ community feedback - Completed
 * List of skills in a cluster/group could use better visibility, right now it's just a long list; not easy on the eyes
@@ -81,6 +77,10 @@ Let Qord know, Qord @ PoD Discord
     * Go back to what it was before but add hr's?
 * Skill display for characters, add icons for each character
     * Class pages done, need to do others
+* Ladder top 1K-
+    * Character info/facts, stats on MF, GF, life, mana, STR, DEX, averages, etc.
+* Class specific-
+    * Character info/facts, stats on MF, GF, life, mana, STR, DEX, averages, etc.
 
 
 # Known Issues to address

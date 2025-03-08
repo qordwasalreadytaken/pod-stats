@@ -177,7 +177,7 @@
         color: #e0e0e2; 
         display: none;
 /*        overflow: hidden; */
-        background-color: #2d2d2d;
+        background-color: #3a3f44;
         margin-right: 18px;
         border-radius: 5px;  /* Optional: Softens the edges */
     }
@@ -186,7 +186,7 @@
         color: #e0e0e2; 
         display: none;
 /*        overflow: hidden; */
-        background-color: #2d2d2d;
+        background-color: #3a3f44;
 /*        margin-right: 18px; */
 /*        border-radius: 5px;  /* Optional: Softens the edges */
     }
@@ -456,7 +456,7 @@
         display: flex;
         flex-wrap: wrap;  /* Allows wrapping into new rows */
         gap: 10px;  /* Adjust spacing between skills */
-        background-color: #2d2d2d;  
+        background-color: #3a3f44;  
         margin-right: 18px;      
     }
     
@@ -479,7 +479,7 @@
         background-color: #141414;    
     }
     .char2 {
-        background-color: #2d2d2d;    
+        background-color: #3a3f44;    
     }
     .character-container {
     width: 100%;  /* ✅ Ensures it takes full width */
@@ -495,12 +495,12 @@
     }
     
     .character-container.char2 {
-        background-color: #2d2d2d;    
+        background-color: #3a3f44;    
         padding: 10px;
         border-radius: 5px;
     }
     .character-container.char3 {
-        background-color: #2d2d2d;    
+        background-color: #3a3f44;    
         padding: 10px;
 /*        border-radius: 5px; */
         border: 1px solid #141414;
@@ -593,32 +593,32 @@
     }
 
     .class-intro {
-        background-color: #2d2d2d;  
+        background-color: #3a3f44;  
         padding-right: 20px;     
         margin-right: 20px; 
         border-radius: 5px;  /* Optional: Softens the edges */
     }
     class-intro {
-        background-color: #2d2d2d;        
+        background-color: #3a3f44;        
         border-radius: 5px;  /* Optional: Softens the edges */
     }
     .fun-facts-row {
         display: flex;
         justify-content: space-between;
-        gap: 20px; /* Adjust spacing between columns */
-        margin-bottom: 20px; /* Space between rows */
+        gap: 10px; /* Adjust spacing between columns */
+        margin-bottom: 10px; /* Space between rows */
     }
     
     .fun-facts-column {
         flex: 1; /* Make both columns equal width */
 /*        background: #232323; /* Match your existing theme */
-        padding: 15px;
+/*        padding: 15px; */
         border-radius: 8px;
     }
     
     .fun-facts-column h3 {
         color: #d5f2e3; /* Match heading color */
-        text-align: center;
+        text-align: left;
     }
     
     .footer {
@@ -638,7 +638,7 @@
     min-width: 911px;
     }
     .navbar.is-dark {
-    background-color: #141414 !important;
+    background-color: #3a3f44 !important;
     }
     
     .navbar.is-dark.hover {
