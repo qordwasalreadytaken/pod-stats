@@ -2,11 +2,17 @@
     <!DOCTYPE html>
     <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Notazons Analysis Report</title>
-        <link rel="stylesheet" type="text/css" href="./css/pod-stats.css">
+        <link rel="stylesheet" type="text/css" href="./css/test-css.css">
 
     </head>
-    <body class="not-main">
+    <body class="main">
+        <div class="hamburger" onclick="toggleMenu()">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
 
         <div class="top-buttons">
             <a href="hcHome.html" class="top-button home-button" onclick="setActive('Home')"></a>
@@ -34,7 +40,7 @@
                     <div class="skill-row">
                         <img src="icons/Oak Sage.png" alt="Oak Sage" class="skill-icon">
                         <div class="skill-bar-container">
-                            <div class="skill-bar" style="width: 600.0px; min-width: 300px;">
+                            <div class="skill-bar" style="width: clamp(80px, 500.0px, 500px); min-width: 300px;">
                                 <span class="skill-label">Oak Sage (40)</span>
                             </div>
                         </div>
@@ -45,7 +51,7 @@
                     <div class="skill-row">
                         <img src="icons/Summon Spirit Wolf.png" alt="Summon Spirit Wolf" class="skill-icon">
                         <div class="skill-bar-container">
-                            <div class="skill-bar" style="width: 600.0px; min-width: 300px;">
+                            <div class="skill-bar" style="width: clamp(80px, 500.0px, 500px); min-width: 300px;">
                                 <span class="skill-label">Summon Spirit Wolf (40)</span>
                             </div>
                         </div>
@@ -56,7 +62,7 @@
                     <div class="skill-row">
                         <img src="icons/Heart of Wolverine.png" alt="Heart of Wolverine" class="skill-icon">
                         <div class="skill-bar-container">
-                            <div class="skill-bar" style="width: 600.0px; min-width: 300px;">
+                            <div class="skill-bar" style="width: clamp(80px, 500.0px, 500px); min-width: 300px;">
                                 <span class="skill-label">Heart of Wolverine (40)</span>
                             </div>
                         </div>
@@ -67,7 +73,7 @@
                     <div class="skill-row">
                         <img src="icons/Summon Dire Wolf.png" alt="Summon Dire Wolf" class="skill-icon">
                         <div class="skill-bar-container">
-                            <div class="skill-bar" style="width: 600.0px; min-width: 300px;">
+                            <div class="skill-bar" style="width: clamp(80px, 500.0px, 500px); min-width: 300px;">
                                 <span class="skill-label">Summon Dire Wolf (40)</span>
                             </div>
                         </div>
@@ -84,7 +90,7 @@
                     <div class="skill-row">
                         <img src="icons/Oak Sage.png" alt="Oak Sage" class="skill-icon">
                         <div class="skill-bar-container">
-                            <div class="skill-bar" style="width: 600.0px; min-width: 300px;">
+                            <div class="skill-bar" style="width: clamp(80px, 500.0px, 500px); min-width: 300px;">
                                 <span class="skill-label">Oak Sage (40)</span>
                             </div>
                         </div>
@@ -95,7 +101,7 @@
                     <div class="skill-row">
                         <img src="icons/Summon Spirit Wolf.png" alt="Summon Spirit Wolf" class="skill-icon">
                         <div class="skill-bar-container">
-                            <div class="skill-bar" style="width: 600.0px; min-width: 300px;">
+                            <div class="skill-bar" style="width: clamp(80px, 500.0px, 500px); min-width: 300px;">
                                 <span class="skill-label">Summon Spirit Wolf (40)</span>
                             </div>
                         </div>
@@ -106,7 +112,7 @@
                     <div class="skill-row">
                         <img src="icons/Heart of Wolverine.png" alt="Heart of Wolverine" class="skill-icon">
                         <div class="skill-bar-container">
-                            <div class="skill-bar" style="width: 600.0px; min-width: 300px;">
+                            <div class="skill-bar" style="width: clamp(80px, 500.0px, 500px); min-width: 300px;">
                                 <span class="skill-label">Heart of Wolverine (40)</span>
                             </div>
                         </div>
@@ -117,7 +123,7 @@
                     <div class="skill-row">
                         <img src="icons/Summon Dire Wolf.png" alt="Summon Dire Wolf" class="skill-icon">
                         <div class="skill-bar-container">
-                            <div class="skill-bar" style="width: 600.0px; min-width: 300px;">
+                            <div class="skill-bar" style="width: clamp(80px, 500.0px, 500px); min-width: 300px;">
                                 <span class="skill-label">Summon Dire Wolf (40)</span>
                             </div>
                         </div>
@@ -139,16 +145,16 @@
         <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
                 <strong>All Skills</strong></button>
                 <div class="content">
-                    <div><div class='skills-group'><div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 100.0% (40)</div><div class='skill-mini-bar' style='width: 400.0px;'></div></div></div>
-<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' width='20' height='20'> Summon Spirit Wolf 100.0% (40)</div><div class='skill-mini-bar' style='width: 400.0px;'></div></div></div></div>
-<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 100.0% (40)</div><div class='skill-mini-bar' style='width: 400.0px;'></div></div></div>
-<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Summon Dire Wolf.png' alt='Summon Dire Wolf' width='20' height='20'> Summon Dire Wolf 100.0% (40)</div><div class='skill-mini-bar' style='width: 400.0px;'></div></div></div></div>
-<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Summon Grizzly.png' alt='Summon Grizzly' width='20' height='20'> Summon Grizzly 100.0% (40)</div><div class='skill-mini-bar' style='width: 400.0px;'></div></div></div>
-<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Raven.png' alt='Raven' width='20' height='20'> Raven 100.0% (2)</div><div class='skill-mini-bar' style='width: 400.0px;'></div></div></div></div>
-<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Spirit of Barbs.png' alt='Spirit of Barbs' width='20' height='20'> Spirit of Barbs 100.0% (2)</div><div class='skill-mini-bar' style='width: 400.0px;'></div></div></div>
-<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Firestorm.png' alt='Firestorm' width='20' height='20'> Firestorm 50.0% (1)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div></div>
-<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Molten Boulder.png' alt='Molten Boulder' width='20' height='20'> Molten Boulder 50.0% (1)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div>
-<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Flame Dash.png' alt='Flame Dash' width='20' height='20'> Flame Dash 50.0% (1)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div></div></div></div>
+                    <div><div class='skills-group'><div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Oak Sage.png' alt='Oak Sage' class='skill-icon'> Oak Sage 100.0% (40)</div><div class='skill-mini-bar' style='width: 400.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' class='skill-icon'> Summon Spirit Wolf 100.0% (40)</div><div class='skill-mini-bar' style='width: 400.0px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' class='skill-icon'> Heart of Wolverine 100.0% (40)</div><div class='skill-mini-bar' style='width: 400.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Summon Dire Wolf.png' alt='Summon Dire Wolf' class='skill-icon'> Summon Dire Wolf 100.0% (40)</div><div class='skill-mini-bar' style='width: 400.0px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Summon Grizzly.png' alt='Summon Grizzly' class='skill-icon'> Summon Grizzly 100.0% (40)</div><div class='skill-mini-bar' style='width: 400.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Raven.png' alt='Raven' class='skill-icon'> Raven 100.0% (2)</div><div class='skill-mini-bar' style='width: 400.0px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Spirit of Barbs.png' alt='Spirit of Barbs' class='skill-icon'> Spirit of Barbs 100.0% (2)</div><div class='skill-mini-bar' style='width: 400.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Firestorm.png' alt='Firestorm' class='skill-icon'> Firestorm 50.0% (1)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Molten Boulder.png' alt='Molten Boulder' class='skill-icon'> Molten Boulder 50.0% (1)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Flame Dash.png' alt='Flame Dash' class='skill-icon'> Flame Dash 50.0% (1)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div></div></div></div>
                 </div>
 
 
@@ -181,14 +187,13 @@
 -->
 <div class="character-container char2">
     <div class="character-info">
-        <div><strong>Name: Oggi</strong></div>
-        <div>Level: 97</div>
-        <div>Class: Druid</div>
         <div class="character-link">
             <a href="https://pathofdiablo.com/p/armory/?name=Oggi" target="_blank">
-                Oggi's Armory
+                Oggi
             </a>
         </div>
+        <div>Level: 97</div>
+        <div>Class: Druid</div>
         <div class="hover-trigger" data-character-name="Oggi">
             <!-- Armory Quickview -->
         </div>
@@ -212,14 +217,13 @@
 -->
 <div class="character-container char2">
     <div class="character-info">
-        <div><strong>Name: PencilPusher</strong></div>
-        <div>Level: 94</div>
-        <div>Class: Druid</div>
         <div class="character-link">
             <a href="https://pathofdiablo.com/p/armory/?name=PencilPusher" target="_blank">
-                PencilPusher's Armory
+                PencilPusher
             </a>
         </div>
+        <div>Level: 94</div>
+        <div>Class: Druid</div>
         <div class="hover-trigger" data-character-name="PencilPusher">
             <!-- Armory Quickview -->
         </div>
@@ -249,7 +253,7 @@
                     <div class="skill-row">
                         <img src="icons/Summon Dire Wolf.png" alt="Summon Dire Wolf" class="skill-icon">
                         <div class="skill-bar-container">
-                            <div class="skill-bar" style="width: 300.0px; min-width: 300px;">
+                            <div class="skill-bar" style="width: clamp(80px, 250.0px, 500px); min-width: 300px;">
                                 <span class="skill-label">Summon Dire Wolf (20)</span>
                             </div>
                         </div>
@@ -260,7 +264,7 @@
                     <div class="skill-row">
                         <img src="icons/Rabies.png" alt="Rabies" class="skill-icon">
                         <div class="skill-bar-container">
-                            <div class="skill-bar" style="width: 300.0px; min-width: 300px;">
+                            <div class="skill-bar" style="width: clamp(80px, 250.0px, 500px); min-width: 300px;">
                                 <span class="skill-label">Rabies (20)</span>
                             </div>
                         </div>
@@ -271,7 +275,7 @@
                     <div class="skill-row">
                         <img src="icons/Blessed Hammer.png" alt="Blessed Hammer" class="skill-icon">
                         <div class="skill-bar-container">
-                            <div class="skill-bar" style="width: 300.0px; min-width: 300px;">
+                            <div class="skill-bar" style="width: clamp(80px, 250.0px, 500px); min-width: 300px;">
                                 <span class="skill-label">Blessed Hammer (20)</span>
                             </div>
                         </div>
@@ -282,7 +286,7 @@
                     <div class="skill-row">
                         <img src="icons/Concentration.png" alt="Concentration" class="skill-icon">
                         <div class="skill-bar-container">
-                            <div class="skill-bar" style="width: 300.0px; min-width: 300px;">
+                            <div class="skill-bar" style="width: clamp(80px, 250.0px, 500px); min-width: 300px;">
                                 <span class="skill-label">Concentration (20)</span>
                             </div>
                         </div>
@@ -299,7 +303,7 @@
                     <div class="skill-row">
                         <img src="icons/Summon Dire Wolf.png" alt="Summon Dire Wolf" class="skill-icon">
                         <div class="skill-bar-container">
-                            <div class="skill-bar" style="width: 300.0px; min-width: 300px;">
+                            <div class="skill-bar" style="width: clamp(80px, 250.0px, 500px); min-width: 300px;">
                                 <span class="skill-label">Summon Dire Wolf (20)</span>
                             </div>
                         </div>
@@ -310,7 +314,7 @@
                     <div class="skill-row">
                         <img src="icons/Rabies.png" alt="Rabies" class="skill-icon">
                         <div class="skill-bar-container">
-                            <div class="skill-bar" style="width: 300.0px; min-width: 300px;">
+                            <div class="skill-bar" style="width: clamp(80px, 250.0px, 500px); min-width: 300px;">
                                 <span class="skill-label">Rabies (20)</span>
                             </div>
                         </div>
@@ -321,7 +325,7 @@
                     <div class="skill-row">
                         <img src="icons/Blessed Hammer.png" alt="Blessed Hammer" class="skill-icon">
                         <div class="skill-bar-container">
-                            <div class="skill-bar" style="width: 300.0px; min-width: 300px;">
+                            <div class="skill-bar" style="width: clamp(80px, 250.0px, 500px); min-width: 300px;">
                                 <span class="skill-label">Blessed Hammer (20)</span>
                             </div>
                         </div>
@@ -332,7 +336,7 @@
                     <div class="skill-row">
                         <img src="icons/Concentration.png" alt="Concentration" class="skill-icon">
                         <div class="skill-bar-container">
-                            <div class="skill-bar" style="width: 300.0px; min-width: 300px;">
+                            <div class="skill-bar" style="width: clamp(80px, 250.0px, 500px); min-width: 300px;">
                                 <span class="skill-label">Concentration (20)</span>
                             </div>
                         </div>
@@ -354,29 +358,29 @@
         <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
                 <strong>All Skills</strong></button>
                 <div class="content">
-                    <div><div class='skills-group'><div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Summon Dire Wolf.png' alt='Summon Dire Wolf' width='20' height='20'> Summon Dire Wolf 50.0% (20)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div>
-<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Concentration.png' alt='Concentration' width='20' height='20'> Concentration 50.0% (20)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div></div>
-<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Blessed Hammer.png' alt='Blessed Hammer' width='20' height='20'> Blessed Hammer 50.0% (20)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div>
-<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Rabies.png' alt='Rabies' width='20' height='20'> Rabies 50.0% (20)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div></div>
-<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Poison Creeper.png' alt='Poison Creeper' width='20' height='20'> Poison Creeper 50.0% (14)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div>
-<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Lycanthropy.png' alt='Lycanthropy' width='20' height='20'> Lycanthropy 50.0% (11)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div></div>
-<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Vigor.png' alt='Vigor' width='20' height='20'> Vigor 50.0% (9)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div>
-<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Werewolf.png' alt='Werewolf' width='20' height='20'> Werewolf 50.0% (1)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div></div>
-<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> Heart of Wolverine 50.0% (1)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div>
-<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' width='20' height='20'> Summon Spirit Wolf 50.0% (1)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div></div></div>
-<div class='skills-group'><div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Raven.png' alt='Raven' width='20' height='20'> Raven 50.0% (1)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div>
-<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> Oak Sage 50.0% (1)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div></div>
-<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Holy Shield.png' alt='Holy Shield' width='20' height='20'> Holy Shield 50.0% (1)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div>
-<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Charge.png' alt='Charge' width='20' height='20'> Charge 50.0% (1)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div></div>
-<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Blessed Aim.png' alt='Blessed Aim' width='20' height='20'> Blessed Aim 50.0% (1)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div>
-<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Might.png' alt='Might' width='20' height='20'> Might 50.0% (1)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div></div>
-<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Prayer.png' alt='Prayer' width='20' height='20'> Prayer 50.0% (1)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div>
-<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Holy Bolt.png' alt='Holy Bolt' width='20' height='20'> Holy Bolt 50.0% (1)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div></div>
-<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Smite.png' alt='Smite' width='20' height='20'> Smite 50.0% (1)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div>
-<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Feral Rage.png' alt='Feral Rage' width='20' height='20'> Feral Rage 50.0% (1)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div></div></div>
-<div class='skills-group'><div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Cleansing.png' alt='Cleansing' width='20' height='20'> Cleansing 50.0% (1)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div>
-<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Defiance.png' alt='Defiance' width='20' height='20'> Defiance 50.0% (1)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div></div>
-<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Salvation.png' alt='Salvation' width='20' height='20'> Salvation 50.0% (1)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div></div></div></div>
+                    <div><div class='skills-group'><div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Summon Dire Wolf.png' alt='Summon Dire Wolf' class='skill-icon'> Summon Dire Wolf 50.0% (20)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Concentration.png' alt='Concentration' class='skill-icon'> Concentration 50.0% (20)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Blessed Hammer.png' alt='Blessed Hammer' class='skill-icon'> Blessed Hammer 50.0% (20)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Rabies.png' alt='Rabies' class='skill-icon'> Rabies 50.0% (20)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Poison Creeper.png' alt='Poison Creeper' class='skill-icon'> Poison Creeper 50.0% (14)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Lycanthropy.png' alt='Lycanthropy' class='skill-icon'> Lycanthropy 50.0% (11)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Vigor.png' alt='Vigor' class='skill-icon'> Vigor 50.0% (9)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Werewolf.png' alt='Werewolf' class='skill-icon'> Werewolf 50.0% (1)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Heart of Wolverine.png' alt='Heart of Wolverine' class='skill-icon'> Heart of Wolverine 50.0% (1)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' class='skill-icon'> Summon Spirit Wolf 50.0% (1)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div></div></div>
+<div class='skills-group'><div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Raven.png' alt='Raven' class='skill-icon'> Raven 50.0% (1)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Oak Sage.png' alt='Oak Sage' class='skill-icon'> Oak Sage 50.0% (1)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Holy Shield.png' alt='Holy Shield' class='skill-icon'> Holy Shield 50.0% (1)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Charge.png' alt='Charge' class='skill-icon'> Charge 50.0% (1)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Blessed Aim.png' alt='Blessed Aim' class='skill-icon'> Blessed Aim 50.0% (1)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Might.png' alt='Might' class='skill-icon'> Might 50.0% (1)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Prayer.png' alt='Prayer' class='skill-icon'> Prayer 50.0% (1)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Holy Bolt.png' alt='Holy Bolt' class='skill-icon'> Holy Bolt 50.0% (1)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Smite.png' alt='Smite' class='skill-icon'> Smite 50.0% (1)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Feral Rage.png' alt='Feral Rage' class='skill-icon'> Feral Rage 50.0% (1)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div></div></div>
+<div class='skills-group'><div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Cleansing.png' alt='Cleansing' class='skill-icon'> Cleansing 50.0% (1)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Defiance.png' alt='Defiance' class='skill-icon'> Defiance 50.0% (1)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='icons/Salvation.png' alt='Salvation' class='skill-icon'> Salvation 50.0% (1)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div></div></div></div>
                 </div>
 
 
@@ -409,14 +413,13 @@
 -->
 <div class="character-container char2">
     <div class="character-info">
-        <div><strong>Name: Incased</strong></div>
-        <div>Level: 64</div>
-        <div>Class: Druid</div>
         <div class="character-link">
             <a href="https://pathofdiablo.com/p/armory/?name=Incased" target="_blank">
-                Incased's Armory
+                Incased
             </a>
         </div>
+        <div>Level: 64</div>
+        <div>Class: Druid</div>
         <div class="hover-trigger" data-character-name="Incased">
             <!-- Armory Quickview -->
         </div>
@@ -440,14 +443,13 @@
 -->
 <div class="character-container char2">
     <div class="character-info">
-        <div><strong>Name: TPII</strong></div>
-        <div>Level: 62</div>
-        <div>Class: Paladin</div>
         <div class="character-link">
             <a href="https://pathofdiablo.com/p/armory/?name=TPII" target="_blank">
-                TPII's Armory
+                TPII
             </a>
         </div>
+        <div>Level: 62</div>
+        <div>Class: Paladin</div>
         <div class="hover-trigger" data-character-name="TPII">
             <!-- Armory Quickview -->
         </div>
@@ -491,7 +493,7 @@
         </div>
         <button onclick="topFunction()" id="backToTopBtn" class="back-to-top"></button>
             <div class="footer">
-            <p>PoD data current as of 2025-03-10 19:21</p>
+            <p>PoD data current as of 2025-03-11 16:02</p>
             </div>
        
 
@@ -537,6 +539,11 @@ backToTopBtn.style.display = "none";
 function topFunction() {
 document.body.scrollTop = 0; // For Safari
 document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+
+function toggleMenu() {
+    const navMenu = document.querySelector('.top-buttons');
+    navMenu.classList.toggle('show');
 }
 
 document.addEventListener("DOMContentLoaded", function () {
