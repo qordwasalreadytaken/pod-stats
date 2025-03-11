@@ -279,12 +279,12 @@
         height: 600px;
         border: none;
     }
-/*    
+   
     @media (max-width: 768px) {
         iframe {
             height: 600px; 
         }
-    } */
+    } 
     
 /*
     .top-buttons {
@@ -568,10 +568,11 @@
     }
     
     .skill-icon {
-        width: 30px;
-        height: 30px;
+        width: 30px !important ;
+        height: 30px !important ;
+        flex-shrink: 0;  /* Prevent shrinking */
     }
-    
+        
     .skill-bar-container {
         display: flex;
         align-items: center;
@@ -582,18 +583,20 @@
         border-radius: 3px;
         background: linear-gradient(90deg, #d5f2e3, #cd5c5c);
         position: relative;
-        min-width: 150px; /* ✅ Allow shrinking */
-        max-width: 600px;
-        width: 80%; /* ✅ Make it responsive */
+        min-width: 40%;  /* ✅ Change this */
+        max-width: 100%;  /* ✅ Keep it from extending too far */
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
-    
-    @media (max-width: 768px) {
+        
+    @media screen and (max-width: 768px) {
         .skill-bar {
-            min-width: 100px; /* Allow even smaller sizes */
-            width: 90%;
+            min-width: 30%; /* Adjust for mobile */
+            max-width: 90%;
         }
     }
-        .skill-mini-bar {
+            .skill-mini-bar {
         height: 24px;
         border-radius: 3px;
         background: linear-gradient(90deg, #f2d7ee, #b31919);
@@ -790,7 +793,7 @@
     @media (max-width: 768px) {
         .popup {
             width: 90%;  /* ✅ Scale for small screens */
-            height: auto;  /* ✅ Let height adjust naturally */
+            height: 50%;  /* ✅ Let height adjust naturally */
             max-height: 80vh; /* ✅ Prevents going off-screen */
             overflow-y: auto; /* ✅ Allows scrolling */
         }

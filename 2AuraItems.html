@@ -3,11 +3,16 @@
     <html>
     <head>
         <title>2AuraItems Analysis Report</title>
-        <link rel="stylesheet" type="text/css" href="./css/pod-stats.css">
+        <link rel="stylesheet" type="text/css" href="./css/test-css.css">
 
     </head>
     <body class="not-main">
 
+        <div class="hamburger" onclick="toggleMenu()">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
         <div class="top-buttons">
             <a href="Home.html" class="top-button home-button" onclick="setActive('Home')"></a>
             <a href="#" id="SC_HC" class="top-button"> </a>
@@ -1689,7 +1694,7 @@
            <button onclick="topFunction()" id="backToTopBtn" class="back-to-top"></button>
 
             <div class="footer">
-            <p>PoD class data current as of 2025-03-10 19:21</p>
+            <p>PoD class data current as of 2025-03-11 06:47</p>
             </div>   
         
 
@@ -1736,6 +1741,12 @@ function topFunction() {
 document.body.scrollTop = 0; // For Safari
 document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
+
+function toggleMenu() {
+    const navMenu = document.querySelector('.top-buttons');
+    navMenu.classList.toggle('show');
+}
+
 
 document.addEventListener("DOMContentLoaded", function () {
 const scHcButton = document.getElementById("SC_HC");
