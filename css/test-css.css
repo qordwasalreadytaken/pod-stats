@@ -58,7 +58,7 @@
         background-image: url("../icons/Header_background.jpg"), url("../icons/stone_background_2600.jpg");
         background-position: top center, bottom center;
         background-repeat: no-repeat, repeat;
-        background-size: cover, auto; /* Use 'cover' for better scaling */
+        background-size: contain, auto; /* Use 'cover' for better scaling */
     }
     
     @media (max-width: 768px) {
