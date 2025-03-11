@@ -56,6 +56,7 @@
             <a href="https://github.com/qordwasalreadytaken/pod-stats/blob/main/README.md" class="top-button" target="_blank">About</a>
         </div> -->
 
+        
         <div class="top-buttons">
             <a href="Home.html" class="top-button home-button" onclick="setActive('Home')"></a>
             <a href="#" id="SC_HC" class="top-button"> </a>
@@ -67,6 +68,11 @@
             <a href="Paladin.html" id="Paladin" class="top-button paladin-button"></a>
             <a href="Sorceress.html" id="Sorceress" class="top-button sorceress-button"></a>
             <a href="https://github.com/qordwasalreadytaken/pod-stats/blob/main/README.md" class="top-button about-button" target="_blank"></a>
+        </div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
         </div>
         
 <div class="main">
@@ -147728,7 +147734,7 @@
 
         </div>
         <div class="footer">
-        <p>PoD data current as of 2025-03-10 21:31</p>
+        <p>PoD data current as of 2025-03-10 21:47</p>
         </div>
 
 
@@ -147775,6 +147781,11 @@ backToTopBtn.style.display = "none";
 function topFunction() {
 document.body.scrollTop = 0; // For Safari
 document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+
+function toggleMenu() {
+    const navMenu = document.querySelector('.top-buttons');
+    navMenu.classList.toggle('show');
 }
 
 document.addEventListener("DOMContentLoaded", function () {
