@@ -154,7 +154,31 @@
         margin-left: 10px;  /* Adjust the value as needed */
     }
     
+    .page-intro {
+        padding-top: 200px;  /* ✅ Large padding for desktop */
+    }
+    .page-intro-class {
+        padding-top: 350px;  /* ✅ Large padding for desktop */
+    }
     
+    @media screen and (max-width: 768px) {
+        .page-intro {
+            padding-top: 100px; /* ✅ Less padding for mobile */
+        }
+        .page-intro-class {
+            padding-top: 120px; /* ✅ Less padding for mobile */
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        .page-intro {
+            padding-top: 60px; /* ✅ Even less for small screens */
+        }
+        .page-intro-class {
+            padding-top: 80px; /* ✅ Even less for small screens */
+        }
+    }
+        
         
     .character-info { display: flex; margin-bottom: 10px; }
     .character-info div { flex: 1; padding: 5px; }
@@ -572,6 +596,11 @@
         height: 30px !important ;
         flex-shrink: 0;  /* Prevent shrinking */
     }
+    .skill-icon-smaller {
+        width: 20px !important ;
+        height: 20px !important ;
+        display: inline !important;
+    }
         
     .skill-bar-container {
         display: flex;
@@ -596,7 +625,7 @@
             max-width: 90%;
         }
     }
-            .skill-mini-bar {
+    .skill-mini-bar {
         height: 24px;
         border-radius: 3px;
         background: linear-gradient(90deg, #f2d7ee, #b31919);
@@ -606,6 +635,12 @@
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+    @media screen and (max-width: 768px) {
+        .skill-mini-bar {
+            min-width: 30%; /* Adjust for mobile */
+            max-width: 90%;
+        }
     }
     
     .skill-label {
@@ -668,6 +703,14 @@
         width: 45%;  /* Adjust width to fit 2 skills per row */
         padding: 5px;
     }
+    @media (max-width: 768px) {
+        .skill-item {
+                display: inline-block;
+                width: 100%;  /* Adjust width to fit 2 skills per row */
+                padding: 5px;
+           }
+    }
+    
     
     .summary-container {
         padding-left: 20px;
