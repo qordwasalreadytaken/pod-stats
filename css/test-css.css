@@ -215,6 +215,8 @@
     
         .collapsible strong {
             font-size: 14px; /* Reduce font size for smaller screens */
+            padding: 2px 0 2px 0;
+            text-align: left;
         }
     }
     
@@ -235,7 +237,8 @@
             width: 30px; /* Adjust size as needed */
             height: 30px;
             margin: 0 0;
-            padding: 0 0;
+            padding: 4px 0;
+            margin-left: -4px;
         }
     }
 
@@ -602,6 +605,11 @@
         align-items: center;
         gap: 8px;  /* Space between icon and bar */
     }
+    @media (max-width: 768px) {
+        .skill-row {
+            margin-left: -18px;
+        }
+    }
     
     .skill-icon {
         width: 30px !important ;
@@ -849,7 +857,7 @@
     @media (max-width: 768px) {
         .popup {
             width: 90%;  /* ✅ Scale for small screens */
-            height: 50%;  /* ✅ Let height adjust naturally */
+            height: 150%;  /* ✅ Let height adjust naturally */
             max-height: 80vh; /* ✅ Prevents going off-screen */
             overflow-y: auto; /* ✅ Allows scrolling */
         }
