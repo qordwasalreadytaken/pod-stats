@@ -137,13 +137,15 @@
     }
     .main {
         margin-left: 200px;
+        margin-top: 30%;
     }
     
     @media (max-width: 768px) {
         .main {
             margin-left: 0;
+            margin-top: 0;
             padding: 10px;
-        }
+       }
     }
     
     .main img {
@@ -236,9 +238,9 @@
         .collapsible .icon-small {
             width: 30px; /* Adjust size as needed */
             height: 30px;
-            margin: 0 0;
+            margin: 1 0;
             padding: 4px 0;
-            margin-left: -4px;
+            
         }
     }
 
@@ -641,8 +643,8 @@
         
     @media screen and (max-width: 768px) {
         .skill-bar {
-            min-width: 30%; /* Adjust for mobile */
-            max-width: 90%;
+            min-width: 35%; /* Adjust for mobile */
+            max-width: 50%;
         }
     }
     .skill-mini-bar {
