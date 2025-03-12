@@ -204,9 +204,13 @@
     }
     
     @media (max-width: 768px) {
+        .collapsible {
+            padding: 0 0;
+        }
         .collapsible .icon {
             width: 200px; /* Scale down images */
             height: 40px;
+            padding:0 0;
         }
     
         .collapsible strong {
@@ -225,6 +229,14 @@
         width: 30px; /* Adjust size as needed */
         height: 30px;
         margin-right: 10px;
+    }
+    @media (max-width: 768px) {
+        .collapsible .icon-small {
+            width: 30px; /* Adjust size as needed */
+            height: 30px;
+            margin: 0 0;
+            padding: 0 0;
+        }
     }
 
     .collapsible .icon.hidden, .icon-small.hidden {
