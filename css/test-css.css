@@ -118,8 +118,16 @@
      
     .not-main {
         padding-top: 50px; /* Adjust the value as needed */
+        margin-left: 250px;
     }
-    
+    @media (max-width: 768px) {
+        .not-main {
+            margin-left: 0;
+            margin-top: 0;
+            padding: 10px;
+       }
+    }
+   
     
     h1 { color: #f5f5f5;         
         font-family: 'd2', sans-serif;
@@ -148,16 +156,20 @@
        }
     }
     
-    .main img {
+    .main img, .not-main img {
         max-width: 800px;
         width: 100%;
         height: auto;
         display: block;
         margin-left: 10px;  /* Adjust the value as needed */
     }
-    
+    @media (max-width: 768px) {
+        .main img, .not-main img {
+            margin-left: 0;  /* Adjust the value as needed */
+        }
+    }            
     .page-intro {
-        padding-top: 200px;  /* ✅ Large padding for desktop */
+        padding-top: 0;  /* ✅ Large padding for desktop */
     }
     .page-intro-class {
         padding-top: 350px;  /* ✅ Large padding for desktop */
@@ -609,7 +621,7 @@
     }
     @media (max-width: 768px) {
         .skill-row {
-            margin-left: -18px;
+            margin-left: -8px;
         }
     }
     
@@ -634,6 +646,7 @@
         border-radius: 3px;
         background: linear-gradient(90deg, #d5f2e3, #cd5c5c);
         position: relative;
+        width: clamp(80px, 500.0px, 500px);
         min-width: 40%;  /* ✅ Change this */
         max-width: 100%;  /* ✅ Keep it from extending too far */
         display: flex;
@@ -643,8 +656,8 @@
         
     @media screen and (max-width: 768px) {
         .skill-bar {
-            min-width: 35%; /* Adjust for mobile */
-            max-width: 50%;
+            min-width: 40%; /* Adjust for mobile */
+            max-width: 59%;
         }
     }
     .skill-mini-bar {
@@ -660,8 +673,8 @@
     }
     @media screen and (max-width: 768px) {
         .skill-mini-bar {
-            min-width: 30%; /* Adjust for mobile */
-            max-width: 90%;
+            min-width: 10%; /* Adjust for mobile */
+            max-width: 100%;
         }
     }
     
