@@ -1021,3 +1021,23 @@
     background-color: #222;
     }
       
+    .anchor-link {
+        display: inline-block;
+        margin-left: 8px;  /* Adjust spacing from text */
+        text-decoration: none;  /* Remove underline */
+    }
+    
+    .anchor-icon {
+        width: 16px;
+        height: 16px;
+        max-height: 20px;
+        vertical-align: middle; /* Ensures it aligns with text */
+        opacity: 0.5;
+        transition: opacity 0.2s;
+    }
+    
+    .anchor-icon:hover {
+        opacity: 1;
+        max-height: 20px;
+    }
+    
