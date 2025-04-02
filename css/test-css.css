@@ -1040,4 +1040,115 @@
         opacity: 1;
         max-height: 20px;
     }
-    
+
+    .dropdown {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+    }
+
+    .dropdown button {
+        background-color: #3a3f44;
+        color: white;
+        padding: 10px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .dropdown button:hover {
+        background-color: #232323;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #3a3f44;
+        color: white;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        right: 0;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #f1f1f1;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+    .banner {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Transparent black background */
+        color: white;
+        text-align: center;
+        padding: 10px;
+        font-size: 18px;
+        z-index: 1000; /* Ensures it stays on top of other elements */
+    }
+    .dropdown {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+    }
+
+    .dropdown button {
+        background-color: #3a3f44;
+        color: white;
+        padding: 10px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .dropdown button:hover {
+        background-color: #232323;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #3a3f44;
+        color: white;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        right: 0;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #f1f1f1;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }    .banner {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Transparent black background */
+        color: white;
+        text-align: center;
+        padding: 10px;
+        font-size: 18px;
+        z-index: 1000; /* Ensures it stays on top of other elements */
+    }
