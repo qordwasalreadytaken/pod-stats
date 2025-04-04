@@ -949,7 +949,6 @@
 
 
     .navbar {
-    overflow: hidden;
     background-color: #333;
     font-family: Montserrat, sans-serif;
     min-width: 911px;
@@ -1013,10 +1012,9 @@
     }
     
     .navbar-item-right{
-    margin-left: 200%;
-    margin-right: 20px;
-    
+        margin-left: 75%;
     }
+    
     .navbar-item:hover, .navbar-item-right:hover {
     background-color: #222;
     }
@@ -1099,7 +1097,7 @@
     }
     .dropdown {
         position: absolute;
-        top: 30px;
+        top: 60px;
         right: 30px;
     }
 
@@ -1140,7 +1138,8 @@
 
     .dropdown:hover .dropdown-content {
         display: block;
-    }    .banner {
+    }    
+    .banner {
         position: fixed;
         top: 0;
         left: 0;
@@ -1151,4 +1150,54 @@
         padding: 10px;
         font-size: 18px;
         z-index: 1000; /* Ensures it stays on top of other elements */
+    }
+    #is-48x48c{
+        height: 48px;
+        width: 48px;
+    }
+    .is-48x48c{
+        height: 48px;
+        width: 48px;
+    }
+    .navbar-start {
+        overflow: visible; /* Ensures dropdowns aren't clipped */
+        position: relative; /* Helps with stacking and positioning */
+    }
+    .navbar-item.dropdown2 {
+        position: relative; /* Needed for dropdown2-content to position properly */
+    }
+    
+    .dropdown2-button {
+        background: none;
+        border: none;
+        font-size: 1rem;
+        color: white;
+        cursor: pointer;
+    }
+    
+    .dropdown2-content {
+        display: none;
+        position: absolute;
+        background-color: #3a3f44;
+        color: white;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        right: 0;
+        top: 100%;
+    }
+
+    .dropdown2-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+   
+    .dropdown2-content a:hover {
+        background-color: #f0f0f0; /* Adds hover effect for links */
+    }
+    
+    .navbar-start .dropdown2:hover .dropdown2-content {
+        display: block !important; /* Forces it to show */
     }
