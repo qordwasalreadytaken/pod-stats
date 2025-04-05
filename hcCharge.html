@@ -12,10 +12,12 @@
         <nav class="navbar is-fixed-top is-dark" style="height: 50px;">
 
             <div class="navbar-brand">
-                <a class="is-48x48" href="https://pathofdiablo.com/p/"><img src="icons/pod.ico" alt="Path of Diablo: Web Portal" width="48" height="48" class="is-48x48" style="height: 48px; width: 48px; margin-left: 0;"></a>
-                <div class="navbar-burger burger" data-target="podNavbar"><span></span><span></span><span></span>
-                </div>
-            </div>
+                <a class="is-48x48" href="https://pathofdiablo.com/p/"><img src="icons/pod.ico" alt="Path of Diablo: Web Portal" width="48" height="48" class="is-48x48" style="height: 48px; width: 48px; margin-left:0;"></a>
+    <button class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="podNavbar">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>            </div>
             <div id="podNavbar" class="navbar-menu">
                 <div class="navbar-start">
                     <a class="navbar-item" href="https://beta.pathofdiablo.com/trade-search">Trade</a>
@@ -25,7 +27,7 @@
                     <a class="navbar-item" href="https://beta.pathofdiablo.com/runewizard">Runewizard</a>
                     <a class="navbar-item" href="https://pathofdiablo.com/p/armory">Armory</a>
                     <a class="navbar-item" href="https://build.pathofdiablo.com">Build Planner</a>
-                    <a class="navbar-item" href="https://pathofdiablo.com/p/?live" style="width: 90px;"><span><img src="https://beta.pathofdiablo.com/images/twitchico.png"></span></a>
+                    <!--<a class="navbar-item" href="https://pathofdiablo.com/p/?live" style="width: 90px;"><span><img src="https://beta.pathofdiablo.com/images/twitchico.png"></span></a>-->
                 </div>
                 <div class="navbar-end">
 
@@ -42,7 +44,7 @@
                     </div>
                 </div>
         </nav>  
-        <div class="hamburger" onclick="toggleMenu()">
+        <div class="hamburger hamburger2" onclick="toggleMenu()">
             <div class="line"></div>
             <div class="line"></div>
             <div class="line"></div>
@@ -718,8 +720,34 @@ activePopup = null;
 });
 });
 
-</script>
 
+document.addEventListener('DOMContentLoaded', () => {
+    const burger = document.querySelector('.navbar-burger');
+    const menu = document.querySelector('.navbar-menu');
+
+    burger.addEventListener('click', () => {
+        menu.classList.toggle('is-active');
+        burger.classList.toggle('is-active');
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const dropdownButton = document.querySelector('.dropdown2-button');
+    const dropdownContent = document.querySelector('.dropdown2-content');
+
+    dropdownButton.addEventListener('click', (event) => {
+        event.stopPropagation(); // Prevents clicks from propagating to other elements
+        dropdownContent.classList.toggle('is-active'); // Toggles the dropdown visibility
+    });
+
+    // Close the dropdown if you click anywhere outside it
+    document.addEventListener('click', () => {
+        if (dropdownContent.classList.contains('is-active')) {
+            dropdownContent.classList.remove('is-active');
+        }
+    });
+});
+</script>
 
 
 

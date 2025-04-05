@@ -449,6 +449,10 @@
         .hamburger {
             display: flex;
         }
+        .hamburger2 {
+            display: flex;
+            margin-top: 50px;
+        }
         .top-buttons {
             display: none;
             flex-direction: column;
@@ -1201,3 +1205,57 @@
     .navbar-start .dropdown2:hover .dropdown2-content {
         display: block !important; /* Forces it to show */
     }
+    /* Default: Hide the burger and show the full navbar */
+.navbar-burger {
+    display: none; /* Hidden by default */
+}
+
+@media screen and (max-width: 1024px) {
+    /* On smaller screens (mobile/tablet), show the burger */
+    .navbar-burger {
+        display: block;
+    }
+
+    /* Hide the full navbar menu by default */
+    .navbar-menu {
+        display: none;
+    }
+
+    /* Show the full menu when toggled */
+    .navbar-menu.is-active {
+        display: flex;
+        flex-direction: column;
+        background-color: #333; /* Optional: Add mobile-friendly background color */
+        padding: 1rem;
+    }
+}
+
+
+.navbar-burger {
+    position: absolute; /* Ensures you can move it freely */
+    top: 0.5rem; /* Adjust vertical positioning */
+    margin-left: 20%; /* Pushes it to the right edge */
+    display: none; /* Hidden by default for desktop */
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1024px) {
+    .navbar-burger {
+        display: block; /* Show only on mobile screens */
+    }
+}
+.dropdown2-content {
+    display: none; /* Hidden by default */
+    position: absolute;
+    background-color: #3a3f44;
+    color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    left: 0;
+    top: 100%;
+}
+
+.dropdown2-content.is-active {
+    display: block; /* Show dropdown when active */
+}
