@@ -856,11 +856,10 @@
     .hover-trigger-dead {
         height: 35px; /* Adjust based on your images */
         text-align: center;
-        width: auto;
         display: inline-block;
         padding: 10px 20px;
         background-image: url('../icons/Dead.png'); /* Path to your PNG */
-        background-size: cover; /* Ensure the image covers the button */
+        background-size: contain; /* Ensure the image covers the button */
         background-repeat: no-repeat;
         background-position: center;
         color: white; /* Keeps text visible */
