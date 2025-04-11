@@ -45044,7 +45044,7 @@
             <button onclick="topFunction()" id="backToTopBtn" class="back-to-top"></button>
 
             <div class="footer">
-            <p>PoD class data current as of 2025-04-10 21:14</p>
+            <p>PoD class data current as of 2025-04-10 21:28</p>
             </div>            
 
 
@@ -45095,7 +45095,6 @@ function toggleMenu() {
     const navMenu = document.querySelector('.top-buttons');
     navMenu.classList.toggle('show');
 }
-
 
 document.addEventListener("DOMContentLoaded", function () {
 const scHcButton = document.getElementById("SC_HC");
@@ -45157,7 +45156,6 @@ item.classList.add("active");
 });
 });
 
-
 document.addEventListener("DOMContentLoaded", function () {
 let activePopup = null;
 
@@ -45203,6 +45201,19 @@ activePopup.innerHTML = ""; // Remove iframe to free memory
 activePopup = null;
 }
 });
+});
+
+document.querySelectorAll('.anchor-link').forEach(link => {
+    link.addEventListener('click', function(event) {
+        event.preventDefault();
+        
+        let url = window.location.origin + window.location.pathname + this.getAttribute('href');
+        navigator.clipboard.writeText(url).then(() => {
+//            alert("Link copied: " + url);
+        });
+
+        window.location.hash = this.getAttribute('href'); // Update URL
+    });
 });
 
 

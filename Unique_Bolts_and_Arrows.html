@@ -2475,7 +2475,7 @@
         </div>
         <button onclick="topFunction()" id="backToTopBtn" class="back-to-top"></button>
             <div class="footer">
-            <p>PoD data current as of 2025-04-10 21:14</p>
+            <p>PoD data current as of 2025-04-10 21:28</p>
             </div>
         
 
@@ -2527,7 +2527,6 @@ function toggleMenu() {
     const navMenu = document.querySelector('.top-buttons');
     navMenu.classList.toggle('show');
 }
-
 
 document.addEventListener("DOMContentLoaded", function () {
 const scHcButton = document.getElementById("SC_HC");
@@ -2635,6 +2634,20 @@ activePopup = null;
 }
 });
 });
+
+document.querySelectorAll('.anchor-link').forEach(link => {
+    link.addEventListener('click', function(event) {
+        event.preventDefault();
+        
+        let url = window.location.origin + window.location.pathname + this.getAttribute('href');
+        navigator.clipboard.writeText(url).then(() => {
+//            alert("Link copied: " + url);
+        });
+
+        window.location.hash = this.getAttribute('href'); // Update URL
+    });
+});
+
 
 document.addEventListener('DOMContentLoaded', () => {
     const burger = document.querySelector('.navbar-burger');
