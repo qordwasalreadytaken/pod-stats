@@ -213,7 +213,8 @@ if ("weapon2" in wornItems) {
         
             category["Skills"].forEach(skill => {
                 $("#skill-" + category["Name"].replace(/\s+/g, '-').toLowerCase())
-                    .append("<div class='skill-icon' id='skill-" + skill["Name"].replace(/\s+/g, '-').toLowerCase() + "'><div class='skill-tooltip' id='tooltip-" + skill["Name"].replace(/\s+/g, '-').toLowerCase() + "'>" + skill["Name"] + "</div><img src='https://pathofdiablo.com/p/armory/img/skills/" + data["Class"].toLowerCase() + "/" + skill["Name"].replace(/\s+/g, '_').toLowerCase() + ".png' /><div class='skill-level'>" + skill["Level"] + "</div></div>")
+//                    .append("<div class='skill-icon' id='skill-" + skill["Name"].replace(/\s+/g, '-').toLowerCase() + "'><div class='skill-tooltip' id='tooltip-" + skill["Name"].replace(/\s+/g, '-').toLowerCase() + "'>" + skill["Name"] + "</div><img src='https://pathofdiablo.com/p/armory/img/skills/" + data["Class"].toLowerCase() + "/" + skill["Name"].replace(/\s+/g, '_').toLowerCase() + ".png' /><div class='skill-level'>" + skill["Level"] + "</div></div>")
+                    .append("<div class='skill-icon' id='skill-" + skill["Name"].replace(/\s+/g, '-').toLowerCase() + "'><div class='skill-tooltip' id='tooltip-" + skill["Name"].replace(/\s+/g, '-').toLowerCase() + "'>" + skill["Name"] + "</div><img src='https://beta.pathofdiablo.com/armory-assets/img/skills/" + data["Class"].toLowerCase() + "/" + skill["Name"].replace(/\s+/g, '_').toLowerCase() + ".png' /><div class='skill-level'>" + skill["Level"] + "</div></div>")
                     .ready(function() {
                         $("#skill-" + skill["Name"].replace(/\s+/g, '-').toLowerCase()).hover(function() {
                             $("#tooltip-" + skill["Name"].replace(/\s+/g, '-').toLowerCase()).fadeIn(0);
