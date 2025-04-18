@@ -1258,3 +1258,9 @@
 .dropdown2-content.is-active {
     display: block; /* Show dropdown when active */
 }
+
+/* So the hrefs don't get hidden behind the top navbar */
+.content {
+    scroll-margin-top: 100px;
+  }
+  
