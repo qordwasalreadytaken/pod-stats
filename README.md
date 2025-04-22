@@ -31,7 +31,6 @@ Let Qord know, Qord @ PoD Discord
     * Some specialty pages still need adjustment
         * Pie Charts - Bong removed, it'll always be 50/50 so...
     * All scatter plots 
-* Charge, non-zon - Change sort to class based groups and not skills
 * Items - 
     * What exists for crafted, do that for magic and rare -Done
     * Item counts by equipment slot, head body etc. breakdown of quality (rare, runeword, unique etc)
@@ -81,24 +80,30 @@ Let Qord know, Qord @ PoD Discord
     * Character info/facts, stats on MF, GF, life, mana, STR, DEX, averages, etc.
 * Class specific-
     * Character info/facts, stats on MF, GF, life, mana, STR, DEX, averages, etc.
-
+* Charge, non-zon - Change sort to class based groups and not skills
+    * Charge page removed, redundant now that other features exist
+    * Non zon clusters based on class now
 
 # Known Issues to address
-* Some item images in the pop up aren't displaying even though they work in the original twitch extension, looks like it's only the regex'd/text-replace ones? Can't be something I did, blame regex right? 
+* ~~Some item images in the pop up aren't displaying even though they work in the original twitch extension, looks like it's only the regex'd/text-replace ones? Can't be something I did, blame regex right? ~~
+    * Fixed, was main web page url changes
 * Pie Charts not displayed properly, covered by labels
-    * Removed most pie charts for now, they're still generated but the div to show them is commented out in the html's
-        * Most are fixed, a few specialty pages still need help
+    * ~~Removed most pie charts for now, they're still generated but the div to show them is commented out in the html's~~
+        * ~~Most are fixed, a few specialty pages still need help~~
+    * Fixed
 * Hardcore had a low player base so the HC data includes a lot of low level characters, skewing data. Should it be floored at lvl 60? Some other level?
     * Hardcore floor changed to level 60, should it be higher still?
 * The number of clusters (builds) to use was decided by cluster analysis, silhouette, and gap analysis, followed by just eyeballing them to see if the made sense. Can this be more automatic AND reliable?
 * Reused names can cause duplicate character info to fall into multiple class buckets, fixing this has been manual; need to automate that so Zon's don't show up in sorc build breakdowns. 
-    * Fix in place for SC, need to add to HC
-    * Need to automate purge
+    * ~~Fix in place for SC, need to add to HC~~
+    * ~~Need to automate purge~~
+    * Fixed when changing how JSON is generated
 * HC characters that have died don't have equipment, how best to address?
     * Changed armory quickview button to reflect "dead" status
     * Is that adequate?
 * Item displays for characters:
-    * Item count for Dashadin not right, removed.
+    * ~~Item count for Dashadin not right, removed.~~
+        * Dash page removed, redudant after improving class pages
     * Item displays good for class pages, but breaks the clustering for specialty pages
 
 # Credits
@@ -141,8 +146,8 @@ Running other get/make functions uses data in the relevant SC/HC subfolders to c
 Running the GitHubSync function pushes the contents of PoD-Stats folder up to github. (this functionality would need to be set by the user, this is not universal)
 
 To execute these python files you will need to install python and these libraries:
-pip install requests
-pip install pandas
-pip install scikit-learn
-pip install plotly
-pip install jinja2
+* pip install requests
+* pip install pandas
+* pip install scikit-learn
+* pip install plotly
+* pip install jinja2
