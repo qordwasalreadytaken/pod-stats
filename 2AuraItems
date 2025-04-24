@@ -37,7 +37,7 @@
                         <div class="navbar-item dropdown2">
                             <button class="dropdown2-button">Trends History</button>
                             <div class="dropdown2-content">
-                                <a href="https://trends.pathofdiablo.com/Home.html">Current</a>
+                                <a href="https://trends.pathofdiablo.com/Home">Current</a>
                                 <a href="https://trends.pathofdiablo.com/Season/13/February/Home.html">S13-February</a>
                                 <a href="https://trends.pathofdiablo.com/Season/13/March/Home.html">S13-March</a>
                             </div>
@@ -52,15 +52,15 @@
             <div class="line"></div>
         </div>
         <div class="top-buttons">
-            <a href="Home.html" class="top-button home-button" onclick="setActive('Home')"></a>
+            <a href="Home" class="top-button home-button" onclick="setActive('Home')"></a>
             <a href="#" id="SC_HC" class="top-button"> </a>
-            <a href="Amazon.html" id="Amazon" class="top-button amazon-button"></a>
-            <a href="Assassin.html" id="Assassin" class="top-button assassin-button"></a>
-            <a href="Barbarian.html" id="Barbarian" class="top-button barbarian-button"></a>
-            <a href="Druid.html" id="Druid" class="top-button druid-button"></a>
-            <a href="Necromancer.html" id="Necromancer" class="top-button necromancer-button"></a>
-            <a href="Paladin.html" id="Paladin" class="top-button paladin-button"></a>
-            <a href="Sorceress.html" id="Sorceress" class="top-button sorceress-button"></a>
+            <a href="Amazon" id="Amazon" class="top-button amazon-button"></a>
+            <a href="Assassin" id="Assassin" class="top-button assassin-button"></a>
+            <a href="Barbarian" id="Barbarian" class="top-button barbarian-button"></a>
+            <a href="Druid" id="Druid" class="top-button druid-button"></a>
+            <a href="Necromancer" id="Necromancer" class="top-button necromancer-button"></a>
+            <a href="Paladin" id="Paladin" class="top-button paladin-button"></a>
+            <a href="Sorceress" id="Sorceress" class="top-button sorceress-button"></a>
             <a href="https://github.com/qordwasalreadytaken/pod-stats/blob/main/README.md" class="top-button about-button" target="_blank"></a>
         </div>
 
@@ -1621,13 +1621,14 @@
            <button onclick="topFunction()" id="backToTopBtn" class="back-to-top"></button>
 
             <div class="footer">
-            <p>PoD class data current as of 2025-04-22 07:45</p>
+            <p>PoD class data current as of 2025-04-23 21:08</p>
             </div>   
         
 
 
 
 <script>
+// Collapsible elemets
 var coll = document.getElementsByClassName("collapsible");
 for (var i = 0; i < coll.length; i++) {
     coll[i].addEventListener("click", function() {
@@ -1649,7 +1650,7 @@ for (var i = 0; i < coll.length; i++) {
 }
 
 
-//Get the button
+//Back to top button
 var backToTopBtn = document.getElementById("backToTopBtn");
 
 // When the user scrolls down 20px from the top of the document, show the button
@@ -1669,6 +1670,7 @@ document.body.scrollTop = 0; // For Safari
 document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
 
+//Trends toolbar
 function toggleMenu() {
     const navMenu = document.querySelector('.top-buttons');
     navMenu.classList.toggle('show');
@@ -1700,10 +1702,10 @@ let newUrl;
 
 if (isHardcore) {
 // Convert HC -> SC (remove "hc" from filename)
-newUrl = currentUrl.replace(/hc(\w+\.html)$/, "$1");
+newUrl = currentUrl.replace(/hc(\w+)$/, "$1");
 } else {
 // Convert SC -> HC (prepend "hc" to the filename)
-newUrl = currentUrl.replace(/(\w+\.html)$/, "hc$1");
+newUrl = currentUrl.replace(/(\w+)$/, "hc$1");
 }
 
 // Redirect to the new page
@@ -1734,6 +1736,7 @@ item.classList.add("active");
 });
 });
 
+//Armory pop up
 document.addEventListener("DOMContentLoaded", function () {
 let activePopup = null;
 
@@ -1781,20 +1784,8 @@ activePopup = null;
 });
 });
 
-document.querySelectorAll('.anchor-link').forEach(link => {
-    link.addEventListener('click', function(event) {
-        event.preventDefault();
-        
-        let url = window.location.origin + window.location.pathname + this.getAttribute('href');
-        navigator.clipboard.writeText(url).then(() => {
-//            alert("Link copied: " + url);
-        });
 
-        window.location.hash = this.getAttribute('href'); // Update URL
-    });
-});
-
-
+//PoD nav buttons
 document.addEventListener('DOMContentLoaded', () => {
     const burger = document.querySelector('.navbar-burger');
     const menu = document.querySelector('.navbar-menu');
@@ -1821,6 +1812,78 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+
+//Anchor in place fix
+// Expand collapsibles and scroll to anchor
+function scrollWithOffset(el, offset = -50) {
+    const y = el.getBoundingClientRect().top + window.pageYOffset + offset;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+}
+
+function expandToAnchor(anchorId) {
+    console.log("expandToAnchor called with:", anchorId);
+    const target = document.getElementById(anchorId);
+    if (!target) return;
+
+    // Step 1: Collect all parent .content elements that need expanding
+    const stack = [];
+    let el = target;
+    while (el) {
+        if (el.classList?.contains('content')) {
+            stack.unshift(el); // add to beginning to expand outermost first
+        }
+        el = el.parentElement;
+    }
+
+    // Step 2: Expand each .content section in order
+    for (const content of stack) {
+        const button = content.previousElementSibling;
+        if (button?.classList.contains('collapsible')) {
+            button.classList.add('active');
+            content.style.display = "block";
+
+            const openIcon = button.querySelector("img.open-icon");
+            const closeIcon = button.querySelector("img.close-icon");
+            if (openIcon) openIcon.classList.add("hidden");
+            if (closeIcon) closeIcon.classList.remove("hidden");
+        }
+    }
+
+    // Step 3: Delay scroll until DOM has reflowed
+    setTimeout(() => {
+        console.log("scrolling to:", target.id);
+        scrollWithOffset(target);
+    }, 250); // Adjust if necessary
+}
+
+// Handle clicks on .anchor-link elements
+document.addEventListener('DOMContentLoaded', () => {
+    // Handle clicks on .anchor-link elements
+    document.querySelectorAll('.anchor-link, a[href^="#"]').forEach(link => {
+        link.addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent default anchor behavior
+            const anchorId = this.getAttribute('href').substring(1);
+            const fullUrl = `${window.location.origin}${window.location.pathname}#${anchorId}`;
+
+            navigator.clipboard.writeText(fullUrl); // Copy full link to clipboard
+            history.pushState(null, '', `#${anchorId}`); // Update URL without page reload
+            expandToAnchor(anchorId); // Expand and scroll
+        });
+    });
+
+    // On initial load with hash
+    if (window.location.hash) {
+        const anchorId = window.location.hash.substring(1);
+        // Wait a bit for collapsibles/content to render
+        setTimeout(() => {
+            expandToAnchor(anchorId);
+        }, 200);
+    }
+});
+
+
+
 </script>
 
 

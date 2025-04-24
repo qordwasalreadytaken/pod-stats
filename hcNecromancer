@@ -40,7 +40,7 @@
                         <div class="navbar-item dropdown2">
                             <button class="dropdown2-button">Trends History</button>
                             <div class="dropdown2-content">
-                                <a href="https://trends.pathofdiablo.com/Home.html">Current</a>
+                                <a href="https://trends.pathofdiablo.com/Home">Current</a>
                                 <a href="https://trends.pathofdiablo.com/Season/13/February/Home.html">S13-February</a>
                                 <a href="https://trends.pathofdiablo.com/Season/13/March/Home.html">S13-March</a>
                             </div>
@@ -54,18 +54,18 @@
             <div class="line"></div>
         </div>
     
-    <div class="top-buttons">
-        <a href="Home.html" class="top-button home-button" onclick="setActive('Home')"></a>
-        <a href="#" id="SC_HC" class="top-button"> </a>
-        <a href="hcAmazon.html" id="Amazon" class="top-button amazon-button"></a>
-        <a href="hcAssassin.html" id="Assassin" class="top-button assassin-button"></a>
-        <a href="hcBarbarian.html" id="Barbarian" class="top-button barbarian-button"></a>
-        <a href="hcDruid.html" id="Druid" class="top-button druid-button"></a>
-        <a href="hcNecromancer.html" id="Necromancer" class="top-button necromancer-button"></a>
-        <a href="hcPaladin.html" id="Paladin" class="top-button paladin-button"></a>
-        <a href="hcSorceress.html" id="Sorceress" class="top-button sorceress-button"></a>
-        <a href="https://github.com/qordwasalreadytaken/pod-stats/blob/main/README.md" class="top-button about-button" target="_blank"></a>
-    </div>  
+        <div class="top-buttons">
+            <a href="hcHome" class="top-button home-button" onclick="setActive('Home')"></a>
+            <a href="#" id="SC_HC" class="top-button"> </a>
+            <a href="hcAmazon" id="Amazon" class="top-button amazon-button"></a>
+            <a href="hcAssassin" id="Assassin" class="top-button assassin-button"></a>
+            <a href="hcBarbarian" id="Barbarian" class="top-button barbarian-button"></a>
+            <a href="hcDruid" id="Druid" class="top-button druid-button"></a>
+            <a href="hcNecromancer" id="Necromancer" class="top-button necromancer-button"></a>
+            <a href="hcPaladin" id="Paladin" class="top-button paladin-button"></a>
+            <a href="hcSorceress" id="Sorceress" class="top-button sorceress-button"></a>
+            <a href="https://github.com/qordwasalreadytaken/pod-stats/blob/main/README.md" class="top-button about-button" target="_blank"></a>
+        </div>
          
             <h1>Necromancer Hardcore Skill Distribution </h1>
             <div class="summary-container">
@@ -24090,7 +24090,7 @@
             <button onclick="topFunction()" id="backToTopBtn" class="back-to-top"></button>
 
             <div class="footer">
-            <p>PoD class data current as of 2025-04-22 07:51</p>
+            <p>PoD class data current as of 2025-04-23 21:08</p>
             </div>            
 
 <script>
@@ -24168,10 +24168,10 @@ let newUrl;
 
 if (isHardcore) {
 // Convert HC -> SC (remove "hc" from filename)
-newUrl = currentUrl.replace(/hc(\w+\.html)$/, "$1");
+newUrl = currentUrl.replace(/hc(\w+)$/, "$1");
 } else {
 // Convert SC -> HC (prepend "hc" to the filename)
-newUrl = currentUrl.replace(/(\w+\.html)$/, "hc$1");
+newUrl = currentUrl.replace(/(\w+)$/, "hc$1");
 }
 
 // Redirect to the new page
@@ -24282,6 +24282,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //Anchor in place fix
 // Expand collapsibles and scroll to anchor
+function scrollWithOffset(el, offset = -50) {
+    const y = el.getBoundingClientRect().top + window.pageYOffset + offset;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+}
+
 function expandToAnchor(anchorId) {
     console.log("expandToAnchor called with:", anchorId);
     const target = document.getElementById(anchorId);
@@ -24314,7 +24319,7 @@ function expandToAnchor(anchorId) {
     // Step 3: Delay scroll until DOM has reflowed
     setTimeout(() => {
         console.log("scrolling to:", target.id);
-        target.scrollIntoView({ behavior: "smooth", block: "start" });
+        scrollWithOffset(target);
     }, 250); // Adjust if necessary
 }
 
@@ -24339,7 +24344,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Wait a bit for collapsibles/content to render
         setTimeout(() => {
             expandToAnchor(anchorId);
-        }, 100);
+        }, 200);
     }
 });
 

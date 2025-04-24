@@ -42,7 +42,7 @@
                         <div class="navbar-item dropdown2">
                             <button class="dropdown2-button">Trends History</button>
                             <div class="dropdown2-content">
-                                <a href="https://trends.pathofdiablo.com/Home.html">Current</a>
+                                <a href="https://trends.pathofdiablo.com/Home">Current</a>
                                 <a href="https://trends.pathofdiablo.com/Season/13/February/Home.html">S13-February</a>
                                 <a href="https://trends.pathofdiablo.com/Season/13/March/Home.html">S13-March</a>
                             </div>
@@ -58,21 +58,21 @@
             <div class="line"></div>
         </div>
         <div class="top-buttons">
-            <a href="Home.html" class="top-button home-button" onclick="setActive('Home')"></a>
+            <a href="Home" class="top-button home-button" onclick="setActive('Home')"></a>
             <a href="#" id="SC_HC" class="top-button"> </a>
-            <a href="Amazon.html" id="Amazon" class="top-button amazon-button"></a>
-            <a href="Assassin.html" id="Assassin" class="top-button assassin-button"></a>
-            <a href="Barbarian.html" id="Barbarian" class="top-button barbarian-button"></a>
-            <a href="Druid.html" id="Druid" class="top-button druid-button"></a>
-            <a href="Necromancer.html" id="Necromancer" class="top-button necromancer-button"></a>
-            <a href="Paladin.html" id="Paladin" class="top-button paladin-button"></a>
-            <a href="Sorceress.html" id="Sorceress" class="top-button sorceress-button"></a>
+            <a href="Amazon" id="Amazon" class="top-button amazon-button"></a>
+            <a href="Assassin" id="Assassin" class="top-button assassin-button"></a>
+            <a href="Barbarian" id="Barbarian" class="top-button barbarian-button"></a>
+            <a href="Druid" id="Druid" class="top-button druid-button"></a>
+            <a href="Necromancer" id="Necromancer" class="top-button necromancer-button"></a>
+            <a href="Paladin" id="Paladin" class="top-button paladin-button"></a>
+            <a href="Sorceress" id="Sorceress" class="top-button sorceress-button"></a>
             <a href="https://github.com/qordwasalreadytaken/pod-stats/blob/main/README.md" class="top-button about-button" target="_blank"></a>
         </div>
 <!--    <div class="dropdown">
         <button>When</button>
         <div class="dropdown-content">
-            <a href="https://trends.pathofdiablo.com/Home.html">Current</a>
+            <a href="https://trends.pathofdiablo.com/Home">Current</a>
             <a href="https://trends.pathofdiablo.com/Season/13/February/Home.html">S13-February</a>
             <a href="https://trends.pathofdiablo.com/Season/13/March/Home.html">S13-March</a>
         </div>
@@ -204308,13 +204308,13 @@
         <br>
 -->
         <h2>Unique Arrows & Bolts</h2>
-        <a href="Unique_Bolts_and_Arrows.html"> <img src="icons/Special.png" alt="Unique Arrows & Bolts" style="width:300px;height:50px;" class="collapsible icon"></a>
+        <a href="Unique_Bolts_and_Arrows"> <img src="icons/Special.png" alt="Unique Arrows & Bolts" style="width:300px;height:50px;" class="collapsible icon"></a>
         <br>
         <h2>Non-Amazon Bow Users</h2>
-        <a href="Notazons.html"> <img src="icons/Special.png" alt="Non-Amazon Bow Users" style="width:300px;height:50px;" class="collapsible icon"></a>
+        <a href="Notazons"> <img src="icons/Special.png" alt="Non-Amazon Bow Users" style="width:300px;height:50px;" class="collapsible icon"></a>
         <br>
         <h2>Dual Offensive Aura Items Equipped</h2>
-        <a href="2AuraItems.html"> <img src="icons/Special.png" alt="Dual Offensive Aura Items Equipped" style="width:300px;height:50px;" class="collapsible icon"></a>
+        <a href="2AuraItems"> <img src="icons/Special.png" alt="Dual Offensive Aura Items Equipped" style="width:300px;height:50px;" class="collapsible icon"></a>
         <br>
 <!--        <h2>Dashing Strikers</h2>
         <a href="Dashadin.html"> <img src="icons/Special.png" alt="Dashing Strikers" style="width:300px;height:50px;" class="collapsible icon"></a>
@@ -204661,7 +204661,7 @@
 
         </div>
         <div class="footer">
-        <p>PoD data current as of 2025-04-22 07:45</p>
+        <p>PoD data current as of 2025-04-23 21:08</p>
         </div>
 
 
@@ -204743,10 +204743,10 @@ let newUrl;
 
 if (isHardcore) {
 // Convert HC -> SC (remove "hc" from filename)
-newUrl = currentUrl.replace(/hc(\w+\.html)$/, "$1");
+newUrl = currentUrl.replace(/hc(\w+)$/, "$1");
 } else {
 // Convert SC -> HC (prepend "hc" to the filename)
-newUrl = currentUrl.replace(/(\w+\.html)$/, "hc$1");
+newUrl = currentUrl.replace(/(\w+)$/, "hc$1");
 }
 
 // Redirect to the new page
@@ -204857,6 +204857,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //Anchor in place fix
 // Expand collapsibles and scroll to anchor
+function scrollWithOffset(el, offset = -50) {
+    const y = el.getBoundingClientRect().top + window.pageYOffset + offset;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+}
+
 function expandToAnchor(anchorId) {
     console.log("expandToAnchor called with:", anchorId);
     const target = document.getElementById(anchorId);
@@ -204889,7 +204894,7 @@ function expandToAnchor(anchorId) {
     // Step 3: Delay scroll until DOM has reflowed
     setTimeout(() => {
         console.log("scrolling to:", target.id);
-        target.scrollIntoView({ behavior: "smooth", block: "start" });
+        scrollWithOffset(target);
     }, 250); // Adjust if necessary
 }
 
@@ -204914,7 +204919,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Wait a bit for collapsibles/content to render
         setTimeout(() => {
             expandToAnchor(anchorId);
-        }, 100);
+        }, 200);
     }
 });
 

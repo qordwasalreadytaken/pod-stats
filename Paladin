@@ -39,7 +39,7 @@
                         <div class="navbar-item dropdown2">
                             <button class="dropdown2-button">Trends History</button>
                             <div class="dropdown2-content">
-                                <a href="https://trends.pathofdiablo.com/Home.html">Current</a>
+                                <a href="https://trends.pathofdiablo.com/Home">Current</a>
                                 <a href="https://trends.pathofdiablo.com/Season/13/February/Home.html">S13-February</a>
                                 <a href="https://trends.pathofdiablo.com/Season/13/March/Home.html">S13-March</a>
                             </div>
@@ -54,15 +54,15 @@
             <div class="line"></div>
         </div>
         <div class="top-buttons">
-            <a href="Home.html" class="top-button home-button" onclick="setActive('Home')"></a>
+            <a href="Home" class="top-button home-button" onclick="setActive('Home')"></a>
             <a href="#" id="SC_HC" class="top-button"> </a>
-            <a href="Amazon.html" id="Amazon" class="top-button amazon-button"></a>
-            <a href="Assassin.html" id="Assassin" class="top-button assassin-button"></a>
-            <a href="Barbarian.html" id="Barbarian" class="top-button barbarian-button"></a>
-            <a href="Druid.html" id="Druid" class="top-button druid-button"></a>
-            <a href="Necromancer.html" id="Necromancer" class="top-button necromancer-button"></a>
-            <a href="Paladin.html" id="Paladin" class="top-button paladin-button"></a>
-            <a href="Sorceress.html" id="Sorceress" class="top-button sorceress-button"></a>
+            <a href="Amazon" id="Amazon" class="top-button amazon-button"></a>
+            <a href="Assassin" id="Assassin" class="top-button assassin-button"></a>
+            <a href="Barbarian" id="Barbarian" class="top-button barbarian-button"></a>
+            <a href="Druid" id="Druid" class="top-button druid-button"></a>
+            <a href="Necromancer" id="Necromancer" class="top-button necromancer-button"></a>
+            <a href="Paladin" id="Paladin" class="top-button paladin-button"></a>
+            <a href="Sorceress" id="Sorceress" class="top-button sorceress-button"></a>
             <a href="https://github.com/qordwasalreadytaken/pod-stats/blob/main/README.md" class="top-button about-button" target="_blank"></a>
         </div>
 <div page-intro-class>
@@ -43684,7 +43684,7 @@
             <button onclick="topFunction()" id="backToTopBtn" class="back-to-top"></button>
 
             <div class="footer">
-            <p>PoD class data current as of 2025-04-22 07:45</p>
+            <p>PoD class data current as of 2025-04-23 21:08</p>
             </div>            
 
 
@@ -43764,10 +43764,10 @@ let newUrl;
 
 if (isHardcore) {
 // Convert HC -> SC (remove "hc" from filename)
-newUrl = currentUrl.replace(/hc(\w+\.html)$/, "$1");
+newUrl = currentUrl.replace(/hc(\w+)$/, "$1");
 } else {
 // Convert SC -> HC (prepend "hc" to the filename)
-newUrl = currentUrl.replace(/(\w+\.html)$/, "hc$1");
+newUrl = currentUrl.replace(/(\w+)$/, "hc$1");
 }
 
 // Redirect to the new page
