@@ -2474,7 +2474,7 @@
         </div> -->
         <button onclick="topFunction()" id="backToTopBtn" class="back-to-top"></button>
             <div class="footer">
-            <p>PoD data current as of 2025-04-23 22:03</p>
+            <p>PoD data current as of 2025-04-23 22:18</p>
             </div>
         
 
@@ -2555,10 +2555,10 @@ let newUrl;
 
 if (isHardcore) {
 // Convert HC -> SC (remove "hc" from filename)
-newUrl = currentUrl.replace(/hc(\w+)$/, "$1");
+newUrl = currentUrl.replace(/hc(\w+\.html)$/, "$1");
 } else {
 // Convert SC -> HC (prepend "hc" to the filename)
-newUrl = currentUrl.replace(/(\w+)$/, "hc$1");
+newUrl = currentUrl.replace(/(\w+\.html)$/, "hc$1");
 }
 
 // Redirect to the new page
