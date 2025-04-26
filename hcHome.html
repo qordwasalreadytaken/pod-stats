@@ -72384,7 +72384,7 @@
 
         </div>
         <div class="footer">
-        <p>PoD data current as of 2025-04-25 20:27</p>
+        <p>PoD data current as of 2025-04-25 20:36</p>
         </div>
 
 
@@ -72465,11 +72465,11 @@ scHcButton.addEventListener("click", function () {
 let newUrl;
 
 if (isHardcore) {
-// Convert HC -> SC (remove "hc" from filename)
-newUrl = currentUrl.replace(/hc(\w+\.html)$/, "$1");
+    // Convert HC -> SC (remove "hc" from filename)
+    newUrl = currentUrl.replace(/hc(\w+)$/, "$1");
 } else {
-// Convert SC -> HC (prepend "hc" to the filename)
-newUrl = currentUrl.replace(/(\w+\.html)$/, "hc$1");
+    // Convert SC -> HC (prepend "hc" to the filename)
+    newUrl = currentUrl.replace(/(\w+)$/, "hc$1");
 }
 
 // Redirect to the new page
