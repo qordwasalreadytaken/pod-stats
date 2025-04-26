@@ -45262,7 +45262,7 @@
             <button onclick="topFunction()" id="backToTopBtn" class="back-to-top"></button>
 
             <div class="footer">
-            <p>PoD class data current as of 2025-04-25 20:41</p>
+            <p>PoD class data current as of 2025-04-25 20:59</p>
             </div>            
 
 
@@ -45338,7 +45338,22 @@ updateButtonImage(isHardcore);
 
 // Add click event to toggle between SC and HC pages
 scHcButton.addEventListener("click", function () {
-let newUrl;
+    let newUrl;
+
+    if (isHardcore) {
+        // Convert HC -> SC (remove "hc" from filename)
+        newUrl = currentUrl.replace(/hc(\w+)$/, "$1"); // Remove "hc"
+    } else {
+        // Convert SC -> HC (prepend "hc" to the filename)
+        newUrl = currentUrl.replace(/\/(\w+)$/, "/hc$1"); // Prepend "hc"
+    }
+
+    // Redirect to the new page
+    if (newUrl !== currentUrl) {
+        window.location.href = newUrl;
+    }
+});
+
 
 if (isHardcore) {
     // Convert HC -> SC (remove "hc" from filename)
