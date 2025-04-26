@@ -559,7 +559,7 @@
            <button onclick="topFunction()" id="backToTopBtn" class="back-to-top"></button>
 
             <div class="footer">
-            <p>PoD class data current as of 2025-04-25 20:59</p>
+            <p>PoD class data current as of 2025-04-25 21:10</p>
             </div>   
         
 
@@ -609,85 +609,72 @@ document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
 
 //Trends toolbar
+// Trends toolbar
 function toggleMenu() {
     const navMenu = document.querySelector('.top-buttons');
     navMenu.classList.toggle('show');
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-const scHcButton = document.getElementById("SC_HC");
-const currentUrl = window.location.href;
-const filename = currentUrl.split("/").pop(); // Get the last part of the URL
+    const scHcButton = document.getElementById("SC_HC");
+    const currentUrl = window.location.href;
+    const filename = currentUrl.split("/").pop(); // Get the last part of the URL
 
-// Check if the current page is Hardcore or Softcore
-const isHardcore = filename.startsWith("hc");
+    // Check if the current page is Hardcore or Softcore
+    const isHardcore = filename.startsWith("hc");
 
-// Update button appearance based on current mode
-if (isHardcore) {
-scHcButton.classList.add("hardcore");
-scHcButton.classList.remove("softcore");
-} else {
-scHcButton.classList.add("softcore");
-scHcButton.classList.remove("hardcore");
-}
-
-// Update background image based on mode
-updateButtonImage(isHardcore);
-
-// Add click event to toggle between SC and HC pages
-scHcButton.addEventListener("click", function () {
-    let newUrl;
-
+    // Update button appearance based on current mode
     if (isHardcore) {
-        // Convert HC -> SC (remove "hc" from filename)
-        newUrl = currentUrl.replace(/hc(\w+)$/, "$1"); // Remove "hc"
+        scHcButton.classList.add("hardcore");
+        scHcButton.classList.remove("softcore");
     } else {
-        // Convert SC -> HC (prepend "hc" to the filename)
-        newUrl = currentUrl.replace(/\/(\w+)$/, "/hc$1"); // Prepend "hc"
+        scHcButton.classList.add("softcore");
+        scHcButton.classList.remove("hardcore");
     }
 
-    // Redirect to the new page
-    if (newUrl !== currentUrl) {
-        window.location.href = newUrl;
+    // Update background image based on mode
+    updateButtonImage(isHardcore);
+
+    // Add click event to toggle between SC and HC pages
+    scHcButton.addEventListener("click", function () {
+        let newUrl;
+
+        if (isHardcore) {
+            // Convert HC -> SC (remove "hc" from filename)
+            newUrl = currentUrl.replace(/hc(\w+)$/, "$1"); // Remove "hc"
+        } else {
+            // Convert SC -> HC (prepend "hc" to the filename)
+            newUrl = currentUrl.replace(/\/(\w+)$/, "/hc$1"); // Prepend "hc"
+        }
+
+        // Redirect to the new page
+        if (newUrl !== currentUrl) {
+            window.location.href = newUrl;
+        }
+    });
+
+    // Function to update button background image
+    function updateButtonImage(isHardcore) {
+        if (isHardcore) {
+            scHcButton.style.backgroundImage = "url('icons/Hardcore_click.png')";
+        } else {
+            scHcButton.style.backgroundImage = "url('icons/Softcore_click.png')";
+        }
     }
-});
-
-
-if (isHardcore) {
-// Convert HC -> SC (remove "hc" from filename)
-newUrl = currentUrl.replace(/hc(\w+\.html)$/, "$1");
-} else {
-// Convert SC -> HC (prepend "hc" to the filename)
-newUrl = currentUrl.replace(/(\w+\.html)$/, "hc$1");
-}
-
-// Redirect to the new page
-if (newUrl !== currentUrl) {
-window.location.href = newUrl;
-}
-});
-
-// Function to update button background image
-function updateButtonImage(isHardcore) {
-if (isHardcore) {
-scHcButton.style.backgroundImage = "url('icons/Hardcore_click.png')";
-} else {
-scHcButton.style.backgroundImage = "url('icons/Softcore_click.png')";
-}
-}
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-const currentPage = window.location.pathname.split("/").pop(); // Get current page filename
-const menuItems = document.querySelectorAll(".top-button");
+    const currentPage = window.location.pathname.split("/").pop(); // Get current page filename
+    const menuItems = document.querySelectorAll(".top-button");
 
-menuItems.forEach(item => {
-const itemPage = item.getAttribute("href");
-if (itemPage && currentPage === itemPage) {
-item.classList.add("active");
-}
+    menuItems.forEach(item => {
+        const itemPage = item.getAttribute("href");
+        if (itemPage && currentPage === itemPage) {
+            item.classList.add("active");
+        }
+    });
 });
-});
+
 
 //Armory pop up
 document.addEventListener("DOMContentLoaded", function () {
