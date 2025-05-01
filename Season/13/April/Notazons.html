@@ -1,0 +1,2107 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Notazons Analysis Report</title>
+        <link rel="stylesheet" type="text/css" href="../../../css/test-css.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    </head>
+    <body class="not-main">
+        <div class="is-clipped">
+        <nav class="navbar is-fixed-top is-dark" style="height: 50px;">
+
+            <div class="navbar-brand">
+                <a class="is-48x48" href="https://pathofdiablo.com/p/"><img src="../../../icons/pod.ico" alt="Path of Diablo: Web Portal" width="48" height="48" class="is-48x48" style="height: 48px; width: 48px; margin-left:0;"></a>
+    <button class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="podNavbar">
+        <br>
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>            </div>
+            <div id="podNavbar" class="navbar-menu">
+                <div class="navbar-start">
+                    <a class="navbar-item" href="https://beta.pathofdiablo.com/trade-search">Trade</a>
+                    <a class="navbar-item" href="https://pathofdiablo.com/p/?servers">Servers</a>
+                    <a class="navbar-item" href="https://beta.pathofdiablo.com/ladder">Ladder</a>
+                    <a class="navbar-item" href="https://beta.pathofdiablo.com/public-games">Public Games</a>
+                    <a class="navbar-item" href="https://beta.pathofdiablo.com/runewizard">Runewizard</a>
+                    <a class="navbar-item" href="https://pathofdiablo.com/p/armory">Armory</a>
+                    <a class="navbar-item" href="https://build.pathofdiablo.com">Build Planner</a>
+                    <!--<a class="navbar-item" href="https://pathofdiablo.com/p/?live" style="width: 90px;"><span><img src="https://beta.pathofdiablo.com/images/twitchico.png"></span></a>-->
+                </div>
+                <div class="navbar-end">
+
+                    <div class="navbar-start">	
+                        <a class="navbar-item-right" href="https://beta.pathofdiablo.com/my-toons">Character Storage</a>
+                        <div class="navbar-item dropdown2">
+                            <button class="dropdown2-button">Trends History</button>
+                            <div class="dropdown2-content">
+                                <a href="https://trends.pathofdiablo.com/Home.html">Current</a>
+                                <!--  <a href="https://trends.pathofdiablo.com/Season/14/April/Home">S14</a> -->
+                                <div class="dropdown2-item dropdown-sub">
+                                    <a class="dropdown-sub-button">S13</a>
+                                    <div class="dropdown-sub-content">
+                                        <a href="https://trends.pathofdiablo.com/Season/13/April/Home">April</a>
+                                        <a href="https://trends.pathofdiablo.com/Season/13/March/Home.html">March</a>
+                                        <a href="https://trends.pathofdiablo.com/Season/13/February/Home.html">February</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </nav>  
+        <div class="banner" style="top:50px; left:25%; width:50%;;">
+            Viewing Season 13 historical data from the end of April
+        </div>
+
+        <div class="hamburger hamburger2" onclick="toggleMenu()">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        <div class="top-buttons">
+            <a href="Home" class="top-button home-button" onclick="setActive('Home')"></a>
+            <a href="#" id="SC_HC" class="top-button"> </a>
+            <a href="Amazon" id="Amazon" class="top-button amazon-button"></a>
+            <a href="Assassin" id="Assassin" class="top-button assassin-button"></a>
+            <a href="Barbarian" id="Barbarian" class="top-button barbarian-button"></a>
+            <a href="Druid" id="Druid" class="top-button druid-button"></a>
+            <a href="Necromancer" id="Necromancer" class="top-button necromancer-button"></a>
+            <a href="Paladin" id="Paladin" class="top-button paladin-button"></a>
+            <a href="Sorceress" id="Sorceress" class="top-button sorceress-button"></a>
+            <a href="https://github.com/qordwasalreadytaken/pod-stats/blob/main/README.md" class="top-button about-button" target="_blank"></a>
+        </div>
+
+        <h1>Notazons Softcore Skill Distribution </h1>
+        <div class="summary-container">
+        <br>
+        <h3>The Notazon is not a Zon, but has bolts or arrows equipped</h3>
+
+        
+        <!--<h2><div id="cluster-Sorceress">55.56% of Notazons's are Sorceress's:<a href="#cluster-Sorceress" class="anchor-link"><img src="../../../icons/anchor.png" alt="🔗" class="anchor-icon"></a><br>
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Enflame.png" alt="Enflame" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Enflame (361)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Frigerate.png" alt="Frigerate" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Frigerate (355)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Warmth.png" alt="Warmth" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Warmth (337)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Shiver Armor.png" alt="Shiver Armor" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Shiver Armor (333)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </h2>
+        <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='../../../icons/Fire Bolt.png' alt='Fire Bolt' width='20' height='20'> <span class='normal-skill'>Fire Bolt 95.0% (181)</span><br><img src='../../../icons/Cold Mastery.png' alt='Cold Mastery' width='20' height='20'> <span class='normal-skill'>Cold Mastery 90.0% (146)</span><br><img src='../../../icons/Fire Mastery.png' alt='Fire Mastery' width='20' height='20'> <span class='normal-skill'>Fire Mastery 95.0% (135)</span><br><img src='../../../icons/Telekinesis.png' alt='Telekinesis' width='20' height='20'> <span class='highlight-100'>Telekinesis 100.0% (77)</span><br><img src='../../../icons/Energy Shield.png' alt='Energy Shield' width='20' height='20'> <span class='normal-skill'>Energy Shield 10.0% (29)</span><br><img src='../../../icons/Teleport.png' alt='Teleport' width='20' height='20'> <span class='highlight-100'>Teleport 100.0% (28)</span></p> -->
+        <div class="class-intro">
+        <div id="skills" class="skills-container">
+            <div class="column">
+                <ul id="most-popular-skills">
+                    <h2><div id="cluster-Sorceress">55.56% of Notazons's are Sorceress's:<a href="#cluster-Sorceress" class="anchor-link"><img src="../../../icons/anchor.png" alt="🔗" class="anchor-icon"></a><br>
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Enflame.png" alt="Enflame" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Enflame (361)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Frigerate.png" alt="Frigerate" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Frigerate (355)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Warmth.png" alt="Warmth" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Warmth (337)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Shiver Armor.png" alt="Shiver Armor" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Shiver Armor (333)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </h2>
+                </ul>
+            </div>
+<!--            <div class="column">
+                <ul id="other-skills">
+                    <h2>Other common skills in this group:</h2> <img src='../../../icons/Fire Bolt.png' alt='Fire Bolt' width='20' height='20'> <span class='normal-skill'>Fire Bolt 95.0% (181)</span><br><img src='../../../icons/Cold Mastery.png' alt='Cold Mastery' width='20' height='20'> <span class='normal-skill'>Cold Mastery 90.0% (146)</span><br><img src='../../../icons/Fire Mastery.png' alt='Fire Mastery' width='20' height='20'> <span class='normal-skill'>Fire Mastery 95.0% (135)</span><br><img src='../../../icons/Telekinesis.png' alt='Telekinesis' width='20' height='20'> <span class='highlight-100'>Telekinesis 100.0% (77)</span><br><img src='../../../icons/Energy Shield.png' alt='Energy Shield' width='20' height='20'> <span class='normal-skill'>Energy Shield 10.0% (29)</span><br><img src='../../../icons/Teleport.png' alt='Teleport' width='20' height='20'> <span class='highlight-100'>Teleport 100.0% (28)</span>
+                </ul>
+            </div> -->
+        </div>
+
+        
+    <button type="button" class="collapsible small-collapsible">
+        <img src="../../../icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="../../../icons/closed.png" alt="Close" class="icon-small close-icon">
+                <strong>All Skills</strong></button>
+                <div class="content">
+                    <div></div>
+                </div>
+
+
+
+                <button type="button" class="collapsible small-collapsible">
+        <img src="../../../icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="../../../icons/closed.png" alt="Close" class="icon-small close-icon">
+                <strong>Most Common Equipment:</strong></button>
+                <div class="content">
+                    <div><strong>Amulet</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Mara's Kaleidoscope</span> 65.00% (13)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Seraph's Hymn</span> 20.00% (4)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #7074c9;'>Magic Amulet</span> 5.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Highlord's Wrath</span> 5.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: orange;'>Crafted Amulet</span> 5.00% (1)<br><strong>Ring</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Bul-Kathos' Wedding Band</span> 53.85% (21)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Raven Frost</span> 17.95% (7)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Rare Ring</span> 10.26% (4)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Wisp Projector</span> 7.69% (3)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>The Stone of Jordan</span> 7.69% (3)<br><strong>Helmet</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Harlequin Crest</span> 55.00% (11)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Nightwing's Veil</span> 20.00% (4)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Andariel's Visage</span> 20.00% (4)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Rare Tiara</span> 5.00% (1)<br><strong>Belt</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Arachnid Mesh</span> 70.00% (14)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Razortail</span> 25.00% (5)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Verdungo's Hearty Cord</span> 5.00% (1)<br><strong>Armor</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Chains of Honor</span> 50.00% (10)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Enigma</span> 30.00% (6)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Dragon</span> 10.00% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Skin of the Vipermagi</span> 5.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Arkaine's Valor</span> 5.00% (1)<br><strong>Gloves</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Soul Drainer</span> 40.00% (8)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Magefist</span> 40.00% (8)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Bloodfist</span> 5.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Chance Guards</span> 5.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Frostburn</span> 5.00% (1)<br><strong>Boots</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>War Traveler</span> 45.00% (9)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #45a823;'>Vidala's Fetlock</span> 20.00% (4)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Silkweave</span> 10.00% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Rare Light Plated Boots</span> 5.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Rare Sharkskin Boots</span> 5.00% (1)<br><strong>Left hand</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Doomslinger</span> 40.00% (16)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Call to Arms</span> 25.00% (10)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Harmony</span> 5.00% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Memory</span> 5.00% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Mang Song's Lesson</span> 2.50% (1)<br><strong>Offhand</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Rare Bolts</span> 34.38% (11)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Swiftheart</span> 15.62% (5)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Spirit</span> 12.50% (4)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Lidless Wall</span> 12.50% (4)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: orange;'>Crafted Bolts</span> 9.38% (3)</div>
+                </div>
+<!--        
+            <button type="button" class="collapsible small-collapsible">
+        <img src="../../../icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="../../../icons/closed.png" alt="Close" class="icon-small close-icon">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Amulet</strong>: <span style='color: #edcd74;'>Mara's Kaleidoscope</span> 65.00%, <span style='color: #edcd74;'>Seraph's Hymn</span> 20.00%, <span style='color: #7074c9;'>Magic Amulet</span> 5.00%, <span style='color: #edcd74;'>Highlord's Wrath</span> 5.00%, <span style='color: orange;'>Crafted Amulet</span> 5.00%<br><strong>Ring</strong>: <span style='color: #edcd74;'>Bul-Kathos' Wedding Band</span> 53.85%, <span style='color: #edcd74;'>Raven Frost</span> 17.95%, <span style='color: yellow;'>Rare Ring</span> 10.26%, <span style='color: #edcd74;'>Wisp Projector</span> 7.69%, <span style='color: #edcd74;'>The Stone of Jordan</span> 7.69%, <span style='color: #edcd74;'>Nagelring</span> 2.56%<br><strong>Helmet</strong>: <span style='color: #edcd74;'>Harlequin Crest</span> 55.00%, <span style='color: #edcd74;'>Nightwing's Veil</span> 20.00%, <span style='color: #edcd74;'>Andariel's Visage</span> 20.00%, <span style='color: yellow;'>Rare Tiara</span> 5.00%<br><strong>Belt</strong>: <span style='color: #edcd74;'>Arachnid Mesh</span> 70.00%, <span style='color: #edcd74;'>Razortail</span> 25.00%, <span style='color: #edcd74;'>Verdungo's Hearty Cord</span> 5.00%<br><strong>Armor</strong>: <span style='color: #edcd74;'>Chains of Honor</span> 50.00%, <span style='color: #edcd74;'>Enigma</span> 30.00%, <span style='color: #edcd74;'>Dragon</span> 10.00%, <span style='color: #edcd74;'>Skin of the Vipermagi</span> 5.00%, <span style='color: #edcd74;'>Arkaine's Valor</span> 5.00%<br><strong>Gloves</strong>: <span style='color: #edcd74;'>Soul Drainer</span> 40.00%, <span style='color: #edcd74;'>Magefist</span> 40.00%, <span style='color: #edcd74;'>Bloodfist</span> 5.00%, <span style='color: #edcd74;'>Chance Guards</span> 5.00%, <span style='color: #edcd74;'>Frostburn</span> 5.00%, <span style='color: #45a823;'>Trang-Oul's Claws</span> 5.00%<br><strong>Boots</strong>: <span style='color: #edcd74;'>War Traveler</span> 45.00%, <span style='color: #45a823;'>Vidala's Fetlock</span> 20.00%, <span style='color: #edcd74;'>Silkweave</span> 10.00%, <span style='color: yellow;'>Rare Light Plated Boots</span> 5.00%, <span style='color: yellow;'>Rare Sharkskin Boots</span> 5.00%, <span style='color: #45a823;'>Aldur's Advance</span> 5.00%, <span style='color: #edcd74;'>Sandstorm Trek</span> 5.00%, <span style='color: yellow;'>Rare Heavy Boots</span> 5.00%<br><strong>Left hand</strong>: <span style='color: #edcd74;'>Doomslinger</span> 40.00%, <span style='color: #edcd74;'>Call to Arms</span> 25.00%, <span style='color: #edcd74;'>Harmony</span> 5.00%, <span style='color: #edcd74;'>Memory</span> 5.00%, <span style='color: #edcd74;'>Mang Song's Lesson</span> 2.50%, <span style='color: #edcd74;'>Lidless Wall</span> 2.50%, <span style='color: #edcd74;'>Phoenix</span> 2.50%, <span style='color: #edcd74;'>Mist</span> 2.50%, <span style='color: #edcd74;'>Faith</span> 2.50%, <span style='color: #edcd74;'>Ondal's Wisdom</span> 2.50%, <span style='color: #edcd74;'>Skystrike</span> 2.50%, <span style='color: #edcd74;'>Eschuta's Temper</span> 2.50%, <span style='color: #edcd74;'>Ice</span> 2.50%, <span style='color: #edcd74;'>Spectral Shard</span> 2.50%<br><strong>Offhand</strong>: <span style='color: yellow;'>Rare Bolts</span> 34.38%, <span style='color: #edcd74;'>Swiftheart</span> 15.62%, <span style='color: #edcd74;'>Spirit</span> 12.50%, <span style='color: #edcd74;'>Lidless Wall</span> 12.50%, <span style='color: orange;'>Crafted Bolts</span> 9.38%, <span style='color: #edcd74;'>Medusa's Gaze</span> 6.25%, <span style='color: #edcd74;'>Call to Arms</span> 3.12%, <span style='color: #edcd74;'>FrostbiteB</span> 3.12%, <span style='color: #edcd74;'>Moonfire</span> 3.12%</div>
+            </div>
+-->
+             <button type="button" class="collapsible small-collapsible">
+        <img src="../../../icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="../../../icons/closed.png" alt="Close" class="icon-small close-icon">
+            <strong>20 Characters in this cluster:</strong>
+        </button>
+        <div class="content">
+
+<!--
+<div class="character-container char2">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link"><strong>Name: <a href="https://pathofdiablo.com/p/armory/?name=SorcKVS" target="_blank">
+                SorcKVS
+            </a></strong></div>
+        <div>Level: 98</div>
+        <div>Class: Sorceress</div>
+        <div class="hover-trigger" data-character-name="SorcKVS">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Warmth:20, Enflame:20, Frigerate:20, Shiver Armor:20, Cold Mastery:14, Fire Mastery:7, Fire Bolt:2, Fire Ball:1, Telekinesis:1, Teleport:1, Ice Bolt:1, Ice Blast:1</p>
+    <p><strong>Equipment:<br></strong> Amulet: <span style='color: #edcd74;'>Mara's Kaleidoscope</span>, Ring: <span style='color: #edcd74;'>Bul-Kathos' Wedding Band</span> x2, Helmet: <span style='color: #edcd74;'>Harlequin Crest</span>, Belt: <span style='color: #edcd74;'>Arachnid Mesh</span>, Armor: <span style='color: #edcd74;'>Enigma</span>, Gloves: <span style='color: #edcd74;'>Soul Drainer</span>, Boots: <span style='color: #edcd74;'>War Traveler</span>, Left hand: <span style='color: #edcd74;'>Call to Arms</span>, Left hand: <span style='color: #edcd74;'>Doomslinger</span>, Offhand: <span style='color: #edcd74;'>Spirit</span>, Offhand: <span style='color: yellow;'>Rare Bolts</span></p>
+    <p><strong>Mercenary:<br></strong> Act 2 Desert Mercenary - Vampire Gaze, Fortitude, Infinity</p>
+
+    <div class="character-section" data-character-name="SorcKVS"></div>
+</div>
+<hr color="#141414">
+<br>
+
+<!--
+<div class="character-container char1">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link"><strong>Name: <a href="https://pathofdiablo.com/p/armory/?name=LL_Cc" target="_blank">
+                LL_Cc
+            </a></strong></div>
+        <div>Level: 98</div>
+        <div>Class: Sorceress</div>
+        <div class="hover-trigger" data-character-name="LL_Cc">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Fire Bolt:20, Warmth:20, Enflame:20, Frigerate:20, Shiver Armor:20, Cold Mastery:3, Fire Ball:1, Fire Mastery:1, Telekinesis:1, Teleport:1, Ice Bolt:1, Ice Blast:1</p>
+    <p><strong>Equipment:<br></strong> Gloves: <span style='color: #edcd74;'>Magefist</span>, Belt: <span style='color: #edcd74;'>Arachnid Mesh</span>, Helmet: <span style='color: #edcd74;'>Harlequin Crest</span>, Boots: <span style='color: #45a823;'>Vidala's Fetlock</span>, Ring: <span style='color: #edcd74;'>Bul-Kathos' Wedding Band</span> x2, Armor: <span style='color: #edcd74;'>Chains of Honor</span>, Amulet: <span style='color: #edcd74;'>Seraph's Hymn</span>, Left hand: <span style='color: #edcd74;'>Call to Arms</span>, Left hand: <span style='color: #edcd74;'>Doomslinger</span>, Offhand: <span style='color: yellow;'>Rare Bolts</span> x2</p>
+    <p><strong>Mercenary:<br></strong> Act 2 Desert Mercenary - Treachery, Steel Shade, Infinity</p>
+
+    <div class="character-section" data-character-name="LL_Cc"></div>
+</div>
+<hr color="#141414">
+<br>
+
+<!--
+<div class="character-container char2">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link"><strong>Name: <a href="https://pathofdiablo.com/p/armory/?name=sordemon" target="_blank">
+                sordemon
+            </a></strong></div>
+        <div>Level: 97</div>
+        <div>Class: Sorceress</div>
+        <div class="hover-trigger" data-character-name="sordemon">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Warmth:20, Enflame:20, Frigerate:20, Shiver Armor:20, Cold Mastery:20, Fire Bolt:1, Fire Ball:1, Fire Mastery:1, Telekinesis:1, Teleport:1, Ice Bolt:1, Ice Blast:1, Chilling Armor:1</p>
+    <p><strong>Equipment:<br></strong> Ring: <span style='color: #edcd74;'>Bul-Kathos' Wedding Band</span> x2, Gloves: <span style='color: #edcd74;'>Soul Drainer</span>, Amulet: <span style='color: #edcd74;'>Seraph's Hymn</span>, Belt: <span style='color: #edcd74;'>Arachnid Mesh</span>, Armor: <span style='color: #edcd74;'>Chains of Honor</span>, Boots: <span style='color: #edcd74;'>War Traveler</span>, Helmet: <span style='color: #edcd74;'>Harlequin Crest</span>, Left hand: <span style='color: #edcd74;'>Call to Arms</span>, Left hand: <span style='color: #edcd74;'>Doomslinger</span>, Offhand: <span style='color: #edcd74;'>Spirit</span>, Offhand: <span style='color: #edcd74;'>Swiftheart</span></p>
+    <p><strong>Mercenary:<br></strong> Act 2 Desert Mercenary - Steel Shade, Fortitude, Plague</p>
+
+    <div class="character-section" data-character-name="sordemon"></div>
+</div>
+<hr color="#141414">
+<br>
+
+<!--
+<div class="character-container char1">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link"><strong>Name: <a href="https://pathofdiablo.com/p/armory/?name=XooooooooX" target="_blank">
+                XooooooooX
+            </a></strong></div>
+        <div>Level: 96</div>
+        <div>Class: Sorceress</div>
+        <div class="hover-trigger" data-character-name="XooooooooX">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Fire Bolt:20, Warmth:20, Enflame:20, Frigerate:20, Shiver Armor:20, Fire Ball:1, Fire Mastery:1, Telekinesis:1, Teleport:1, Ice Bolt:1, Ice Blast:1, Cold Mastery:1</p>
+    <p><strong>Equipment:<br></strong> Gloves: <span style='color: #edcd74;'>Magefist</span>, Belt: <span style='color: #edcd74;'>Arachnid Mesh</span>, Helmet: <span style='color: #edcd74;'>Harlequin Crest</span>, Boots: <span style='color: #45a823;'>Vidala's Fetlock</span>, Armor: <span style='color: #edcd74;'>Chains of Honor</span>, Amulet: <span style='color: #edcd74;'>Mara's Kaleidoscope</span>, Ring: <span style='color: #edcd74;'>Bul-Kathos' Wedding Band</span> x2, Left hand: <span style='color: #edcd74;'>Call to Arms</span>, Left hand: <span style='color: #edcd74;'>Doomslinger</span>, Offhand: <span style='color: #edcd74;'>Lidless Wall</span>, Offhand: <span style='color: #edcd74;'>Swiftheart</span></p>
+    <p><strong>Mercenary:<br></strong> Act 3 Eastern Sorceror - Harlequin Crest, Leviathan, Phoenix, Stormshield</p>
+
+    <div class="character-section" data-character-name="XooooooooX"></div>
+</div>
+<hr color="#141414">
+<br>
+
+<!--
+<div class="character-container char2">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link"><strong>Name: <a href="https://pathofdiablo.com/p/armory/?name=CopkaBkacke" target="_blank">
+                CopkaBkacke
+            </a></strong></div>
+        <div>Level: 96</div>
+        <div>Class: Sorceress</div>
+        <div class="hover-trigger" data-character-name="CopkaBkacke">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Warmth:20, Enflame:20, Fire Mastery:20, Frigerate:20, Shiver Armor:20, Fire Bolt:1, Fire Ball:1, Telekinesis:1, Teleport:1, Ice Bolt:1, Ice Blast:1, Cold Mastery:1</p>
+    <p><strong>Equipment:<br></strong> Amulet: <span style='color: #edcd74;'>Mara's Kaleidoscope</span>, Ring: <span style='color: #edcd74;'>Bul-Kathos' Wedding Band</span>, Ring: <span style='color: #edcd74;'>Wisp Projector</span>, Helmet: <span style='color: #edcd74;'>Nightwing's Veil</span>, Belt: <span style='color: #edcd74;'>Razortail</span>, Gloves: <span style='color: #edcd74;'>Magefist</span>, Armor: <span style='color: #edcd74;'>Chains of Honor</span>, Boots: <span style='color: #edcd74;'>War Traveler</span>, Left hand: <span style='color: #edcd74;'>Mang Song's Lesson</span>, Left hand: <span style='color: #edcd74;'>Doomslinger</span>, Offhand: <span style='color: yellow;'>Rare Bolts</span></p>
+    <p><strong>Mercenary:<br></strong> Act 2 Desert Mercenary - Treachery, Kira's Guardian, Infinity</p>
+
+    <div class="character-section" data-character-name="CopkaBkacke"></div>
+</div>
+<hr color="#141414">
+<br>
+
+<!--
+<div class="character-container char1">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link"><strong>Name: <a href="https://pathofdiablo.com/p/armory/?name=bless_me" target="_blank">
+                bless_me
+            </a></strong></div>
+        <div>Level: 96</div>
+        <div>Class: Sorceress</div>
+        <div class="hover-trigger" data-character-name="bless_me">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Warmth:20, Enflame:20, Frigerate:20, Shiver Armor:20, Fire Bolt:19, Cold Mastery:2, Fire Ball:1, Fire Mastery:1, Telekinesis:1, Teleport:1, Ice Bolt:1, Ice Blast:1</p>
+    <p><strong>Equipment:<br></strong> Belt: <span style='color: #edcd74;'>Arachnid Mesh</span>, Boots: <span style='color: #45a823;'>Vidala's Fetlock</span>, Gloves: <span style='color: #edcd74;'>Soul Drainer</span>, Ring: <span style='color: #edcd74;'>Bul-Kathos' Wedding Band</span> x2, Armor: <span style='color: #edcd74;'>Enigma</span>, Amulet: <span style='color: #edcd74;'>Mara's Kaleidoscope</span>, Helmet: <span style='color: #edcd74;'>Harlequin Crest</span>, Left hand: <span style='color: #edcd74;'>Call to Arms</span>, Left hand: <span style='color: #edcd74;'>Doomslinger</span>, Offhand: <span style='color: #edcd74;'>Medusa's Gaze</span>, Offhand: <span style='color: #edcd74;'>Swiftheart</span></p>
+    <p><strong>Mercenary:<br></strong> Act 2 Desert Mercenary - Fortitude, Steel Shade, Infinity</p>
+
+    <div class="character-section" data-character-name="bless_me"></div>
+</div>
+<hr color="#141414">
+<br>
+
+<!--
+<div class="character-container char2">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link"><strong>Name: <a href="https://pathofdiablo.com/p/armory/?name=BALLS" target="_blank">
+                BALLS
+            </a></strong></div>
+        <div>Level: 96</div>
+        <div>Class: Sorceress</div>
+        <div class="hover-trigger" data-character-name="BALLS">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Enflame:20, Fire Mastery:20, Frigerate:20, Cold Mastery:20, Shiver Armor:14, Warmth:7, Fire Bolt:1, Fire Ball:1, Telekinesis:1, Teleport:1, Ice Bolt:1, Ice Blast:1</p>
+    <p><strong>Equipment:<br></strong> Helmet: <span style='color: #edcd74;'>Nightwing's Veil</span>, Armor: <span style='color: #edcd74;'>Chains of Honor</span>, Amulet: <span style='color: #edcd74;'>Seraph's Hymn</span>, Gloves: <span style='color: #edcd74;'>Bloodfist</span>, Boots: <span style='color: yellow;'>Rare Light Plated Boots</span>, Ring: <span style='color: #edcd74;'>Bul-Kathos' Wedding Band</span>, Ring: <span style='color: #edcd74;'>Wisp Projector</span>, Left hand: <span style='color: #edcd74;'>Lidless Wall</span>, Left hand: <span style='color: #edcd74;'>Doomslinger</span>, Offhand: <span style='color: #edcd74;'>Call to Arms</span>, Offhand: <span style='color: yellow;'>Rare Bolts</span>, Belt: <span style='color: #edcd74;'>Arachnid Mesh</span></p>
+    <p><strong>Mercenary:<br></strong> Act 2 Desert Mercenary - Guillaume's Face, Leviathan, Infinity</p>
+
+    <div class="character-section" data-character-name="BALLS"></div>
+</div>
+<hr color="#141414">
+<br>
+
+<!--
+<div class="character-container char1">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link"><strong>Name: <a href="https://pathofdiablo.com/p/armory/?name=eSosa" target="_blank">
+                eSosa
+            </a></strong></div>
+        <div>Level: 95</div>
+        <div>Class: Sorceress</div>
+        <div class="hover-trigger" data-character-name="eSosa">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Warmth:20, Enflame:20, Frigerate:20, Shiver Armor:18, Fire Mastery:11, Cold Mastery:11, Fire Bolt:1, Fire Ball:1, Telekinesis:1, Teleport:1, Ice Bolt:1, Ice Blast:1</p>
+    <p><strong>Equipment:<br></strong> Ring: <span style='color: #edcd74;'>Raven Frost</span>, Ring: <span style='color: #edcd74;'>Wisp Projector</span>, Boots: <span style='color: yellow;'>Rare Sharkskin Boots</span>, Helmet: <span style='color: #edcd74;'>Andariel's Visage</span>, Belt: <span style='color: #edcd74;'>Razortail</span>, Gloves: <span style='color: #edcd74;'>Magefist</span>, Armor: <span style='color: #edcd74;'>Enigma</span>, Amulet: <span style='color: #edcd74;'>Mara's Kaleidoscope</span>, Left hand: <span style='color: #edcd74;'>Harmony</span>, Left hand: <span style='color: #edcd74;'>Doomslinger</span>, Offhand: <span style='color: #edcd74;'>Swiftheart</span></p>
+    <p><strong>Mercenary:<br></strong> Act 2 Desert Mercenary - Shaftstop, Steel Shade, Infinity</p>
+
+    <div class="character-section" data-character-name="eSosa"></div>
+</div>
+<hr color="#141414">
+<br>
+
+<!--
+<div class="character-container char2">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link"><strong>Name: <a href="https://pathofdiablo.com/p/armory/?name=Zardragon" target="_blank">
+                Zardragon
+            </a></strong></div>
+        <div>Level: 95</div>
+        <div>Class: Sorceress</div>
+        <div class="hover-trigger" data-character-name="Zardragon">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Fire Bolt:20, Warmth:20, Enflame:20, Fire Mastery:20, Telekinesis:20, Fire Ball:1, Hydra:1, Teleport:1, Lightning Mastery:1, Frigerate:1, Cold Mastery:1</p>
+    <p><strong>Equipment:<br></strong> Gloves: <span style='color: #edcd74;'>Magefist</span>, Boots: <span style='color: #edcd74;'>War Traveler</span>, Helmet: <span style='color: yellow;'>Rare Tiara</span>, Amulet: <span style='color: #edcd74;'>Mara's Kaleidoscope</span>, Ring: <span style='color: #edcd74;'>Raven Frost</span>, Ring: <span style='color: #edcd74;'>The Stone of Jordan</span>, Belt: <span style='color: #edcd74;'>Arachnid Mesh</span>, Armor: <span style='color: #edcd74;'>Dragon</span>, Left hand: <span style='color: #edcd74;'>Memory</span>, Left hand: <span style='color: #edcd74;'>Phoenix</span>, Offhand: <span style='color: orange;'>Crafted Bolts</span></p>
+    <p><strong>Mercenary:<br></strong> Act 2 Desert Mercenary - Treachery, Tal Rasha's Horadric Crest, Insight</p>
+
+    <div class="character-section" data-character-name="Zardragon"></div>
+</div>
+<hr color="#141414">
+<br>
+
+<!--
+<div class="character-container char1">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link"><strong>Name: <a href="https://pathofdiablo.com/p/armory/?name=MongLOW" target="_blank">
+                MongLOW
+            </a></strong></div>
+        <div>Level: 95</div>
+        <div>Class: Sorceress</div>
+        <div class="hover-trigger" data-character-name="MongLOW">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Warmth:20, Enflame:20, Frigerate:20, Shiver Armor:20, Fire Bolt:18, Fire Ball:1, Fire Mastery:1, Telekinesis:1, Teleport:1, Ice Bolt:1, Ice Blast:1</p>
+    <p><strong>Equipment:<br></strong> Gloves: <span style='color: #edcd74;'>Soul Drainer</span>, Amulet: <span style='color: #edcd74;'>Seraph's Hymn</span>, Helmet: <span style='color: #edcd74;'>Harlequin Crest</span>, Ring: <span style='color: #edcd74;'>Bul-Kathos' Wedding Band</span> x2, Boots: <span style='color: #edcd74;'>War Traveler</span>, Armor: <span style='color: #edcd74;'>Chains of Honor</span>, Belt: <span style='color: #edcd74;'>Arachnid Mesh</span>, Left hand: <span style='color: #edcd74;'>Call to Arms</span>, Left hand: <span style='color: #edcd74;'>Doomslinger</span>, Offhand: <span style='color: #edcd74;'>Spirit</span>, Offhand: <span style='color: orange;'>Crafted Bolts</span></p>
+    <p><strong>Mercenary:<br></strong> Act 5 Barbarian - Steel Shade, Fortitude, Plague</p>
+
+    <div class="character-section" data-character-name="MongLOW"></div>
+</div>
+<hr color="#141414">
+<br>
+
+<!--
+<div class="character-container char2">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link"><strong>Name: <a href="https://pathofdiablo.com/p/armory/?name=FuziLooting" target="_blank">
+                FuziLooting
+            </a></strong></div>
+        <div>Level: 94</div>
+        <div>Class: Sorceress</div>
+        <div class="hover-trigger" data-character-name="FuziLooting">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Enflame:20, Frigerate:20, Shiver Armor:20, Cold Mastery:20, Warmth:17, Fire Mastery:2, Fire Bolt:1, Fire Ball:1, Telekinesis:1, Teleport:1, Ice Bolt:1, Ice Blast:1</p>
+    <p><strong>Equipment:<br></strong> Belt: <span style='color: #edcd74;'>Razortail</span>, Gloves: <span style='color: #edcd74;'>Magefist</span>, Helmet: <span style='color: #edcd74;'>Harlequin Crest</span>, Boots: <span style='color: #45a823;'>Aldur's Advance</span>, Ring: <span style='color: #edcd74;'>Raven Frost</span>, Ring: <span style='color: yellow;'>Rare Ring</span>, Armor: <span style='color: #edcd74;'>Skin of the Vipermagi</span>, Left hand: <span style='color: #edcd74;'>Call to Arms</span>, Left hand: <span style='color: #edcd74;'>Doomslinger</span>, Offhand: <span style='color: #edcd74;'>Lidless Wall</span>, Offhand: <span style='color: yellow;'>Rare Bolts</span>, Amulet: <span style='color: #7074c9;'>Magic Amulet</span></p>
+    <p><strong>Mercenary:<br></strong> Act 2 Desert Mercenary - Shaftstop, Tal Rasha's Horadric Crest, Infinity</p>
+
+    <div class="character-section" data-character-name="FuziLooting"></div>
+</div>
+<hr color="#141414">
+<br>
+
+<!--
+<div class="character-container char1">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link"><strong>Name: <a href="https://pathofdiablo.com/p/armory/?name=LE-SOCR" target="_blank">
+                LE-SOCR
+            </a></strong></div>
+        <div>Level: 94</div>
+        <div>Class: Sorceress</div>
+        <div class="hover-trigger" data-character-name="LE-SOCR">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Warmth:20, Enflame:20, Frigerate:20, Shiver Armor:20, Fire Bolt:17, Fire Ball:1, Fire Mastery:1, Telekinesis:1, Teleport:1, Ice Bolt:1, Ice Blast:1, Cold Mastery:1</p>
+    <p><strong>Equipment:<br></strong> Amulet: <span style='color: #edcd74;'>Mara's Kaleidoscope</span>, Belt: <span style='color: #edcd74;'>Arachnid Mesh</span>, Gloves: <span style='color: #edcd74;'>Soul Drainer</span>, Boots: <span style='color: #edcd74;'>Sandstorm Trek</span>, Ring: <span style='color: #edcd74;'>Bul-Kathos' Wedding Band</span> x2, Helmet: <span style='color: #edcd74;'>Andariel's Visage</span>, Armor: <span style='color: #edcd74;'>Arkaine's Valor</span>, Left hand: <span style='color: #edcd74;'>Mist</span>, Left hand: <span style='color: #edcd74;'>Doomslinger</span>, Offhand: <span style='color: yellow;'>Rare Bolts</span></p>
+    <p><strong>Mercenary:<br></strong> Act 2 Desert Mercenary - Shaftstop, Vampire Gaze, Infinity</p>
+
+    <div class="character-section" data-character-name="LE-SOCR"></div>
+</div>
+<hr color="#141414">
+<br>
+
+<!--
+<div class="character-container char2">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link"><strong>Name: <a href="https://pathofdiablo.com/p/armory/?name=vi_vi" target="_blank">
+                vi_vi
+            </a></strong></div>
+        <div>Level: 94</div>
+        <div>Class: Sorceress</div>
+        <div class="hover-trigger" data-character-name="vi_vi">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Warmth:20, Enflame:20, Frigerate:20, Shiver Armor:20, Fire Bolt:18, Fire Ball:1, Fire Mastery:1, Telekinesis:1, Teleport:1, Ice Bolt:1, Ice Blast:1, Cold Mastery:1</p>
+    <p><strong>Equipment:<br></strong> Gloves: <span style='color: #edcd74;'>Soul Drainer</span>, Amulet: <span style='color: #edcd74;'>Mara's Kaleidoscope</span>, Helmet: <span style='color: #edcd74;'>Andariel's Visage</span>, Belt: <span style='color: #edcd74;'>Arachnid Mesh</span>, Ring: <span style='color: #edcd74;'>Raven Frost</span>, Armor: <span style='color: #edcd74;'>Enigma</span>, Boots: <span style='color: #45a823;'>Vidala's Fetlock</span>, Left hand: <span style='color: #edcd74;'>Call to Arms</span>, Left hand: <span style='color: #edcd74;'>Doomslinger</span>, Offhand: <span style='color: #edcd74;'>Medusa's Gaze</span>, Offhand: <span style='color: #edcd74;'>Swiftheart</span></p>
+    <p><strong>Mercenary:<br></strong> Act 2 Desert Mercenary - Treachery, Steel Shade, Infinity</p>
+
+    <div class="character-section" data-character-name="vi_vi"></div>
+</div>
+<hr color="#141414">
+<br>
+
+<!--
+<div class="character-container char1">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link"><strong>Name: <a href="https://pathofdiablo.com/p/armory/?name=SAVE_BOW" target="_blank">
+                SAVE_BOW
+            </a></strong></div>
+        <div>Level: 93</div>
+        <div>Class: Sorceress</div>
+        <div class="hover-trigger" data-character-name="SAVE_BOW">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Warmth:20, Enflame:20, Frigerate:20, Shiver Armor:20, Fire Bolt:17, Fire Ball:1, Fire Mastery:1, Telekinesis:1, Teleport:1, Ice Bolt:1, Ice Blast:1, Cold Mastery:1</p>
+    <p><strong>Equipment:<br></strong> Belt: <span style='color: #edcd74;'>Razortail</span>, Ring: <span style='color: #edcd74;'>Bul-Kathos' Wedding Band</span> x2, Gloves: <span style='color: #edcd74;'>Soul Drainer</span>, Armor: <span style='color: #edcd74;'>Enigma</span>, Helmet: <span style='color: #edcd74;'>Andariel's Visage</span>, Amulet: <span style='color: #edcd74;'>Highlord's Wrath</span>, Boots: <span style='color: #edcd74;'>War Traveler</span>, Left hand: <span style='color: #edcd74;'>Doomslinger</span>, Left hand: <span style='color: #edcd74;'>Faith</span>, Offhand: <span style='color: yellow;'>Rare Bolts</span></p>
+    <p><strong>Mercenary:<br></strong> Act 2 Desert Mercenary - Andariel's Visage, Steel Carapace, Infinity</p>
+
+    <div class="character-section" data-character-name="SAVE_BOW"></div>
+</div>
+<hr color="#141414">
+<br>
+
+<!--
+<div class="character-container char2">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link"><strong>Name: <a href="https://pathofdiablo.com/p/armory/?name=NS_Apollo" target="_blank">
+                NS_Apollo
+            </a></strong></div>
+        <div>Level: 92</div>
+        <div>Class: Sorceress</div>
+        <div class="hover-trigger" data-character-name="NS_Apollo">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Telekinesis:20, Energy Shield:20, Lightning Mastery:20, Thunder Storm:20, Lightning Surge:11, Teleport:9, Warmth:1, Charged Bolt:1, Chain Lightning:1</p>
+    <p><strong>Equipment:<br></strong> Amulet: <span style='color: #edcd74;'>Mara's Kaleidoscope</span>, Armor: <span style='color: #edcd74;'>Enigma</span>, Belt: <span style='color: #edcd74;'>Arachnid Mesh</span>, Ring: <span style='color: #edcd74;'>Nagelring</span>, Ring: <span style='color: yellow;'>Rare Ring</span>, Gloves: <span style='color: #edcd74;'>Chance Guards</span>, Helmet: <span style='color: #edcd74;'>Harlequin Crest</span>, Boots: <span style='color: #edcd74;'>Silkweave</span>, Left hand: <span style='color: #edcd74;'>Harmony</span>, Left hand: <span style='color: #edcd74;'>Ondal's Wisdom</span>, Offhand: <span style='color: #edcd74;'>FrostbiteB</span></p>
+    <p><strong>Mercenary:<br></strong> Act 2 Desert Mercenary - Steel Shade, Treachery, Infinity</p>
+
+    <div class="character-section" data-character-name="NS_Apollo"></div>
+</div>
+<hr color="#141414">
+<br>
+
+<!--
+<div class="character-container char1">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link"><strong>Name: <a href="https://pathofdiablo.com/p/armory/?name=Tiddy_Witch" target="_blank">
+                Tiddy_Witch
+            </a></strong></div>
+        <div>Level: 92</div>
+        <div>Class: Sorceress</div>
+        <div class="hover-trigger" data-character-name="Tiddy_Witch">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Warmth:20, Enflame:20, Frigerate:20, Shiver Armor:20, Fire Mastery:15, Fire Bolt:1, Fire Ball:1, Hydra:1, Telekinesis:1, Teleport:1, Ice Bolt:1, Ice Blast:1, Cold Mastery:1</p>
+    <p><strong>Equipment:<br></strong> Ring: <span style='color: #edcd74;'>Raven Frost</span>, Ring: <span style='color: #edcd74;'>The Stone of Jordan</span>, Amulet: <span style='color: #edcd74;'>Mara's Kaleidoscope</span>, Armor: <span style='color: #edcd74;'>Chains of Honor</span>, Gloves: <span style='color: #edcd74;'>Magefist</span>, Belt: <span style='color: #edcd74;'>Arachnid Mesh</span>, Helmet: <span style='color: #edcd74;'>Harlequin Crest</span>, Left hand: <span style='color: #edcd74;'>Skystrike</span>, Left hand: <span style='color: #edcd74;'>Eschuta's Temper</span>, Offhand: <span style='color: #edcd74;'>Moonfire</span>, Offhand: <span style='color: #edcd74;'>Spirit</span>, Boots: <span style='color: #edcd74;'>War Traveler</span></p>
+    <p><strong>Mercenary:<br></strong> Act 2 Desert Mercenary - Treachery, Tal Rasha's Horadric Crest, Infinity</p>
+
+    <div class="character-section" data-character-name="Tiddy_Witch"></div>
+</div>
+<hr color="#141414">
+<br>
+
+<!--
+<div class="character-container char2">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link"><strong>Name: <a href="https://pathofdiablo.com/p/armory/?name=SSsorc" target="_blank">
+                SSsorc
+            </a></strong></div>
+        <div>Level: 92</div>
+        <div>Class: Sorceress</div>
+        <div class="hover-trigger" data-character-name="SSsorc">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Warmth:20, Enflame:20, Frigerate:20, Shiver Armor:20, Fire Mastery:8, Cold Mastery:8, Fire Bolt:2, Fire Ball:1, Telekinesis:1, Teleport:1, Ice Bolt:1, Ice Blast:1</p>
+    <p><strong>Equipment:<br></strong> Amulet: <span style='color: #edcd74;'>Mara's Kaleidoscope</span>, Belt: <span style='color: #edcd74;'>Arachnid Mesh</span>, Armor: <span style='color: #edcd74;'>Chains of Honor</span>, Helmet: <span style='color: #edcd74;'>Harlequin Crest</span>, Ring: <span style='color: #edcd74;'>Bul-Kathos' Wedding Band</span> x2, Gloves: <span style='color: #edcd74;'>Soul Drainer</span>, Boots: <span style='color: #edcd74;'>War Traveler</span>, Left hand: <span style='color: #edcd74;'>Call to Arms</span>, Left hand: <span style='color: #edcd74;'>Doomslinger</span>, Offhand: <span style='color: yellow;'>Rare Bolts</span></p>
+    <p><strong>Mercenary:<br></strong> Act 2 Desert Mercenary - Andariel's Visage, Templar's Might, Infinity</p>
+
+    <div class="character-section" data-character-name="SSsorc"></div>
+</div>
+<hr color="#141414">
+<br>
+
+<!--
+<div class="character-container char1">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link"><strong>Name: <a href="https://pathofdiablo.com/p/armory/?name=Zardartica" target="_blank">
+                Zardartica
+            </a></strong></div>
+        <div>Level: 91</div>
+        <div>Class: Sorceress</div>
+        <div class="hover-trigger" data-character-name="Zardartica">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Telekinesis:20, Frigerate:20, Shiver Armor:20, Cold Mastery:20, Energy Shield:9, Ice Blast:2, Fire Bolt:1, Warmth:1, Fire Ball:1, Enflame:1, Fire Mastery:1, Charged Bolt:1, Lightning Surge:1, Teleport:1, Chain Lightning:1, Lightning Mastery:1, Ice Bolt:1</p>
+    <p><strong>Equipment:<br></strong> Gloves: <span style='color: #edcd74;'>Frostburn</span>, Boots: <span style='color: #edcd74;'>Silkweave</span>, Ring: <span style='color: #edcd74;'>Raven Frost</span>, Ring: <span style='color: #edcd74;'>The Stone of Jordan</span>, Armor: <span style='color: #edcd74;'>Chains of Honor</span>, Belt: <span style='color: #edcd74;'>Verdungo's Hearty Cord</span>, Helmet: <span style='color: #edcd74;'>Nightwing's Veil</span>, Amulet: <span style='color: orange;'>Crafted Amulet</span>, Left hand: <span style='color: #edcd74;'>Memory</span>, Left hand: <span style='color: #edcd74;'>Ice</span>, Offhand: <span style='color: orange;'>Crafted Bolts</span></p>
+    <p><strong>Mercenary:<br></strong> Act 2 Desert Mercenary - Treachery, Andariel's Visage, Insight</p>
+
+    <div class="character-section" data-character-name="Zardartica"></div>
+</div>
+<hr color="#141414">
+<br>
+
+<!--
+<div class="character-container char2">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link"><strong>Name: <a href="https://pathofdiablo.com/p/armory/?name=eepy" target="_blank">
+                eepy
+            </a></strong></div>
+        <div>Level: 91</div>
+        <div>Class: Sorceress</div>
+        <div class="hover-trigger" data-character-name="eepy">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Enflame:20, Frigerate:20, Shiver Armor:20, Cold Mastery:20, Warmth:11, Fire Mastery:3, Fire Bolt:1, Fire Ball:1, Hydra:1, Static Field:1, Telekinesis:1, Teleport:1, Ice Bolt:1, Ice Blast:1</p>
+    <p><strong>Equipment:<br></strong> Belt: <span style='color: #edcd74;'>Arachnid Mesh</span>, Amulet: <span style='color: #edcd74;'>Mara's Kaleidoscope</span>, Armor: <span style='color: #edcd74;'>Dragon</span>, Ring: <span style='color: yellow;'>Rare Ring</span> x2, Boots: <span style='color: yellow;'>Rare Heavy Boots</span>, Gloves: <span style='color: #45a823;'>Trang-Oul's Claws</span>, Left hand: <span style='color: #edcd74;'>Spectral Shard</span>, Left hand: <span style='color: #edcd74;'>Doomslinger</span>, Offhand: <span style='color: #edcd74;'>Lidless Wall</span>, Offhand: <span style='color: yellow;'>Rare Bolts</span>, Helmet: <span style='color: #edcd74;'>Nightwing's Veil</span></p>
+    <p><strong>Mercenary:<br></strong> Act 2 Desert Mercenary - The Gladiator's Bane, Steel Shade, Infinity</p>
+
+    <div class="character-section" data-character-name="eepy"></div>
+</div>
+<hr color="#141414">
+<br>
+
+<!--
+<div class="character-container char1">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link"><strong>Name: <a href="https://pathofdiablo.com/p/armory/?name=ClearanceSorc" target="_blank">
+                ClearanceSorc
+            </a></strong></div>
+        <div>Level: 91</div>
+        <div>Class: Sorceress</div>
+        <div class="hover-trigger" data-character-name="ClearanceSorc">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Fire Bolt:20, Warmth:20, Enflame:20, Fire Mastery:20, Frigerate:14, Fire Ball:1, Telekinesis:1, Teleport:1, Ice Bolt:1, Ice Blast:1, Shiver Armor:1, Chilling Armor:1, Cold Mastery:1</p>
+    <p><strong>Equipment:<br></strong> Amulet: <span style='color: #edcd74;'>Mara's Kaleidoscope</span>, Ring: <span style='color: #edcd74;'>Raven Frost</span>, Ring: <span style='color: #edcd74;'>Bul-Kathos' Wedding Band</span>, Armor: <span style='color: #edcd74;'>Chains of Honor</span>, Gloves: <span style='color: #edcd74;'>Magefist</span>, Helmet: <span style='color: #edcd74;'>Harlequin Crest</span>, Belt: <span style='color: #edcd74;'>Razortail</span>, Boots: <span style='color: #edcd74;'>War Traveler</span>, Left hand: <span style='color: #edcd74;'>Call to Arms</span>, Left hand: <span style='color: #edcd74;'>Doomslinger</span>, Offhand: <span style='color: #edcd74;'>Lidless Wall</span>, Offhand: <span style='color: yellow;'>Rare Bolts</span></p>
+    <p><strong>Mercenary:<br></strong> Act 2 Desert Mercenary - Andariel's Visage, Treachery, Infinity</p>
+
+    <div class="character-section" data-character-name="ClearanceSorc"></div>
+</div>
+<hr color="#141414">
+<br>
+
+            <br>
+            </div>
+            </div>
+        <!--    <hr width="90%"> -->
+            <br>
+                
+        <!--<h2><div id="cluster-Druid">22.22% of Notazons's are Druid's:<a href="#cluster-Druid" class="anchor-link"><img src="../../../icons/anchor.png" alt="🔗" class="anchor-icon"></a><br>
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Heart of Wolverine.png" alt="Heart of Wolverine" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Heart of Wolverine (92)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Summon Dire Wolf.png" alt="Summon Dire Wolf" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Summon Dire Wolf (66)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Summon Grizzly.png" alt="Summon Grizzly" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Summon Grizzly (64)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Lycanthropy.png" alt="Lycanthropy" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Lycanthropy (60)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </h2>
+        <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='../../../icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' width='20' height='20'> <span class='normal-skill'>Summon Spirit Wolf 75.0% (57)</span><br><img src='../../../icons/Maul.png' alt='Maul' width='20' height='20'> <span class='normal-skill'>Maul 50.0% (51)</span><br><img src='../../../icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> <span class='normal-skill'>Oak Sage 62.5% (50)</span><br><img src='../../../icons/Poison Creeper.png' alt='Poison Creeper' width='20' height='20'> <span class='normal-skill'>Poison Creeper 37.5% (37)</span><br><img src='../../../icons/Armageddon.png' alt='Armageddon' width='20' height='20'> <span class='normal-skill'>Armageddon 25.0% (37)</span><br><img src='../../../icons/Werebear.png' alt='Werebear' width='20' height='20'> <span class='normal-skill'>Werebear 50.0% (35)</span></p> -->
+        <div class="class-intro">
+        <div id="skills" class="skills-container">
+            <div class="column">
+                <ul id="most-popular-skills">
+                    <h2><div id="cluster-Druid">22.22% of Notazons's are Druid's:<a href="#cluster-Druid" class="anchor-link"><img src="../../../icons/anchor.png" alt="🔗" class="anchor-icon"></a><br>
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Heart of Wolverine.png" alt="Heart of Wolverine" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Heart of Wolverine (92)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Summon Dire Wolf.png" alt="Summon Dire Wolf" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Summon Dire Wolf (66)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Summon Grizzly.png" alt="Summon Grizzly" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Summon Grizzly (64)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Lycanthropy.png" alt="Lycanthropy" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Lycanthropy (60)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </h2>
+                </ul>
+            </div>
+<!--            <div class="column">
+                <ul id="other-skills">
+                    <h2>Other common skills in this group:</h2> <img src='../../../icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' width='20' height='20'> <span class='normal-skill'>Summon Spirit Wolf 75.0% (57)</span><br><img src='../../../icons/Maul.png' alt='Maul' width='20' height='20'> <span class='normal-skill'>Maul 50.0% (51)</span><br><img src='../../../icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> <span class='normal-skill'>Oak Sage 62.5% (50)</span><br><img src='../../../icons/Poison Creeper.png' alt='Poison Creeper' width='20' height='20'> <span class='normal-skill'>Poison Creeper 37.5% (37)</span><br><img src='../../../icons/Armageddon.png' alt='Armageddon' width='20' height='20'> <span class='normal-skill'>Armageddon 25.0% (37)</span><br><img src='../../../icons/Werebear.png' alt='Werebear' width='20' height='20'> <span class='normal-skill'>Werebear 50.0% (35)</span>
+                </ul>
+            </div> -->
+        </div>
+
+        
+    <button type="button" class="collapsible small-collapsible">
+        <img src="../../../icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="../../../icons/closed.png" alt="Close" class="icon-small close-icon">
+                <strong>All Skills</strong></button>
+                <div class="content">
+                    <div></div>
+                </div>
+
+
+
+                <button type="button" class="collapsible small-collapsible">
+        <img src="../../../icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="../../../icons/closed.png" alt="Close" class="icon-small close-icon">
+                <strong>Most Common Equipment:</strong></button>
+                <div class="content">
+                    <div><strong>Ring</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Rare Ring</span> 35.71% (5)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Raven Frost</span> 28.57% (4)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Carrion Wind</span> 7.14% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Bul-Kathos' Wedding Band</span> 7.14% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Nagelring</span> 7.14% (1)<br><strong>Gloves</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #45a823;'>Trang-Oul's Claws</span> 25.00% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #45a823;'>Immortal King's Forge</span> 12.50% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Rare Demonhide Gloves</span> 12.50% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Soul Drainer</span> 12.50% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Chance Guards</span> 12.50% (1)<br><strong>Belt</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Verdungo's Hearty Cord</span> 25.00% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #45a823;'>Immortal King's Detail</span> 25.00% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #45a823;'>M'avina's Tenet</span> 25.00% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Arachnid Mesh</span> 12.50% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>String of Ears</span> 12.50% (1)<br><strong>Armor</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Fortitude</span> 42.86% (3)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Rain</span> 28.57% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Bramble</span> 14.29% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Duriel's Shell</span> 14.29% (1)<br><strong>Helmet</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Jalal's Mane</span> 75.00% (6)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Metamorphosis</span> 12.50% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>2693</span> 12.50% (1)<br><strong>Boots</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>War Traveler</span> 25.00% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #45a823;'>Aldur's Advance</span> 12.50% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Rare Greaves</span> 12.50% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Rare Heavy Boots</span> 12.50% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Silkweave</span> 12.50% (1)<br><strong>Amulet</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #7074c9;'>Magic Amulet</span> 50.00% (4)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Rare Amulet</span> 12.50% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Metalgrid</span> 12.50% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: orange;'>Crafted Amulet</span> 12.50% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #45a823;'>Angelic Wings</span> 12.50% (1)<br><strong>Left hand</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Buriza-Do Kyanon</span> 21.43% (3)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Spirit</span> 21.43% (3)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Fleshrender</span> 7.14% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>The Cranium Basher</span> 7.14% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Widowmaker</span> 7.14% (1)<br><strong>Offhand</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Spirit</span> 28.57% (4)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Rare Bolts</span> 21.43% (3)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Dragonbreath</span> 14.29% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Lidless Wall</span> 14.29% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;Bolts 7.14% (1)</div>
+                </div>
+<!--        
+            <button type="button" class="collapsible small-collapsible">
+        <img src="../../../icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="../../../icons/closed.png" alt="Close" class="icon-small close-icon">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Ring</strong>: <span style='color: yellow;'>Rare Ring</span> 35.71%, <span style='color: #edcd74;'>Raven Frost</span> 28.57%, <span style='color: #edcd74;'>Carrion Wind</span> 7.14%, <span style='color: #edcd74;'>Bul-Kathos' Wedding Band</span> 7.14%, <span style='color: #edcd74;'>Nagelring</span> 7.14%, <span style='color: #7074c9;'>Magic Ring</span> 7.14%, <span style='color: #45a823;'>Angelic Halo</span> 7.14%<br><strong>Gloves</strong>: <span style='color: #45a823;'>Trang-Oul's Claws</span> 25.00%, <span style='color: #45a823;'>Immortal King's Forge</span> 12.50%, <span style='color: yellow;'>Rare Demonhide Gloves</span> 12.50%, <span style='color: #edcd74;'>Soul Drainer</span> 12.50%, <span style='color: #edcd74;'>Chance Guards</span> 12.50%, <span style='color: #edcd74;'>Magefist</span> 12.50%, <span style='color: #edcd74;'>Bloodfist</span> 12.50%<br><strong>Belt</strong>: <span style='color: #edcd74;'>Verdungo's Hearty Cord</span> 25.00%, <span style='color: #45a823;'>Immortal King's Detail</span> 25.00%, <span style='color: #45a823;'>M'avina's Tenet</span> 25.00%, <span style='color: #edcd74;'>Arachnid Mesh</span> 12.50%, <span style='color: #edcd74;'>String of Ears</span> 12.50%<br><strong>Armor</strong>: <span style='color: #edcd74;'>Fortitude</span> 42.86%, <span style='color: #edcd74;'>Rain</span> 28.57%, <span style='color: #edcd74;'>Bramble</span> 14.29%, <span style='color: #edcd74;'>Duriel's Shell</span> 14.29%<br><strong>Helmet</strong>: <span style='color: #edcd74;'>Jalal's Mane</span> 75.00%, <span style='color: #edcd74;'>Metamorphosis</span> 12.50%, <span style='color: #edcd74;'>2693</span> 12.50%<br><strong>Boots</strong>: <span style='color: #edcd74;'>War Traveler</span> 25.00%, <span style='color: #45a823;'>Aldur's Advance</span> 12.50%, <span style='color: yellow;'>Rare Greaves</span> 12.50%, <span style='color: yellow;'>Rare Heavy Boots</span> 12.50%, <span style='color: #edcd74;'>Silkweave</span> 12.50%, <span style='color: #edcd74;'>Sandstorm Trek</span> 12.50%, <span style='color: #45a823;'>Natalya's Soul</span> 12.50%<br><strong>Amulet</strong>: <span style='color: #7074c9;'>Magic Amulet</span> 50.00%, <span style='color: yellow;'>Rare Amulet</span> 12.50%, <span style='color: #edcd74;'>Metalgrid</span> 12.50%, <span style='color: orange;'>Crafted Amulet</span> 12.50%, <span style='color: #45a823;'>Angelic Wings</span> 12.50%<br><strong>Left hand</strong>: <span style='color: #edcd74;'>Buriza-Do Kyanon</span> 21.43%, <span style='color: #edcd74;'>Spirit</span> 21.43%, <span style='color: #edcd74;'>Fleshrender</span> 7.14%, <span style='color: #edcd74;'>The Cranium Basher</span> 7.14%, <span style='color: #edcd74;'>Widowmaker</span> 7.14%, <span style='color: #edcd74;'>Heart of the Oak</span> 7.14%, <span style='color: #edcd74;'>Demon Machine</span> 7.14%, <span style='color: #edcd74;'>Edge</span> 7.14%, <span style='color: #edcd74;'>Holy Thunder</span> 7.14%, <span style='color: yellow;'>Rare Bolts</span> 7.14%<br><strong>Offhand</strong>: <span style='color: #edcd74;'>Spirit</span> 28.57%, <span style='color: yellow;'>Rare Bolts</span> 21.43%, <span style='color: #edcd74;'>Dragonbreath</span> 14.29%, <span style='color: #edcd74;'>Lidless Wall</span> 14.29%, Bolts 7.14%, <span style='color: #edcd74;'>Moonfire</span> 7.14%, <span style='color: #edcd74;'>Buriza-Do Kyanon</span> 7.14%</div>
+            </div>
+-->
+             <button type="button" class="collapsible small-collapsible">
+        <img src="../../../icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="../../../icons/closed.png" alt="Close" class="icon-small close-icon">
+            <strong>8 Characters in this cluster:</strong>
+        </button>
+        <div class="content">
+
+<!--
+<div class="character-container char2">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link"><strong>Name: <a href="https://pathofdiablo.com/p/armory/?name=Anklebiter" target="_blank">
+                Anklebiter
+            </a></strong></div>
+        <div>Level: 94</div>
+        <div>Class: Druid</div>
+        <div class="hover-trigger" data-character-name="Anklebiter">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Poison Creeper:20, Summon Dire Wolf:20, Rabies:20, Lycanthropy:12, Oak Sage:10, Summon Spirit Wolf:8, Werewolf:5, Summon Grizzly:4, Feral Rage:2, Raven:1, Carrion Vine:1, Heart of Wolverine:1, Solar Creeper:1</p>
+    <p><strong>Equipment:<br></strong> Ring: <span style='color: #edcd74;'>Raven Frost</span>, Ring: <span style='color: yellow;'>Rare Ring</span>, Gloves: <span style='color: #45a823;'>Trang-Oul's Claws</span>, Belt: <span style='color: #edcd74;'>Verdungo's Hearty Cord</span>, Armor: <span style='color: #edcd74;'>Bramble</span>, Helmet: <span style='color: #edcd74;'>Jalal's Mane</span>, Boots: <span style='color: #edcd74;'>War Traveler</span>, Amulet: <span style='color: yellow;'>Rare Amulet</span>, Left hand: <span style='color: #edcd74;'>Buriza-Do Kyanon</span>, Left hand: <span style='color: #edcd74;'>Fleshrender</span>, Offhand: <span style='color: yellow;'>Rare Bolts</span>, Offhand: <span style='color: #edcd74;'>Spirit</span></p>
+    <p><strong>Mercenary:<br></strong> Act 2 Desert Mercenary - Crown of Thieves, The Gladiator's Bane, Bonehew</p>
+
+    <div class="character-section" data-character-name="Anklebiter"></div>
+</div>
+<hr color="#141414">
+<br>
+
+<!--
+<div class="character-container char1">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link"><strong>Name: <a href="https://pathofdiablo.com/p/armory/?name=King_Kragen" target="_blank">
+                King_Kragen
+            </a></strong></div>
+        <div>Level: 92</div>
+        <div>Class: Druid</div>
+        <div class="hover-trigger" data-character-name="King_Kragen">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Heart of Wolverine:20, Lycanthropy:20, Werebear:20, Maul:20, Summon Grizzly:18, Summon Dire Wolf:2, Raven:1, Summon Spirit Wolf:1, Werewolf:1</p>
+    <p><strong>Equipment:<br></strong> Amulet: <span style='color: #edcd74;'>Metalgrid</span>, Ring: <span style='color: #edcd74;'>Carrion Wind</span>, Ring: <span style='color: yellow;'>Rare Ring</span>, Helmet: <span style='color: #edcd74;'>Metamorphosis</span>, Boots: <span style='color: #45a823;'>Aldur's Advance</span>, Gloves: <span style='color: #45a823;'>Immortal King's Forge</span>, Belt: <span style='color: #45a823;'>Immortal King's Detail</span>, Armor: <span style='color: #edcd74;'>Fortitude</span>, Offhand: Bolts, Left hand: <span style='color: #edcd74;'>The Cranium Basher</span></p>
+    <p><strong>Mercenary:<br></strong> Act 5 Barbarian - Crown of Thieves, Treachery, Lawbringer</p>
+
+    <div class="character-section" data-character-name="King_Kragen"></div>
+</div>
+<hr color="#141414">
+<br>
+
+<!--
+<div class="character-container char2">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link"><strong>Name: <a href="https://pathofdiablo.com/p/armory/?name=Goat_DurfIII" target="_blank">
+                Goat_DurfIII
+            </a></strong></div>
+        <div>Level: 91</div>
+        <div>Class: Druid</div>
+        <div class="hover-trigger" data-character-name="Goat_DurfIII">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Summon Spirit Wolf:20, Heart of Wolverine:20, Summon Dire Wolf:20, Summon Grizzly:20, Maul:10, Flame Dash:8, Raven:1, Werebear:1, Firestorm:1, Molten Boulder:1</p>
+    <p><strong>Equipment:<br></strong> Armor: <span style='color: #edcd74;'>Rain</span>, Belt: <span style='color: #edcd74;'>Arachnid Mesh</span>, Helmet: <span style='color: #edcd74;'>2693</span>, Ring: <span style='color: #edcd74;'>Bul-Kathos' Wedding Band</span>, Ring: <span style='color: #edcd74;'>Nagelring</span>, Gloves: <span style='color: yellow;'>Rare Demonhide Gloves</span>, Amulet: <span style='color: #7074c9;'>Magic Amulet</span>, Boots: <span style='color: #edcd74;'>War Traveler</span>, Left hand: <span style='color: #edcd74;'>Widowmaker</span>, Left hand: <span style='color: #edcd74;'>Heart of the Oak</span>, Offhand: <span style='color: #edcd74;'>Moonfire</span>, Offhand: <span style='color: #edcd74;'>Spirit</span></p>
+    <p><strong>Mercenary:<br></strong> Act 1 Rogue Scout - Hearth, Naj's Light Plate, Faith</p>
+
+    <div class="character-section" data-character-name="Goat_DurfIII"></div>
+</div>
+<hr color="#141414">
+<br>
+
+<!--
+<div class="character-container char1">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link"><strong>Name: <a href="https://pathofdiablo.com/p/armory/?name=NyakDrool" target="_blank">
+                NyakDrool
+            </a></strong></div>
+        <div>Level: 91</div>
+        <div>Class: Druid</div>
+        <div class="hover-trigger" data-character-name="NyakDrool">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Maul:20, Shock Wave:20, Oak Sage:16, Werebear:13, Heart of Wolverine:10, Summon Spirit Wolf:7, Lycanthropy:7, Summon Dire Wolf:3, Raven:1, Poison Creeper:1, Carrion Vine:1, Solar Creeper:1, Summon Grizzly:1, Werewolf:1</p>
+    <p><strong>Equipment:<br></strong> Armor: <span style='color: #edcd74;'>Fortitude</span>, Helmet: <span style='color: #edcd74;'>Jalal's Mane</span>, Amulet: <span style='color: orange;'>Crafted Amulet</span>, Gloves: <span style='color: #edcd74;'>Soul Drainer</span>, Boots: <span style='color: yellow;'>Rare Greaves</span>, Belt: <span style='color: #edcd74;'>String of Ears</span>, Ring: <span style='color: yellow;'>Rare Ring</span>, Ring: <span style='color: #edcd74;'>Raven Frost</span>, Left hand: <span style='color: #edcd74;'>Spirit</span>, Left hand: <span style='color: #edcd74;'>Buriza-Do Kyanon</span>, Offhand: <span style='color: #edcd74;'>Spirit</span>, Offhand: <span style='color: yellow;'>Rare Bolts</span></p>
+    <p><strong>Mercenary:<br></strong> Act 5 Barbarian - The Gladiator's Bane, Arreat's Face, The Grandfather</p>
+
+    <div class="character-section" data-character-name="NyakDrool"></div>
+</div>
+<hr color="#141414">
+<br>
+
+<!--
+<div class="character-container char2">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link"><strong>Name: <a href="https://pathofdiablo.com/p/armory/?name=WheelOfTheWorst" target="_blank">
+                WheelOfTheWorst
+            </a></strong></div>
+        <div>Level: 90</div>
+        <div>Class: Druid</div>
+        <div class="hover-trigger" data-character-name="WheelOfTheWorst">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Summon Spirit Wolf:20, Heart of Wolverine:20, Summon Dire Wolf:20, Summon Grizzly:20, Poison Creeper:16, Oak Sage:3, Raven:1, Carrion Vine:1</p>
+    <p><strong>Equipment:<br></strong> Belt: <span style='color: #45a823;'>Immortal King's Detail</span>, Ring: <span style='color: #7074c9;'>Magic Ring</span>, Ring: <span style='color: yellow;'>Rare Ring</span>, Boots: <span style='color: yellow;'>Rare Heavy Boots</span>, Gloves: <span style='color: #edcd74;'>Chance Guards</span>, Amulet: <span style='color: #7074c9;'>Magic Amulet</span>, Helmet: <span style='color: #edcd74;'>Jalal's Mane</span>, Left hand: <span style='color: #edcd74;'>Buriza-Do Kyanon</span>, Left hand: <span style='color: #edcd74;'>Spirit</span>, Offhand: <span style='color: #edcd74;'>Dragonbreath</span>, Offhand: <span style='color: #edcd74;'>Spirit</span>, Armor: <span style='color: #edcd74;'>Rain</span></p>
+    <p><strong>Mercenary:<br></strong> Act 5 Barbarian - Tal Rasha's Horadric Crest, Leviathan, Lawbringer</p>
+
+    <div class="character-section" data-character-name="WheelOfTheWorst"></div>
+</div>
+<hr color="#141414">
+<br>
+
+<!--
+<div class="character-container char1">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link"><strong>Name: <a href="https://pathofdiablo.com/p/armory/?name=ColdWindFire" target="_blank">
+                ColdWindFire
+            </a></strong></div>
+        <div>Level: 90</div>
+        <div>Class: Druid</div>
+        <div class="hover-trigger" data-character-name="ColdWindFire">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Molten Boulder:20, Armageddon:20, Hurricane:20, Flame Dash:20, Raven:1, Oak Sage:1, Summon Spirit Wolf:1, Heart of Wolverine:1, Summon Dire Wolf:1, Summon Grizzly:1, Firestorm:1, Arctic Blast:1, Fissure:1, Cyclone Armor:1, Twister:1, Volcano:1, Tornado:1</p>
+    <p><strong>Equipment:<br></strong> Gloves: <span style='color: #edcd74;'>Magefist</span>, Amulet: <span style='color: #7074c9;'>Magic Amulet</span>, Helmet: <span style='color: #edcd74;'>Jalal's Mane</span>, Boots: <span style='color: #edcd74;'>Silkweave</span>, Left hand: <span style='color: #edcd74;'>Spirit</span>, Left hand: <span style='color: #edcd74;'>Demon Machine</span>, Offhand: <span style='color: #edcd74;'>Lidless Wall</span>, Offhand: <span style='color: yellow;'>Rare Bolts</span>, Belt: <span style='color: #45a823;'>M'avina's Tenet</span></p>
+    <p><strong>Mercenary:<br></strong> Act 3 Eastern Sorceror - Crown of Thieves, Treachery, Lawbringer, Gerke's Sanctuary</p>
+
+    <div class="character-section" data-character-name="ColdWindFire"></div>
+</div>
+<hr color="#141414">
+<br>
+
+<!--
+<div class="character-container char2">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link"><strong>Name: <a href="https://pathofdiablo.com/p/armory/?name=ELK_Dru" target="_blank">
+                ELK_Dru
+            </a></strong></div>
+        <div>Level: 89</div>
+        <div>Class: Druid</div>
+        <div class="hover-trigger" data-character-name="ELK_Dru">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Oak Sage:20, Heart of Wolverine:20, Lycanthropy:20, Fury:20, Werewolf:16, Feral Rage:1, Rabies:1</p>
+    <p><strong>Equipment:<br></strong> Armor: <span style='color: #edcd74;'>Fortitude</span>, Helmet: <span style='color: #edcd74;'>Jalal's Mane</span>, Ring: <span style='color: yellow;'>Rare Ring</span>, Ring: <span style='color: #edcd74;'>Raven Frost</span>, Left hand: <span style='color: #edcd74;'>Edge</span>, Offhand: <span style='color: #edcd74;'>Dragonbreath</span>, Gloves: <span style='color: #45a823;'>Trang-Oul's Claws</span>, Belt: <span style='color: #edcd74;'>Verdungo's Hearty Cord</span>, Amulet: <span style='color: #7074c9;'>Magic Amulet</span>, Boots: <span style='color: #edcd74;'>Sandstorm Trek</span></p>
+    <p><strong>Mercenary:<br></strong> Act 5 Barbarian - Rockstopper, Fortitude, The Grandfather</p>
+
+    <div class="character-section" data-character-name="ELK_Dru"></div>
+</div>
+<hr color="#141414">
+<br>
+
+<!--
+<div class="character-container char1">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link"><strong>Name: <a href="https://pathofdiablo.com/p/armory/?name=Excelian" target="_blank">
+                Excelian
+            </a></strong></div>
+        <div>Level: 52</div>
+        <div>Class: Druid</div>
+        <div class="hover-trigger" data-character-name="Excelian">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Fire Claws:20, Armageddon:17, Molten Boulder:13, Werewolf:1, Lycanthropy:1, Werebear:1, Feral Rage:1, Maul:1, Firestorm:1, Fissure:1, Volcano:1</p>
+    <p><strong>Equipment:<br></strong> Ring: <span style='color: #45a823;'>Angelic Halo</span>, Ring: <span style='color: #edcd74;'>Raven Frost</span>, Amulet: <span style='color: #45a823;'>Angelic Wings</span>, Gloves: <span style='color: #edcd74;'>Bloodfist</span>, Boots: <span style='color: #45a823;'>Natalya's Soul</span>, Armor: <span style='color: #edcd74;'>Duriel's Shell</span>, Helmet: <span style='color: #edcd74;'>Jalal's Mane</span>, Belt: <span style='color: #45a823;'>M'avina's Tenet</span>, Left hand: <span style='color: #edcd74;'>Holy Thunder</span>, Left hand: <span style='color: yellow;'>Rare Bolts</span>, Offhand: <span style='color: #edcd74;'>Lidless Wall</span>, Offhand: <span style='color: #edcd74;'>Buriza-Do Kyanon</span></p>
+    <p><strong>Mercenary:<br></strong> Act 2 Desert Mercenary - Hard Leather Armor, Voulge</p>
+
+    <div class="character-section" data-character-name="Excelian"></div>
+</div>
+<hr color="#141414">
+<br>
+
+            <br>
+            </div>
+            </div>
+        <!--    <hr width="90%"> -->
+            <br>
+                
+        <!--<h2><div id="cluster-Necromancer">13.89% of Notazons's are Necromancer's:<a href="#cluster-Necromancer" class="anchor-link"><img src="../../../icons/anchor.png" alt="🔗" class="anchor-icon"></a><br>
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Corpse Explosion.png" alt="Corpse Explosion" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Corpse Explosion (80)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Fire Golem.png" alt="Fire Golem" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Fire Golem (72)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Convocation.png" alt="Convocation" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Convocation (61)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Summon Mastery.png" alt="Summon Mastery" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Summon Mastery (60)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </h2>
+        <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='../../../icons/Desecrate.png' alt='Desecrate' width='20' height='20'> <span class='normal-skill'>Desecrate 80.0% (38)</span><br><img src='../../../icons/Deadly Poison.png' alt='Deadly Poison' width='20' height='20'> <span class='normal-skill'>Deadly Poison 80.0% (23)</span><br><img src='../../../icons/Poison Nova.png' alt='Poison Nova' width='20' height='20'> <span class='normal-skill'>Poison Nova 40.0% (21)</span><br><img src='../../../icons/Weaken.png' alt='Weaken' width='20' height='20'> <span class='normal-skill'>Weaken 20.0% (20)</span><br><img src='../../../icons/Iron Maiden.png' alt='Iron Maiden' width='20' height='20'> <span class='normal-skill'>Iron Maiden 20.0% (20)</span><br><img src='../../../icons/Life Tap.png' alt='Life Tap' width='20' height='20'> <span class='normal-skill'>Life Tap 20.0% (20)</span></p> -->
+        <div class="class-intro">
+        <div id="skills" class="skills-container">
+            <div class="column">
+                <ul id="most-popular-skills">
+                    <h2><div id="cluster-Necromancer">13.89% of Notazons's are Necromancer's:<a href="#cluster-Necromancer" class="anchor-link"><img src="../../../icons/anchor.png" alt="🔗" class="anchor-icon"></a><br>
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Corpse Explosion.png" alt="Corpse Explosion" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Corpse Explosion (80)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Fire Golem.png" alt="Fire Golem" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Fire Golem (72)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Convocation.png" alt="Convocation" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Convocation (61)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Summon Mastery.png" alt="Summon Mastery" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Summon Mastery (60)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </h2>
+                </ul>
+            </div>
+<!--            <div class="column">
+                <ul id="other-skills">
+                    <h2>Other common skills in this group:</h2> <img src='../../../icons/Desecrate.png' alt='Desecrate' width='20' height='20'> <span class='normal-skill'>Desecrate 80.0% (38)</span><br><img src='../../../icons/Deadly Poison.png' alt='Deadly Poison' width='20' height='20'> <span class='normal-skill'>Deadly Poison 80.0% (23)</span><br><img src='../../../icons/Poison Nova.png' alt='Poison Nova' width='20' height='20'> <span class='normal-skill'>Poison Nova 40.0% (21)</span><br><img src='../../../icons/Weaken.png' alt='Weaken' width='20' height='20'> <span class='normal-skill'>Weaken 20.0% (20)</span><br><img src='../../../icons/Iron Maiden.png' alt='Iron Maiden' width='20' height='20'> <span class='normal-skill'>Iron Maiden 20.0% (20)</span><br><img src='../../../icons/Life Tap.png' alt='Life Tap' width='20' height='20'> <span class='normal-skill'>Life Tap 20.0% (20)</span>
+                </ul>
+            </div> -->
+        </div>
+
+        
+    <button type="button" class="collapsible small-collapsible">
+        <img src="../../../icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="../../../icons/closed.png" alt="Close" class="icon-small close-icon">
+                <strong>All Skills</strong></button>
+                <div class="content">
+                    <div></div>
+                </div>
+
+
+
+                <button type="button" class="collapsible small-collapsible">
+        <img src="../../../icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="../../../icons/closed.png" alt="Close" class="icon-small close-icon">
+                <strong>Most Common Equipment:</strong></button>
+                <div class="content">
+                    <div><strong>Gloves</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #45a823;'>Trang-Oul's Claws</span> 100.00% (5)<br><strong>Ring</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Rare Ring</span> 50.00% (5)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>The Stone of Jordan</span> 30.00% (3)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Nagelring</span> 10.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Bul-Kathos' Wedding Band</span> 10.00% (1)<br><strong>Belt</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #45a823;'>Trang-Oul's Girth</span> 40.00% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Arachnid Mesh</span> 20.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: orange;'>Crafted Demonhide Sash</span> 20.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #45a823;'>Sigon's Wrap</span> 20.00% (1)<br><strong>Helmet</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Harlequin Crest</span> 60.00% (3)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #45a823;'>Trang-Oul's Guise</span> 40.00% (2)<br><strong>Boots</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Silkweave</span> 60.00% (3)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Rare Chain Boots</span> 20.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>War Traveler</span> 20.00% (1)<br><strong>Amulet</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #7074c9;'>Magic Amulet</span> 40.00% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: orange;'>Crafted Amulet</span> 40.00% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Mara's Kaleidoscope</span> 20.00% (1)<br><strong>Armor</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #45a823;'>Trang-Oul's Scales</span> 40.00% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Enigma</span> 40.00% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Bone</span> 20.00% (1)<br><strong>Left hand</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Edge</span> 44.44% (4)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Heart of the Oak</span> 33.33% (3)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Raven Claw</span> 11.11% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #7074c9;'>Magic Bone Wand</span> 11.11% (1)<br><strong>Offhand</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;Arrows 30.00% (3)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Rare Arrows</span> 20.00% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #45a823;'>Trang-Oul's Wing</span> 20.00% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Homunculus</span> 20.00% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Spirit</span> 10.00% (1)</div>
+                </div>
+<!--        
+            <button type="button" class="collapsible small-collapsible">
+        <img src="../../../icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="../../../icons/closed.png" alt="Close" class="icon-small close-icon">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Gloves</strong>: <span style='color: #45a823;'>Trang-Oul's Claws</span> 100.00%<br><strong>Ring</strong>: <span style='color: yellow;'>Rare Ring</span> 50.00%, <span style='color: #edcd74;'>The Stone of Jordan</span> 30.00%, <span style='color: #edcd74;'>Nagelring</span> 10.00%, <span style='color: #edcd74;'>Bul-Kathos' Wedding Band</span> 10.00%<br><strong>Belt</strong>: <span style='color: #45a823;'>Trang-Oul's Girth</span> 40.00%, <span style='color: #edcd74;'>Arachnid Mesh</span> 20.00%, <span style='color: orange;'>Crafted Demonhide Sash</span> 20.00%, <span style='color: #45a823;'>Sigon's Wrap</span> 20.00%<br><strong>Helmet</strong>: <span style='color: #edcd74;'>Harlequin Crest</span> 60.00%, <span style='color: #45a823;'>Trang-Oul's Guise</span> 40.00%<br><strong>Boots</strong>: <span style='color: #edcd74;'>Silkweave</span> 60.00%, <span style='color: yellow;'>Rare Chain Boots</span> 20.00%, <span style='color: #edcd74;'>War Traveler</span> 20.00%<br><strong>Amulet</strong>: <span style='color: #7074c9;'>Magic Amulet</span> 40.00%, <span style='color: orange;'>Crafted Amulet</span> 40.00%, <span style='color: #edcd74;'>Mara's Kaleidoscope</span> 20.00%<br><strong>Armor</strong>: <span style='color: #45a823;'>Trang-Oul's Scales</span> 40.00%, <span style='color: #edcd74;'>Enigma</span> 40.00%, <span style='color: #edcd74;'>Bone</span> 20.00%<br><strong>Left hand</strong>: <span style='color: #edcd74;'>Edge</span> 44.44%, <span style='color: #edcd74;'>Heart of the Oak</span> 33.33%, <span style='color: #edcd74;'>Raven Claw</span> 11.11%, <span style='color: #7074c9;'>Magic Bone Wand</span> 11.11%<br><strong>Offhand</strong>: Arrows 30.00%, <span style='color: yellow;'>Rare Arrows</span> 20.00%, <span style='color: #45a823;'>Trang-Oul's Wing</span> 20.00%, <span style='color: #edcd74;'>Homunculus</span> 20.00%, <span style='color: #edcd74;'>Spirit</span> 10.00%</div>
+            </div>
+-->
+             <button type="button" class="collapsible small-collapsible">
+        <img src="../../../icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="../../../icons/closed.png" alt="Close" class="icon-small close-icon">
+            <strong>5 Characters in this cluster:</strong>
+        </button>
+        <div class="content">
+
+<!--
+<div class="character-container char2">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link"><strong>Name: <a href="https://pathofdiablo.com/p/armory/?name=NEWbie_nEC" target="_blank">
+                NEWbie_nEC
+            </a></strong></div>
+        <div>Level: 94</div>
+        <div>Class: Necromancer</div>
+        <div class="hover-trigger" data-character-name="NEWbie_nEC">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Corpse Explosion:20, Summon Mastery:20, Fire Golem:20, Convocation:19, Lower Resist:16, Amplify Damage:1, Bone Armor:1, Deadly Poison:1, Desecrate:1, Raise Skeleton Warrior:1, Clay Golem:1, Raise Skeletal Mage:1, Blood Golem:1, Iron Golem:1, Revive:1</p>
+    <p><strong>Equipment:<br></strong> Gloves: <span style='color: #45a823;'>Trang-Oul's Claws</span>, Ring: <span style='color: #edcd74;'>Nagelring</span>, Ring: <span style='color: #edcd74;'>The Stone of Jordan</span>, Belt: <span style='color: #45a823;'>Trang-Oul's Girth</span>, Helmet: <span style='color: #45a823;'>Trang-Oul's Guise</span>, Boots: <span style='color: #edcd74;'>Silkweave</span>, Amulet: <span style='color: #7074c9;'>Magic Amulet</span>, Armor: <span style='color: #45a823;'>Trang-Oul's Scales</span>, Left hand: <span style='color: #edcd74;'>Raven Claw</span>, Left hand: <span style='color: #edcd74;'>Heart of the Oak</span>, Offhand: <span style='color: yellow;'>Rare Arrows</span>, Offhand: <span style='color: #45a823;'>Trang-Oul's Wing</span></p>
+    <p><strong>Mercenary:<br></strong> Act 2 Desert Mercenary - Andariel's Visage, Fortitude, Infinity</p>
+
+    <div class="character-section" data-character-name="NEWbie_nEC"></div>
+</div>
+<hr color="#141414">
+<br>
+
+<!--
+<div class="character-container char1">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link"><strong>Name: <a href="https://pathofdiablo.com/p/armory/?name=atun_N" target="_blank">
+                atun_N
+            </a></strong></div>
+        <div>Level: 93</div>
+        <div>Class: Necromancer</div>
+        <div class="hover-trigger" data-character-name="atun_N">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Corpse Explosion:20, Convocation:20, Fire Golem:20, Summon Mastery:18, Desecrate:10, Iron Golem:3, Blood Golem:2, Amplify Damage:1, Decrepify:1, Lower Resist:1, Bone Armor:1, Deadly Poison:1, Bone Wall:1, Poison Nova:1, Raise Skeleton Warrior:1, Clay Golem:1, Raise Skeletal Mage:1, Revive:1</p>
+    <p><strong>Equipment:<br></strong> Gloves: <span style='color: #45a823;'>Trang-Oul's Claws</span>, Ring: <span style='color: #edcd74;'>Bul-Kathos' Wedding Band</span>, Ring: <span style='color: yellow;'>Rare Ring</span>, Boots: <span style='color: #edcd74;'>Silkweave</span>, Armor: <span style='color: #edcd74;'>Enigma</span>, Helmet: <span style='color: #edcd74;'>Harlequin Crest</span>, Belt: <span style='color: #edcd74;'>Arachnid Mesh</span>, Amulet: <span style='color: orange;'>Crafted Amulet</span>, Left hand: <span style='color: #edcd74;'>Edge</span>, Left hand: <span style='color: #edcd74;'>Heart of the Oak</span>, Offhand: Arrows, Offhand: <span style='color: #edcd74;'>Homunculus</span></p>
+    <p><strong>Mercenary:<br></strong> Act 2 Desert Mercenary - Vampire Gaze, Leviathan, Infinity</p>
+
+    <div class="character-section" data-character-name="atun_N"></div>
+</div>
+<hr color="#141414">
+<br>
+
+<!--
+<div class="character-container char2">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link"><strong>Name: <a href="https://pathofdiablo.com/p/armory/?name=Bones_Mcdoom" target="_blank">
+                Bones_Mcdoom
+            </a></strong></div>
+        <div>Level: 93</div>
+        <div>Class: Necromancer</div>
+        <div class="hover-trigger" data-character-name="Bones_Mcdoom">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Deadly Poison:20, Corpse Explosion:20, Desecrate:20, Poison Nova:20, Fire Golem:12, Revive:2, Decrepify:1, Lower Resist:1, Bone Armor:1, Summon Mastery:1, Raise Skeleton Warrior:1, Clay Golem:1, Convocation:1, Raise Skeletal Mage:1, Blood Golem:1, Iron Golem:1</p>
+    <p><strong>Equipment:<br></strong> Gloves: <span style='color: #45a823;'>Trang-Oul's Claws</span>, Armor: <span style='color: #edcd74;'>Enigma</span>, Boots: <span style='color: yellow;'>Rare Chain Boots</span>, Helmet: <span style='color: #edcd74;'>Harlequin Crest</span>, Amulet: <span style='color: orange;'>Crafted Amulet</span>, Ring: <span style='color: #edcd74;'>The Stone of Jordan</span>, Ring: <span style='color: yellow;'>Rare Ring</span>, Left hand: <span style='color: #edcd74;'>Edge</span>, Left hand: <span style='color: #edcd74;'>Heart of the Oak</span>, Offhand: Arrows, Offhand: <span style='color: #edcd74;'>Spirit</span>, Belt: <span style='color: orange;'>Crafted Demonhide Sash</span></p>
+    <p><strong>Mercenary:<br></strong> Act 2 Desert Mercenary - Leviathan, Tal Rasha's Horadric Crest, Insight</p>
+
+    <div class="character-section" data-character-name="Bones_Mcdoom"></div>
+</div>
+<hr color="#141414">
+<br>
+
+<!--
+<div class="character-container char1">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link"><strong>Name: <a href="https://pathofdiablo.com/p/armory/?name=Apoco-Necro" target="_blank">
+                Apoco-Necro
+            </a></strong></div>
+        <div>Level: 92</div>
+        <div>Class: Necromancer</div>
+        <div class="hover-trigger" data-character-name="Apoco-Necro">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Corpse Explosion:20, Summon Mastery:20, Convocation:20, Fire Golem:20, Desecrate:7, Bone Wall:6, Decrepify:1, Lower Resist:1, Bone Armor:1, Deadly Poison:1, Raise Skeleton Warrior:1, Clay Golem:1, Raise Skeletal Mage:1, Blood Golem:1, Iron Golem:1, Revive:1</p>
+    <p><strong>Equipment:<br></strong> Ring: <span style='color: yellow;'>Rare Ring</span>, Ring: <span style='color: #edcd74;'>The Stone of Jordan</span>, Gloves: <span style='color: #45a823;'>Trang-Oul's Claws</span>, Helmet: <span style='color: #45a823;'>Trang-Oul's Guise</span>, Belt: <span style='color: #45a823;'>Trang-Oul's Girth</span>, Armor: <span style='color: #45a823;'>Trang-Oul's Scales</span>, Amulet: <span style='color: #edcd74;'>Mara's Kaleidoscope</span>, Boots: <span style='color: #edcd74;'>Silkweave</span>, Left hand: <span style='color: #edcd74;'>Edge</span>, Offhand: <span style='color: yellow;'>Rare Arrows</span>, Offhand: <span style='color: #45a823;'>Trang-Oul's Wing</span></p>
+    <p><strong>Mercenary:<br></strong> Act 2 Desert Mercenary - Treachery, Insight</p>
+
+    <div class="character-section" data-character-name="Apoco-Necro"></div>
+</div>
+<hr color="#141414">
+<br>
+
+<!--
+<div class="character-container char2">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link"><strong>Name: <a href="https://pathofdiablo.com/p/armory/?name=ccccu" target="_blank">
+                ccccu
+            </a></strong></div>
+        <div>Level: 91</div>
+        <div>Class: Necromancer</div>
+        <div class="hover-trigger" data-character-name="ccccu">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Weaken:20, Iron Maiden:20, Life Tap:20, Hemorrhage:20, Dim Vision:14, Decrepify:1, Summon Mastery:1, Raise Skeleton Warrior:1, Clay Golem:1, Convocation:1, Raise Skeletal Mage:1, Blood Golem:1, Revive:1</p>
+    <p><strong>Equipment:<br></strong> Boots: <span style='color: #edcd74;'>War Traveler</span>, Helmet: <span style='color: #edcd74;'>Harlequin Crest</span>, Amulet: <span style='color: #7074c9;'>Magic Amulet</span>, Belt: <span style='color: #45a823;'>Sigon's Wrap</span>, Gloves: <span style='color: #45a823;'>Trang-Oul's Claws</span>, Armor: <span style='color: #edcd74;'>Bone</span>, Ring: <span style='color: yellow;'>Rare Ring</span> x2, Left hand: <span style='color: #edcd74;'>Edge</span>, Left hand: <span style='color: #7074c9;'>Magic Bone Wand</span>, Offhand: Arrows, Offhand: <span style='color: #edcd74;'>Homunculus</span></p>
+    <p><strong>Mercenary:<br></strong> Act 1 Rogue Scout - Duriel's Shell, Undead Crown, Harmony</p>
+
+    <div class="character-section" data-character-name="ccccu"></div>
+</div>
+<hr color="#141414">
+<br>
+
+            <br>
+            </div>
+            </div>
+        <!--    <hr width="90%"> -->
+            <br>
+                
+        <!--<h2><div id="cluster-Assassin">5.56% of Notazons's are Assassin's:<a href="#cluster-Assassin" class="anchor-link"><img src="../../../icons/anchor.png" alt="🔗" class="anchor-icon"></a><br>
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Fire Blast.png" alt="Fire Blast" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Fire Blast (40)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Wake of Fire.png" alt="Wake of Fire" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Wake of Fire (40)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Wake of Inferno.png" alt="Wake of Inferno" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Wake of Inferno (40)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Blade Shield.png" alt="Blade Shield" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Blade Shield (20)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </h2>
+        <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='../../../icons/Lightning Sentry.png' alt='Lightning Sentry' width='20' height='20'> <span class='normal-skill'>Lightning Sentry 50.0% (20)</span><br><img src='../../../icons/Blade Fury.png' alt='Blade Fury' width='20' height='20'> <span class='normal-skill'>Blade Fury 50.0% (15)</span><br><img src='../../../icons/Death Sentry.png' alt='Death Sentry' width='20' height='20'> <span class='normal-skill'>Death Sentry 50.0% (15)</span><br><img src='../../../icons/Claw Mastery.png' alt='Claw Mastery' width='20' height='20'> <span class='highlight-100'>Claw Mastery 100.0% (2)</span><br><img src='../../../icons/Psychic Hammer.png' alt='Psychic Hammer' width='20' height='20'> <span class='highlight-100'>Psychic Hammer 100.0% (2)</span><br><img src='../../../icons/Burst of Speed.png' alt='Burst of Speed' width='20' height='20'> <span class='highlight-100'>Burst of Speed 100.0% (2)</span></p> -->
+        <div class="class-intro">
+        <div id="skills" class="skills-container">
+            <div class="column">
+                <ul id="most-popular-skills">
+                    <h2><div id="cluster-Assassin">5.56% of Notazons's are Assassin's:<a href="#cluster-Assassin" class="anchor-link"><img src="../../../icons/anchor.png" alt="🔗" class="anchor-icon"></a><br>
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Fire Blast.png" alt="Fire Blast" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Fire Blast (40)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Wake of Fire.png" alt="Wake of Fire" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Wake of Fire (40)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Wake of Inferno.png" alt="Wake of Inferno" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Wake of Inferno (40)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Blade Shield.png" alt="Blade Shield" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Blade Shield (20)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </h2>
+                </ul>
+            </div>
+<!--            <div class="column">
+                <ul id="other-skills">
+                    <h2>Other common skills in this group:</h2> <img src='../../../icons/Lightning Sentry.png' alt='Lightning Sentry' width='20' height='20'> <span class='normal-skill'>Lightning Sentry 50.0% (20)</span><br><img src='../../../icons/Blade Fury.png' alt='Blade Fury' width='20' height='20'> <span class='normal-skill'>Blade Fury 50.0% (15)</span><br><img src='../../../icons/Death Sentry.png' alt='Death Sentry' width='20' height='20'> <span class='normal-skill'>Death Sentry 50.0% (15)</span><br><img src='../../../icons/Claw Mastery.png' alt='Claw Mastery' width='20' height='20'> <span class='highlight-100'>Claw Mastery 100.0% (2)</span><br><img src='../../../icons/Psychic Hammer.png' alt='Psychic Hammer' width='20' height='20'> <span class='highlight-100'>Psychic Hammer 100.0% (2)</span><br><img src='../../../icons/Burst of Speed.png' alt='Burst of Speed' width='20' height='20'> <span class='highlight-100'>Burst of Speed 100.0% (2)</span>
+                </ul>
+            </div> -->
+        </div>
+
+        
+    <button type="button" class="collapsible small-collapsible">
+        <img src="../../../icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="../../../icons/closed.png" alt="Close" class="icon-small close-icon">
+                <strong>All Skills</strong></button>
+                <div class="content">
+                    <div></div>
+                </div>
+
+
+
+                <button type="button" class="collapsible small-collapsible">
+        <img src="../../../icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="../../../icons/closed.png" alt="Close" class="icon-small close-icon">
+                <strong>Most Common Equipment:</strong></button>
+                <div class="content">
+                    <div><strong>Boots</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #45a823;'>Natalya's Soul</span> 100.00% (2)<br><strong>Ring</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Rare Ring</span> 75.00% (3)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Raven Frost</span> 25.00% (1)<br><strong>Amulet</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Metalgrid</span> 50.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: orange;'>Crafted Amulet</span> 50.00% (1)<br><strong>Belt</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>String of Ears</span> 50.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Goldwrap</span> 50.00% (1)<br><strong>Helmet</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #45a823;'>Natalya's Totem</span> 100.00% (2)<br><strong>Armor</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #45a823;'>Natalya's Shadow</span> 100.00% (2)<br><strong>Gloves</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #45a823;'>Laying of Hands</span> 50.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Magefist</span> 50.00% (1)<br><strong>Left hand</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Hellrack</span> 25.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Bartuc's Cut-Throat</span> 25.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Edge</span> 25.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Plague</span> 25.00% (1)<br><strong>Offhand</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #45a823;'>Natalya's Mark</span> 50.00% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Swiftheart</span> 25.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Dragonbreath</span> 25.00% (1)</div>
+                </div>
+<!--        
+            <button type="button" class="collapsible small-collapsible">
+        <img src="../../../icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="../../../icons/closed.png" alt="Close" class="icon-small close-icon">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Boots</strong>: <span style='color: #45a823;'>Natalya's Soul</span> 100.00%<br><strong>Ring</strong>: <span style='color: yellow;'>Rare Ring</span> 75.00%, <span style='color: #edcd74;'>Raven Frost</span> 25.00%<br><strong>Amulet</strong>: <span style='color: #edcd74;'>Metalgrid</span> 50.00%, <span style='color: orange;'>Crafted Amulet</span> 50.00%<br><strong>Belt</strong>: <span style='color: #edcd74;'>String of Ears</span> 50.00%, <span style='color: #edcd74;'>Goldwrap</span> 50.00%<br><strong>Helmet</strong>: <span style='color: #45a823;'>Natalya's Totem</span> 100.00%<br><strong>Armor</strong>: <span style='color: #45a823;'>Natalya's Shadow</span> 100.00%<br><strong>Gloves</strong>: <span style='color: #45a823;'>Laying of Hands</span> 50.00%, <span style='color: #edcd74;'>Magefist</span> 50.00%<br><strong>Left hand</strong>: <span style='color: #edcd74;'>Hellrack</span> 25.00%, <span style='color: #edcd74;'>Bartuc's Cut-Throat</span> 25.00%, <span style='color: #edcd74;'>Edge</span> 25.00%, <span style='color: #edcd74;'>Plague</span> 25.00%<br><strong>Offhand</strong>: <span style='color: #45a823;'>Natalya's Mark</span> 50.00%, <span style='color: #edcd74;'>Swiftheart</span> 25.00%, <span style='color: #edcd74;'>Dragonbreath</span> 25.00%</div>
+            </div>
+-->
+             <button type="button" class="collapsible small-collapsible">
+        <img src="../../../icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="../../../icons/closed.png" alt="Close" class="icon-small close-icon">
+            <strong>2 Characters in this cluster:</strong>
+        </button>
+        <div class="content">
+
+<!--
+<div class="character-container char2">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link"><strong>Name: <a href="https://pathofdiablo.com/p/armory/?name=DeathBySneak" target="_blank">
+                DeathBySneak
+            </a></strong></div>
+        <div>Level: 93</div>
+        <div>Class: Assassin</div>
+        <div class="hover-trigger" data-character-name="DeathBySneak">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Fire Blast:20, Wake of Fire:20, Wake of Inferno:20, Blade Shield:20, Blade Fury:15, Blade Throw:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1, Venom:1</p>
+    <p><strong>Equipment:<br></strong> Boots: <span style='color: #45a823;'>Natalya's Soul</span>, Ring: <span style='color: #edcd74;'>Raven Frost</span>, Ring: <span style='color: yellow;'>Rare Ring</span>, Amulet: <span style='color: #edcd74;'>Metalgrid</span>, Belt: <span style='color: #edcd74;'>String of Ears</span>, Helmet: <span style='color: #45a823;'>Natalya's Totem</span>, Armor: <span style='color: #45a823;'>Natalya's Shadow</span>, Gloves: <span style='color: #45a823;'>Laying of Hands</span>, Left hand: <span style='color: #edcd74;'>Hellrack</span>, Left hand: <span style='color: #edcd74;'>Bartuc's Cut-Throat</span>, Offhand: <span style='color: #edcd74;'>Swiftheart</span>, Offhand: <span style='color: #45a823;'>Natalya's Mark</span></p>
+    <p><strong>Mercenary:<br></strong> Act 5 Barbarian - Tal Rasha's Horadric Crest, Duriel's Shell, Lawbringer</p>
+
+    <div class="character-section" data-character-name="DeathBySneak"></div>
+</div>
+<hr color="#141414">
+<br>
+
+<!--
+<div class="character-container char1">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link"><strong>Name: <a href="https://pathofdiablo.com/p/armory/?name=PIG_ASN" target="_blank">
+                PIG_ASN
+            </a></strong></div>
+        <div>Level: 91</div>
+        <div>Class: Assassin</div>
+        <div class="hover-trigger" data-character-name="PIG_ASN">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Fire Blast:20, Wake of Fire:20, Lightning Sentry:20, Wake of Inferno:20, Death Sentry:15, Shock Web:1, Charged Bolt Sentry:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Cloak of Shadows:1, Mind Blast:1</p>
+    <p><strong>Equipment:<br></strong> Amulet: <span style='color: orange;'>Crafted Amulet</span>, Gloves: <span style='color: #edcd74;'>Magefist</span>, Helmet: <span style='color: #45a823;'>Natalya's Totem</span>, Boots: <span style='color: #45a823;'>Natalya's Soul</span>, Ring: <span style='color: yellow;'>Rare Ring</span> x2, Armor: <span style='color: #45a823;'>Natalya's Shadow</span>, Belt: <span style='color: #edcd74;'>Goldwrap</span>, Left hand: <span style='color: #edcd74;'>Edge</span>, Left hand: <span style='color: #edcd74;'>Plague</span>, Offhand: <span style='color: #edcd74;'>Dragonbreath</span>, Offhand: <span style='color: #45a823;'>Natalya's Mark</span></p>
+    <p><strong>Mercenary:<br></strong> Act 2 Desert Mercenary - Duriel's Shell, Steel Shade, Insight</p>
+
+    <div class="character-section" data-character-name="PIG_ASN"></div>
+</div>
+<hr color="#141414">
+<br>
+
+            <br>
+            </div>
+            </div>
+        <!--    <hr width="90%"> -->
+            <br>
+                
+        <!--<h2><div id="cluster-Paladin">2.78% of Notazons's are Paladin's:<a href="#cluster-Paladin" class="anchor-link"><img src="../../../icons/anchor.png" alt="🔗" class="anchor-icon"></a><br>
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Holy Freeze.png" alt="Holy Freeze" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Holy Freeze (20)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Holy Shock.png" alt="Holy Shock" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Holy Shock (20)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Resist Lightning.png" alt="Resist Lightning" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Resist Lightning (20)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Salvation.png" alt="Salvation" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Salvation (20)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </h2>
+        <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='../../../icons/Resist Cold.png' alt='Resist Cold' width='20' height='20'> <span class='highlight-100'>Resist Cold 100.0% (14)</span><br><img src='../../../icons/Might.png' alt='Might' width='20' height='20'> <span class='highlight-100'>Might 100.0% (1)</span><br><img src='../../../icons/Holy Fire.png' alt='Holy Fire' width='20' height='20'> <span class='highlight-100'>Holy Fire 100.0% (1)</span></p> -->
+        <div class="class-intro">
+        <div id="skills" class="skills-container">
+            <div class="column">
+                <ul id="most-popular-skills">
+                    <h2><div id="cluster-Paladin">2.78% of Notazons's are Paladin's:<a href="#cluster-Paladin" class="anchor-link"><img src="../../../icons/anchor.png" alt="🔗" class="anchor-icon"></a><br>
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Holy Freeze.png" alt="Holy Freeze" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Holy Freeze (20)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Holy Shock.png" alt="Holy Shock" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Holy Shock (20)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Resist Lightning.png" alt="Resist Lightning" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Resist Lightning (20)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Salvation.png" alt="Salvation" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Salvation (20)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </h2>
+                </ul>
+            </div>
+<!--            <div class="column">
+                <ul id="other-skills">
+                    <h2>Other common skills in this group:</h2> <img src='../../../icons/Resist Cold.png' alt='Resist Cold' width='20' height='20'> <span class='highlight-100'>Resist Cold 100.0% (14)</span><br><img src='../../../icons/Might.png' alt='Might' width='20' height='20'> <span class='highlight-100'>Might 100.0% (1)</span><br><img src='../../../icons/Holy Fire.png' alt='Holy Fire' width='20' height='20'> <span class='highlight-100'>Holy Fire 100.0% (1)</span>
+                </ul>
+            </div> -->
+        </div>
+
+        
+    <button type="button" class="collapsible small-collapsible">
+        <img src="../../../icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="../../../icons/closed.png" alt="Close" class="icon-small close-icon">
+                <strong>All Skills</strong></button>
+                <div class="content">
+                    <div></div>
+                </div>
+
+
+
+                <button type="button" class="collapsible small-collapsible">
+        <img src="../../../icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="../../../icons/closed.png" alt="Close" class="icon-small close-icon">
+                <strong>Most Common Equipment:</strong></button>
+                <div class="content">
+                    <div><strong>Helmet</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Vampire Gaze</span> 100.00% (1)<br><strong>Ring</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Raven Frost</span> 50.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Rare Ring</span> 50.00% (1)<br><strong>Boots</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>War Traveler</span> 100.00% (1)<br><strong>Belt</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>String of Ears</span> 100.00% (1)<br><strong>Gloves</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: yellow;'>Rare Sharkskin Gloves</span> 100.00% (1)<br><strong>Armor</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Principle</span> 100.00% (1)<br><strong>Amulet</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Mara's Kaleidoscope</span> 100.00% (1)<br><strong>Left hand</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Witchwild String</span> 100.00% (1)<br><strong>Offhand</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;<span style='color: #edcd74;'>Moonfire</span> 100.00% (1)</div>
+                </div>
+<!--        
+            <button type="button" class="collapsible small-collapsible">
+        <img src="../../../icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="../../../icons/closed.png" alt="Close" class="icon-small close-icon">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Helmet</strong>: <span style='color: #edcd74;'>Vampire Gaze</span> 100.00%<br><strong>Ring</strong>: <span style='color: #edcd74;'>Raven Frost</span> 50.00%, <span style='color: yellow;'>Rare Ring</span> 50.00%<br><strong>Boots</strong>: <span style='color: #edcd74;'>War Traveler</span> 100.00%<br><strong>Belt</strong>: <span style='color: #edcd74;'>String of Ears</span> 100.00%<br><strong>Gloves</strong>: <span style='color: yellow;'>Rare Sharkskin Gloves</span> 100.00%<br><strong>Armor</strong>: <span style='color: #edcd74;'>Principle</span> 100.00%<br><strong>Amulet</strong>: <span style='color: #edcd74;'>Mara's Kaleidoscope</span> 100.00%<br><strong>Left hand</strong>: <span style='color: #edcd74;'>Witchwild String</span> 100.00%<br><strong>Offhand</strong>: <span style='color: #edcd74;'>Moonfire</span> 100.00%</div>
+            </div>
+-->
+             <button type="button" class="collapsible small-collapsible">
+        <img src="../../../icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="../../../icons/closed.png" alt="Close" class="icon-small close-icon">
+            <strong>1 Characters in this cluster:</strong>
+        </button>
+        <div class="content">
+
+<!--
+<div class="character-container char2">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link"><strong>Name: <a href="https://pathofdiablo.com/p/armory/?name=HolyBender" target="_blank">
+                HolyBender
+            </a></strong></div>
+        <div>Level: 88</div>
+        <div>Class: Paladin</div>
+        <div class="hover-trigger" data-character-name="HolyBender">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Holy Freeze:20, Holy Shock:20, Resist Lightning:20, Salvation:20, Resist Cold:14, Might:1, Holy Fire:1</p>
+    <p><strong>Equipment:<br></strong> Helmet: <span style='color: #edcd74;'>Vampire Gaze</span>, Ring: <span style='color: #edcd74;'>Raven Frost</span>, Ring: <span style='color: yellow;'>Rare Ring</span>, Boots: <span style='color: #edcd74;'>War Traveler</span>, Belt: <span style='color: #edcd74;'>String of Ears</span>, Gloves: <span style='color: yellow;'>Rare Sharkskin Gloves</span>, Armor: <span style='color: #edcd74;'>Principle</span>, Amulet: <span style='color: #edcd74;'>Mara's Kaleidoscope</span>, Left hand: <span style='color: #edcd74;'>Witchwild String</span>, Offhand: <span style='color: #edcd74;'>Moonfire</span></p>
+    <p><strong>Mercenary:<br></strong> Act 1 Rogue Scout - No equipment</p>
+
+    <div class="character-section" data-character-name="HolyBender"></div>
+</div>
+<hr color="#141414">
+<br>
+
+            <br>
+            </div>
+            </div>
+        <!--    <hr width="90%"> -->
+            <br>
+                
+            </ul>
+            <br>
+            <hr>
+            <br>
+            <br>
+            </div>
+            <br><br>
+                    <!-- Embed the Plotly pie chart -->
+        <div>
+            <img src="charts/Notazons-clusters_distribution_pie.png" alt="Notazons Skills Distribution">
+        </div>
+
+        <button onclick="topFunction()" id="backToTopBtn" class="back-to-top"></button>
+            <div class="footer">
+            <p>PoD data current as of 2025-04-30 21:04</p>
+            </div>
+        
+
+
+
+<script>
+// Collapsible elemets
+var coll = document.getElementsByClassName("collapsible");
+for (var i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        var openIcon = this.querySelector("img.icon[alt='Open']");
+        var closeIcon = this.querySelector("img.icon[alt='Close']");
+
+        if (content.style.display === "block") {
+            content.style.display = "none";
+            openIcon.classList.remove("hidden");
+            closeIcon.classList.add("hidden");
+        } else {
+            content.style.display = "block";
+            openIcon.classList.add("hidden");
+            closeIcon.classList.remove("hidden");
+        }
+    });
+}
+
+
+//Back to top button
+var backToTopBtn = document.getElementById("backToTopBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+backToTopBtn.style.display = "block";
+} else {
+backToTopBtn.style.display = "none";
+}
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+document.body.scrollTop = 0; // For Safari
+document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+
+//Trends toolbar
+// Trends toolbar
+function toggleMenu() {
+    const navMenu = document.querySelector('.top-buttons');
+    navMenu.classList.toggle('show');
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    const scHcButton = document.getElementById("SC_HC");
+    const currentUrl = window.location.href;
+    const filename = currentUrl.split("/").pop(); // Get the last part of the URL
+
+    // Check if the current page is Hardcore or Softcore
+    const isHardcore = filename.startsWith("hc");
+
+    // Update button appearance based on current mode
+    if (isHardcore) {
+        scHcButton.classList.add("hardcore");
+        scHcButton.classList.remove("softcore");
+    } else {
+        scHcButton.classList.add("softcore");
+        scHcButton.classList.remove("hardcore");
+    }
+
+    // Update background image based on mode
+    updateButtonImage(isHardcore);
+
+    // Add click event to toggle between SC and HC pages
+    scHcButton.addEventListener("click", function () {
+        let newUrl;
+
+        if (isHardcore) {
+            // Convert HC -> SC (remove "hc" from filename)
+            newUrl = currentUrl.replace(/hc(\w+)$/, "$1"); // Remove "hc"
+        } else {
+            // Convert SC -> HC (prepend "hc" to the filename)
+            newUrl = currentUrl.replace(/\/(\w+)$/, "/hc$1"); // Prepend "hc"
+        }
+
+        // Redirect to the new page
+        if (newUrl !== currentUrl) {
+            window.location.href = newUrl;
+        }
+    });
+
+    // Function to update button background image
+    function updateButtonImage(isHardcore) {
+        if (isHardcore) {
+            scHcButton.style.backgroundImage = "url('../../../icons/Hardcore_click.png')";
+        } else {
+            scHcButton.style.backgroundImage = "url('../../../icons/Softcore_click.png')";
+        }
+    }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const currentPage = window.location.pathname.split("/").pop(); // Get current page filename
+    const menuItems = document.querySelectorAll(".top-button");
+
+    menuItems.forEach(item => {
+        const itemPage = item.getAttribute("href");
+        if (itemPage && currentPage === itemPage) {
+            item.classList.add("active");
+        }
+    });
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+const currentPage = window.location.pathname.split("/").pop(); // Get current page filename
+const menuItems = document.querySelectorAll(".top-button");
+
+menuItems.forEach(item => {
+const itemPage = item.getAttribute("href");
+if (itemPage && currentPage === itemPage) {
+item.classList.add("active");
+}
+});
+});
+
+//Armory pop up
+document.addEventListener("DOMContentLoaded", function () {
+let activePopup = null;
+
+document.querySelectorAll(".hover-trigger").forEach(trigger => {
+trigger.addEventListener("click", function (event) {
+event.stopPropagation();
+const characterName = this.getAttribute("data-character-name");
+
+// Close any open popup first
+if (activePopup) {
+activePopup.classList.remove("active");
+activePopup.innerHTML = ""; // Remove iframe for memory efficiency
+activePopup = null;
+}
+
+// Find the associated popup container
+const popup = this.closest(".character-info").nextElementSibling.querySelector(".popup");
+
+// If this popup was already active, just close it
+if (popup === activePopup) {
+return;
+}
+
+// Create an iframe and set its src
+const iframe = document.createElement("iframe");
+iframe.src = `./../../../armory/video_component.html?charName=${encodeURIComponent(characterName)}`;
+iframe.setAttribute("id", "popupFrame");
+
+// Add iframe to the popup
+popup.appendChild(iframe);
+popup.classList.add("active");
+
+// Set this popup as the active one
+activePopup = popup;
+});
+});
+
+// Close the popup when clicking anywhere outside
+document.addEventListener("click", function (event) {
+if (activePopup && !activePopup.contains(event.target)) {
+activePopup.classList.remove("active");
+activePopup.innerHTML = ""; // Remove iframe to free memory
+activePopup = null;
+}
+});
+});
+
+
+//PoD nav buttons
+document.addEventListener('DOMContentLoaded', () => {
+    const burger = document.querySelector('.navbar-burger');
+    const menu = document.querySelector('.navbar-menu');
+
+    burger.addEventListener('click', () => {
+        menu.classList.toggle('is-active');
+        burger.classList.toggle('is-active');
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const dropdownButton = document.querySelector('.dropdown2-button');
+    const dropdownContent = document.querySelector('.dropdown2-content');
+
+    dropdownButton.addEventListener('click', (event) => {
+        event.stopPropagation(); // Prevents clicks from propagating to other elements
+        dropdownContent.classList.toggle('is-active'); // Toggles the dropdown visibility
+    });
+
+    // Close the dropdown if you click anywhere outside it
+    document.addEventListener('click', () => {
+        if (dropdownContent.classList.contains('is-active')) {
+            dropdownContent.classList.remove('is-active');
+        }
+    });
+});
+
+
+//Anchor in place fix
+// Expand collapsibles and scroll to anchor
+function scrollWithOffset(el, offset = -50) {
+    const y = el.getBoundingClientRect().top + window.pageYOffset + offset;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+}
+
+function expandToAnchor(anchorId) {
+    console.log("expandToAnchor called with:", anchorId);
+    const target = document.getElementById(anchorId);
+    if (!target) return;
+
+    // Step 1: Collect all parent .content elements that need expanding
+    const stack = [];
+    let el = target;
+    while (el) {
+        if (el.classList?.contains('content')) {
+            stack.unshift(el); // add to beginning to expand outermost first
+        }
+        el = el.parentElement;
+    }
+
+    // Step 2: Expand each .content section in order
+    for (const content of stack) {
+        const button = content.previousElementSibling;
+        if (button?.classList.contains('collapsible')) {
+            button.classList.add('active');
+            content.style.display = "block";
+
+            const openIcon = button.querySelector("img.open-icon");
+            const closeIcon = button.querySelector("img.close-icon");
+            if (openIcon) openIcon.classList.add("hidden");
+            if (closeIcon) closeIcon.classList.remove("hidden");
+        }
+    }
+
+    // Step 3: Delay scroll until DOM has reflowed
+    setTimeout(() => {
+        console.log("scrolling to:", target.id);
+        scrollWithOffset(target);
+    }, 250); // Adjust if necessary
+}
+
+// Handle clicks on .anchor-link elements
+document.addEventListener('DOMContentLoaded', () => {
+    // Handle clicks on .anchor-link elements
+    document.querySelectorAll('.anchor-link, a[href^="#"]').forEach(link => {
+        link.addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent default anchor behavior
+            const anchorId = this.getAttribute('href').substring(1);
+            const fullUrl = `${window.location.origin}${window.location.pathname}#${anchorId}`;
+
+            navigator.clipboard.writeText(fullUrl); // Copy full link to clipboard
+            history.pushState(null, '', `#${anchorId}`); // Update URL without page reload
+            expandToAnchor(anchorId); // Expand and scroll
+        });
+    });
+
+    // On initial load with hash
+    if (window.location.hash) {
+        const anchorId = window.location.hash.substring(1);
+        // Wait a bit for collapsibles/content to render
+        setTimeout(() => {
+            expandToAnchor(anchorId);
+        }, 200);
+    }
+});
+
+
+
+</script>
+
+
+    </body>
+    </html>
+    

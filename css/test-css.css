@@ -1259,6 +1259,30 @@
     display: block; /* Show dropdown when active */
 }
 
+.dropdown2-item {
+    position: relative;
+}
+
+.dropdown-sub {
+    position: relative;
+}
+
+.dropdown-sub-content {
+    display: none;
+    position: absolute;
+    background-color: #3a3f44;
+    color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    left: 100%;
+    top: 5%;
+}
+
+.dropdown-sub:hover .dropdown-sub-content {
+    display: block;
+}
+
 /* So the hrefs don't get hidden behind the top navbar */
 .content {
     scroll-margin-top: 100px;
