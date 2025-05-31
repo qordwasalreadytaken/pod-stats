@@ -1,0 +1,1705 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Unique_Bolts_and_Arrows Hardcore Analysis Report</title>
+        <link rel="stylesheet" type="text/css" href="../../../css/test-css.css">
+    </head>
+    <body class="not-main">
+        <div class="is-clipped">
+        <nav class="navbar is-fixed-top is-dark" style="height: 50px;">
+
+            <div class="navbar-brand">
+                <a class="is-48x48" href="https://beta.pathofdiablo.com/"><img src="../../../icons/pod.ico" alt="Path of Diablo: Web Portal" width="48" height="48" class="is-48x48" style="height: 48px; width: 48px; margin-left:0;"></a>
+    <button class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="podNavbar">
+        <br>
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>            </div>
+            <div id="podNavbar" class="navbar-menu">
+                <div class="navbar-start">
+                    <a class="navbar-item" href="https://beta.pathofdiablo.com/trade-search">Trade</a>
+                    <a class="navbar-item" href="https://beta.pathofdiablo.com/servers">Servers</a>
+                    <a class="navbar-item" href="https://beta.pathofdiablo.com/ladder">Ladder</a>
+                    <a class="navbar-item" href="https://beta.pathofdiablo.com/public-games">Public Games</a>
+                    <a class="navbar-item" href="https://beta.pathofdiablo.com/runewizard">Runewizard</a>
+                    <a class="navbar-item" href="https://pathofdiablo.com/p/armory">Armory</a>
+                    <a class="navbar-item" href="https://build.pathofdiablo.com">Build Planner</a>
+                    <!--<a class="navbar-item" href="https://pathofdiablo.com/p/?live" style="width: 90px;"><span><img src="https://beta.pathofdiablo.com/images/twitchico.png"></span></a>-->
+                </div>
+                <div class="navbar-end">
+
+                    <div class="navbar-start">	
+                        <a class="navbar-item-right" href="https://beta.pathofdiablo.com/my-toons">Character Storage</a>
+                        <div class="navbar-item dropdown2">
+                            <button class="dropdown2-button">Trends History</button>
+                            <div class="dropdown2-content">
+                                <a href="https://trends.pathofdiablo.com/Home.html">Current</a>
+                                <!--  <a href="https://trends.pathofdiablo.com/Season/14/April/Home">S14</a> -->
+                                <div class="dropdown2-item dropdown-sub">
+                                    <a class="dropdown-sub-button">S13</a>
+                                    <div class="dropdown-sub-content">
+                                        <a href="https://trends.pathofdiablo.com/Season/13/May/Home">May</a>
+                                        <a href="https://trends.pathofdiablo.com/Season/13/April/Home">April</a>
+                                        <a href="https://trends.pathofdiablo.com/Season/13/March/Home.html">March</a>
+                                        <a href="https://trends.pathofdiablo.com/Season/13/February/Home.html">February</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </nav>  
+        <div class="banner" style="top:50px; left:25%; width:50%;;">
+            Viewing Season 13 historical data from the end of May
+        </div>
+        <div class="hamburger hamburger2" onclick="toggleMenu()">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+
+        <div class="top-buttons">
+            <a href="hcHome" class="top-button home-button" onclick="setActive('Home')"></a>
+            <a href="#" id="SC_HC" class="top-button"> </a>
+            <a href="hcAmazon" id="Amazon" class="top-button amazon-button"></a>
+            <a href="hcAssassin" id="Assassin" class="top-button assassin-button"></a>
+            <a href="hcBarbarian" id="Barbarian" class="top-button barbarian-button"></a>
+            <a href="hcDruid" id="Druid" class="top-button druid-button"></a>
+            <a href="hcNecromancer" id="Necromancer" class="top-button necromancer-button"></a>
+            <a href="hcPaladin" id="Paladin" class="top-button paladin-button"></a>
+            <a href="hcSorceress" id="Sorceress" class="top-button sorceress-button"></a>
+            <a href="https://github.com/qordwasalreadytaken/pod-stats/blob/main/README.md" class="top-button about-button" target="_blank"></a>
+        </div>
+        
+        <h1>Hardcore Unique Arrows and Bolts </h1>
+        <div class="summary-container">
+        <h3>Which Unique projectiles are in use</h3>
+
+        
+        <!--<h2><div id="cluster-Frostbite Arrows">Frostbite Arrows (Freezing Arrow Radius):<a href="#cluster-Frostbite Arrows" class="anchor-link"><img src="../../../icons/anchor.png" alt="🔗" class="anchor-icon"></a><br>
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Cold Arrow.png" alt="Cold Arrow" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Cold Arrow (80)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Freezing Arrow.png" alt="Freezing Arrow" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Freezing Arrow (80)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Immolation Arrow.png" alt="Immolation Arrow" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Immolation Arrow (48)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Ice Arrow.png" alt="Ice Arrow" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Ice Arrow (42)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </h2>
+        <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='../../../icons/Fire Arrow.png' alt='Fire Arrow' width='20' height='20'> <span class='normal-skill'>Fire Arrow 75.0% (31)</span><br><img src='../../../icons/Exploding Arrow.png' alt='Exploding Arrow' width='20' height='20'> <span class='normal-skill'>Exploding Arrow 75.0% (22)</span><br><img src='../../../icons/Guided Arrow.png' alt='Guided Arrow' width='20' height='20'> <span class='normal-skill'>Guided Arrow 50.0% (9)</span><br><img src='../../../icons/Dodge.png' alt='Dodge' width='20' height='20'> <span class='highlight-100'>Dodge 100.0% (8)</span><br><img src='../../../icons/Avoid.png' alt='Avoid' width='20' height='20'> <span class='highlight-100'>Avoid 100.0% (8)</span><br><img src='../../../icons/Evade.png' alt='Evade' width='20' height='20'> <span class='highlight-100'>Evade 100.0% (4)</span></p> -->
+        <div class="class-intro">
+        <div id="skills" class="skills-container">
+            <div class="column">
+                <ul id="most-popular-skills">
+                    <h2><div id="cluster-Frostbite Arrows">Frostbite Arrows (Freezing Arrow Radius):<a href="#cluster-Frostbite Arrows" class="anchor-link"><img src="../../../icons/anchor.png" alt="🔗" class="anchor-icon"></a><br>
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Cold Arrow.png" alt="Cold Arrow" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Cold Arrow (80)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Freezing Arrow.png" alt="Freezing Arrow" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Freezing Arrow (80)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Immolation Arrow.png" alt="Immolation Arrow" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Immolation Arrow (48)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Ice Arrow.png" alt="Ice Arrow" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Ice Arrow (42)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </h2>
+                </ul>
+            </div>
+<!--            <div class="column">
+                <ul id="other-skills">
+                    <h2>Other common skills in this group:</h2> <img src='../../../icons/Fire Arrow.png' alt='Fire Arrow' width='20' height='20'> <span class='normal-skill'>Fire Arrow 75.0% (31)</span><br><img src='../../../icons/Exploding Arrow.png' alt='Exploding Arrow' width='20' height='20'> <span class='normal-skill'>Exploding Arrow 75.0% (22)</span><br><img src='../../../icons/Guided Arrow.png' alt='Guided Arrow' width='20' height='20'> <span class='normal-skill'>Guided Arrow 50.0% (9)</span><br><img src='../../../icons/Dodge.png' alt='Dodge' width='20' height='20'> <span class='highlight-100'>Dodge 100.0% (8)</span><br><img src='../../../icons/Avoid.png' alt='Avoid' width='20' height='20'> <span class='highlight-100'>Avoid 100.0% (8)</span><br><img src='../../../icons/Evade.png' alt='Evade' width='20' height='20'> <span class='highlight-100'>Evade 100.0% (4)</span>
+                </ul>
+            </div> -->
+        </div>
+
+        
+    <button type="button" class="collapsible small-collapsible">
+        <img src="../../../icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="../../../icons/closed.png" alt="Close" class="icon-small close-icon">
+                <strong>All Skills</strong></button>
+                <div class="content">
+                    <div><div class='skills-group'><div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Freezing Arrow.png' alt='Freezing Arrow' class='skill-icon'> Freezing Arrow 100.0% (80)</div><div class='skill-mini-bar' style='width: 400.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Cold Arrow.png' alt='Cold Arrow' class='skill-icon'> Cold Arrow 100.0% (80)</div><div class='skill-mini-bar' style='width: 400.0px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Immolation Arrow.png' alt='Immolation Arrow' class='skill-icon'> Immolation Arrow 75.0% (48)</div><div class='skill-mini-bar' style='width: 300.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Ice Arrow.png' alt='Ice Arrow' class='skill-icon'> Ice Arrow 100.0% (42)</div><div class='skill-mini-bar' style='width: 400.0px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Fire Arrow.png' alt='Fire Arrow' class='skill-icon'> Fire Arrow 75.0% (31)</div><div class='skill-mini-bar' style='width: 300.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Exploding Arrow.png' alt='Exploding Arrow' class='skill-icon'> Exploding Arrow 75.0% (22)</div><div class='skill-mini-bar' style='width: 300.0px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Guided Arrow.png' alt='Guided Arrow' class='skill-icon'> Guided Arrow 50.0% (9)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Avoid.png' alt='Avoid' class='skill-icon'> Avoid 100.0% (8)</div><div class='skill-mini-bar' style='width: 400.0px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Dodge.png' alt='Dodge' class='skill-icon'> Dodge 100.0% (8)</div><div class='skill-mini-bar' style='width: 400.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Pierce.png' alt='Pierce' class='skill-icon'> Pierce 75.0% (4)</div><div class='skill-mini-bar' style='width: 300.0px;'></div></div></div></div></div>
+<div class='skills-group'><div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Evade.png' alt='Evade' class='skill-icon'> Evade 100.0% (4)</div><div class='skill-mini-bar' style='width: 400.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Magic Arrow.png' alt='Magic Arrow' class='skill-icon'> Magic Arrow 100.0% (4)</div><div class='skill-mini-bar' style='width: 400.0px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Inner Sight.png' alt='Inner Sight' class='skill-icon'> Inner Sight 75.0% (3)</div><div class='skill-mini-bar' style='width: 300.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Lethal Strike.png' alt='Lethal Strike' class='skill-icon'> Lethal Strike 75.0% (3)</div><div class='skill-mini-bar' style='width: 300.0px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Phase Run.png' alt='Phase Run' class='skill-icon'> Phase Run 75.0% (3)</div><div class='skill-mini-bar' style='width: 300.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Penetrate.png' alt='Penetrate' class='skill-icon'> Penetrate 75.0% (3)</div><div class='skill-mini-bar' style='width: 300.0px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Valkyrie.png' alt='Valkyrie' class='skill-icon'> Valkyrie 50.0% (2)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Decoy.png' alt='Decoy' class='skill-icon'> Decoy 50.0% (2)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Multiple Shot.png' alt='Multiple Shot' class='skill-icon'> Multiple Shot 50.0% (2)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Strafe.png' alt='Strafe' class='skill-icon'> Strafe 25.0% (1)</div><div class='skill-mini-bar' style='width: 100.0px;'></div></div></div></div></div></div>
+                </div>
+
+
+
+                <button type="button" class="collapsible small-collapsible">
+        <img src="../../../icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="../../../icons/closed.png" alt="Close" class="icon-small close-icon">
+                <strong>Most Common Equipment:</strong></button>
+                <div class="content">
+                    <div><strong>Gloves</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;M'avina's Icy Clutch Battle Gauntlets 50.00% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;Brimstone Touch Gauntlets 25.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Viper Finger Light Gauntlets 25.00% (1)<br><strong>Boots</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;Waterwalk Sharkskin Boots 25.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Silkweave Mesh Boots 25.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Sander's Riprap Heavy Boots 25.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Natalya's Soul Mesh Boots 25.00% (1)<br><strong>Helmet</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;Harlequin Crest Shako 50.00% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;M'avina's True Sight Diadem 50.00% (2)<br><strong>Ring</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;Raven Frost Ring 25.00% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;Manald Heal Ring 25.00% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;Bahamut's Ring of Regrowth Ring 12.50% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Skull Loop Ring 12.50% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Rune Turn Ring 12.50% (1)<br><strong>Armor</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;M'avina's Embrace Kraken Shell 50.00% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;Chains of Honor Dusk Shroud 25.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Hustle Breast Plate 25.00% (1)<br><strong>Belt</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;M'avina's Tenet Sharkskin Belt 50.00% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;Arachnid Mesh Spiderweb Sash 25.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;String of Ears Demonhide Sash 25.00% (1)<br><strong>Amulet</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;Mara's Kaleidoscope Amulet 50.00% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;Valkyrie's Amulet of the Squid Amulet 25.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Chromatic Amulet of Excellence Amulet 25.00% (1)<br><strong>Offhand</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;Frostbite Arrows 57.14% (4)<br>&nbsp;&nbsp;&nbsp;&nbsp;Medusa's Gaze Aegis 14.29% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Ancients' Pledge Gothic Shield 14.29% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;The Ward Gothic Shield 14.29% (1)<br><strong>Left hand</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;M'avina's Caster Grand Matron Bow 33.33% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;Loath Dart Reflex Bow 16.67% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Javelin Javelin 16.67% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Holy Thunder War Scepter 16.67% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Harmony Matriarchal Bow 16.67% (1)</div>
+                </div>
+<!--        
+            <button type="button" class="collapsible small-collapsible">
+        <img src="../../../icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="../../../icons/closed.png" alt="Close" class="icon-small close-icon">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Gloves</strong>: M'avina's Icy Clutch Battle Gauntlets 50.00%, Brimstone Touch Gauntlets 25.00%, Viper Finger Light Gauntlets 25.00%<br><strong>Boots</strong>: Waterwalk Sharkskin Boots 25.00%, Silkweave Mesh Boots 25.00%, Sander's Riprap Heavy Boots 25.00%, Natalya's Soul Mesh Boots 25.00%<br><strong>Helmet</strong>: Harlequin Crest Shako 50.00%, M'avina's True Sight Diadem 50.00%<br><strong>Ring</strong>: Raven Frost Ring 25.00%, Manald Heal Ring 25.00%, Bahamut's Ring of Regrowth Ring 12.50%, Skull Loop Ring 12.50%, Rune Turn Ring 12.50%, Dwarf Star Ring 12.50%<br><strong>Armor</strong>: M'avina's Embrace Kraken Shell 50.00%, Chains of Honor Dusk Shroud 25.00%, Hustle Breast Plate 25.00%<br><strong>Belt</strong>: M'avina's Tenet Sharkskin Belt 50.00%, Arachnid Mesh Spiderweb Sash 25.00%, String of Ears Demonhide Sash 25.00%<br><strong>Amulet</strong>: Mara's Kaleidoscope Amulet 50.00%, Valkyrie's Amulet of the Squid Amulet 25.00%, Chromatic Amulet of Excellence Amulet 25.00%<br><strong>Offhand</strong>: Frostbite Arrows 57.14%, Medusa's Gaze Aegis 14.29%, Ancients' Pledge Gothic Shield 14.29%, The Ward Gothic Shield 14.29%<br><strong>Left hand</strong>: M'avina's Caster Grand Matron Bow 33.33%, Loath Dart Reflex Bow 16.67%, Javelin Javelin 16.67%, Holy Thunder War Scepter 16.67%, Harmony Matriarchal Bow 16.67%</div>
+            </div>
+-->
+             <button type="button" class="collapsible small-collapsible">
+        <img src="../../../icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="../../../icons/closed.png" alt="Close" class="icon-small close-icon">
+            <strong>4 Characters in this cluster:</strong>
+        </button>
+        <div class="content">
+
+<!--
+<div class="character-container char2">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link">
+            <a href="https://beta.pathofdiablo.com/armory?name=Echinacea" target="_blank">
+                Echinacea
+            </a>
+        </div>
+        <div>Level: 84</div>
+        <div>Class: Amazon</div>
+        <div class="hover-trigger" data-character-name="Echinacea">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Fire Arrow:20, Cold Arrow:20, Exploding Arrow:20, Freezing Arrow:20, Immolation Arrow:10, Magic Arrow:1, Ice Arrow:1, Dodge:1, Avoid:1, Evade:1</p>
+    <p><strong>Equipment:<br></strong> Gloves: Brimstone Touch Gauntlets, Boots: Waterwalk Sharkskin Boots, Helmet: Harlequin Crest Shako, ring: Bahamut's Ring of Regrowth Ring, ring: Raven Frost Ring, Armor: Chains of Honor Dusk Shroud, Belt: Arachnid Mesh Spiderweb Sash, Amulet: Valkyrie's Amulet of the Squid Amulet, Offhand: Medusa's Gaze Aegis, Offhand: Frostbite Arrows, Left hand: Loath Dart Reflex Bow</p>
+    <p><strong>Mercenary:<br></strong> Act 5 Barbarian - Treachery, Natalya's Totem, Plague</p>
+
+    <div class="character-section" data-character-name="Echinacea"></div>
+</div>
+<hr color="#141414">
+<br>
+
+<!--
+<div class="character-container char1">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link">
+            <a href="https://beta.pathofdiablo.com/armory?name=MaSLoBoYKa" target="_blank">
+                MaSLoBoYKa
+            </a>
+        </div>
+        <div>Level: 81</div>
+        <div>Class: Amazon</div>
+        <div class="hover-trigger" data-character-name="MaSLoBoYKa">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Cold Arrow:20, Ice Arrow:20, Freezing Arrow:20, Guided Arrow:8, Dodge:5, Avoid:5, Magic Arrow:1, Multiple Shot:1, Inner Sight:1, Lethal Strike:1, Phase Run:1, Penetrate:1, Decoy:1, Evade:1, Valkyrie:1, Pierce:1</p>
+    <p><strong>Equipment:<br></strong> Belt: M'avina's Tenet Sharkskin Belt, Armor: M'avina's Embrace Kraken Shell, Helmet: M'avina's True Sight Diadem, ring: Skull Loop Ring, ring: Rune Turn Ring, Boots: Silkweave Mesh Boots, Amulet: Mara's Kaleidoscope Amulet, Left hand: Javelin Javelin, Left hand: M'avina's Caster Grand Matron Bow, Offhand: Ancients' Pledge Gothic Shield, Offhand: Frostbite Arrows, Gloves: M'avina's Icy Clutch Battle Gauntlets</p>
+    <p><strong>Mercenary:<br></strong> Act 2 Desert Mercenary - Treachery, Steel Shade, Insight</p>
+
+    <div class="character-section" data-character-name="MaSLoBoYKa"></div>
+</div>
+<hr color="#141414">
+<br>
+
+<!--
+<div class="character-container char2">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link">
+            <a href="https://beta.pathofdiablo.com/armory?name=CTABKA" target="_blank">
+                CTABKA
+            </a>
+        </div>
+        <div>Level: 80</div>
+        <div>Class: Amazon</div>
+        <div class="hover-trigger" data-character-name="CTABKA">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Cold Arrow:20, Ice Arrow:20, Freezing Arrow:20, Immolation Arrow:18, Magic Arrow:1, Fire Arrow:1, Exploding Arrow:1, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Decoy:1, Evade:1, Valkyrie:1, Pierce:1</p>
+    <p><strong>Equipment:<br></strong> Belt: M'avina's Tenet Sharkskin Belt, Armor: M'avina's Embrace Kraken Shell, Boots: Sander's Riprap Heavy Boots, ring: Manald Heal Ring x2, Helmet: M'avina's True Sight Diadem, Amulet: Chromatic Amulet of Excellence Amulet, Gloves: M'avina's Icy Clutch Battle Gauntlets, Left hand: M'avina's Caster Grand Matron Bow, Offhand: Frostbite Arrows</p>
+    <p><strong>Mercenary:<br></strong> Act 2 Desert Mercenary - Skin of the Flayed One, Tal Rasha's Horadric Crest, Insight</p>
+
+    <div class="character-section" data-character-name="CTABKA"></div>
+</div>
+<hr color="#141414">
+<br>
+
+<!--
+<div class="character-container char1">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link">
+            <a href="https://beta.pathofdiablo.com/armory?name=MorgiAma" target="_blank">
+                MorgiAma
+            </a>
+        </div>
+        <div>Level: 77</div>
+        <div>Class: Amazon</div>
+        <div class="hover-trigger" data-character-name="MorgiAma">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Cold Arrow:20, Immolation Arrow:20, Freezing Arrow:20, Fire Arrow:10, Pierce:2, Magic Arrow:1, Multiple Shot:1, Exploding Arrow:1, Ice Arrow:1, Guided Arrow:1, Strafe:1, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Evade:1</p>
+    <p><strong>Equipment:<br></strong> Helmet: Harlequin Crest Shako, Boots: Natalya's Soul Mesh Boots, Armor: Hustle Breast Plate, ring: Dwarf Star Ring, ring: Raven Frost Ring, Belt: String of Ears Demonhide Sash, Amulet: Mara's Kaleidoscope Amulet, Gloves: Viper Finger Light Gauntlets, Left hand: Holy Thunder War Scepter, Left hand: Harmony Matriarchal Bow, Offhand: The Ward Gothic Shield, Offhand: Frostbite Arrows</p>
+    <p><strong>Mercenary:<br></strong> Act 2 Desert Mercenary - Griswold's Heart, Bulwark, Insight</p>
+
+    <div class="character-section" data-character-name="MorgiAma"></div>
+</div>
+<hr color="#141414">
+<br>
+
+            <br>
+            </div>
+            </div>
+        <!--    <hr width="90%"> -->
+            <br>
+                
+        <!--<h2><div id="cluster-Hailstorm Bolts">Hailstorm Bolts (Glacial Spike During Strafe):<a href="#cluster-Hailstorm Bolts" class="anchor-link"><img src="../../../icons/anchor.png" alt="🔗" class="anchor-icon"></a><br>
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Strafe.png" alt="Strafe" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Strafe (53)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Cold Arrow.png" alt="Cold Arrow" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Cold Arrow (42)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Immolation Arrow.png" alt="Immolation Arrow" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Immolation Arrow (40)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Freezing Arrow.png" alt="Freezing Arrow" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Freezing Arrow (40)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </h2>
+        <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='../../../icons/Ice Arrow.png' alt='Ice Arrow' width='20' height='20'> <span class='normal-skill'>Ice Arrow 50.0% (31)</span><br><img src='../../../icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> <span class='highlight-100'>Lethal Strike 100.0% (29)</span><br><img src='../../../icons/Multiple Shot.png' alt='Multiple Shot' width='20' height='20'> <span class='normal-skill'>Multiple Shot 75.0% (28)</span><br><img src='../../../icons/Penetrate.png' alt='Penetrate' width='20' height='20'> <span class='highlight-100'>Penetrate 100.0% (23)</span><br><img src='../../../icons/Valkyrie.png' alt='Valkyrie' width='20' height='20'> <span class='normal-skill'>Valkyrie 75.0% (17)</span><br><img src='../../../icons/Inner Sight.png' alt='Inner Sight' width='20' height='20'> <span class='highlight-100'>Inner Sight 100.0% (12)</span></p> -->
+        <div class="class-intro">
+        <div id="skills" class="skills-container">
+            <div class="column">
+                <ul id="most-popular-skills">
+                    <h2><div id="cluster-Hailstorm Bolts">Hailstorm Bolts (Glacial Spike During Strafe):<a href="#cluster-Hailstorm Bolts" class="anchor-link"><img src="../../../icons/anchor.png" alt="🔗" class="anchor-icon"></a><br>
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Strafe.png" alt="Strafe" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Strafe (53)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Cold Arrow.png" alt="Cold Arrow" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Cold Arrow (42)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Immolation Arrow.png" alt="Immolation Arrow" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Immolation Arrow (40)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Freezing Arrow.png" alt="Freezing Arrow" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Freezing Arrow (40)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </h2>
+                </ul>
+            </div>
+<!--            <div class="column">
+                <ul id="other-skills">
+                    <h2>Other common skills in this group:</h2> <img src='../../../icons/Ice Arrow.png' alt='Ice Arrow' width='20' height='20'> <span class='normal-skill'>Ice Arrow 50.0% (31)</span><br><img src='../../../icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> <span class='highlight-100'>Lethal Strike 100.0% (29)</span><br><img src='../../../icons/Multiple Shot.png' alt='Multiple Shot' width='20' height='20'> <span class='normal-skill'>Multiple Shot 75.0% (28)</span><br><img src='../../../icons/Penetrate.png' alt='Penetrate' width='20' height='20'> <span class='highlight-100'>Penetrate 100.0% (23)</span><br><img src='../../../icons/Valkyrie.png' alt='Valkyrie' width='20' height='20'> <span class='normal-skill'>Valkyrie 75.0% (17)</span><br><img src='../../../icons/Inner Sight.png' alt='Inner Sight' width='20' height='20'> <span class='highlight-100'>Inner Sight 100.0% (12)</span>
+                </ul>
+            </div> -->
+        </div>
+
+        
+    <button type="button" class="collapsible small-collapsible">
+        <img src="../../../icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="../../../icons/closed.png" alt="Close" class="icon-small close-icon">
+                <strong>All Skills</strong></button>
+                <div class="content">
+                    <div><div class='skills-group'><div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Strafe.png' alt='Strafe' class='skill-icon'> Strafe 75.0% (53)</div><div class='skill-mini-bar' style='width: 300.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Cold Arrow.png' alt='Cold Arrow' class='skill-icon'> Cold Arrow 100.0% (42)</div><div class='skill-mini-bar' style='width: 400.0px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Freezing Arrow.png' alt='Freezing Arrow' class='skill-icon'> Freezing Arrow 50.0% (40)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Immolation Arrow.png' alt='Immolation Arrow' class='skill-icon'> Immolation Arrow 50.0% (40)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Ice Arrow.png' alt='Ice Arrow' class='skill-icon'> Ice Arrow 50.0% (31)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Lethal Strike.png' alt='Lethal Strike' class='skill-icon'> Lethal Strike 100.0% (29)</div><div class='skill-mini-bar' style='width: 400.0px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Multiple Shot.png' alt='Multiple Shot' class='skill-icon'> Multiple Shot 75.0% (28)</div><div class='skill-mini-bar' style='width: 300.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Penetrate.png' alt='Penetrate' class='skill-icon'> Penetrate 100.0% (23)</div><div class='skill-mini-bar' style='width: 400.0px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Valkyrie.png' alt='Valkyrie' class='skill-icon'> Valkyrie 75.0% (17)</div><div class='skill-mini-bar' style='width: 300.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Inner Sight.png' alt='Inner Sight' class='skill-icon'> Inner Sight 100.0% (12)</div><div class='skill-mini-bar' style='width: 400.0px;'></div></div></div></div></div>
+<div class='skills-group'><div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Fire Arrow.png' alt='Fire Arrow' class='skill-icon'> Fire Arrow 50.0% (12)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Pierce.png' alt='Pierce' class='skill-icon'> Pierce 75.0% (7)</div><div class='skill-mini-bar' style='width: 300.0px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Phase Run.png' alt='Phase Run' class='skill-icon'> Phase Run 100.0% (4)</div><div class='skill-mini-bar' style='width: 400.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Magic Arrow.png' alt='Magic Arrow' class='skill-icon'> Magic Arrow 100.0% (4)</div><div class='skill-mini-bar' style='width: 400.0px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Guided Arrow.png' alt='Guided Arrow' class='skill-icon'> Guided Arrow 75.0% (3)</div><div class='skill-mini-bar' style='width: 300.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Decoy.png' alt='Decoy' class='skill-icon'> Decoy 75.0% (3)</div><div class='skill-mini-bar' style='width: 300.0px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Avoid.png' alt='Avoid' class='skill-icon'> Avoid 75.0% (3)</div><div class='skill-mini-bar' style='width: 300.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Evade.png' alt='Evade' class='skill-icon'> Evade 75.0% (3)</div><div class='skill-mini-bar' style='width: 300.0px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Dodge.png' alt='Dodge' class='skill-icon'> Dodge 50.0% (2)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Exploding Arrow.png' alt='Exploding Arrow' class='skill-icon'> Exploding Arrow 50.0% (2)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div></div></div></div>
+                </div>
+
+
+
+                <button type="button" class="collapsible small-collapsible">
+        <img src="../../../icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="../../../icons/closed.png" alt="Close" class="icon-small close-icon">
+                <strong>Most Common Equipment:</strong></button>
+                <div class="content">
+                    <div><strong>Boots</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;Natalya's Soul Mesh Boots 66.67% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;Vidala's Fetlock Light Plated Boots 33.33% (1)<br><strong>Ring</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;Raven Frost Ring 42.86% (3)<br>&nbsp;&nbsp;&nbsp;&nbsp;Chaos Touch Ring 14.29% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Entropy Loop Ring 14.29% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Skull Eye Ring 14.29% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Bitter Turn Ring 14.29% (1)<br><strong>Amulet</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;The Cat's Eye Amulet 33.33% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Seraph's Hymn Amulet 33.33% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Vidala's Snare Amulet 33.33% (1)<br><strong>Helmet</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;M'avina's True Sight Diadem 50.00% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;Vampire Gaze Grim Helm 25.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Lore Helm 25.00% (1)<br><strong>Belt</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;M'avina's Tenet Sharkskin Belt 66.67% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;Thundergod's Vigor War Belt 33.33% (1)<br><strong>Armor</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;M'avina's Embrace Kraken Shell 50.00% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;Fortitude Wyrmhide 25.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Peace Dusk Shroud 25.00% (1)<br><strong>Gloves</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;M'avina's Icy Clutch Battle Gauntlets 50.00% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;Laying of Hands Bramble Mitts 25.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Fiendra Hand Bramble Mitts 25.00% (1)<br><strong>Left hand</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;M'avina's Caster Grand Matron Bow 25.00% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;Harmony Great Bow 12.50% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Buriza-Do Kyanon Colossus Crossbow 12.50% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Soul Branch Light Crossbow 12.50% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Pus Spitter Siege Crossbow 12.50% (1)<br><strong>Offhand</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;Hailstorm Bolts 80.00% (4)<br>&nbsp;&nbsp;&nbsp;&nbsp;Raven Eye Arrows 20.00% (1)</div>
+                </div>
+<!--        
+            <button type="button" class="collapsible small-collapsible">
+        <img src="../../../icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="../../../icons/closed.png" alt="Close" class="icon-small close-icon">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Boots</strong>: Natalya's Soul Mesh Boots 66.67%, Vidala's Fetlock Light Plated Boots 33.33%<br><strong>Ring</strong>: Raven Frost Ring 42.86%, Chaos Touch Ring 14.29%, Entropy Loop Ring 14.29%, Skull Eye Ring 14.29%, Bitter Turn Ring 14.29%<br><strong>Amulet</strong>: The Cat's Eye Amulet 33.33%, Seraph's Hymn Amulet 33.33%, Vidala's Snare Amulet 33.33%<br><strong>Helmet</strong>: M'avina's True Sight Diadem 50.00%, Vampire Gaze Grim Helm 25.00%, Lore Helm 25.00%<br><strong>Belt</strong>: M'avina's Tenet Sharkskin Belt 66.67%, Thundergod's Vigor War Belt 33.33%<br><strong>Armor</strong>: M'avina's Embrace Kraken Shell 50.00%, Fortitude Wyrmhide 25.00%, Peace Dusk Shroud 25.00%<br><strong>Gloves</strong>: M'avina's Icy Clutch Battle Gauntlets 50.00%, Laying of Hands Bramble Mitts 25.00%, Fiendra Hand Bramble Mitts 25.00%<br><strong>Left hand</strong>: M'avina's Caster Grand Matron Bow 25.00%, Harmony Great Bow 12.50%, Buriza-Do Kyanon Colossus Crossbow 12.50%, Soul Branch Light Crossbow 12.50%, Pus Spitter Siege Crossbow 12.50%, Bone Wand of Life Tap Bone Wand 12.50%, Edge Crossbow 12.50%<br><strong>Offhand</strong>: Hailstorm Bolts 80.00%, Raven Eye Arrows 20.00%</div>
+            </div>
+-->
+             <button type="button" class="collapsible small-collapsible">
+        <img src="../../../icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="../../../icons/closed.png" alt="Close" class="icon-small close-icon">
+            <strong>4 Characters in this cluster:</strong>
+        </button>
+        <div class="content">
+
+<!--
+<div class="character-container char2">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link">
+            <a href="https://beta.pathofdiablo.com/armory?name=BowOchka" target="_blank">
+                BowOchka
+            </a>
+        </div>
+        <div>Level: 84</div>
+        <div>Class: Amazon</div>
+        <div class="hover-trigger" data-character-name="BowOchka">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Multiple Shot:20, Strafe:20, Lethal Strike:20, Penetrate:20, Inner Sight:9, Magic Arrow:1, Cold Arrow:1, Guided Arrow:1, Phase Run:1, Decoy:1, Valkyrie:1</p>
+    <p><strong>Equipment:<br></strong> Boots: Natalya's Soul Mesh Boots, ring: Raven Frost Ring x2, Amulet: The Cat's Eye Amulet, Helmet: Vampire Gaze Grim Helm, Belt: Thundergod's Vigor War Belt, Armor: Fortitude Wyrmhide, Gloves: Laying of Hands Bramble Mitts, Left hand: Harmony Great Bow, Left hand: Buriza-Do Kyanon Colossus Crossbow, Offhand: Hailstorm Bolts</p>
+    <p><strong>Mercenary:<br></strong> Act 5 Barbarian - Darkglow, Tal Rasha's Horadric Crest, The Vile Husk</p>
+
+    <div class="character-section" data-character-name="BowOchka"></div>
+</div>
+<hr color="#141414">
+<br>
+
+<!--
+<div class="character-container char1">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link">
+            <a href="https://beta.pathofdiablo.com/armory?name=JPCa" target="_blank">
+                JPCa
+            </a>
+        </div>
+        <div>Level: 83</div>
+        <div>Class: Amazon</div>
+        <div class="hover-trigger" data-character-name="JPCa">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Cold Arrow:20, Ice Arrow:20, Freezing Arrow:20, Strafe:13, Multiple Shot:7, Pierce:5, Magic Arrow:1, Guided Arrow:1, Inner Sight:1, Lethal Strike:1, Phase Run:1, Avoid:1, Penetrate:1, Evade:1</p>
+    <p><strong>Equipment:<br></strong> ring: Chaos Touch Ring, ring: Entropy Loop Ring, Belt: M'avina's Tenet Sharkskin Belt, Gloves: M'avina's Icy Clutch Battle Gauntlets, Armor: M'avina's Embrace Kraken Shell, Helmet: M'avina's True Sight Diadem, Amulet: Seraph's Hymn Amulet, Left hand: Soul Branch Light Crossbow, Left hand: M'avina's Caster Grand Matron Bow, Offhand: Hailstorm Bolts</p>
+    <p><strong>Mercenary:<br></strong> Act 2 Desert Mercenary - No equipment</p>
+
+    <div class="character-section" data-character-name="JPCa"></div>
+</div>
+<hr color="#141414">
+<br>
+
+<!--
+<div class="character-container char2">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link">
+            <a href="https://beta.pathofdiablo.com/armory?name=bowscape" target="_blank">
+                bowscape
+            </a>
+        </div>
+        <div>Level: 82</div>
+        <div>Class: Amazon</div>
+        <div class="hover-trigger" data-character-name="bowscape">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Cold Arrow:20, Immolation Arrow:20, Freezing Arrow:20, Ice Arrow:11, Fire Arrow:10, Magic Arrow:1, Exploding Arrow:1, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Decoy:1, Evade:1, Valkyrie:1, Pierce:1</p>
+    <p><strong>Equipment:<br></strong> Belt: M'avina's Tenet Sharkskin Belt, Boots: Vidala's Fetlock Light Plated Boots, ring: Skull Eye Ring, ring: Raven Frost Ring, Armor: M'avina's Embrace Kraken Shell, Gloves: M'avina's Icy Clutch Battle Gauntlets, Helmet: M'avina's True Sight Diadem, Amulet: Vidala's Snare Amulet, Left hand: Pus Spitter Siege Crossbow, Left hand: M'avina's Caster Grand Matron Bow, Offhand: Hailstorm Bolts, Offhand: Raven Eye Arrows</p>
+    <p><strong>Mercenary:<br></strong> Act 1 Rogue Scout - Rattlecage, Hearth, Pus Spitter</p>
+
+    <div class="character-section" data-character-name="bowscape"></div>
+</div>
+<hr color="#141414">
+<br>
+
+<!--
+<div class="character-container char1">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link">
+            <a href="https://beta.pathofdiablo.com/armory?name=VuteStrela" target="_blank">
+                VuteStrela
+            </a>
+        </div>
+        <div>Level: 75</div>
+        <div>Class: Amazon</div>
+        <div class="hover-trigger" data-character-name="VuteStrela">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Strafe:20, Immolation Arrow:20, Valkyrie:15, Lethal Strike:7, Fire Arrow:2, Magic Arrow:1, Cold Arrow:1, Multiple Shot:1, Exploding Arrow:1, Guided Arrow:1, Inner Sight:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Decoy:1, Evade:1, Pierce:1</p>
+    <p><strong>Equipment:<br></strong> Armor: Peace Dusk Shroud, Helmet: Lore Helm, Boots: Natalya's Soul Mesh Boots, ring: Bitter Turn Ring, Gloves: Fiendra Hand Bramble Mitts, Left hand: Bone Wand of Life Tap Bone Wand, Left hand: Edge Crossbow, Offhand: Hailstorm Bolts</p>
+    <p><strong>Mercenary:<br></strong> Act 2 Desert Mercenary - Black Hades, Insight</p>
+
+    <div class="character-section" data-character-name="VuteStrela"></div>
+</div>
+<hr color="#141414">
+<br>
+
+            <br>
+            </div>
+            </div>
+        <!--    <hr width="90%"> -->
+            <br>
+                
+        <!--<h2><div id="cluster-Moonfire Arrows">Moonfire Arrows (Magic Arrow):<a href="#cluster-Moonfire Arrows" class="anchor-link"><img src="../../../icons/anchor.png" alt="🔗" class="anchor-icon"></a><br>
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Immolation Arrow.png" alt="Immolation Arrow" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Immolation Arrow (40)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Pierce.png" alt="Pierce" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Pierce (32)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Power Strike.png" alt="Power Strike" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Power Strike (20)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Lightning Bolt.png" alt="Lightning Bolt" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Lightning Bolt (20)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </h2>
+        <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='../../../icons/Lightning Fury.png' alt='Lightning Fury' width='20' height='20'> <span class='normal-skill'>Lightning Fury 25.0% (20)</span><br><img src='../../../icons/Guided Arrow.png' alt='Guided Arrow' width='20' height='20'> <span class='normal-skill'>Guided Arrow 25.0% (20)</span><br><img src='../../../icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> <span class='normal-skill'>Oak Sage 25.0% (20)</span><br><img src='../../../icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' width='20' height='20'> <span class='normal-skill'>Summon Spirit Wolf 25.0% (20)</span><br><img src='../../../icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> <span class='normal-skill'>Heart of Wolverine 25.0% (20)</span><br><img src='../../../icons/Summon Dire Wolf.png' alt='Summon Dire Wolf' width='20' height='20'> <span class='normal-skill'>Summon Dire Wolf 25.0% (20)</span></p> -->
+        <div class="class-intro">
+        <div id="skills" class="skills-container">
+            <div class="column">
+                <ul id="most-popular-skills">
+                    <h2><div id="cluster-Moonfire Arrows">Moonfire Arrows (Magic Arrow):<a href="#cluster-Moonfire Arrows" class="anchor-link"><img src="../../../icons/anchor.png" alt="🔗" class="anchor-icon"></a><br>
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Immolation Arrow.png" alt="Immolation Arrow" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Immolation Arrow (40)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Pierce.png" alt="Pierce" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Pierce (32)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Power Strike.png" alt="Power Strike" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Power Strike (20)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Lightning Bolt.png" alt="Lightning Bolt" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Lightning Bolt (20)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </h2>
+                </ul>
+            </div>
+<!--            <div class="column">
+                <ul id="other-skills">
+                    <h2>Other common skills in this group:</h2> <img src='../../../icons/Lightning Fury.png' alt='Lightning Fury' width='20' height='20'> <span class='normal-skill'>Lightning Fury 25.0% (20)</span><br><img src='../../../icons/Guided Arrow.png' alt='Guided Arrow' width='20' height='20'> <span class='normal-skill'>Guided Arrow 25.0% (20)</span><br><img src='../../../icons/Oak Sage.png' alt='Oak Sage' width='20' height='20'> <span class='normal-skill'>Oak Sage 25.0% (20)</span><br><img src='../../../icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' width='20' height='20'> <span class='normal-skill'>Summon Spirit Wolf 25.0% (20)</span><br><img src='../../../icons/Heart of Wolverine.png' alt='Heart of Wolverine' width='20' height='20'> <span class='normal-skill'>Heart of Wolverine 25.0% (20)</span><br><img src='../../../icons/Summon Dire Wolf.png' alt='Summon Dire Wolf' width='20' height='20'> <span class='normal-skill'>Summon Dire Wolf 25.0% (20)</span>
+                </ul>
+            </div> -->
+        </div>
+
+        
+    <button type="button" class="collapsible small-collapsible">
+        <img src="../../../icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="../../../icons/closed.png" alt="Close" class="icon-small close-icon">
+                <strong>All Skills</strong></button>
+                <div class="content">
+                    <div><div class='skills-group'><div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Immolation Arrow.png' alt='Immolation Arrow' class='skill-icon'> Immolation Arrow 50.0% (40)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Pierce.png' alt='Pierce' class='skill-icon'> Pierce 75.0% (32)</div><div class='skill-mini-bar' style='width: 300.0px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Lightning Bolt.png' alt='Lightning Bolt' class='skill-icon'> Lightning Bolt 25.0% (20)</div><div class='skill-mini-bar' style='width: 100.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Lightning Fury.png' alt='Lightning Fury' class='skill-icon'> Lightning Fury 25.0% (20)</div><div class='skill-mini-bar' style='width: 100.0px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Power Strike.png' alt='Power Strike' class='skill-icon'> Power Strike 25.0% (20)</div><div class='skill-mini-bar' style='width: 100.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Guided Arrow.png' alt='Guided Arrow' class='skill-icon'> Guided Arrow 25.0% (20)</div><div class='skill-mini-bar' style='width: 100.0px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Summon Grizzly.png' alt='Summon Grizzly' class='skill-icon'> Summon Grizzly 25.0% (20)</div><div class='skill-mini-bar' style='width: 100.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Summon Dire Wolf.png' alt='Summon Dire Wolf' class='skill-icon'> Summon Dire Wolf 25.0% (20)</div><div class='skill-mini-bar' style='width: 100.0px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Heart of Wolverine.png' alt='Heart of Wolverine' class='skill-icon'> Heart of Wolverine 25.0% (20)</div><div class='skill-mini-bar' style='width: 100.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Summon Spirit Wolf.png' alt='Summon Spirit Wolf' class='skill-icon'> Summon Spirit Wolf 25.0% (20)</div><div class='skill-mini-bar' style='width: 100.0px;'></div></div></div></div></div>
+<div class='skills-group'><div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Oak Sage.png' alt='Oak Sage' class='skill-icon'> Oak Sage 25.0% (20)</div><div class='skill-mini-bar' style='width: 100.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Plague Javelin.png' alt='Plague Javelin' class='skill-icon'> Plague Javelin 25.0% (17)</div><div class='skill-mini-bar' style='width: 100.0px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Lethal Strike.png' alt='Lethal Strike' class='skill-icon'> Lethal Strike 75.0% (15)</div><div class='skill-mini-bar' style='width: 300.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Fire Arrow.png' alt='Fire Arrow' class='skill-icon'> Fire Arrow 50.0% (15)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Exploding Arrow.png' alt='Exploding Arrow' class='skill-icon'> Exploding Arrow 50.0% (12)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Valkyrie.png' alt='Valkyrie' class='skill-icon'> Valkyrie 75.0% (12)</div><div class='skill-mini-bar' style='width: 300.0px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Avoid.png' alt='Avoid' class='skill-icon'> Avoid 75.0% (7)</div><div class='skill-mini-bar' style='width: 300.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Dodge.png' alt='Dodge' class='skill-icon'> Dodge 75.0% (7)</div><div class='skill-mini-bar' style='width: 300.0px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Evade.png' alt='Evade' class='skill-icon'> Evade 75.0% (5)</div><div class='skill-mini-bar' style='width: 300.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Multiple Shot.png' alt='Multiple Shot' class='skill-icon'> Multiple Shot 50.0% (5)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div></div></div>
+<div class='skills-group'><div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Penetrate.png' alt='Penetrate' class='skill-icon'> Penetrate 75.0% (4)</div><div class='skill-mini-bar' style='width: 300.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Inner Sight.png' alt='Inner Sight' class='skill-icon'> Inner Sight 75.0% (3)</div><div class='skill-mini-bar' style='width: 300.0px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Decoy.png' alt='Decoy' class='skill-icon'> Decoy 75.0% (3)</div><div class='skill-mini-bar' style='width: 300.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Phase Run.png' alt='Phase Run' class='skill-icon'> Phase Run 75.0% (3)</div><div class='skill-mini-bar' style='width: 300.0px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Poison Javelin.png' alt='Poison Javelin' class='skill-icon'> Poison Javelin 50.0% (2)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Cold Arrow.png' alt='Cold Arrow' class='skill-icon'> Cold Arrow 50.0% (2)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Magic Arrow.png' alt='Magic Arrow' class='skill-icon'> Magic Arrow 50.0% (2)</div><div class='skill-mini-bar' style='width: 200.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Freezing Arrow.png' alt='Freezing Arrow' class='skill-icon'> Freezing Arrow 25.0% (1)</div><div class='skill-mini-bar' style='width: 100.0px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Ice Arrow.png' alt='Ice Arrow' class='skill-icon'> Ice Arrow 25.0% (1)</div><div class='skill-mini-bar' style='width: 100.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Jab.png' alt='Jab' class='skill-icon'> Jab 25.0% (1)</div><div class='skill-mini-bar' style='width: 100.0px;'></div></div></div></div></div>
+<div class='skills-group'><div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Flame Dash.png' alt='Flame Dash' class='skill-icon'> Flame Dash 25.0% (1)</div><div class='skill-mini-bar' style='width: 100.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Spirit of Barbs.png' alt='Spirit of Barbs' class='skill-icon'> Spirit of Barbs 25.0% (1)</div><div class='skill-mini-bar' style='width: 100.0px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Raven.png' alt='Raven' class='skill-icon'> Raven 25.0% (1)</div><div class='skill-mini-bar' style='width: 100.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Firestorm.png' alt='Firestorm' class='skill-icon'> Firestorm 25.0% (1)</div><div class='skill-mini-bar' style='width: 100.0px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Molten Boulder.png' alt='Molten Boulder' class='skill-icon'> Molten Boulder 25.0% (1)</div><div class='skill-mini-bar' style='width: 100.0px;'></div></div></div></div></div></div>
+                </div>
+
+
+
+                <button type="button" class="collapsible small-collapsible">
+        <img src="../../../icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="../../../icons/closed.png" alt="Close" class="icon-small close-icon">
+                <strong>Most Common Equipment:</strong></button>
+                <div class="content">
+                    <div><strong>Armor</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;Rain Dusk Shroud 25.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Tal Rasha's Guardianship Lacquered Plate 25.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Hustle Cuirass 25.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Smoke Ghost Armor 25.00% (1)<br><strong>Gloves</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;Laying of Hands Bramble Mitts 50.00% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;Lancer's Gauntlets of Self-Repair Gauntlets 25.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Imp Hand Light Gauntlets 25.00% (1)<br><strong>Belt</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;Verdungo's Hearty Cord Mithril Coil 25.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Thundergod's Vigor War Belt 25.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Credendum Mithril Coil 25.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Goldwrap Heavy Belt 25.00% (1)<br><strong>Ring</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;Russet Ring of the Titan Ring 12.50% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Storm Grip Ring 12.50% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Raven Frost Ring 12.50% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Entropy Master Ring 12.50% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Nagelring Ring 12.50% (1)<br><strong>Amulet</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;Skull Noose Amulet 25.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Mara's Kaleidoscope Amulet 25.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Metalgrid Amulet 25.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Maiden's Amulet of Sorcery Amulet 25.00% (1)<br><strong>Helmet</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;Pain Shell Coronet 25.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Griffon's Eye Diadem 25.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Tal Rasha's Horadric Crest Death Mask 25.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Lore Bone Helm 25.00% (1)<br><strong>Boots</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;Tancred's Hobnails Boots 25.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Immortal King's Pillar War Boots 25.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Gore Rider War Boots 25.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Sigon's Sabot Greaves 25.00% (1)<br><strong>Left hand</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;Witchwild String Short Siege Bow 14.29% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Spirit Crystal Sword 14.29% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Harmony Long Battle Bow 14.29% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Titan's Revenge Ceremonial Javelin 14.29% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Harmony Blade Bow 14.29% (1)<br><strong>Offhand</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;Moonfire Arrows 57.14% (4)<br>&nbsp;&nbsp;&nbsp;&nbsp;Spirit Monarch 28.57% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;Blood Eye Arrows 14.29% (1)</div>
+                </div>
+<!--        
+            <button type="button" class="collapsible small-collapsible">
+        <img src="../../../icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="../../../icons/closed.png" alt="Close" class="icon-small close-icon">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Armor</strong>: Rain Dusk Shroud 25.00%, Tal Rasha's Guardianship Lacquered Plate 25.00%, Hustle Cuirass 25.00%, Smoke Ghost Armor 25.00%<br><strong>Gloves</strong>: Laying of Hands Bramble Mitts 50.00%, Lancer's Gauntlets of Self-Repair Gauntlets 25.00%, Imp Hand Light Gauntlets 25.00%<br><strong>Belt</strong>: Verdungo's Hearty Cord Mithril Coil 25.00%, Thundergod's Vigor War Belt 25.00%, Credendum Mithril Coil 25.00%, Goldwrap Heavy Belt 25.00%<br><strong>Ring</strong>: Russet Ring of the Titan Ring 12.50%, Storm Grip Ring 12.50%, Raven Frost Ring 12.50%, Entropy Master Ring 12.50%, Nagelring Ring 12.50%, Carrion Wind Ring 12.50%, Manald Heal Ring 12.50%, Raven Coil Ring 12.50%<br><strong>Amulet</strong>: Skull Noose Amulet 25.00%, Mara's Kaleidoscope Amulet 25.00%, Metalgrid Amulet 25.00%, Maiden's Amulet of Sorcery Amulet 25.00%<br><strong>Helmet</strong>: Pain Shell Coronet 25.00%, Griffon's Eye Diadem 25.00%, Tal Rasha's Horadric Crest Death Mask 25.00%, Lore Bone Helm 25.00%<br><strong>Boots</strong>: Tancred's Hobnails Boots 25.00%, Immortal King's Pillar War Boots 25.00%, Gore Rider War Boots 25.00%, Sigon's Sabot Greaves 25.00%<br><strong>Left hand</strong>: Witchwild String Short Siege Bow 14.29%, Spirit Crystal Sword 14.29%, Harmony Long Battle Bow 14.29%, Titan's Revenge Ceremonial Javelin 14.29%, Harmony Blade Bow 14.29%, Melody Stag Bow 14.29%, Edge Ashwood Bow 14.29%<br><strong>Offhand</strong>: Moonfire Arrows 57.14%, Spirit Monarch 28.57%, Blood Eye Arrows 14.29%</div>
+            </div>
+-->
+             <button type="button" class="collapsible small-collapsible">
+        <img src="../../../icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="../../../icons/closed.png" alt="Close" class="icon-small close-icon">
+            <strong>4 Characters in this cluster:</strong>
+        </button>
+        <div class="content">
+
+<!--
+<div class="character-container char2">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link">
+            <a href="https://beta.pathofdiablo.com/armory?name=PencilPusher" target="_blank">
+                PencilPusher
+            </a>
+        </div>
+        <div>Level: 94</div>
+        <div>Class: Druid</div>
+        <div class="hover-trigger" data-character-name="PencilPusher">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Oak Sage:20, Summon Spirit Wolf:20, Heart of Wolverine:20, Summon Dire Wolf:20, Summon Grizzly:20, Raven:1, Spirit of Barbs:1, Firestorm:1, Molten Boulder:1, Flame Dash:1</p>
+    <p><strong>Equipment:<br></strong> Armor: Rain Dusk Shroud, Gloves: Laying of Hands Bramble Mitts, Belt: Verdungo's Hearty Cord Mithril Coil, ring: Russet Ring of the Titan Ring, ring: Storm Grip Ring, Amulet: Skull Noose Amulet, Helmet: Pain Shell Coronet, Boots: Tancred's Hobnails Boots, Left hand: Witchwild String Short Siege Bow, Left hand: Spirit Crystal Sword, Offhand: Moonfire Arrows, Offhand: Spirit Monarch</p>
+    <p><strong>Mercenary:<br></strong> Act 1 Rogue Scout - Hearth, Treachery, Harmony</p>
+
+    <div class="character-section" data-character-name="PencilPusher"></div>
+</div>
+<hr color="#141414">
+<br>
+
+<!--
+<div class="character-container char1">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link">
+            <a href="https://beta.pathofdiablo.com/armory?name=Ka" target="_blank">
+                Ka
+            </a>
+        </div>
+        <div>Level: 88</div>
+        <div>Class: Amazon</div>
+        <div class="hover-trigger" data-character-name="Ka">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Power Strike:20, Lightning Bolt:20, Lightning Fury:20, Plague Javelin:17, Pierce:9, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Decoy:1, Evade:1, Valkyrie:1, Jab:1, Poison Javelin:1</p>
+    <p><strong>Equipment:<br></strong> Boots: Immortal King's Pillar War Boots, Gloves: Lancer's Gauntlets of Self-Repair Gauntlets, ring: Raven Frost Ring, ring: Entropy Master Ring, Belt: Thundergod's Vigor War Belt, Armor: Tal Rasha's Guardianship Lacquered Plate, Helmet: Griffon's Eye Diadem, Amulet: Mara's Kaleidoscope Amulet, Left hand: Harmony Long Battle Bow, Left hand: Titan's Revenge Ceremonial Javelin, Offhand: Moonfire Arrows, Offhand: Spirit Monarch</p>
+    <p><strong>Mercenary:<br></strong> Act 2 Desert Mercenary - Treachery, Tal Rasha's Horadric Crest, Insight</p>
+
+    <div class="character-section" data-character-name="Ka"></div>
+</div>
+<hr color="#141414">
+<br>
+
+<!--
+<div class="character-container char2">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link">
+            <a href="https://beta.pathofdiablo.com/armory?name=Alice_Weidel" target="_blank">
+                Alice_Weidel
+            </a>
+        </div>
+        <div>Level: 84</div>
+        <div>Class: Amazon</div>
+        <div class="hover-trigger" data-character-name="Alice_Weidel">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Guided Arrow:20, Immolation Arrow:20, Lethal Strike:13, Valkyrie:10, Pierce:10, Dodge:5, Avoid:5, Evade:3, Magic Arrow:1, Fire Arrow:1, Cold Arrow:1, Multiple Shot:1, Exploding Arrow:1, Inner Sight:1, Phase Run:1, Penetrate:1, Decoy:1</p>
+    <p><strong>Equipment:<br></strong> Armor: Hustle Cuirass, Helmet: Tal Rasha's Horadric Crest Death Mask, ring: Nagelring Ring, ring: Carrion Wind Ring, Gloves: Laying of Hands Bramble Mitts, Belt: Credendum Mithril Coil, Boots: Gore Rider War Boots, Amulet: Metalgrid Amulet, Left hand: Harmony Blade Bow, Offhand: Moonfire Arrows</p>
+    <p><strong>Mercenary:<br></strong> Act 5 Barbarian - Shaftstop, Blackhorn's Face</p>
+
+    <div class="character-section" data-character-name="Alice_Weidel"></div>
+</div>
+<hr color="#141414">
+<br>
+
+<!--
+<div class="character-container char1">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link">
+            <a href="https://beta.pathofdiablo.com/armory?name=ItRubsTheLotion" target="_blank">
+                ItRubsTheLotion
+            </a>
+        </div>
+        <div>Level: 68</div>
+        <div>Class: Amazon</div>
+        <div class="hover-trigger" data-character-name="ItRubsTheLotion">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Immolation Arrow:20, Fire Arrow:14, Pierce:13, Exploding Arrow:11, Multiple Shot:4, Penetrate:2, Magic Arrow:1, Cold Arrow:1, Ice Arrow:1, Freezing Arrow:1, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Decoy:1, Evade:1, Valkyrie:1, Poison Javelin:1</p>
+    <p><strong>Equipment:<br></strong> ring: Manald Heal Ring, ring: Raven Coil Ring, Armor: Smoke Ghost Armor, Helmet: Lore Bone Helm, Boots: Sigon's Sabot Greaves, Gloves: Imp Hand Light Gauntlets, Amulet: Maiden's Amulet of Sorcery Amulet, Belt: Goldwrap Heavy Belt, Left hand: Melody Stag Bow, Left hand: Edge Ashwood Bow, Offhand: Blood Eye Arrows, Offhand: Moonfire Arrows</p>
+    <p><strong>Mercenary:<br></strong> Act 2 Desert Mercenary - Isenhart's Horns, Isenhart's Case, Insight</p>
+
+    <div class="character-section" data-character-name="ItRubsTheLotion"></div>
+</div>
+<hr color="#141414">
+<br>
+
+            <br>
+            </div>
+            </div>
+        <!--    <hr width="90%"> -->
+            <br>
+                
+        <!--<h2><div id="cluster-Dragonbreath Arrows">Dragonbreath Arrows (Fires explosive w/ larger radius):<a href="#cluster-Dragonbreath Arrows" class="anchor-link"><img src="../../../icons/anchor.png" alt="🔗" class="anchor-icon"></a><br>
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Guided Arrow.png" alt="Guided Arrow" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Guided Arrow (39)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Magic Arrow.png" alt="Magic Arrow" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Magic Arrow (21)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Valkyrie.png" alt="Valkyrie" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Valkyrie (20)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Power Strike.png" alt="Power Strike" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Power Strike (20)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </h2>
+        <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='../../../icons/Fire Arrow.png' alt='Fire Arrow' width='20' height='20'> <span class='normal-skill'>Fire Arrow 33.33% (20)</span><br><img src='../../../icons/Wake of Fire.png' alt='Wake of Fire' width='20' height='20'> <span class='normal-skill'>Wake of Fire 33.33% (20)</span><br><img src='../../../icons/Wake of Inferno.png' alt='Wake of Inferno' width='20' height='20'> <span class='normal-skill'>Wake of Inferno 33.33% (20)</span><br><img src='../../../icons/Shadow Master.png' alt='Shadow Master' width='20' height='20'> <span class='normal-skill'>Shadow Master 33.33% (20)</span><br><img src='../../../icons/Fire Blast.png' alt='Fire Blast' width='20' height='20'> <span class='normal-skill'>Fire Blast 33.33% (9)</span><br><img src='../../../icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> <span class='normal-skill'>Lethal Strike 66.67% (6)</span></p> -->
+        <div class="class-intro">
+        <div id="skills" class="skills-container">
+            <div class="column">
+                <ul id="most-popular-skills">
+                    <h2><div id="cluster-Dragonbreath Arrows">Dragonbreath Arrows (Fires explosive w/ larger radius):<a href="#cluster-Dragonbreath Arrows" class="anchor-link"><img src="../../../icons/anchor.png" alt="🔗" class="anchor-icon"></a><br>
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Guided Arrow.png" alt="Guided Arrow" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Guided Arrow (39)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Magic Arrow.png" alt="Magic Arrow" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Magic Arrow (21)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Valkyrie.png" alt="Valkyrie" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Valkyrie (20)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Power Strike.png" alt="Power Strike" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Power Strike (20)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </h2>
+                </ul>
+            </div>
+<!--            <div class="column">
+                <ul id="other-skills">
+                    <h2>Other common skills in this group:</h2> <img src='../../../icons/Fire Arrow.png' alt='Fire Arrow' width='20' height='20'> <span class='normal-skill'>Fire Arrow 33.33% (20)</span><br><img src='../../../icons/Wake of Fire.png' alt='Wake of Fire' width='20' height='20'> <span class='normal-skill'>Wake of Fire 33.33% (20)</span><br><img src='../../../icons/Wake of Inferno.png' alt='Wake of Inferno' width='20' height='20'> <span class='normal-skill'>Wake of Inferno 33.33% (20)</span><br><img src='../../../icons/Shadow Master.png' alt='Shadow Master' width='20' height='20'> <span class='normal-skill'>Shadow Master 33.33% (20)</span><br><img src='../../../icons/Fire Blast.png' alt='Fire Blast' width='20' height='20'> <span class='normal-skill'>Fire Blast 33.33% (9)</span><br><img src='../../../icons/Lethal Strike.png' alt='Lethal Strike' width='20' height='20'> <span class='normal-skill'>Lethal Strike 66.67% (6)</span>
+                </ul>
+            </div> -->
+        </div>
+
+        
+    <button type="button" class="collapsible small-collapsible">
+        <img src="../../../icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="../../../icons/closed.png" alt="Close" class="icon-small close-icon">
+                <strong>All Skills</strong></button>
+                <div class="content">
+                    <div><div class='skills-group'><div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Guided Arrow.png' alt='Guided Arrow' class='skill-icon'> Guided Arrow 66.67% (40)</div><div class='skill-mini-bar' style='width: 266.68px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Magic Arrow.png' alt='Magic Arrow' class='skill-icon'> Magic Arrow 66.67% (21)</div><div class='skill-mini-bar' style='width: 266.68px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Power Strike.png' alt='Power Strike' class='skill-icon'> Power Strike 33.33% (20)</div><div class='skill-mini-bar' style='width: 133.32px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Fire Arrow.png' alt='Fire Arrow' class='skill-icon'> Fire Arrow 33.33% (20)</div><div class='skill-mini-bar' style='width: 133.32px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Valkyrie.png' alt='Valkyrie' class='skill-icon'> Valkyrie 33.33% (20)</div><div class='skill-mini-bar' style='width: 133.32px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Wake of Fire.png' alt='Wake of Fire' class='skill-icon'> Wake of Fire 33.33% (20)</div><div class='skill-mini-bar' style='width: 133.32px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Wake of Inferno.png' alt='Wake of Inferno' class='skill-icon'> Wake of Inferno 33.33% (20)</div><div class='skill-mini-bar' style='width: 133.32px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Shadow Master.png' alt='Shadow Master' class='skill-icon'> Shadow Master 33.33% (20)</div><div class='skill-mini-bar' style='width: 133.32px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Fire Blast.png' alt='Fire Blast' class='skill-icon'> Fire Blast 33.33% (9)</div><div class='skill-mini-bar' style='width: 133.32px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Lethal Strike.png' alt='Lethal Strike' class='skill-icon'> Lethal Strike 66.67% (6)</div><div class='skill-mini-bar' style='width: 266.68px;'></div></div></div></div></div>
+<div class='skills-group'><div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Cold Arrow.png' alt='Cold Arrow' class='skill-icon'> Cold Arrow 66.67% (2)</div><div class='skill-mini-bar' style='width: 266.68px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Multiple Shot.png' alt='Multiple Shot' class='skill-icon'> Multiple Shot 66.67% (2)</div><div class='skill-mini-bar' style='width: 266.68px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Penetrate.png' alt='Penetrate' class='skill-icon'> Penetrate 66.67% (2)</div><div class='skill-mini-bar' style='width: 266.68px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Phase Run.png' alt='Phase Run' class='skill-icon'> Phase Run 66.67% (2)</div><div class='skill-mini-bar' style='width: 266.68px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Inner Sight.png' alt='Inner Sight' class='skill-icon'> Inner Sight 66.67% (2)</div><div class='skill-mini-bar' style='width: 266.68px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Dodge.png' alt='Dodge' class='skill-icon'> Dodge 66.67% (2)</div><div class='skill-mini-bar' style='width: 266.68px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Avoid.png' alt='Avoid' class='skill-icon'> Avoid 66.67% (2)</div><div class='skill-mini-bar' style='width: 266.68px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Decoy.png' alt='Decoy' class='skill-icon'> Decoy 33.33% (1)</div><div class='skill-mini-bar' style='width: 133.32px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Blade Throw.png' alt='Blade Throw' class='skill-icon'> Blade Throw 33.33% (1)</div><div class='skill-mini-bar' style='width: 133.32px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Claw Mastery.png' alt='Claw Mastery' class='skill-icon'> Claw Mastery 33.33% (1)</div><div class='skill-mini-bar' style='width: 133.32px;'></div></div></div></div></div>
+<div class='skills-group'><div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Blade Shield.png' alt='Blade Shield' class='skill-icon'> Blade Shield 33.33% (1)</div><div class='skill-mini-bar' style='width: 133.32px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Blade Fury.png' alt='Blade Fury' class='skill-icon'> Blade Fury 33.33% (1)</div><div class='skill-mini-bar' style='width: 133.32px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Pierce.png' alt='Pierce' class='skill-icon'> Pierce 33.33% (1)</div><div class='skill-mini-bar' style='width: 133.32px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Evade.png' alt='Evade' class='skill-icon'> Evade 33.33% (1)</div><div class='skill-mini-bar' style='width: 133.32px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Jab.png' alt='Jab' class='skill-icon'> Jab 33.33% (1)</div><div class='skill-mini-bar' style='width: 133.32px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Psychic Hammer.png' alt='Psychic Hammer' class='skill-icon'> Psychic Hammer 33.33% (1)</div><div class='skill-mini-bar' style='width: 133.32px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Dragon Talon.png' alt='Dragon Talon' class='skill-icon'> Dragon Talon 33.33% (1)</div><div class='skill-mini-bar' style='width: 133.32px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Fists of Fire.png' alt='Fists of Fire' class='skill-icon'> Fists of Fire 33.33% (1)</div><div class='skill-mini-bar' style='width: 133.32px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Dragon Claw.png' alt='Dragon Claw' class='skill-icon'> Dragon Claw 33.33% (1)</div><div class='skill-mini-bar' style='width: 133.32px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Claws of Thunder.png' alt='Claws of Thunder' class='skill-icon'> Claws of Thunder 33.33% (1)</div><div class='skill-mini-bar' style='width: 133.32px;'></div></div></div></div></div>
+<div class='skills-group'><div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Blades of Ice.png' alt='Blades of Ice' class='skill-icon'> Blades of Ice 33.33% (1)</div><div class='skill-mini-bar' style='width: 133.32px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Dragon Flight.png' alt='Dragon Flight' class='skill-icon'> Dragon Flight 33.33% (1)</div><div class='skill-mini-bar' style='width: 133.32px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Mind Blast.png' alt='Mind Blast' class='skill-icon'> Mind Blast 33.33% (1)</div><div class='skill-mini-bar' style='width: 133.32px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Venom.png' alt='Venom' class='skill-icon'> Venom 33.33% (1)</div><div class='skill-mini-bar' style='width: 133.32px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Fade.png' alt='Fade' class='skill-icon'> Fade 33.33% (1)</div><div class='skill-mini-bar' style='width: 133.32px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Burst of Speed.png' alt='Burst of Speed' class='skill-icon'> Burst of Speed 33.33% (1)</div><div class='skill-mini-bar' style='width: 133.32px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Cloak of Shadows.png' alt='Cloak of Shadows' class='skill-icon'> Cloak of Shadows 33.33% (1)</div><div class='skill-mini-bar' style='width: 133.32px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Weapon Block.png' alt='Weapon Block' class='skill-icon'> Weapon Block 33.33% (1)</div><div class='skill-mini-bar' style='width: 133.32px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Shadow Warrior.png' alt='Shadow Warrior' class='skill-icon'> Shadow Warrior 33.33% (1)</div><div class='skill-mini-bar' style='width: 133.32px;'></div></div></div></div></div></div>
+                </div>
+
+
+
+                <button type="button" class="collapsible small-collapsible">
+        <img src="../../../icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="../../../icons/closed.png" alt="Close" class="icon-small close-icon">
+                <strong>Most Common Equipment:</strong></button>
+                <div class="content">
+                    <div><strong>Armor</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;Treachery Mage Plate 50.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Stealth Hard Leather Armor 50.00% (1)<br><strong>Belt</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;String of Ears Demonhide Sash 33.33% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Razortail Sharkskin Belt 33.33% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Credendum Mithril Coil 33.33% (1)<br><strong>Ring</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;Raven Frost Ring 50.00% (2)<br>&nbsp;&nbsp;&nbsp;&nbsp;Carrion Wind Ring 25.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Dwarf Star Ring 25.00% (1)<br><strong>Amulet</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;Mara's Kaleidoscope Amulet 50.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;The Mahim-Oak Curio Amulet 50.00% (1)<br><strong>Boots</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;Natalya's Soul Mesh Boots 50.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Beast Greaves Heavy Boots 50.00% (1)<br><strong>Helmet</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;Harlequin Crest Shako 50.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Bulwark Mask 50.00% (1)<br><strong>Gloves</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;Dracul's Grasp Vampirebone Gloves 50.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Sander's Taboo Heavy Gloves 50.00% (1)<br><strong>Left hand</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;Raven Claw Long Bow 25.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Jade Talon Wrist Sword 25.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Blastbark Gothic Bow 25.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Harmony Great Bow 25.00% (1)<br><strong>Offhand</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;Dragonbreath Arrows 75.00% (3)<br>&nbsp;&nbsp;&nbsp;&nbsp;Plague Suwayyah 25.00% (1)</div>
+                </div>
+<!--        
+            <button type="button" class="collapsible small-collapsible">
+        <img src="../../../icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="../../../icons/closed.png" alt="Close" class="icon-small close-icon">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Armor</strong>: Treachery Mage Plate 50.00%, Stealth Hard Leather Armor 50.00%<br><strong>Belt</strong>: String of Ears Demonhide Sash 33.33%, Razortail Sharkskin Belt 33.33%, Credendum Mithril Coil 33.33%<br><strong>Ring</strong>: Raven Frost Ring 50.00%, Carrion Wind Ring 25.00%, Dwarf Star Ring 25.00%<br><strong>Amulet</strong>: Mara's Kaleidoscope Amulet 50.00%, The Mahim-Oak Curio Amulet 50.00%<br><strong>Boots</strong>: Natalya's Soul Mesh Boots 50.00%, Beast Greaves Heavy Boots 50.00%<br><strong>Helmet</strong>: Harlequin Crest Shako 50.00%, Bulwark Mask 50.00%<br><strong>Gloves</strong>: Dracul's Grasp Vampirebone Gloves 50.00%, Sander's Taboo Heavy Gloves 50.00%<br><strong>Left hand</strong>: Raven Claw Long Bow 25.00%, Jade Talon Wrist Sword 25.00%, Blastbark Gothic Bow 25.00%, Harmony Great Bow 25.00%<br><strong>Offhand</strong>: Dragonbreath Arrows 75.00%, Plague Suwayyah 25.00%</div>
+            </div>
+-->
+             <button type="button" class="collapsible small-collapsible">
+        <img src="../../../icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="../../../icons/closed.png" alt="Close" class="icon-small close-icon">
+            <strong>3 Characters in this cluster:</strong>
+        </button>
+        <div class="content">
+
+<!--
+<div class="character-container char2">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link">
+            <a href="https://beta.pathofdiablo.com/armory?name=DreamDay" target="_blank">
+                DreamDay
+            </a>
+        </div>
+        <div>Level: 78</div>
+        <div>Class: Assassin</div>
+        <div class="hover-trigger" data-character-name="DreamDay">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Wake of Fire:20, Wake of Inferno:20, Shadow Master:20, Fire Blast:9, Blade Throw:1, Blade Fury:1, Blade Shield:1, Claw Mastery:1, Psychic Hammer:1, Burst of Speed:1, Weapon Block:1, Cloak of Shadows:1, Fade:1, Shadow Warrior:1, Mind Blast:1, Venom:1, Dragon Talon:1, Fists of Fire:1, Dragon Claw:1, Claws of Thunder:1, Blades of Ice:1, Dragon Flight:1</p>
+    <p><strong>Equipment:<br></strong> Armor: Treachery Mage Plate, Belt: String of Ears Demonhide Sash, ring: Raven Frost Ring, ring: Carrion Wind Ring, Amulet: Mara's Kaleidoscope Amulet, Boots: Natalya's Soul Mesh Boots, Helmet: Harlequin Crest Shako, Gloves: Dracul's Grasp Vampirebone Gloves, Left hand: Raven Claw Long Bow, Left hand: Jade Talon Wrist Sword, Offhand: Dragonbreath Arrows, Offhand: Plague Suwayyah</p>
+    <p><strong>Mercenary:<br></strong> Act 1 Rogue Scout - No equipment</p>
+
+    <div class="character-section" data-character-name="DreamDay"></div>
+</div>
+<hr color="#141414">
+<br>
+
+<!--
+<div class="character-container char1">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link">
+            <a href="https://beta.pathofdiablo.com/armory?name=sIeeplng_avvake" target="_blank">
+                sIeeplng_avvake
+            </a>
+        </div>
+        <div>Level: 73</div>
+        <div>Class: Amazon</div>
+        <div class="hover-trigger" data-character-name="sIeeplng_avvake">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Magic Arrow:20, Fire Arrow:20, Guided Arrow:20, Cold Arrow:1, Multiple Shot:1, Inner Sight:1, Lethal Strike:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Pierce:1</p>
+    <p><strong>Equipment:<br></strong> Belt: Razortail Sharkskin Belt, Left hand: Blastbark Gothic Bow, Offhand: Dragonbreath Arrows</p>
+    <p><strong>Mercenary:<br></strong> Act 3 Eastern Sorceror - Duriel's Shell, Lore, Spirit, Splendor</p>
+
+    <div class="character-section" data-character-name="sIeeplng_avvake"></div>
+</div>
+<hr color="#141414">
+<br>
+
+<!--
+<div class="character-container char2">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link">
+            <a href="https://beta.pathofdiablo.com/armory?name=Ironman_Isomer" target="_blank">
+                Ironman_Isomer
+            </a>
+        </div>
+        <div>Level: 71</div>
+        <div>Class: Amazon</div>
+        <div class="hover-trigger" data-character-name="Ironman_Isomer">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Guided Arrow:20, Valkyrie:20, Power Strike:20, Lethal Strike:5, Magic Arrow:1, Cold Arrow:1, Multiple Shot:1, Inner Sight:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Decoy:1, Evade:1, Jab:1</p>
+    <p><strong>Equipment:<br></strong> Armor: Stealth Hard Leather Armor, Boots: Beast Greaves Heavy Boots, Amulet: The Mahim-Oak Curio Amulet, Gloves: Sander's Taboo Heavy Gloves, ring: Dwarf Star Ring, ring: Raven Frost Ring, Helmet: Bulwark Mask, Belt: Credendum Mithril Coil, Left hand: Harmony Great Bow, Offhand: Dragonbreath Arrows</p>
+    <p><strong>Mercenary:<br></strong> Act 5 Barbarian - Cap, Boneflesh, Ginther's Rift</p>
+
+    <div class="character-section" data-character-name="Ironman_Isomer"></div>
+</div>
+<hr color="#141414">
+<br>
+
+            <br>
+            </div>
+            </div>
+        <!--    <hr width="90%"> -->
+            <br>
+                
+        <!--<h2><div id="cluster-Hailstorm Arrows">Hailstorm Arrows (Glacial Spike During Strafe):<a href="#cluster-Hailstorm Arrows" class="anchor-link"><img src="../../../icons/anchor.png" alt="🔗" class="anchor-icon"></a><br>
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Guided Arrow.png" alt="Guided Arrow" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Guided Arrow (20)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Strafe.png" alt="Strafe" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Strafe (20)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Lethal Strike.png" alt="Lethal Strike" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Lethal Strike (14)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Multiple Shot.png" alt="Multiple Shot" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Multiple Shot (7)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </h2>
+        <p class="indented-skills"><strong>Other Skills:<br></strong> <img src='../../../icons/Inner Sight.png' alt='Inner Sight' width='20' height='20'> <span class='highlight-100'>Inner Sight 100.0% (1)</span><br><img src='../../../icons/Dodge.png' alt='Dodge' width='20' height='20'> <span class='highlight-100'>Dodge 100.0% (1)</span><br><img src='../../../icons/Phase Run.png' alt='Phase Run' width='20' height='20'> <span class='highlight-100'>Phase Run 100.0% (1)</span><br><img src='../../../icons/Avoid.png' alt='Avoid' width='20' height='20'> <span class='highlight-100'>Avoid 100.0% (1)</span><br><img src='../../../icons/Penetrate.png' alt='Penetrate' width='20' height='20'> <span class='highlight-100'>Penetrate 100.0% (1)</span><br><img src='../../../icons/Decoy.png' alt='Decoy' width='20' height='20'> <span class='highlight-100'>Decoy 100.0% (1)</span></p> -->
+        <div class="class-intro">
+        <div id="skills" class="skills-container">
+            <div class="column">
+                <ul id="most-popular-skills">
+                    <h2><div id="cluster-Hailstorm Arrows">Hailstorm Arrows (Glacial Spike During Strafe):<a href="#cluster-Hailstorm Arrows" class="anchor-link"><img src="../../../icons/anchor.png" alt="🔗" class="anchor-icon"></a><br>
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Guided Arrow.png" alt="Guided Arrow" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Guided Arrow (20)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Strafe.png" alt="Strafe" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Strafe (20)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Lethal Strike.png" alt="Lethal Strike" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Lethal Strike (14)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skillbar-container">
+                    <div class="skill-row">
+                        <img src="../../../icons/Multiple Shot.png" alt="Multiple Shot" class="skill-icon">
+                        <div class="skill-bar-container">
+                            <div class="skill-bar">
+                                <span class="skill-label">Multiple Shot (7)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </h2>
+                </ul>
+            </div>
+<!--            <div class="column">
+                <ul id="other-skills">
+                    <h2>Other common skills in this group:</h2> <img src='../../../icons/Inner Sight.png' alt='Inner Sight' width='20' height='20'> <span class='highlight-100'>Inner Sight 100.0% (1)</span><br><img src='../../../icons/Dodge.png' alt='Dodge' width='20' height='20'> <span class='highlight-100'>Dodge 100.0% (1)</span><br><img src='../../../icons/Phase Run.png' alt='Phase Run' width='20' height='20'> <span class='highlight-100'>Phase Run 100.0% (1)</span><br><img src='../../../icons/Avoid.png' alt='Avoid' width='20' height='20'> <span class='highlight-100'>Avoid 100.0% (1)</span><br><img src='../../../icons/Penetrate.png' alt='Penetrate' width='20' height='20'> <span class='highlight-100'>Penetrate 100.0% (1)</span><br><img src='../../../icons/Decoy.png' alt='Decoy' width='20' height='20'> <span class='highlight-100'>Decoy 100.0% (1)</span>
+                </ul>
+            </div> -->
+        </div>
+
+        
+    <button type="button" class="collapsible small-collapsible">
+        <img src="../../../icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="../../../icons/closed.png" alt="Close" class="icon-small close-icon">
+                <strong>All Skills</strong></button>
+                <div class="content">
+                    <div><div class='skills-group'><div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Guided Arrow.png' alt='Guided Arrow' class='skill-icon'> Guided Arrow 100.0% (20)</div><div class='skill-mini-bar' style='width: 400.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Strafe.png' alt='Strafe' class='skill-icon'> Strafe 100.0% (20)</div><div class='skill-mini-bar' style='width: 400.0px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Lethal Strike.png' alt='Lethal Strike' class='skill-icon'> Lethal Strike 100.0% (14)</div><div class='skill-mini-bar' style='width: 400.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Multiple Shot.png' alt='Multiple Shot' class='skill-icon'> Multiple Shot 100.0% (7)</div><div class='skill-mini-bar' style='width: 400.0px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Dodge.png' alt='Dodge' class='skill-icon'> Dodge 100.0% (1)</div><div class='skill-mini-bar' style='width: 400.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Penetrate.png' alt='Penetrate' class='skill-icon'> Penetrate 100.0% (1)</div><div class='skill-mini-bar' style='width: 400.0px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Decoy.png' alt='Decoy' class='skill-icon'> Decoy 100.0% (1)</div><div class='skill-mini-bar' style='width: 400.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Phase Run.png' alt='Phase Run' class='skill-icon'> Phase Run 100.0% (1)</div><div class='skill-mini-bar' style='width: 400.0px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Avoid.png' alt='Avoid' class='skill-icon'> Avoid 100.0% (1)</div><div class='skill-mini-bar' style='width: 400.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Inner Sight.png' alt='Inner Sight' class='skill-icon'> Inner Sight 100.0% (1)</div><div class='skill-mini-bar' style='width: 400.0px;'></div></div></div></div></div>
+<div class='skills-group'><div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Pierce.png' alt='Pierce' class='skill-icon'> Pierce 100.0% (1)</div><div class='skill-mini-bar' style='width: 400.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Valkyrie.png' alt='Valkyrie' class='skill-icon'> Valkyrie 100.0% (1)</div><div class='skill-mini-bar' style='width: 400.0px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Evade.png' alt='Evade' class='skill-icon'> Evade 100.0% (1)</div><div class='skill-mini-bar' style='width: 400.0px;'></div></div></div>
+<div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Magic Arrow.png' alt='Magic Arrow' class='skill-icon'> Magic Arrow 100.0% (1)</div><div class='skill-mini-bar' style='width: 400.0px;'></div></div></div></div>
+<div class='skills-row'><div class='skill-item'><div class='skillbar-container'><div class='skill-info'><img src='../../../icons/Cold Arrow.png' alt='Cold Arrow' class='skill-icon'> Cold Arrow 100.0% (1)</div><div class='skill-mini-bar' style='width: 400.0px;'></div></div></div></div></div></div>
+                </div>
+
+
+
+                <button type="button" class="collapsible small-collapsible">
+        <img src="../../../icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="../../../icons/closed.png" alt="Close" class="icon-small close-icon">
+                <strong>Most Common Equipment:</strong></button>
+                <div class="content">
+                    <div><strong>Amulet</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;The Cat's Eye Amulet 100.00% (1)<br><strong>Ring</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;Rainbow Ring of the Wraith Ring 50.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Raven Frost Ring 50.00% (1)<br><strong>Boots</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;Aldur's Advance Battle Boots 100.00% (1)<br><strong>Gloves</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;Laying of Hands Bramble Mitts 100.00% (1)<br><strong>Armor</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;Smoke Archon Plate 100.00% (1)<br><strong>Left hand</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;Holy Thunder Divine Scepter 50.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Harmony Crusader Bow 50.00% (1)<br><strong>Offhand</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;The Ward Gothic Shield 50.00% (1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Hailstorm Arrows 50.00% (1)<br><strong>Belt</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;Nosferatu's Coil Vampirefang Belt 100.00% (1)<br><strong>Helmet</strong>: <br>&nbsp;&nbsp;&nbsp;&nbsp;Wraithra Hood Coronet 100.00% (1)</div>
+                </div>
+<!--        
+            <button type="button" class="collapsible small-collapsible">
+        <img src="../../../icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="../../../icons/closed.png" alt="Close" class="icon-small close-icon">
+            <strong>ALL Equipment:</strong></button>
+            <div class="content">
+                <div><strong>Amulet</strong>: The Cat's Eye Amulet 100.00%<br><strong>Ring</strong>: Rainbow Ring of the Wraith Ring 50.00%, Raven Frost Ring 50.00%<br><strong>Boots</strong>: Aldur's Advance Battle Boots 100.00%<br><strong>Gloves</strong>: Laying of Hands Bramble Mitts 100.00%<br><strong>Armor</strong>: Smoke Archon Plate 100.00%<br><strong>Left hand</strong>: Holy Thunder Divine Scepter 50.00%, Harmony Crusader Bow 50.00%<br><strong>Offhand</strong>: The Ward Gothic Shield 50.00%, Hailstorm Arrows 50.00%<br><strong>Belt</strong>: Nosferatu's Coil Vampirefang Belt 100.00%<br><strong>Helmet</strong>: Wraithra Hood Coronet 100.00%</div>
+            </div>
+-->
+             <button type="button" class="collapsible small-collapsible">
+        <img src="../../../icons/open.png" alt="Open" class="icon-small open-icon hidden">
+        <img src="../../../icons/closed.png" alt="Close" class="icon-small close-icon">
+            <strong>1 Characters in this cluster:</strong>
+        </button>
+        <div class="content">
+
+<!--
+<div class="character-container char2">
+-->
+<div class="character-container char2">
+    <div class="character-info">
+        <div class="character-link">
+            <a href="https://beta.pathofdiablo.com/armory?name=Candy_Apples" target="_blank">
+                Candy_Apples
+            </a>
+        </div>
+        <div>Level: 63</div>
+        <div>Class: Amazon</div>
+        <div class="hover-trigger" data-character-name="Candy_Apples">
+            <!-- Armory Quickview -->
+        </div>
+    </div>
+
+    <div class="character">
+        <div class="popup hidden"></div> <!-- No iframe inside initially -->
+    </div>
+
+    <p><strong>Skills:<br></strong> Guided Arrow:20, Strafe:20, Lethal Strike:14, Multiple Shot:7, Magic Arrow:1, Cold Arrow:1, Inner Sight:1, Dodge:1, Phase Run:1, Avoid:1, Penetrate:1, Decoy:1, Evade:1, Valkyrie:1, Pierce:1</p>
+    <p><strong>Equipment:<br></strong> Amulet: The Cat's Eye Amulet, ring: Rainbow Ring of the Wraith Ring, ring: Raven Frost Ring, Boots: Aldur's Advance Battle Boots, Gloves: Laying of Hands Bramble Mitts, Armor: Smoke Archon Plate, Left hand: Holy Thunder Divine Scepter, Left hand: Harmony Crusader Bow, Offhand: The Ward Gothic Shield, Offhand: Hailstorm Arrows, Belt: Nosferatu's Coil Vampirefang Belt, Helmet: Wraithra Hood Coronet</p>
+    <p><strong>Mercenary:<br></strong> Act 2 Desert Mercenary - Great Helm, Skin of the Flayed One, Insight</p>
+
+    <div class="character-section" data-character-name="Candy_Apples"></div>
+</div>
+<hr color="#141414">
+<br>
+
+            <br>
+            </div>
+            </div>
+        <!--    <hr width="90%"> -->
+            <br>
+                
+            </ul>
+            <br>
+            <hr>
+            <br>
+        <p class="indented-skills">Popular builds include:<br>Moonfire Arrows users favor the skills: Immolation Arrow (10.0%), Pierce (8.0%), Power Strike (5.0%), Lightning Bolt (5.0%)<br>Hailstorm Bolts users favor the skills: Strafe (13.25%), Cold Arrow (10.5%), Immolation Arrow (10.0%), Freezing Arrow (10.0%)<br>Frostbite Arrows users favor the skills: Cold Arrow (20.0%), Freezing Arrow (20.0%), Immolation Arrow (12.0%), Ice Arrow (10.5%)<br>Dragonbreath Arrows users favor the skills: Guided Arrow (13.33%), Magic Arrow (7.0%), Valkyrie (6.67%), Power Strike (6.67%)<br>Hailstorm Arrows users favor the skills: Guided Arrow (20.0%), Strafe (20.0%), Lethal Strike (14.0%), Multiple Shot (7.0%) </p>
+            <br>
+            </div>
+            <br><br>
+                    <!-- Embed the Plotly pie chart -->
+        <div>
+            <img src="charts/hcUnique_Bolts_and_Arrows-clusters_distribution_pie.png" alt="Unique_Bolts_and_Arrows Skills Distribution">
+        </div>
+
+        <!-- Embed the Plotly scatter plot -->
+<!--        <div>
+            <img src="charts/hcUnique_Bolts_and_Arrows-clusters_with_avg_points.png" alt="Unique_Bolts_and_Arrows Skill Clusters Scatter Plot">
+        </div> -->
+        <button onclick="topFunction()" id="backToTopBtn" class="back-to-top"></button>
+            <div class="footer">
+            <p>PoD data current as of 2025-05-31 07:12</p>
+            </div>
+        
+
+<script>
+// Collapsible elemets
+var coll = document.getElementsByClassName("collapsible");
+for (var i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        var openIcon = this.querySelector("img.icon[alt='Open']");
+        var closeIcon = this.querySelector("img.icon[alt='Close']");
+
+        if (content.style.display === "block") {
+            content.style.display = "none";
+            openIcon.classList.remove("hidden");
+            closeIcon.classList.add("hidden");
+        } else {
+            content.style.display = "block";
+            openIcon.classList.add("hidden");
+            closeIcon.classList.remove("hidden");
+        }
+    });
+}
+
+
+//Back to top button
+var backToTopBtn = document.getElementById("backToTopBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+backToTopBtn.style.display = "block";
+} else {
+backToTopBtn.style.display = "none";
+}
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+document.body.scrollTop = 0; // For Safari
+document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+
+//Trends toolbar
+// Trends toolbar
+function toggleMenu() {
+    const navMenu = document.querySelector('.top-buttons');
+    navMenu.classList.toggle('show');
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    const scHcButton = document.getElementById("SC_HC");
+    const currentUrl = window.location.href;
+    const filename = currentUrl.split("/").pop(); // Get the last part of the URL
+
+    // Check if the current page is Hardcore or Softcore
+    const isHardcore = filename.startsWith("hc");
+
+    // Update button appearance based on current mode
+    if (isHardcore) {
+        scHcButton.classList.add("hardcore");
+        scHcButton.classList.remove("softcore");
+    } else {
+        scHcButton.classList.add("softcore");
+        scHcButton.classList.remove("hardcore");
+    }
+
+    // Update background image based on mode
+    updateButtonImage(isHardcore);
+
+    // Add click event to toggle between SC and HC pages
+    scHcButton.addEventListener("click", function () {
+        let newUrl;
+
+        if (isHardcore) {
+            // Convert HC -> SC (remove "hc" from filename)
+            newUrl = currentUrl.replace(/hc(\w+)$/, "$1"); // Remove "hc"
+        } else {
+            // Convert SC -> HC (prepend "hc" to the filename)
+            newUrl = currentUrl.replace(/\/(\w+)$/, "/hc$1"); // Prepend "hc"
+        }
+
+        // Redirect to the new page
+        if (newUrl !== currentUrl) {
+            window.location.href = newUrl;
+        }
+    });
+
+    // Function to update button background image
+    function updateButtonImage(isHardcore) {
+        if (isHardcore) {
+            scHcButton.style.backgroundImage = "url('icons/Hardcore_click.png')";
+        } else {
+            scHcButton.style.backgroundImage = "url('icons/Softcore_click.png')";
+        }
+    }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const currentPage = window.location.pathname.split("/").pop(); // Get current page filename
+    const menuItems = document.querySelectorAll(".top-button");
+
+    menuItems.forEach(item => {
+        const itemPage = item.getAttribute("href");
+        if (itemPage && currentPage === itemPage) {
+            item.classList.add("active");
+        }
+    });
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+const currentPage = window.location.pathname.split("/").pop(); // Get current page filename
+const menuItems = document.querySelectorAll(".top-button");
+
+menuItems.forEach(item => {
+const itemPage = item.getAttribute("href");
+if (itemPage && currentPage === itemPage) {
+item.classList.add("active");
+}
+});
+});
+
+//Armory pop up
+document.addEventListener("DOMContentLoaded", function () {
+let activePopup = null;
+
+document.querySelectorAll(".hover-trigger").forEach(trigger => {
+trigger.addEventListener("click", function (event) {
+event.stopPropagation();
+const characterName = this.getAttribute("data-character-name");
+
+// Close any open popup first
+if (activePopup) {
+activePopup.classList.remove("active");
+activePopup.innerHTML = ""; // Remove iframe for memory efficiency
+activePopup = null;
+}
+
+// Find the associated popup container
+const popup = this.closest(".character-info").nextElementSibling.querySelector(".popup");
+
+// If this popup was already active, just close it
+if (popup === activePopup) {
+return;
+}
+
+// Create an iframe and set its src
+const iframe = document.createElement("iframe");
+iframe.src = `../../../armory/video_component.html?charName=${encodeURIComponent(characterName)}`;
+iframe.setAttribute("id", "popupFrame");
+
+// Add iframe to the popup
+popup.appendChild(iframe);
+popup.classList.add("active");
+
+// Set this popup as the active one
+activePopup = popup;
+});
+});
+
+// Close the popup when clicking anywhere outside
+document.addEventListener("click", function (event) {
+if (activePopup && !activePopup.contains(event.target)) {
+activePopup.classList.remove("active");
+activePopup.innerHTML = ""; // Remove iframe to free memory
+activePopup = null;
+}
+});
+});
+
+
+//PoD nav buttons
+document.addEventListener('DOMContentLoaded', () => {
+    const burger = document.querySelector('.navbar-burger');
+    const menu = document.querySelector('.navbar-menu');
+
+    burger.addEventListener('click', () => {
+        menu.classList.toggle('is-active');
+        burger.classList.toggle('is-active');
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const dropdownButton = document.querySelector('.dropdown2-button');
+    const dropdownContent = document.querySelector('.dropdown2-content');
+
+    dropdownButton.addEventListener('click', (event) => {
+        event.stopPropagation(); // Prevents clicks from propagating to other elements
+        dropdownContent.classList.toggle('is-active'); // Toggles the dropdown visibility
+    });
+
+    // Close the dropdown if you click anywhere outside it
+    document.addEventListener('click', () => {
+        if (dropdownContent.classList.contains('is-active')) {
+            dropdownContent.classList.remove('is-active');
+        }
+    });
+});
+
+
+//Anchor in place fix
+// Expand collapsibles and scroll to anchor
+function scrollWithOffset(el, offset = -50) {
+    const y = el.getBoundingClientRect().top + window.pageYOffset + offset;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+}
+
+function expandToAnchor(anchorId) {
+    console.log("expandToAnchor called with:", anchorId);
+    const target = document.getElementById(anchorId);
+    if (!target) return;
+
+    // Step 1: Collect all parent .content elements that need expanding
+    const stack = [];
+    let el = target;
+    while (el) {
+        if (el.classList?.contains('content')) {
+            stack.unshift(el); // add to beginning to expand outermost first
+        }
+        el = el.parentElement;
+    }
+
+    // Step 2: Expand each .content section in order
+    for (const content of stack) {
+        const button = content.previousElementSibling;
+        if (button?.classList.contains('collapsible')) {
+            button.classList.add('active');
+            content.style.display = "block";
+
+            const openIcon = button.querySelector("img.open-icon");
+            const closeIcon = button.querySelector("img.close-icon");
+            if (openIcon) openIcon.classList.add("hidden");
+            if (closeIcon) closeIcon.classList.remove("hidden");
+        }
+    }
+
+    // Step 3: Delay scroll until DOM has reflowed
+    setTimeout(() => {
+        console.log("scrolling to:", target.id);
+        scrollWithOffset(target);
+    }, 250); // Adjust if necessary
+}
+
+// Handle clicks on .anchor-link elements
+document.addEventListener('DOMContentLoaded', () => {
+    // Handle clicks on .anchor-link elements
+    document.querySelectorAll('.anchor-link, a[href^="#"]').forEach(link => {
+        link.addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent default anchor behavior
+            const anchorId = this.getAttribute('href').substring(1);
+            const fullUrl = `${window.location.origin}${window.location.pathname}#${anchorId}`;
+
+            navigator.clipboard.writeText(fullUrl); // Copy full link to clipboard
+            history.pushState(null, '', `#${anchorId}`); // Update URL without page reload
+            expandToAnchor(anchorId); // Expand and scroll
+        });
+    });
+
+    // On initial load with hash
+    if (window.location.hash) {
+        const anchorId = window.location.hash.substring(1);
+        // Wait a bit for collapsibles/content to render
+        setTimeout(() => {
+            expandToAnchor(anchorId);
+        }, 200);
+    }
+});
+
+
+
+</script>
+
+
+    </body>
+    </html>
+    
