@@ -459,12 +459,51 @@ function createItemHTML(itemObject) {
         if (/corrupted/i.test(property)) {
             itemStr += `<div class='item-corrupted'>Corrupted</div>`;
         } else {
-            itemStr += `<div class='item-property'>${property}</div>`;
+            // ✅ Remove "-Up" if the property ends with "when you Level-Up"
+            const cleanedProperty = property.replace(/(when you Level)-Up$/, "$1");
+            itemStr += `<div class='item-property'>${cleanedProperty}</div>`;
         }
     });
-    console.log("Tooltip content for item:", itemStr);  // Check the final content
+
+
+    // ✅ Display socketed items if present and not a runeword
+    if (
+        itemObject["QualityCode"] !== "q_runeword" &&
+        itemObject["Sockets"] &&
+        typeof itemObject["Sockets"] === "object"
+    ) {
+        const socketNameCounts = {};
+
+        Object.values(itemObject["Sockets"]).forEach(socketedItem => {
+            if (socketedItem?.Title) {
+                // ✅ Label Rare Jewels properly
+                let displayName = socketedItem.Title;
+                if (socketedItem.Quality === "Rare" && /jewel/i.test(socketedItem.Tag || "")) {
+                    displayName = `Misc. Rare Jewel`;
+                }
+                if (socketedItem.Quality === "Magic" && /jewel/i.test(socketedItem.Tag || "")) {
+                    displayName = `Misc. Magic Jewel`;
+                }
+
+                socketNameCounts[displayName] = (socketNameCounts[displayName] || 0) + 1;
+            }
+        });
+
+        const socketedSummary = Object.entries(socketNameCounts)
+            .map(([name, count]) => (count > 1 ? `${name} x${count}` : name))
+            .join("<br> ");
+
+        if (socketedSummary) {
+            itemStr += `<div class='item-sockets'><strong>Socketed With:</strong><br> ${socketedSummary}</div>`;
+        }
+    }
+
+
+
+    console.log("Tooltip content for item:", itemStr);
     return itemStr;
 }
+
      
 function createImageHTML(itemObject, hoverContainerId) {
     // Generate tooltip content

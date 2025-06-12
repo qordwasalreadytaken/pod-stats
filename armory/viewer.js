@@ -293,9 +293,21 @@ function createItemHTML(itemObject) {
             itemStr += `<div class='item-property'>${property}</div>`;
         }
     });
-    console.log("Tooltip content for item:", itemStr);  // Check the final content
+
+    // ✅ NEW: Display socketed items if present
+    if (itemObject["Sockets"] && typeof itemObject["Sockets"] === "object") {
+        const socketedTitles = Object.values(itemObject["Sockets"])
+            .map(socketedItem => socketedItem?.Title)
+            .filter(Boolean);
+        if (socketedTitles.length > 0) {
+            itemStr += `<div class='item-sockets'><strong>Socketed Items:</strong> ${socketedTitles.join(", ")}</div>`;
+        }
+    }
+
+    console.warn("Tooltip content for item:", itemStr);
     return itemStr;
 }
+
      
 function createImageHTML(itemObject, hoverContainerId) {
     // Generate tooltip content
