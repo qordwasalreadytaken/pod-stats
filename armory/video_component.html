@@ -440,19 +440,29 @@ function createItemHTML(itemObject) {
         itemStr += `<div class='item-runetag title-q_runeword'>${itemObject["RuneTag"]}</div>`;
     }
 
-    // Defense, block, and durability stats
+    // Defense and block (only show what's present)
+    let defenseBlock = [];
     if ("Defense" in itemObject) {
-        itemStr += `<div class='item-defense'>Defense: ${itemObject["Defense"]}</div>`;
+        defenseBlock.push(`Defense: ${itemObject["Defense"]}`);
     }
     if ("Block" in itemObject) {
-        itemStr += `<div class='item-block'>Chance to Block: ${itemObject["Block"]}</div>`;
+        defenseBlock.push(`Chance to Block: ${itemObject["Block"]}`);
     }
-    if ("Durability" in itemObject) {
-        itemStr += `<div class='item-durability'>Durability: ${itemObject["Durability"]}/${itemObject["DurabilityMaximum"]}</div>`;
+    if (defenseBlock.length > 0) {
+        itemStr += `<div class='item-defense-block'>${defenseBlock.join(" | ")}</div>`;
     }
 
-    // Item level
-    itemStr += `<div class='item-level'>Item Level: ${itemObject["ItemLevel"]}</div>`;
+    // Item level and durability
+    let levelDurability = [];
+    if ("ItemLevel" in itemObject) {
+        levelDurability.push(`Item Level: ${itemObject["ItemLevel"]}`);
+    }
+    if ("Durability" in itemObject) {
+        levelDurability.push(`Durability: ${itemObject["Durability"]}/${itemObject["DurabilityMaximum"]}`);
+    }
+    if (levelDurability.length > 0) {
+        itemStr += `<div class='item-level-durability'>${levelDurability.join(" | ")}</div>`;
+    }
 
     // Property list (handling "Corrupted" specifically)
     itemObject["PropertyList"].forEach(property => {
