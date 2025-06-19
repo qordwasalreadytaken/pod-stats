@@ -5440,34 +5440,64 @@
         <!--    <hr width="90%"> -->
             <br>
             
-                <h3>Top 5 Most Popular Barbarian Skills:</h3>
+            <h3>Top 5 Most Popular Barbarian Skills:</h3>
             <ul>
-                
-                <li>Battle Orders: 961.0</li>
-                
-                <li>Whirlwind: 600.0</li>
-                
-                <li>Battle Cry: 515.0</li>
-                
-                <li>Shout: 396.0</li>
-                
-                <li>Battle Command: 364.0</li>
-                
+            
+                <li class="usage-label"
+                    data-usage='{"April": "993", "June": "1059", "March": "911", "May": "1050"}'>
+                    Battle Orders: 961.0
+                </li>
+            
+                <li class="usage-label"
+                    data-usage='{"April": "584", "June": "673", "March": "557", "May": "654"}'>
+                    Whirlwind: 600.0
+                </li>
+            
+                <li class="usage-label"
+                    data-usage='{"April": "556", "June": "576", "March": "518", "May": "557"}'>
+                    Battle Cry: 515.0
+                </li>
+            
+                <li class="usage-label"
+                    data-usage='{"April": "475", "June": "489", "March": "463", "May": "484"}'>
+                    Shout: 396.0
+                </li>
+            
+                <li class="usage-label"
+                    data-usage='{"April": "416", "June": "440", "March": "388", "May": "436"}'>
+                    Battle Command: 364.0
+                </li>
+            
             </ul>
 
-            <h3>Bottom 5 Least Popular Barbarian Skills:</h3>
+            <h3>Top 5 Least Popular Barbarian Skills:</h3>
             <ul>
-                
-                <li>Counter Attack: 21.0</li>
-                
-                <li>Puncture: 30.0</li>
-                
-                <li>Stun: 46.0</li>
-                
-                <li>Find Potion: 53.0</li>
-                
-                <li>Frenzy: 60.0</li>
-                
+            
+                <li class="usage-label"
+                    data-usage='{"April": "35", "June": "37", "March": "35", "May": "42"}'>
+                    Counter Attack: 21.0
+                </li>
+            
+                <li class="usage-label"
+                    data-usage='{"April": "40", "June": "44", "March": "40", "May": "42"}'>
+                    Puncture: 30.0
+                </li>
+            
+                <li class="usage-label"
+                    data-usage='{"April": "56", "June": "62", "March": "52", "May": "61"}'>
+                    Stun: 46.0
+                </li>
+            
+                <li class="usage-label"
+                    data-usage='{"April": "64", "June": "68", "March": "58", "May": "68"}'>
+                    Find Potion: 53.0
+                </li>
+            
+                <li class="usage-label"
+                    data-usage='{"April": "159", "June": "190", "March": "177", "May": "176"}'>
+                    Frenzy: 60.0
+                </li>
+            
             </ul>
             <br>
             <!-- Maxed skill list below -->
@@ -21126,7 +21156,7 @@
             <button onclick="topFunction()" id="backToTopBtn" class="back-to-top"></button>
 
             <div class="footer">
-            <p>PoD class data current as of 2025-06-18 19:55</p>
+            <p>PoD class data current as of 2025-06-19 19:46</p>
             </div>            
 
 
@@ -21398,9 +21428,84 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 200);
     }
 });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<canvas id="tooltipChart" width="350" height="160" 
+        style="position:absolute;display:none;z-index:9999;
+               background-color:white;color:black;">
+</canvas>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const canvas = document.getElementById('tooltipChart');
+  const ctx = canvas.getContext('2d');
+  let chart;
 
+  document.querySelectorAll('.usage-label').forEach(label => {
+    label.addEventListener('mouseenter', e => {
+      const data = JSON.parse(label.dataset.usage || '{}');
+      const preferredOrder = ["March", "April", "May", "June"];
+      const labels = preferredOrder.filter(month => data.hasOwnProperty(month));
+      const values = labels.map(label => parseInt(data[label]));
 
+      if (chart) chart.destroy();
+      chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: labels,
+            datasets: [{
+            label: '                                                                                                                   ',  // suppress legend label
+            data: values,
+            borderColor: '#f97316',         // line color (orange)
+            backgroundColor: 'transparent', // make sure no fill color
+            fill: false,
+            pointRadius: 3,
+            tension: 0.3
+            }]
+        },
+        options: {
+            layout: {
+                padding: {
+                    right: 12,  // prevent cut-off on the right
+                    top: 6
+                }
+                },
+            responsive: false,
+            plugins: {
+                legend: {
+                    display: false  // ← This removes the colored box and any label space
+                },
+                title: {
+                    display: true,
+                    text: label.textContent + ' Usage Over Time',
+                    color: '#000',
+                    font: { size: 14, weight: 'bold' }
+                }
+                
+            },
+            scales: {
+                x: {
+                ticks: { color: '#000' },
+                grid: { color: '#ccc' }
+                },
+                y: {
+                ticks: { color: '#000' },
+                grid: { color: '#ccc' },
+                beginAtZero: true
+                }
+            }
+        }
+      });
 
+      canvas.style.left = (e.pageX + 10) + 'px';
+      canvas.style.top = (e.pageY - 80) + 'px';
+      canvas.style.display = 'block';
+    });
+
+    label.addEventListener('mouseleave', () => {
+      canvas.style.display = 'none';
+    });
+  });
+});
 </script>
 
 
