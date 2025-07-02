@@ -4709,27 +4709,27 @@
             <ul>
             
                 <li class="usage-label"
-                    data-usage='{"April": "811", "June": "921", "March": "755", "May": "901"}'>
+                    data-usage='{"April": "811", "July": "921", "June": "921", "March": "755", "May": "901"}'>
                     Fire Blast: 615.0
                 </li>
             
                 <li class="usage-label"
-                    data-usage='{"April": "776", "June": "902", "March": "694", "May": "879"}'>
+                    data-usage='{"April": "776", "July": "902", "June": "902", "March": "694", "May": "879"}'>
                     Wake of Fire: 594.0
                 </li>
             
                 <li class="usage-label"
-                    data-usage='{"April": "561", "June": "646", "March": "513", "May": "654"}'>
+                    data-usage='{"April": "561", "July": "646", "June": "646", "March": "513", "May": "654"}'>
                     Wake of Inferno: 581.0
                 </li>
             
                 <li class="usage-label"
-                    data-usage='{"April": "472", "June": "507", "March": "430", "May": "493"}'>
+                    data-usage='{"April": "472", "July": "507", "June": "507", "March": "430", "May": "493"}'>
                     Blade Shield: 479.0
                 </li>
             
                 <li class="usage-label"
-                    data-usage='{"April": "342", "June": "357", "March": "325", "May": "355"}'>
+                    data-usage='{"April": "342", "July": "357", "June": "357", "March": "325", "May": "355"}'>
                     Psychic Hammer: 301.0
                 </li>
             
@@ -4739,27 +4739,27 @@
             <ul>
             
                 <li class="usage-label"
-                    data-usage='{"April": "33", "June": "42", "March": "27", "May": "36"}'>
+                    data-usage='{"April": "33", "July": "42", "June": "42", "March": "27", "May": "36"}'>
                     Dragon Claw: 17.0
                 </li>
             
                 <li class="usage-label"
-                    data-usage='{"April": "59", "June": "62", "March": "56", "May": "63"}'>
+                    data-usage='{"April": "59", "July": "62", "June": "62", "March": "56", "May": "63"}'>
                     Shadow Warrior: 45.0
                 </li>
             
                 <li class="usage-label"
-                    data-usage='{"April": "66", "June": "72", "March": "64", "May": "67"}'>
+                    data-usage='{"April": "66", "July": "72", "June": "72", "March": "64", "May": "67"}'>
                     Tiger Strike: 48.0
                 </li>
             
                 <li class="usage-label"
-                    data-usage='{"April": "65", "June": "70", "March": "63", "May": "68"}'>
+                    data-usage='{"April": "65", "July": "70", "June": "70", "March": "63", "May": "68"}'>
                     Dragon Flight: 53.0
                 </li>
             
                 <li class="usage-label"
-                    data-usage='{"April": "38", "June": "59", "March": "38", "May": "39"}'>
+                    data-usage='{"April": "38", "July": "59", "June": "59", "March": "38", "May": "39"}'>
                     Cobra Strike: 53.0
                 </li>
             
@@ -17937,7 +17937,7 @@
             <button onclick="topFunction()" id="backToTopBtn" class="back-to-top"></button>
 
             <div class="footer">
-            <p>PoD class data current as of 2025-06-30 21:11</p>
+            <p>PoD class data current as of 2025-07-01 21:57</p>
             </div>            
 
 
@@ -18224,7 +18224,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.usage-label').forEach(label => {
     label.addEventListener('mouseenter', e => {
       const data = JSON.parse(label.dataset.usage || '{}');
-      const preferredOrder = ["March", "April", "May", "June"];
+      const preferredOrder = ["March", "April", "May", "June", "July"];
       const labels = preferredOrder.filter(month => data.hasOwnProperty(month));
       const values = labels.map(label => parseInt(data[label]));
 

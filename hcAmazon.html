@@ -4822,27 +4822,27 @@
             <ul>
             
                 <li class="usage-label"
-                    data-usage='{"April": "484", "June": "527", "March": "404", "May": "487"}'>
+                    data-usage='{"April": "484", "July": "527", "June": "527", "March": "404", "May": "487"}'>
                     Lightning Fury: 476.0
                 </li>
             
                 <li class="usage-label"
-                    data-usage='{"April": "512", "June": "615", "March": "527", "May": "597"}'>
+                    data-usage='{"April": "512", "July": "615", "June": "615", "March": "527", "May": "597"}'>
                     Multiple Shot: 452.0
                 </li>
             
                 <li class="usage-label"
-                    data-usage='{"April": "518", "June": "549", "March": "403", "May": "515"}'>
+                    data-usage='{"April": "518", "July": "549", "June": "549", "March": "403", "May": "515"}'>
                     Power Strike: 428.0
                 </li>
             
                 <li class="usage-label"
-                    data-usage='{"April": "436", "June": "463", "March": "404", "May": "427"}'>
+                    data-usage='{"April": "436", "July": "463", "June": "463", "March": "404", "May": "427"}'>
                     Immolation Arrow: 401.0
                 </li>
             
                 <li class="usage-label"
-                    data-usage='{"April": "462", "June": "526", "March": "415", "May": "496"}'>
+                    data-usage='{"April": "462", "July": "526", "June": "526", "March": "415", "May": "496"}'>
                     Lethal Strike: 390.0
                 </li>
             
@@ -4852,27 +4852,27 @@
             <ul>
             
                 <li class="usage-label"
-                    data-usage='{"April": "34", "June": "34", "March": "33", "May": "34"}'>
+                    data-usage='{"April": "34", "July": "34", "June": "34", "March": "33", "May": "34"}'>
                     Fend: 26.0
                 </li>
             
                 <li class="usage-label"
-                    data-usage='{"April": "48", "June": "50", "March": "42", "May": "49"}'>
+                    data-usage='{"April": "48", "July": "50", "June": "50", "March": "42", "May": "49"}'>
                     Decoy: 37.0
                 </li>
             
                 <li class="usage-label"
-                    data-usage='{"April": "68", "June": "68", "March": "48", "May": "68"}'>
+                    data-usage='{"April": "68", "July": "68", "June": "68", "March": "48", "May": "68"}'>
                     Molten Strike: 68.0
                 </li>
             
                 <li class="usage-label"
-                    data-usage='{"April": "103", "June": "84", "March": "61", "May": "84"}'>
+                    data-usage='{"April": "103", "July": "84", "June": "84", "March": "61", "May": "84"}'>
                     Lightning Strike: 84.0
                 </li>
             
                 <li class="usage-label"
-                    data-usage='{"April": "115", "June": "119", "March": "104", "May": "114"}'>
+                    data-usage='{"April": "115", "July": "119", "June": "119", "March": "104", "May": "114"}'>
                     Evade: 93.0
                 </li>
             
@@ -18619,7 +18619,7 @@
             <button onclick="topFunction()" id="backToTopBtn" class="back-to-top"></button>
 
             <div class="footer">
-            <p>PoD class data current as of 2025-06-30 21:11</p>
+            <p>PoD class data current as of 2025-07-01 21:57</p>
             </div>            
 
 
@@ -18906,7 +18906,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.usage-label').forEach(label => {
     label.addEventListener('mouseenter', e => {
       const data = JSON.parse(label.dataset.usage || '{}');
-      const preferredOrder = ["March", "April", "May", "June"];
+      const preferredOrder = ["March", "April", "May", "June", "July"];
       const labels = preferredOrder.filter(month => data.hasOwnProperty(month));
       const values = labels.map(label => parseInt(data[label]));
 

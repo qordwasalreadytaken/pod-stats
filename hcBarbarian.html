@@ -5405,27 +5405,27 @@
             <ul>
             
                 <li class="usage-label"
-                    data-usage='{"April": "993", "June": "1051", "March": "911", "May": "1050"}'>
+                    data-usage='{"April": "993", "July": "1051", "June": "1051", "March": "911", "May": "1050"}'>
                     Battle Orders: 960.0
                 </li>
             
                 <li class="usage-label"
-                    data-usage='{"April": "584", "June": "673", "March": "557", "May": "654"}'>
+                    data-usage='{"April": "584", "July": "673", "June": "673", "March": "557", "May": "654"}'>
                     Whirlwind: 600.0
                 </li>
             
                 <li class="usage-label"
-                    data-usage='{"April": "556", "June": "557", "March": "518", "May": "557"}'>
+                    data-usage='{"April": "556", "July": "557", "June": "557", "March": "518", "May": "557"}'>
                     Battle Cry: 515.0
                 </li>
             
                 <li class="usage-label"
-                    data-usage='{"April": "475", "June": "485", "March": "463", "May": "484"}'>
+                    data-usage='{"April": "475", "July": "485", "June": "485", "March": "463", "May": "484"}'>
                     Shout: 395.0
                 </li>
             
                 <li class="usage-label"
-                    data-usage='{"April": "416", "June": "436", "March": "388", "May": "436"}'>
+                    data-usage='{"April": "416", "July": "436", "June": "436", "March": "388", "May": "436"}'>
                     Battle Command: 363.0
                 </li>
             
@@ -5435,27 +5435,27 @@
             <ul>
             
                 <li class="usage-label"
-                    data-usage='{"April": "35", "June": "36", "March": "35", "May": "42"}'>
+                    data-usage='{"April": "35", "July": "36", "June": "36", "March": "35", "May": "42"}'>
                     Counter Attack: 20.0
                 </li>
             
                 <li class="usage-label"
-                    data-usage='{"April": "40", "June": "42", "March": "40", "May": "42"}'>
+                    data-usage='{"April": "40", "July": "42", "June": "42", "March": "40", "May": "42"}'>
                     Puncture: 29.0
                 </li>
             
                 <li class="usage-label"
-                    data-usage='{"April": "159", "June": "170", "March": "177", "May": "176"}'>
+                    data-usage='{"April": "159", "July": "170", "June": "170", "March": "177", "May": "176"}'>
                     Frenzy: 40.0
                 </li>
             
                 <li class="usage-label"
-                    data-usage='{"April": "56", "June": "62", "March": "52", "May": "61"}'>
+                    data-usage='{"April": "56", "July": "62", "June": "62", "March": "52", "May": "61"}'>
                     Stun: 46.0
                 </li>
             
                 <li class="usage-label"
-                    data-usage='{"April": "64", "June": "68", "March": "58", "May": "68"}'>
+                    data-usage='{"April": "64", "July": "68", "June": "68", "March": "58", "May": "68"}'>
                     Find Potion: 53.0
                 </li>
             
@@ -20770,7 +20770,7 @@
                             Sulo_Remes (3178)
                         </a>
                     </li></ul>
-                    <p><strong>Average Life:</strong> 1812.21 | <strong>Median Life:</strong> 1849.00</p>
+                    <p><strong>Average Life:</strong> 1816.21 | <strong>Median Life:</strong> 1849.00</p>
                 </div>
                 <div class="fun-facts-column">
                     <h3>Top 5 Barbarian's with the Most Mana:</h3>
@@ -20862,7 +20862,7 @@
             <button onclick="topFunction()" id="backToTopBtn" class="back-to-top"></button>
 
             <div class="footer">
-            <p>PoD class data current as of 2025-06-30 21:11</p>
+            <p>PoD class data current as of 2025-07-01 21:57</p>
             </div>            
 
 
@@ -21149,7 +21149,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.usage-label').forEach(label => {
     label.addEventListener('mouseenter', e => {
       const data = JSON.parse(label.dataset.usage || '{}');
-      const preferredOrder = ["March", "April", "May", "June"];
+      const preferredOrder = ["March", "April", "May", "June", "July"];
       const labels = preferredOrder.filter(month => data.hasOwnProperty(month));
       const values = labels.map(label => parseInt(data[label]));
 

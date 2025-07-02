@@ -4011,27 +4011,27 @@
             <ul>
             
                 <li class="usage-label"
-                    data-usage='{"April": "763", "June": "803", "March": "770", "May": "795"}'>
+                    data-usage='{"April": "763", "July": "803", "June": "803", "March": "770", "May": "795"}'>
                     Summon Dire Wolf: 625.0
                 </li>
             
                 <li class="usage-label"
-                    data-usage='{"April": "557", "June": "581", "March": "559", "May": "576"}'>
+                    data-usage='{"April": "557", "July": "581", "June": "581", "March": "559", "May": "576"}'>
                     Oak Sage: 543.0
                 </li>
             
                 <li class="usage-label"
-                    data-usage='{"April": "539", "June": "543", "March": "527", "May": "579"}'>
+                    data-usage='{"April": "539", "July": "543", "June": "543", "March": "527", "May": "579"}'>
                     Lycanthropy: 484.0
                 </li>
             
                 <li class="usage-label"
-                    data-usage='{"April": "488", "June": "548", "March": "507", "May": "512"}'>
+                    data-usage='{"April": "488", "July": "548", "June": "548", "March": "507", "May": "512"}'>
                     Summon Grizzly: 468.0
                 </li>
             
                 <li class="usage-label"
-                    data-usage='{"April": "510", "June": "592", "March": "513", "May": "562"}'>
+                    data-usage='{"April": "510", "July": "592", "June": "592", "March": "513", "May": "562"}'>
                     Summon Spirit Wolf: 366.0
                 </li>
             
@@ -4041,27 +4041,27 @@
             <ul>
             
                 <li class="usage-label"
-                    data-usage='{"April": "4", "June": "4", "March": "3", "May": "4"}'>
+                    data-usage='{"April": "4", "July": "4", "June": "4", "March": "3", "May": "4"}'>
                     Fury: 4.0
                 </li>
             
                 <li class="usage-label"
-                    data-usage='{"April": "11", "June": "15", "March": "11", "May": "13"}'>
+                    data-usage='{"April": "11", "July": "15", "June": "15", "March": "11", "May": "13"}'>
                     Solar Creeper: 7.0
                 </li>
             
                 <li class="usage-label"
-                    data-usage='{"April": "24", "June": "30", "March": "25", "May": "26"}'>
+                    data-usage='{"April": "24", "July": "30", "June": "30", "March": "25", "May": "26"}'>
                     Carrion Vine: 11.0
                 </li>
             
                 <li class="usage-label"
-                    data-usage='{"April": "36", "June": "38", "March": "36", "May": "37"}'>
+                    data-usage='{"April": "36", "July": "38", "June": "38", "March": "36", "May": "37"}'>
                     Feral Rage: 15.0
                 </li>
             
                 <li class="usage-label"
-                    data-usage='{"April": "36", "June": "36", "March": "36", "May": "36"}'>
+                    data-usage='{"April": "36", "July": "36", "June": "36", "March": "36", "May": "36"}'>
                     Fire Claws: 29.0
                 </li>
             
@@ -16592,7 +16592,7 @@
                             FoaminAtDaMouth (2944)
                         </a>
                     </li></ul>
-                    <p><strong>Average Life:</strong> 1371.83 | <strong>Median Life:</strong> 1161.00</p>
+                    <p><strong>Average Life:</strong> 1371.90 | <strong>Median Life:</strong> 1161.00</p>
                 </div>
                 <div class="fun-facts-column">
                     <h3>Top 5 Druid's with the Most Mana:</h3>
@@ -16684,7 +16684,7 @@
             <button onclick="topFunction()" id="backToTopBtn" class="back-to-top"></button>
 
             <div class="footer">
-            <p>PoD class data current as of 2025-06-30 21:11</p>
+            <p>PoD class data current as of 2025-07-01 21:57</p>
             </div>            
 
 
@@ -16971,7 +16971,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.usage-label').forEach(label => {
     label.addEventListener('mouseenter', e => {
       const data = JSON.parse(label.dataset.usage || '{}');
-      const preferredOrder = ["March", "April", "May", "June"];
+      const preferredOrder = ["March", "April", "May", "June", "July"];
       const labels = preferredOrder.filter(month => data.hasOwnProperty(month));
       const values = labels.map(label => parseInt(data[label]));
 
