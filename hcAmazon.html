@@ -5682,27 +5682,27 @@
             <ul>
             
                 <li class="usage-label"
-                    data-usage='{"April": "484", "July": "527", "June": "527", "March": "404", "May": "487"}'>
+                    data-usage='{"April": "484", "August": "527", "July": "527", "June": "527", "March": "404", "May": "487"}'>
                     Lightning Fury: 476.0
                 </li>
             
                 <li class="usage-label"
-                    data-usage='{"April": "512", "July": "637", "June": "615", "March": "527", "May": "597"}'>
+                    data-usage='{"April": "512", "August": "637", "July": "637", "June": "615", "March": "527", "May": "597"}'>
                     Multiple Shot: 472.0
                 </li>
             
                 <li class="usage-label"
-                    data-usage='{"April": "518", "July": "569", "June": "549", "March": "403", "May": "515"}'>
+                    data-usage='{"April": "518", "August": "569", "July": "569", "June": "549", "March": "403", "May": "515"}'>
                     Power Strike: 448.0
                 </li>
             
                 <li class="usage-label"
-                    data-usage='{"April": "436", "July": "483", "June": "463", "March": "404", "May": "427"}'>
+                    data-usage='{"April": "436", "August": "483", "July": "483", "June": "463", "March": "404", "May": "427"}'>
                     Immolation Arrow: 441.0
                 </li>
             
                 <li class="usage-label"
-                    data-usage='{"April": "462", "July": "533", "June": "526", "March": "415", "May": "496"}'>
+                    data-usage='{"April": "462", "August": "533", "July": "533", "June": "526", "March": "415", "May": "496"}'>
                     Lethal Strike: 394.0
                 </li>
             
@@ -5712,27 +5712,27 @@
             <ul>
             
                 <li class="usage-label"
-                    data-usage='{"April": "34", "July": "34", "June": "34", "March": "33", "May": "34"}'>
+                    data-usage='{"April": "34", "August": "34", "July": "34", "June": "34", "March": "33", "May": "34"}'>
                     Fend: 26.0
                 </li>
             
                 <li class="usage-label"
-                    data-usage='{"April": "48", "July": "51", "June": "50", "March": "42", "May": "49"}'>
+                    data-usage='{"April": "48", "August": "51", "July": "51", "June": "50", "March": "42", "May": "49"}'>
                     Decoy: 38.0
                 </li>
             
                 <li class="usage-label"
-                    data-usage='{"April": "68", "July": "68", "June": "68", "March": "48", "May": "68"}'>
+                    data-usage='{"April": "68", "August": "68", "July": "68", "June": "68", "March": "48", "May": "68"}'>
                     Molten Strike: 68.0
                 </li>
             
                 <li class="usage-label"
-                    data-usage='{"April": "156", "July": "162", "June": "153", "March": "134", "May": "148"}'>
+                    data-usage='{"April": "156", "August": "162", "July": "162", "June": "153", "March": "134", "May": "148"}'>
                     Inner Sight: 97.0
                 </li>
             
                 <li class="usage-label"
-                    data-usage='{"April": "115", "July": "125", "June": "119", "March": "104", "May": "114"}'>
+                    data-usage='{"April": "115", "August": "125", "July": "125", "June": "119", "March": "104", "May": "114"}'>
                     Evade: 100.0
                 </li>
             
@@ -19828,7 +19828,7 @@
             <button onclick="topFunction()" id="backToTopBtn" class="back-to-top"></button>
 
             <div class="footer">
-            <p>PoD class data current as of 2025-07-31 22:15</p>
+            <p>PoD class data current as of 2025-08-02 07:59</p>
             </div>            
 
 
@@ -20115,7 +20115,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.usage-label').forEach(label => {
     label.addEventListener('mouseenter', e => {
       const data = JSON.parse(label.dataset.usage || '{}');
-      const preferredOrder = ["March", "April", "May", "June", "July"];
+      const preferredOrder = ["March", "April", "May", "June", "July", "August"];
       const labels = preferredOrder.filter(month => data.hasOwnProperty(month));
       const values = labels.map(label => parseInt(data[label]));
 
