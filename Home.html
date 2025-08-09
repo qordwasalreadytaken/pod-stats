@@ -14,52 +14,14 @@
     </head>
     <body class="special-background">
         <div class="is-clipped">
-        <nav class="navbar is-fixed-top is-dark" style="height: 50px;">
-
-            <div class="navbar-brand">
-                <a class="is-48x48" href="https://beta.pathofdiablo.com/"><img src="icons/pod.ico" alt="Path of Diablo: Web Portal" width="48" height="48" class="is-48x48" style="height: 48px; width: 48px; margin-left:0;"></a>
-    <button class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="podNavbar">
-        <br>
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>            </div>
-            <div id="podNavbar" class="navbar-menu">
-                <div class="navbar-start">
-                    <a class="navbar-item" href="https://beta.pathofdiablo.com/trade-search">Trade</a>
-                    <a class="navbar-item" href="https://beta.pathofdiablo.com/servers">Servers</a>
-                    <a class="navbar-item" href="https://beta.pathofdiablo.com/ladder">Ladder</a>
-                    <a class="navbar-item" href="https://beta.pathofdiablo.com/public-games">Public Games</a>
-                    <a class="navbar-item" href="https://beta.pathofdiablo.com/runewizard">Runewizard</a>
-                    <a class="navbar-item" href="https://pathofdiablo.com/p/armory">Armory</a>
-                    <a class="navbar-item" href="https://build.pathofdiablo.com">Build Planner</a>
-                    <!--<a class="navbar-item" href="https://pathofdiablo.com/p/?live" style="width: 90px;"><span><img src="https://beta.pathofdiablo.com/images/twitchico.png"></span></a>-->
-                </div>
-                <div class="navbar-end">
-
-                    <div class="navbar-start">	
-                        <a class="navbar-item-right" href="https://beta.pathofdiablo.com/my-toons">Character Storage</a>
-                        <div class="navbar-item dropdown2">
-                            <button class="dropdown2-button">Trends History</button>
-                            <div class="dropdown2-content">
-                                <a href="https://trends.pathofdiablo.com/Home.html">Current</a>
-                                <!--  <a href="https://trends.pathofdiablo.com/Season/14/April/Home">S14</a> -->
-                                <div class="dropdown2-item dropdown-sub">
-                                    <a class="dropdown-sub-button">S13</a>
-                                    <div class="dropdown-sub-content">
-                                        <a href="https://trends.pathofdiablo.com/Season/13/July/Home">July</a>
-                                        <a href="https://trends.pathofdiablo.com/Season/13/June/Home">June</a>
-                                        <a href="https://trends.pathofdiablo.com/Season/13/May/Home">May</a>
-                                        <a href="https://trends.pathofdiablo.com/Season/13/April/Home">April</a>
-                                        <a href="https://trends.pathofdiablo.com/Season/13/March/Home.html">March</a>
-                                        <a href="https://trends.pathofdiablo.com/Season/13/February/Home.html">February</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        </nav>  
+            <div id="navbar-placeholder"></div>
+            <script>
+            fetch("templates/navbar.html")
+                .then(res => res.text())
+                .then(html => {
+                document.getElementById("navbar-placeholder").innerHTML = html;
+                });
+            </script>
 
         
         <div class="hamburger" onclick="toggleMenu()">
@@ -108,7 +70,7 @@
             <div class="fun-facts-column">
             <h4>High-Level Character Counts</h4>
             <ul>
-                <li>Level 99: 20 characters</li><li>Level 98: 22 characters</li><li>Level 97: 47 characters</li><li>Level 96: 83 characters</li><li>Level 95: 109 characters</li>
+                <li>Level 99: 20 characters</li><li>Level 98: 22 characters</li><li>Level 97: 47 characters</li><li>Level 96: 83 characters</li><li>Level 95: 110 characters</li>
             </ul>
         </div>
         <!-- Level 99 Accounts -->
@@ -166,13 +128,13 @@
             <div class="fun-facts-column">
                 <h3>Accounts with the most experience</h3>
                     <ul>
-                        <li><a href='https://beta.pathofdiablo.com/account/zardoz13'>zardoz13</a>: 27,517,139,743 XP, 14 chars, avg level 91.86</li><li><a href='https://beta.pathofdiablo.com/account/fugged'>fugged</a>: 27,271,744,382 XP, 9 chars, avg level 97.00</li><li><a href='https://beta.pathofdiablo.com/account/Sethy'>Sethy</a>: 24,573,883,631 XP, 8 chars, avg level 97.12</li><li><a href='https://beta.pathofdiablo.com/account/eye1'>eye1</a>: 21,531,076,224 XP, 9 chars, avg level 94.00</li><li><a href='https://beta.pathofdiablo.com/account/skelton'>skelton</a>: 20,671,548,123 XP, 9 chars, avg level 93.56</li>
+                        <li><a href='https://beta.pathofdiablo.com/account/zardoz13'>zardoz13</a>: 27,598,111,666 XP, 14 chars, avg level 91.86</li><li><a href='https://beta.pathofdiablo.com/account/fugged'>fugged</a>: 27,279,057,256 XP, 9 chars, avg level 97.00</li><li><a href='https://beta.pathofdiablo.com/account/Sethy'>Sethy</a>: 24,679,157,274 XP, 8 chars, avg level 97.25</li><li><a href='https://beta.pathofdiablo.com/account/eye1'>eye1</a>: 21,540,366,956 XP, 9 chars, avg level 94.00</li><li><a href='https://beta.pathofdiablo.com/account/skelton'>skelton</a>: 20,671,548,123 XP, 9 chars, avg level 93.56</li>
                     </ul>
            </div>
             <div class="fun-facts-column">
                 <h3>Accounts with the most Levels</h3>
                     <ul>
-                        <li><a href='https://beta.pathofdiablo.com/account/zardoz13'>zardoz13</a>: 1286 levels, 14 chars, avg level 91.86</li><li><a href='https://beta.pathofdiablo.com/account/fugged'>fugged</a>: 873 levels, 9 chars, avg level 97.00</li><li><a href='https://beta.pathofdiablo.com/account/eye1'>eye1</a>: 846 levels, 9 chars, avg level 94.00</li><li><a href='https://beta.pathofdiablo.com/account/skelton'>skelton</a>: 842 levels, 9 chars, avg level 93.56</li><li><a href='https://beta.pathofdiablo.com/account/Sethy'>Sethy</a>: 777 levels, 8 chars, avg level 97.12</li>
+                        <li><a href='https://beta.pathofdiablo.com/account/zardoz13'>zardoz13</a>: 1286 levels, 14 chars, avg level 91.86</li><li><a href='https://beta.pathofdiablo.com/account/fugged'>fugged</a>: 873 levels, 9 chars, avg level 97.00</li><li><a href='https://beta.pathofdiablo.com/account/eye1'>eye1</a>: 846 levels, 9 chars, avg level 94.00</li><li><a href='https://beta.pathofdiablo.com/account/skelton'>skelton</a>: 842 levels, 9 chars, avg level 93.56</li><li><a href='https://beta.pathofdiablo.com/account/Sethy'>Sethy</a>: 778 levels, 8 chars, avg level 97.25</li>
                     </ul>
             </div>
         </div>
@@ -180,7 +142,7 @@
             <div class="fun-facts-column">
                 <h3>Accounts with the most characters in the top 1K</h3>
                     <ul>
-                        <li><a href='https://beta.pathofdiablo.com/account/zardoz13'>zardoz13</a>: 14 characters, total level 1286, avg level 91.86</li><li><a href='https://beta.pathofdiablo.com/account/fugged'>fugged</a>: 9 characters, total level 873, avg level 97.00</li><li><a href='https://beta.pathofdiablo.com/account/eye1'>eye1</a>: 9 characters, total level 846, avg level 94.00</li><li><a href='https://beta.pathofdiablo.com/account/skelton'>skelton</a>: 9 characters, total level 842, avg level 93.56</li><li><a href='https://beta.pathofdiablo.com/account/Sethy'>Sethy</a>: 8 characters, total level 777, avg level 97.12</li><li><a href='https://beta.pathofdiablo.com/account/petrovi4'>petrovi4</a>: 8 characters, total level 750, avg level 93.75</li><li><a href='https://beta.pathofdiablo.com/account/artesia'>artesia</a>: 8 characters, total level 749, avg level 93.62</li><li><a href='https://beta.pathofdiablo.com/account/ArtD'>ArtD</a>: 7 characters, total level 662, avg level 94.57</li><li><a href='https://beta.pathofdiablo.com/account/Beavvis'>Beavvis</a>: 7 characters, total level 665, avg level 95.00</li><li><a href='https://beta.pathofdiablo.com/account/ser8328'>ser8328</a>: 7 characters, total level 662, avg level 94.57</li>
+                        <li><a href='https://beta.pathofdiablo.com/account/zardoz13'>zardoz13</a>: 14 characters, total level 1286, avg level 91.86</li><li><a href='https://beta.pathofdiablo.com/account/fugged'>fugged</a>: 9 characters, total level 873, avg level 97.00</li><li><a href='https://beta.pathofdiablo.com/account/eye1'>eye1</a>: 9 characters, total level 846, avg level 94.00</li><li><a href='https://beta.pathofdiablo.com/account/skelton'>skelton</a>: 9 characters, total level 842, avg level 93.56</li><li><a href='https://beta.pathofdiablo.com/account/Sethy'>Sethy</a>: 8 characters, total level 778, avg level 97.25</li><li><a href='https://beta.pathofdiablo.com/account/petrovi4'>petrovi4</a>: 8 characters, total level 750, avg level 93.75</li><li><a href='https://beta.pathofdiablo.com/account/artesia'>artesia</a>: 8 characters, total level 749, avg level 93.62</li><li><a href='https://beta.pathofdiablo.com/account/ArtD'>ArtD</a>: 7 characters, total level 662, avg level 94.57</li><li><a href='https://beta.pathofdiablo.com/account/Beavvis'>Beavvis</a>: 7 characters, total level 665, avg level 95.00</li><li><a href='https://beta.pathofdiablo.com/account/ser8328'>ser8328</a>: 7 characters, total level 662, avg level 94.57</li>
                     </ul>
             </div>
         </div>
@@ -189755,7 +189717,7 @@
 
         </div>
         <div class="footer">
-        <p>PoD data current as of 2025-08-07 07:38</p>
+        <p>PoD data current as of 2025-08-09 06:45</p>
         </div>
 
 

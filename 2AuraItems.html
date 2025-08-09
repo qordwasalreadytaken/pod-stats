@@ -9,52 +9,14 @@
     </head>
     <body class="not-main">
         <div class="is-clipped">
-        <nav class="navbar is-fixed-top is-dark" style="height: 50px;">
-
-            <div class="navbar-brand">
-                <a class="is-48x48" href="https://beta.pathofdiablo.com/"><img src="icons/pod.ico" alt="Path of Diablo: Web Portal" width="48" height="48" class="is-48x48" style="height: 48px; width: 48px; margin-left:0;"></a>
-    <button class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="podNavbar">
-        <br>
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>            </div>
-            <div id="podNavbar" class="navbar-menu">
-                <div class="navbar-start">
-                    <a class="navbar-item" href="https://beta.pathofdiablo.com/trade-search">Trade</a>
-                    <a class="navbar-item" href="https://beta.pathofdiablo.com/servers">Servers</a>
-                    <a class="navbar-item" href="https://beta.pathofdiablo.com/ladder">Ladder</a>
-                    <a class="navbar-item" href="https://beta.pathofdiablo.com/public-games">Public Games</a>
-                    <a class="navbar-item" href="https://beta.pathofdiablo.com/runewizard">Runewizard</a>
-                    <a class="navbar-item" href="https://pathofdiablo.com/p/armory">Armory</a>
-                    <a class="navbar-item" href="https://build.pathofdiablo.com">Build Planner</a>
-                    <!--<a class="navbar-item" href="https://pathofdiablo.com/p/?live" style="width: 90px;"><span><img src="https://beta.pathofdiablo.com/images/twitchico.png"></span></a>-->
-                </div>
-                <div class="navbar-end">
-
-                    <div class="navbar-start">	
-                        <a class="navbar-item-right" href="https://beta.pathofdiablo.com/my-toons">Character Storage</a>
-                        <div class="navbar-item dropdown2">
-                            <button class="dropdown2-button">Trends History</button>
-                            <div class="dropdown2-content">
-                                <a href="https://trends.pathofdiablo.com/Home.html">Current</a>
-                                <!--  <a href="https://trends.pathofdiablo.com/Season/14/April/Home">S14</a> -->
-                                <div class="dropdown2-item dropdown-sub">
-                                    <a class="dropdown-sub-button">S13</a>
-                                    <div class="dropdown-sub-content">
-                                        <a href="https://trends.pathofdiablo.com/Season/13/July/Home">July</a>
-                                        <a href="https://trends.pathofdiablo.com/Season/13/June/Home">June</a>
-                                        <a href="https://trends.pathofdiablo.com/Season/13/May/Home">May</a>
-                                        <a href="https://trends.pathofdiablo.com/Season/13/April/Home">April</a>
-                                        <a href="https://trends.pathofdiablo.com/Season/13/March/Home.html">March</a>
-                                        <a href="https://trends.pathofdiablo.com/Season/13/February/Home.html">February</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        </nav>  
+            <div id="navbar-placeholder"></div>
+            <script>
+            fetch("templates/navbar.html")
+                .then(res => res.text())
+                .then(html => {
+                document.getElementById("navbar-placeholder").innerHTML = html;
+                });
+            </script>
 
         <div class="hamburger hamburger2" onclick="toggleMenu()">
             <div class="line"></div>
@@ -2008,7 +1970,7 @@
            <button onclick="topFunction()" id="backToTopBtn" class="back-to-top"></button>
 
             <div class="footer">
-            <p>PoD class data current as of 2025-08-07 07:38</p>
+            <p>PoD class data current as of 2025-08-09 06:45</p>
             </div>   
         
 
