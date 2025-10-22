@@ -43837,7 +43837,7 @@
             <button onclick="topFunction()" id="backToTopBtn" class="back-to-top"></button>
 
             <div class="footer">
-            <p>PoD class data current as of 2025-10-22 15:57</p>
+            <p>PoD class data current as of 2025-10-22 17:44</p>
             </div>            
 
 
@@ -44010,8 +44010,17 @@ return;
 
 // Create an iframe and set its src
 const iframe = document.createElement("iframe");
-iframe.src = `./armory/video_component.html?charName=${encodeURIComponent(characterName)}`;
+iframe.src = `armory/video_component.html?charName=${encodeURIComponent(characterName)}`;
 iframe.setAttribute("id", "popupFrame");
+
+// Add error handling for iframe loading
+iframe.onload = function() {
+    console.log("Armory iframe loaded successfully for:", characterName);
+};
+iframe.onerror = function() {
+    console.error("Failed to load armory iframe for:", characterName);
+    popup.innerHTML = `<p style="color: white; padding: 20px;">Failed to load armory data for ${characterName}</p>`;
+};
 
 // Add iframe to the popup
 popup.appendChild(iframe);
