@@ -2,6 +2,7 @@
         <!DOCTYPE html>
         <html>
         <head>
+        <link rel="shortcut icon" type="image/x-icon" href="icons/pod.ico">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Path of Diablo (PoD) Amazon build trends. This page includes data anaylitics and statistics for Amazon skills and equipment.">
         <meta name="keywords" content="Amazon, path of diablo, builds, stats, statistics, data, analysis, analytics, trends, ">
@@ -12,53 +13,17 @@
         </head>
         <body class="main special-background-amazon">
         <div class="is-clipped">
-        <nav class="navbar is-fixed-top is-dark" style="height: 50px;">
+            <div id="navbar-placeholder"></div>
+            <script>
+            fetch("templates/navbar.html")
+                .then(res => res.text())
+                .then(html => {
+                document.getElementById("navbar-placeholder").innerHTML = html;
+                });
+            </script>
 
-            <div class="navbar-brand">
-                <a class="is-48x48" href="https://beta.pathofdiablo.com/"><img src="icons/pod.ico" alt="Path of Diablo: Web Portal" width="48" height="48" class="is-48x48" style="height: 48px; width: 48px; margin-left:0;"></a>
-    <button class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="podNavbar">
-        <br>
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>            </div>
-            <div id="podNavbar" class="navbar-menu">
-                <div class="navbar-start">
-                    <a class="navbar-item" href="https://beta.pathofdiablo.com/trade-search">Trade</a>
-                    <a class="navbar-item" href="https://beta.pathofdiablo.com/servers">Servers</a>
-                    <a class="navbar-item" href="https://beta.pathofdiablo.com/ladder">Ladder</a>
-                    <a class="navbar-item" href="https://beta.pathofdiablo.com/public-games">Public Games</a>
-                    <a class="navbar-item" href="https://beta.pathofdiablo.com/runewizard">Runewizard</a>
-                    <a class="navbar-item" href="https://pathofdiablo.com/p/armory">Armory</a>
-                    <a class="navbar-item" href="https://build.pathofdiablo.com">Build Planner</a>
-                    <!--<a class="navbar-item" href="https://pathofdiablo.com/p/?live" style="width: 90px;"><span><img src="https://beta.pathofdiablo.com/images/twitchico.png"></span></a>-->
-                </div>
-                <div class="navbar-end">
-
-                    <div class="navbar-start">	
-                        <a class="navbar-item-right" href="https://beta.pathofdiablo.com/my-toons">Character Storage</a>
-                        <div class="navbar-item dropdown2">
-                            <button class="dropdown2-button">Trends History</button>
-                            <div class="dropdown2-content">
-                                <a href="https://trends.pathofdiablo.com/Home.html">Current</a>
-                                <!--  <a href="https://trends.pathofdiablo.com/Season/14/April/Home">S14</a> -->
-                                <div class="dropdown2-item dropdown-sub">
-                                    <a class="dropdown-sub-button">S13</a>
-                                    <div class="dropdown-sub-content">
-                                        <a href="https://trends.pathofdiablo.com/Season/13/July/Home">July</a>
-                                        <a href="https://trends.pathofdiablo.com/Season/13/June/Home">June</a>
-                                        <a href="https://trends.pathofdiablo.com/Season/13/May/Home">May</a>
-                                        <a href="https://trends.pathofdiablo.com/Season/13/April/Home">April</a>
-                                        <a href="https://trends.pathofdiablo.com/Season/13/March/Home.html">March</a>
-                                        <a href="https://trends.pathofdiablo.com/Season/13/February/Home.html">February</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        </nav>  
-        <div class="hamburger hamburger2" onclick="toggleMenu()">
+        
+        <div class="hamburger" onclick="toggleMenu()">
             <div class="line"></div>
             <div class="line"></div>
             <div class="line"></div>
@@ -5767,61 +5732,61 @@
         <!--    <hr width="90%"> -->
             <br>
             
-            <h3>Top 5 Most Popular Amazon Skills:</h3>
+            <h3>Top 5 Most Popular Amazon Skills and total points invested:</h3>
             <ul>
             
                 <li class="usage-label"
-                    data-usage='{"April": "484", "August": "547", "July": "527", "June": "527", "March": "404", "May": "487"}'>
+                    data-usage='{"April": "484", "August": "527", "End of Season": "547", "July": "527", "June": "527", "March": "404", "May": "487", "Post Season 13": "547", "S13 August": "527", "S13 October": "547", "S13 September": "527"}'>
                     Lightning Fury: 516.0
                 </li>
             
                 <li class="usage-label"
-                    data-usage='{"April": "518", "August": "589", "July": "569", "June": "549", "March": "403", "May": "515"}'>
+                    data-usage='{"April": "518", "August": "569", "End of Season": "589", "July": "569", "June": "549", "March": "403", "May": "515", "Post Season 13": "589", "S13 August": "569", "S13 October": "589", "S13 September": "569"}'>
                     Power Strike: 485.0
                 </li>
             
                 <li class="usage-label"
-                    data-usage='{"April": "512", "August": "665", "July": "637", "June": "615", "March": "527", "May": "597"}'>
+                    data-usage='{"April": "512", "August": "637", "End of Season": "665", "July": "637", "June": "615", "March": "527", "May": "597", "Post Season 13": "665", "S13 August": "639", "S13 October": "665", "S13 September": "660"}'>
                     Multiple Shot: 479.0
                 </li>
             
                 <li class="usage-label"
-                    data-usage='{"April": "436", "August": "464", "July": "483", "June": "463", "March": "404", "May": "427"}'>
+                    data-usage='{"April": "436", "August": "483", "End of Season": "464", "July": "483", "June": "463", "March": "404", "May": "427", "Post Season 13": "464", "S13 August": "483", "S13 October": "464", "S13 September": "463"}'>
                     Immolation Arrow: 421.0
                 </li>
             
                 <li class="usage-label"
-                    data-usage='{"April": "436", "August": "526", "July": "491", "June": "491", "March": "355", "May": "448"}'>
+                    data-usage='{"April": "436", "August": "491", "End of Season": "526", "July": "491", "June": "491", "March": "355", "May": "448", "Post Season 13": "526", "S13 August": "491", "S13 October": "526", "S13 September": "506"}'>
                     Lightning Bolt: 405.0
                 </li>
             
             </ul>
 
-            <h3>Top 5 Least Popular Amazon Skills:</h3>
+            <h3>Top 5 Least Popular Amazon Skills and total points invested:</h3>
             <ul>
             
                 <li class="usage-label"
-                    data-usage='{"April": "34", "August": "34", "July": "34", "June": "34", "March": "33", "May": "34"}'>
+                    data-usage='{"April": "34", "August": "34", "End of Season": "34", "July": "34", "June": "34", "March": "33", "May": "34", "Post Season 13": "34", "S13 August": "34", "S13 October": "34", "S13 September": "34"}'>
                     Fend: 26.0
                 </li>
             
                 <li class="usage-label"
-                    data-usage='{"April": "48", "August": "56", "July": "51", "June": "50", "March": "42", "May": "49"}'>
+                    data-usage='{"April": "48", "August": "51", "End of Season": "56", "July": "51", "June": "50", "March": "42", "May": "49", "Post Season 13": "56", "S13 August": "51", "S13 October": "56", "S13 September": "55"}'>
                     Decoy: 40.0
                 </li>
             
                 <li class="usage-label"
-                    data-usage='{"April": "68", "August": "68", "July": "68", "June": "68", "March": "48", "May": "68"}'>
+                    data-usage='{"April": "68", "August": "68", "End of Season": "68", "July": "68", "June": "68", "March": "48", "May": "68", "Post Season 13": "68", "S13 August": "68", "S13 October": "68", "S13 September": "68"}'>
                     Molten Strike: 68.0
                 </li>
             
                 <li class="usage-label"
-                    data-usage='{"April": "174", "August": "206", "July": "216", "June": "219", "March": "167", "May": "215"}'>
+                    data-usage='{"April": "174", "August": "216", "End of Season": "206", "July": "216", "June": "219", "March": "167", "May": "215", "Post Season 13": "206", "S13 August": "227", "S13 October": "206", "S13 September": "204"}'>
                     Magic Arrow: 83.0
                 </li>
             
                 <li class="usage-label"
-                    data-usage='{"April": "156", "August": "165", "July": "162", "June": "153", "March": "134", "May": "148"}'>
+                    data-usage='{"April": "156", "August": "162", "End of Season": "165", "July": "162", "June": "153", "March": "134", "May": "148", "Post Season 13": "165", "S13 August": "165", "S13 October": "165", "S13 September": "162"}'>
                     Inner Sight: 100.0
                 </li>
             
@@ -20190,7 +20155,7 @@
             <button onclick="topFunction()" id="backToTopBtn" class="back-to-top"></button>
 
             <div class="footer">
-            <p>PoD class data current as of 2025-10-18 19:52</p>
+            <p>PoD class data current as of 2025-10-20 07:08</p>
             </div>            
 
 
@@ -20477,7 +20442,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.usage-label').forEach(label => {
     label.addEventListener('mouseenter', e => {
       const data = JSON.parse(label.dataset.usage || '{}');
-      const preferredOrder = ["March", "April", "May", "June", "July", "August"];
+      const preferredOrder = ["March", "April", "May", "June", "July", "August", "S13 September", "End of Season"];
       const labels = preferredOrder.filter(month => data.hasOwnProperty(month));
       const values = labels.map(label => parseInt(data[label]));
 
