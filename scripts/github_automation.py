@@ -9,36 +9,47 @@ import os
 from datetime import datetime
 import traceback
 
-# Add current directory to path for imports
-current_dir = os.path.dirname(__file__)
-sys.path.append(current_dir)
+# Add modules to path
+sys.path.append(os.path.join(os.path.dirname(__file__), 'modules'))
+
+from generate_pages import generate_all_pages
+import api_integration
+
 
 def run_full_update():
     """
     Run the complete update process:
-    1. Generate all pages for both SC and HC using new modular system
-    2. Fetch fresh data and update tracking files
+    1. Fetch fresh data via API
+    2. Generate all pages for both SC and HC
+    3. Update usage over time data
     """
     
     print("🚀 Starting GitHub automation script...")
     print(f"📅 Timestamp: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     
     try:
-        # Step 1: Generate all softcore pages
-        print("\n�️ Generating all softcore pages...")
-        os.system("python3 scripts/generate_pages.py --page all --mode sc")
-        print("✅ Softcore pages generated")
+        # Step 1: Fetch fresh data and update CSV files
+        print("\n📡 Fetching fresh data via API...")
+        api_integration.full_data_update()
+        print("✅ API data update completed")
         
-        # Step 2: Generate all hardcore pages  
-        print("\n⚔️ Generating all hardcore pages...")
-        os.system("python3 scripts/generate_pages.py --page all --mode hc")
-        print("✅ Hardcore pages generated")
+        # Step 2: Generate all softcore pages
+        print("\n🛡️ Generating softcore pages...")
+        sc_success = generate_all_pages("../sc_ladder.json", is_hardcore=False)
+        if sc_success:
+            print("✅ Softcore pages generated successfully")
+        else:
+            print("❌ Softcore page generation failed")
+            return False
         
-        # Step 3: Update tracking data
-        print("\n📊 Updating data tracking...")
-        timestamp = datetime.now().strftime("GitHub_%Y%m%d_%H%M")
-        os.system(f"python3 scripts/generate_pages.py --page dataupdate --snapshot-label '{timestamp}'")
-        print("✅ Data tracking updated")
+        # Step 3: Generate all hardcore pages
+        print("\n⚔️ Generating hardcore pages...")
+        hc_success = generate_all_pages("../hc_ladder.json", is_hardcore=True)
+        if hc_success:
+            print("✅ Hardcore pages generated successfully")
+        else:
+            print("❌ Hardcore page generation failed")
+            return False
         
         print("\n🎉 All updates completed successfully!")
         return True
@@ -55,18 +66,10 @@ def run_pages_only():
     """
     print("📄 Generating pages from existing data...")
     
-    try:
-        # Generate softcore pages
-        result1 = os.system("python3 scripts/generate_pages.py --page all --mode sc")
-        
-        # Generate hardcore pages
-        result2 = os.system("python3 scripts/generate_pages.py --page all --mode hc")
-        
-        return result1 == 0 and result2 == 0
-        
-    except Exception as e:
-        print(f"ERROR: {e}")
-        return False
+    sc_success = generate_all_pages("../sc_ladder.json", is_hardcore=False)
+    hc_success = generate_all_pages("../hc_ladder.json", is_hardcore=True)
+    
+    return sc_success and hc_success
 
 
 def main():
