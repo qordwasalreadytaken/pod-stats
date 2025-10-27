@@ -6,9 +6,9 @@ on:
   push:
     branches: ["main"]
   
-  # Runs daily at 6 AM UTC to fetch fresh data
+  # Runs twice daily at 6 AM and 6 PM UTC to fetch fresh data
   schedule:
-    - cron: '0 6 * * *'
+    - cron: '0 6,18 * * *'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -40,13 +40,12 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install requests matplotlib plotly pandas scikit-learn jinja2 kaleido
+          pip install -r scripts/requirements.txt
           
       - name: Generate analytics pages
         run: |
-          cd scripts
-          python3 github_automation.py
-          # Files are generated in parent directory (root) automatically
+          python3 scripts/github_automation.py
+          # Files are generated in the root directory automatically
           
       - name: Commit and push if changes
         run: |
