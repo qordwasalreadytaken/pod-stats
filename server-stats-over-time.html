@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Server Statistics Over Time</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; cursor: pointer; }
+        th:hover { background-color: #e2e2e2; }
+        .usage-label { cursor: pointer; color: #0066cc; }
+        .usage-label:hover { background-color: #f0f8ff; }
+        #tooltipChart {
+            position: absolute;
+            display: none;
+            border: 1px solid #aaa;
+            background-color: #fff;
+            z-index: 9999;
+            padding: 6px;
+            box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+        }
+        .server-header { 
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .section-header {
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-left: 4px solid #28a745;
+            margin: 20px 0 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="tooltipChart" width="300" height="150"></canvas>
+    
+    <div class="server-header">
+        <h1>🖥️ Path of Diablo - Server Analytics</h1>
+        <p>Real-time server population and infrastructure monitoring</p>
+        <p><em>Hover over metrics to see trends • Click columns to sort</em></p>
+    </div>
+<div class="section-header"><h2>🌐 Global Server Statistics</h2></div>
+<table>
+<tr><th onclick="sortTable(this, 'str')">Metric</th><th onclick="sortTable(this, 'num')">March</th><th onclick="sortTable(this, 'num')">April</th><th onclick="sortTable(this, 'num')">May</th><th onclick="sortTable(this, 'num')">June</th><th onclick="sortTable(this, 'num')">July</th><th onclick="sortTable(this, 'num')">August</th><th onclick="sortTable(this, 'num')">S13 August</th><th onclick="sortTable(this, 'num')">S13 September</th><th onclick="sortTable(this, 'num')">S13 October</th><th onclick="sortTable(this, 'num')">End of Season</th><th onclick="sortTable(this, 'num')">Post Season 13</th><th onclick="sortTable(this, 'num')">Pod_Stats_Test</th></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "24", "Pod_Stats_Test": "17"}'>Online Now</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>24</td><td>17</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "37", "Pod_Stats_Test": "25"}'>Online Last Hour</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>37</td><td>25</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "141", "Pod_Stats_Test": "140"}'>Online Last Day</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>141</td><td>140</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "358", "Pod_Stats_Test": "358"}'>Online Last Week</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>358</td><td>358</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "487", "Pod_Stats_Test": "510"}'>Online Last Fortnight</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>487</td><td>510</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "25", "Pod_Stats_Test": "24"}'>Games Open</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>25</td><td>24</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "24", "Pod_Stats_Test": "18"}'>Online In Games</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>24</td><td>18</td></tr>
+</table>
+<div class="section-header"><h2>🗺️ Game Servers by Region</h2></div>
+<h3>🌍 Various Servers</h3>
+<table>
+<tr><th onclick="sortTable(this, 'str')">Server Metric</th><th onclick="sortTable(this, 'num')">March</th><th onclick="sortTable(this, 'num')">April</th><th onclick="sortTable(this, 'num')">May</th><th onclick="sortTable(this, 'num')">June</th><th onclick="sortTable(this, 'num')">July</th><th onclick="sortTable(this, 'num')">August</th><th onclick="sortTable(this, 'num')">S13 August</th><th onclick="sortTable(this, 'num')">S13 September</th><th onclick="sortTable(this, 'num')">S13 October</th><th onclick="sortTable(this, 'num')">End of Season</th><th onclick="sortTable(this, 'num')">Post Season 13</th><th onclick="sortTable(this, 'num')">Pod_Stats_Test</th></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "2", "Pod_Stats_Test": "0"}'>Secaucus Players</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>2</td><td>0</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "2", "Pod_Stats_Test": "0"}'>Secaucus Games</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>2</td><td>0</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "0", "Pod_Stats_Test": "0"}'>Frankfurt Players</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "0", "Pod_Stats_Test": "0"}'>Frankfurt Games</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "1", "Pod_Stats_Test": "1"}'>Dallas Players</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "1", "Pod_Stats_Test": "1"}'>Dallas Games</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "5", "Pod_Stats_Test": "5"}'>Frankfurt Players</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>5</td><td>5</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "6", "Pod_Stats_Test": "6"}'>Frankfurt Games</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>6</td><td>6</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "0", "Pod_Stats_Test": "0"}'>Miami Players</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "1", "Pod_Stats_Test": "1"}'>Miami Games</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "1", "Pod_Stats_Test": "0"}'>Singapore Players</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "2", "Pod_Stats_Test": "0"}'>Singapore Games</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>2</td><td>0</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "0", "Pod_Stats_Test": "0"}'>Las Vegas Players</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "0", "Pod_Stats_Test": "0"}'>Las Vegas Games</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "0", "Pod_Stats_Test": "0"}'>Moscow Players</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "0", "Pod_Stats_Test": "0"}'>Moscow Games</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "1", "Pod_Stats_Test": "1"}'>Montreal Players</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "1", "Pod_Stats_Test": "1"}'>Montreal Games</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "2", "Pod_Stats_Test": "1"}'>Denver Players</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>2</td><td>1</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "1", "Pod_Stats_Test": "1"}'>Denver Games</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "1", "Pod_Stats_Test": "0"}'>Chicago Players</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "1", "Pod_Stats_Test": "0"}'>Chicago Games</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "2", "Pod_Stats_Test": "1"}'>Luxembourg Players</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>2</td><td>1</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "2", "Pod_Stats_Test": "1"}'>Luxembourg Games</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>2</td><td>1</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "0", "Pod_Stats_Test": "0"}'>Sao Paulo Players</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "0", "Pod_Stats_Test": "0"}'>Sao Paulo Games</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "3", "Pod_Stats_Test": "2"}'>Czech Republic Players</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>3</td><td>2</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "3", "Pod_Stats_Test": "2"}'>Czech Republic Games</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>3</td><td>2</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "0", "Pod_Stats_Test": "0"}'>Atlanta Players</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "0", "Pod_Stats_Test": "0"}'>Atlanta Games</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "0", "Pod_Stats_Test": "0"}'>Melbourne Players</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "0", "Pod_Stats_Test": "0"}'>Melbourne Games</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "2", "Pod_Stats_Test": "3"}'>Tokyo Players</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>2</td><td>3</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "2", "Pod_Stats_Test": "5"}'>Tokyo Games</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>2</td><td>5</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "0", "Pod_Stats_Test": "0"}'>Seattle Players</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "0", "Pod_Stats_Test": "0"}'>Seattle Games</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "0", "Pod_Stats_Test": "1"}'>Los Angeles Players</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "0", "Pod_Stats_Test": "4"}'>Los Angeles Games</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>4</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "4", "Pod_Stats_Test": "3"}'>Paris Players</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>4</td><td>3</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "4", "Pod_Stats_Test": "3"}'>Paris Games</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>4</td><td>3</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "0", "Pod_Stats_Test": "0"}'>Oslo Players</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "0", "Pod_Stats_Test": "0"}'>Oslo Games</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "0", "Pod_Stats_Test": "0"}'>Seoul Players</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "0", "Pod_Stats_Test": "0"}'>Seoul Games</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "3", "Pod_Stats_Test": "3"}'>Seoul Players</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>3</td><td>3</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "4", "Pod_Stats_Test": "4"}'>Seoul Games</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>4</td><td>4</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "1", "Pod_Stats_Test": "1"}'>Shanghai Players</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td></tr>
+<tr><td class="usage-label" data-usage='{"March": "0", "April": "0", "May": "0", "June": "0", "July": "0", "August": "0", "S13 August": "0", "S13 September": "0", "S13 October": "0", "End of Season": "0", "Post Season 13": "1", "Pod_Stats_Test": "1"}'>Shanghai Games</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td></tr>
+</table>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const canvas = document.getElementById('tooltipChart');
+    const ctx = canvas.getContext('2d');
+    let chart;
+
+    document.querySelectorAll('.usage-label').forEach(label => {
+        label.addEventListener('mouseenter', e => {
+            const data = JSON.parse(label.dataset.usage);
+            const labels = Object.keys(data);
+            const values = Object.values(data).map(v => parseInt(v) || 0);
+
+            canvas.style.display = 'block';
+            canvas.style.left = e.pageX + 10 + 'px';
+            canvas.style.top = e.pageY - 80 + 'px';
+
+            if (chart) chart.destroy();
+            chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: label.textContent + ' Trend',
+                        data: values,
+                        borderColor: '#28a745',
+                        backgroundColor: 'rgba(40, 167, 69, 0.1)',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: false,
+                    animation: false,
+                    plugins: {
+                        legend: { display: false },
+                        title: {
+                            display: true,
+                            text: label.textContent + ' - Server Trend',
+                            font: { size: 12, weight: 'bold' }
+                        }
+                    },
+                    scales: {
+                        y: { beginAtZero: true },
+                        x: { ticks: { maxRotation: 45, minRotation: 45 } }
+                    }
+                }
+            });
+        });
+
+        label.addEventListener('mouseleave', () => {
+            canvas.style.display = 'none';
+        });
+    });
+
+    window.sortTable = function(header, type) {
+        const table = header.closest('table');
+        const tbody = table.querySelector('tbody') || table;
+        const rows = Array.from(tbody.querySelectorAll('tr')).slice(1);
+        const columnIndex = Array.from(header.parentNode.children).indexOf(header);
+        
+        rows.sort((a, b) => {
+            const aVal = a.children[columnIndex].textContent.trim();
+            const bVal = b.children[columnIndex].textContent.trim();
+            
+            if (type === 'num') {
+                return parseInt(bVal) - parseInt(aVal); // Descending
+            } else {
+                return aVal.localeCompare(bVal); // Ascending
+            }
+        });
+        
+        rows.forEach(row => tbody.appendChild(row));
+    };
+});
+</script>
+</body>
+</html>
