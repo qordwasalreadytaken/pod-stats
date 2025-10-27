@@ -15,7 +15,7 @@ on:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -31,6 +31,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
         
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -51,7 +54,19 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add -A
+          
+          # Remove any pycache directories that might have been created
+          find . -name "__pycache__" -type d -exec rm -rf {} + 2>/dev/null || true
+          find . -name "*.pyc" -delete 2>/dev/null || true
+          
+          # Add only the files we want (HTML, CSS, JS, data files)
+          git add *.html
+          git add *.css
+          git add *.js
+          git add *.json
+          git add *.csv
+          git add README.md 2>/dev/null || true
+          
           if ! git diff --cached --quiet; then
             git commit -m "Update PoD analytics data - $(date)"
             git push
