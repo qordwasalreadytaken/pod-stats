@@ -293,12 +293,17 @@ def main():
     is_hardcore = args.mode == 'hc'
     hc_level_filter = args.hc_level_filter if is_hardcore else None
     
+    # Auto-select the correct JSON file based on mode if using default
+    data_file = args.data
+    if args.data == 'sc_ladder.json' and is_hardcore:
+        data_file = 'hc_ladder.json'
+    
     if args.page == 'all':
-        success = generate_all_pages(args.data, is_hardcore, hc_level_filter)
+        success = generate_all_pages(data_file, is_hardcore, hc_level_filter)
     elif args.page == 'dataupdate':
         success = update_data_and_generate_tracking_pages(args.snapshot_label)
     else:
-        success = generate_single_page(args.page, args.data, is_hardcore, hc_level_filter, args.class_name)
+        success = generate_single_page(args.page, data_file, is_hardcore, hc_level_filter, args.class_name)
     
     if success:
         print("\n✅ Generation completed successfully!")
