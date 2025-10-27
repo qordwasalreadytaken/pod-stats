@@ -12,7 +12,6 @@ import traceback
 # Add modules to path
 sys.path.append(os.path.join(os.path.dirname(__file__), 'modules'))
 
-from generate_pages import generate_all_pages
 import api_integration
 
 
@@ -35,8 +34,8 @@ def run_full_update():
         
         # Step 2: Generate all softcore pages
         print("\n🛡️ Generating softcore pages...")
-        sc_success = generate_all_pages("../sc_ladder.json", is_hardcore=False)
-        if sc_success:
+        sc_result = os.system("python3 scripts/generate_pages.py --page all --mode sc")
+        if sc_result == 0:
             print("✅ Softcore pages generated successfully")
         else:
             print("❌ Softcore page generation failed")
@@ -44,8 +43,8 @@ def run_full_update():
         
         # Step 3: Generate all hardcore pages
         print("\n⚔️ Generating hardcore pages...")
-        hc_success = generate_all_pages("../hc_ladder.json", is_hardcore=True)
-        if hc_success:
+        hc_result = os.system("python3 scripts/generate_pages.py --page all --mode hc")
+        if hc_result == 0:
             print("✅ Hardcore pages generated successfully")
         else:
             print("❌ Hardcore page generation failed")
@@ -66,10 +65,10 @@ def run_pages_only():
     """
     print("📄 Generating pages from existing data...")
     
-    sc_success = generate_all_pages("../sc_ladder.json", is_hardcore=False)
-    hc_success = generate_all_pages("../hc_ladder.json", is_hardcore=True)
+    sc_result = os.system("python3 scripts/generate_pages.py --page all --mode sc")
+    hc_result = os.system("python3 scripts/generate_pages.py --page all --mode hc")
     
-    return sc_success and hc_success
+    return sc_result == 0 and hc_result == 0
 
 
 def main():

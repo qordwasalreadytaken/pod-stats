@@ -10,7 +10,7 @@ from pathlib import Path
 
 # Store original paths before changing directory
 SCRIPT_DIR = Path(__file__).parent
-ROOT_DIR = SCRIPT_DIR.parent
+ROOT_DIR = SCRIPT_DIR.parent  # This should be the pod-stats directory
 
 # Add modules to path
 sys.path.append(str(SCRIPT_DIR / 'modules'))
@@ -39,6 +39,16 @@ def generate_all_pages(json_file_path="sc_ladder.json", is_hardcore=False, hc_le
     # Resolve JSON file path relative to root directory
     if not os.path.isabs(json_file_path):
         json_file_path = ROOT_DIR / json_file_path
+    
+    # If the file doesn't exist, try looking in the current directory
+    if not os.path.exists(json_file_path):
+        # Try the current working directory
+        alt_path = Path.cwd() / Path(json_file_path).name
+        if os.path.exists(alt_path):
+            json_file_path = alt_path
+        # Try the script's parent directory
+        elif os.path.exists(ROOT_DIR / Path(json_file_path).name):
+            json_file_path = ROOT_DIR / Path(json_file_path).name
     
     print(f"Starting page generation from {json_file_path}")
     print(f"Mode: {'Hardcore' if is_hardcore else 'Softcore'}")
@@ -187,6 +197,16 @@ def generate_single_page(page_type, json_file_path="sc_ladder.json", is_hardcore
     # Resolve JSON file path relative to root directory
     if not os.path.isabs(json_file_path):
         json_file_path = ROOT_DIR / json_file_path
+    
+    # If the file doesn't exist, try looking in the current directory
+    if not os.path.exists(json_file_path):
+        # Try the current working directory
+        alt_path = Path.cwd() / Path(json_file_path).name
+        if os.path.exists(alt_path):
+            json_file_path = alt_path
+        # Try the script's parent directory
+        elif os.path.exists(ROOT_DIR / Path(json_file_path).name):
+            json_file_path = ROOT_DIR / Path(json_file_path).name
     
     # Load character data
     all_characters = load_character_data(str(json_file_path))
