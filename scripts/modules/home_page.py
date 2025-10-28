@@ -329,6 +329,13 @@ class HomePageGenerator:
                 </a>
             </div>
 
+            <div class="nav-card">
+                <a href="itemsearch">
+                    <h3>Item Search</h3>
+                    <p>Search for characters with specific items</p>
+                </a>
+            </div>
+            
         </div>
         """
 
