@@ -54,7 +54,7 @@ jobs:
           python3 scripts/generate_pages.py --page all --mode sc
           
           echo "⚔️ Generating all hardcore pages..."
-          python3 scripts/generate_pages.py --page all --mode hc
+          python3 scripts/generate_pages.py --page all --mode hc --hc-level-filter 70
           
           echo "✅ All page generation completed!"
           
