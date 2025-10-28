@@ -45,10 +45,18 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r scripts/requirements.txt
           
-      - name: Generate analytics pages
+      - name: Fetch fresh data and generate analytics pages
         run: |
-          python3 scripts/github_automation.py
-          # Files are generated in the root directory automatically
+          echo "📡 Fetching fresh API data and updating tracking files..."
+          python3 scripts/generate_pages.py --page dataupdate
+          
+          echo "🛡️ Generating all softcore pages..."
+          python3 scripts/generate_pages.py --page all --mode sc
+          
+          echo "⚔️ Generating all hardcore pages..."
+          python3 scripts/generate_pages.py --page all --mode hc
+          
+          echo "✅ All page generation completed!"
           
       - name: Commit and push if changes
         run: |
