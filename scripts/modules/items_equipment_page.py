@@ -791,12 +791,16 @@ class ItemsEquipmentAnalyzer:
                 "items": [],
                 "properties": ["to Magic Arrow"] #, "Fires Magic Arrows"]  # Cover both property types
             },
-            "Werebear Build": {
+            "Beast Werebear Build": {
                 "items": ["Beast"],
                 "properties": []
             },
-            "Charge Build": {
+            "Templar's Charge Build": {
                 "items": ["Templar's Might"],
+                "properties": []
+            },
+            "Dragonscale Hydra Build": {
+                "items": ["Dragonscale"],
                 "properties": []
             }
         }
