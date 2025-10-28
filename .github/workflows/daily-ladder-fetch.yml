@@ -6,6 +6,9 @@ on:
     - cron: '0 6 * * *'
   workflow_dispatch: # Allow manual triggering
 
+permissions:
+  contents: write  # Allow the workflow to write to the repository
+
 jobs:
   fetch-ladder-data:
     runs-on: ubuntu-latest
@@ -52,6 +55,8 @@ jobs:
         fi
         
     - name: Commit and push changes
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
@@ -63,7 +68,7 @@ jobs:
         else
           # Create commit with timestamp
           git commit -m "📊 Daily ladder data update - $(date -u '+%Y-%m-%d %H:%M UTC')"
-          git push
+          git push origin HEAD:main
         fi
         
     - name: Log completion
