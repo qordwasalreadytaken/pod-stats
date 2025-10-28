@@ -1,0 +1,925 @@
+
+        <html>
+        <head>
+        <title>Usage Over Time</title>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <style>
+            #tooltipChart {
+            position: absolute;
+            display: none;
+            border: 1px solid #aaa;
+            background-color: #fff;
+            z-index: 9999;
+            padding: 6px;
+            box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+            }
+        </style>
+        </head>
+        <body>
+        <canvas id="tooltipChart" width="300" height="150"></canvas>
+        <h1>Usage Matrix</h1>
+        <h2>Skills</h2>
+<h3>Amazon</h3>
+<table border='1'>
+<tr><th>Skill</th><th>Test 1</th><th>Test 2</th><th>Test 3</th></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "142", "Test 2": "142", "Test 3": "142"}'>Jab</td><td>142</td><td>142</td><td>142</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1354", "Test 2": "1354", "Test 3": "1354"}'>Power Strike</td><td>1354</td><td>1354</td><td>1354</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "368", "Test 2": "368", "Test 3": "368"}'>Poison Javelin</td><td>368</td><td>368</td><td>368</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "53", "Test 2": "53", "Test 3": "53"}'>Fend</td><td>53</td><td>53</td><td>53</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1279", "Test 2": "1279", "Test 3": "1279"}'>Lightning Bolt</td><td>1279</td><td>1279</td><td>1279</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "999", "Test 2": "999", "Test 3": "999"}'>Charged Strike</td><td>999</td><td>999</td><td>999</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "424", "Test 2": "424", "Test 3": "424"}'>Plague Javelin</td><td>424</td><td>424</td><td>424</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "32", "Test 2": "32", "Test 3": "32"}'>Molten Strike</td><td>32</td><td>32</td><td>32</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "632", "Test 2": "632", "Test 3": "632"}'>Lightning Strike</td><td>632</td><td>632</td><td>632</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1360", "Test 2": "1360", "Test 3": "1360"}'>Lightning Fury</td><td>1360</td><td>1360</td><td>1360</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "263", "Test 2": "263", "Test 3": "263"}'>Inner Sight</td><td>263</td><td>263</td><td>263</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1334", "Test 2": "1334", "Test 3": "1334"}'>Lethal Strike</td><td>1334</td><td>1334</td><td>1334</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "381", "Test 2": "381", "Test 3": "381"}'>Phase Run</td><td>381</td><td>381</td><td>381</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "371", "Test 2": "371", "Test 3": "371"}'>Dodge</td><td>371</td><td>371</td><td>371</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "351", "Test 2": "351", "Test 3": "351"}'>Avoid</td><td>351</td><td>351</td><td>351</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "714", "Test 2": "714", "Test 3": "714"}'>Penetrate</td><td>714</td><td>714</td><td>714</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "257", "Test 2": "257", "Test 3": "257"}'>Evade</td><td>257</td><td>257</td><td>257</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "124", "Test 2": "124", "Test 3": "124"}'>Decoy</td><td>124</td><td>124</td><td>124</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "713", "Test 2": "713", "Test 3": "713"}'>Valkyrie</td><td>713</td><td>713</td><td>713</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "896", "Test 2": "896", "Test 3": "896"}'>Pierce</td><td>896</td><td>896</td><td>896</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "897", "Test 2": "897", "Test 3": "897"}'>Cold Arrow</td><td>897</td><td>897</td><td>897</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "311", "Test 2": "311", "Test 3": "311"}'>Magic Arrow</td><td>311</td><td>311</td><td>311</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1383", "Test 2": "1383", "Test 3": "1383"}'>Multiple Shot</td><td>1383</td><td>1383</td><td>1383</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1105", "Test 2": "1105", "Test 3": "1105"}'>Fire Arrow</td><td>1105</td><td>1105</td><td>1105</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "815", "Test 2": "815", "Test 3": "815"}'>Ice Arrow</td><td>815</td><td>815</td><td>815</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "307", "Test 2": "307", "Test 3": "307"}'>Guided Arrow</td><td>307</td><td>307</td><td>307</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "557", "Test 2": "557", "Test 3": "557"}'>Exploding Arrow</td><td>557</td><td>557</td><td>557</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "451", "Test 2": "451", "Test 3": "451"}'>Strafe</td><td>451</td><td>451</td><td>451</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1341", "Test 2": "1341", "Test 3": "1341"}'>Immolation Arrow</td><td>1341</td><td>1341</td><td>1341</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "668", "Test 2": "668", "Test 3": "668"}'>Freezing Arrow</td><td>668</td><td>668</td><td>668</td></tr>
+</table>
+<h3>Assassin</h3>
+<table border='1'>
+<tr><th>Skill</th><th>Test 1</th><th>Test 2</th><th>Test 3</th></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "111", "Test 2": "111", "Test 3": "111"}'>Dragon Claw</td><td>111</td><td>111</td><td>111</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "172", "Test 2": "172", "Test 3": "172"}'>Tiger Strike</td><td>172</td><td>172</td><td>172</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "128", "Test 2": "128", "Test 3": "128"}'>Dragon Talon</td><td>128</td><td>128</td><td>128</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "770", "Test 2": "770", "Test 3": "770"}'>Fists of Fire</td><td>770</td><td>770</td><td>770</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "393", "Test 2": "393", "Test 3": "393"}'>Cobra Strike</td><td>393</td><td>393</td><td>393</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "831", "Test 2": "831", "Test 3": "831"}'>Claws of Thunder</td><td>831</td><td>831</td><td>831</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "147", "Test 2": "147", "Test 3": "147"}'>Dragon Flight</td><td>147</td><td>147</td><td>147</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "945", "Test 2": "945", "Test 3": "945"}'>Blades of Ice</td><td>945</td><td>945</td><td>945</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "587", "Test 2": "587", "Test 3": "587"}'>Claw Mastery</td><td>587</td><td>587</td><td>587</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "203", "Test 2": "203", "Test 3": "203"}'>Psychic Hammer</td><td>203</td><td>203</td><td>203</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "606", "Test 2": "606", "Test 3": "606"}'>Burst of Speed</td><td>606</td><td>606</td><td>606</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "269", "Test 2": "269", "Test 3": "269"}'>Weapon Block</td><td>269</td><td>269</td><td>269</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "206", "Test 2": "206", "Test 3": "206"}'>Cloak of Shadows</td><td>206</td><td>206</td><td>206</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "273", "Test 2": "273", "Test 3": "273"}'>Fade</td><td>273</td><td>273</td><td>273</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "145", "Test 2": "145", "Test 3": "145"}'>Shadow Warrior</td><td>145</td><td>145</td><td>145</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "137", "Test 2": "137", "Test 3": "137"}'>Mind Blast</td><td>137</td><td>137</td><td>137</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "312", "Test 2": "312", "Test 3": "312"}'>Venom</td><td>312</td><td>312</td><td>312</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "700", "Test 2": "700", "Test 3": "700"}'>Shadow Master</td><td>700</td><td>700</td><td>700</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2568", "Test 2": "2568", "Test 3": "2568"}'>Fire Blast</td><td>2568</td><td>2568</td><td>2568</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "220", "Test 2": "220", "Test 3": "220"}'>Shock Web</td><td>220</td><td>220</td><td>220</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "493", "Test 2": "493", "Test 3": "493"}'>Blade Throw</td><td>493</td><td>493</td><td>493</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "248", "Test 2": "248", "Test 3": "248"}'>Charged Bolt Sentry</td><td>248</td><td>248</td><td>248</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2554", "Test 2": "2554", "Test 3": "2554"}'>Wake of Fire</td><td>2554</td><td>2554</td><td>2554</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "903", "Test 2": "903", "Test 3": "903"}'>Blade Fury</td><td>903</td><td>903</td><td>903</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "449", "Test 2": "449", "Test 3": "449"}'>Lightning Sentry</td><td>449</td><td>449</td><td>449</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2544", "Test 2": "2544", "Test 3": "2544"}'>Wake of Inferno</td><td>2544</td><td>2544</td><td>2544</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "565", "Test 2": "565", "Test 3": "565"}'>Death Sentry</td><td>565</td><td>565</td><td>565</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2215", "Test 2": "2215", "Test 3": "2215"}'>Blade Shield</td><td>2215</td><td>2215</td><td>2215</td></tr>
+</table>
+<h3>Barbarian</h3>
+<table border='1'>
+<tr><th>Skill</th><th>Test 1</th><th>Test 2</th><th>Test 3</th></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "211", "Test 2": "211", "Test 3": "211"}'>Howl</td><td>211</td><td>211</td><td>211</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "152", "Test 2": "152", "Test 3": "152"}'>Find Potion</td><td>152</td><td>152</td><td>152</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "470", "Test 2": "470", "Test 3": "470"}'>Taunt</td><td>470</td><td>470</td><td>470</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "499", "Test 2": "499", "Test 3": "499"}'>Shout</td><td>499</td><td>499</td><td>499</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "247", "Test 2": "247", "Test 3": "247"}'>Find Item</td><td>247</td><td>247</td><td>247</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2094", "Test 2": "2094", "Test 3": "2094"}'>Battle Cry</td><td>2094</td><td>2094</td><td>2094</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1749", "Test 2": "1749", "Test 3": "1749"}'>Battle Orders</td><td>1749</td><td>1749</td><td>1749</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1618", "Test 2": "1618", "Test 3": "1618"}'>Grim Ward</td><td>1618</td><td>1618</td><td>1618</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "374", "Test 2": "374", "Test 3": "374"}'>War Cry</td><td>374</td><td>374</td><td>374</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "944", "Test 2": "944", "Test 3": "944"}'>Battle Command</td><td>944</td><td>944</td><td>944</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "671", "Test 2": "671", "Test 3": "671"}'>Edged Weapon Mastery</td><td>671</td><td>671</td><td>671</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "754", "Test 2": "754", "Test 3": "754"}'>Pole Weapon Mastery</td><td>754</td><td>754</td><td>754</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "677", "Test 2": "677", "Test 3": "677"}'>Blunt Weapon Mastery</td><td>677</td><td>677</td><td>677</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Throwing Mastery</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "240", "Test 2": "240", "Test 3": "240"}'>Increased Stamina</td><td>240</td><td>240</td><td>240</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "109", "Test 2": "109", "Test 3": "109"}'>Counter Attack</td><td>109</td><td>109</td><td>109</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "377", "Test 2": "377", "Test 3": "377"}'>Iron Skin</td><td>377</td><td>377</td><td>377</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "235", "Test 2": "235", "Test 3": "235"}'>Increased Speed</td><td>235</td><td>235</td><td>235</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "142", "Test 2": "142", "Test 3": "142"}'>Puncture</td><td>142</td><td>142</td><td>142</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "328", "Test 2": "328", "Test 3": "328"}'>Natural Resistance</td><td>328</td><td>328</td><td>328</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2062", "Test 2": "2062", "Test 3": "2062"}'>Whirling Axes</td><td>2062</td><td>2062</td><td>2062</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1969", "Test 2": "1969", "Test 3": "1969"}'>Double Swing</td><td>1969</td><td>1969</td><td>1969</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "191", "Test 2": "191", "Test 3": "191"}'>Concentrate</td><td>191</td><td>191</td><td>191</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "241", "Test 2": "241", "Test 3": "241"}'>Cleave</td><td>241</td><td>241</td><td>241</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "294", "Test 2": "294", "Test 3": "294"}'>Frenzy</td><td>294</td><td>294</td><td>294</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "171", "Test 2": "171", "Test 3": "171"}'>Stun</td><td>171</td><td>171</td><td>171</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Leap</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Power Throw</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "372", "Test 2": "372", "Test 3": "372"}'>Bash</td><td>372</td><td>372</td><td>372</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "144", "Test 2": "144", "Test 3": "144"}'>Ethereal Throw</td><td>144</td><td>144</td><td>144</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1489", "Test 2": "1489", "Test 3": "1489"}'>Whirlwind</td><td>1489</td><td>1489</td><td>1489</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "405", "Test 2": "405", "Test 3": "405"}'>Leap Slam</td><td>405</td><td>405</td><td>405</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "161", "Test 2": "161", "Test 3": "161"}'>Thrown Weapon Mastery</td><td>161</td><td>161</td><td>161</td></tr>
+</table>
+<h3>Druid</h3>
+<table border='1'>
+<tr><th>Skill</th><th>Test 1</th><th>Test 2</th><th>Test 3</th></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "526", "Test 2": "526", "Test 3": "526"}'>Firestorm</td><td>526</td><td>526</td><td>526</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1079", "Test 2": "1079", "Test 3": "1079"}'>Molten Boulder</td><td>1079</td><td>1079</td><td>1079</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1006", "Test 2": "1006", "Test 3": "1006"}'>Flame Dash</td><td>1006</td><td>1006</td><td>1006</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "193", "Test 2": "193", "Test 3": "193"}'>Arctic Blast</td><td>193</td><td>193</td><td>193</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "355", "Test 2": "355", "Test 3": "355"}'>Fissure</td><td>355</td><td>355</td><td>355</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "205", "Test 2": "205", "Test 3": "205"}'>Cyclone Armor</td><td>205</td><td>205</td><td>205</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "384", "Test 2": "384", "Test 3": "384"}'>Twister</td><td>384</td><td>384</td><td>384</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "258", "Test 2": "258", "Test 3": "258"}'>Volcano</td><td>258</td><td>258</td><td>258</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "474", "Test 2": "474", "Test 3": "474"}'>Tornado</td><td>474</td><td>474</td><td>474</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "639", "Test 2": "639", "Test 3": "639"}'>Armageddon</td><td>639</td><td>639</td><td>639</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "607", "Test 2": "607", "Test 3": "607"}'>Hurricane</td><td>607</td><td>607</td><td>607</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "382", "Test 2": "382", "Test 3": "382"}'>Werewolf</td><td>382</td><td>382</td><td>382</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1744", "Test 2": "1744", "Test 3": "1744"}'>Lycanthropy</td><td>1744</td><td>1744</td><td>1744</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "594", "Test 2": "594", "Test 3": "594"}'>Werebear</td><td>594</td><td>594</td><td>594</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "194", "Test 2": "194", "Test 3": "194"}'>Feral Rage</td><td>194</td><td>194</td><td>194</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "826", "Test 2": "826", "Test 3": "826"}'>Maul</td><td>826</td><td>826</td><td>826</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1053", "Test 2": "1053", "Test 3": "1053"}'>Rabies</td><td>1053</td><td>1053</td><td>1053</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "102", "Test 2": "102", "Test 3": "102"}'>Fire Claws</td><td>102</td><td>102</td><td>102</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Hunger</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "623", "Test 2": "623", "Test 3": "623"}'>Shock Wave</td><td>623</td><td>623</td><td>623</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "256", "Test 2": "256", "Test 3": "256"}'>Fury</td><td>256</td><td>256</td><td>256</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "189", "Test 2": "189", "Test 3": "189"}'>Raven</td><td>189</td><td>189</td><td>189</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1189", "Test 2": "1189", "Test 3": "1189"}'>Poison Creeper</td><td>1189</td><td>1189</td><td>1189</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1127", "Test 2": "1127", "Test 3": "1127"}'>Heart of Wolverine</td><td>1127</td><td>1127</td><td>1127</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "665", "Test 2": "665", "Test 3": "665"}'>Summon Spirit Wolf</td><td>665</td><td>665</td><td>665</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "51", "Test 2": "51", "Test 3": "51"}'>Carrion Vine</td><td>51</td><td>51</td><td>51</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1589", "Test 2": "1589", "Test 3": "1589"}'>Oak Sage</td><td>1589</td><td>1589</td><td>1589</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1839", "Test 2": "1839", "Test 3": "1839"}'>Summon Dire Wolf</td><td>1839</td><td>1839</td><td>1839</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "34", "Test 2": "34", "Test 3": "34"}'>Solar Creeper</td><td>34</td><td>34</td><td>34</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "59", "Test 2": "59", "Test 3": "59"}'>Spirit of Barbs</td><td>59</td><td>59</td><td>59</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1065", "Test 2": "1065", "Test 3": "1065"}'>Summon Grizzly</td><td>1065</td><td>1065</td><td>1065</td></tr>
+</table>
+<h3>Necromancer</h3>
+<table border='1'>
+<tr><th>Skill</th><th>Test 1</th><th>Test 2</th><th>Test 3</th></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2404", "Test 2": "2404", "Test 3": "2404"}'>Summon Mastery</td><td>2404</td><td>2404</td><td>2404</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "585", "Test 2": "585", "Test 3": "585"}'>Raise Skeleton Warrior</td><td>585</td><td>585</td><td>585</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "35", "Test 2": "35", "Test 3": "35"}'>Bone Offering</td><td>35</td><td>35</td><td>35</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "228", "Test 2": "228", "Test 3": "228"}'>Clay Golem</td><td>228</td><td>228</td><td>228</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "50", "Test 2": "50", "Test 3": "50"}'>Flesh Offering</td><td>50</td><td>50</td><td>50</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "529", "Test 2": "529", "Test 3": "529"}'>Raise Skeletal Mage</td><td>529</td><td>529</td><td>529</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "403", "Test 2": "403", "Test 3": "403"}'>Blood Golem</td><td>403</td><td>403</td><td>403</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2283", "Test 2": "2283", "Test 3": "2283"}'>Convocation</td><td>2283</td><td>2283</td><td>2283</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "123", "Test 2": "123", "Test 3": "123"}'>Iron Golem</td><td>123</td><td>123</td><td>123</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1869", "Test 2": "1869", "Test 3": "1869"}'>Fire Golem</td><td>1869</td><td>1869</td><td>1869</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "505", "Test 2": "505", "Test 3": "505"}'>Revive</td><td>505</td><td>505</td><td>505</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "685", "Test 2": "685", "Test 3": "685"}'>Deadly Poison</td><td>685</td><td>685</td><td>685</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "45", "Test 2": "45", "Test 3": "45"}'>Teeth</td><td>45</td><td>45</td><td>45</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "211", "Test 2": "211", "Test 3": "211"}'>Bone Armor</td><td>211</td><td>211</td><td>211</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2096", "Test 2": "2096", "Test 3": "2096"}'>Corpse Explosion</td><td>2096</td><td>2096</td><td>2096</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1043", "Test 2": "1043", "Test 3": "1043"}'>Desecrate</td><td>1043</td><td>1043</td><td>1043</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "55", "Test 2": "55", "Test 3": "55"}'>Bone Spear</td><td>55</td><td>55</td><td>55</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "331", "Test 2": "331", "Test 3": "331"}'>Bone Wall</td><td>331</td><td>331</td><td>331</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "39", "Test 2": "39", "Test 3": "39"}'>Bone Spirit</td><td>39</td><td>39</td><td>39</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "691", "Test 2": "691", "Test 3": "691"}'>Poison Nova</td><td>691</td><td>691</td><td>691</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "84", "Test 2": "84", "Test 3": "84"}'>Amplify Damage</td><td>84</td><td>84</td><td>84</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "531", "Test 2": "531", "Test 3": "531"}'>Dim Vision</td><td>531</td><td>531</td><td>531</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2120", "Test 2": "2120", "Test 3": "2120"}'>Hemorrhage</td><td>2120</td><td>2120</td><td>2120</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2115", "Test 2": "2115", "Test 3": "2115"}'>Weaken</td><td>2115</td><td>2115</td><td>2115</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2120", "Test 2": "2120", "Test 3": "2120"}'>Iron Maiden</td><td>2120</td><td>2120</td><td>2120</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Terror</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "4", "Test 2": "4", "Test 3": "4"}'>Confuse</td><td>4</td><td>4</td><td>4</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2123", "Test 2": "2123", "Test 3": "2123"}'>Life Tap</td><td>2123</td><td>2123</td><td>2123</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "4", "Test 2": "4", "Test 3": "4"}'>Attract</td><td>4</td><td>4</td><td>4</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "228", "Test 2": "228", "Test 3": "228"}'>Decrepify</td><td>228</td><td>228</td><td>228</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "412", "Test 2": "412", "Test 3": "412"}'>Lower Resist</td><td>412</td><td>412</td><td>412</td></tr>
+</table>
+<h3>Paladin</h3>
+<table border='1'>
+<tr><th>Skill</th><th>Test 1</th><th>Test 2</th><th>Test 3</th></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "230", "Test 2": "230", "Test 3": "230"}'>Prayer</td><td>230</td><td>230</td><td>230</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "384", "Test 2": "384", "Test 3": "384"}'>Resist Fire</td><td>384</td><td>384</td><td>384</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "687", "Test 2": "687", "Test 3": "687"}'>Defiance</td><td>687</td><td>687</td><td>687</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "159", "Test 2": "159", "Test 3": "159"}'>Resist Cold</td><td>159</td><td>159</td><td>159</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "426", "Test 2": "426", "Test 3": "426"}'>Cleansing</td><td>426</td><td>426</td><td>426</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "556", "Test 2": "556", "Test 3": "556"}'>Resist Lightning</td><td>556</td><td>556</td><td>556</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "990", "Test 2": "990", "Test 3": "990"}'>Vigor</td><td>990</td><td>990</td><td>990</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "31", "Test 2": "31", "Test 3": "31"}'>Meditation</td><td>31</td><td>31</td><td>31</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "218", "Test 2": "218", "Test 3": "218"}'>Redemption</td><td>218</td><td>218</td><td>218</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "878", "Test 2": "878", "Test 3": "878"}'>Salvation</td><td>878</td><td>878</td><td>878</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "365", "Test 2": "365", "Test 3": "365"}'>Might</td><td>365</td><td>365</td><td>365</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "132", "Test 2": "132", "Test 3": "132"}'>Holy Fire</td><td>132</td><td>132</td><td>132</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "104", "Test 2": "104", "Test 3": "104"}'>Precision</td><td>104</td><td>104</td><td>104</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "849", "Test 2": "849", "Test 3": "849"}'>Blessed Aim</td><td>849</td><td>849</td><td>849</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "717", "Test 2": "717", "Test 3": "717"}'>Concentration</td><td>717</td><td>717</td><td>717</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "260", "Test 2": "260", "Test 3": "260"}'>Holy Freeze</td><td>260</td><td>260</td><td>260</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1427", "Test 2": "1427", "Test 3": "1427"}'>Holy Shock</td><td>1427</td><td>1427</td><td>1427</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1101", "Test 2": "1101", "Test 3": "1101"}'>Sanctuary</td><td>1101</td><td>1101</td><td>1101</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "621", "Test 2": "621", "Test 3": "621"}'>Fanaticism</td><td>621</td><td>621</td><td>621</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "594", "Test 2": "594", "Test 3": "594"}'>Conviction</td><td>594</td><td>594</td><td>594</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "377", "Test 2": "377", "Test 3": "377"}'>Sacrifice</td><td>377</td><td>377</td><td>377</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "759", "Test 2": "759", "Test 3": "759"}'>Smite</td><td>759</td><td>759</td><td>759</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1674", "Test 2": "1674", "Test 3": "1674"}'>Holy Bolt</td><td>1674</td><td>1674</td><td>1674</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "447", "Test 2": "447", "Test 3": "447"}'>Zeal</td><td>447</td><td>447</td><td>447</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "481", "Test 2": "481", "Test 3": "481"}'>Charge</td><td>481</td><td>481</td><td>481</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "189", "Test 2": "189", "Test 3": "189"}'>Vengeance</td><td>189</td><td>189</td><td>189</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "984", "Test 2": "984", "Test 3": "984"}'>Blessed Hammer</td><td>984</td><td>984</td><td>984</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Conversion</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2049", "Test 2": "2049", "Test 3": "2049"}'>Holy Shield</td><td>2049</td><td>2049</td><td>2049</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1564", "Test 2": "1564", "Test 3": "1564"}'>Fist of the Heavens</td><td>1564</td><td>1564</td><td>1564</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "247", "Test 2": "247", "Test 3": "247"}'>Dashing Strike</td><td>247</td><td>247</td><td>247</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "94", "Test 2": "94", "Test 3": "94"}'>Absolution</td><td>94</td><td>94</td><td>94</td></tr>
+</table>
+<h3>Sorceress</h3>
+<table border='1'>
+<tr><th>Skill</th><th>Test 1</th><th>Test 2</th><th>Test 3</th></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "780", "Test 2": "780", "Test 3": "780"}'>Ice Bolt</td><td>780</td><td>780</td><td>780</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "525", "Test 2": "525", "Test 3": "525"}'>Frigerate</td><td>525</td><td>525</td><td>525</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "411", "Test 2": "411", "Test 3": "411"}'>Frost Nova</td><td>411</td><td>411</td><td>411</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1277", "Test 2": "1277", "Test 3": "1277"}'>Ice Blast</td><td>1277</td><td>1277</td><td>1277</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "876", "Test 2": "876", "Test 3": "876"}'>Shiver Armor</td><td>876</td><td>876</td><td>876</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "986", "Test 2": "986", "Test 3": "986"}'>Glacial Spike</td><td>986</td><td>986</td><td>986</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "220", "Test 2": "220", "Test 3": "220"}'>Blizzard</td><td>220</td><td>220</td><td>220</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "825", "Test 2": "825", "Test 3": "825"}'>Freezing Pulse</td><td>825</td><td>825</td><td>825</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "13", "Test 2": "13", "Test 3": "13"}'>Chilling Armor</td><td>13</td><td>13</td><td>13</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "737", "Test 2": "737", "Test 3": "737"}'>Frozen Orb</td><td>737</td><td>737</td><td>737</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2086", "Test 2": "2086", "Test 3": "2086"}'>Cold Mastery</td><td>2086</td><td>2086</td><td>2086</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "752", "Test 2": "752", "Test 3": "752"}'>Charged Bolt</td><td>752</td><td>752</td><td>752</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "269", "Test 2": "269", "Test 3": "269"}'>Static Field</td><td>269</td><td>269</td><td>269</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2085", "Test 2": "2085", "Test 3": "2085"}'>Telekinesis</td><td>2085</td><td>2085</td><td>2085</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "547", "Test 2": "547", "Test 3": "547"}'>Nova</td><td>547</td><td>547</td><td>547</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1584", "Test 2": "1584", "Test 3": "1584"}'>Lightning Surge</td><td>1584</td><td>1584</td><td>1584</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "713", "Test 2": "713", "Test 3": "713"}'>Chain Lightning</td><td>713</td><td>713</td><td>713</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1674", "Test 2": "1674", "Test 3": "1674"}'>Teleport</td><td>1674</td><td>1674</td><td>1674</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "453", "Test 2": "453", "Test 3": "453"}'>Discharge</td><td>453</td><td>453</td><td>453</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1307", "Test 2": "1307", "Test 3": "1307"}'>Thunder Storm</td><td>1307</td><td>1307</td><td>1307</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "582", "Test 2": "582", "Test 3": "582"}'>Energy Shield</td><td>582</td><td>582</td><td>582</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2491", "Test 2": "2491", "Test 3": "2491"}'>Lightning Mastery</td><td>2491</td><td>2491</td><td>2491</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "435", "Test 2": "435", "Test 3": "435"}'>Fire Bolt</td><td>435</td><td>435</td><td>435</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1583", "Test 2": "1583", "Test 3": "1583"}'>Warmth</td><td>1583</td><td>1583</td><td>1583</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "110", "Test 2": "110", "Test 3": "110"}'>Inferno</td><td>110</td><td>110</td><td>110</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "47", "Test 2": "47", "Test 3": "47"}'>Immolate</td><td>47</td><td>47</td><td>47</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "527", "Test 2": "527", "Test 3": "527"}'>Fire Ball</td><td>527</td><td>527</td><td>527</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "28", "Test 2": "28", "Test 3": "28"}'>Fire Wall</td><td>28</td><td>28</td><td>28</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "522", "Test 2": "522", "Test 3": "522"}'>Enflame</td><td>522</td><td>522</td><td>522</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "103", "Test 2": "103", "Test 3": "103"}'>Meteor</td><td>103</td><td>103</td><td>103</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1317", "Test 2": "1317", "Test 3": "1317"}'>Hydra</td><td>1317</td><td>1317</td><td>1317</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1406", "Test 2": "1406", "Test 3": "1406"}'>Fire Mastery</td><td>1406</td><td>1406</td><td>1406</td></tr>
+</table>
+<h2>Uniques</h2>
+<table border='1'>
+<tr><th>Name</th><th>Test 1</th><th>Test 2</th><th>Test 3</th></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "6", "Test 2": "6", "Test 3": "6"}'>Alma Negra</td><td>6</td><td>6</td><td>6</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "56", "Test 2": "56", "Test 3": "56"}'>Andariel's Visage</td><td>56</td><td>56</td><td>56</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "449", "Test 2": "449", "Test 3": "449"}'>Arachnid Mesh</td><td>449</td><td>449</td><td>449</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Arioc's Needle</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "23", "Test 2": "23", "Test 3": "23"}'>Arkaine's Valor</td><td>23</td><td>23</td><td>23</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "4", "Test 2": "4", "Test 3": "4"}'>Arm of King Leoric</td><td>4</td><td>4</td><td>4</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "104", "Test 2": "104", "Test 3": "104"}'>Arreat's Face</td><td>104</td><td>104</td><td>104</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "5", "Test 2": "5", "Test 3": "5"}'>Astreon's Iron Ward</td><td>5</td><td>5</td><td>5</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Athena's Wrath</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "17", "Test 2": "17", "Test 3": "17"}'>Atma's Scarab</td><td>17</td><td>17</td><td>17</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Atma's Wail</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Axe of Fechmar</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "10", "Test 2": "10", "Test 3": "10"}'>Azurewrath</td><td>10</td><td>10</td><td>10</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>Baezil's Vortex</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Bane Ash</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Baranar's Star</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "29", "Test 2": "29", "Test 3": "29"}'>Bartuc's Cut-Throat</td><td>29</td><td>29</td><td>29</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Biggin's Bonnet</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>Bing Sz Wang</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Black Hades</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Blackbog's Sharp</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>Blackhand Key</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Blackhorn's Face</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Blackleach Blade</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "3", "Test 2": "3", "Test 3": "3"}'>Blackoak Shield</td><td>3</td><td>3</td><td>3</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Blacktongue</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Blade Of Ali Baba</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Bladebone</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "3", "Test 2": "3", "Test 3": "3"}'>Bladebuckle</td><td>3</td><td>3</td><td>3</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Blastbark</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Blinkbat's Form</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Blood Crescent</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Blood Raven's Charge</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "10", "Test 2": "10", "Test 3": "10"}'>Bloodfist</td><td>10</td><td>10</td><td>10</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>Bloodletter</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Bloodmoon</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Bloodrise</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Bloodthief</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Bloodtree Stump</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "8", "Test 2": "8", "Test 3": "8"}'>Boneflame</td><td>8</td><td>8</td><td>8</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Boneflesh</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Bonehew</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "4", "Test 2": "4", "Test 3": "4"}'>Boneshade</td><td>4</td><td>4</td><td>4</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Boneslayer Blade</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>Bonesnap</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Brainhew</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "252", "Test 2": "252", "Test 3": "252"}'>Bul-Kathos' Wedding Band</td><td>252</td><td>252</td><td>252</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "7", "Test 2": "7", "Test 3": "7"}'>Buriza-Do Kyanon</td><td>7</td><td>7</td><td>7</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Butcher's Pupil</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Bverrit Keep</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "3", "Test 2": "3", "Test 3": "3"}'>Carin Shard</td><td>3</td><td>3</td><td>3</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "68", "Test 2": "68", "Test 3": "68"}'>Carrion Wind</td><td>68</td><td>68</td><td>68</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "3", "Test 2": "3", "Test 3": "3"}'>Cerebus' Bite</td><td>3</td><td>3</td><td>3</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "59", "Test 2": "59", "Test 3": "59"}'>Chance Guards</td><td>59</td><td>59</td><td>59</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Chromatic Ire</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Cliffkiller</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Cloudcrack</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Coif of Glory</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Coldkill</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Coldsteel Eye</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Corpsemourn</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Crainte Vomir</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>Cranebeak</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "3", "Test 2": "3", "Test 3": "3"}'>Crescent Moon</td><td>3</td><td>3</td><td>3</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Crow Caw</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "18", "Test 2": "18", "Test 3": "18"}'>Crown of Ages</td><td>18</td><td>18</td><td>18</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Crown of Thieves</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Crushflange</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>Culwen's Point</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "8", "Test 2": "8", "Test 3": "8"}'>Dark Clan Crusher</td><td>8</td><td>8</td><td>8</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Darkforce Spawn</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Darkglow</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Darksight Helm</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "4", "Test 2": "4", "Test 3": "4"}'>Death Cleaver</td><td>4</td><td>4</td><td>4</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Deathbit</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "17", "Test 2": "17", "Test 3": "17"}'>Death's Fathom</td><td>17</td><td>17</td><td>17</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "18", "Test 2": "18", "Test 3": "18"}'>Death's Web</td><td>18</td><td>18</td><td>18</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Deathspade</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "48", "Test 2": "48", "Test 3": "48"}'>Demon Limb</td><td>48</td><td>48</td><td>48</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Demon Machine</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Demonhorn's Edge</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Demon's Arch</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Dimoak's Hew</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Djinn Slayer</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Doombringer</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "17", "Test 2": "17", "Test 3": "17"}'>Doomslinger</td><td>17</td><td>17</td><td>17</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "107", "Test 2": "107", "Test 3": "107"}'>Dracul's Grasp</td><td>107</td><td>107</td><td>107</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Dragonscale</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "8", "Test 2": "8", "Test 3": "8"}'>Duriel's Shell</td><td>8</td><td>8</td><td>8</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Duskdeep</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "79", "Test 2": "79", "Test 3": "79"}'>Dwarf Star</td><td>79</td><td>79</td><td>79</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "3", "Test 2": "3", "Test 3": "3"}'>Eaglehorn</td><td>3</td><td>3</td><td>3</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "8", "Test 2": "8", "Test 3": "8"}'>Earth Shifter</td><td>8</td><td>8</td><td>8</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Earthshaker</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Endlesshail</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "24", "Test 2": "24", "Test 3": "24"}'>Eschuta's Temper</td><td>24</td><td>24</td><td>24</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Ethereal Edge</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>Executioner's Justice</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Felloak</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "3", "Test 2": "3", "Test 3": "3"}'>Firelizard's Talons</td><td>3</td><td>3</td><td>3</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>Flamebellow</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "8", "Test 2": "8", "Test 3": "8"}'>Fleshrender</td><td>8</td><td>8</td><td>8</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "4", "Test 2": "4", "Test 3": "4"}'>Fleshripper</td><td>4</td><td>4</td><td>4</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "31", "Test 2": "31", "Test 3": "31"}'>Frostburn</td><td>31</td><td>31</td><td>31</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "14", "Test 2": "14", "Test 3": "14"}'>Frostwind</td><td>14</td><td>14</td><td>14</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Gargoyle's Bite</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "4", "Test 2": "4", "Test 3": "4"}'>Gerke's Sanctuary</td><td>4</td><td>4</td><td>4</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Ghostflame</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "3", "Test 2": "3", "Test 3": "3"}'>Ghoulhide</td><td>3</td><td>3</td><td>3</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Giant Skull</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Gimmershred</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Ginther's Rift</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Gleamscythe</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Gloom's Trap</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "9", "Test 2": "9", "Test 3": "9"}'>Goblin Toe</td><td>9</td><td>9</td><td>9</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Goldskin</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Goldstrike Arch</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "61", "Test 2": "61", "Test 3": "61"}'>Goldwrap</td><td>61</td><td>61</td><td>61</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "144", "Test 2": "144", "Test 3": "144"}'>Gore Rider</td><td>144</td><td>144</td><td>144</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Gorefoot</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Goreshovel</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Gravenspine</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Gravepalm</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Greyform</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "97", "Test 2": "97", "Test 3": "97"}'>Griffon's Eye</td><td>97</td><td>97</td><td>97</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Grim's Burning Dead</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Griswold's Edge</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "17", "Test 2": "17", "Test 3": "17"}'>Guardian Angel</td><td>17</td><td>17</td><td>17</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Guardian Naga</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "9", "Test 2": "9", "Test 3": "9"}'>Gull</td><td>9</td><td>9</td><td>9</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Gut Siphon</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Halaberd's Reign</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>Hand of Blessed Light</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "389", "Test 2": "389", "Test 3": "389"}'>Harlequin Crest</td><td>389</td><td>389</td><td>389</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Hawkmail</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Head Hunter's Glory</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "23", "Test 2": "23", "Test 3": "23"}'>Headstriker</td><td>23</td><td>23</td><td>23</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "3", "Test 2": "3", "Test 3": "3"}'>Heart Carver</td><td>3</td><td>3</td><td>3</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Heavenly Garb</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "6", "Test 2": "6", "Test 3": "6"}'>Heaven's Light</td><td>6</td><td>6</td><td>6</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Hellcast</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Hellclap</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Hellmouth</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Hellplague</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>Hellrack</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Hellslayer</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Herald Of Zakarum</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "5", "Test 2": "5", "Test 3": "5"}'>Hexfire</td><td>5</td><td>5</td><td>5</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "151", "Test 2": "151", "Test 3": "151"}'>Highlord's Wrath</td><td>151</td><td>151</td><td>151</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "136", "Test 2": "136", "Test 3": "136"}'>Homunculus</td><td>136</td><td>136</td><td>136</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Hone Sundan</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>Horizon's Tornado</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Hotspur</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Howltusk</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Humongous</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Husoldal Evo</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Iceblink</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Ichorsting</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "8", "Test 2": "8", "Test 3": "8"}'>Infernostride</td><td>8</td><td>8</td><td>8</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Iron Pelt</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Ironstone</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>Islestrike</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "7", "Test 2": "7", "Test 3": "7"}'>Jade Talon</td><td>7</td><td>7</td><td>7</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "86", "Test 2": "86", "Test 3": "86"}'>Jalal's Mane</td><td>86</td><td>86</td><td>86</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Kelpie Snare</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Kinemil's Awl</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "10", "Test 2": "10", "Test 3": "10"}'>Kira's Guardian</td><td>10</td><td>10</td><td>10</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Knell Striker</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>Kuko Shakaku</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "4", "Test 2": "4", "Test 3": "4"}'>Lacerator</td><td>4</td><td>4</td><td>4</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Lance Guard</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Lance of Yaggai</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Langer Briser</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "4", "Test 2": "4", "Test 3": "4"}'>Lava Gout</td><td>4</td><td>4</td><td>4</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Leadcrow</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "3", "Test 2": "3", "Test 3": "3"}'>Lenymo</td><td>3</td><td>3</td><td>3</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "6", "Test 2": "6", "Test 3": "6"}'>Leviathan</td><td>6</td><td>6</td><td>6</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "68", "Test 2": "68", "Test 3": "68"}'>Lidless Wall</td><td>68</td><td>68</td><td>68</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "20", "Test 2": "20", "Test 3": "20"}'>Lightsabre</td><td>20</td><td>20</td><td>20</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Lycander's Aim</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Lycander's Flank</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Maelstrom</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "318", "Test 2": "318", "Test 3": "318"}'>Magefist</td><td>318</td><td>318</td><td>318</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Magewrath</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "35", "Test 2": "35", "Test 3": "35"}'>Manald Heal</td><td>35</td><td>35</td><td>35</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "19", "Test 2": "19", "Test 3": "19"}'>Mang Song's Lesson</td><td>19</td><td>19</td><td>19</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "293", "Test 2": "293", "Test 3": "293"}'>Mara's Kaleidoscope</td><td>293</td><td>293</td><td>293</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "16", "Test 2": "16", "Test 3": "16"}'>Marrowwalk</td><td>16</td><td>16</td><td>16</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "168", "Test 2": "168", "Test 3": "168"}'>Medusa's Gaze</td><td>168</td><td>168</td><td>168</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Messerschmidt's Reaver</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "20", "Test 2": "20", "Test 3": "20"}'>Metalgrid</td><td>20</td><td>20</td><td>20</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Moonfall</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "3", "Test 2": "3", "Test 3": "3"}'>Moser's Blessed Circle</td><td>3</td><td>3</td><td>3</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "126", "Test 2": "126", "Test 3": "126"}'>Nagelring</td><td>126</td><td>126</td><td>126</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "23", "Test 2": "23", "Test 3": "23"}'>Nature's Peace</td><td>23</td><td>23</td><td>23</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "11", "Test 2": "11", "Test 3": "11"}'>Nightsmoke</td><td>11</td><td>11</td><td>11</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "30", "Test 2": "30", "Test 3": "30"}'>Nightwing's Veil</td><td>30</td><td>30</td><td>30</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "3", "Test 2": "3", "Test 3": "3"}'>Nokozan Relic</td><td>3</td><td>3</td><td>3</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Nord's Tenderizer</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "12", "Test 2": "12", "Test 3": "12"}'>Nosferatu's Coil</td><td>12</td><td>12</td><td>12</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "41", "Test 2": "41", "Test 3": "41"}'>Ondal's Wisdom</td><td>41</td><td>41</td><td>41</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "11", "Test 2": "11", "Test 3": "11"}'>Ormus' Robes</td><td>11</td><td>11</td><td>11</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "5", "Test 2": "5", "Test 3": "5"}'>Peasant Crown</td><td>5</td><td>5</td><td>5</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Pelta Lunata</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Pierre Tombale Couant</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "5", "Test 2": "5", "Test 3": "5"}'>Plague Bearer</td><td>5</td><td>5</td><td>5</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Pluckeye</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Pompeii's Wrath</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Pus Spitter</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "24", "Test 2": "24", "Test 3": "24"}'>Que-Hegan's Wisdom</td><td>24</td><td>24</td><td>24</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "36", "Test 2": "36", "Test 3": "36"}'>Radament's Sphere</td><td>36</td><td>36</td><td>36</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Rakescar</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Rattlecage</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>Raven Claw</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "485", "Test 2": "485", "Test 3": "485"}'>Raven Frost</td><td>485</td><td>485</td><td>485</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "19", "Test 2": "19", "Test 3": "19"}'>Ravenlore</td><td>19</td><td>19</td><td>19</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Razor's Edge</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>Razorswitch</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "113", "Test 2": "113", "Test 3": "113"}'>Razortail</td><td>113</td><td>113</td><td>113</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Razortine</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>Ribcracker</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Riphook</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Ripsaw</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Rixot's Keen</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Rockfleece</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>Rockstopper</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Rogue's Bow</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>Rune Master</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Rusthandle</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "74", "Test 2": "74", "Test 3": "74"}'>Sandstorm Trek</td><td>74</td><td>74</td><td>74</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "11", "Test 2": "11", "Test 3": "11"}'>Saracen's Chance</td><td>11</td><td>11</td><td>11</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Schaefer's Hammer</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "32", "Test 2": "32", "Test 3": "32"}'>Seraph's Hymn</td><td>32</td><td>32</td><td>32</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Serpent Lord</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "32", "Test 2": "32", "Test 3": "32"}'>Shadow Dancer</td><td>32</td><td>32</td><td>32</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "3", "Test 2": "3", "Test 3": "3"}'>Shadow Killer</td><td>3</td><td>3</td><td>3</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Shadowfang</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "6", "Test 2": "6", "Test 3": "6"}'>Shaftstop</td><td>6</td><td>6</td><td>6</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Silks of the Victor</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "197", "Test 2": "197", "Test 3": "197"}'>Silkweave</td><td>197</td><td>197</td><td>197</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Skewer of Krintiz</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Skin of the Flayed One</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "158", "Test 2": "158", "Test 3": "158"}'>Skin of the Vipermagi</td><td>158</td><td>158</td><td>158</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "4", "Test 2": "4", "Test 3": "4"}'>Skull Collector</td><td>4</td><td>4</td><td>4</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Skull Splitter</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "24", "Test 2": "24", "Test 3": "24"}'>Skullder's Ire</td><td>24</td><td>24</td><td>24</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>Skystrike</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Snakecord</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "6", "Test 2": "6", "Test 3": "6"}'>Snowclash</td><td>6</td><td>6</td><td>6</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "40", "Test 2": "40", "Test 3": "40"}'>Soul Drainer</td><td>40</td><td>40</td><td>40</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Soul Harvest</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Soulfeast Tine</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Soulflay</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Sparking Mail</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Spectral Shard</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "4", "Test 2": "4", "Test 3": "4"}'>Spellsteel</td><td>4</td><td>4</td><td>4</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Spike Thorn</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Spineripper</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Spire of Honor</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>Spire of Lazarus</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Spirit Forge</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Spirit Keeper</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "3", "Test 2": "3", "Test 3": "3"}'>Spirit Ward</td><td>3</td><td>3</td><td>3</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>Stealskull</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Steel Carapace</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Steel Pillar</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "4", "Test 2": "4", "Test 3": "4"}'>Steel Shade</td><td>4</td><td>4</td><td>4</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Steelclash</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Steeldriver</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Steelgoad</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "38", "Test 2": "38", "Test 3": "38"}'>Steelrend</td><td>38</td><td>38</td><td>38</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Stone Crusher</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "265", "Test 2": "265", "Test 3": "265"}'>The Stone of Jordan</td><td>265</td><td>265</td><td>265</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Stoneraven</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Stormchaser</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Stormeye</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Stormguild</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>Stormlash</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Stormrider</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "121", "Test 2": "121", "Test 3": "121"}'>Stormshield</td><td>121</td><td>121</td><td>121</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Stormspike</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Stormspire</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Stormstrike</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Stoutnail</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "136", "Test 2": "136", "Test 3": "136"}'>String of Ears</td><td>136</td><td>136</td><td>136</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "4", "Test 2": "4", "Test 3": "4"}'>Suicide Branch</td><td>4</td><td>4</td><td>4</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Sureshrill Frost</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Swordback Hold</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Swordguard</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>Tarnhelm</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "13", "Test 2": "13", "Test 3": "13"}'>Tearhaunch</td><td>13</td><td>13</td><td>13</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "6", "Test 2": "6", "Test 3": "6"}'>Templar's Might</td><td>6</td><td>6</td><td>6</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>The Atlantean</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>The Battlebranch</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "65", "Test 2": "65", "Test 3": "65"}'>The Cat's Eye</td><td>65</td><td>65</td><td>65</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>The Centurion</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>The Chieftain</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "3", "Test 2": "3", "Test 3": "3"}'>The Cranium Basher</td><td>3</td><td>3</td><td>3</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>The Diggler</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>The Dragon Chang</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "6", "Test 2": "6", "Test 3": "6"}'>The Eye of Etlich</td><td>6</td><td>6</td><td>6</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>The Face of Horror</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>The Fetid Sprinkler</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>The Gavel Of Pain</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>The General's Tan Do Li Ga</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "10", "Test 2": "10", "Test 3": "10"}'>The Gladiator's Bane</td><td>10</td><td>10</td><td>10</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>The Gnasher</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "12", "Test 2": "12", "Test 3": "12"}'>The Grandfather</td><td>12</td><td>12</td><td>12</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>The Grim Reaper</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>The Hand of Broc</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>The Impaler</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "4", "Test 2": "4", "Test 3": "4"}'>The Iron Jang Bong</td><td>4</td><td>4</td><td>4</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>The Jade Tan Do</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>The Mahim-Oak Curio</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>The Meat Scraper</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>The Minotaur</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "23", "Test 2": "23", "Test 3": "23"}'>The Oculus</td><td>23</td><td>23</td><td>23</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>The Patriarch</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "8", "Test 2": "8", "Test 3": "8"}'>The Reaper's Toll</td><td>8</td><td>8</td><td>8</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>The Redeemer</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>The Rising Sun</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>The Salamander</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>The Scalper</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>The Spirit Shroud</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>The Tannr Gorerod</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>The Vile Husk</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "10", "Test 2": "10", "Test 3": "10"}'>The Ward</td><td>10</td><td>10</td><td>10</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "88", "Test 2": "88", "Test 3": "88"}'>Thundergod's Vigor</td><td>88</td><td>88</td><td>88</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "31", "Test 2": "31", "Test 3": "31"}'>Thunderstroke</td><td>31</td><td>31</td><td>31</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>Tiamat's Rebuke</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "51", "Test 2": "51", "Test 3": "51"}'>Titan's Revenge</td><td>51</td><td>51</td><td>51</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>Todesfaelle Flamme</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Tomb Reaver</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Toothrow</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "3", "Test 2": "3", "Test 3": "3"}'>Torch of Iro</td><td>3</td><td>3</td><td>3</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Treads of Cthon</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "6", "Test 2": "6", "Test 3": "6"}'>Twitchthroe</td><td>6</td><td>6</td><td>6</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "8", "Test 2": "8", "Test 3": "8"}'>Tyrael's Might</td><td>8</td><td>8</td><td>8</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Umbral Disk</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "4", "Test 2": "4", "Test 3": "4"}'>Ume's Lament</td><td>4</td><td>4</td><td>4</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Undead Crown</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "14", "Test 2": "14", "Test 3": "14"}'>Valkyrie Wing</td><td>14</td><td>14</td><td>14</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "21", "Test 2": "21", "Test 3": "21"}'>Vampire Gaze</td><td>21</td><td>21</td><td>21</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Veil of Steel</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "5", "Test 2": "5", "Test 3": "5"}'>Venom Grip</td><td>5</td><td>5</td><td>5</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Venom Ward</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "157", "Test 2": "157", "Test 3": "157"}'>Verdungo's Hearty Cord</td><td>157</td><td>157</td><td>157</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Viperfork</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Visceratuant</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Wall of the Eyeless</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "278", "Test 2": "278", "Test 3": "278"}'>War Traveler</td><td>278</td><td>278</td><td>278</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Warlord's Trust</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "45", "Test 2": "45", "Test 3": "45"}'>Warpspear</td><td>45</td><td>45</td><td>45</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "6", "Test 2": "6", "Test 3": "6"}'>Warshrike</td><td>6</td><td>6</td><td>6</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "21", "Test 2": "21", "Test 3": "21"}'>Waterwalk</td><td>21</td><td>21</td><td>21</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>Widowmaker</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "15", "Test 2": "15", "Test 3": "15"}'>Windforce</td><td>15</td><td>15</td><td>15</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>Windhammer</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "217", "Test 2": "217", "Test 3": "217"}'>Wisp Projector</td><td>217</td><td>217</td><td>217</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "3", "Test 2": "3", "Test 3": "3"}'>Witchwild String</td><td>3</td><td>3</td><td>3</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Witherstring</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "11", "Test 2": "11", "Test 3": "11"}'>Wizardspike</td><td>11</td><td>11</td><td>11</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>Wizendraw</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Woestave</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "5", "Test 2": "5", "Test 3": "5"}'>Wolfhowl</td><td>5</td><td>5</td><td>5</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Wormskull</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Wraith Flight</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>Zakarum's Hand</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>Frostbite</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "48", "Test 2": "48", "Test 3": "48"}'>Herald of Zakarum</td><td>48</td><td>48</td><td>48</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "6", "Test 2": "6", "Test 3": "6"}'>Swiftheart</td><td>6</td><td>6</td><td>6</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "25", "Test 2": "25", "Test 3": "25"}'>Blade of Ali Baba</td><td>25</td><td>25</td><td>25</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "15", "Test 2": "15", "Test 3": "15"}'>Hailstorm</td><td>15</td><td>15</td><td>15</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "11", "Test 2": "11", "Test 3": "11"}'>Moonfire</td><td>11</td><td>11</td><td>11</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "6", "Test 2": "6", "Test 3": "6"}'>Dragonbreath</td><td>6</td><td>6</td><td>6</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>FrostbiteB</td><td>2</td><td>2</td><td>2</td></tr>
+</table>
+<h2>Sets</h2>
+<table border='1'>
+<tr><th>Name</th><th>Test 1</th><th>Test 2</th><th>Test 3</th></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Angelic Sickle</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Angelic Mantle</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "101", "Test 2": "101", "Test 3": "101"}'>Angelic Halo</td><td>101</td><td>101</td><td>101</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "64", "Test 2": "64", "Test 3": "64"}'>Angelic Wings</td><td>64</td><td>64</td><td>64</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Arcanna's Sign</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Arcanna's Deathwand</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Arcanna's Head</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Arcanna's Flesh</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Arctic Furs</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Arctic Binding</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Arctic Mitts</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Arctic Horn</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Berserker's Headgear</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Berserker's Hauberk</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Berserker's Hatchet</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Cathan's Rule</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Cathan's Mesh</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Cathan's Visage</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Cathan's Sigil</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>Cathan's Seal</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Civerb's Ward</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Civerb's Icon</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Civerb's Cudgel</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Cleglaw's Tooth</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>Cleglaw's Claw</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Cleglaw's Pincers</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "3", "Test 2": "3", "Test 3": "3"}'>Death's Hand</td><td>3</td><td>3</td><td>3</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Death's Touch</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>Death's Guard</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>Hsarus' Iron Heel</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Hsarus' Iron Fist</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>Hsarus' Iron Stay</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Infernal Cranium</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Infernal Torch</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Infernal Sign</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Iratha's Collar</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Iratha's Cuff</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Iratha's Coil</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Iratha's Cord</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Isenhart's Lightbrand</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Isenhart's Parry</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Isenhart's Case</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Isenhart's Horns</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "9", "Test 2": "9", "Test 3": "9"}'>Milabrega's Orb</td><td>9</td><td>9</td><td>9</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>Milabrega's Rod</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Milabrega's Diadem</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Milabrega's Robe</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>Sigon's Visor</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Sigon's Shelter</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Sigon's Gage</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Sigon's Sabot</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "4", "Test 2": "4", "Test 3": "4"}'>Sigon's Wrap</td><td>4</td><td>4</td><td>4</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "7", "Test 2": "7", "Test 3": "7"}'>Sigon's Guard</td><td>7</td><td>7</td><td>7</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Tancred's Spine</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Tancred's Crowbill</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Tancred's Hobnails</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Tancred's Weird</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Tancred's Skull</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Vidala's Barb</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "12", "Test 2": "12", "Test 3": "12"}'>Vidala's Fetlock</td><td>12</td><td>12</td><td>12</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Vidala's Ambush</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "5", "Test 2": "5", "Test 3": "5"}'>Vidala's Snare</td><td>5</td><td>5</td><td>5</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>Bul-Kathos' Sacred Charge</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>Bul-Kathos' Tribal Guardian</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Cow King's Horns</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Cow King's Hide</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "4", "Test 2": "4", "Test 3": "4"}'>Cow King's Hooves</td><td>4</td><td>4</td><td>4</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Dangoon's Teaching</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Taebaek's Glory</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Haemosu's Adamant</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "3", "Test 2": "3", "Test 3": "3"}'>Ondal's Almighty</td><td>3</td><td>3</td><td>3</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Hwanin's Splendor</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Hwanin's Refuge</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Hwanin's Blessing</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Hwanin's Justice</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "40", "Test 2": "40", "Test 3": "40"}'>Naj's Puzzler</td><td>40</td><td>40</td><td>40</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "14", "Test 2": "14", "Test 3": "14"}'>Naj's Light Plate</td><td>14</td><td>14</td><td>14</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Naj's Circlet</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "39", "Test 2": "39", "Test 3": "39"}'>Guillaume's Face</td><td>39</td><td>39</td><td>39</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "3", "Test 2": "3", "Test 3": "3"}'>Wilhelm's Pride</td><td>3</td><td>3</td><td>3</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "3", "Test 2": "3", "Test 3": "3"}'>Magnus' Skin</td><td>3</td><td>3</td><td>3</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Whitstan's Guard</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Sander's Paragon</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "8", "Test 2": "8", "Test 3": "8"}'>Sander's Riprap</td><td>8</td><td>8</td><td>8</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Sander's Taboo</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Sander's Superstition</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Sazabi's Cobalt Redeemer</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Sazabi's Ghost Liberator</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "3", "Test 2": "3", "Test 3": "3"}'>Sazabi's Mental Sheath</td><td>3</td><td>3</td><td>3</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Telling of Beads</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "214", "Test 2": "214", "Test 3": "214"}'>Laying of Hands</td><td>214</td><td>214</td><td>214</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Rite of Passage</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>Dark Adherent</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "16", "Test 2": "16", "Test 3": "16"}'>Credendum</td><td>16</td><td>16</td><td>16</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>Aldur's Stony Gaze</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "3", "Test 2": "3", "Test 3": "3"}'>Aldur's Deception</td><td>3</td><td>3</td><td>3</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "3", "Test 2": "3", "Test 3": "3"}'>Aldur's Rhythm</td><td>3</td><td>3</td><td>3</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "183", "Test 2": "183", "Test 3": "183"}'>Aldur's Advance</td><td>183</td><td>183</td><td>183</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>Griswold's Valor</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>Griswold's Heart</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Griswold's Redemption</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>Griswold's Honor</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "35", "Test 2": "35", "Test 3": "35"}'>Immortal King's Will</td><td>35</td><td>35</td><td>35</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "30", "Test 2": "30", "Test 3": "30"}'>Immortal King's Soul Cage</td><td>30</td><td>30</td><td>30</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "62", "Test 2": "62", "Test 3": "62"}'>Immortal King's Detail</td><td>62</td><td>62</td><td>62</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "45", "Test 2": "45", "Test 3": "45"}'>Immortal King's Forge</td><td>45</td><td>45</td><td>45</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "45", "Test 2": "45", "Test 3": "45"}'>Immortal King's Pillar</td><td>45</td><td>45</td><td>45</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "34", "Test 2": "34", "Test 3": "34"}'>Immortal King's Stone Crusher</td><td>34</td><td>34</td><td>34</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "12", "Test 2": "12", "Test 3": "12"}'>M'avina's True Sight</td><td>12</td><td>12</td><td>12</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "12", "Test 2": "12", "Test 3": "12"}'>M'avina's Embrace</td><td>12</td><td>12</td><td>12</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "11", "Test 2": "11", "Test 3": "11"}'>M'avina's Icy Clutch</td><td>11</td><td>11</td><td>11</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "28", "Test 2": "28", "Test 3": "28"}'>M'avina's Tenet</td><td>28</td><td>28</td><td>28</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "9", "Test 2": "9", "Test 3": "9"}'>M'avina's Caster</td><td>9</td><td>9</td><td>9</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "73", "Test 2": "73", "Test 3": "73"}'>Natalya's Totem</td><td>73</td><td>73</td><td>73</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "82", "Test 2": "82", "Test 3": "82"}'>Natalya's Mark</td><td>82</td><td>82</td><td>82</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "73", "Test 2": "73", "Test 3": "73"}'>Natalya's Shadow</td><td>73</td><td>73</td><td>73</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "119", "Test 2": "119", "Test 3": "119"}'>Natalya's Soul</td><td>119</td><td>119</td><td>119</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "83", "Test 2": "83", "Test 3": "83"}'>Tal Rasha's Fine-Spun Cloth</td><td>83</td><td>83</td><td>83</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "73", "Test 2": "73", "Test 3": "73"}'>Tal Rasha's Adjudication</td><td>73</td><td>73</td><td>73</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "50", "Test 2": "50", "Test 3": "50"}'>Tal Rasha's Lidless Eye</td><td>50</td><td>50</td><td>50</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "87", "Test 2": "87", "Test 3": "87"}'>Tal Rasha's Guardianship</td><td>87</td><td>87</td><td>87</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "74", "Test 2": "74", "Test 3": "74"}'>Tal Rasha's Horadric Crest</td><td>74</td><td>74</td><td>74</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "43", "Test 2": "43", "Test 3": "43"}'>Trang-Oul's Guise</td><td>43</td><td>43</td><td>43</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "46", "Test 2": "46", "Test 3": "46"}'>Trang-Oul's Scales</td><td>46</td><td>46</td><td>46</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "44", "Test 2": "44", "Test 3": "44"}'>Trang-Oul's Wing</td><td>44</td><td>44</td><td>44</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "301", "Test 2": "301", "Test 3": "301"}'>Trang-Oul's Claws</td><td>301</td><td>301</td><td>301</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "62", "Test 2": "62", "Test 3": "62"}'>Trang-Oul's Girth</td><td>62</td><td>62</td><td>62</td></tr>
+</table>
+<h2>Runewords</h2>
+<table border='1'>
+<tr><th>Name</th><th>Test 1</th><th>Test 2</th><th>Test 3</th></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "12", "Test 2": "12", "Test 3": "12"}'>Ancients' Pledge</td><td>12</td><td>12</td><td>12</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "6", "Test 2": "6", "Test 3": "6"}'>Beast</td><td>6</td><td>6</td><td>6</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "4", "Test 2": "4", "Test 3": "4"}'>Black</td><td>4</td><td>4</td><td>4</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "25", "Test 2": "25", "Test 3": "25"}'>Bone</td><td>25</td><td>25</td><td>25</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "23", "Test 2": "23", "Test 3": "23"}'>Bramble</td><td>23</td><td>23</td><td>23</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Brand</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "66", "Test 2": "66", "Test 3": "66"}'>Breath of the Dying</td><td>66</td><td>66</td><td>66</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Bulwark</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Call To Arms</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "68", "Test 2": "68", "Test 3": "68"}'>Chains of Honor</td><td>68</td><td>68</td><td>68</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "9", "Test 2": "9", "Test 3": "9"}'>Chaos</td><td>9</td><td>9</td><td>9</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Crescent Moon</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Cure</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "6", "Test 2": "6", "Test 3": "6"}'>Death</td><td>6</td><td>6</td><td>6</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Delirium</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Destruction</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "7", "Test 2": "7", "Test 3": "7"}'>Doom</td><td>7</td><td>7</td><td>7</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "23", "Test 2": "23", "Test 3": "23"}'>Dragon</td><td>23</td><td>23</td><td>23</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "10", "Test 2": "10", "Test 3": "10"}'>Dream</td><td>10</td><td>10</td><td>10</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "7", "Test 2": "7", "Test 3": "7"}'>Duress</td><td>7</td><td>7</td><td>7</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "59", "Test 2": "59", "Test 3": "59"}'>Edge</td><td>59</td><td>59</td><td>59</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "255", "Test 2": "255", "Test 3": "255"}'>Enigma</td><td>255</td><td>255</td><td>255</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Enlightenment</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>Eternity</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "8", "Test 2": "8", "Test 3": "8"}'>Exile</td><td>8</td><td>8</td><td>8</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "59", "Test 2": "59", "Test 3": "59"}'>Faith</td><td>59</td><td>59</td><td>59</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Famine</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Flickering Flame</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "161", "Test 2": "161", "Test 3": "161"}'>Fortitude</td><td>161</td><td>161</td><td>161</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Fury</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Gloom</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "58", "Test 2": "58", "Test 3": "58"}'>Grief</td><td>58</td><td>58</td><td>58</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Ground</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "12", "Test 2": "12", "Test 3": "12"}'>Hand of Justice</td><td>12</td><td>12</td><td>12</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "39", "Test 2": "39", "Test 3": "39"}'>Harmony</td><td>39</td><td>39</td><td>39</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "316", "Test 2": "316", "Test 3": "316"}'>Heart of the Oak</td><td>316</td><td>316</td><td>316</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Hearth</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "48", "Test 2": "48", "Test 3": "48"}'>Holy Thunder</td><td>48</td><td>48</td><td>48</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Honor</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "3", "Test 2": "3", "Test 3": "3"}'>Hustle</td><td>3</td><td>3</td><td>3</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "21", "Test 2": "21", "Test 3": "21"}'>Ice</td><td>21</td><td>21</td><td>21</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Infinity</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Insight</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>King's Grace</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Kingslayer</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "8", "Test 2": "8", "Test 3": "8"}'>Last Wish</td><td>8</td><td>8</td><td>8</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "6", "Test 2": "6", "Test 3": "6"}'>Lawbringer</td><td>6</td><td>6</td><td>6</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Leaf</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>Lionheart</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "12", "Test 2": "12", "Test 3": "12"}'>Lore</td><td>12</td><td>12</td><td>12</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Malice</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Melody</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "37", "Test 2": "37", "Test 3": "37"}'>Memory</td><td>37</td><td>37</td><td>37</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "37", "Test 2": "37", "Test 3": "37"}'>Metamorphosis</td><td>37</td><td>37</td><td>37</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "4", "Test 2": "4", "Test 3": "4"}'>Mist</td><td>4</td><td>4</td><td>4</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "27", "Test 2": "27", "Test 3": "27"}'>Mosaic</td><td>27</td><td>27</td><td>27</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "3", "Test 2": "3", "Test 3": "3"}'>Myth</td><td>3</td><td>3</td><td>3</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Nadir</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "6", "Test 2": "6", "Test 3": "6"}'>Oath</td><td>6</td><td>6</td><td>6</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "4", "Test 2": "4", "Test 3": "4"}'>Obedience</td><td>4</td><td>4</td><td>4</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Obsession</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Passion</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>Pattern</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "8", "Test 2": "8", "Test 3": "8"}'>Peace</td><td>8</td><td>8</td><td>8</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "171", "Test 2": "171", "Test 3": "171"}'>Phoenix</td><td>171</td><td>171</td><td>171</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "86", "Test 2": "86", "Test 3": "86"}'>Plague</td><td>86</td><td>86</td><td>86</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Pride</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Principle</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Prudence</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Radiance</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "44", "Test 2": "44", "Test 3": "44"}'>Rain</td><td>44</td><td>44</td><td>44</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "20", "Test 2": "20", "Test 3": "20"}'>Rhyme</td><td>20</td><td>20</td><td>20</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Rift</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Sanctuary</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "55", "Test 2": "55", "Test 3": "55"}'>Silence</td><td>55</td><td>55</td><td>55</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "10", "Test 2": "10", "Test 3": "10"}'>Smoke</td><td>10</td><td>10</td><td>10</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "728", "Test 2": "728", "Test 3": "728"}'>Spirit</td><td>728</td><td>728</td><td>728</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "8", "Test 2": "8", "Test 3": "8"}'>Splendor</td><td>8</td><td>8</td><td>8</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "6", "Test 2": "6", "Test 3": "6"}'>Stealth</td><td>6</td><td>6</td><td>6</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Steel</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Stone</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>Strength</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Temper</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "35", "Test 2": "35", "Test 3": "35"}'>Treachery</td><td>35</td><td>35</td><td>35</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Unbending Will</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Venom</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Voice of Reason</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "3", "Test 2": "3", "Test 3": "3"}'>Wealth</td><td>3</td><td>3</td><td>3</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "6", "Test 2": "6", "Test 3": "6"}'>White</td><td>6</td><td>6</td><td>6</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Wind</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>Wisdom</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "1", "Test 2": "1", "Test 3": "1"}'>Wrath</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "0", "Test 2": "0", "Test 3": "0"}'>Zephyr</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "274", "Test 2": "274", "Test 3": "274"}'>Call to Arms</td><td>274</td><td>274</td><td>274</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "5", "Test 2": "5", "Test 3": "5"}'>2693</td><td>5</td><td>5</td><td>5</td></tr>
+<tr><td class='usage-label' data-usage='{"Test 1": "2", "Test 2": "2", "Test 3": "2"}'>-26</td><td>2</td><td>2</td><td>2</td></tr>
+</table>
+
+        <script>
+        document.addEventListener('DOMContentLoaded', () => {
+        const canvas = document.getElementById('tooltipChart');
+        const ctx = canvas.getContext('2d');
+        let chart;
+
+        document.querySelectorAll('.usage-label').forEach(label => {
+            label.addEventListener('mouseenter', e => {
+            const data = JSON.parse(label.dataset.usage);
+            const labels = Object.keys(data);
+            const values = Object.values(data).map(v => parseInt(v));
+
+            if (chart) chart.destroy();
+            chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                labels: labels,
+                datasets: [{
+                    label: label.textContent + ' usage',
+                    data: values,
+                    borderColor: '#3b82f6',
+                    fill: false
+                }]
+                },
+                options: {
+                responsive: false,
+                animation: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { beginAtZero: true },
+                    x: { ticks: { maxRotation: 90, minRotation: 45 } }
+                }
+                }
+            });
+
+            canvas.style.left = (e.pageX + 10) + 'px';
+            canvas.style.top = (e.pageY - 80) + 'px';
+            canvas.style.display = 'block';
+            });
+
+            label.addEventListener('mouseleave', () => {
+            canvas.style.display = 'none';
+            });
+        });
+        });
+        </script>
+        
