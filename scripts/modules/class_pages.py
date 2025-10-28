@@ -2784,8 +2784,12 @@ class ClassPagesHTMLGenerator:
 </html>"""
 
 
-def generate_all_class_pages(all_characters, timestamp, is_hardcore=False):
-    """Main function to generate all class pages"""
+def generate_all_class_pages(all_characters, timestamp, is_hardcore=False, hc_level_filter=None):
+    """Main function to generate all class pages
+    
+    Note: Level filtering is now applied in the main script before calling this function,
+    but we keep the parameters for consistency and future use.
+    """
     
     print(f"🎭 Generating {('Hardcore' if is_hardcore else 'Softcore')} class pages...")
     
@@ -2826,8 +2830,12 @@ def generate_all_class_pages(all_characters, timestamp, is_hardcore=False):
     return generated_pages
 
 
-def generate_single_class_page(class_name, all_characters, timestamp, is_hardcore=False):
-    """Generate a single class page"""
+def generate_single_class_page(class_name, all_characters, timestamp, is_hardcore=False, hc_level_filter=None):
+    """Generate a single class page
+    
+    Note: Level filtering is now applied in the main script before calling this function,
+    but we keep the parameters for consistency and future use.
+    """
     
     analyzer = ClassPagesAnalyzer(all_characters, is_hardcore)
     html_generator = ClassPagesHTMLGenerator(is_hardcore, analyzer.skill_weights)

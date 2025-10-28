@@ -1937,8 +1937,12 @@ class ItemsEquipmentHTMLGenerator:
         return items_html
 
 
-def generate_items_equipment_page(all_characters, timestamp):
-    """Main function to generate the complete items and equipment page"""
+def generate_items_equipment_page(all_characters, timestamp, is_hardcore=False, hc_level_filter=None):
+    """Main function to generate the complete items and equipment page
+    
+    Note: Level filtering is now applied in the main script before calling this function,
+    but we keep the parameters for consistency and future use.
+    """
     
     # Analyze all items
     analyzer = ItemsEquipmentAnalyzer(all_characters)

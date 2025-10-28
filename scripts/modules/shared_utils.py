@@ -19,6 +19,34 @@ def load_character_data(json_file_path):
         return []
 
 
+def filter_characters_by_level(characters, min_level=None):
+    """Filter characters by minimum level if specified"""
+    if min_level is None:
+        return characters
+    
+    filtered_chars = []
+    for char in characters:
+        # Level can be in different locations depending on data source
+        level = None
+        if 'level' in char:
+            level = char['level']
+        elif 'Stats' in char and isinstance(char['Stats'], dict) and 'Level' in char['Stats']:
+            level = char['Stats']['Level']
+        elif 'Level' in char:
+            level = char['Level']
+        
+        if level is not None and level >= min_level:
+            filtered_chars.append(char)
+    
+    original_count = len(characters)
+    filtered_count = len(filtered_chars)
+    
+    if min_level and original_count != filtered_count:
+        print(f"🔍 Level filter applied: {original_count} → {filtered_count} characters (level {min_level}+)")
+    
+    return filtered_chars
+
+
 def get_current_season():
     """Get current season from API"""
     # Temporarily hardcoded to season 13

@@ -20,7 +20,7 @@ from modules.items_equipment_page import generate_items_equipment_page
 from modules.mercenary_page import generate_mercenary_page
 from modules.fun_facts_page import generate_fun_facts_page
 from modules.class_pages import generate_all_class_pages, generate_single_class_page
-from modules.shared_utils import load_character_data
+from modules.shared_utils import load_character_data, filter_characters_by_level
 
 # Import API integration for data updates
 import api_integration
@@ -64,6 +64,13 @@ def generate_all_pages(json_file_path="sc_ladder.json", is_hardcore=False, hc_le
     
     print(f"Loaded {len(all_characters)} characters")
     
+    # Apply level filtering if specified (for hardcore mode)
+    if is_hardcore and hc_level_filter:
+        all_characters = filter_characters_by_level(all_characters, hc_level_filter)
+        if not all_characters:
+            print(f"ERROR: No characters found at level {hc_level_filter}+ after filtering.")
+            return False
+    
     # Generate timestamp
     timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     
@@ -94,7 +101,7 @@ def generate_all_pages(json_file_path="sc_ladder.json", is_hardcore=False, hc_le
             
         # Generate Items & Equipment Page
         print("Generating items & equipment page...")
-        items_html = generate_items_equipment_page(all_characters, timestamp)
+        items_html = generate_items_equipment_page(all_characters, timestamp, is_hardcore, hc_level_filter)
         if items_html:
             items_filename = f"{prefix}Items.html"
             with open(items_filename, 'w', encoding='utf-8') as f:
@@ -105,7 +112,7 @@ def generate_all_pages(json_file_path="sc_ladder.json", is_hardcore=False, hc_le
             
         # Generate Mercenary Page
         print("Generating mercenary page...")
-        merc_html = generate_mercenary_page(all_characters, timestamp)
+        merc_html = generate_mercenary_page(all_characters, timestamp, is_hardcore, hc_level_filter)
         if merc_html:
             merc_filename = f"{prefix}Mercenaries.html"
             with open(merc_filename, 'w', encoding='utf-8') as f:
@@ -127,7 +134,7 @@ def generate_all_pages(json_file_path="sc_ladder.json", is_hardcore=False, hc_le
             
         # Generate Class Pages
         print("Generating class pages...")
-        class_pages = generate_all_class_pages(all_characters, timestamp, is_hardcore)
+        class_pages = generate_all_class_pages(all_characters, timestamp, is_hardcore, hc_level_filter)
         if class_pages:
             print(f"✓ Generated {len(class_pages)} class pages")
         else:
@@ -215,6 +222,13 @@ def generate_single_page(page_type, json_file_path="sc_ladder.json", is_hardcore
         print("ERROR: No character data loaded. Cannot generate page.")
         return False
     
+    # Apply level filtering if specified (for hardcore mode)
+    if is_hardcore and hc_level_filter:
+        all_characters = filter_characters_by_level(all_characters, hc_level_filter)
+        if not all_characters:
+            print(f"ERROR: No characters found at level {hc_level_filter}+ after filtering.")
+            return False
+    
     # Generate timestamp
     timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     
@@ -233,12 +247,12 @@ def generate_single_page(page_type, json_file_path="sc_ladder.json", is_hardcore
             
         elif page_type.lower() == 'items':
             print("Generating items & equipment page...")
-            html_content = generate_items_equipment_page(all_characters, timestamp)
+            html_content = generate_items_equipment_page(all_characters, timestamp, is_hardcore, hc_level_filter)
             filename = f"{prefix}ItemsEquipment.html"
             
         elif page_type.lower() == 'mercenary':
             print("Generating mercenary page...")
-            html_content = generate_mercenary_page(all_characters, timestamp)
+            html_content = generate_mercenary_page(all_characters, timestamp, is_hardcore, hc_level_filter)
             filename = f"{prefix}Mercenaries.html"
             
         elif page_type.lower() == 'funfacts':
@@ -252,7 +266,7 @@ def generate_single_page(page_type, json_file_path="sc_ladder.json", is_hardcore
                 print("Available classes: Barbarian, Druid, Amazon, Assassin, Necromancer, Paladin, Sorceress")
                 return False
             print(f"Generating {class_name} class page...")
-            result = generate_single_class_page(class_name, all_characters, timestamp, is_hardcore)
+            result = generate_single_class_page(class_name, all_characters, timestamp, is_hardcore, hc_level_filter)
             if result:
                 print(f"✓ {class_name} page saved as {result}")
                 return True

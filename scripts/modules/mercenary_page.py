@@ -450,8 +450,12 @@ def _generate_equipment_coverage_list(equipment_stats):
     return ''.join(coverage_items)
 
 
-def generate_mercenary_page(all_characters, timestamp):
-    """Main function to generate the complete mercenary analysis page"""
+def generate_mercenary_page(all_characters, timestamp, is_hardcore=False, hc_level_filter=None):
+    """Main function to generate the complete mercenary analysis page
+    
+    Note: Level filtering is now applied in the main script before calling this function,
+    but we keep the parameters for consistency and future use.
+    """
     
     # Analyze mercenary data
     analyzer = MercenaryAnalyzer(all_characters)
