@@ -1,0 +1,77 @@
+name: Daily Ladder Data Fetch
+
+on:
+  schedule:
+    # Run every day at 6:00 AM UTC
+    - cron: '0 6 * * *'
+  workflow_dispatch: # Allow manual triggering
+
+jobs:
+  fetch-ladder-data:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests matplotlib
+        
+    - name: Create necessary directories
+      run: |
+        mkdir -p charts
+        mkdir -p armory/font
+        
+    - name: Download armory font (if needed for charts)
+      run: |
+        # Create a simple fallback if font is not available
+        echo "Font directory created for potential future use"
+        
+    - name: Run ladder data fetch
+      run: |
+        cd scripts
+        python fetch_ladder_data.py
+        
+    - name: Move JSON files to root
+      run: |
+        # Move the generated JSON files to the root directory where other scripts expect them
+        if [ -f scripts/sc_ladder.json ]; then
+          mv scripts/sc_ladder.json .
+        fi
+        if [ -f scripts/hc_ladder.json ]; then
+          mv scripts/hc_ladder.json .
+        fi
+        
+    - name: Commit and push changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add -A
+        
+        # Check if there are changes to commit
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
+        else
+          # Create commit with timestamp
+          git commit -m "📊 Daily ladder data update - $(date -u '+%Y-%m-%d %H:%M UTC')"
+          git push
+        fi
+        
+    - name: Log completion
+      run: |
+        echo "✅ Daily ladder data fetch completed successfully"
+        if [ -f sc_ladder.json ]; then
+          echo "📈 SC Ladder: $(cat sc_ladder.json | jq '. | length') characters"
+        fi
+        if [ -f hc_ladder.json ]; then
+          echo "📈 HC Ladder: $(cat hc_ladder.json | jq '. | length') characters"
+        fi
