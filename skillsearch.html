@@ -1,10 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="icons/pod.ico">
     <title>Character Skill Search</title>
-    <link rel="stylesheet" type="text/css" href="css/test-css.css">
+    <link rel="stylesheet" type="text/css" href="./css/test-css.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body class="not-main">
+    <div class="is-clipped">
+        <div id="navbar-placeholder"></div>
+        <script>
+        fetch("templates/navbar.html")
+            .then(res => res.text())
+            .then(html => {
+            document.getElementById("navbar-placeholder").innerHTML = html;
+            });
+        </script>
+
+    <div class="hamburger hamburger2" onclick="toggleMenu()">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
+    <div class="top-buttons">
+        <a href="Home" class="top-button home-button" onclick="setActive('Home')"></a>
+        <a href="#" id="SC_HC" class="top-button"> </a>
+        <a href="Amazon" id="Amazon" class="top-button amazon-button"></a>
+        <a href="Assassin" id="Assassin" class="top-button assassin-button"></a>
+        <a href="Barbarian" id="Barbarian" class="top-button barbarian-button"></a>
+        <a href="Druid" id="Druid" class="top-button druid-button"></a>
+        <a href="Necromancer" id="Necromancer" class="top-button necromancer-button"></a>
+        <a href="Paladin" id="Paladin" class="top-button paladin-button"></a>
+        <a href="Sorceress" id="Sorceress" class="top-button sorceress-button"></a>
+        <a href="https://github.com/qordwasalreadytaken/pod-stats/blob/main/README.md" class="top-button about-button" target="_blank"></a>
+    </div>
     <style>
         /* Additional styles specific to search functionality */
         .search-form {
@@ -170,8 +199,7 @@
         }
     </style>
 </head>
-<body class="not-main">
-    <div class="main">
+
         <h1>Character Skill Search Beta</h1>
         <h3>Find characters with X number of points in one or more skills</h3>
         <div class="search-form">
@@ -491,6 +519,19 @@
         window.addEventListener('load', () => {
             console.log('Page loaded, ready to search');
         });
+
+    // Navigation functions
+    function toggleMenu() {
+        console.log('Toggle menu called');
+        // Hamburger menu functionality
+    }
+
+    function setActive(buttonName) {
+        console.log('Setting active button:', buttonName);
+        // Set active button functionality
+    }
     </script>
+
+    </div>
 </body>
 </html>
