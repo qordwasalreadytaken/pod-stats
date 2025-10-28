@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Item Search</title>
+    <link rel="stylesheet" type="text/css" href="css/test-css.css">
+    <style>
+        /* Additional styles specific to search functionality */
+        .search-form {
+            background-color: #3a3f44;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border: 2px solid #555;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #d5f2e3;
+            font-family: 'armory', sans-serif;
+        }
+        .form-group input[type="text"], 
+        .form-group input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #555;
+            border-radius: 4px;
+            font-size: 14px;
+            background-color: #232323;
+            color: #f5f5f5;
+            font-family: 'armory', sans-serif;
+        }
+        .form-group input[type="text"]:focus, 
+        .form-group input[type="number"]:focus {
+            border-color: #d5f2e3;
+            outline: none;
+            box-shadow: 0 0 5px rgba(213, 242, 227, 0.3);
+        }
+        .form-group small {
+            color: #e0e0e2;
+            font-family: 'armory', sans-serif;
+        }
+        .search-button {
+            background-color: #3a3f44;
+            color: #d5f2e3;
+            padding: 12px 24px;
+            border: 2px solid #555;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-family: 'armory', sans-serif;
+            font-weight: bold;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+        .search-button:hover {
+            background-color: #555;
+            border-color: #d5f2e3;
+            box-shadow: 0 0 10px rgba(213, 242, 227, 0.3);
+        }
+        .loading {
+            color: #e0e0e2;
+            font-style: italic;
+            font-family: 'armory', sans-serif;
+        }
+        .results {
+            margin-top: 20px;
+        }
+        .character-card {
+            background-color: #3a3f44;
+            border: 2px solid #555;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .character-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #d5f2e3;
+            margin-bottom: 8px;
+            font-family: 'd2', sans-serif;
+        }
+        .character-info {
+            color: #e0e0e2;
+            margin-bottom: 10px;
+            font-family: 'armory', sans-serif;
+        }
+        .character-info a {
+            color: #d5f2e3;
+            text-decoration: none;
+        }
+        .character-info a:hover {
+            text-decoration: underline;
+        }
+        .skills {
+            background-color: #232323;
+            padding: 10px;
+            border-radius: 4px;
+            border-left: 4px solid #d5f2e3;
+            margin-top: 10px;
+        }
+        .skills strong {
+            color: #d5f2e3;
+            font-family: 'armory', sans-serif;
+        }
+        .skill-item {
+            margin-bottom: 5px;
+            padding: 5px;
+            background-color: #3a3f44;
+            border-radius: 3px;
+            color: #f5f5f5;
+            font-family: 'armory', sans-serif;
+        }
+        .timing-info {
+            background-color: #3a3f44;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border: 2px solid #555;
+        }
+        .timing-info h3 {
+            color: #d5f2e3;
+            font-family: 'armory', sans-serif;
+            margin-top: 0;
+        }
+        .error {
+            background-color: #5a2a2a;
+            color: #ffaaaa;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border: 2px solid #aa5555;
+            font-family: 'armory', sans-serif;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .stat-card {
+            background-color: #232323;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            border: 1px solid #555;
+        }
+        .stat-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #d5f2e3;
+            font-family: 'd2', sans-serif;
+        }
+        .stat-label {
+            color: #e0e0e2;
+            font-size: 14px;
+            font-family: 'armory', sans-serif;
+        }
+        
+        /* Override main class margin to align left */
+        .main {
+            margin-left: 20px !important;
+            margin-right: 20px;
+            max-width: 800px;
+        }
+    </style>
+</head>
+<body class="not-main">
+    <div class="main">
+        <h1>Character Item Search Beta</h1>
+        <h3>Find characters using specific items</h3>
+        <div class="search-form">
+        <div class="search-section">
+            <h3>Search for Item</h3>
+            <input type="text" id="itemName" placeholder="Enter item name (e.g. Shako)">
+            
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="searchHardcore" onchange="onLeagueChange()"> 
+                    Search Hardcore (HC) characters
+                </label>
+                <small>
+                    Unchecked: Softcore (SC) | Checked: Hardcore (HC)
+                </small>
+            </div>
+            
+            <button class="search-button" onclick="performItemSearch()">Search Items</button>
+        </div>
+        </div>
+
+        <div id="results"></div>
+    </div>
+
+    <script>
+    async function performItemSearch() {
+        displayLoading();
+
+        if (!characterData) {
+            const loaded = await loadCharacterData();
+            if (!loaded) return;
+        }
+
+        const itemQuery = document.getElementById('itemName').value.trim().toLowerCase();
+        if (!itemQuery) {
+            displayError('Please enter an item name to search for.');
+            return;
+        }
+
+        const result = findCharactersWithItemMatch(itemQuery);
+        displayItemResults(result, itemQuery);
+    }
+
+    function findCharactersWithItemMatch(query) {
+        if (!characterData) {
+            displayError('Character data not loaded. Please try again.');
+            return [];
+        }
+
+        const searchStartTime = performance.now();
+        const matchingCharacters = [];
+        const fuzzyMatches = [];
+
+        for (const char of characterData) {
+            const charName = char.Name || "Unknown";
+            const charClass = char.Class || "Unknown";
+            const charLevel = char.Stats?.Level || "Unknown";
+            const equipped = char.Equipped || char.Equipment || []; // depends on your JSON schema
+
+            const matchedItems = [];
+
+            // Go through all equipped items array
+            for (const item of equipped) {
+                if (!item || !item.Title) continue;
+
+                const itemName = item.Title.toLowerCase();
+
+                // Fuzzy (substring) match
+                if (itemName.includes(query)) {
+                    matchedItems.push({
+                        slot: item.Worn || "Unknown",
+                        name: item.Title
+                    });
+                }
+            }
+
+            if (matchedItems.length > 0) {
+                matchingCharacters.push({
+                    name: charName,
+                    class: charClass,
+                    level: charLevel,
+                    items: matchedItems
+                });
+            }
+        }
+
+        const searchEndTime = performance.now();
+        const searchTime = searchEndTime - searchStartTime;
+
+        return {
+            characters: matchingCharacters,
+            searchTime: searchTime,
+            totalCharacters: characterData.length
+        };
+    }
+
+    function displayItemResults(result, query) {
+        const resultsDiv = document.getElementById('results');
+        const leagueName = currentLeague === 'hc' ? 'Hardcore' : 'Softcore';
+        const totalTime = dataLoadTime + result.searchTime;
+
+        let html = '';
+
+        if (result.characters.length === 0) {
+            html += `
+                <div class="results">
+                    <h3>No Results Found</h3>
+                    <p>No ${leagueName} characters found with items matching “${query}”.</p>
+                </div>
+            `;
+        } else {
+            html += `
+                <div class="results">
+                    <h3>Item Search Results - ${leagueName} League</h3>
+                    <p>Found ${result.characters.length} character(s) with items matching “${query}”:</p>
+            `;
+
+            for (const char of result.characters) {
+                const trendsClass = currentLeague === 'hc' ? `hc${char.class}` : char.class;
+                const trendsUrl = `https://trends.pathofdiablo.com/${trendsClass}#${char.name}`;
+
+                html += `
+                    <div class="character-card">
+                        <div class="character-name">${char.name}</div>
+                        <div class="character-info">
+                            Class: ${char.class} | Level: ${char.level} | League: ${leagueName} |
+                            <a href="${trendsUrl}" target="_blank" style="color: #007bff; text-decoration: none;">Trends Listing</a>
+                        </div>
+                        <div class="skills">
+                            <strong>Matching Items:</strong><br>
+                `;
+
+                for (const item of char.items) {
+                    html += `<div class="skill-item">${item.slot}: ${item.name}</div><br>`;
+                }
+
+                html += `
+                        </div>
+                    </div>
+                `;
+            }
+
+            html += '</div>';
+        }
+
+        html += `
+            <div class="timing-info">
+                <h3>Search Performance - ${leagueName} League</h3>
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="stat-number">${result.totalCharacters}</div>
+                        <div class="stat-label">Total Characters</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">${dataLoadTime.toFixed(2)}ms</div>
+                        <div class="stat-label">Data Load Time</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">${result.searchTime.toFixed(2)}ms</div>
+                        <div class="stat-label">Search Time</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">${totalTime.toFixed(2)}ms</div>
+                        <div class="stat-label">Total Time</div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        resultsDiv.innerHTML = html;
+    }
+
+    // Essential missing functions
+    let characterData = null;
+    let dataLoadTime = 0;
+    let currentLeague = 'sc'; // 'sc' for softcore, 'hc' for hardcore
+    let loadedLeague = null; // Track which league data is currently loaded
+
+    function onLeagueChange() {
+        const isHardcore = document.getElementById('searchHardcore').checked;
+        const newLeague = isHardcore ? 'hc' : 'sc';
+        
+        if (newLeague !== currentLeague) {
+            currentLeague = newLeague;
+            // Clear loaded data when switching leagues
+            characterData = null;
+            loadedLeague = null;
+            
+            // Clear results
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '';
+            
+            console.log(`Switched to ${newLeague.toUpperCase()} league. Data will be reloaded on next search.`);
+        }
+    }
+
+    async function loadCharacterData() {
+        const startTime = performance.now();
+        
+        // Check if we already have the correct data loaded
+        if (characterData && loadedLeague === currentLeague) {
+            console.log(`${currentLeague.toUpperCase()} data already loaded, skipping reload.`);
+            return true;
+        }
+        
+        const filename = currentLeague === 'hc' ? 'hc_ladder.json' : 'sc_ladder.json';
+        const leagueName = currentLeague === 'hc' ? 'Hardcore' : 'Softcore';
+        
+        try {
+            console.log(`Starting to fetch ${filename}...`);
+            const response = await fetch(filename);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            console.log(`Parsing ${leagueName} JSON data...`);
+            characterData = await response.json();
+            loadedLeague = currentLeague;
+            
+            const endTime = performance.now();
+            dataLoadTime = endTime - startTime;
+            
+            console.log(`${leagueName} data loaded successfully. ${characterData.length} characters loaded in ${dataLoadTime.toFixed(2)}ms`);
+            return true;
+            
+        } catch (error) {
+            console.error(`Error loading ${leagueName} character data:`, error);
+            displayError(`Failed to load ${leagueName} character data: ${error.message}. Make sure ${filename} is in the same directory as this HTML file.`);
+            return false;
+        }
+    }
+
+    function displayLoading() {
+        const resultsDiv = document.getElementById('results');
+        resultsDiv.innerHTML = '<div class="loading">Loading and searching data...</div>';
+    }
+
+    function displayError(message) {
+        const resultsDiv = document.getElementById('results');
+        resultsDiv.innerHTML = `<div class="error">${message}</div>`;
+    }
+    </script>
+
+</body>
+</html>
