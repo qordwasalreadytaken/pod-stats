@@ -197,15 +197,40 @@
             margin-right: 20px;
             max-width: 800px;
         }
+
+        /* Mercenary-specific styling */
+        .mercenary-info {
+            color: #d5a623;
+            font-size: 12px;
+            margin-bottom: 5px;
+            font-style: italic;
+        }
+        
+        .mercenary-equipment {
+            border-left-color: #d5a623 !important;
+        }
+        
+        .mercenary-item {
+            background-color: #4a3a2a !important;
+        }
+        
+        .character-item {
+            background-color: #2a4a2a !important;
+        }
     </style>
 </head>
 
-        <h1>Character Item Search Beta</h1>
-        <h3>Find characters using specific items</h3>
+        <h1>Character & Mercenary Item Search Beta</h1>
+        <h3>Find characters and mercenaries using specific items</h3>
+        <p style="color: #e0e0e2; margin-bottom: 20px; font-family: 'armory', sans-serif;">
+            Search through both character equipment and mercenary equipment. Results will be color-coded:<br>
+            <span style="background-color: #2a4a2a; padding: 2px 6px; border-radius: 3px;">Green: Character Equipment</span> | 
+            <span style="background-color: #4a3a2a; padding: 2px 6px; border-radius: 3px;">Brown: Mercenary Equipment</span>
+        </p>
         <div class="search-form">
         <div class="search-section">
             <h3>Search for Item</h3>
-            <input type="text" id="itemName" placeholder="Enter item name (e.g. Shako)">
+            <input type="text" id="itemName" placeholder="Enter item name (e.g. Shako, Insight, Treachery)">
             
             <div class="form-group">
                 <label>
@@ -214,6 +239,16 @@
                 </label>
                 <small>
                     Unchecked: Softcore (SC) | Checked: Hardcore (HC)
+                </small>
+            </div>
+
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="includeMercenaries" checked> 
+                    Include Mercenary Equipment
+                </label>
+                <small>
+                    Search both character equipment and mercenary equipment
                 </small>
             </div>
             
@@ -251,37 +286,63 @@
 
         const searchStartTime = performance.now();
         const matchingCharacters = [];
-        const fuzzyMatches = [];
+        const includeMercenaries = document.getElementById('includeMercenaries').checked;
 
         for (const char of characterData) {
             const charName = char.Name || "Unknown";
             const charClass = char.Class || "Unknown";
             const charLevel = char.Stats?.Level || "Unknown";
-            const equipped = char.Equipped || char.Equipment || []; // depends on your JSON schema
+            const equipped = char.Equipped || char.Equipment || []; // Character equipment
+            const mercEquipped = char.MercenaryEquipped || []; // Mercenary equipment
 
             const matchedItems = [];
 
-            // Go through all equipped items array
+            // Search character equipment
             for (const item of equipped) {
                 if (!item || !item.Title) continue;
 
                 const itemName = item.Title.toLowerCase();
 
-                // Fuzzy (substring) match
                 if (itemName.includes(query)) {
                     matchedItems.push({
                         slot: item.Worn || "Unknown",
-                        name: item.Title
+                        name: item.Title,
+                        type: "Character"
                     });
                 }
             }
 
+            // Search mercenary equipment if enabled
+            if (includeMercenaries) {
+                for (const item of mercEquipped) {
+                    if (!item || !item.Title) continue;
+
+                    const itemName = item.Title.toLowerCase();
+
+                    if (itemName.includes(query)) {
+                        matchedItems.push({
+                            slot: item.Worn || "Unknown",
+                            name: item.Title,
+                            type: "Mercenary"
+                        });
+                    }
+                }
+            }
+
             if (matchedItems.length > 0) {
+                // Add mercenary info if character has a mercenary
+                const mercInfo = {
+                    type: char.MercenaryType || null,
+                    name: char.MercenaryName || null,
+                    level: char.MercenaryLevel || null
+                };
+
                 matchingCharacters.push({
                     name: charName,
                     class: charClass,
                     level: charLevel,
-                    items: matchedItems
+                    items: matchedItems,
+                    mercenary: mercInfo
                 });
             }
         }
@@ -292,7 +353,8 @@
         return {
             characters: matchingCharacters,
             searchTime: searchTime,
-            totalCharacters: characterData.length
+            totalCharacters: characterData.length,
+            includedMercenaries: includeMercenaries
         };
     }
 
@@ -307,15 +369,33 @@
             html += `
                 <div class="results">
                     <h3>No Results Found</h3>
-                    <p>No ${leagueName} characters found with items matching “${query}”.</p>
+                    <p>No ${leagueName} characters found with items matching "${query}" in character or mercenary equipment.</p>
                 </div>
             `;
         } else {
             html += `
                 <div class="results">
                     <h3>Item Search Results - ${leagueName} League</h3>
-                    <p>Found ${result.characters.length} character(s) with items matching “${query}”:</p>
+                    <p>Found ${result.characters.length} character(s) with items matching "${query}" (Character & Mercenary Equipment):</p>
             `;
+
+            // Count character vs mercenary matches
+            let totalCharMatches = 0;
+            let totalMercMatches = 0;
+            for (const char of result.characters) {
+                totalCharMatches += char.items.filter(item => item.type === "Character").length;
+                totalMercMatches += char.items.filter(item => item.type === "Mercenary").length;
+            }
+
+            if (totalCharMatches > 0 || totalMercMatches > 0) {
+                let summaryText = `<span style="color: #90ee90;">${totalCharMatches} character equipment</span>`;
+                if (result.includedMercenaries) {
+                    summaryText += ` | <span style="color: #deb887;">${totalMercMatches} mercenary equipment</span>`;
+                }
+                html += `<div style="background-color: #3a3f44; padding: 10px; border-radius: 4px; margin-bottom: 15px;">
+                    <strong>Match Summary:</strong> ${summaryText}
+                </div>`;
+            }
 
             for (const char of result.characters) {
                 const trendsClass = currentLeague === 'hc' ? `hc${char.class}` : char.class;
@@ -328,18 +408,44 @@
                             Class: ${char.class} | Level: ${char.level} | League: ${leagueName} |
                             <a href="${trendsUrl}" target="_blank" style="color: #007bff; text-decoration: none;">Trends Listing</a>
                         </div>
-                        <div class="skills">
-                            <strong>Matching Items:</strong><br>
                 `;
 
-                for (const item of char.items) {
-                    html += `<div class="skill-item">${item.slot}: ${item.name}</div><br>`;
+                // Separate character and mercenary items
+                const characterItems = char.items.filter(item => item.type === "Character");
+                const mercenaryItems = char.items.filter(item => item.type === "Mercenary");
+
+                // Display character equipment matches
+                if (characterItems.length > 0) {
+                    html += `
+                        <div class="skills">
+                            <strong>Character Equipment Matches:</strong><br>
+                    `;
+                    for (const item of characterItems) {
+                        html += `<div class="skill-item" style="background-color: #2a4a2a;">${item.slot}: ${item.name}</div><br>`;
+                    }
+                    html += '</div>';
                 }
 
-                html += `
-                        </div>
-                    </div>
-                `;
+                // Display mercenary equipment matches
+                if (mercenaryItems.length > 0) {
+                    const mercType = char.mercenary.type || "Unknown Mercenary";
+                    const mercName = char.mercenary.name || "Unknown";
+                    const mercLevel = char.mercenary.level || "Unknown";
+
+                    html += `
+                        <div class="skills" style="border-left-color: #d5a623;">
+                            <strong>Mercenary Equipment Matches:</strong><br>
+                            <div style="color: #d5a623; font-size: 12px; margin-bottom: 5px;">
+                                ${mercType} "${mercName}" (Level ${mercLevel})
+                            </div>
+                    `;
+                    for (const item of mercenaryItems) {
+                        html += `<div class="skill-item" style="background-color: #4a3a2a;">${item.slot}: ${item.name}</div><br>`;
+                    }
+                    html += '</div>';
+                }
+
+                html += `</div>`;
             }
 
             html += '</div>';

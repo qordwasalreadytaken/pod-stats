@@ -5,6 +5,7 @@ This file demonstrates how to use the new modular system to generate pages
 
 python3 scripts/generate_pages.py --mode hc --page all --data hc_ladder.json --hc-level-filter 70
 python3 scripts/generate_pages.py --page all --mode sc
+python3 scripts/generate_pages.py --page funfacts --mode sc
 
 """
 

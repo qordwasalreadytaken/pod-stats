@@ -4,7 +4,8 @@ Handles all fun facts analysis and HTML generation for the dedicated fun facts p
 """
 
 import statistics
-from collections import defaultdict
+import requests
+from collections import defaultdict, Counter
 from datetime import datetime
 from modules.home_page import fetch_1k_ladder_characters, analyze_api_class_distribution, HomePageGenerator
 
@@ -82,13 +83,17 @@ class FunFactsAnalyzer:
         # Analyze Cannot Be Frozen characters
         cbf_data = self._analyze_cannot_be_frozen()
         
+        # Analyze top accounts (this fetches fresh API data)
+        top_accounts_data = self.analyze_top_accounts()
+        
         return {
             'character_count': character_count,
             'averages': averages,
             'medians': medians,
             'top_stats': top_stats,
             'undead_data': undead_data,
-            'cbf_data': cbf_data
+            'cbf_data': cbf_data,
+            'top_accounts_data': top_accounts_data
         }
     
     def _get_top_characters_all_stats(self):
@@ -258,6 +263,118 @@ class FunFactsAnalyzer:
         
         return level_ranges
     
+    def analyze_top_accounts(self):
+        """
+        Analyze top accounts and their character distribution patterns.
+        Fetches fresh data from the API to analyze the top 1000 ladder characters.
+        """
+        def get_top_accounts_with_class(account_class_counts, class_code, min_count=2, top_n=5):
+            return [
+                (acct, counts)
+                for acct, counts in sorted(account_class_counts.items(), key=lambda x: x[1].get(class_code, 0), reverse=True)
+                if counts.get(class_code, 0) >= min_count
+            ][:top_n]
+
+        def fetch_1kladder_characters(base_ladder_url, start_page=1, end_page=5):
+            """Fetch all characters from a range of ladder pages, skipping page 0 by default."""
+            all_characters = []
+            for page in range(start_page, end_page + 1):  # Inclusive range
+                ladder_url = f"{base_ladder_url}{page}"
+                print(f"Fetching {ladder_url}")
+                try:
+                    response = requests.get(ladder_url)
+                    if response.status_code == 200:
+                        ladder_data = response.json()
+                        all_characters.extend(ladder_data.get("ladder", []))
+                    else:
+                        print(f"⚠️ Failed to fetch page {page}: {response.status_code}")
+                except Exception as e:
+                    print(f"⚠️ Error fetching page {page}: {e}")
+            return all_characters
+
+        # Fetch fresh ladder data from API
+        base_ladder_url = "https://beta.pathofdiablo.com/api/ladder/13/0/0/"
+        
+        try:
+            all_characters = fetch_1kladder_characters(base_ladder_url, start_page=1, end_page=5)
+            all_characters = [char for char in all_characters if char.get('account')]
+        except Exception as e:
+            print(f"Failed to fetch ladder data: {e}")
+            return {}
+
+        if not all_characters:
+            print("No character data available for top account analysis")
+            return {}
+
+        level_counter = Counter(char['level'] for char in all_characters)
+
+        # Level 99 account analysis
+        level99_accounts = defaultdict(int)
+        for char in all_characters:
+            if char['level'] == 99:
+                level99_accounts[char['account']] += 1
+
+        top_99s = sorted(level99_accounts.items(), key=lambda x: x[1], reverse=True)[:3]
+
+        # Account class distribution analysis
+        account_class_counts = defaultdict(lambda: defaultdict(int))
+        for char in all_characters:
+            acct = char['account']
+            class_code = char['charClass']  # e.g., "sor"
+            account_class_counts[acct][class_code] += 1
+
+        # Get top accounts for each class
+        most_zons = get_top_accounts_with_class(account_class_counts, "ama")
+        most_sins = get_top_accounts_with_class(account_class_counts, "asn")
+        most_barbs = get_top_accounts_with_class(account_class_counts, "bar")
+        most_druids = get_top_accounts_with_class(account_class_counts, "dru")
+        most_necros = get_top_accounts_with_class(account_class_counts, "nec")
+        most_pallys = get_top_accounts_with_class(account_class_counts, "pal")
+        most_sorcs = get_top_accounts_with_class(account_class_counts, "sor")
+
+        # All 7 classes analysis
+        CLASS_CODES = {"ama", "asn", "bar", "dru", "nec", "pal", "sor"}
+        account_class_sets = defaultdict(set)
+
+        for char in all_characters:
+            acct = char['account']
+            char_class = char['charClass']
+            account_class_sets[acct].add(char_class)
+
+        complete_class_accounts = [acct for acct, classes in account_class_sets.items() if CLASS_CODES.issubset(classes)]
+
+        # Account statistics (XP, levels, count)
+        account_stats = defaultdict(lambda: {'count': 0, 'levels': 0, 'xp': 0})
+
+        for char in all_characters:
+            acct = char.get('account')
+            if not acct:
+                continue
+            account_stats[acct]['count'] += 1
+            account_stats[acct]['levels'] += char.get('level', 0)
+            account_stats[acct]['xp'] += char.get('exp', 0)
+
+        # Sort by different metrics
+        sorted_by_xp = sorted(account_stats.items(), key=lambda x: x[1]['xp'], reverse=True)[:5]
+        sorted_by_levels = sorted(account_stats.items(), key=lambda x: x[1]['levels'], reverse=True)[:5]
+        sorted_by_count = sorted(account_stats.items(), key=lambda x: x[1]['count'], reverse=True)[:10]
+
+        return {
+            'level_counter': level_counter,
+            'top_99s': top_99s,
+            'most_zons': most_zons,
+            'most_sins': most_sins,
+            'most_barbs': most_barbs,
+            'most_druids': most_druids,
+            'most_necros': most_necros,
+            'most_pallys': most_pallys,
+            'most_sorcs': most_sorcs,
+            'complete_class_accounts': complete_class_accounts,
+            'sorted_by_xp': sorted_by_xp,
+            'sorted_by_levels': sorted_by_levels,
+            'sorted_by_count': sorted_by_count
+        }
+    
     def analyze_rare_builds(self):
         """Identify rare or unusual build patterns"""
         # This could analyze skill combinations, unusual item combinations, etc.
@@ -280,6 +397,7 @@ class FunFactsHTMLGenerator:
         # Generate individual sections
         overview_html = FunFactsHTMLGenerator._generate_overview_section(analysis_data)
         class_1k_html = FunFactsHTMLGenerator._generate_1k_class_distribution_section(mode, mode_prefix, level_filter_text)
+        top_accounts_html = FunFactsHTMLGenerator._generate_top_accounts_section(analysis_data.get('top_accounts_data', {}))
         top_stats_html = FunFactsHTMLGenerator._generate_top_stats_section(analysis_data['top_stats'])
         averages_html = FunFactsHTMLGenerator._generate_averages_section(
             analysis_data['averages'], analysis_data['medians']
@@ -336,6 +454,10 @@ class FunFactsHTMLGenerator:
                     <hr>
                                         
                     {overview_html}
+                    
+                    <hr>
+                    
+                    {top_accounts_html}
                     
                     <hr>
                   
@@ -587,6 +709,130 @@ class FunFactsHTMLGenerator:
                 <h3>Gold Find Statistics</h3>
                 <p><strong>Average Gold Find:</strong> {averages['gf']:.2f}</p>
                 <p><strong>Median Gold Find:</strong> {medians['gf']:.2f}</p>
+            </div>
+        </div>
+        """
+
+    @staticmethod
+    def _generate_top_accounts_section(top_accounts_data):
+        """Generate the top accounts analysis section based on kfun_facts_html from github-make-homes.py"""
+        
+        if not top_accounts_data:
+            return "<p>No top accounts data available.</p>"
+        
+        level_counter = top_accounts_data.get('level_counter', {})
+        top_99s = top_accounts_data.get('top_99s', [])
+        most_zons = top_accounts_data.get('most_zons', [])
+        most_sins = top_accounts_data.get('most_sins', [])
+        most_barbs = top_accounts_data.get('most_barbs', [])
+        most_druids = top_accounts_data.get('most_druids', [])
+        most_necros = top_accounts_data.get('most_necros', [])
+        most_pallys = top_accounts_data.get('most_pallys', [])
+        most_sorcs = top_accounts_data.get('most_sorcs', [])
+        complete_class_accounts = top_accounts_data.get('complete_class_accounts', [])
+        sorted_by_xp = top_accounts_data.get('sorted_by_xp', [])
+        sorted_by_levels = top_accounts_data.get('sorted_by_levels', [])
+        sorted_by_count = top_accounts_data.get('sorted_by_count', [])
+
+        return f"""
+        <h2 id="top-account-stats">
+            Top Account Statistics 
+            <a href="#top-account-stats" class="anchor-link">
+                <img src="icons/anchor.png" alt="🔗" class="anchor-icon">
+            </a>
+        </h2>
+
+        <!-- Level 95+ Summary -->
+        <div class="fun-facts-row">
+            <div class="fun-facts-column">
+            <h4>High-Level Character Counts</h4>
+            <ul>
+                {"".join(f"<li>Level {lvl}: {count} characters</li>" for lvl, count in level_counter.items() if lvl in [99, 98, 97, 96, 95])}
+            </ul>
+        </div>
+        <!-- Level 99 Accounts -->
+            <div class="fun-facts-column">
+        <h4>Top Accounts by Number of Level 99 Characters</h4>
+        <ul>
+            {"".join(
+                f"<li><a href='https://beta.pathofdiablo.com/ladder?account/{acct}'>{acct}</a>: {count} characters at level 99</li>"
+                for acct, count in top_99s
+            )}
+        </ul> 
+       </div></div>
+
+        <!-- Per-Class Top 5 Lists -->
+        <div class="fun-facts-row">
+            <div class="fun-facts-column">
+                <h3>Accounts with multiple Amazons in the top 1K</h3>
+                <ul>{"".join(f"<li><a href='https://beta.pathofdiablo.com/account/{acct}'>{acct}</a>: {count.get('ama', 0)} Amazons</li>" for acct, count in most_zons)}</ul>
+            </div>
+            <div class="fun-facts-column">
+                <h3>Accounts with multiple Assassins in the top 1K</h3>
+                <ul>{"".join(f"<li><a href='https://beta.pathofdiablo.com/account/{acct}'>{acct}</a>: {count.get('asn', 0)} Assassins</li>" for acct, count in most_sins)}</ul>
+            </div>
+        </div>
+        <div class="fun-facts-row">
+            <div class="fun-facts-column">
+                <h3>Accounts with multiple Barbarians in the top 1K</h3>
+                <ul>{"".join(f"<li><a href='https://beta.pathofdiablo.com/account/{acct}'>{acct}</a>: {count.get('bar', 0)} Barbarians</li>" for acct, count in most_barbs)}</ul>
+            </div>
+            <div class="fun-facts-column">
+                <h3>Accounts with multiple Druids in the top 1K</h3>
+                <ul>{"".join(f"<li><a href='https://beta.pathofdiablo.com/account/{acct}'>{acct}</a>: {count.get('dru', 0)} Druids</li>" for acct, count in most_druids)}</ul>
+            </div>
+        </div>
+        <div class="fun-facts-row">
+            <div class="fun-facts-column">
+                <h3>Accounts with multiple Necromancers in the top 1K</h3>
+                <ul>{"".join(f"<li><a href='https://beta.pathofdiablo.com/account/{acct}'>{acct}</a>: {count.get('nec', 0)} Necromancers</li>" for acct, count in most_necros)}</ul>
+            </div>
+            <div class="fun-facts-column">
+                <h3>Accounts with multiple Paladins in the top 1K</h3>
+                <ul>{"".join(f"<li><a href='https://beta.pathofdiablo.com/account/{acct}'>{acct}</a>: {count.get('pal', 0)} Paladins</li>" for acct, count in most_pallys)}</ul>
+            </div>
+        </div>
+        <div class="fun-facts-row">
+            <div class="fun-facts-column">
+                <h3>Accounts with multiple Sorceresses in the top 1K</h3>
+                <ul>{"".join(f"<li><a href='https://beta.pathofdiablo.com/account/{acct}'>{acct}</a>: {count.get('sor', 0)} Sorceresses</li>" for acct, count in most_sorcs)}</ul>
+            </div>
+        </div>
+
+        <!-- All 7 Classes -->
+        <h3>Accounts with all 7 classes in the top 1K: {len(complete_class_accounts)}</h3>
+        <p>{", ".join(f"<a href='https://beta.pathofdiablo.com/ladder?account={acct}'>{acct}</a>" for acct in complete_class_accounts[:5])}</p>
+
+        <!-- XP / Level / Count -->
+        <div class="fun-facts-row">
+            <div class="fun-facts-column">
+                <h3>Accounts with the most experience</h3>
+                    <ul>
+                        {"".join(
+                            f"<li><a href='https://beta.pathofdiablo.com/account/{acct}'>{acct}</a>: {stats['xp']:,} XP, {stats['count']} chars, avg level {stats['levels']/stats['count']:.2f}</li>"
+                            for acct, stats in sorted_by_xp
+                        )}
+                    </ul>
+           </div>
+            <div class="fun-facts-column">
+                <h3>Accounts with the most Levels</h3>
+                    <ul>
+                        {"".join(
+                            f"<li><a href='https://beta.pathofdiablo.com/account/{acct}'>{acct}</a>: {stats['levels']} levels, {stats['count']} chars, avg level {stats['levels']/stats['count']:.2f}</li>"
+                            for acct, stats in sorted_by_levels
+                        )}
+                    </ul>
+            </div>
+        </div>
+        <div class="fun-facts-row">
+            <div class="fun-facts-column">
+                <h3>Accounts with the most characters in the top 1K</h3>
+                    <ul>
+                        {"".join(
+                            f"<li><a href='https://beta.pathofdiablo.com/account/{acct}'>{acct}</a>: {stats['count']} characters, total level {stats['levels']}, avg level {stats['levels']/stats['count']:.2f}</li>"
+                            for acct, stats in sorted_by_count
+                        )}
+                    </ul>
             </div>
         </div>
         """
