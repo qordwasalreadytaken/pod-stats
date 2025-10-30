@@ -22,6 +22,26 @@ from modules.fun_facts_page import generate_fun_facts_page
 from modules.class_pages import generate_all_class_pages, generate_single_class_page
 from modules.shared_utils import load_character_data, filter_characters_by_level
 
+# Import special analysis modules
+try:
+    from modules.notazons_analysis import analyze_notazons
+    from modules.unique_projectiles_analysis import analyze_unique_projectiles
+    from modules.dual_aura_analysis import analyze_dual_aura_items
+except ImportError:
+    # Try importing directly if modules prefix doesn't work
+    try:
+        import notazons_analysis
+        import unique_projectiles_analysis
+        import dual_aura_analysis
+        analyze_notazons = notazons_analysis.analyze_notazons
+        analyze_unique_projectiles = unique_projectiles_analysis.analyze_unique_projectiles
+        analyze_dual_aura_items = dual_aura_analysis.analyze_dual_aura_items
+    except ImportError:
+        print("Warning: Could not import special analysis modules")
+        analyze_notazons = None
+        analyze_unique_projectiles = None
+        analyze_dual_aura_items = None
+
 # Import API integration for data updates
 import api_integration
 
@@ -140,8 +160,55 @@ def generate_all_pages(json_file_path="sc_ladder.json", is_hardcore=False, hc_le
         else:
             print("✗ Failed to generate class pages")
             
+        # Generate Special Analysis Pages
+        print("Generating special analysis pages...")
+        league = "hc" if is_hardcore else "sc"
+        special_results = {}
+        
+        if analyze_notazons:
+            try:
+                print("  - Notazons Analysis...")
+                notazons_count = analyze_notazons(league)
+                special_results['notazons'] = notazons_count
+                print(f"    ✓ Notazons: {notazons_count} non-Amazon bow users")
+            except Exception as e:
+                print(f"    ✗ Notazons analysis failed: {e}")
+        else:
+            print("  ✗ Notazons analysis module not available")
+            
+        if analyze_unique_projectiles:
+            try:
+                print("  - Unique Projectiles Analysis...")
+                projectiles_count = analyze_unique_projectiles(league)
+                special_results['projectiles'] = projectiles_count
+                print(f"    ✓ Unique Projectiles: {projectiles_count} users")
+            except Exception as e:
+                print(f"    ✗ Unique Projectiles analysis failed: {e}")
+        else:
+            print("  ✗ Unique Projectiles analysis module not available")
+            
+        if analyze_dual_aura_items:
+            try:
+                print("  - Dual Aura Items Analysis...")
+                aura_count = analyze_dual_aura_items(league)
+                special_results['aura'] = aura_count
+                print(f"    ✓ Dual Aura Items: {aura_count} users")
+            except Exception as e:
+                print(f"    ✗ Dual Aura Items analysis failed: {e}")
+        else:
+            print("  ✗ Dual Aura Items analysis module not available")
+            
+        if special_results:
+            print(f"✓ Generated {len(special_results)} special analysis pages")
+        else:
+            print("✗ No special analysis pages generated")
+            
         print(f"\n🎉 Page generation complete!")
         print(f"Generated pages for {len(all_characters)} characters")
+        if special_results:
+            print("Special analyses:")
+            for analysis, count in special_results.items():
+                print(f"  - {analysis.title()}: {count}")
         print(f"Timestamp: {timestamp}")
         
         return True
