@@ -1,0 +1,120 @@
+name: Daily Update with Season Protection
+
+on:
+  schedule:
+    # Run every day at 8:00 AM UTC (after daily ladder fetch)
+    - cron: '0 8 * * *'
+  workflow_dispatch: # Allow manual triggering
+
+permissions:
+  contents: write  # Allow the workflow to write to the repository
+
+jobs:
+  daily-update:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+    
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y chromium-browser
+        
+    - name: Install Python dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r scripts/requirements.txt
+        
+    - name: Create necessary directories
+      run: |
+        mkdir -p charts
+        mkdir -p armory/font
+        mkdir -p css
+        mkdir -p js
+        
+    - name: Download required assets
+      run: |
+        # Download avqest.ttf font if needed
+        if [ ! -f armory/font/avqest.ttf ]; then
+          echo "Font file not found, creating placeholder"
+          touch armory/font/avqest.ttf
+        fi
+        
+    - name: Check season status
+      id: season_check
+      run: |
+        cd scripts
+        # This will check if the season is frozen and exit gracefully if so
+        python -c "
+        from api_integration import detect_season_state
+        result = detect_season_state()
+        if result.get('frozen', False):
+            print('🔒 Season is frozen - skipping daily update')
+            print('season_frozen=true' >> '$GITHUB_OUTPUT')
+            exit(0)
+        else:
+            print('✅ Season is active - proceeding with update')
+            print('season_frozen=false' >> '$GITHUB_OUTPUT')
+        "
+        
+    - name: Run daily page generation
+      if: steps.season_check.outputs.season_frozen == 'false'
+      run: |
+        cd scripts
+        echo "🔄 Running daily page generation..."
+        python generate_pages.py --page all --mode sc
+        python generate_pages.py --page all --mode hc
+        
+    - name: Generate summary report
+      if: steps.season_check.outputs.season_frozen == 'false'
+      run: |
+        echo "📊 Daily Update Summary:"
+        if [ -f sc_ladder.json ]; then
+          SC_COUNT=$(cat sc_ladder.json | jq '. | length')
+          echo "📈 Softcore Characters: $SC_COUNT"
+        fi
+        if [ -f hc_ladder.json ]; then
+          HC_COUNT=$(cat hc_ladder.json | jq '. | length')
+          echo "📈 Hardcore Characters: $HC_COUNT"
+        fi
+        echo "📅 Update Date: $(date -u '+%Y-%m-%d %H:%M UTC')"
+        
+    - name: Commit and push changes
+      if: steps.season_check.outputs.season_frozen == 'false'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action Daily Update"
+        git add -A
+        
+        # Check if there are changes to commit
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
+        else
+          git commit -m "📊 Daily page update - $(date -u '+%Y-%m-%d %H:%M UTC')"
+          git push origin HEAD:main
+        fi
+        
+    - name: Log season frozen status
+      if: steps.season_check.outputs.season_frozen == 'true'
+      run: |
+        echo "🔒 Daily update skipped - season is frozen"
+        echo "ℹ️  This is expected behavior during season transitions"
+        echo "🗄️  Use the manual archive workflow or force update workflow if needed"
+        
+    - name: Log completion
+      if: steps.season_check.outputs.season_frozen == 'false'
+      run: |
+        echo "✅ Daily update completed successfully"
+        echo "📄 Generated pages for both SC and HC modes"
+        echo "⏰ Next update scheduled for tomorrow at 8:00 AM UTC"

@@ -1,0 +1,133 @@
+name: Manual Archive Creation
+
+on:
+  workflow_dispatch:
+    inputs:
+      archive_type:
+        description: 'Type of archive to create'
+        required: true
+        default: 'monthly'
+        type: choice
+        options:
+        - monthly
+        - final
+      force_creation:
+        description: 'Force archive creation (ignore season freeze)'
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: write  # Allow the workflow to write to the repository
+
+jobs:
+  create-manual-archive:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        fetch-depth: 0  # Fetch all history for proper archiving
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+    
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y chromium-browser
+        
+    - name: Install Python dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r scripts/requirements.txt
+        
+    - name: Create necessary directories
+      run: |
+        mkdir -p charts
+        mkdir -p armory/font
+        mkdir -p Season
+        mkdir -p recovery_points
+        
+    - name: Download required assets
+      run: |
+        # Download avqest.ttf font if needed
+        if [ ! -f armory/font/avqest.ttf ]; then
+          echo "Font file not found, creating placeholder"
+          touch armory/font/avqest.ttf
+        fi
+        
+    - name: Run manual archive generation
+      run: |
+        cd scripts
+        if [ "${{ github.event.inputs.force_creation }}" = "true" ]; then
+          echo "🔧 Running with force flag enabled"
+          python api_integration.py archive ${{ github.event.inputs.archive_type }} --force
+        else
+          echo "📋 Running standard archive creation"
+          python api_integration.py archive ${{ github.event.inputs.archive_type }}
+        fi
+        
+    - name: Verify archive creation
+      run: |
+        # Check if archive was created successfully
+        CURRENT_SEASON=$(ls Season/ | tail -1)
+        ARCHIVE_TYPE="${{ github.event.inputs.archive_type }}"
+        
+        if [ "$ARCHIVE_TYPE" = "final" ]; then
+          EXPECTED_DIR="Season/${CURRENT_SEASON}/Final"
+        else
+          # For monthly, check for current month directory
+          CURRENT_MONTH=$(date +%B)
+          EXPECTED_DIR="Season/${CURRENT_SEASON}/${CURRENT_MONTH}"
+        fi
+        
+        if [ -d "$EXPECTED_DIR" ]; then
+          echo "✅ $ARCHIVE_TYPE archive created successfully at $EXPECTED_DIR"
+          ls -la "$EXPECTED_DIR"
+        else
+          echo "❌ Archive creation may have failed - expected directory $EXPECTED_DIR not found"
+          echo "Available directories:"
+          ls -la Season/${CURRENT_SEASON}/ || echo "Season directory not found"
+          exit 1
+        fi
+        
+    - name: Commit and push archive
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action Manual Archive"
+        git add -A
+        
+        # Check if there are changes to commit
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
+        else
+          # Create commit with archive info
+          CURRENT_SEASON=$(ls Season/ | tail -1)
+          ARCHIVE_TYPE="${{ github.event.inputs.archive_type }}"
+          FORCE_FLAG=""
+          if [ "${{ github.event.inputs.force_creation }}" = "true" ]; then
+            FORCE_FLAG=" (forced)"
+          fi
+          
+          git commit -m "🗄️ Manual $ARCHIVE_TYPE archive created: Season ${CURRENT_SEASON}${FORCE_FLAG} - $(date -u '+%Y-%m-%d %H:%M UTC')"
+          git push origin HEAD:main
+        fi
+        
+    - name: Log completion
+      run: |
+        echo "✅ Manual archive generation completed successfully"
+        echo "📊 Archive Type: ${{ github.event.inputs.archive_type }}"
+        echo "🔧 Force Creation: ${{ github.event.inputs.force_creation }}"
+        CURRENT_SEASON=$(ls Season/ | tail -1)
+        echo "📁 Season Directory: ${CURRENT_SEASON}"
+        if [ -d "Season/${CURRENT_SEASON}" ]; then
+          echo "📁 Available Archives:"
+          ls -la Season/${CURRENT_SEASON}/
+        fi

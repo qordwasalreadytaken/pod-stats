@@ -1,0 +1,156 @@
+name: Force Page Update
+
+on:
+  workflow_dispatch:
+    inputs:
+      update_mode:
+        description: 'Update mode to run'
+        required: true
+        default: 'both'
+        type: choice
+        options:
+        - both
+        - softcore
+        - hardcore
+      page_type:
+        description: 'Which pages to generate'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+        - all
+        - home
+        - funfacts
+        - items
+        - mercenaries
+        - class
+      reason:
+        description: 'Reason for force update (for logging)'
+        required: false
+        default: 'Manual force update'
+        type: string
+
+permissions:
+  contents: write  # Allow the workflow to write to the repository
+
+jobs:
+  force-update:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+    
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y chromium-browser
+        
+    - name: Install Python dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r scripts/requirements.txt
+        
+    - name: Create necessary directories
+      run: |
+        mkdir -p charts
+        mkdir -p armory/font
+        mkdir -p css
+        mkdir -p js
+        
+    - name: Download required assets
+      run: |
+        # Download avqest.ttf font if needed
+        if [ ! -f armory/font/avqest.ttf ]; then
+          echo "Font file not found, creating placeholder"
+          touch armory/font/avqest.ttf
+        fi
+        
+    - name: Check current season status
+      run: |
+        cd scripts
+        echo "🔍 Checking current season status..."
+        python -c "
+        from api_integration import detect_season_state
+        result = detect_season_state()
+        if result.get('frozen', False):
+            print('⚠️  Season is currently frozen - proceeding with force update')
+            print(f'Season: {result.get(\"season\", \"Unknown\")}')
+            print(f'Status: {result.get(\"status\", \"Unknown\")}')
+        else:
+            print('✅ Season is active - force update not strictly necessary but proceeding')
+            print(f'Season: {result.get(\"season\", \"Unknown\")}')
+        "
+        
+    - name: Run force page generation - Softcore
+      if: github.event.inputs.update_mode == 'softcore' || github.event.inputs.update_mode == 'both'
+      run: |
+        cd scripts
+        echo "🔧 Force generating Softcore pages..."
+        python generate_pages.py --page ${{ github.event.inputs.page_type }} --mode sc --force
+        
+    - name: Run force page generation - Hardcore
+      if: github.event.inputs.update_mode == 'hardcore' || github.event.inputs.update_mode == 'both'
+      run: |
+        cd scripts
+        echo "🔧 Force generating Hardcore pages..."
+        python generate_pages.py --page ${{ github.event.inputs.page_type }} --mode hc --force
+        
+    - name: Generate force update report
+      run: |
+        echo "🔧 Force Update Summary:"
+        echo "📋 Update Mode: ${{ github.event.inputs.update_mode }}"
+        echo "📄 Page Type: ${{ github.event.inputs.page_type }}"
+        echo "💬 Reason: ${{ github.event.inputs.reason }}"
+        echo "📅 Update Time: $(date -u '+%Y-%m-%d %H:%M UTC')"
+        
+        if [ -f sc_ladder.json ]; then
+          SC_COUNT=$(cat sc_ladder.json | jq '. | length')
+          echo "📈 Softcore Characters: $SC_COUNT"
+        fi
+        if [ -f hc_ladder.json ]; then
+          HC_COUNT=$(cat hc_ladder.json | jq '. | length')
+          echo "📈 Hardcore Characters: $HC_COUNT"
+        fi
+        
+        # Check which pages were generated
+        echo "📁 Generated Files:"
+        ls -la *.html 2>/dev/null || echo "No HTML files found in root"
+        
+    - name: Commit and push forced changes
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action Force Update"
+        git add -A
+        
+        # Check if there are changes to commit
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
+        else
+          # Create detailed commit message
+          COMMIT_MSG="🔧 Force page update: ${{ github.event.inputs.update_mode }} ${{ github.event.inputs.page_type }} - $(date -u '+%Y-%m-%d %H:%M UTC')"
+          if [ -n "${{ github.event.inputs.reason }}" ]; then
+            COMMIT_MSG="$COMMIT_MSG
+
+Reason: ${{ github.event.inputs.reason }}"
+          fi
+          
+          git commit -m "$COMMIT_MSG"
+          git push origin HEAD:main
+        fi
+        
+    - name: Log completion
+      run: |
+        echo "✅ Force update completed successfully"
+        echo "🔧 Bypassed season freeze protection"
+        echo "📊 Updated ${{ github.event.inputs.update_mode }} ${{ github.event.inputs.page_type }} pages"
+        echo "💡 Use this workflow sparingly and only when necessary"

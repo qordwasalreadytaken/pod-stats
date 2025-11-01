@@ -181,7 +181,15 @@ class HomePageGenerator:
         
         # Load custom font
         try:
-            armory = FontProperties(fname='armory/font/avqest.ttf')
+            # Use absolute path from project root to handle archive generation
+            import os
+            current_dir = os.getcwd()
+            # If we're in an archive subdirectory, go back to root
+            if 'Season' in current_dir:
+                font_path = '../../../armory/font/avqest.ttf'
+            else:
+                font_path = 'armory/font/avqest.ttf'
+            armory = FontProperties(fname=font_path)
         except:
             armory = FontProperties()  # Fallback to default font
         
@@ -409,9 +417,9 @@ class HomePageGenerator:
                     <!--        <h3>UNLESS STATED OTHERWISE, OTHER PAGE STATS AND DATA ARE FROM THE TOP 200 CHARACTERS OF THE RELEVANT CLASS OR CLASSES</h3> -->
                     <hr>
                     <h3>Class and special pages have taken character data and separated it into probable builds. As such, the groupings and associated data
-                        will change over time to reflect what is currently accurate.
-                        <br><br>
-                        Looking at class and build pages, what you see and what it means:</h3>
+                        will change regularly to reflect what is currently accurate.
+                        <br>
+<!--                        Looking at class and build pages, what you see and what it means:</h3>
                     <div>
                         <img src="charts/build-pages-legend.png">
                     </div>
@@ -423,7 +431,7 @@ class HomePageGenerator:
                      <li>If the percent is 100% but the total is low that skill is likely one-point-wonder like Hydra and Whirlwind or just a prerequisite </li>
                      </ul>
                     <br>
-                     
+-->                     
                     <hr>
 
                     {ladder_summary}
@@ -447,8 +455,8 @@ class HomePageGenerator:
                         <ul>
                             <li>The top 1,000 overall ladder characters</li>
                             <li>The top 200 characters from each class ladder</li>
-                            <li>Real-time equipment and skill point allocations</li>
-                            <li>Mercenary equipment and configuration data</li>
+                            <li>Equipment usage and skill point allocations</li>
+                            <li>Mercenary equipment and details</li>
                         </ul>
                         <p>Character data and associated pages are updated regularly to reflect current ladder standings and trends.</p>
                     </div>

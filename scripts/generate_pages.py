@@ -46,15 +46,38 @@ except ImportError:
 import api_integration
 
 
-def generate_all_pages(json_file_path="sc_ladder.json", is_hardcore=False, hc_level_filter=None):
+def generate_all_pages(json_file_path="sc_ladder.json", is_hardcore=False, hc_level_filter=None, force=False):
     """
-    Generate all pages using the modular system
+    Generate all analytics pages (home, items, mercenary, fun facts, and all class pages)
     
     Args:
-        json_file_path: Path to the character data JSON file (relative to root directory)
+        json_file_path: Path to character data JSON file (relative to root directory)
         is_hardcore: Whether this is hardcore mode data
         hc_level_filter: Minimum level filter for hardcore characters (e.g., 70)
+        force: Force generation even if season is frozen
     """
+    
+    # Check if the live site should be frozen due to season end
+    if not force:
+        try:
+            should_freeze = api_integration.should_freeze_live_site()
+            if should_freeze:
+                season_info = api_integration.get_archive_season_info()
+                freeze_banner = api_integration.generate_freeze_banner_text(season_info)
+                print("🚨 LIVE SITE FREEZE DETECTED 🚨")
+                print(f"Season {season_info.get('season_number', 'Unknown')} has ended.")
+                print(f"Banner: {freeze_banner}")
+                print("Site generation skipped - displaying historical data freeze message.")
+                print("Site will remain frozen until a new season is detected.")
+                print("💡 Use --force flag to override this protection")
+                return False
+        except Exception as e:
+            print(f"Warning: Could not check freeze status: {e}")
+            print("Continuing with normal generation...")
+            print(f"Warning: Could not check freeze status: {e}")
+            print("Continuing with normal generation...")
+    else:
+        print("🔧 FORCE MODE: Bypassing season freeze protection")
     
     # Resolve JSON file path relative to root directory
     if not os.path.isabs(json_file_path):
@@ -256,17 +279,38 @@ def update_data_and_generate_tracking_pages(snapshot_label=None):
         os.chdir(original_cwd)
 
 
-def generate_single_page(page_type, json_file_path="sc_ladder.json", is_hardcore=False, hc_level_filter=None, class_name=None):
+def generate_single_page(page_type, json_file_path="sc_ladder.json", is_hardcore=False, hc_level_filter=None, class_name=None, force=False):
     """
-    Generate a single page type
+    Generate a single analytics page
     
     Args:
-        page_type: Type of page to generate ('home', 'items', 'mercenary', 'funfacts', 'class')
-        json_file_path: Path to the character data JSON file (relative to root directory)
+        page_type: Type of page to generate ('home', 'items', 'mercenary', 'funfacts', 'class', 'dataupdate')
+        json_file_path: Path to character data JSON file (relative to root directory)
         is_hardcore: Whether this is hardcore mode data
         hc_level_filter: Minimum level filter for hardcore characters (e.g., 70)
         class_name: Required when page_type is 'class' (e.g., 'Barbarian', 'Sorceress')
+        force: Force generation even if season is frozen
     """
+    
+    # Check if the live site should be frozen due to season end
+    if not force:
+        try:
+            should_freeze = api_integration.should_freeze_live_site()
+            if should_freeze:
+                season_info = api_integration.get_archive_season_info()
+                freeze_banner = api_integration.generate_freeze_banner_text(season_info)
+                print("🚨 LIVE SITE FREEZE DETECTED 🚨")
+                print(f"Season {season_info.get('season_number', 'Unknown')} has ended.")
+                print(f"Banner: {freeze_banner}")
+                print("Site generation skipped - displaying historical data freeze message.")
+                print("Site will remain frozen until a new season is detected.")
+                print("💡 Use --force flag to override this protection")
+                return False
+        except Exception as e:
+            print(f"Warning: Could not check freeze status: {e}")
+            print("Continuing with normal generation...")
+    else:
+        print("🔧 FORCE MODE: Bypassing season freeze protection")
     
     # Resolve JSON file path relative to root directory
     if not os.path.isabs(json_file_path):
@@ -388,6 +432,8 @@ def main():
                       help='Minimum level filter for hardcore characters (e.g., 70)')
     parser.add_argument('--snapshot-label', 
                       help='Custom label for data snapshot (only used with --page dataupdate)')
+    parser.add_argument('--force', action='store_true',
+                      help='Force generation even if season is frozen (for testing/emergency updates)')
     
     args = parser.parse_args()
     
@@ -400,11 +446,11 @@ def main():
         data_file = 'hc_ladder.json'
     
     if args.page == 'all':
-        success = generate_all_pages(data_file, is_hardcore, hc_level_filter)
+        success = generate_all_pages(data_file, is_hardcore, hc_level_filter, args.force)
     elif args.page == 'dataupdate':
         success = update_data_and_generate_tracking_pages(args.snapshot_label)
     else:
-        success = generate_single_page(args.page, data_file, is_hardcore, hc_level_filter, args.class_name)
+        success = generate_single_page(args.page, data_file, is_hardcore, hc_level_filter, args.class_name, args.force)
     
     if success:
         print("\n✅ Generation completed successfully!")

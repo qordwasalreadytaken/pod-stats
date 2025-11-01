@@ -130,7 +130,7 @@ def get_ladder_summary_html(game_mode=0):
     # Wrap both in fun-facts-row
     html = [
         f"<section id='ladder-summary'>",
-        f"<h2>Season {season_label} {mode_label} Ladder Summary</h2>",
+        f"<h2>Season {season_label} {mode_label} Ladder Highlights</h2>",
         '<div class="fun-facts-row">',
         "\n".join(top_10_html),
         "\n".join(ladder_firsts_html),

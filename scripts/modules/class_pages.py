@@ -1186,10 +1186,13 @@ class ClassPagesHTMLGenerator:
         filtered_characters = analysis_data['filtered_characters']
         
         # Generate intro summary
-        intro_summary = self._generate_intro_summary(maxed_skills, character_count)
+        intro_summary = self._generate_intro_summary(maxed_skills, character_count, class_name)
+        
+        # Generate charts section HTML
+        charts_html = self._generate_charts_section(class_name)
         
         # Generate skill clusters HTML with detailed breakdowns
-        clusters_html = self._generate_clusters_html(clustering_results)
+        clusters_html = self._generate_clusters_html(clustering_results, class_name)
         
         # Generate top/bottom skills section  
         top_bottom_skills_html = self._generate_top_bottom_skills_html(analysis_data.get('top_bottom_skills'), class_name)
@@ -1267,6 +1270,8 @@ class ClassPagesHTMLGenerator:
 
         {fun_facts_sections_html}
 
+        {charts_html}
+
         </div>
         </div>
         
@@ -1293,12 +1298,31 @@ class ClassPagesHTMLGenerator:
         
         return html_template
     
-    def _generate_intro_summary(self, maxed_skills, character_count):
+    def _generate_charts_section(self, class_name):
+        """Generate HTML section for charts"""
+        charts_section = f"""
+        <div class="analysis-section">
+            <h2>Build Distribution Charts</h2>
+            <div class="charts-container">
+                <div class="chart-item">
+                    <h3>Build Distribution</h3>
+                    <img src="charts/{self.mode_prefix}{class_name.lower()}_distribution_pie.png" alt="{class_name} Build Distribution" class="chart-image">
+                </div>
+                <div class="chart-item">
+                    <h3>Skill Clustering Visualization</h3>
+                    <img src="charts/{self.mode_prefix}{class_name.lower()}_clusters_scatter.png" alt="{class_name} Skill Clusters" class="chart-image">
+                </div>
+            </div>
+        </div>
+        """
+        return charts_section
+    
+    def _generate_intro_summary(self, maxed_skills, character_count, class_name):
         """Generate intro summary showing top maxed skills"""
         summary_lines = []
         for skill, characters in maxed_skills[:5]:  # Top 5 skills
             percentage = (len(characters) / character_count) * 100
-            summary_lines.append(f"<strong>{percentage:.2f}% of all {self.mode_name}s favor {skill}</strong><br>")
+            summary_lines.append(f"<strong>{percentage:.2f}% of all {class_name}s invest in {skill}</strong><br>")
         return "".join(summary_lines)
     
     def _generate_all_equipment_sections(self, equipment_analysis, class_name):
@@ -2120,7 +2144,7 @@ class ClassPagesHTMLGenerator:
         else:
             return ""
     
-    def _generate_clusters_html(self, clustering_results):
+    def _generate_clusters_html(self, clustering_results, class_name):
         """Generate HTML for detailed skill clusters display with characters and equipment"""
         df = clustering_results['df']
         cluster_col = clustering_results['cluster_column']
@@ -2161,7 +2185,7 @@ class ClassPagesHTMLGenerator:
         <div id="skills" class="skills-container">
             <div class="column">
                 <ul id="most-popular-skills">
-                    <h2><div id="cluster-{cluster_id}">{percentage:.2f}% of {self.mode_name}'s Main Skills:<a href="#cluster-{cluster_id}" class="anchor-link"><img src="icons/anchor.png" alt="🔗" class="anchor-icon"></a><br>
+                    <h2><div id="cluster-{cluster_id}">{percentage:.2f}% of {class_name}'s Main Skills:<a href="#cluster-{cluster_id}" class="anchor-link"><img src="icons/anchor.png" alt="🔗" class="anchor-icon"></a><br>
                     {main_skills_html}
                     </div></h2>
                 </ul>
