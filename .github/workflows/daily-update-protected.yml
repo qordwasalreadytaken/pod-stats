@@ -55,9 +55,9 @@ jobs:
         cd scripts
         # This will check if the season is frozen and exit gracefully if so
         python -c "
-        from api_integration import detect_season_state
-        result = detect_season_state()
-        if result.get('frozen', False):
+        from api_integration import should_freeze_live_site
+        frozen = should_freeze_live_site()
+        if frozen:
             print('🔒 Season is frozen - skipping daily update')
             print('season_frozen=true' >> '$GITHUB_OUTPUT')
             exit(0)

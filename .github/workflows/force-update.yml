@@ -78,15 +78,21 @@ jobs:
         cd scripts
         echo "🔍 Checking current season status..."
         python -c "
-        from api_integration import detect_season_state
-        result = detect_season_state()
-        if result.get('frozen', False):
-            print('⚠️  Season is currently frozen - proceeding with force update')
-            print(f'Season: {result.get(\"season\", \"Unknown\")}')
-            print(f'Status: {result.get(\"status\", \"Unknown\")}')
-        else:
-            print('✅ Season is active - force update not strictly necessary but proceeding')
-            print(f'Season: {result.get(\"season\", \"Unknown\")}')
+        from api_integration import should_freeze_live_site, get_current_season_info
+        try:
+            frozen = should_freeze_live_site()
+            season_number, start_time, status = get_current_season_info()
+            if frozen:
+                print('⚠️  Season is currently frozen - proceeding with force update')
+                print(f'Season: {season_number}')
+                print(f'Status: {status}')
+            else:
+                print('✅ Season is active - force update not strictly necessary but proceeding')
+                print(f'Season: {season_number}')
+                print(f'Status: {status}')
+        except Exception as e:
+            print(f'⚠️  Could not determine season status: {e}')
+            print('Proceeding with force update anyway')
         "
         
     - name: Run force page generation - Softcore
