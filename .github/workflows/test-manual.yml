@@ -1,0 +1,19 @@
+name: Test Manual Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      test_input:
+        description: 'Test input'
+        required: true
+        default: 'test'
+        type: string
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Test step
+      run: |
+        echo "Test input: ${{ github.event.inputs.test_input }}"
+        echo "✅ Manual workflow is working!"

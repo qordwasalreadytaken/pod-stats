@@ -16,12 +16,6 @@ on:
         required: false
         default: false
         type: boolean
-  # Help GitHub discover this workflow (will only run on manual trigger)
-  push:
-    branches: [never-trigger-this-branch]
-        required: false
-        default: false
-        type: boolean
 
 permissions:
   contents: write  # Allow the workflow to write to the repository
