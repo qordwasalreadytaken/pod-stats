@@ -145,9 +145,7 @@ jobs:
           # Create detailed commit message
           COMMIT_MSG="🔧 Force page update: ${{ github.event.inputs.update_mode }} ${{ github.event.inputs.page_type }} - $(date -u '+%Y-%m-%d %H:%M UTC')"
           if [ -n "${{ github.event.inputs.reason }}" ]; then
-            COMMIT_MSG="$COMMIT_MSG
-
-Reason: ${{ github.event.inputs.reason }}"
+            COMMIT_MSG="$COMMIT_MSG - Reason: ${{ github.event.inputs.reason }}"
           fi
           
           git commit -m "$COMMIT_MSG"
