@@ -14,25 +14,7 @@ jobs:
         echo "🔍 This workflow helps GitHub discover manual workflows"
         echo "✅ After this runs, manual workflows should show 'Run workflow' buttons"
         echo "📋 Manual workflows available:"
-        echo "   - Force Page Update"
-        echo "   - Manual Archive Creation"
-        echo "🎯 This workflow will self-delete after running once"
-        
-    - name: Checkout repository
-      uses: actions/checkout@v4
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        
-    - name: Remove this discovery workflow
-      run: |
-        rm -f .github/workflows/workflow-discovery-test.yml
-        
-    - name: Commit removal
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add .
-        if ! git diff --staged --quiet; then
-          git commit -m "🧹 Auto-remove workflow discovery test (job complete)"
-          git push
-        fi
+        echo "   - Force Page Update (.github/workflows/force-update.yml)"
+        echo "   - Manual Archive Creation (.github/workflows/manual-archive.yml)"
+        echo "🎯 Discovery complete! You can manually delete this file if desired"
+        echo "💡 Check the Actions tab - manual workflows should now have 'Run workflow' buttons"
