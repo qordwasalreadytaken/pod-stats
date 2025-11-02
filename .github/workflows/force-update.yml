@@ -29,6 +29,9 @@ on:
         required: false
         default: 'Manual force update'
         type: string
+  # Help GitHub discover this workflow (will only run on manual trigger)
+  push:
+    branches: [never-trigger-this-branch]
 
 permissions:
   contents: write  # Allow the workflow to write to the repository
