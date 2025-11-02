@@ -57,7 +57,7 @@ jobs:
     - name: Verify archive creation
       run: |
         # Check if archive was created successfully
-        CURRENT_SEASON=$(ls Season/ | tail -1)
+        CURRENT_SEASON=$(ls Season/ | sort -n | tail -1)
         if [ -d "Season/${CURRENT_SEASON}/November" ] || [ -d "Season/${CURRENT_SEASON}/December" ] || [ -d "Season/${CURRENT_SEASON}/January" ]; then
           echo "✅ Monthly archive created successfully"
           ls -la Season/${CURRENT_SEASON}/
@@ -79,7 +79,7 @@ jobs:
           echo "No changes to commit"
         else
           # Create commit with archive info
-          CURRENT_SEASON=$(ls Season/ | tail -1)
+          CURRENT_SEASON=$(ls Season/ | sort -n | tail -1)
           ARCHIVE_MONTH=$(date +%B)
           git commit -m "🗄️ Monthly archive created: Season ${CURRENT_SEASON}/${ARCHIVE_MONTH} - $(date -u '+%Y-%m-%d %H:%M UTC')"
           git push origin HEAD:main
@@ -88,7 +88,7 @@ jobs:
     - name: Log completion
       run: |
         echo "✅ Monthly archive generation completed successfully"
-        CURRENT_SEASON=$(ls Season/ | tail -1)
+        CURRENT_SEASON=$(ls Season/ | sort -n | tail -1)
         echo "📊 Archive Location: Season/${CURRENT_SEASON}/"
         if [ -d "Season/${CURRENT_SEASON}" ]; then
           echo "📁 Archive Contents:"

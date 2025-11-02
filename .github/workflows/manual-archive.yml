@@ -75,7 +75,7 @@ jobs:
     - name: Verify archive creation
       run: |
         # Check if archive was created successfully
-        CURRENT_SEASON=$(ls Season/ | tail -1)
+        CURRENT_SEASON=$(ls Season/ | sort -n | tail -1)
         ARCHIVE_TYPE="${{ github.event.inputs.archive_type }}"
         
         if [ "$ARCHIVE_TYPE" = "final" ]; then
@@ -109,7 +109,7 @@ jobs:
           echo "No changes to commit"
         else
           # Create commit with archive info
-          CURRENT_SEASON=$(ls Season/ | tail -1)
+          CURRENT_SEASON=$(ls Season/ | sort -n | tail -1)
           ARCHIVE_TYPE="${{ github.event.inputs.archive_type }}"
           FORCE_FLAG=""
           if [ "${{ github.event.inputs.force_creation }}" = "true" ]; then
@@ -125,7 +125,7 @@ jobs:
         echo "✅ Manual archive generation completed successfully"
         echo "📊 Archive Type: ${{ github.event.inputs.archive_type }}"
         echo "🔧 Force Creation: ${{ github.event.inputs.force_creation }}"
-        CURRENT_SEASON=$(ls Season/ | tail -1)
+        CURRENT_SEASON=$(ls Season/ | sort -n | tail -1)
         echo "📁 Season Directory: ${CURRENT_SEASON}"
         if [ -d "Season/${CURRENT_SEASON}" ]; then
           echo "📁 Available Archives:"
