@@ -1,0 +1,38 @@
+name: Workflow Discovery Test
+
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/workflow-discovery-test.yml']
+
+jobs:
+  discover-workflows:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Trigger workflow discovery
+      run: |
+        echo "🔍 This workflow helps GitHub discover manual workflows"
+        echo "✅ After this runs, manual workflows should show 'Run workflow' buttons"
+        echo "📋 Manual workflows available:"
+        echo "   - Force Page Update"
+        echo "   - Manual Archive Creation"
+        echo "🎯 This workflow will self-delete after running once"
+        
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        
+    - name: Remove this discovery workflow
+      run: |
+        rm -f .github/workflows/workflow-discovery-test.yml
+        
+    - name: Commit removal
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add .
+        if ! git diff --staged --quiet; then
+          git commit -m "🧹 Auto-remove workflow discovery test (job complete)"
+          git push
+        fi
