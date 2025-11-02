@@ -62,6 +62,7 @@ jobs:
         fi
         
     - name: Run manual archive generation
+      working-directory: .
       run: |
         if [ "${{ github.event.inputs.force_creation }}" = "true" ]; then
           echo "🔧 Running with force flag enabled"
