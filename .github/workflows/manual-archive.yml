@@ -63,13 +63,12 @@ jobs:
         
     - name: Run manual archive generation
       run: |
-        cd scripts
         if [ "${{ github.event.inputs.force_creation }}" = "true" ]; then
           echo "🔧 Running with force flag enabled"
-          python api_integration.py archive ${{ github.event.inputs.archive_type }} --force
+          python scripts/api_integration.py archive ${{ github.event.inputs.archive_type }} --force
         else
           echo "📋 Running standard archive creation"
-          python api_integration.py archive ${{ github.event.inputs.archive_type }}
+          python scripts/api_integration.py archive ${{ github.event.inputs.archive_type }}
         fi
         
     - name: Verify archive creation

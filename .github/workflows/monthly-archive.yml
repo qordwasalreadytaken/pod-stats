@@ -52,8 +52,7 @@ jobs:
         
     - name: Run monthly archive generation
       run: |
-        cd scripts
-        python api_integration.py archive monthly
+        python scripts/api_integration.py archive monthly
         
     - name: Verify archive creation
       run: |

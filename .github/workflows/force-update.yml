@@ -75,9 +75,10 @@ jobs:
         
     - name: Check current season status
       run: |
-        cd scripts
         echo "🔍 Checking current season status..."
         python -c "
+        import sys
+        sys.path.append('scripts')
         from api_integration import should_freeze_live_site, get_current_season_info
         try:
             frozen = should_freeze_live_site()
@@ -98,16 +99,14 @@ jobs:
     - name: Run force page generation - Softcore
       if: github.event.inputs.update_mode == 'softcore' || github.event.inputs.update_mode == 'both'
       run: |
-        cd scripts
         echo "🔧 Force generating Softcore pages..."
-        python generate_pages.py --page ${{ github.event.inputs.page_type }} --mode sc --force
+        python scripts/generate_pages.py --page ${{ github.event.inputs.page_type }} --mode sc --force
         
     - name: Run force page generation - Hardcore
       if: github.event.inputs.update_mode == 'hardcore' || github.event.inputs.update_mode == 'both'
       run: |
-        cd scripts
         echo "🔧 Force generating Hardcore pages..."
-        python generate_pages.py --page ${{ github.event.inputs.page_type }} --mode hc --force
+        python scripts/generate_pages.py --page ${{ github.event.inputs.page_type }} --mode hc --force
         
     - name: Generate force update report
       run: |

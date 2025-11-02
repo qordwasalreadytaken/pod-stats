@@ -52,9 +52,10 @@ jobs:
     - name: Check season status
       id: season_check
       run: |
-        cd scripts
         # This will check if the season is frozen and exit gracefully if so
         python -c "
+        import sys
+        sys.path.append('scripts')
         from api_integration import should_freeze_live_site
         frozen = should_freeze_live_site()
         if frozen:
@@ -69,10 +70,9 @@ jobs:
     - name: Run daily page generation
       if: steps.season_check.outputs.season_frozen == 'false'
       run: |
-        cd scripts
         echo "🔄 Running daily page generation..."
-        python generate_pages.py --page all --mode sc
-        python generate_pages.py --page all --mode hc
+        python scripts/generate_pages.py --page all --mode sc
+        python scripts/generate_pages.py --page all --mode hc
         
     - name: Generate summary report
       if: steps.season_check.outputs.season_frozen == 'false'
