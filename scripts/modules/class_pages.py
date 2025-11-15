@@ -1435,8 +1435,8 @@ class ClassPagesHTMLGenerator:
         
         return f"""
         <button type="button" class="collapsible sets-button">
-            <img src="icons/Sets_click.png" alt="Sets Open" class="icon open-icon">
-            <img src="icons/Sets.png" alt="Sets Close" class="icon close-icon hidden">
+            <img src="icons/Sets.png" alt="Sets Open" class="icon open-icon">
+            <img src="icons/Sets_click.png" alt="Sets Close" class="icon close-icon hidden">
         </button>  
         <div class="content">  
             <div id="sets" class="container">
