@@ -1372,8 +1372,8 @@ class ClassPagesHTMLGenerator:
             </div>
 
             <button type="button" class="collapsible small-collapsible">
-                <img src="icons/open.png" alt="All Runewords Open" class="icon-small open-icon">
-                <img src="icons/closed.png" alt="Runewords Close" class="icon-small close-icon hidden">
+                <img src="icons/closed.png" alt="All Runewords Open" class="icon-small open-icon">
+                <img src="icons/open.png" alt="Runewords Close" class="icon-small close-icon hidden">
                 <strong>ALL Runewords</strong>
             </button>
 
@@ -1413,8 +1413,8 @@ class ClassPagesHTMLGenerator:
                 </div>
             </div>
             <button type="button" class="collapsible small-collapsible">
-                <img src="icons/open.png" alt="All Uniques Open" class="icon-small open-icon">
-                <img src="icons/closed.png" alt="Uniques Close" class="icon-small close-icon hidden">
+                <img src="icons/closed.png" alt="All Uniques Open" class="icon-small open-icon">
+                <img src="icons/open.png" alt="Uniques Close" class="icon-small close-icon hidden">
                 <strong>ALL Uniques</strong>
             </button>
 
@@ -1454,8 +1454,8 @@ class ClassPagesHTMLGenerator:
                 </div>
             </div>
             <button type="button" class="collapsible small-collapsible">
-                <img src="icons/open.png" alt="All Set Open" class="icon-small open-icon">
-                <img src="icons/closed.png" alt="Set Close" class="icon-small close-icon hidden">
+                <img src="icons/closed.png" alt="All Set Open" class="icon-small open-icon">
+                <img src="icons/open.png" alt="Set Close" class="icon-small close-icon hidden">
                 <strong>ALL Set</strong>
             </button>
 
@@ -1814,8 +1814,8 @@ class ClassPagesHTMLGenerator:
             items_html += f"""
             <span id="{slug}"></span>
             <button class="collapsible">
-                <img src="icons/open-grey.png" alt="Open" class="icon-small open-icon">
-                <img src="icons/closed-grey.png" alt="Closed" class="icon-small close-icon hidden">
+                <img src="icons/closed-grey.png" alt="Open" class="icon-small open-icon">
+                <img src="icons/open-grey.png" alt="Closed" class="icon-small close-icon hidden">
                 <strong>{name} ({count} users)</strong>     
                 <a href="#{slug}" class="anchor-link">
                     <img src="icons/anchor.png" alt="🔗" class="anchor-icon">
@@ -1856,8 +1856,8 @@ class ClassPagesHTMLGenerator:
             items_html += f"""
             <span id="{slug}"></span>
             <button class="collapsible">
-                <img src="icons/open-grey.png" alt="Open" class="icon-small open-icon">
-                <img src="icons/closed-grey.png" alt="Closed" class="icon-small close-icon hidden">
+                <img src="icons/closed-grey.png" alt="Open" class="icon-small open-icon">
+                <img src="icons/open-grey.png" alt="Closed" class="icon-small close-icon hidden">
                 <strong>{item} ({count} users)</strong>     
                 <a href="#{slug}" class="anchor-link">
                     <img src="icons/anchor.png" alt="🔗" class="anchor-icon">
@@ -1897,8 +1897,8 @@ class ClassPagesHTMLGenerator:
 
             items_html += f"""
             <button class="collapsible">
-                <img src="icons/open-grey.png" alt="All Runewords Open" class="icon-small open-icon">
-                <img src="icons/closed-grey.png" alt="Runewords Close" class="icon-small close-icon hidden">
+                <img src="icons/closed-grey.png" alt="All Runewords Open" class="icon-small open-icon">
+                <img src="icons/open-grey.png" alt="Runewords Close" class="icon-small close-icon hidden">
                 <strong>
                 <a href="#synthsource-{slug}" class="anchor-link">
                     {source_item} (Found in {len(characters)} Items)
@@ -1950,8 +1950,8 @@ class ClassPagesHTMLGenerator:
             # Create a collapsible button for each category
             items_html += f"""
             <button class="collapsible">
-                <img src="icons/open-grey.png" alt="All Runewords Open" class="icon-small open-icon">
-                <img src="icons/closed-grey.png" alt="Runewords Close" class="icon-small close-icon hidden">
+                <img src="icons/closed-grey.png" alt="All Runewords Open" class="icon-small open-icon">
+                <img src="icons/open-grey.png" alt="Runewords Close" class="icon-small close-icon hidden">
                 <strong>Crafted {worn_category} ({len(category_users)} users)</strong>
             </button>
             <div class="content">
@@ -1999,8 +1999,8 @@ class ClassPagesHTMLGenerator:
             # Create a collapsible button for each category
             items_html += f"""
             <button class="collapsible">
-                <img src="icons/open-grey.png" alt="All Runewords Open" class="icon-small open-icon">
-                <img src="icons/closed-grey.png" alt="Runewords Close" class="icon-small close-icon hidden">
+                <img src="icons/closed-grey.png" alt="All Runewords Open" class="icon-small open-icon">
+                <img src="icons/open-grey.png" alt="Runewords Close" class="icon-small close-icon hidden">
                 <strong>Magic {worn_category} ({len(category_users)} users)</strong>
             </button>
             <div class="content">
@@ -2048,8 +2048,8 @@ class ClassPagesHTMLGenerator:
             # Create a collapsible button for each category
             items_html += f"""
             <button class="collapsible">
-                <img src="icons/open-grey.png" alt="All Runewords Open" class="icon-small open-icon">
-                <img src="icons/closed-grey.png" alt="Runewords Close" class="icon-small close-icon hidden">
+                <img src="icons/closed-grey.png" alt="All Runewords Open" class="icon-small open-icon">
+                <img src="icons/open-grey.png" alt="Runewords Close" class="icon-small close-icon hidden">
                 <strong>Rare {worn_category} ({len(category_users)} users)</strong>
             </button>
             <div class="content">
@@ -2096,8 +2096,8 @@ class ClassPagesHTMLGenerator:
             section_html += f"""
             <span id="{safe_skill_name}"></span>
             <button class="collapsible">
-                <img src="icons/open-grey.png" alt="Open" class="icon-small open-icon">
-                <img src="icons/closed-grey.png" alt="Closed" class="icon-small close-icon hidden">
+                <img src="icons/closed-grey.png" alt="Open" class="icon-small open-icon">
+                <img src="icons/open-grey.png" alt="Closed" class="icon-small close-icon hidden">
                 <strong>{skill_name} ({len(characters)} users)</strong>     
                 <a href="#{safe_skill_name}" class="anchor-link">
                     <img src="icons/anchor.png" alt="🔗" class="anchor-icon">
@@ -2295,8 +2295,8 @@ class ClassPagesHTMLGenerator:
         
         return f"""
                 <button type="button" class="collapsible small-collapsible">
-        <img src="icons/open.png" alt="Open" class="icon-small open-icon">
-        <img src="icons/closed.png" alt="Close" class="icon-small close-icon hidden">
+        <img src="icons/closed.png" alt="Open" class="icon-small open-icon">
+        <img src="icons/open.png" alt="Close" class="icon-small close-icon hidden">
                 <strong>All Skills</strong></button>
                 <div class="content">
                     <div><div class='skills-group'>{skills_html}</div></div>
@@ -2337,8 +2337,8 @@ class ClassPagesHTMLGenerator:
         
         return f"""
                 <button type="button" class="collapsible small-collapsible">
-        <img src="icons/open.png" alt="Open" class="icon-small open-icon">
-        <img src="icons/closed.png" alt="Close" class="icon-small close-icon hidden">
+        <img src="icons/closed.png" alt="Open" class="icon-small open-icon">
+        <img src="icons/open.png" alt="Close" class="icon-small close-icon hidden">
                 <strong>Most Common Equipment:</strong></button>
                 <div class="content">
                     <div>{equipment_html}</div>
@@ -2391,8 +2391,8 @@ class ClassPagesHTMLGenerator:
         
         return f"""
             <button type="button" class="collapsible small-collapsible">
-        <img src="icons/open.png" alt="Open" class="icon-small open-icon">
-        <img src="icons/closed.png" alt="Close" class="icon-small close-icon hidden">
+        <img src="icons/closed.png" alt="Open" class="icon-small open-icon">
+        <img src="icons/open.png" alt="Close" class="icon-small close-icon hidden">
             <strong>{char_count} Characters in this cluster:</strong>
         </button>
         <div class="content">
@@ -2434,8 +2434,8 @@ class ClassPagesHTMLGenerator:
         
         return f"""
     <button type="button" class="collapsible small-collapsible">
-        <img src="icons/open.png" alt="Open" class="icon-small open-icon">
-        <img src="icons/closed.png" alt="Close" class="icon-small close-icon hidden">
+        <img src="icons/closed.png" alt="Open" class="icon-small open-icon">
+        <img src="icons/open.png" alt="Close" class="icon-small close-icon hidden">
                 <strong>All Skills</strong></button>
                 <div class="content">
                     <div><div class='skills-group'><div class='skills-row'>{skills_html}</div></div></div>
@@ -2483,8 +2483,8 @@ class ClassPagesHTMLGenerator:
                     percentage = (count / sum(items.values())) * 100
                     slot_html += f"""
                     <button type="button" class="collapsible small-collapsible">
-                        <img src="icons/open.png" alt="Open" class="icon-small open-icon">
-                        <img src="icons/closed.png" alt="Close" class="icon-small close-icon hidden">
+                        <img src="icons/closed.png" alt="Open" class="icon-small open-icon">
+                        <img src="icons/open.png" alt="Close" class="icon-small close-icon hidden">
                         <strong>{item} ({count} characters, {percentage:.1f}%)</strong>
                     </button>
                     <div class="content">
@@ -2496,8 +2496,8 @@ class ClassPagesHTMLGenerator:
         
         return f"""
             <button type="button" class="collapsible {button_class}">
-                <img src="icons/open.png" alt="Open" class="icon-small open-icon">
-                <img src="icons/closed.png" alt="Close" class="icon-small close-icon hidden">
+                <img src="icons/closed.png" alt="Open" class="icon-small open-icon">
+                <img src="icons/open.png" alt="Close" class="icon-small close-icon hidden">
                 <strong>{category_name}</strong>
             </button>
             <div class="content">
