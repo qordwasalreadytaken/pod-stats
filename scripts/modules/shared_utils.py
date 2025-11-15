@@ -191,8 +191,8 @@ def generate_standard_javascript():
             var openIcon = this.querySelector("img.open-icon") || this.querySelector("img[alt='Open']") || this.querySelector("img.icon[alt='Open']");
             var closeIcon = this.querySelector("img.close-icon") || this.querySelector("img[alt='Close']") || this.querySelector("img.icon[alt='Close']");
 
-            // Toggle content display
-            if (content.style.display === "block") {
+            // Toggle content display - check if currently expanded (block or empty string means visible)
+            if (content.style.display === "block" || content.style.display === "") {
                 content.style.display = "none";
                 if (openIcon) openIcon.classList.remove("hidden");
                 if (closeIcon) closeIcon.classList.add("hidden");
