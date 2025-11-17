@@ -86,6 +86,9 @@ class FunFactsAnalyzer:
         # Analyze top accounts (this fetches fresh API data)
         top_accounts_data = self.analyze_top_accounts()
         
+        # Analyze respec leaderboard
+        respec_data = self.analyze_respec_leaderboard(is_hardcore=self.is_hardcore)
+        
         return {
             'character_count': character_count,
             'averages': averages,
@@ -93,7 +96,8 @@ class FunFactsAnalyzer:
             'top_stats': top_stats,
             'undead_data': undead_data,
             'cbf_data': cbf_data,
-            'top_accounts_data': top_accounts_data
+            'top_accounts_data': top_accounts_data,
+            'respec_data': respec_data
         }
     
     def _get_top_characters_all_stats(self):
@@ -380,6 +384,65 @@ class FunFactsAnalyzer:
         # This could analyze skill combinations, unusual item combinations, etc.
         # Placeholder for future implementation
         return {}
+    
+    def analyze_respec_leaderboard(self, is_hardcore=False):
+        """
+        Fetch and analyze the respec leaderboard data from GitHub.
+        Filters characters by hardcore/softcore mode using the API.
+        """
+        respec_url = "https://raw.githubusercontent.com/qordwasalreadytaken/PoD-History-Builder/main/respec_leaderboard.json"
+        
+        try:
+            print(f"Fetching respec leaderboard from {respec_url}")
+            response = requests.get(respec_url, timeout=10)
+            response.raise_for_status()
+            respec_data = response.json()
+        except requests.RequestException as e:
+            print(f"⚠️ Failed to fetch respec leaderboard: {e}")
+            return {'characters': [], 'total_characters': 0}
+        
+        leaderboard = respec_data.get('leaderboard', [])
+        filtered_characters = []
+        
+        # Check each character to determine if they're hardcore or softcore
+        for entry in leaderboard:
+            char_name = entry.get('character')
+            if not char_name:
+                continue
+            
+            # Query the API to get character mode
+            try:
+                api_url = f"https://beta.pathofdiablo.com/api/characters/{char_name}/summary"
+                char_response = requests.get(api_url, timeout=5)
+                
+                if char_response.status_code == 200:
+                    char_data = char_response.json()
+                    char_is_hardcore = char_data.get('hardcore', False)
+                    
+                    # Include character if mode matches
+                    if char_is_hardcore == is_hardcore:
+                        filtered_characters.append({
+                            'name': char_name,
+                            'rank': entry.get('rank'),
+                            'total_respecs': entry.get('total_respecs', 0),
+                            'total_points_removed': entry.get('total_points_removed', 0),
+                            'total_stats_removed': entry.get('total_stats_removed', 0),
+                            'char_class': char_data.get('charClass', 'Unknown'),
+                            'level': char_data.get('level', 0)
+                        })
+                        print(f"✓ Added {char_name} ({'HC' if is_hardcore else 'SC'})")
+                else:
+                    print(f"⚠️ Character {char_name} not found in API (status {char_response.status_code})")
+            except Exception as e:
+                print(f"⚠️ Error checking character {char_name}: {e}")
+                continue
+        
+        print(f"✓ Found {len(filtered_characters)} {'hardcore' if is_hardcore else 'softcore'} characters with respecs")
+        
+        return {
+            'characters': filtered_characters,
+            'total_characters': len(filtered_characters)
+        }
 
 
 class FunFactsHTMLGenerator:
@@ -398,6 +461,7 @@ class FunFactsHTMLGenerator:
         overview_html = FunFactsHTMLGenerator._generate_overview_section(analysis_data)
         class_1k_html = FunFactsHTMLGenerator._generate_1k_class_distribution_section(mode, mode_prefix, level_filter_text)
         top_accounts_html = FunFactsHTMLGenerator._generate_top_accounts_section(analysis_data.get('top_accounts_data', {}))
+        respec_html = FunFactsHTMLGenerator._generate_respec_leaderboard_section(analysis_data.get('respec_data', {}))
         top_stats_html = FunFactsHTMLGenerator._generate_top_stats_section(analysis_data['top_stats'])
         averages_html = FunFactsHTMLGenerator._generate_averages_section(
             analysis_data['averages'], analysis_data['medians']
@@ -458,6 +522,10 @@ class FunFactsHTMLGenerator:
                     <hr>
                     
                     {top_accounts_html}
+                    
+                    <hr>
+                    
+                    {respec_html}
                     
                     <hr>
                   
@@ -833,6 +901,41 @@ class FunFactsHTMLGenerator:
                             for acct, stats in sorted_by_count
                         )}
                     </ul>
+            </div>
+        </div>
+        """
+
+    @staticmethod
+    def _generate_respec_leaderboard_section(respec_data):
+        """Generate the respec leaderboard section"""
+        
+        if not respec_data or not respec_data.get('characters'):
+            return "<p>No respec data available.</p>"
+        
+        characters = respec_data.get('characters', [])
+        
+        return f"""
+        <h2 id="respec-leaderboard">
+            Most Respecs / Tokens Used
+            <a href="#respec-leaderboard" class="anchor-link">
+                <img src="icons/anchor.png" alt="🔗" class="anchor-icon">
+            </a>
+        </h2>
+        <p>Characters who have used the most respec tokens to reset their skills and stats.</p>
+        
+        <div class="fun-facts-row">
+            <div class="fun-facts-column">
+                <h3>Top Respecced Characters</h3>
+                <ul>
+                    {"".join(
+                        f'''<li>
+                            <a href="https://beta.pathofdiablo.com/armory?name={char['character']}" target="_blank">{char['character']}</a>: 
+                            {char['total_respecs']} respecs 
+                            ({char['total_points_removed']} skill points, {char['total_stats_removed']} stat points reset)
+                        </li>'''
+                        for char in characters
+                    )}
+                </ul>
             </div>
         </div>
         """
