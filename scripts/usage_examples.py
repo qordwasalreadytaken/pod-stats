@@ -11,6 +11,7 @@ python3 scripts/generate_pages.py --page funfacts --mode sc
 Force regeneration (skip caching and ignore season freeze):
 python3 scripts/generate_pages.py --page all --mode sc --data sc_ladder.json --force
 python3 scripts/generate_pages.py --page class --class Barbarian --mode hc --data hc_ladder.json --force
+python3 scripts/generate_pages.py --page class --class Druid --mode sc --data sc_ladder.json --force
 python3 scripts/generate_pages.py --page all --mode sc --force
 python3 scripts/generate_pages.py --mode hc --page all --data hc_ladder.json --hc-level-filter 70 --force
 

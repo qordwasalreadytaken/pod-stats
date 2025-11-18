@@ -11,8 +11,9 @@ from modules.home_page import fetch_1k_ladder_characters, analyze_api_class_dist
 
 
 class FunFactsAnalyzer:
-    def __init__(self, all_characters):
+    def __init__(self, all_characters, is_hardcore=False):
         self.all_characters = all_characters
+        self.is_hardcore = is_hardcore
         
     def analyze_fun_facts(self):
         """
@@ -410,6 +411,11 @@ class FunFactsAnalyzer:
             if not char_name:
                 continue
             
+            # Skip characters with 3 or fewer respecs
+            total_respecs = entry.get('total_respecs', 0)
+            if total_respecs <= 3:
+                continue
+            
             # Query the API to get character mode
             try:
                 api_url = f"https://beta.pathofdiablo.com/api/characters/{char_name}/summary"
@@ -417,7 +423,7 @@ class FunFactsAnalyzer:
                 
                 if char_response.status_code == 200:
                     char_data = char_response.json()
-                    char_is_hardcore = char_data.get('hardcore', False)
+                    char_is_hardcore = char_data.get('IsHardcore', False)
                     
                     # Include character if mode matches
                     if char_is_hardcore == is_hardcore:
@@ -929,7 +935,7 @@ class FunFactsHTMLGenerator:
                 <ul>
                     {"".join(
                         f'''<li>
-                            <a href="https://beta.pathofdiablo.com/armory?name={char['character']}" target="_blank">{char['character']}</a>: 
+                            <a href="https://beta.pathofdiablo.com/armory?name={char['name']}" target="_blank">{char['name']}</a>: 
                             {char['total_respecs']} respecs 
                             ({char['total_points_removed']} skill points, {char['total_stats_removed']} stat points reset)
                         </li>'''
@@ -957,7 +963,7 @@ def generate_fun_facts_page(all_characters, timestamp, is_hardcore=False, hc_lev
         print(f"⚠️ Warning: Failed to generate 1K chart for fun facts page: {e}")
     
     # Analyze fun facts data
-    analyzer = FunFactsAnalyzer(all_characters)
+    analyzer = FunFactsAnalyzer(all_characters, is_hardcore)
     analysis_data = analyzer.analyze_fun_facts()
     
     # Generate HTML

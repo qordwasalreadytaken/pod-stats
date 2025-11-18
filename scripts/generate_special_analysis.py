@@ -111,7 +111,7 @@ class SpecialAnalysisGenerator:
         }
         
         # Generate page
-        output_path = f"pod-stats/{league}{config['output_filename']}" if league == 'hc' else f"pod-stats/{config['output_filename']}"
+        output_path = f"../{league}{config['output_filename']}" if league == 'hc' else f"../{config['output_filename']}"
         
         success = self.page_generator.generate_special_analysis_page(
             template_data,
@@ -175,7 +175,7 @@ class SpecialAnalysisGenerator:
         }
         
         # Generate page
-        output_path = f"pod-stats/{league}{config['output_filename']}" if league == 'hc' else f"pod-stats/{config['output_filename']}"
+        output_path = f"../{league}{config['output_filename']}" if league == 'hc' else f"../{config['output_filename']}"
         
         success = self.page_generator.generate_special_analysis_page(
             template_data,
@@ -240,7 +240,7 @@ class SpecialAnalysisGenerator:
         }
         
         # Generate page
-        output_path = f"pod-stats/{league}{config['output_filename']}" if league == 'hc' else f"pod-stats/{config['output_filename']}"
+        output_path = f"../{league}{config['output_filename']}" if league == 'hc' else f"../{config['output_filename']}"
         
         success = self.page_generator.generate_special_analysis_page(
             template_data,
