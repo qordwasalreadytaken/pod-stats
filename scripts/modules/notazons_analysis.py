@@ -535,7 +535,7 @@ def analyze_notazons(league="sc"):
             <a href="https://github.com/qordwasalreadytaken/pod-stats/blob/main/README.md" class="top-button about-button" target="_blank"></a>
         </div>
 
-        <h1>{{ what_class }} {{ league.upper() }}core Skill Distribution </h1>
+        <h1>{{ what_class }} {{ league.upper() }} Skill Distribution </h1>
         <div class="summary-container">
         <br>
         <h3>The Notazon is not a Zon, but has bolts or arrows equipped</h3>
@@ -627,20 +627,17 @@ for (var i = 0; i < coll.length; i++) {
     coll[i].addEventListener("click", function() {
         this.classList.toggle("active");
         var content = this.nextElementSibling;
-        
-        // Handle icons - look for various alt text patterns
-        var openIcon = this.querySelector("img.open-icon") || this.querySelector("img[alt='Open']") || this.querySelector("img.icon[alt='Open']");
-        var closeIcon = this.querySelector("img.close-icon") || this.querySelector("img[alt='Close']") || this.querySelector("img.icon[alt='Close']");
+        var openIcon = this.querySelector("img.icon[alt='Open']");
+        var closeIcon = this.querySelector("img.icon[alt='Close']");
 
-        // Toggle content display - check if currently expanded (block or empty string means visible)
-        if (content.style.display === "block" || content.style.display === "") {
+        if (content.style.display === "block") {
             content.style.display = "none";
-            if (openIcon) openIcon.classList.remove("hidden");
-            if (closeIcon) closeIcon.classList.add("hidden");
+            openIcon.classList.remove("hidden");
+            closeIcon.classList.add("hidden");
         } else {
             content.style.display = "block";
-            if (openIcon) openIcon.classList.add("hidden");
-            if (closeIcon) closeIcon.classList.remove("hidden");
+            openIcon.classList.add("hidden");
+            closeIcon.classList.remove("hidden");
         }
     });
 }

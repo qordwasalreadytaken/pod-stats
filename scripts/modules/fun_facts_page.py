@@ -560,6 +560,49 @@ class FunFactsHTMLGenerator:
             <script src="js/collapsible.js"></script>
             <script src="js/navigation.js"></script>
             <script src="js/armory-popup.js"></script>
+            
+            <!-- SC/HC Toggle Button -->
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {{
+                const scHcButton = document.getElementById("SC_HC");
+                const currentUrl = window.location.href;
+                const filename = currentUrl.split("/").pop();
+
+                const isHardcore = filename.startsWith("hc");
+
+                if (isHardcore) {{
+                    scHcButton.classList.add("hardcore");
+                    scHcButton.classList.remove("softcore");
+                }} else {{
+                    scHcButton.classList.add("softcore");
+                    scHcButton.classList.remove("hardcore");
+                }}
+
+                updateButtonImage(isHardcore);
+
+                scHcButton.addEventListener("click", function () {{
+                    let newUrl;
+
+                    if (isHardcore) {{
+                        newUrl = currentUrl.replace(/hc(\w+)$/, "$1");
+                    }} else {{
+                        newUrl = currentUrl.replace(/\/(\w+)$/, "/hc$1");
+                    }}
+
+                    if (newUrl !== currentUrl) {{
+                        window.location.href = newUrl;
+                    }}
+                }});
+
+                function updateButtonImage(isHardcore) {{
+                    if (isHardcore) {{
+                        scHcButton.style.backgroundImage = "url('icons/Hardcore_click.png')";
+                    }} else {{
+                        scHcButton.style.backgroundImage = "url('icons/Softcore_click.png')";
+                    }}
+                }}
+            }});
+            </script>
         </body>
         </html>
         """
@@ -937,7 +980,7 @@ class FunFactsHTMLGenerator:
                         f'''<li>
                             <a href="https://beta.pathofdiablo.com/armory?name={char['name']}" target="_blank">{char['name']}</a>: 
                             {char['total_respecs']} respecs 
-                            ({char['total_points_removed']} skill points, {char['total_stats_removed']} stat points reset)
+<!--                            ({char['total_points_removed']} skill points, {char['total_stats_removed']} stat points reset) -->
                         </li>'''
                         for char in characters
                     )}

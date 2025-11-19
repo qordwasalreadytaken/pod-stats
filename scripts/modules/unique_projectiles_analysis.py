@@ -647,12 +647,12 @@ for (var i = 0; i < coll.length; i++) {
 
         if (content.style.display === "block" || content.style.display === "") {
             content.style.display = "none";
-            if (openIcon) openIcon.classList.remove("hidden");
-            if (closeIcon) closeIcon.classList.add("hidden");
-        } else {
-            content.style.display = "block";
             if (openIcon) openIcon.classList.add("hidden");
             if (closeIcon) closeIcon.classList.remove("hidden");
+        } else {
+            content.style.display = "block";
+            if (openIcon) openIcon.classList.remove("hidden");
+            if (closeIcon) closeIcon.classList.add("hidden");
         }
     });
 }
