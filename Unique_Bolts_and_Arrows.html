@@ -2007,7 +2007,7 @@
 
             <button onclick="topFunction()" id="backToTopBtn" class="back-to-top"></button>
                 <div class="footer">
-                <p>PoD data current as of 2025-11-18 23:54</p>
+                <p>PoD data current as of 2025-11-19 00:29</p>
                 </div>
 
 <script>
@@ -2022,12 +2022,12 @@ for (var i = 0; i < coll.length; i++) {
 
         if (content.style.display === "block" || content.style.display === "") {
             content.style.display = "none";
-            if (openIcon) openIcon.classList.remove("hidden");
-            if (closeIcon) closeIcon.classList.add("hidden");
-        } else {
-            content.style.display = "block";
             if (openIcon) openIcon.classList.add("hidden");
             if (closeIcon) closeIcon.classList.remove("hidden");
+        } else {
+            content.style.display = "block";
+            if (openIcon) openIcon.classList.remove("hidden");
+            if (closeIcon) closeIcon.classList.add("hidden");
         }
     });
 }
