@@ -292,9 +292,16 @@ class HomePageGenerator:
         
         return f"""
         <div class="nav-section">
-            <h3>Explore the Data</h3>
+            <h3>Non-Class Specific Data Reporting</h3>
             <div class="navigation-cards">
                 
+            <div class="nav-card">
+                <a href="">
+                    <h3>Class Specific Pages</h3>
+                    <p>Links to class specific pages and reporting are on the left</p>
+                </a>
+            </div>
+
             <div class="nav-card">
                 <a href="{hc_prefix}Items">
                     <h3>Items & Equipment</h3>
@@ -305,7 +312,7 @@ class HomePageGenerator:
             <div class="nav-card">
                 <a href="{hc_prefix}Mercenaries">
                     <h3>Mercenary Analysis</h3>
-                    <p>Detailed mercenary usage patterns, equipment, and statistics</p>
+                    <p>Detailed mercenary usage patterns and equipment</p>
                 </a>
             </div>
             

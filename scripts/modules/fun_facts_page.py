@@ -718,7 +718,7 @@ class FunFactsHTMLGenerator:
         <button type="button" class="collapsible small-collapsible">
             <img src="icons/open.png" alt="CBF Open" class="icon-small open-icon hidden">
             <img src="icons/closed.png" alt="CBF Close" class="icon-small close-icon">
-            <strong>View Characters with CBF from Multiple Sources</strong>
+            <strong>View Characters with CBF from Multiple Sources of Half Freeze</strong>
         </button>
         <div class="content" style="display: none;">
             <div id="cbf-missing">{cbf_absent_html}</div>
@@ -970,7 +970,7 @@ class FunFactsHTMLGenerator:
                 <img src="icons/anchor.png" alt="🔗" class="anchor-icon">
             </a>
         </h2>
-        <p>Characters who have used the most respec tokens to reset their skills and stats.</p>
+        <p>Characters who have used the most respec tokens to reset their skills and stats, based on observations of skill/stat points being decreased.</p>
         
         <div class="fun-facts-row">
             <div class="fun-facts-column">
