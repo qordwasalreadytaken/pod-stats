@@ -261758,10 +261758,10 @@
       "Vitality": 145,
       "Energy": 15,
       "BaseLife": 672,
-      "Life": 917,
+      "Life": 965,
       "BaseMana": 127,
       "Mana": 207,
-      "Gold": 693507,
+      "Gold": 697530,
       "Stashed": 2500000
     },
     "Bonus": {
@@ -261771,11 +261771,11 @@
       "Energy": 10,
       "FireResistance": 161,
       "MaximumFireResistance": 0,
-      "ColdResistance": 119,
+      "ColdResistance": 99,
       "MaximumColdResistance": 0,
       "LightningResistance": 100,
       "MaximumLightningResistance": 0,
-      "PoisonResistance": 99,
+      "PoisonResistance": 121,
       "MaximumPoisonResistance": 0,
       "MagicFind": 20,
       "GoldFind": 68,
@@ -314566,7 +314566,7 @@
     "Class": "Sorceress",
     "Stats": {
       "Level": 90,
-      "Experience": 1691210523,
+      "Experience": 1700293698,
       "Strength": 156,
       "Dexterity": 25,
       "Vitality": 324,
@@ -314575,8 +314575,8 @@
       "Life": 1361,
       "BaseMana": 213,
       "Mana": 452,
-      "Gold": 507989,
-      "Stashed": 1738742
+      "Gold": 253498,
+      "Stashed": 2306685
     },
     "Bonus": {
       "Strength": 5,
@@ -314585,15 +314585,15 @@
       "Energy": 15,
       "FireResistance": 154,
       "MaximumFireResistance": 0,
-      "ColdResistance": 111,
+      "ColdResistance": 122,
       "MaximumColdResistance": 0,
-      "LightningResistance": 109,
+      "LightningResistance": 102,
       "MaximumLightningResistance": 0,
-      "PoisonResistance": 100,
+      "PoisonResistance": 88,
       "MaximumPoisonResistance": 0,
-      "MagicFind": 159,
+      "MagicFind": 148,
       "GoldFind": 201,
-      "FasterCastRate": 50,
+      "FasterCastRate": 60,
       "FasterHitRecovery": 30,
       "IncreasedAttackSpeed": 0,
       "CrushingBlow": 0,
@@ -314802,37 +314802,6 @@
         "Worn": "boots"
       },
       {
-        "Quality": "Rare",
-        "ID": "2702944999",
-        "QualityCode": "q_rare",
-        "Title": "Entropy Circle",
-        "Tag": "Ring",
-        "TextTag": "ring",
-        "Ethereal": "False",
-        "Enhanced": "False",
-        "AlternateGraphics": "3",
-        "ItemLevel": "81",
-        "LevelReq": 29,
-        "SocketCount": "0",
-        "PropertyList": [
-          "+5 to Minimum Damage",
-          "+30 to Attack Rating",
-          "Lightning Resist +17%",
-          "Poison Resist +12%",
-          "20% Better Chance of Getting Magic Items",
-          "+3 to Light Radius"
-        ],
-        "Position": {
-          "x": 6,
-          "y": 0
-        },
-        "Size": {
-          "invheight": 1,
-          "invwidth": 1
-        },
-        "Worn": "ring1"
-      },
-      {
         "Quality": "Unique",
         "ID": "3342501395",
         "QualityCode": "q_unique",
@@ -314973,40 +314942,6 @@
           "invwidth": 2
         },
         "Worn": "body"
-      },
-      {
-        "Quality": "Unique",
-        "ID": "3017345802",
-        "QualityCode": "q_unique",
-        "Title": "Nightwing's Veil",
-        "Tag": "Spired Helm",
-        "TextTag": "Spired Helm",
-        "Ethereal": "False",
-        "Enhanced": "True",
-        "Defense": "160",
-        "Durability": "40",
-        "DurabilityMaximum": "40",
-        "ItemLevel": "88",
-        "LevelReq": 67,
-        "SocketCount": "0",
-        "PropertyList": [
-          "+2 to All Skills",
-          "+12% Increased Cold Damage",
-          "+96% Enhanced Defense",
-          "+10 to Dexterity",
-          "+5 Cold Absorb",
-          "Half Freeze Duration",
-          "Requirements -50%"
-        ],
-        "Position": {
-          "x": 1,
-          "y": 0
-        },
-        "Size": {
-          "invheight": 2,
-          "invwidth": 2
-        },
-        "Worn": "helmet"
       },
       {
         "Quality": "Unique",
@@ -315196,6 +315131,106 @@
           "invwidth": 2
         },
         "Worn": "sweapon2"
+      },
+      {
+        "Quality": "Rare",
+        "ID": "281463272",
+        "QualityCode": "q_rare",
+        "Title": "Bitter Turn",
+        "Tag": "Ring",
+        "TextTag": "ring",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "AlternateGraphics": "4",
+        "ItemLevel": "75",
+        "LevelReq": 12,
+        "SocketCount": "0",
+        "PropertyList": [
+          "+10% Faster Cast Rate",
+          "+1 to Maximum Damage",
+          "Cold Resist +11%",
+          "Lightning Resist +10%",
+          "Magic & Elemental Damage Taken Reduced by 2",
+          "9% Better Chance of Getting Magic Items"
+        ],
+        "Position": {
+          "x": 6,
+          "y": 0
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": "ring1"
+      },
+      {
+        "Quality": "Unique",
+        "ID": "3017345802",
+        "QualityCode": "q_unique",
+        "Title": "Nightwing's Veil",
+        "Tag": "Spired Helm",
+        "TextTag": "Spired Helm",
+        "Ethereal": "False",
+        "Enhanced": "True",
+        "Defense": "160",
+        "Durability": "40",
+        "DurabilityMaximum": "40",
+        "ItemLevel": "88",
+        "LevelReq": 67,
+        "Sockets": [
+          {
+            "Quality": "Unique",
+            "ID": "3834937858",
+            "QualityCode": "q_unique",
+            "Title": "Rainbow Facet",
+            "Tag": "Jewel",
+            "TextTag": "Jewel",
+            "Ethereal": "False",
+            "Enhanced": "False",
+            "AlternateGraphics": "4",
+            "ItemLevel": "99",
+            "LevelReq": 49,
+            "SocketCount": "0",
+            "PropertyList": [
+              "100% Chance to cast level 43 Frost Nova when you Level-Up",
+              "Adds 24-38 cold damage",
+              "-5% to Enemy Cold Resistance",
+              "+3% Increased Cold Damage"
+            ],
+            "Position": {
+              "x": 0,
+              "y": 0
+            },
+            "Size": {
+              "invheight": 1,
+              "invwidth": 1
+            },
+            "Worn": ""
+          }
+        ],
+        "SocketCount": "1",
+        "PropertyList": [
+          "100% Chance to cast level 43 Frost Nova when you Level-Up",
+          "+2 to All Skills",
+          "Adds 24-38 cold damage",
+          "-5% to Enemy Cold Resistance",
+          "+15% Increased Cold Damage",
+          "+96% Enhanced Defense",
+          "+10 to Dexterity",
+          "+5 Cold Absorb",
+          "Half Freeze Duration",
+          "Requirements -50%",
+          "Socketed (1)"
+        ],
+        "Position": {
+          "x": 1,
+          "y": 0
+        },
+        "Size": {
+          "invheight": 2,
+          "invwidth": 2
+        },
+        "Worn": "helmet"
       },
       {
         "Quality": "Superior",
@@ -423100,16 +423135,16 @@
     "Class": "Necromancer",
     "Stats": {
       "Level": 95,
-      "Experience": 2512133146,
+      "Experience": 2513391679,
       "Strength": 90,
       "Dexterity": 55,
       "Vitality": 395,
       "Energy": 25,
       "BaseLife": 1053,
-      "Life": 1470,
+      "Life": 1491,
       "BaseMana": 213,
-      "Mana": 319,
-      "Gold": 950000,
+      "Mana": 658,
+      "Gold": 949640,
       "Stashed": 2500000
     },
     "Bonus": {
@@ -588955,39 +588990,39 @@
     "IsDead": false,
     "Class": "Barbarian",
     "Stats": {
-      "Level": 87,
-      "Experience": 1354499698,
+      "Level": 88,
+      "Experience": 1384701484,
       "Strength": 132,
       "Dexterity": 85,
-      "Vitality": 298,
+      "Vitality": 303,
       "Energy": 10,
-      "BaseLife": 1379,
-      "Life": 1587,
-      "BaseMana": 96,
-      "Mana": 216,
-      "Gold": 373500,
-      "Stashed": 1425366
+      "BaseLife": 1401,
+      "Life": 1609,
+      "BaseMana": 97,
+      "Mana": 217,
+      "Gold": 50280,
+      "Stashed": 2305366
     },
     "Bonus": {
-      "Strength": 24,
+      "Strength": 4,
       "Dexterity": 41,
       "Vitality": 0,
       "Energy": 0,
-      "FireResistance": 133,
+      "FireResistance": 148,
       "MaximumFireResistance": 0,
-      "ColdResistance": 95,
+      "ColdResistance": 140,
       "MaximumColdResistance": 0,
-      "LightningResistance": 138,
+      "LightningResistance": 153,
       "MaximumLightningResistance": 0,
-      "PoisonResistance": 107,
+      "PoisonResistance": 122,
       "MaximumPoisonResistance": 0,
-      "MagicFind": 132,
+      "MagicFind": 60,
       "GoldFind": 111,
       "FasterCastRate": 0,
-      "FasterHitRecovery": 0,
+      "FasterHitRecovery": 40,
       "IncreasedAttackSpeed": 20,
-      "CrushingBlow": 0,
-      "OpenWounds": 0,
+      "CrushingBlow": 15,
+      "OpenWounds": 33,
       "DeadlyStrike": 0,
       "DamageReduction": 0,
       "CooldownReduction": 0,
@@ -589079,7 +589114,7 @@
       },
       {
         "Name": "Masteries",
-        "Total": 31,
+        "Total": 32,
         "Skills": [
           {
             "ID": 3,
@@ -589094,7 +589129,7 @@
           {
             "ID": 20,
             "Name": "Iron Skin",
-            "Level": 8
+            "Level": 9
           },
           {
             "ID": 23,
@@ -589135,10 +589170,10 @@
         ]
       }
     ],
-    "MercenaryExperience": 79930292,
+    "MercenaryExperience": 82707112,
     "MercenaryType": "Desert Mercenary",
     "MercenaryName": "Pratham",
-    "MercenaryLevel": "63",
+    "MercenaryLevel": "64",
     "Equipped": [
       {
         "Quality": "Unique",
@@ -589189,7 +589224,7 @@
         "PropertyList": [
           "+40% Faster Run/Walk",
           "+102 Defense",
-          "Heal Stamina Plus +21% (Based on Character Level)",
+          "Heal Stamina Plus +22% (Based on Character Level)",
           "Cold Resist +20%",
           "Lightning Resist +23%"
         ],
@@ -589213,7 +589248,7 @@
         "Ethereal": "False",
         "Enhanced": "False",
         "Defense": "40",
-        "Durability": "16",
+        "Durability": "15",
         "DurabilityMaximum": "16",
         "ItemLevel": "89",
         "LevelReq": 53,
@@ -589334,33 +589369,68 @@
       },
       {
         "Quality": "Set",
-        "ID": "2847533031",
+        "ID": "2239578372",
         "QualityCode": "q_set",
-        "Title": "Griswold's Heart",
-        "Tag": "Ornate Plate",
-        "TextTag": "Ornate Armor",
+        "Title": "Tal Rasha's Horadric Crest",
+        "Tag": "Death Mask",
+        "TextTag": "Death Mask",
         "Ethereal": "False",
         "Enhanced": "True",
-        "Defense": "438",
-        "Durability": "60",
+        "Defense": "71",
+        "Durability": "20",
+        "DurabilityMaximum": "20",
+        "ItemLevel": "50",
+        "LevelReq": 66,
+        "SocketCount": "0",
+        "PropertyList": [
+          "\u00ffc1Corrupted",
+          "10% Mana stolen per hit",
+          "10% Life stolen per hit",
+          "+45 Defense",
+          "+75 to Life",
+          "+30 to Mana",
+          "All Resistances +15"
+        ],
+        "Position": {
+          "x": 1,
+          "y": 0
+        },
+        "Size": {
+          "invheight": 2,
+          "invwidth": 2
+        },
+        "Worn": "helmet"
+      },
+      {
+        "Quality": "Normal",
+        "ID": "2497031088",
+        "QualityCode": "q_runeword",
+        "Title": "Duress",
+        "Tag": "Archon Plate",
+        "TextTag": "Archon Plate",
+        "RuneTag": "ShaelUmThul",
+        "Ethereal": "False",
+        "Enhanced": "True",
+        "Defense": "460",
+        "Durability": "59",
         "DurabilityMaximum": "60",
-        "ItemLevel": "88",
-        "LevelReq": 45,
+        "ItemLevel": "86",
+        "LevelReq": 63,
         "Sockets": [
           {
             "Quality": "Unknown",
             "ID": "0",
             "QualityCode": "",
-            "Title": "Perfect Topaz",
-            "Tag": "Perfect Topaz",
-            "TextTag": "Perfect Topaz",
+            "Title": "Shael Rune",
+            "Tag": "Shael Rune",
+            "TextTag": "Shael Rune",
             "Ethereal": "False",
             "Enhanced": "False",
             "ItemLevel": "0",
-            "LevelReq": 18,
+            "LevelReq": 29,
             "SocketCount": "0",
             "PropertyList": [
-              "24% Better Chance of Getting Magic Items"
+              "+20% Faster Hit Recovery"
             ],
             "Position": {
               "x": 0,
@@ -589376,16 +589446,16 @@
             "Quality": "Unknown",
             "ID": "0",
             "QualityCode": "",
-            "Title": "Perfect Topaz",
-            "Tag": "Perfect Topaz",
-            "TextTag": "Perfect Topaz",
+            "Title": "Um Rune",
+            "Tag": "Um Rune",
+            "TextTag": "Um Rune",
             "Ethereal": "False",
             "Enhanced": "False",
             "ItemLevel": "0",
-            "LevelReq": 18,
+            "LevelReq": 47,
             "SocketCount": "0",
             "PropertyList": [
-              "24% Better Chance of Getting Magic Items"
+              "All Resistances +15"
             ],
             "Position": {
               "x": 1,
@@ -589401,16 +589471,16 @@
             "Quality": "Unknown",
             "ID": "0",
             "QualityCode": "",
-            "Title": "Perfect Topaz",
-            "Tag": "Perfect Topaz",
-            "TextTag": "Perfect Topaz",
+            "Title": "Thul Rune",
+            "Tag": "Thul Rune",
+            "TextTag": "Thul Rune",
             "Ethereal": "False",
             "Enhanced": "False",
             "ItemLevel": "0",
-            "LevelReq": 18,
+            "LevelReq": 23,
             "SocketCount": "0",
             "PropertyList": [
-              "24% Better Chance of Getting Magic Items"
+              "Cold Resist +30%"
             ],
             "Position": {
               "x": 2,
@@ -589425,11 +589495,17 @@
         ],
         "SocketCount": "3",
         "PropertyList": [
-          "+2 to Defensive Auras (Paladin Only)",
-          "+500 Defense",
-          "+20 to Strength",
-          "72% Better Chance of Getting Magic Items",
-          "Requirements -40%",
+          "+40% Faster Hit Recovery",
+          "+20% Enhanced Damage",
+          "Adds 37-133 cold damage",
+          "15% Chance of Crushing Blow",
+          "33% Chance of Open Wounds",
+          "+194% Enhanced Defense",
+          "-20% Slower Stamina Drain",
+          "Lightning Resist +15%",
+          "Fire Resist +15%",
+          "Poison Resist +15%",
+          "Cold Resist +45%",
           "Socketed (3)"
         ],
         "Position": {
@@ -589466,7 +589542,7 @@
           "Adds 6-45 Lightning damage",
           "+35 to Energy",
           "+70 to Mana",
-          "Level 11 Teleport (69/69 Charges)"
+          "Level 11 Teleport (65/69 Charges)"
         ],
         "Position": {
           "x": 11,
@@ -589477,40 +589553,6 @@
           "invwidth": 1
         },
         "Worn": "sweapon1"
-      },
-      {
-        "Quality": "Set",
-        "ID": "2239578372",
-        "QualityCode": "q_set",
-        "Title": "Tal Rasha's Horadric Crest",
-        "Tag": "Death Mask",
-        "TextTag": "Death Mask",
-        "Ethereal": "False",
-        "Enhanced": "True",
-        "Defense": "71",
-        "Durability": "19",
-        "DurabilityMaximum": "20",
-        "ItemLevel": "50",
-        "LevelReq": 66,
-        "SocketCount": "0",
-        "PropertyList": [
-          "\u00ffc1Corrupted",
-          "10% Mana stolen per hit",
-          "10% Life stolen per hit",
-          "+45 Defense",
-          "+75 to Life",
-          "+30 to Mana",
-          "All Resistances +15"
-        ],
-        "Position": {
-          "x": 1,
-          "y": 0
-        },
-        "Size": {
-          "invheight": 2,
-          "invwidth": 2
-        },
-        "Worn": "helmet"
       },
       {
         "Quality": "Normal",
@@ -589524,7 +589566,7 @@
         "Enhanced": "True",
         "DamageMinimum": "155",
         "DamageMaximum": "836",
-        "Durability": "83",
+        "Durability": "40",
         "DurabilityMaximum": "114",
         "ItemLevel": "85",
         "LevelReq": 66,
