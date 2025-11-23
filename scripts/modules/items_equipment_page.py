@@ -46,6 +46,9 @@ class ItemsEquipmentAnalyzer:
         magic_users = defaultdict(lambda: defaultdict(list))
         rare_users = defaultdict(lambda: defaultdict(list))
         
+        # Initialize mercenary tracking
+        merc_users = defaultdict(list)  # Track which characters' mercs use each item
+        
         all_equipped_items = []
         item_summary_by_category = defaultdict(Counter)
         
@@ -75,16 +78,23 @@ class ItemsEquipmentAnalyzer:
         # Generate socket analysis
         socketed_runes_html = self._generate_socketable_analysis()
         
-        # Unused items analysis
-        used_runewords = {item[0] for item in runeword_counter.most_common()}
-        used_uniques = {item[0] for item in unique_counter.most_common()} 
-        used_set_items = {item[0] for item in set_counter.most_common()}
+        # Track character-only items BEFORE adding mercenary items
+        char_used_runewords = {item[0] for item in runeword_counter.most_common()}
+        char_used_uniques = {item[0] for item in unique_counter.most_common()}
+        char_used_set_items = {item[0] for item in set_counter.most_common()}
         
+        # Now analyze mercenaries and add their items to the counters
+        self._analyze_mercenaries(runeword_counter, unique_counter, set_counter, merc_users)
+        
+        # Extract all items used by mercenaries (make case-insensitive for comparison)
+        merc_used_items = {item.strip().lower() for item in merc_users.keys()}
+        
+        # Unused items analysis - based on CHARACTER usage only (not including mercs)
         try:
             all_the_items = items_list.all_the_items
-            unused_runewords = {rw.strip().lower() for rw in all_the_items["all_the_runewords"]} - {rw.strip().lower() for rw in used_runewords}
-            unused_uniques = {rw.strip().lower() for rw in all_the_items["all_the_uniques"]} - {rw.strip().lower() for rw in used_uniques}
-            unused_set_items = {rw.strip().lower() for rw in all_the_items["all_the_sets"]} - {rw.strip().lower() for rw in used_set_items}
+            unused_runewords = {rw.strip().lower() for rw in all_the_items["all_the_runewords"]} - {rw.strip().lower() for rw in char_used_runewords}
+            unused_uniques = {rw.strip().lower() for rw in all_the_items["all_the_uniques"]} - {rw.strip().lower() for rw in char_used_uniques}
+            unused_set_items = {rw.strip().lower() for rw in all_the_items["all_the_sets"]} - {rw.strip().lower() for rw in char_used_set_items}
         except (AttributeError, KeyError):
             unused_runewords = unused_uniques = unused_set_items = set()
         
@@ -124,7 +134,9 @@ class ItemsEquipmentAnalyzer:
             'unused_items': {
                 'unused_runewords': unused_runewords,
                 'unused_uniques': unused_uniques,
-                'unused_set_items': unused_set_items
+                'unused_set_items': unused_set_items,
+                'merc_used_items': merc_used_items,
+                'merc_users': merc_users
             },
             'synth_sources': synth_sources,
             'weapon_analysis_html': weapon_analysis_html,
@@ -244,6 +256,42 @@ class ItemsEquipmentAnalyzer:
             elif quality_code == "q_rare":
                 rare_counters[categorized_slot][item_title] += 1
                 rare_users[categorized_slot][item_title].append(char_info)
+    
+    def _analyze_mercenaries(self, runeword_counter, unique_counter, set_counter, merc_users):
+        """Analyze mercenary equipment and track which characters' mercs use which items"""
+        for char_data in self.all_characters:
+            if not isinstance(char_data, dict):
+                continue
+            
+            mercenary_type = char_data.get("MercenaryType")
+            if not mercenary_type:
+                continue
+            
+            # Get character info for tracking
+            char_info = {
+                "Name": char_data.get("Name", "Unknown"),
+                "Class": char_data.get("Class", "Unknown"),
+                "Level": char_data.get("Stats", {}).get("Level", "N/A")
+            }
+            
+            # Process mercenary equipped items
+            for item in char_data.get("MercenaryEquipped", []):
+                if not isinstance(item, dict):
+                    continue
+                
+                title = item.get("Title", "Unknown")
+                quality = item.get("QualityCode", "default")
+                
+                # Add mercenary items to global counters
+                if quality == "q_runeword":
+                    runeword_counter[title] += 1
+                elif quality == "q_unique":
+                    unique_counter[title] += 1
+                elif quality == "q_set":
+                    set_counter[title] += 1
+                
+                # Track which characters' mercenaries are using each item (case-insensitive)
+                merc_users[title.strip().lower()].append(char_info)
 
     def analyze_socketable_items(self):
         """Analyze what items are being socketed"""
@@ -408,7 +456,7 @@ class ItemsEquipmentAnalyzer:
             <img src="icons/Special_click.png" alt="Synth Open" class="icon open-icon hidden">
             <img src="icons/Special.png" alt="Synth Close" class="icon close-icon">
         </button>  
-        <div class="content">  
+        <div class="content" style="display: none;">  
             <h2>Socketed Runes Count</h2>
             <h3>Includes Only Character Data, No Mercs</h3>
             <div id="special" class="container">
@@ -1424,7 +1472,7 @@ class ItemsEquipmentHTMLGenerator:
                     </a>
                 </strong>
             </button>
-            <div class="content" id="{item_slug}">
+            <div class="content" style="display: none;" id="{item_slug}">
                 {character_list_html}
             </div>
             """
@@ -1460,7 +1508,7 @@ class ItemsEquipmentHTMLGenerator:
                     </a>
                 </strong>
             </button>
-            <div class="content" id="{source_slug}-source">
+            <div class="content" style="display: none;" id="{source_slug}-source">
                 {character_list_html}
             </div>
             """
@@ -1480,7 +1528,7 @@ class ItemsEquipmentHTMLGenerator:
             <img src="icons/Special_click.png" alt="Synth Open" class="icon open-icon hidden">
             <img src="icons/Special.png" alt="Synth Close" class="icon close-icon">
         </button>  
-        <div class="content">  
+        <div class="content" style="display: none;">  
             <div id="special">
                 {all_synth_html}
             </div>
@@ -1497,7 +1545,7 @@ class ItemsEquipmentHTMLGenerator:
             <img src="icons/Special_click.png" alt="Synth Open" class="icon open-icon hidden">
             <img src="icons/Special.png" alt="Synth Close" class="icon close-icon">
         </button>  
-        <div class="content">  
+        <div class="content" style="display: none;">  
             <div id="special">
                 {synth_source_data_html}
             </div>
@@ -1530,29 +1578,79 @@ class ItemsEquipmentHTMLGenerator:
     def _generate_unused_items_section(unused_items_data):
         """Generate HTML for unused items section matching original format exactly"""
         
-        def format_unused_items_list(items):
-            """Format a set of unused items as an HTML list"""
+        # Get mercenary data
+        merc_used_items = unused_items_data.get('merc_used_items', set())
+        merc_users = unused_items_data.get('merc_users', {})
+        
+        def format_unused_items_list(items, merc_used_items, merc_users):
+            """Format a set of unused items as an HTML list with mercenary usage info"""
             if not items:
                 return "<p>No unused items found.</p>"
             
-            sorted_items = sorted(items)
-            html_items = []
-            for item in sorted_items:
+            html_output = "<ul>"
+            
+            for item in sorted(items):
+                formatted_item = item.strip().lower()
+                is_merc_only = formatted_item in merc_used_items
+                merc_list = merc_users.get(formatted_item, [])
+                
                 # Capitalize first letter for display
                 display_item = item.title()
-                html_items.append(f"<li><strong>{display_item}</strong></li>")
+                
+                # Generate character list HTML for merc users
+                merc_character_html = "".join(
+                    f"""
+                    <div class="character-info">
+                        <div class="character-link">
+                            <a href="https://beta.pathofdiablo.com/armory?name={char["Name"]}" target="_blank">
+                                {char["Name"]}
+                            </a>
+                        </div>
+                        <div>Level {char["Level"]} {char["Class"]}</div>
+                        <div class="hover-trigger" data-character-name="{char["Name"]}"></div>
+                    </div>
+                    <div class="character">
+                        <div class="popup hidden"></div>
+                    </div>
+                    """
+                    for char in merc_list
+                )
+                
+                # Add collapsible button for mercs if any exist
+                merc_html_section = ""
+                if merc_list:
+                    merc_html_section = f"""
+                    <button class="collapsible">
+                        <img src="icons/open-grey.png" alt="Expand Mercenaries" class="icon-small open-icon hidden">
+                        <img src="icons/closed-grey.png" alt="Collapse Mercenaries" class="icon-small close-icon">
+                        <p>Characters whose mercs use {display_item}</p>
+                    </button>
+                    <div class="content" style="display: none;">
+                        {merc_character_html if merc_character_html else "<p>No mercenaries using this item.</p>"}
+                    </div>
+                    """
+                
+                # Add item to list with (only used on mercenaries) if applicable
+                html_output += f"""
+                <li>
+                    <strong>{display_item} </strong>
+                    <span style='color:gray;'>{'(only used on mercenaries)' if is_merc_only else ''}</span>
+                    {merc_html_section}
+                </li>
+                """
             
-            return f"<ul>{''.join(html_items)}</ul>"
+            html_output += "</ul>"
+            return html_output
         
         # Get the unused items data
         unused_runewords = unused_items_data.get('unused_runewords', set())
         unused_uniques = unused_items_data.get('unused_uniques', set())
         unused_set_items = unused_items_data.get('unused_set_items', set())
         
-        # Format each category
-        unused_runewords_html = format_unused_items_list(unused_runewords)
-        unused_uniques_html = format_unused_items_list(unused_uniques)
-        unused_set_items_html = format_unused_items_list(unused_set_items)
+        # Format each category with mercenary data
+        unused_runewords_html = format_unused_items_list(unused_runewords, merc_used_items, merc_users)
+        unused_uniques_html = format_unused_items_list(unused_uniques, merc_used_items, merc_users)
+        unused_set_items_html = format_unused_items_list(unused_set_items, merc_used_items, merc_users)
         
         return f"""
         <h2 id="unused-items">Unused Items
@@ -1565,14 +1663,14 @@ class ItemsEquipmentHTMLGenerator:
             <img src="icons/Special_click.png" alt="Synth Open" class="icon open-icon hidden">
             <img src="icons/Special.png" alt="Synth Close" class="icon close-icon">
         </button>  
-        <div class="content">
+        <div class="content" style="display: none;">
             <!-- Runewords -->
             <button class="collapsible"> 
                 <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
                 <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
                 <strong>Unused Runewords</strong>
             </button>
-            <div class="content">{unused_runewords_html}</div>
+            <div class="content" style="display: none;">{unused_runewords_html}</div>
 
             <!-- Uniques -->
             <button class="collapsible"> 
@@ -1580,7 +1678,7 @@ class ItemsEquipmentHTMLGenerator:
                 <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
                 <strong>Unused Unique Items</strong>
             </button>
-            <div class="content">{unused_uniques_html}</div>
+            <div class="content" style="display: none;">{unused_uniques_html}</div>
 
             <!-- Set Items -->
             <button class="collapsible"> 
@@ -1588,7 +1686,7 @@ class ItemsEquipmentHTMLGenerator:
                 <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
                 <strong>Unused Set Items</strong>
             </button>
-            <div class="content">{unused_set_items_html}</div>
+            <div class="content" style="display: none;">{unused_set_items_html}</div>
         </div>
         <br>
         <em>*Reference list used for <a href="https://github.com/GreenDude120/builds_data/blob/main/items_list.py">all runewords, uniques, and set items</a> can be found here</em>
@@ -1614,7 +1712,7 @@ class ItemsEquipmentHTMLGenerator:
             <img src="icons/Special_click.png" alt="Synth Open" class="icon open-icon hidden">
             <img src="icons/Special.png" alt="Synth Close" class="icon close-icon">
         </button>  
-        <div class="content">
+        <div class="content" style="display: none;">
             {one_or_two_html}
         </div>
         <hr>
@@ -1627,7 +1725,7 @@ class ItemsEquipmentHTMLGenerator:
             <img src="icons/Special_click.png" alt="Synth Open" class="icon open-icon hidden">
             <img src="icons/Special.png" alt="Synth Close" class="icon close-icon">
         </button>  
-        <div class="content">
+        <div class="content" style="display: none;">
             {two_handed_html}
         </div>
         <hr>
@@ -1640,7 +1738,7 @@ class ItemsEquipmentHTMLGenerator:
             <img src="icons/Special_click.png" alt="Synth Open" class="icon open-icon hidden">
             <img src="icons/Special.png" alt="Synth Close" class="icon close-icon">
         </button>  
-        <div class="content">
+        <div class="content" style="display: none;">
             {bow_html}
         </div>
         <h2>Non-Amazon Bow Users</h2>
@@ -1781,7 +1879,7 @@ class ItemsEquipmentHTMLGenerator:
             <img src="icons/closed.png" alt="Incomplete Loadouts Close" class="icon-small close-icon">
             <strong>Incomplete Loadouts</strong>
         </button>
-        <div class="content">
+        <div class="content" style="display: none;">
             <div id="incompletes">
                 <p>These character builds are incomplete and missing items:</p>
                 <ul>

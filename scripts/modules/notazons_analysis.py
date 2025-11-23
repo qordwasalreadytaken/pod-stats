@@ -551,27 +551,29 @@ def analyze_notazons(league="sc"):
         </div>
 
         <button type="button" class="collapsible small-collapsible">
-            <img src="icons/closed.png" alt="Open" class="icon-small open-icon">
-            <img src="icons/open.png" alt="Close" class="icon-small close-icon hidden">
-                    <strong>All Skills</strong></button>
-                    <div class="content">
+            <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+            <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+            <strong>All Skills</strong>
+        </button>
+        <div class="content" style="display: none;">
                         <div>{{ data['remaining_skills_with_icons'] }}</div>
                     </div>
 
-                    <button type="button" class="collapsible small-collapsible">
-            <img src="icons/closed.png" alt="Open" class="icon-small open-icon">
-            <img src="icons/open.png" alt="Close" class="icon-small close-icon hidden">
-                    <strong>Most Common Equipment:</strong></button>
-                    <div class="content">
+        <button type="button" class="collapsible small-collapsible">
+            <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+            <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+            <strong>Most Common Equipment:</strong>
+        </button>
+        <div class="content" style="display: none;">
                         <div>{{ data['top_equipment'] }}</div>
                     </div>
 
                  <button type="button" class="collapsible small-collapsible">
-            <img src="icons/closed.png" alt="Open" class="icon-small open-icon">
-            <img src="icons/open.png" alt="Close" class="icon-small close-icon hidden">
-                <strong>{{ data['character_count'] }} Characters in this cluster:</strong>
-            </button>
-            <div class="content">
+            <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+            <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+            <strong>{{ data['character_count'] }} Characters in this cluster:</strong>
+        </button>
+        <div class="content" style="display: none;">
     {% for character in data['characters'] %}
     <div class="character-container char2">
         <div class="character-info">
@@ -627,17 +629,31 @@ for (var i = 0; i < coll.length; i++) {
     coll[i].addEventListener("click", function() {
         this.classList.toggle("active");
         var content = this.nextElementSibling;
-        var openIcon = this.querySelector("img.icon[alt='Open']");
-        var closeIcon = this.querySelector("img.icon[alt='Close']");
+        
+        // Skip if no content element found
+        if (!content) return;
+        
+        // Handle icons - look for various alt text patterns
+        var openIcon = this.querySelector("img.open-icon") || this.querySelector("img[alt='Open']") || this.querySelector("img.icon[alt='Open']");
+        var closeIcon = this.querySelector("img.close-icon") || this.querySelector("img[alt='Close']") || this.querySelector("img.icon[alt='Close']");
 
-        if (content.style.display === "block") {
-            content.style.display = "none";
-            openIcon.classList.remove("hidden");
-            closeIcon.classList.add("hidden");
-        } else {
+        // Toggle content display - check if currently hidden
+        if (content.style.display === "none" || content.style.display === "") {
+            // Currently hidden, so expand it
             content.style.display = "block";
-            openIcon.classList.add("hidden");
-            closeIcon.classList.remove("hidden");
+            // Swap icons only if both exist
+            if (openIcon && closeIcon) {
+                openIcon.classList.remove("hidden");
+                closeIcon.classList.add("hidden");
+            }
+        } else {
+            // Currently visible, so collapse it
+            content.style.display = "none";
+            // Swap icons only if both exist
+            if (openIcon && closeIcon) {
+                openIcon.classList.add("hidden");
+                closeIcon.classList.remove("hidden");
+            }
         }
     });
 }

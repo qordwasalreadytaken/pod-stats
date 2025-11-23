@@ -1276,7 +1276,6 @@ class ClassPagesHTMLGenerator:
         </div>
         
         {generate_standard_javascript()}
-        <script src="pod-stats.js"></script>
         </body>
         </html>"""
         
@@ -1352,10 +1351,10 @@ class ClassPagesHTMLGenerator:
         
         return f"""
         <button type="button" class="collapsible runewords-button">
-            <img src="icons/Runewords.png" alt="Runewords Open" class="icon open-icon">
-            <img src="icons/Runewords_click.png" alt="Runewords Close" class="icon close-icon hidden">
+            <img src="icons/Runewords_click.png" alt="Runewords Open" class="icon open-icon hidden">
+            <img src="icons/Runewords.png" alt="Runewords Close" class="icon close-icon">
         </button>
-        <div class="content">
+        <div class="content" style="display: none;">
             <div id="runewords" class="container">
                 <div class="column">
                     <h3>Most Used Runewords:</h3>
@@ -1372,12 +1371,12 @@ class ClassPagesHTMLGenerator:
             </div>
 
             <button type="button" class="collapsible small-collapsible">
-                <img src="icons/closed.png" alt="All Runewords Open" class="icon-small open-icon">
-                <img src="icons/open.png" alt="Runewords Close" class="icon-small close-icon hidden">
+                <img src="icons/open.png" alt="All Runewords Open" class="icon-small open-icon hidden">
+                <img src="icons/closed.png" alt="Runewords Close" class="icon-small close-icon">
                 <strong>ALL Runewords</strong>
             </button>
 
-            <div class="content">
+            <div class="content" style="display: none;">
                 <div id="allrunewords">
                     {all_runewords}
                 </div>
@@ -1394,10 +1393,10 @@ class ClassPagesHTMLGenerator:
         
         return f"""
         <button type="button" class="collapsible uniques-button">
-            <img src="icons/Uniques.png" alt="Uniques Open" class="icon open-icon">
-            <img src="icons/Uniques_click.png" alt="Uniques Close" class="icon close-icon hidden">
+            <img src="icons/Uniques_click.png" alt="Uniques Open" class="icon open-icon hidden">
+            <img src="icons/Uniques.png" alt="Uniques Close" class="icon close-icon">
         </button>    
-        <div class="content">   
+        <div class="content" style="display: none;">   
             <div id="uniques" class="container">
                 <div class="column">
                     <h3>Most Used Uniques:</h3>
@@ -1413,12 +1412,12 @@ class ClassPagesHTMLGenerator:
                 </div>
             </div>
             <button type="button" class="collapsible small-collapsible">
-                <img src="icons/closed.png" alt="All Uniques Open" class="icon-small open-icon">
-                <img src="icons/open.png" alt="Uniques Close" class="icon-small close-icon hidden">
+                <img src="icons/open.png" alt="All Uniques Open" class="icon-small open-icon hidden">
+                <img src="icons/closed.png" alt="Uniques Close" class="icon-small close-icon">
                 <strong>ALL Uniques</strong>
             </button>
 
-            <div class="content">
+            <div class="content" style="display: none;">
                 <div id="alluniques">
                     {all_uniques}
                 </div>
@@ -1435,10 +1434,10 @@ class ClassPagesHTMLGenerator:
         
         return f"""
         <button type="button" class="collapsible sets-button">
-            <img src="icons/Sets.png" alt="Sets Open" class="icon open-icon">
-            <img src="icons/Sets_click.png" alt="Sets Close" class="icon close-icon hidden">
+            <img src="icons/Sets_click.png" alt="Sets Open" class="icon open-icon hidden">
+            <img src="icons/Sets.png" alt="Sets Close" class="icon close-icon">
         </button>  
-        <div class="content">  
+        <div class="content" style="display: none;">  
             <div id="sets" class="container">
                 <div class="column">
                     <h3>Most Used Set Items:</h3>
@@ -1454,12 +1453,12 @@ class ClassPagesHTMLGenerator:
                 </div>
             </div>
             <button type="button" class="collapsible small-collapsible">
-                <img src="icons/closed.png" alt="All Set Open" class="icon-small open-icon">
-                <img src="icons/open.png" alt="Set Close" class="icon-small close-icon hidden">
+                <img src="icons/open.png" alt="All Set Open" class="icon-small open-icon hidden">
+                <img src="icons/closed.png" alt="Set Close" class="icon-small close-icon">
                 <strong>ALL Set</strong>
             </button>
 
-            <div class="content">
+            <div class="content" style="display: none;">
                 <div id="allset">
                     {all_set}
                 </div>
@@ -1483,10 +1482,10 @@ class ClassPagesHTMLGenerator:
         </h2>
         <h3>This is base synthesized items</h3>
         <button type="button" class="collapsible sets-button">
-            <img src="icons/Special.png" alt="Synth Open" class="icon open-icon">
-            <img src="icons/Special_click.png" alt="Synth Close" class="icon close-icon hidden">
+            <img src="icons/Special_click.png" alt="Synth Open" class="icon open-icon hidden">
+            <img src="icons/Special.png" alt="Synth Close" class="icon close-icon">
         </button>  
-        <div class="content">  
+        <div class="content" style="display: none;">  
             <div id="special">
                 {all_synth}
             </div>
@@ -1500,10 +1499,10 @@ class ClassPagesHTMLGenerator:
         </h2>
         <h3>This shows where propertied an item are showing up in other items. If you wanted to see where the slow from Kelpie or the Ball light from Ondal's had popped up, this is where to look </h3>
         <button type="button" class="collapsible sets-button">
-            <img src="icons/Special.png" alt="Synth Open" class="icon open-icon">
-            <img src="icons/Special_click.png" alt="Synth Close" class="icon close-icon hidden">
+            <img src="icons/Special_click.png" alt="Synth Open" class="icon open-icon hidden">
+            <img src="icons/Special.png" alt="Synth Close" class="icon close-icon">
         </button>  
-        <div class="content">  
+        <div class="content" style="display: none;">  
             <div id="special">
                 {synth_sources}
             </div>
@@ -1524,10 +1523,10 @@ class ClassPagesHTMLGenerator:
         <h3>{equipment_analysis['craft_user_count']} Characters with crafted items equipped</h3>
 
         <button type="button" class="collapsible sets-button">
-            <img src="icons/Special.png" alt="Synth Open" class="icon open-icon">
-            <img src="icons/Special_click.png" alt="Synth Close" class="icon close-icon hidden">
+            <img src="icons/Special_click.png" alt="Synth Open" class="icon open-icon hidden">
+            <img src="icons/Special.png" alt="Synth Close" class="icon close-icon">
         </button>  
-        <div class="content">  
+        <div class="content" style="display: none;">  
             <div id="special">
                 {all_crafted}
             </div>
@@ -1548,10 +1547,10 @@ class ClassPagesHTMLGenerator:
         <h3>{equipment_analysis['magic_user_count']} Characters with Magic items equipped</h3>
 
         <button type="button" class="collapsible sets-button">
-            <img src="icons/Special.png" alt="Synth Open" class="icon open-icon">
-            <img src="icons/Special_click.png" alt="Synth Close" class="icon close-icon hidden">
+            <img src="icons/Special_click.png" alt="Synth Open" class="icon open-icon hidden">
+            <img src="icons/Special.png" alt="Synth Close" class="icon close-icon">
         </button>  
-        <div class="content">  
+        <div class="content" style="display: none;">  
             <div id="special">
                 {all_magic}
             </div>
@@ -1572,10 +1571,10 @@ class ClassPagesHTMLGenerator:
         <h3>{equipment_analysis['rare_user_count']} Characters with rare items equipped</h3>
 
         <button type="button" class="collapsible sets-button">
-            <img src="icons/Special.png" alt="Synth Open" class="icon open-icon">
-            <img src="icons/Special_click.png" alt="Synth Close" class="icon close-icon hidden">
+            <img src="icons/Special_click.png" alt="Synth Open" class="icon open-icon hidden">
+            <img src="icons/Special.png" alt="Synth Close" class="icon close-icon">
         </button>  
-        <div class="content">  
+        <div class="content" style="display: none;">  
             <div id="special">
                 {all_rare}
             </div>
@@ -1595,10 +1594,10 @@ class ClassPagesHTMLGenerator:
         <h3>What are people puting in sockets</h3>
 
         <button type="button" class="collapsible sets-button">
-            <img src="icons/Special.png" alt="Synth Open" class="icon open-icon">
-            <img src="icons/Special_click.png" alt="Synth Close" class="icon close-icon hidden">
+            <img src="icons/Special_click.png" alt="Synth Open" class="icon open-icon hidden">
+            <img src="icons/Special.png" alt="Synth Close" class="icon close-icon">
         </button>  
-        <div class="content">  
+        <div class="content" style="display: none;">  
             <h2>Socketed Runes Count</h2>
             <h3>Includes Only Character Data, No Mercs</h3>
             <div id="special" class="container">
@@ -1705,10 +1704,10 @@ class ClassPagesHTMLGenerator:
         <h3 id="fun-facts">{section_title} <a href="#fun-facts" class="anchor-link"><img src="icons/anchor.png" alt="🔗" class="anchor-icon"></a></h3>
         <h3>{death_text}</h3>
         <button type="button" class="collapsible sets-button">
-            <img src="icons/Special.png" alt="Undead Open" class="icon open-icon">
-            <img src="icons/Special_click.png" alt="Undead Close" class="icon close-icon hidden">
+            <img src="icons/Special_click.png" alt="Undead Open" class="icon open-icon hidden">
+            <img src="icons/Special.png" alt="Undead Close" class="icon close-icon">
         </button>
-        <div class="content">  
+        <div class="content" style="display: none;">  
             <div id="special">{alive_list_html}</div>
         </div>
         <br>
@@ -2118,10 +2117,10 @@ class ClassPagesHTMLGenerator:
             </h3>
             <p>These skills have been maxed (20 points) by one or more characters.</p>
             <button type="button" class="collapsible sets-button">
-                <img src="icons/Special.png" alt="Undead Open" class="icon open-icon">
-                <img src="icons/Special_click.png" alt="Undead Close" class="icon close-icon hidden">
+                <img src="icons/Special_click.png" alt="Undead Open" class="icon open-icon hidden">
+                <img src="icons/Special.png" alt="Undead Close" class="icon close-icon">
             </button>
-            <div class="content">  
+            <div class="content" style="display: none;">  
                 <div id="special">{section_html}</div>
             </div>
             """
@@ -2295,10 +2294,11 @@ class ClassPagesHTMLGenerator:
         
         return f"""
                 <button type="button" class="collapsible small-collapsible">
-        <img src="icons/closed.png" alt="Open" class="icon-small open-icon">
-        <img src="icons/open.png" alt="Close" class="icon-small close-icon hidden">
-                <strong>All Skills</strong></button>
-                <div class="content">
+                    <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+                    <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+                    <strong>All Skills</strong>
+                </button>
+                <div class="content" style="display: none;">
                     <div><div class='skills-group'>{skills_html}</div></div>
                 </div>
         """
@@ -2337,10 +2337,11 @@ class ClassPagesHTMLGenerator:
         
         return f"""
                 <button type="button" class="collapsible small-collapsible">
-        <img src="icons/closed.png" alt="Open" class="icon-small open-icon">
-        <img src="icons/open.png" alt="Close" class="icon-small close-icon hidden">
-                <strong>Most Common Equipment:</strong></button>
-                <div class="content">
+                    <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+                    <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+                    <strong>Most Common Equipment:</strong>
+                </button>
+                <div class="content" style="display: none;">
                     <div>{equipment_html}</div>
                 </div>
         """
@@ -2391,11 +2392,11 @@ class ClassPagesHTMLGenerator:
         
         return f"""
             <button type="button" class="collapsible small-collapsible">
-        <img src="icons/closed.png" alt="Open" class="icon-small open-icon">
-        <img src="icons/open.png" alt="Close" class="icon-small close-icon hidden">
-            <strong>{char_count} Characters in this cluster:</strong>
-        </button>
-        <div class="content">
+                <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+                <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+                <strong>{char_count} Characters in this cluster:</strong>
+            </button>
+        <div class="content" style="display: none;">
 {characters_html}
         </div>
         """
@@ -2434,10 +2435,8 @@ class ClassPagesHTMLGenerator:
         
         return f"""
     <button type="button" class="collapsible small-collapsible">
-        <img src="icons/closed.png" alt="Open" class="icon-small open-icon">
-        <img src="icons/open.png" alt="Close" class="icon-small close-icon hidden">
                 <strong>All Skills</strong></button>
-                <div class="content">
+                <div class="content" style="display: none;">
                     <div><div class='skills-group'><div class='skills-row'>{skills_html}</div></div></div>
                 </div>
         """
@@ -2483,11 +2482,9 @@ class ClassPagesHTMLGenerator:
                     percentage = (count / sum(items.values())) * 100
                     slot_html += f"""
                     <button type="button" class="collapsible small-collapsible">
-                        <img src="icons/closed.png" alt="Open" class="icon-small open-icon">
-                        <img src="icons/open.png" alt="Close" class="icon-small close-icon hidden">
                         <strong>{item} ({count} characters, {percentage:.1f}%)</strong>
                     </button>
-                    <div class="content">
+                    <div class="content" style="display: none;">
                         <div>Used by {count} characters in this category.</div>
                     </div>
                     """
