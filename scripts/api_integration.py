@@ -303,10 +303,14 @@ def fetch_game_servers():
         if not isinstance(data, list):
             raise DataError("Expected list response from game servers API", "game_servers")
         
-        # Validate server objects
+        # Validate server objects - check for expected fields
         for i, server in enumerate(data):
-            if not isinstance(server, dict) or 'name' not in server:
-                raise DataError(f"Invalid server object at index {i}", "game_servers")
+            if not isinstance(server, dict):
+                raise DataError(f"Invalid server object at index {i} - not a dictionary", "game_servers")
+            # Check for the fields we actually use
+            expected_fields = ['location', 'games', 'players']
+            if not any(field in server for field in expected_fields):
+                raise DataError(f"Invalid server object at index {i} - missing expected fields", "game_servers")
         
         return data
         
