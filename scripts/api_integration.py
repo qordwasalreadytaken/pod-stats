@@ -272,8 +272,8 @@ def fetch_server_stats():
             raise DataError("Empty response from server stats API", "server_stats")
         
         stats = data[0]
-        required_fields = ['season', 'players_online', 'total_games']
-#        required_fields = ['players_online', 'total_games']
+#        required_fields = ['season', 'players_online', 'total_games']
+        required_fields = ['players_online', 'total_games']
         for field in required_fields:
             if field not in stats:
                 raise DataError(f"Missing required field '{field}' in server stats", "server_stats")
