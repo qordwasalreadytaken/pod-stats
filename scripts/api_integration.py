@@ -273,7 +273,7 @@ def fetch_server_stats():
         
         stats = data[0]
 #        required_fields = ['season', 'players_online', 'total_games']
-        required_fields = ['players_online', 'total_games']
+        required_fields = ['online_now', 'games_open']
         for field in required_fields:
             if field not in stats:
                 raise DataError(f"Missing required field '{field}' in server stats", "server_stats")
