@@ -292,34 +292,24 @@ class HomePageGenerator:
         
         return f"""
         <div class="nav-section">
-            <h3>Non-Class Specific Data Reporting</h3>
+            <h3>Miscellaneous Data Pages</h3>
             <div class="navigation-cards">
                 
             <div class="nav-card">
-                <a href="">
-                    <h3>Class Specific Pages</h3>
-                    <p>Links to class specific pages and reporting are on the left</p>
-                </a>
-            </div>
-
-            <div class="nav-card">
                 <a href="{hc_prefix}Items">
-                    <h3>Items & Equipment</h3>
-                    <p>Comprehensive analysis of item usage, runewords, uniques, and equipment trends</p>
+                    Items & Equipment - Item usage and equipment trends
                 </a>
             </div>
 
             <div class="nav-card">
                 <a href="{hc_prefix}Mercenaries">
-                    <h3>Mercenary Analysis</h3>
-                    <p>Detailed mercenary usage patterns and equipment</p>
+                    Mercenary Analysis - Mercenary usage patterns and equipment
                 </a>
             </div>
             
             <div class="nav-card">
                 <a href="{hc_prefix}FunFacts">
-                    <h3>Fun Facts & Stats</h3>
-                    <p>Interesting statistics, character rankings, and unique discoveries</p>
+                    Fun Facts & Stats - Interesting statistics, character rankings, and other data
                 </a>
             </div>
 <!--            
@@ -339,19 +329,18 @@ class HomePageGenerator:
 -->
             <div class="nav-card">
                 <a href="skillsearch">
-                    <h3>Skill Search</h3>
-                    <p>Search for characters with specific skills</p>
+                        Skill Search - Search for characters with specific skills
                 </a>
             </div>
 
             <div class="nav-card">
                 <a href="itemsearch">
-                    <h3>Item Search</h3>
-                    <p>Search for characters with specific items</p>
+                    Item Search - Search for characters with specific items
                 </a>
             </div>
             
         </div>
+        </br>
         """
 
     @staticmethod
@@ -422,10 +411,10 @@ class HomePageGenerator:
                     </div>
                     <h3>THESE PAGES INCLUDE DATA FROM ALL AVAILABLE RANKED LADDER CHARACTERS (THE TOP 1,000 AS WELL AS THE TOP 200 FROM EACH CLASS)</h3>
                     <!--        <h3>UNLESS STATED OTHERWISE, OTHER PAGE STATS AND DATA ARE FROM THE TOP 200 CHARACTERS OF THE RELEVANT CLASS OR CLASSES</h3> -->
-                    <hr>
+<!--                    <hr>
                     <h3>Class and special pages have taken character data and separated it into probable builds. As such, the groupings and associated data
                         will change regularly to reflect what is currently accurate.
-                        <br>
+                        <br> -->
 <!--                        Looking at class and build pages, what you see and what it means:</h3>
                     <div>
                         <img src="charts/build-pages-legend.png">
