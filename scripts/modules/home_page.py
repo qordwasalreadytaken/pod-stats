@@ -3,6 +3,8 @@ Streamlined Home Page Module
 Generates a focused home page with class distribution, ladder summary, and navigation to specialized pages
 """
 
+import matplotlib
+matplotlib.use('Agg')  # Use Anti-Grain Geometry backend
 import matplotlib.pyplot as plt
 from matplotlib.font_manager import FontProperties
 from datetime import datetime
@@ -199,19 +201,39 @@ class HomePageGenerator:
                 return f'{pct:.1f}%\n({absolute:,})'
             return my_autopct
         
+        # Class color mapping (hex format for matplotlib)
+        class_color_map = {
+            "Amazon": "#FF6669",      # Amazon - Red (rgb(255, 102, 105))
+            "Assassin": "#FFFFFF",    # Assassin - White (rgb(255, 255, 255))
+            "Barbarian": "#966920",   # Barbarian - Brown (rgb(150, 105, 32))
+            "Druid": "#FFBA4A",       # Druid - Orange (rgb(255, 186, 74))
+            "Necromancer": "#B3FFFD", # Necromancer - Cyan (rgb(179, 255, 253))
+            "Paladin": "#FFF370",     # Paladin - Yellow (rgb(255, 243, 112))
+            "Sorceress": "#BC6BFF"    # Sorceress - Lavender (rgb(188, 107, 255))
+        }
+        
+        colors = [class_color_map.get(class_code, "#808080") for class_code in classes]
+        
         # Timestamp for title
         timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         
-        # Set figure size
-        plt.figure(figsize=(22, 22))
+        # Set figure size with explicit facecolor
+        fig = plt.figure(figsize=(22, 22), facecolor='none')
+        ax = fig.gca()
+        ax.set_facecolor('none')
         plt.subplots_adjust(top=0.5, bottom=0.15)
         
         # Create the pie chart
         wedges, texts, autotexts = plt.pie(
             counts, labels=classes, autopct=make_autopct(counts), startangle=250, 
-            colors=plt.cm.Paired.colors, radius=1.4, 
+            colors=colors, radius=1.4, 
             textprops={'fontsize': 30, 'color': 'white', 'fontproperties': armory}
         )
+        
+        # Explicitly set wedge colors to ensure they're not converted to grayscale
+        for i, wedge in enumerate(wedges):
+            wedge.set_facecolor(colors[i])
+            wedge.set_edgecolor('none')
         
         # Generate appropriate title based on chart type
         if chart_type == "1k":
@@ -240,7 +262,8 @@ class HomePageGenerator:
         else:
             chart_filename = f"charts/{mode_prefix}class_distribution.png"
             
-        plt.savefig(chart_filename, dpi=300, bbox_inches='tight', transparent=True)
+        plt.savefig(chart_filename, dpi=300, bbox_inches='tight', transparent=True, 
+                    facecolor='none', edgecolor='none', format='png')
         
         print(f"Plot saved as {chart_filename}")
         

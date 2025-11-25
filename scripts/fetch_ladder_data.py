@@ -28,6 +28,25 @@ def generate_pie_chart(class_counts):
     except:
         armory = None  # Fallback if font not available
 
+    # Class color mapping
+    class_color_map = {
+        "ama": "rgb(255, 102, 105)",      # Amazon - Red
+        "asn": "rgb(255, 255, 255)",      # Assassin - White
+        "bar": "rgb(150, 105, 32)",       # Barbarian - Brown
+        "dru": "rgb(255, 186, 74)",       # Druid - Orange
+        "nec": "rgb(179, 255, 253)",      # Necromancer - Cyan
+        "pal": "rgb(255, 243, 112)",      # Paladin - Yellow
+        "sor": "rgb(188, 107, 255)"       # Sorceress - Lavender
+    }
+    
+    # Convert RGB strings to matplotlib format and map to classes in order
+    def rgb_to_matplotlib(rgb_string):
+        # Extract numbers from "rgb(r, g, b)" format
+        rgb_values = rgb_string.replace("rgb(", "").replace(")", "").split(",")
+        return tuple(int(v.strip()) / 255.0 for v in rgb_values)
+    
+    colors = [rgb_to_matplotlib(class_color_map.get(class_code, "rgb(128, 128, 128)")) for class_code in classes]
+
     def make_autopct(values):
         def my_autopct(pct):
             total = sum(values)
@@ -41,7 +60,7 @@ def generate_pie_chart(class_counts):
 
     wedges, texts, autotexts = plt.pie(
         counts, labels=classes, autopct=make_autopct(counts), startangle=250,
-        colors=plt.cm.Paired.colors, radius=1.4,
+        colors=colors, radius=1.4,
         textprops={'fontsize': 30, 'color': 'white', 'fontproperties': armory if armory else None}
     )
 
