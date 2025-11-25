@@ -297,19 +297,19 @@ class HomePageGenerator:
                 
             <div class="nav-card">
                 <a href="{hc_prefix}Items">
-                    Items & Equipment - Item usage and equipment trends
+                    Equipment usage and trends
                 </a>
             </div>
 
             <div class="nav-card">
                 <a href="{hc_prefix}Mercenaries">
-                    Mercenary Analysis - Mercenary usage patterns and equipment
+                    Mercenary data analysis
                 </a>
             </div>
             
             <div class="nav-card">
                 <a href="{hc_prefix}FunFacts">
-                    Fun Facts & Stats - Interesting statistics, character rankings, and other data
+                    Interesting statistics, character rankings, and fun facts
                 </a>
             </div>
 <!--            
@@ -329,13 +329,13 @@ class HomePageGenerator:
 -->
             <div class="nav-card">
                 <a href="skillsearch">
-                        Skill Search - Search for characters with specific skills
+                        Skill Search
                 </a>
             </div>
 
             <div class="nav-card">
                 <a href="itemsearch">
-                    Item Search - Search for characters with specific items
+                    Item Search
                 </a>
             </div>
             
