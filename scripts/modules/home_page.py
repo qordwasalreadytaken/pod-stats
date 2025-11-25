@@ -447,8 +447,8 @@ class HomePageGenerator:
                     <!-- About the Data -->
                     <div class="about-section">
                         <h3>About This Data</h3>
-                        <p>This analysis includes data from all available ranked ladder characters, including:</p>
-                        <ul>
+                        <p>This analysis includes available data from all ranked ladder characters, including:</p>
+                        <ul style="list-style-type: disc; padding-left: 40px;">
                             <li>The top 1,000 overall ladder characters</li>
                             <li>The top 200 characters from each class ladder</li>
                             <li>Equipment usage and skill point allocations</li>
