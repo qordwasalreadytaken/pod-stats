@@ -7,6 +7,9 @@ import statistics
 import requests
 from collections import defaultdict, Counter
 from datetime import datetime
+import pandas as pd
+import numpy as np
+from sklearn.metrics.pairwise import cosine_similarity
 from modules.home_page import fetch_1k_ladder_characters, analyze_api_class_distribution, HomePageGenerator
 
 
@@ -90,6 +93,11 @@ class FunFactsAnalyzer:
         # Analyze respec leaderboard
         respec_data = self.analyze_respec_leaderboard(is_hardcore=self.is_hardcore)
         
+        # Analyze top 10 builds
+        print("Analyzing top 10 builds...")
+        top_builds_data = self.analyze_top_10_builds(min_level=80)
+        print(f"✓ Found {len(top_builds_data)} top builds")
+        
         return {
             'character_count': character_count,
             'averages': averages,
@@ -98,7 +106,8 @@ class FunFactsAnalyzer:
             'undead_data': undead_data,
             'cbf_data': cbf_data,
             'top_accounts_data': top_accounts_data,
-            'respec_data': respec_data
+            'respec_data': respec_data,
+            'top_builds_data': top_builds_data
         }
     
     def _get_top_characters_all_stats(self):
@@ -449,6 +458,115 @@ class FunFactsAnalyzer:
             'characters': filtered_characters,
             'total_characters': len(filtered_characters)
         }
+    
+    def analyze_top_10_builds(self, min_level=80, similarity_threshold=0.60):
+        """
+        Analyze top 10 builds across all classes based on player quantity.
+        Simplified version without character lists.
+        
+        Args:
+            min_level: Minimum character level to include (default 80)
+            similarity_threshold: Similarity threshold for clustering (default 0.60)
+        
+        Returns:
+            List of top 10 builds sorted by popularity
+        """
+        classes = ["Barbarian", "Druid", "Amazon", "Assassin", "Necromancer", "Paladin", "Sorceress"]
+        all_builds = []
+        
+        for class_name in classes:
+            # Filter characters by class and minimum level
+            filtered_characters = [
+                char for char in self.all_characters 
+                if char.get("Class") == class_name 
+                and char.get("Stats", {}).get("Level", 0) >= min_level
+            ]
+            
+            if len(filtered_characters) < 3:
+                continue
+            
+            # Extract skill data
+            skill_data_list = []
+            
+            for char_data in filtered_characters:
+                if "SkillTabs" in char_data:
+                    skill_data = {}
+                    for tab in char_data.get('SkillTabs', []):
+                        for skill in tab.get('Skills', []):
+                            skill_name = skill['Name']
+                            skill_level = skill['Level']
+                            skill_data[skill_name] = skill_level
+                    
+                    if skill_data:
+                        skill_data_list.append(skill_data)
+            
+            if not skill_data_list:
+                continue
+            
+            # Convert to DataFrame
+            df = pd.DataFrame(skill_data_list).fillna(0)
+            skill_columns = list(df.columns)
+            
+            # Perform clustering using cosine similarity
+            skill_matrix = df[skill_columns].to_numpy()
+            similarity_matrix = cosine_similarity(skill_matrix)
+            
+            cluster_labels = np.full(len(df), -1)
+            cluster_id = 0
+            
+            for i in range(len(df)):
+                if cluster_labels[i] == -1:
+                    similar_indices = np.where(similarity_matrix[i] >= similarity_threshold)[0]
+                    if len(similar_indices) > 1:
+                        cluster_labels[similar_indices] = cluster_id
+                        cluster_id += 1
+            
+            # Assign miscellaneous cluster for unassigned
+            misc_indices = np.where(cluster_labels == -1)[0]
+            if len(misc_indices) > 0:
+                cluster_labels[misc_indices] = cluster_id
+                cluster_id += 1
+            
+            df['Cluster'] = cluster_labels
+            
+            # Analyze each cluster (build)
+            for cluster_num in range(cluster_id):
+                cluster_chars = df[df['Cluster'] == cluster_num]
+                player_count = len(cluster_chars)
+                
+                if player_count < 3:  # Skip very small clusters
+                    continue
+                
+                # Get top skills for this build
+                skill_averages = cluster_chars[skill_columns].mean()
+                top_skills = skill_averages.nlargest(5)
+                
+                # Create build name from top skills
+                build_skills = []
+                for skill, avg_points in top_skills.items():
+                    if avg_points >= 5:
+                        build_skills.append(f"{skill}")
+                
+                build_name = " / ".join(build_skills[:3])
+                if not build_name:
+                    build_name = "Miscellaneous Build"
+                
+                # Calculate percentage of class using this build
+                class_percentage = (player_count / len(filtered_characters)) * 100
+                
+                build_info = {
+                    "class": class_name,
+                    "build_name": build_name,
+                    "player_count": player_count,
+                    "class_percentage": class_percentage,
+                    "top_skills": {skill: round(avg, 1) for skill, avg in top_skills.items()}
+                }
+                
+                all_builds.append(build_info)
+        
+        # Sort all builds by player count (descending) and return top 10
+        all_builds.sort(key=lambda x: x["player_count"], reverse=True)
+        return all_builds[:10]
 
 
 class FunFactsHTMLGenerator:
@@ -468,6 +586,7 @@ class FunFactsHTMLGenerator:
         class_1k_html = FunFactsHTMLGenerator._generate_1k_class_distribution_section(mode, mode_prefix, level_filter_text)
         top_accounts_html = FunFactsHTMLGenerator._generate_top_accounts_section(analysis_data.get('top_accounts_data', {}))
         respec_html = FunFactsHTMLGenerator._generate_respec_leaderboard_section(analysis_data.get('respec_data', {}))
+        top_builds_html = FunFactsHTMLGenerator._generate_top_10_builds_section(analysis_data.get('top_builds_data', []))
         top_stats_html = FunFactsHTMLGenerator._generate_top_stats_section(analysis_data['top_stats'])
         averages_html = FunFactsHTMLGenerator._generate_averages_section(
             analysis_data['averages'], analysis_data['medians']
@@ -524,6 +643,10 @@ class FunFactsHTMLGenerator:
                     <hr>
                                         
                     {overview_html}
+                    
+                    <hr>
+                    
+                    {top_builds_html}
                     
                     <hr>
                     
@@ -986,6 +1109,65 @@ class FunFactsHTMLGenerator:
                     )}
                 </ul>
             </div>
+        </div>
+        """
+    
+    @staticmethod
+    def _generate_top_10_builds_section(top_builds_data):
+        """Generate the top 10 builds section"""
+        
+        if not top_builds_data:
+            return "<p>No build data available.</p>"
+        
+        # Class color mapping
+        class_colors = {
+            "Amazon": "rgb(255, 102, 105)",      # Red
+            "Assassin": "rgb(255, 255, 255)",    # Yellow
+            "Barbarian": "rgb(150, 105, 32)",   # Indian red
+            "Druid": "rgb(255, 186, 74)",       # Light green
+            "Necromancer": "rgb(179, 255, 253)", # Light gray
+            "Paladin": "rgb(255, 243, 112)",     # Yellow
+            "Sorceress": "rgb(188, 107, 255)"    # Lavendar
+        }
+        
+        builds_html = ""
+        for i, build in enumerate(top_builds_data, 1):
+            # Get class-specific color
+            border_color = class_colors.get(build['class'], '#666')
+            
+            # Create skill list
+            skills_list = "<br>".join([
+                f"{skill}: {avg:.1f} avg points"
+                for skill, avg in list(build["top_skills"].items())[:5]
+                if avg >= 3
+            ])
+            
+            builds_html += f"""
+            <div class="build-item" style="background-color: #2a2a2a; margin: 8px 0; padding: 12px; border-radius: 6px; border-left: 3px solid {border_color};">
+                <h3 style="margin: 0 0 5px 0;">
+                    #{i} - {build['class']}: {build['build_name']}
+                </h3>
+                <div style="color: #cccccc; margin-bottom: 5px; font-size: 14px;">
+                    <strong>{build['player_count']} players</strong> ({build['class_percentage']:.1f}% of all {build['class']}s)
+                </div>
+                <div>
+                    <strong>Key Skills:</strong><br>
+                    {skills_list}
+                </div>
+            </div>
+            """
+        
+        return f"""
+        <h2 id="top-builds">
+            Top 10 Most Popular Builds
+            <a href="#top-builds" class="anchor-link">
+                <img src="icons/anchor.png" alt="🔗" class="anchor-icon">
+            </a>
+        </h2>
+        <p>The most popular character builds across all classes (Level 80+), determined by analyzing skill point allocation and build similarity.</p>
+        
+        <div class="top-builds-container">
+            {builds_html}
         </div>
         """
 
