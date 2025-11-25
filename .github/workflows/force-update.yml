@@ -53,11 +53,6 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r scripts/requirements.txt
         
-    - name: Install Playwright browsers
-      run: |
-        playwright install chromium
-        playwright install-deps chromium
-        
     - name: Create necessary directories
       run: |
         mkdir -p charts
