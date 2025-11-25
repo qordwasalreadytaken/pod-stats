@@ -52,12 +52,12 @@
         <div class="fun-facts-row">
             <div class="fun-facts-column">
                 <h3>Total Characters with Mercenaries: 1450</h3>
-                <h3>Total Mercenary Equipment Items: 3416</h3>
+                <h3>Total Mercenary Equipment Items: 3419</h3>
             </div>
 <!--            <div class="fun-facts-column">
                 <h3>Equipment Coverage by Type:</h3>
                 <ul>
-                    <li>Desert Mercenary: 233.5% equipment coverage</li><li>Rogue Scout: 170.9% equipment coverage</li><li>Barbarian: 253.5% equipment coverage</li><li>Eastern Sorceror: 313.8% equipment coverage</li>
+                    <li>Desert Mercenary: 233.5% equipment coverage</li><li>Rogue Scout: 173.2% equipment coverage</li><li>Barbarian: 253.5% equipment coverage</li><li>Eastern Sorceror: 313.8% equipment coverage</li>
                 </ul>
             </div> -->
         </div>
@@ -164,7 +164,7 @@
                     
                     <div class="column">
                         <h4>Helmet</h4>
-                        <ul><li>Andariel's Visage: 13</li><li>Tal Rasha's Horadric Crest: 12</li><li>Vampire Gaze: 8</li><li>Stealskull: 5</li><li>Steel Shade: 4</li><li>Hearth: 4</li><li>Crown of Thieves: 3</li><li>M'avina's True Sight: 2</li><li>Guillaume's Face: 2</li><li>Giant Skull: 2</li></ul>
+                        <ul><li>Andariel's Visage: 13</li><li>Tal Rasha's Horadric Crest: 12</li><li>Vampire Gaze: 8</li><li>Hearth: 5</li><li>Stealskull: 5</li><li>Steel Shade: 4</li><li>Crown of Thieves: 3</li><li>M'avina's True Sight: 2</li><li>Guillaume's Face: 2</li><li>Giant Skull: 2</li></ul>
                     </div>
                     
                     <div class="column">
@@ -174,7 +174,7 @@
                     
                     <div class="column">
                         <h4>Weapon</h4>
-                        <ul><li>Harmony: 43</li><li>Faith: 10</li><li>Buriza-Do Kyanon: 9</li><li>Insight: 6</li><li>Bramble Stinger: 1</li><li>Arctic Horn: 1</li><li>Pus Spitter: 1</li><li>Edge: 1</li><li>Storm Quill: 1</li><li>Ice: 1</li></ul>
+                        <ul><li>Harmony: 43</li><li>Faith: 10</li><li>Buriza-Do Kyanon: 9</li><li>Insight: 6</li><li>Edge: 2</li><li>Bramble Stinger: 1</li><li>Arctic Horn: 1</li><li>Pus Spitter: 1</li><li>Storm Quill: 1</li><li>Ice: 1</li></ul>
                     </div>
                     
                 </div>
@@ -232,7 +232,7 @@
                 </div>
                 
                 <div class="footer">
-                    <p>PoD data current as of 2025-11-24 14:02:01</p>
+                    <p>PoD data current as of 2025-11-25 13:26:57</p>
                 </div>
             </div>
             
@@ -245,19 +245,30 @@
             this.classList.toggle("active");
             var content = this.nextElementSibling;
             
+            // Skip if no content element found
+            if (!content) return;
+            
             // Handle icons - look for various alt text patterns
             var openIcon = this.querySelector("img.open-icon") || this.querySelector("img[alt='Open']") || this.querySelector("img.icon[alt='Open']");
             var closeIcon = this.querySelector("img.close-icon") || this.querySelector("img[alt='Close']") || this.querySelector("img.icon[alt='Close']");
 
-            // Toggle content display - check if currently expanded (block or empty string means visible)
-            if (content.style.display === "block" || content.style.display === "") {
-                content.style.display = "none";
-                if (openIcon) openIcon.classList.remove("hidden");
-                if (closeIcon) closeIcon.classList.add("hidden");
-            } else {
+            // Toggle content display - check if currently hidden
+            if (content.style.display === "none" || content.style.display === "") {
+                // Currently hidden, so expand it
                 content.style.display = "block";
-                if (openIcon) openIcon.classList.add("hidden");
-                if (closeIcon) closeIcon.classList.remove("hidden");
+                // Swap icons only if both exist
+                if (openIcon && closeIcon) {
+                    openIcon.classList.remove("hidden");
+                    closeIcon.classList.add("hidden");
+                }
+            } else {
+                // Currently visible, so collapse it
+                content.style.display = "none";
+                // Swap icons only if both exist
+                if (openIcon && closeIcon) {
+                    openIcon.classList.add("hidden");
+                    closeIcon.classList.remove("hidden");
+                }
             }
         });
     }

@@ -4026,7 +4026,7 @@
     </div>
 
     <p><strong>Skills:<br></strong> <img src='icons/Whirlwind.png' alt='Whirlwind' class='skill-icon-smaller'> Whirlwind:20, <img src='icons/Shout.png' alt='Shout' class='skill-icon-smaller'> Shout:20, <img src='icons/Battle Orders.png' alt='Battle Orders' class='skill-icon-smaller'> Battle Orders:20, <img src='icons/Battle Command.png' alt='Battle Command' class='skill-icon-smaller'> Battle Command:19, <img src='icons/Blunt Weapon Mastery.png' alt='Blunt Weapon Mastery' class='skill-icon-smaller'> Blunt Weapon Mastery:6, <img src='icons/Bash.png' alt='Bash' class='skill-icon-smaller'> Bash:1, <img src='icons/Leap Slam.png' alt='Leap Slam' class='skill-icon-smaller'> Leap Slam:1, <img src='icons/Stun.png' alt='Stun' class='skill-icon-smaller'> Stun:1, <img src='icons/Concentrate.png' alt='Concentrate' class='skill-icon-smaller'> Concentrate:1, <img src='icons/Cleave.png' alt='Cleave' class='skill-icon-smaller'> Cleave:1, <img src='icons/Whirling Axes.png' alt='Whirling Axes' class='skill-icon-smaller'> Whirling Axes:1, <img src='icons/Increased Stamina.png' alt='Increased Stamina' class='skill-icon-smaller'> Increased Stamina:1, <img src='icons/Iron Skin.png' alt='Iron Skin' class='skill-icon-smaller'> Iron Skin:1, <img src='icons/Increased Speed.png' alt='Increased Speed' class='skill-icon-smaller'> Increased Speed:1, <img src='icons/Natural Resistance.png' alt='Natural Resistance' class='skill-icon-smaller'> Natural Resistance:1, <img src='icons/Puncture.png' alt='Puncture' class='skill-icon-smaller'> Puncture:1, <img src='icons/Counter Attack.png' alt='Counter Attack' class='skill-icon-smaller'> Counter Attack:1, <img src='icons/Howl.png' alt='Howl' class='skill-icon-smaller'> Howl:1, <img src='icons/Find Potion.png' alt='Find Potion' class='skill-icon-smaller'> Find Potion:1, <img src='icons/Find Item.png' alt='Find Item' class='skill-icon-smaller'> Find Item:1, <img src='icons/Grim Ward.png' alt='Grim Ward' class='skill-icon-smaller'> Grim Ward:1</p>
-    <p><strong>Equipment:<br></strong> Boots: <span style='color: #45a823;'>Immortal King's Pillar</span>, Gloves: <span style='color: #45a823;'>Immortal King's Forge</span>, Belt: <span style='color: #45a823;'>Immortal King's Detail</span>, Amulet: <span style='color: #7074c9;'>Magic Amulet</span>, Ring: <span style='color: #edcd74;'>Bul-Kathos' Wedding Band</span> x2, Armor: <span style='color: #edcd74;'>Myth</span>, Helmet: <span style='color: #edcd74;'>2693</span>, Left hand: <span style='color: #45a823;'>Immortal King's Stone Crusher</span>, Left hand: <span style='color: #7074c9;'>Magic War Axe</span>, Offhand: <span style='color: #7074c9;'>Magic War Axe</span></p>
+    <p><strong>Equipment:<br></strong> Boots: <span style='color: #45a823;'>Immortal King's Pillar</span>, Gloves: <span style='color: #45a823;'>Immortal King's Forge</span>, Belt: <span style='color: #45a823;'>Immortal King's Detail</span>, Amulet: <span style='color: #7074c9;'>Magic Amulet</span>, Ring: <span style='color: #edcd74;'>Bul-Kathos' Wedding Band</span> x2, Armor: <span style='color: #edcd74;'>Myth</span>, Helmet: <span style='color: #edcd74;'>2693</span>, Left hand: <span style='color: #7074c9;'>Magic War Axe</span>, Left hand: <span style='color: #45a823;'>Immortal King's Stone Crusher</span>, Offhand: <span style='color: #7074c9;'>Magic War Axe</span></p>
     <p><strong>Mercenary:<br></strong> Act 1 Rogue Scout - No equipment</p>
 
     <div class="character-section" data-character-name="oderbaba"></div>
@@ -45411,7 +45411,7 @@
                         Bo (3451)
                     </a>
                 </li></ul>
-                <p><strong>Average Life:</strong> 1827.92 | <strong>Median Life:</strong> 1809.00</p>
+                <p><strong>Average Life:</strong> 1826.22 | <strong>Median Life:</strong> 1809.00</p>
             </div>
             <div class="fun-facts-column">
                 <h3>Top 5 Barbarian's with the Most Mana:</h3>
@@ -45436,7 +45436,7 @@
                         Zardongodong (549)
                     </a>
                 </li></ul>
-                <p><strong>Average Mana:</strong> 192.77 | <strong>Median Mana:</strong> 168.50</p>
+                <p><strong>Average Mana:</strong> 192.41 | <strong>Median Mana:</strong> 167.50</p>
             </div>
         </div>
 
@@ -45524,19 +45524,30 @@
             this.classList.toggle("active");
             var content = this.nextElementSibling;
             
+            // Skip if no content element found
+            if (!content) return;
+            
             // Handle icons - look for various alt text patterns
             var openIcon = this.querySelector("img.open-icon") || this.querySelector("img[alt='Open']") || this.querySelector("img.icon[alt='Open']");
             var closeIcon = this.querySelector("img.close-icon") || this.querySelector("img[alt='Close']") || this.querySelector("img.icon[alt='Close']");
 
-            // Toggle content display - check if currently expanded (block or empty string means visible)
-            if (content.style.display === "block" || content.style.display === "") {
-                content.style.display = "none";
-                if (openIcon) openIcon.classList.remove("hidden");
-                if (closeIcon) closeIcon.classList.add("hidden");
-            } else {
+            // Toggle content display - check if currently hidden
+            if (content.style.display === "none" || content.style.display === "") {
+                // Currently hidden, so expand it
                 content.style.display = "block";
-                if (openIcon) openIcon.classList.add("hidden");
-                if (closeIcon) closeIcon.classList.remove("hidden");
+                // Swap icons only if both exist
+                if (openIcon && closeIcon) {
+                    openIcon.classList.remove("hidden");
+                    closeIcon.classList.add("hidden");
+                }
+            } else {
+                // Currently visible, so collapse it
+                content.style.display = "none";
+                // Swap icons only if both exist
+                if (openIcon && closeIcon) {
+                    openIcon.classList.add("hidden");
+                    closeIcon.classList.remove("hidden");
+                }
             }
         });
     }

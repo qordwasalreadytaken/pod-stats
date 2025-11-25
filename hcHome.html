@@ -114,19 +114,19 @@
                 
             <div class="nav-card">
                 <a href="hcItems">
-                    Items & Equipment - Item usage and equipment trends
+                    Equipment usage and trends
                 </a>
             </div>
 
             <div class="nav-card">
                 <a href="hcMercenaries">
-                    Mercenary Analysis - Mercenary usage patterns and equipment
+                    Mercenary data analysis
                 </a>
             </div>
             
             <div class="nav-card">
                 <a href="hcFunFacts">
-                    Fun Facts & Stats - Interesting statistics, character rankings, and other data
+                    Interesting statistics, character rankings, and fun facts
                 </a>
             </div>
 <!--            
@@ -146,13 +146,13 @@
 -->
             <div class="nav-card">
                 <a href="skillsearch">
-                        Skill Search - Search for characters with specific skills
+                        Skill Search
                 </a>
             </div>
 
             <div class="nav-card">
                 <a href="itemsearch">
-                    Item Search - Search for characters with specific items
+                    Item Search
                 </a>
             </div>
             
@@ -170,8 +170,8 @@
                     <!-- About the Data -->
                     <div class="about-section">
                         <h3>About This Data</h3>
-                        <p>This analysis includes data from all available ranked ladder characters, including:</p>
-                        <ul>
+                        <p>This analysis includes available data from all ranked ladder characters, including:</p>
+                        <ul style="list-style-type: disc; padding-left: 40px;">
                             <li>The top 1,000 overall ladder characters</li>
                             <li>The top 200 characters from each class ladder</li>
                             <li>Equipment usage and skill point allocations</li>
@@ -184,7 +184,7 @@
                 </div>
                 
                 <div class="footer">
-                    <p>PoD data current as of 2025-11-24 14:02:55</p>
+                    <p>PoD data current as of 2025-11-25 13:28:02</p>
                 </div>
             </div>
 
@@ -197,19 +197,30 @@
             this.classList.toggle("active");
             var content = this.nextElementSibling;
             
+            // Skip if no content element found
+            if (!content) return;
+            
             // Handle icons - look for various alt text patterns
             var openIcon = this.querySelector("img.open-icon") || this.querySelector("img[alt='Open']") || this.querySelector("img.icon[alt='Open']");
             var closeIcon = this.querySelector("img.close-icon") || this.querySelector("img[alt='Close']") || this.querySelector("img.icon[alt='Close']");
 
-            // Toggle content display - check if currently expanded (block or empty string means visible)
-            if (content.style.display === "block" || content.style.display === "") {
-                content.style.display = "none";
-                if (openIcon) openIcon.classList.remove("hidden");
-                if (closeIcon) closeIcon.classList.add("hidden");
-            } else {
+            // Toggle content display - check if currently hidden
+            if (content.style.display === "none" || content.style.display === "") {
+                // Currently hidden, so expand it
                 content.style.display = "block";
-                if (openIcon) openIcon.classList.add("hidden");
-                if (closeIcon) closeIcon.classList.remove("hidden");
+                // Swap icons only if both exist
+                if (openIcon && closeIcon) {
+                    openIcon.classList.remove("hidden");
+                    closeIcon.classList.add("hidden");
+                }
+            } else {
+                // Currently visible, so collapse it
+                content.style.display = "none";
+                // Swap icons only if both exist
+                if (openIcon && closeIcon) {
+                    openIcon.classList.add("hidden");
+                    closeIcon.classList.remove("hidden");
+                }
             }
         });
     }

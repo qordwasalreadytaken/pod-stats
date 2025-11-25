@@ -2121,7 +2121,7 @@
     </div>
 
     <p><strong>Skills:<br></strong> <img src='icons/Weaken.png' alt='Weaken' class='skill-icon-smaller'> Weaken:20, <img src='icons/Iron Maiden.png' alt='Iron Maiden' class='skill-icon-smaller'> Iron Maiden:20, <img src='icons/Life Tap.png' alt='Life Tap' class='skill-icon-smaller'> Life Tap:20, <img src='icons/Decrepify.png' alt='Decrepify' class='skill-icon-smaller'> Decrepify:20, <img src='icons/Hemorrhage.png' alt='Hemorrhage' class='skill-icon-smaller'> Hemorrhage:20, <img src='icons/Clay Golem.png' alt='Clay Golem' class='skill-icon-smaller'> Clay Golem:3, <img src='icons/Summon Mastery.png' alt='Summon Mastery' class='skill-icon-smaller'> Summon Mastery:1</p>
-    <p><strong>Equipment:<br></strong> Ring: <span style='color: yellow;'>Rare Ring</span>, Ring: <span style='color: #edcd74;'>The Stone of Jordan</span>, Gloves: <span style='color: #45a823;'>Trang-Oul's Claws</span>, Amulet: <span style='color: #7074c9;'>Magic Amulet</span>, Armor: <span style='color: #edcd74;'>Enigma</span>, Belt: <span style='color: #edcd74;'>Arachnid Mesh</span>, Offhand: <span style='color: #edcd74;'>Homunculus</span></p>
+    <p><strong>Equipment:<br></strong> Gloves: <span style='color: #45a823;'>Trang-Oul's Claws</span>, Amulet: <span style='color: #7074c9;'>Magic Amulet</span>, Ring: <span style='color: #edcd74;'>The Stone of Jordan</span>, Ring: <span style='color: yellow;'>Rare Ring</span>, Armor: <span style='color: #edcd74;'>Enigma</span>, Belt: <span style='color: #edcd74;'>Arachnid Mesh</span>, Offhand: <span style='color: #edcd74;'>Homunculus</span></p>
     <p><strong>Mercenary:<br></strong> Act 2 Desert Mercenary - Duriel's Shell, Vampire Gaze, Insight</p>
 
     <div class="character-section" data-character-name="Joksu"></div>
@@ -6451,7 +6451,7 @@
     </div>
 
     <p><strong>Skills:<br></strong> <img src='icons/Corpse Explosion.png' alt='Corpse Explosion' class='skill-icon-smaller'> Corpse Explosion:20, <img src='icons/Desecrate.png' alt='Desecrate' class='skill-icon-smaller'> Desecrate:20, <img src='icons/Poison Nova.png' alt='Poison Nova' class='skill-icon-smaller'> Poison Nova:20, <img src='icons/Fire Golem.png' alt='Fire Golem' class='skill-icon-smaller'> Fire Golem:20, <img src='icons/Convocation.png' alt='Convocation' class='skill-icon-smaller'> Convocation:19, <img src='icons/Deadly Poison.png' alt='Deadly Poison' class='skill-icon-smaller'> Deadly Poison:3, <img src='icons/Bone Armor.png' alt='Bone Armor' class='skill-icon-smaller'> Bone Armor:1, <img src='icons/Clay Golem.png' alt='Clay Golem' class='skill-icon-smaller'> Clay Golem:1, <img src='icons/Blood Golem.png' alt='Blood Golem' class='skill-icon-smaller'> Blood Golem:1, <img src='icons/Iron Golem.png' alt='Iron Golem' class='skill-icon-smaller'> Iron Golem:1</p>
-    <p><strong>Equipment:<br></strong> Ring: <span style='color: yellow;'>Rare Ring</span> x2, Amulet: <span style='color: yellow;'>Rare Amulet</span>, Helmet: <span style='color: yellow;'>Rare Circlet</span>, Armor: <span style='color: #edcd74;'>Skin of the Vipermagi</span>, Gloves: <span style='color: #edcd74;'>Magefist</span>, Belt: <span style='color: #edcd74;'>Arachnid Mesh</span>, Boots: <span style='color: #45a823;'>Sander's Riprap</span>, Left hand: <span style='color: #7074c9;'>Magic Bone Wand</span>, Left hand: <span style='color: #edcd74;'>White</span>, Offhand: <span style='color: #edcd74;'>Splendor</span>, Offhand: <span style='color: #edcd74;'>Phoenix</span></p>
+    <p><strong>Equipment:<br></strong> Ring: <span style='color: yellow;'>Rare Ring</span> x2, Amulet: <span style='color: yellow;'>Rare Amulet</span>, Helmet: <span style='color: yellow;'>Rare Circlet</span>, Armor: <span style='color: #edcd74;'>Skin of the Vipermagi</span>, Gloves: <span style='color: #edcd74;'>Magefist</span>, Boots: <span style='color: #45a823;'>Sander's Riprap</span>, Left hand: <span style='color: #7074c9;'>Magic Bone Wand</span>, Left hand: <span style='color: #edcd74;'>White</span>, Offhand: <span style='color: #edcd74;'>Splendor</span>, Offhand: <span style='color: #edcd74;'>Phoenix</span>, Belt: <span style='color: #edcd74;'>Arachnid Mesh</span></p>
     <p><strong>Mercenary:<br></strong> Act 2 Desert Mercenary - The Gladiator's Bane, Vampire Gaze, Infinity</p>
 
     <div class="character-section" data-character-name="Minnk"></div>
@@ -50723,7 +50723,7 @@
                         AspireToInspire (1908)
                     </a>
                 </li></ul>
-                <p><strong>Average Life:</strong> 1371.14 | <strong>Median Life:</strong> 1385.50</p>
+                <p><strong>Average Life:</strong> 1367.96 | <strong>Median Life:</strong> 1380.00</p>
             </div>
             <div class="fun-facts-column">
                 <h3>Top 5 Necromancer's with the Most Mana:</h3>
@@ -50748,7 +50748,7 @@
                         Bones_Mcdoom (933)
                     </a>
                 </li></ul>
-                <p><strong>Average Mana:</strong> 564.89 | <strong>Median Mana:</strong> 561.00</p>
+                <p><strong>Average Mana:</strong> 567.44 | <strong>Median Mana:</strong> 567.00</p>
             </div>
         </div>
 
@@ -50836,19 +50836,30 @@
             this.classList.toggle("active");
             var content = this.nextElementSibling;
             
+            // Skip if no content element found
+            if (!content) return;
+            
             // Handle icons - look for various alt text patterns
             var openIcon = this.querySelector("img.open-icon") || this.querySelector("img[alt='Open']") || this.querySelector("img.icon[alt='Open']");
             var closeIcon = this.querySelector("img.close-icon") || this.querySelector("img[alt='Close']") || this.querySelector("img.icon[alt='Close']");
 
-            // Toggle content display - check if currently expanded (block or empty string means visible)
-            if (content.style.display === "block" || content.style.display === "") {
-                content.style.display = "none";
-                if (openIcon) openIcon.classList.remove("hidden");
-                if (closeIcon) closeIcon.classList.add("hidden");
-            } else {
+            // Toggle content display - check if currently hidden
+            if (content.style.display === "none" || content.style.display === "") {
+                // Currently hidden, so expand it
                 content.style.display = "block";
-                if (openIcon) openIcon.classList.add("hidden");
-                if (closeIcon) closeIcon.classList.remove("hidden");
+                // Swap icons only if both exist
+                if (openIcon && closeIcon) {
+                    openIcon.classList.remove("hidden");
+                    closeIcon.classList.add("hidden");
+                }
+            } else {
+                // Currently visible, so collapse it
+                content.style.display = "none";
+                // Swap icons only if both exist
+                if (openIcon && closeIcon) {
+                    openIcon.classList.add("hidden");
+                    closeIcon.classList.remove("hidden");
+                }
             }
         });
     }
