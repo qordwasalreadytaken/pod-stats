@@ -74,10 +74,19 @@ def generate_all_pages(json_file_path="sc_ladder.json", is_hardcore=False, hc_le
         except Exception as e:
             print(f"Warning: Could not check freeze status: {e}")
             print("Continuing with normal generation...")
-            print(f"Warning: Could not check freeze status: {e}")
-            print("Continuing with normal generation...")
     else:
         print("🔧 FORCE MODE: Bypassing season freeze protection")
+    
+    # Run data update first to refresh CSVs and tracking pages
+    print("\n📊 Updating CSV data and generating tracking pages...")
+    print("=" * 60)
+    update_success = update_data_and_generate_tracking_pages(snapshot_label=None)
+    if update_success:
+        print("✅ Data update completed successfully")
+    else:
+        print("⚠️  Data update had issues, but continuing with page generation...")
+    print("=" * 60)
+    print()
     
     # Resolve JSON file path relative to root directory
     if not os.path.isabs(json_file_path):

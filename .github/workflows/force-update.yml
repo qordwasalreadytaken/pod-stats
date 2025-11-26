@@ -91,6 +91,12 @@ jobs:
             print('Proceeding with force update anyway')
         "
         
+    - name: Run data update and tracking pages
+      if: github.event.inputs.page_type == 'all'
+      run: |
+        echo "📊 Updating CSV data and generating tracking pages..."
+        python scripts/generate_pages.py --page dataupdate --force
+        
     - name: Run force page generation - Softcore
       if: github.event.inputs.update_mode == 'softcore' || github.event.inputs.update_mode == 'both'
       run: |
