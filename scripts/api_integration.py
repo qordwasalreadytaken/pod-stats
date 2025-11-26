@@ -4051,13 +4051,38 @@ def generate_league_html(league, league_data, time_columns):
     <title>{title}</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        body {{ font-family: Arial, sans-serif; margin: 20px; }}
-        table {{ border-collapse: collapse; width: 100%; margin: 20px 0; }}
-        th, td {{ border: 1px solid #ddd; padding: 8px; text-align: left; }}
-        th {{ background-color: #f2f2f2; cursor: pointer; }}
-        th:hover {{ background-color: #e2e2e2; }}
-        .usage-label {{ cursor: pointer; color: #0066cc; }}
-        .usage-label:hover {{ background-color: #f0f8ff; }}
+        body {{ 
+            font-family: Arial, sans-serif; 
+            margin: 20px; 
+            background-image: url("icons/stone_background_2600.jpg");
+            background-position: bottom center;
+            background-repeat: repeat;
+            background-size: auto;
+            background-color: #232323;
+            color: #f5f5f5;
+        }}
+        table {{ 
+            border-collapse: collapse; 
+            width: 100%; 
+            margin: 20px 0; 
+            background-color: rgba(35, 35, 35, 0.9);
+        }}
+        th, td {{ 
+            border: 1px solid #555; 
+            padding: 8px; 
+            text-align: left; 
+            color: #f5f5f5;
+        }}
+        th {{ 
+            background-color: rgba(50, 50, 50, 0.95); 
+            cursor: pointer; 
+        }}
+        th:hover {{ background-color: rgba(70, 70, 70, 0.95); }}
+        .usage-label {{ 
+            cursor: pointer; 
+            color: #d6a69f; 
+        }}
+        .usage-label:hover {{ background-color: rgba(100, 100, 100, 0.5); }}
         #tooltipChart {{
             position: absolute;
             display: none;
@@ -4068,17 +4093,19 @@ def generate_league_html(league, league_data, time_columns):
             box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
         }}
         .league-header {{ 
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.9) 0%, rgba(118, 75, 162, 0.9) 100%);
             color: white;
             padding: 20px;
             border-radius: 10px;
             margin-bottom: 20px;
             text-align: center;
+            border: 2px solid #667eea;
         }}
         .section-header {{
-            background-color: #f8f9fa;
+            background-color: rgba(50, 50, 50, 0.9);
+            color: #f5f5f5;
             padding: 10px;
-            border-left: 4px solid #007bff;
+            border-left: 4px solid #667eea;
             margin: 20px 0 10px 0;
         }}
     </style>
@@ -4240,13 +4267,38 @@ def generate_server_html(server_data, time_columns):
     <title>{title}</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        body {{ font-family: Arial, sans-serif; margin: 20px; }}
-        table {{ border-collapse: collapse; width: 100%; margin: 20px 0; }}
-        th, td {{ border: 1px solid #ddd; padding: 8px; text-align: left; }}
-        th {{ background-color: #f2f2f2; cursor: pointer; }}
-        th:hover {{ background-color: #e2e2e2; }}
-        .usage-label {{ cursor: pointer; color: #0066cc; }}
-        .usage-label:hover {{ background-color: #f0f8ff; }}
+        body {{ 
+            font-family: Arial, sans-serif; 
+            margin: 20px; 
+            background-image: url("icons/stone_background_2600.jpg");
+            background-position: bottom center;
+            background-repeat: repeat;
+            background-size: auto;
+            background-color: #232323;
+            color: #f5f5f5;
+        }}
+        table {{ 
+            border-collapse: collapse; 
+            width: 100%; 
+            margin: 20px 0; 
+            background-color: rgba(35, 35, 35, 0.9);
+        }}
+        th, td {{ 
+            border: 1px solid #555; 
+            padding: 8px; 
+            text-align: left; 
+            color: #f5f5f5;
+        }}
+        th {{ 
+            background-color: rgba(50, 50, 50, 0.95); 
+            cursor: pointer; 
+        }}
+        th:hover {{ background-color: rgba(70, 70, 70, 0.95); }}
+        .usage-label {{ 
+            cursor: pointer; 
+            color: #d6a69f; 
+        }}
+        .usage-label:hover {{ background-color: rgba(100, 100, 100, 0.5); }}
         #tooltipChart {{
             position: absolute;
             display: none;
@@ -4257,15 +4309,17 @@ def generate_server_html(server_data, time_columns):
             box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
         }}
         .server-header {{ 
-            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            background: linear-gradient(135deg, rgba(17, 153, 142, 0.9) 0%, rgba(56, 239, 125, 0.9) 100%);
             color: white;
             padding: 20px;
             border-radius: 10px;
             margin-bottom: 20px;
             text-align: center;
+            border: 2px solid #11998e;
         }}
         .section-header {{
-            background-color: #f8f9fa;
+            background-color: rgba(50, 50, 50, 0.9);
+            color: #f5f5f5;
             padding: 10px;
             border-left: 4px solid #28a745;
             margin: 20px 0 10px 0;
