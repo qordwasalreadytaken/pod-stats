@@ -4123,7 +4123,8 @@ def generate_league_html(league, league_data, time_columns):
         # Skills grouped by class
         f.write('<div class="section-header"><h2>⚔️ Skills by Class</h2></div>\n')
         for char_class, skills in league_data['Skills'].items():
-            f.write(f'<h3>🏛️ {char_class}</h3>\n')
+            class_icon = f'icons/{char_class}.png'
+            f.write(f'<h3><img src="{class_icon}" alt="{char_class}" style="vertical-align: middle; height: 24px; margin-right: 8px;">{char_class}</h3>\n')
             f.write('<table>\n')
             f.write('<tr><th onclick="sortTable(this, \'str\')">Skill Name</th>')
             for col in time_columns:
