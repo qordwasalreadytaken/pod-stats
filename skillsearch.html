@@ -458,13 +458,25 @@
                         <p>Found ${result.characters.length} ${leagueName} character(s) with ${targetSkills.join(' and ')} at ${minPoints}+ points:</p>
                 `;
 
+                // Class color mapping
+                const classColors = {
+                    "Amazon": "rgb(255, 102, 105)",
+                    "Assassin": "rgb(255, 255, 255)",
+                    "Barbarian": "rgb(150, 105, 32)",
+                    "Druid": "rgb(255, 186, 74)",
+                    "Necromancer": "rgb(179, 255, 253)",
+                    "Paladin": "rgb(255, 243, 112)",
+                    "Sorceress": "rgb(188, 107, 255)"
+                };
+
                 for (const char of result.characters) {
                     // Build the trends URL based on class and league
                     const trendsClass = currentLeague === 'hc' ? `hc${char.class}` : char.class;
                     const trendsUrl = `https://trends.pathofdiablo.com/${trendsClass}#${char.name}`;
+                    const classColor = classColors[char.class] || "#555";
                     
                     html += `
-                        <div class="character-card">
+                        <div class="character-card" style="border: 3px solid ${classColor};">
                             <div class="character-name">${char.name}</div>
                             <div class="character-info">
                                 Class: ${char.class} | Level: ${char.level} | League: ${leagueName} | 
