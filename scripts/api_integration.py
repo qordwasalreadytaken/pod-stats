@@ -4093,13 +4093,13 @@ def generate_league_html(league, league_data, time_columns):
             box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
         }}
         .league-header {{ 
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.9) 0%, rgba(118, 75, 162, 0.9) 100%);
+            background: linear-gradient(135deg, #441D1D 0%, #782121 100%);
             color: white;
             padding: 20px;
             border-radius: 10px;
             margin-bottom: 20px;
             text-align: center;
-            border: 2px solid #667eea;
+            border: 2px solid #782121;
         }}
         .section-header {{
             background-color: rgba(50, 50, 50, 0.9);
@@ -4309,13 +4309,13 @@ def generate_server_html(server_data, time_columns):
             box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
         }}
         .server-header {{ 
-            background: linear-gradient(135deg, rgba(17, 153, 142, 0.9) 0%, rgba(56, 239, 125, 0.9) 100%);
+            background: linear-gradient(135deg, #441D1D 0%, #782121 100%);
             color: white;
             padding: 20px;
             border-radius: 10px;
             margin-bottom: 20px;
             text-align: center;
-            border: 2px solid #11998e;
+            border: 2px solid #782121;
         }}
         .section-header {{
             background-color: rgba(50, 50, 50, 0.9);
