@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="./css/test-css.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body class="not-main">
+<body class="not-main" style="background-color: #000000; background-image: none;">
     <div class="is-clipped">
         <div id="navbar-placeholder"></div>
         <script>
@@ -414,7 +414,7 @@
                 const classColor = classColors[char.class] || "#555";
 
                 html += `
-                    <div class="character-card" style="border: 3px solid ${classColor};">
+                    <div class="character-card" style="margin: 8px 0; padding: 12px; border-radius: 6px; border-left: 3px solid ${classColor};">
                         <div class="character-name">${char.name}</div>
                         <div class="character-info">
                             Class: ${char.class} | Level: ${char.level} | League: ${leagueName} |
