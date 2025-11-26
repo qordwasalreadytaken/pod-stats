@@ -4120,12 +4120,24 @@ def generate_league_html(league, league_data, time_columns):
     </div>
 """)
 
+        # Class color mapping
+        class_colors = {
+            "Amazon": "rgb(255, 102, 105)",
+            "Assassin": "rgb(255, 255, 255)",
+            "Barbarian": "rgb(150, 105, 32)",
+            "Druid": "rgb(255, 186, 74)",
+            "Necromancer": "rgb(179, 255, 253)",
+            "Paladin": "rgb(255, 243, 112)",
+            "Sorceress": "rgb(188, 107, 255)"
+        }
+
         # Skills grouped by class
         f.write('<div class="section-header"><h2>⚔️ Skills by Class</h2></div>\n')
         for char_class, skills in league_data['Skills'].items():
             class_icon = f'icons/{char_class}.png'
-            f.write(f'<h3><img src="{class_icon}" alt="{char_class}" style="vertical-align: middle; height: 32px; margin-right: 8px;">{char_class}</h3>\n')
-            f.write('<table>\n')
+            class_color = class_colors.get(char_class, "#666")
+            f.write(f'<h3><img src="{class_icon}" alt="{char_class}" style="vertical-align: middle; height: 60px; margin-right: 8px;"></h3>\n')
+            f.write(f'<table style="border: 3px solid {class_color};">\n')
             f.write('<tr><th onclick="sortTable(this, \'str\')">Skill Name</th>')
             for col in time_columns:
                 f.write(f'<th onclick="sortTable(this, \'num\')">{col}</th>')
