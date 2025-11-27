@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PoD Analytics - Admin Documentation</title>
+    <link rel="stylesheet" href="css/test-css.css">
+    <link rel="icon" type="image/x-icon" href="icons/pod.ico">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+        }
+        .header {
+            background: linear-gradient(135deg, #441D1D 0%, #782121 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border: 2px solid #782121;
+        }
+        .header h1 {
+            margin: 0 0 10px 0;
+        }
+        .warning-box {
+            background-color: #663300;
+            border-left: 5px solid #ff6600;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .workflow-section {
+            background-color: #252525;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .workflow-section.enabled {
+            border-left-color: #10b981;
+        }
+        .workflow-section.disabled {
+            border-left-color: #ef4444;
+            opacity: 0.7;
+        }
+        .workflow-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .workflow-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        .workflow-section.enabled .workflow-title {
+            color: #10b981;
+        }
+        .workflow-section.disabled .workflow-title {
+            color: #ef4444;
+        }
+        .status-badge {
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+        .status-enabled {
+            background-color: #10b981;
+            color: white;
+        }
+        .status-disabled {
+            background-color: #ef4444;
+            color: white;
+        }
+        .trigger-info {
+            background-color: #1a1a1a;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .code-block {
+            background-color: #1a1a1a;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        .info-label {
+            font-weight: bold;
+            color: #667eea;
+        }
+        .toc {
+            background-color: #252525;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+        .toc ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+        .toc a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        .toc a:hover {
+            color: #8b9aff;
+        }
+        h2 {
+            color: #667eea;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        h3 {
+            color: #8b9aff;
+            margin-top: 25px;
+        }
+        .important {
+            color: #ff6600;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🚨 "If I Get Hit By a Bus" Documentation</h1>
+        <p>Path of Diablo Analytics - Complete Administrative Documentation</p>
+        <p><em>Last Updated: November 27, 2025</em></p>
+    </div>
+
+    <div class="warning-box">
+        <strong>⚠️ CRITICAL INFORMATION:</strong> This project is currently maintained by a single developer. This document exists to ensure the project can be understood and maintained by someone else if necessary. Read this document completely before making any changes to the automated workflows.
+    </div>
+
+    <div class="toc">
+        <h2>📑 Table of Contents</h2>
+        <ul>
+            <li><a href="#overview">Project Overview</a></li>
+            <li><a href="#workflows">GitHub Actions Workflows</a>
+                <ul>
+                    <li><a href="#update-deploy">Update and Deploy (Main Production)</a></li>
+                    <li><a href="#daily-ladder">Daily Ladder Fetch</a></li>
+                    <li><a href="#force-update">Force Update</a></li>
+                    <li><a href="#monthly-archive">Monthly Archive</a></li>
+                    <li><a href="#manual-archive">Manual Archive</a></li>
+                    <li><a href="#static">Static Deploy</a></li>
+                </ul>
+            </li>
+            <li><a href="#enabling">Enabling/Disabling Workflows</a></li>
+            <li><a href="#troubleshooting">Troubleshooting</a></li>
+        </ul>
+    </div>
+
+    <h2 id="overview">🎯 Project Overview</h2>
+    <p>This project automatically fetches Path of Diablo ladder data, generates analytics pages with charts, and deploys them to GitHub Pages. The entire process is automated through GitHub Actions workflows.</p>
+    
+    <h3>Key Components:</h3>
+    <ul>
+        <li><strong>Data Source:</strong> Path of Diablo API (ladder data)</li>
+        <li><strong>Processing:</strong> Python scripts in <code>scripts/</code> directory</li>
+        <li><strong>Output:</strong> HTML pages with interactive charts</li>
+        <li><strong>Deployment:</strong> GitHub Pages (automatic)</li>
+        <li><strong>Tracking:</strong> CSV files for historical usage data</li>
+    </ul>
+
+    <h2 id="workflows">⚙️ GitHub Actions Workflows</h2>
+    <p>All workflows are located in <code>.github/workflows/</code> directory. Here's what each one does:</p>
+
+    <!-- UPDATE AND DEPLOY -->
+    <div class="workflow-section enabled" id="update-deploy">
+        <div class="workflow-header">
+            <div class="workflow-title">📊 Update and Deploy (update-and-deploy.yml)</div>
+            <span class="status-badge status-enabled">✅ ENABLED</span>
+        </div>
+        
+        <p><strong>Purpose:</strong> This is the <span class="important">MAIN PRODUCTION WORKFLOW</span> that keeps the site updated with fresh data and deploys it to GitHub Pages.</p>
+        
+        <h4>🕐 When It Runs:</h4>
+        <div class="trigger-info">
+            <div class="info-grid">
+                <div class="info-label">Scheduled:</div>
+                <div>Twice daily at 7:00 AM and 7:00 PM UTC</div>
+                
+                <div class="info-label">Push Trigger:</div>
+                <div>Every time code is pushed to the main branch</div>
+                
+                <div class="info-label">Manual:</div>
+                <div>Can be triggered manually from GitHub Actions tab</div>
+            </div>
+        </div>
+
+        <h4>📋 What It Does:</h4>
+        <ol>
+            <li><strong>Data Update Phase:</strong>
+                <ul>
+                    <li>Runs <code>python3 scripts/generate_pages.py --page dataupdate</code></li>
+                    <li>Fetches fresh API data (server stats, game servers, character data)</li>
+                    <li>Updates <code>unified-usage-over-time.csv</code> with new snapshot</li>
+                    <li>Generates tracking pages (sc-usage-over-time.html, hc-usage-over-time.html, server-stats-over-time.html)</li>
+                </ul>
+            </li>
+            <li><strong>Page Generation Phase:</strong>
+                <ul>
+                    <li>Generates all Softcore pages with <code>--page all --mode sc</code></li>
+                    <li>Generates all Hardcore pages with <code>--page all --mode hc --hc-level-filter 70</code></li>
+                    <li>Includes: home pages, fun facts, items/equipment, mercenary pages, all class pages</li>
+                    <li>Creates interactive charts saved to <code>charts/</code> directory</li>
+                </ul>
+            </li>
+            <li><strong>Commit Phase:</strong>
+                <ul>
+                    <li>Commits updated HTML, CSS, JS, JSON, and CSV files</li>
+                    <li>Pushes changes to main branch</li>
+                    <li>Cleans up Python cache files</li>
+                </ul>
+            </li>
+            <li><strong>Deploy Phase:</strong>
+                <ul>
+                    <li>Automatically deploys to GitHub Pages</li>
+                    <li>Uses <code>actions/deploy-pages@v4</code></li>
+                    <li>Site becomes live at the configured GitHub Pages URL</li>
+                </ul>
+            </li>
+        </ol>
+
+        <h4>🎯 Why This Exists:</h4>
+        <p>This workflow ensures the analytics site always has fresh data without manual intervention. It runs twice daily to capture ladder changes at peak times and also regenerates pages whenever code changes are pushed.</p>
+
+        <h4>🛡️ Season Freeze Protection:</h4>
+        <p>This workflow includes <strong>automatic season freeze detection</strong>. When a Path of Diablo season ends, the workflow will:</p>
+        <ul>
+            <li>Detect that the season has ended (no new season info available yet)</li>
+            <li><strong>STOP generating new pages</strong> to preserve the final season state</li>
+            <li>Display a freeze banner on the live site</li>
+            <li>Wait until the new season officially starts before resuming updates</li>
+        </ul>
+        <p><span class="important">Why this matters:</span> During the brief period between seasons (usually a few days), we want to preserve the complete final ladder state. Without the freeze, the site would show an empty ladder as everyone's characters are wiped for the new season.</p>
+        <p><em>If you need to update pages during a freeze (e.g., bug fixes), use the <strong>Force Update</strong> workflow below, which bypasses this protection.</em></p>
+
+        <h4>⚠️ Important Notes:</h4>
+        <ul>
+            <li>This workflow has <code>contents: write</code> and <code>pages: write</code> permissions</li>
+            <li>Uses concurrency control to prevent multiple deploys at once</li>
+            <li>The <code>needs: update-data</code> ensures deploy only happens after successful data update</li>
+            <li class="important">DO NOT DISABLE THIS unless you want to stop all automatic updates</li>
+            <li>Season freeze detection is built into <code>generate_pages.py</code></li>
+        </ul>
+    </div>
+
+    <!-- DAILY LADDER FETCH -->
+    <div class="workflow-section enabled" id="daily-ladder">
+        <div class="workflow-header">
+            <div class="workflow-title">📡 Daily Ladder Fetch (daily-ladder-fetch.yml)</div>
+            <span class="status-badge status-enabled">✅ ENABLED - CRITICAL</span>
+        </div>
+        
+        <p><strong>Purpose:</strong> <span class="important">FOUNDATION WORKFLOW</span> - Fetches the raw ladder data that ALL other workflows depend on.</p>
+        
+        <h4>🕐 When It Runs:</h4>
+        <div class="trigger-info">
+            <div class="info-grid">
+                <div class="info-label">Scheduled:</div>
+                <div>Daily at 6:00 AM UTC</div>
+                
+                <div class="info-label">Manual:</div>
+                <div>Can be triggered manually from GitHub Actions tab</div>
+            </div>
+        </div>
+
+        <h4>📋 What It Does:</h4>
+        <ol>
+            <li>Runs <code>cd scripts && python fetch_ladder_data.py</code></li>
+            <li>Fetches Softcore ladder data from Path of Diablo API</li>
+            <li>Fetches Hardcore ladder data from Path of Diablo API</li>
+            <li>Moves <code>sc_ladder.json</code> and <code>hc_ladder.json</code> to root directory</li>
+            <li>Commits and pushes the JSON files with timestamp</li>
+            <li>Logs character counts for both ladders</li>
+        </ol>
+
+        <h4>🎯 Why This Exists:</h4>
+        <p>This is the <span class="important">DATA SOURCE</span> for the entire project. It runs early in the morning (6 AM UTC) to fetch fresh ladder data, creating the JSON files that every other workflow depends on:</p>
+        <ul>
+            <li><code>sc_ladder.json</code> - Complete Softcore ladder data</li>
+            <li><code>hc_ladder.json</code> - Complete Hardcore ladder data</li>
+        </ul>
+        <p>These files contain all character information: class, level, skills, equipment, mercenary gear, etc. Without this workflow, no other workflows can function.</p>
+
+        <h4>📊 Data Flow:</h4>
+        <div class="code-block">
+Daily Ladder Fetch (6 AM UTC)
+    ↓
+Creates sc_ladder.json & hc_ladder.json
+    ↓
+Update and Deploy (7 AM & 7 PM UTC)
+    ↓
+Reads JSON files → Generates pages → Deploys
+        </div>
+
+        <h4>⚠️ Important Notes:</h4>
+        <ul>
+            <li class="important">NEVER DISABLE - This is critical infrastructure</li>
+            <li>Runs 1 hour BEFORE update-and-deploy to ensure fresh data is available</li>
+            <li>If this fails, all page generation workflows will use stale data</li>
+            <li>JSON files are committed to repo, providing data persistence</li>
+            <li>Uses <code>pip install requests matplotlib</code> for dependencies</li>
+        </ul>
+    </div>
+
+    <!-- FORCE UPDATE -->
+    <div class="workflow-section enabled" id="force-update">
+        <div class="workflow-header">
+            <div class="workflow-title">🔧 Force Update (force-update.yml)</div>
+            <span class="status-badge status-enabled">✅ ENABLED (Manual Only)</span>
+        </div>
+        
+        <p><strong>Purpose:</strong> Emergency workflow to force page regeneration, bypassing season freeze protections.</p>
+        
+        <h4>🕐 When It Runs:</h4>
+        <div class="trigger-info">
+            <div class="info-grid">
+                <div class="info-label">Trigger:</div>
+                <div><span class="important">MANUAL ONLY</span> - Must be triggered from GitHub Actions tab</div>
+            </div>
+        </div>
+
+        <h4>📋 Input Parameters:</h4>
+        <div class="code-block">
+update_mode:
+  - both (default) - Generate SC and HC pages
+  - softcore - Generate SC pages only
+  - hardcore - Generate HC pages only
+
+page_type:
+  - all (default) - All pages + dataupdate
+  - home - Home page only
+  - funfacts - Fun facts page only
+  - items - Items/equipment page only
+  - mercenaries - Mercenary page only
+  - class - Class pages only
+
+reason:
+  - Text field for logging why you ran the force update
+        </div>
+
+        <h4>📋 What It Does:</h4>
+        <ol>
+            <li>Checks current season status (but proceeds regardless)</li>
+            <li>If <code>page_type == 'all'</code>, runs dataupdate first</li>
+            <li>Runs page generation with <code>--force</code> flag</li>
+            <li>Bypasses the season freeze protection</li>
+            <li>Commits and pushes changes</li>
+        </ol>
+
+        <h4>🎯 Why This Exists:</h4>
+        <p>The normal workflow respects season freeze periods (when a season ends). This workflow lets you update pages anyway, useful for:</p>
+        <ul>
+            <li>Fixing bugs during a freeze period</li>
+            <li>Testing new features</li>
+            <li>Emergency content updates</li>
+            <li>Regenerating pages after manual data changes</li>
+        </ul>
+
+        <h4>⚠️ Important Notes:</h4>
+        <ul>
+            <li class="important">Use sparingly - this bypasses safety mechanisms</li>
+            <li>Always provide a reason in the reason field</li>
+            <li>The reason gets logged in the commit message</li>
+            <li>Won't trigger automatic deploy - must be handled separately</li>
+        </ul>
+    </div>
+
+    <!-- MONTHLY ARCHIVE -->
+    <div class="workflow-section enabled" id="monthly-archive">
+        <div class="workflow-header">
+            <div class="workflow-title">🗄️ Monthly Archive (monthly-archive.yml)</div>
+            <span class="status-badge status-enabled">✅ ENABLED</span>
+        </div>
+        
+        <p><strong>Purpose:</strong> Automatically creates monthly snapshots of ladder data for historical preservation.</p>
+        
+        <h4>🕐 When It Runs:</h4>
+        <div class="trigger-info">
+            <div class="info-grid">
+                <div class="info-label">Scheduled:</div>
+                <div>28th of every month at 2:00 AM UTC</div>
+                
+                <div class="info-label">Manual:</div>
+                <div>Can be triggered manually</div>
+            </div>
+        </div>
+
+        <h4>📋 What It Does:</h4>
+        <ol>
+            <li>Runs <code>python scripts/api_integration.py archive monthly</code></li>
+            <li>Determines current season number and month name</li>
+            <li>Creates archive directory at <code>Season/X/MonthName/</code></li>
+            <li>Copies current ladder JSON files to archive</li>
+            <li>Generates static HTML pages for the archive</li>
+            <li>Copies all charts to archive</li>
+            <li>Includes CSS, icons, and assets for standalone viewing</li>
+            <li>Commits and pushes the archive</li>
+        </ol>
+
+        <h4>🎯 Why This Exists:</h4>
+        <p>Path of Diablo seasons last several months. This workflow creates monthly snapshots showing how the meta evolved during the season. Each archive is a complete standalone website that can be viewed independently.</p>
+
+        <h4>📁 Archive Structure:</h4>
+        <div class="code-block">
+Season/
+  ├── 1/
+  │   ├── November/
+  │   │   ├── index.html
+  │   │   ├── sc_ladder.json
+  │   │   ├── hc_ladder.json
+  │   │   ├── Home.html
+  │   │   ├── FunFacts.html
+  │   │   ├── charts/
+  │   │   └── css/
+  │   ├── December/
+  │   └── Final/
+  └── 2/
+        </div>
+
+        <h4>🛡️ Season Freeze Behavior:</h4>
+        <p><strong>Monthly archives are NOT affected by season freeze protection.</strong> They will continue to run on schedule regardless of season status:</p>
+        <ul>
+            <li><strong>During active season:</strong> Creates monthly snapshot of current ladder state</li>
+            <li><strong>After season ends:</strong> Still runs and creates final monthly snapshot</li>
+            <li><strong>Between seasons:</strong> Continues working (though data may be empty)</li>
+        </ul>
+        <p>This is intentional - monthly archives preserve the timeline of the season, including the transition period.</p>
+
+        <h4>⚠️ Important Notes:</h4>
+        <ul>
+            <li>Archives are large (includes all data + generated pages)</li>
+            <li>Each archive is self-contained and can be viewed independently</li>
+            <li>The 28th was chosen as a safe date (all months have 28+ days)</li>
+            <li>Archive generation takes several minutes</li>
+            <li>Unlike page generation, archives ignore freeze protection</li>
+        </ul>
+    </div>
+
+    <!-- MANUAL ARCHIVE -->
+    <div class="workflow-section enabled" id="manual-archive">
+        <div class="workflow-header">
+            <div class="workflow-title">📦 Manual Archive (manual-archive.yml)</div>
+            <span class="status-badge status-enabled">✅ ENABLED (Manual Only)</span>
+        </div>
+        
+        <p><strong>Purpose:</strong> Create archives on-demand, including final season archives.</p>
+        
+        <h4>🕐 When It Runs:</h4>
+        <div class="trigger-info">
+            <div class="info-grid">
+                <div class="info-label">Trigger:</div>
+                <div><span class="important">MANUAL ONLY</span> - Must be triggered from GitHub Actions tab</div>
+            </div>
+        </div>
+
+        <h4>📋 Input Parameters:</h4>
+        <div class="code-block">
+archive_type:
+  - monthly (default) - Create a monthly snapshot
+  - final - Create the final season archive
+
+force_creation:
+  - false (default) - Respect season timing
+  - true - Force archive creation regardless of season status
+        </div>
+
+        <h4>📋 What It Does:</h4>
+        <ol>
+            <li>Runs <code>python scripts/api_integration.py archive [type]</code></li>
+            <li>Creates archive in appropriate directory</li>
+            <li>For "final" type, creates <code>Season/X/Final/</code> directory</li>
+            <li>Same archive generation as monthly workflow</li>
+            <li>Verifies archive was created successfully</li>
+            <li>Commits and pushes</li>
+        </ol>
+
+        <h4>🎯 Why This Exists:</h4>
+        <p>Two main use cases:</p>
+        <ul>
+            <li><strong>Extra Monthly Archives:</strong> Create additional snapshots if something interesting happens mid-month</li>
+            <li><strong>Final Season Archive:</strong> When a season ends, create the definitive "Final" archive that represents the complete season</li>
+        </ul>
+
+        <h4>🛡️ Season Freeze Behavior:</h4>
+        <p><strong>Manual archives respect season timing by default but can be forced:</strong></p>
+        <ul>
+            <li><strong>Monthly archives:</strong> Always allowed regardless of season status</li>
+            <li><strong>Final archives:</strong> Only allowed when season has ended (respects freeze)</li>
+            <li><strong>With force_creation=true:</strong> Bypasses all timing checks for both types</li>
+        </ul>
+        <p><span class="important">When to use force_creation:</span> If season detection is having issues or you need to create a final archive before the system recognizes the season has ended.</p>
+
+        <h4>⚠️ Important Notes:</h4>
+        <ul>
+            <li>Use <code>archive_type: final</code> when a season ends</li>
+            <li>The "Final" archive is special - it's the canonical record of that season</li>
+            <li>Force creation only needed if season detection is having issues</li>
+            <li>Manual monthly archives overwrite existing monthly archives for that month</li>
+            <li>Unlike live page generation, monthly archives ignore freeze protection</li>
+        </ul>
+    </div>
+
+    <!-- STATIC DEPLOY -->
+    <div class="workflow-section disabled" id="static">
+        <div class="workflow-header">
+            <div class="workflow-title">📄 Static Deploy (static.yml)</div>
+            <span class="status-badge status-disabled">❌ NOT CURRENTLY USED</span>
+        </div>
+        
+        <p><strong>Purpose:</strong> Simple deployment of static content to GitHub Pages without any processing.</p>
+        
+        <h4>🕐 When It Would Run:</h4>
+        <div class="trigger-info">
+            <div class="info-grid">
+                <div class="info-label">Push Trigger:</div>
+                <div>On pushes to main branch</div>
+                
+                <div class="info-label">Manual:</div>
+                <div>Can be triggered manually</div>
+            </div>
+        </div>
+
+        <h4>📋 What It Does:</h4>
+        <ol>
+            <li>Checks out the repository</li>
+            <li>Uploads everything to GitHub Pages</li>
+            <li>Deploys immediately</li>
+        </ol>
+
+        <h4>🎯 Why This Exists:</h4>
+        <p>This was GitHub's default static site workflow. It's superseded by update-and-deploy.yml which does processing AND deployment.</p>
+
+        <h4>⚠️ Current Status:</h4>
+        <p class="important">This workflow is redundant with update-and-deploy.yml. If both are enabled, they'll conflict. Keep this disabled.</p>
+    </div>
+
+    <h2 id="enabling">🔧 Enabling/Disabling Workflows</h2>
+    
+    <h3>To Enable a Workflow:</h3>
+    <ol>
+        <li>Go to GitHub repository</li>
+        <li>Click "Actions" tab</li>
+        <li>Find the workflow in the left sidebar</li>
+        <li>If it shows "This workflow is disabled", click "Enable workflow"</li>
+        <li>The workflow will start running on its schedule or can be triggered manually</li>
+    </ol>
+
+    <h3>To Disable a Workflow:</h3>
+    <ol>
+        <li>Go to GitHub repository → Actions tab</li>
+        <li>Click the workflow name</li>
+        <li>Click the "..." menu in the top-right</li>
+        <li>Select "Disable workflow"</li>
+        <li>Confirm the action</li>
+    </ol>
+
+    <h3>Current Recommended Configuration:</h3>
+    <div class="code-block">
+✅ ENABLED:
+  - daily-ladder-fetch.yml (CRITICAL - fetches raw data)
+  - update-and-deploy.yml (CRITICAL - main production)
+  - force-update.yml (emergency use)
+  - monthly-archive.yml (automatic preservation)
+  - manual-archive.yml (on-demand archives)
+
+❌ DISABLED:
+  - static.yml (causes conflicts with update-and-deploy)
+    </div>
+
+    <h2 id="troubleshooting">🔧 Troubleshooting</h2>
+
+    <h3>Workflow Failed - What Do I Check?</h3>
+    <ol>
+        <li><strong>Go to Actions Tab:</strong> Click on the failed workflow run</li>
+        <li><strong>Expand Failed Step:</strong> Click on the red X to see error details</li>
+        <li><strong>Common Issues:</strong>
+            <ul>
+                <li><strong>API Rate Limit:</strong> PoD API may be down or rate-limiting. Wait and retry.</li>
+                <li><strong>Python Dependency Error:</strong> Check if requirements.txt is up to date</li>
+                <li><strong>Permission Error:</strong> Workflow needs <code>contents: write</code> permission</li>
+                <li><strong>Archive Creation Failed:</strong> Check Season directory exists and is writable</li>
+            </ul>
+        </li>
+    </ol>
+
+    <h3>Site Not Updating</h3>
+    <ol>
+        <li>Check if update-and-deploy.yml is enabled</li>
+        <li>Look at recent workflow runs - are they succeeding?</li>
+        <li>Check GitHub Pages settings (Settings → Pages) - should be deploying from gh-pages branch or GitHub Actions</li>
+        <li>Clear browser cache - updates may be cached</li>
+    </ol>
+
+    <h3>Archive Not Created</h3>
+    <ol>
+        <li>Check if monthly-archive.yml ran (Actions tab)</li>
+        <li>Look at archive verification step - did it find the expected directory?</li>
+        <li>Manually trigger manual-archive.yml with force_creation=true</li>
+        <li>Check Season/ directory in repository - archives should be there</li>
+    </ol>
+
+    <h3>Emergency: Need to Update Site But Workflow Failing</h3>
+    <ol>
+        <li>Clone repository locally</li>
+        <li>Run commands manually:
+            <div class="code-block">
+cd scripts
+python3 generate_pages.py --page all --mode sc
+python3 generate_pages.py --page all --mode hc
+            </div>
+        </li>
+        <li>Commit and push changes</li>
+        <li>GitHub Pages will deploy automatically</li>
+    </ol>
+
+    <h3>Need to Disable Everything</h3>
+    <p>If something catastrophic happens and you need to stop all automation:</p>
+    <ol>
+        <li>Go to Settings → Actions → General</li>
+        <li>Under "Actions permissions", select "Disable actions"</li>
+        <li>This stops ALL workflows immediately</li>
+        <li>Re-enable when ready: "Allow all actions and reusable workflows"</li>
+    </ol>
+
+    <div class="warning-box" style="margin-top: 40px;">
+        <strong>📧 Contact Information:</strong><br>
+        If you're reading this because something went wrong and you need help, the original maintainer can potentially be reached through GitHub issues on the pod-stats repository. Good luck, and thank you for keeping this project alive! 🙏
+    </div>
+
+    <footer style="text-align: center; margin-top: 50px; padding: 20px; color: #666;">
+        <p>Path of Diablo Analytics - Administrative Documentation</p>
+        <p>Generated: November 27, 2025</p>
+    </footer>
+</body>
+</html>
