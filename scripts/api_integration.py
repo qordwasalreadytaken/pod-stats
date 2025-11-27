@@ -4105,7 +4105,6 @@ def generate_league_html(league, league_data, time_columns):
             background-color: rgba(50, 50, 50, 0.9);
             color: #f5f5f5;
             padding: 10px;
-            border-left: 4px solid #667eea;
             margin: 20px 0 10px 0;
         }}
     </style>
@@ -4114,7 +4113,7 @@ def generate_league_html(league, league_data, time_columns):
     <canvas id="tooltipChart" width="300" height="150"></canvas>
     
     <div class="league-header">
-        <h1>🎮 Path of Diablo - {title}</h1>
+        <h1>Path of Diablo - {title}</h1>
         <p>Interactive skill and item usage analytics</p>
         <p><em>Hover over items to see usage trends • Click columns to sort</em></p>
     </div>
@@ -4132,12 +4131,14 @@ def generate_league_html(league, league_data, time_columns):
         }
 
         # Skills grouped by class
-        f.write('<div class="section-header"><h2>⚔️ Skills by Class</h2></div>\n')
+        f.write('<div class="section-header"><h2>Skills by Class</h2></div>\n')
         for char_class, skills in league_data['Skills'].items():
             class_icon = f'icons/{char_class}.png'
             class_color = class_colors.get(char_class, "#666")
-            f.write(f'<h3><img src="{class_icon}" alt="{char_class}" style="vertical-align: middle; height: 60px; margin-right: 8px;"></h3>\n')
-            f.write(f'<table style="border: 3px solid {class_color};">\n')
+#            f.write(f'<h3><img src="{class_icon}" alt="{char_class}" style="vertical-align: middle; height: 60px; margin-right: 8px;"></h3>\n')
+            f.write(f'<h3>{char_class}</h3>\n')
+#            f.write(f'<table style="border: 3px solid {class_color};">\n')
+            f.write(f'<table style="border-left: 3px solid {class_color};">\n')
             f.write('<tr><th onclick="sortTable(this, \'str\')">Skill Name</th>')
             for col in time_columns:
                 f.write(f'<th onclick="sortTable(this, \'num\')">{col}</th>')
@@ -4161,10 +4162,22 @@ def generate_league_html(league, league_data, time_columns):
             ('Mercenary Runewords', '⚔️🔮')
         ]
         
+        # Color mapping for item types
+        type_colors = {
+            'Uniques': 'rgb(144, 136, 88)',
+            'Sets': 'rgb(0, 196, 0)',
+            'Runewords': 'rgb(144, 136, 88)',
+            'Mercenary Uniques': 'rgb(144, 136, 88)',
+            'Mercenary Sets': 'rgb(0, 196, 0)',
+            'Mercenary Runewords': 'rgb(144, 136, 88)'
+        }
+        
         for category, emoji in item_categories:
             if league_data[category]:
-                f.write(f'<div class="section-header"><h2>{emoji} {category}</h2></div>\n')
-                f.write('<table>\n')
+                border_color = type_colors.get(category, '#666')
+#                f.write(f'<div class="section-header"><h2>{emoji} {category}</h2></div>\n')
+                f.write(f'<div class="section-header" style="border-left: 4px solid {border_color};"><h2>{category}</h2></div>\n')
+                f.write(f'<table style="border-left: 4px solid {border_color};">\n')
                 f.write('<tr><th onclick="sortTable(this, \'str\')">Item Name</th>')
                 for col in time_columns:
                     f.write(f'<th onclick="sortTable(this, \'num\')">{col}</th>')
@@ -4343,7 +4356,7 @@ def generate_server_html(server_data, time_columns):
     <canvas id="tooltipChart" width="300" height="150"></canvas>
     
     <div class="server-header">
-        <h1>🖥️ Path of Diablo - Server Analytics</h1>
+        <h1>Path of Diablo - Server Analytics</h1>
         <p>Real-time server population and infrastructure monitoring</p>
         <p><em>Hover over metrics to see trends • Click columns to sort</em></p>
     </div>
@@ -4351,7 +4364,7 @@ def generate_server_html(server_data, time_columns):
 
         # Global server stats
         if server_data['Server']:
-            f.write('<div class="section-header"><h2>🌐 Global Server Statistics</h2></div>\n')
+            f.write('<div class="section-header"><h2>Global Server Statistics</h2></div>\n')
             f.write('<table>\n')
             f.write('<tr><th onclick="sortTable(this, \'str\')">Metric</th>')
             for col in time_columns:
@@ -4369,7 +4382,7 @@ def generate_server_html(server_data, time_columns):
         
         # Game server stats grouped by region
         if server_data['GameServer']:
-            f.write('<div class="section-header"><h2>🗺️ Game Servers by Region</h2></div>\n')
+            f.write('<div class="section-header"><h2>Game Servers by Region</h2></div>\n')
             
             # Group by country
             servers_by_country = {}
@@ -4393,7 +4406,7 @@ def generate_server_html(server_data, time_columns):
             
             # Generate tables for each country
             for country, server_list in servers_by_country.items():
-                f.write(f'<h3>🌍 {country} Servers</h3>\n')
+#                f.write(f'<h3>{country} Servers</h3>\n')
                 f.write('<table>\n')
                 f.write('<tr><th onclick="sortTable(this, \'str\')">Server Metric</th>')
                 for col in time_columns:
