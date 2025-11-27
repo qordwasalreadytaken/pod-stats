@@ -162,6 +162,7 @@
                 </ul>
             </li>
             <li><a href="#enabling">Enabling/Disabling Workflows</a></li>
+            <li><a href="#supplemental">Supplemental Files (CSVs, JSONs, Tracking Pages)</a></li>
             <li><a href="#troubleshooting">Troubleshooting</a></li>
         </ul>
     </div>
@@ -584,6 +585,157 @@ force_creation:
 
 ❌ DISABLED:
   - static.yml (causes conflicts with update-and-deploy)
+    </div>
+
+    <h2 id="supplemental">📊 Supplemental Files (Internal/Developer Use)</h2>
+    
+    <p>In addition to the public-facing HTML pages, the project generates several supplemental files that are primarily for internal analysis and development purposes. These files are not prominently linked from the main site but are available in the repository.</p>
+
+    <h3>📈 Usage Tracking Files</h3>
+    
+    <h4>unified-usage-over-time.csv</h4>
+    <div class="workflow-section" style="border-left-color: #f59e0b;">
+        <p><strong>Purpose:</strong> Master CSV file tracking all skill, item, and server metrics over time.</p>
+        
+        <h4>📋 File Structure:</h4>
+        <div class="code-block">
+Type,League,Class,Name,2024-11-01,2024-11-02,...<br>
+Skill,SC,Amazon,Guided Arrow,450,468,...<br>
+Unique,SC,,Shako,234,240,...<br>
+Runeword,HC,,Enigma,89,92,...<br>
+Server,ALL,,Online_Now,1234,1456,...<br>
+GameServer,ALL,USA,Seattle_Players,123,145,...
+        </div>
+
+        <h4>📊 Data Categories:</h4>
+        <ul>
+            <li><strong>Skills:</strong> Tracked by class and league (SC/HC)</li>
+            <li><strong>Items:</strong> Uniques, Sets, Runewords (character and mercenary)</li>
+            <li><strong>Server Metrics:</strong> Online counts, games open, activity stats</li>
+            <li><strong>Game Servers:</strong> Per-region player and game counts</li>
+        </ul>
+
+        <h4>🔄 Update Frequency:</h4>
+        <p>Updated twice daily (7 AM and 7 PM UTC) by the <code>update-and-deploy.yml</code> workflow via the <code>--page dataupdate</code> command.</p>
+
+        <h4>💡 Use Cases:</h4>
+        <ul>
+            <li>Long-term trend analysis</li>
+            <li>Meta evolution tracking</li>
+            <li>Server health monitoring</li>
+            <li>Data export for external tools</li>
+        </ul>
+    </div>
+
+    <h3>🌐 Usage Over Time HTML Pages</h3>
+
+    <h4>sc-usage-over-time.html & hc-usage-over-time.html</h4>
+    <div class="workflow-section" style="border-left-color: #f59e0b;">
+        <p><strong>Purpose:</strong> Interactive pages showing skill and item usage trends for Softcore and Hardcore leagues.</p>
+        
+        <h4>✨ Features:</h4>
+        <ul>
+            <li><strong>Sortable Tables:</strong> Click column headers to sort by any time period</li>
+            <li><strong>Hover Charts:</strong> Hover over any skill/item name to see trend graph</li>
+            <li><strong>Class Grouping:</strong> Skills organized by character class with color-coded borders</li>
+            <li><strong>Item Categories:</strong> Separate sections for Uniques, Sets, Runewords, Mercenary gear</li>
+        </ul>
+
+        <h4>🎨 Styling:</h4>
+        <ul>
+            <li>Stone background texture (same as main site)</li>
+            <li>Dark red header gradients (#441D1D to #782121)</li>
+            <li>Class-colored left borders on skill tables</li>
+            <li>Item type colored borders (Sets=green, Uniques/Runewords=gold)</li>
+        </ul>
+
+        <h4>📍 Location:</h4>
+        <p>Root directory of repository, not linked from main navigation but accessible directly via URL.</p>
+    </div>
+
+    <h4>server-stats-over-time.html</h4>
+    <div class="workflow-section" style="border-left-color: #f59e0b;">
+        <p><strong>Purpose:</strong> Track server population and infrastructure metrics over time.</p>
+        
+        <h4>📊 Metrics Tracked:</h4>
+        <ul>
+            <li><strong>Global Stats:</strong>
+                <ul>
+                    <li>Online_Now - Current online players</li>
+                    <li>Online_Last_Hour - Activity in past hour</li>
+                    <li>Online_Last_Day - Daily active users</li>
+                    <li>Online_Last_Week - Weekly active users</li>
+                    <li>Online_Last_Fortnight - Bi-weekly active users</li>
+                    <li>Online_In_Games - Players currently in games</li>
+                    <li>Games_Open - Active game instances</li>
+                </ul>
+            </li>
+            <li><strong>Game Server Stats:</strong> Per-region breakdown (USA, Europe, Asia) showing players and games on each server</li>
+        </ul>
+
+        <h4>💡 Use Cases:</h4>
+        <ul>
+            <li>Monitor server health and capacity</li>
+            <li>Track seasonal player activity patterns</li>
+            <li>Identify peak play times by region</li>
+            <li>Detect infrastructure issues</li>
+        </ul>
+    </div>
+
+    <h3>📦 Raw Data Files</h3>
+
+    <h4>sc_ladder.json & hc_ladder.json</h4>
+    <div class="workflow-section" style="border-left-color: #f59e0b;">
+        <p><strong>Purpose:</strong> Complete raw ladder data fetched from Path of Diablo API.</p>
+        
+        <h4>📋 Contents:</h4>
+        <p>Each file contains an array of character objects with complete data:</p>
+        <div class="code-block">
+{
+  "Name": "CharacterName",
+  "Class": "Amazon",
+  "Level": 95,
+  "Experience": 3520485923,
+  "SkillTabs": [...],  // All skill levels
+  "Equipped": [...],   // All equipped items with full details
+  "MercenaryEquipped": [...],  // Mercenary gear
+  "Tag": "...",        // Corruptions, synthetics, etc.
+}
+        </div>
+
+        <h4>🔄 Update Schedule:</h4>
+        <ul>
+            <li>Generated by <code>daily-ladder-fetch.yml</code> at 6:00 AM UTC</li>
+            <li>Committed to repository (provides data persistence)</li>
+            <li>Used as source data by all page generation scripts</li>
+        </ul>
+
+        <h4>⚠️ Important Notes:</h4>
+        <ul>
+            <li>Files can be large (several MB each)</li>
+            <li>Contains ALL ladder characters (not just top 100)</li>
+            <li>These files are committed to repo to ensure data availability even if API is down</li>
+            <li>Other workflows depend on these files existing</li>
+        </ul>
+    </div>
+
+    <h3>🗄️ Character Index (character_index.json)</h3>
+    <div class="workflow-section" style="border-left-color: #f59e0b;">
+        <p><strong>Purpose:</strong> Historical index for tracking character data over time (if implemented).</p>
+        <p><em>Note: This may be a legacy file or planned feature - verify current usage.</em></p>
+    </div>
+
+    <h3>📝 Accessing Supplemental Files</h3>
+    <div class="code-block">
+# View usage tracking
+https://yourusername.github.io/pod-stats/sc-usage-over-time.html
+https://yourusername.github.io/pod-stats/hc-usage-over-time.html
+https://yourusername.github.io/pod-stats/server-stats-over-time.html
+
+# Download raw data
+https://raw.githubusercontent.com/yourusername/pod-stats/main/sc_ladder.json
+https://raw.githubusercontent.com/yourusername/pod-stats/main/hc_ladder.json
+https://raw.githubusercontent.com/yourusername/pod-stats/main/unified-usage-over-time.csv
     </div>
 
     <h2 id="troubleshooting">🔧 Troubleshooting</h2>
