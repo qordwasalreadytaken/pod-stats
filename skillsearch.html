@@ -200,7 +200,7 @@
     </style>
 </head>
 
-        <h1>Character Skill Search Beta</h1>
+        <h1>Character Skill Search</h1>
         <h3>Find characters with X number of points in one or more skills</h3>
         <div class="search-form">
             <div class="form-group">
@@ -476,11 +476,11 @@
                     const classColor = classColors[char.class] || "#555";
                     
                     html += `
-                        <div class="character-card" style="border: 3px solid ${classColor};">
+                        <div class="character-card" style="margin: 8px 0; padding: 12px; border-radius: 6px; border-left: 3px solid ${classColor};">
                             <div class="character-name">${char.name}</div>
                             <div class="character-info">
-                                Class: ${char.class} | Level: ${char.level} | League: ${leagueName} | 
-                                <a href="${trendsUrl}" target="_blank" style="color: #007bff; text-decoration: none;">Trends Listing</a>
+                                Class: ${char.class} | Level: ${char.level} | League: ${leagueName} |&nbsp; 
+                                <a href=" ${trendsUrl}" target="_blank" style="color: #007bff; text-decoration: none;"> Trends Listing</a>
                             </div>
                             <div class="skills">
                                 <strong>Skills:</strong><br>

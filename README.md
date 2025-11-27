@@ -1,6 +1,8 @@
 # [Qords Info/Stats/Analytics for Path of Diablo](https://qordwasalreadytaken.github.io/pod-stats/Home.html)
 Data analysis for the current PoD season
 
+# This Read me is woefully out of date
+
 The Path of Diablo analytics site seems to have been orphaned, at least temporarily, leaving a gap in available data and trends on PoD builds. This is my attempt to provide similar information, and, although it's done in a different manner, the hope is that it helps users come to the same conclusions.
 
 The original goal of this was not to directly replace the analytics site, but fill a hole until it (hopefully) comes back while also providing some information not included in that site. I really just wanted to look at all the bow and melee sorcs, count Deleriums and Dangoons (my favorite items), and it turned into this.
@@ -11,6 +13,7 @@ The data used to create these is not real time, it's a snapshot in time that is 
 Let Qord know, Qord @ PoD Discord 
 
 # To-do ++ community feedback
+* Update this readme
 * List of skills in a cluster/group could use better visibility, right now it's just a long list; not easy on the eyes
     * Skills displays redesigned, added color gradient bar as well as condensed the long list into 2 columns
         ~~* Line break every 5?~~ 
