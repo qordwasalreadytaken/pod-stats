@@ -1972,8 +1972,29 @@ def generate_archive(archive_type="monthly", season_number=None, base_path=None,
             print("   ✅ Banner injection complete")
         print()
         
-        # Step 7: Final Archive Creation
-        print("Step 7: Final Archive Creation...")
+        # Step 7: Update Navbar Template
+        print("Step 7: Update Navbar Template...")
+        try:
+            logger.info("📝 Updating navbar template with new archive...")
+            navbar_result = update_navbar_template(base_path=base_path)
+            
+            if navbar_result["success"]:
+                print(f"   ✅ Navbar updated: {navbar_result['dropdown_info']['archive_count']} archives across {navbar_result['dropdown_info']['season_count']} seasons")
+                if navbar_result.get("backup_path"):
+                    print(f"   💾 Backup saved: {navbar_result['backup_path']}")
+            else:
+                print(f"   ⚠️  Navbar update failed: {navbar_result['error']}")
+                print("   ⚠️  Archive created successfully but navbar needs manual update")
+                
+        except Exception as e:
+            logger.warning(f"⚠️  Navbar update failed: {str(e)}")
+            print(f"   ⚠️  Navbar update failed: {e}")
+            print("   ⚠️  Archive created successfully but navbar needs manual update")
+            navbar_result = {"success": False, "error": str(e)}
+        print()
+        
+        # Step 8: Final Archive Creation
+        print("Step 8: Final Archive Creation...")
         
         # Create enhanced archive metadata
         end_time = time.time()
@@ -2087,28 +2108,6 @@ def generate_archive(archive_type="monthly", season_number=None, base_path=None,
         print(f"   Quality score: {data_quality.get('quality_score', 0)}/100")
         print(f"   Efficiency score: {performance_metrics.get('efficiency_score', 0)}/100")
         print("   ✅ Final archive creation complete")
-        print()
-        
-        # Step 8: Update Navbar Template
-        print("Step 8: Update Navbar Template...")
-        try:
-            logger.info("📝 Updating navbar template with new archive...")
-            navbar_result = update_navbar_template(base_path=base_path)
-            
-            if navbar_result["success"]:
-                print(f"   ✅ Navbar updated: {navbar_result['dropdown_info']['archive_count']} archives across {navbar_result['dropdown_info']['season_count']} seasons")
-                if navbar_result.get("backup_path"):
-                    print(f"   💾 Backup saved: {navbar_result['backup_path']}")
-            else:
-                print(f"   ⚠️  Navbar update failed: {navbar_result['error']}")
-                print("   ⚠️  Archive created successfully but navbar needs manual update")
-                navbar_result = {"success": False, "error": navbar_result['error']}
-                
-        except Exception as e:
-            logger.warning(f"⚠️  Navbar update failed: {str(e)}")
-            print(f"   ⚠️  Navbar update failed: {e}")
-            print("   ⚠️  Archive created successfully but navbar needs manual update")
-            navbar_result = {"success": False, "error": str(e)}
         print()
         
         print("=== Archive Generation Pipeline Complete ===")
