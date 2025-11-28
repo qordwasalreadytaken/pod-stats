@@ -61,10 +61,10 @@
                     </div>
                     <h3>THESE PAGES INCLUDE DATA FROM ALL AVAILABLE RANKED LADDER CHARACTERS (THE TOP 1,000 AS WELL AS THE TOP 200 FROM EACH CLASS)</h3>
                     <!--        <h3>UNLESS STATED OTHERWISE, OTHER PAGE STATS AND DATA ARE FROM THE TOP 200 CHARACTERS OF THE RELEVANT CLASS OR CLASSES</h3> -->
-                    <hr>
+<!--                    <hr>
                     <h3>Class and special pages have taken character data and separated it into probable builds. As such, the groupings and associated data
                         will change regularly to reflect what is currently accurate.
-                        <br>
+                        <br> -->
 <!--                        Looking at class and build pages, what you see and what it means:</h3>
                     <div>
                         <img src="charts/build-pages-legend.png">
@@ -113,27 +113,24 @@
                     
                     
         <div class="nav-section">
-            <h3>Explore the Data</h3>
+            <h3>Miscellaneous Data Pages</h3>
             <div class="navigation-cards">
                 
             <div class="nav-card">
                 <a href="hcItems">
-                    <h3>Items & Equipment</h3>
-                    <p>Comprehensive analysis of item usage, runewords, uniques, and equipment trends</p>
+                    Equipment usage and trends
                 </a>
             </div>
 
             <div class="nav-card">
                 <a href="hcMercenaries">
-                    <h3>Mercenary Analysis</h3>
-                    <p>Detailed mercenary usage patterns, equipment, and statistics</p>
+                    Mercenary data analysis
                 </a>
             </div>
             
             <div class="nav-card">
                 <a href="hcFunFacts">
-                    <h3>Fun Facts & Stats</h3>
-                    <p>Interesting statistics, character rankings, and unique discoveries</p>
+                    Interesting statistics, character rankings, and fun facts
                 </a>
             </div>
 <!--            
@@ -153,19 +150,18 @@
 -->
             <div class="nav-card">
                 <a href="skillsearch">
-                    <h3>Skill Search</h3>
-                    <p>Search for characters with specific skills</p>
+                        Skill Search
                 </a>
             </div>
 
             <div class="nav-card">
                 <a href="itemsearch">
-                    <h3>Item Search</h3>
-                    <p>Search for characters with specific items</p>
+                    Item Search
                 </a>
             </div>
             
         </div>
+        </br>
         
                     
                     <!-- Quick Overview Stats -->
@@ -178,8 +174,8 @@
                     <!-- About the Data -->
                     <div class="about-section">
                         <h3>About This Data</h3>
-                        <p>This analysis includes data from all available ranked ladder characters, including:</p>
-                        <ul>
+                        <p>This analysis includes available data from all ranked ladder characters, including:</p>
+                        <ul style="list-style-type: disc; padding-left: 40px;">
                             <li>The top 1,000 overall ladder characters</li>
                             <li>The top 200 characters from each class ladder</li>
                             <li>Equipment usage and skill point allocations</li>
@@ -192,7 +188,7 @@
                 </div>
                 
                 <div class="footer">
-                    <p>PoD data current as of Season 13 Monthly Archive - 2025-11-02 13:45</p>
+                    <p>PoD data current as of Season 13 Monthly Archive - 2025-11-28 14:51</p>
                 </div>
             </div>
 
@@ -205,19 +201,30 @@
             this.classList.toggle("active");
             var content = this.nextElementSibling;
             
+            // Skip if no content element found
+            if (!content) return;
+            
             // Handle icons - look for various alt text patterns
             var openIcon = this.querySelector("img.open-icon") || this.querySelector("img[alt='Open']") || this.querySelector("img.icon[alt='Open']");
             var closeIcon = this.querySelector("img.close-icon") || this.querySelector("img[alt='Close']") || this.querySelector("img.icon[alt='Close']");
 
-            // Toggle content display
-            if (content.style.display === "block") {
-                content.style.display = "none";
-                if (openIcon) openIcon.classList.remove("hidden");
-                if (closeIcon) closeIcon.classList.add("hidden");
-            } else {
+            // Toggle content display - check if currently hidden
+            if (content.style.display === "none" || content.style.display === "") {
+                // Currently hidden, so expand it
                 content.style.display = "block";
-                if (openIcon) openIcon.classList.add("hidden");
-                if (closeIcon) closeIcon.classList.remove("hidden");
+                // Swap icons only if both exist
+                if (openIcon && closeIcon) {
+                    openIcon.classList.remove("hidden");
+                    closeIcon.classList.add("hidden");
+                }
+            } else {
+                // Currently visible, so collapse it
+                content.style.display = "none";
+                // Swap icons only if both exist
+                if (openIcon && closeIcon) {
+                    openIcon.classList.add("hidden");
+                    closeIcon.classList.remove("hidden");
+                }
             }
         });
     }
