@@ -2037,6 +2037,12 @@ def generate_archive(archive_type="monthly", season_number=None, base_path=None,
                 "success": banner_result.get("success", False),
                 "has_banner": banner_html is not None
             },
+            "navbar_update": {
+                "success": navbar_result.get("success", False),
+                "error": navbar_result.get("error") if not navbar_result.get("success") else None,
+                "archive_count": navbar_result.get("dropdown_info", {}).get("archive_count", 0),
+                "season_count": navbar_result.get("dropdown_info", {}).get("season_count", 0)
+            },
             "content_processing": content_result.get("summary", {
                 "pages_count": 0,
                 "charts_count": 0,
@@ -2050,7 +2056,8 @@ def generate_archive(archive_type="monthly", season_number=None, base_path=None,
                 "data_processing": "completed" if content_result["success"] else "partial",
                 "html_conversion": "completed" if content_result["success"] else "partial",
                 "banner_injection": "completed" if banner_html else "skipped",
-                "final_creation": "completed"
+                "final_creation": "completed",
+                "navbar_update": "completed" if navbar_result.get("success") else "failed"
             },
             "generation_summary": {
                 "total_characters": file_summary.get("total_entries", 0),
@@ -2080,6 +2087,28 @@ def generate_archive(archive_type="monthly", season_number=None, base_path=None,
         print(f"   Quality score: {data_quality.get('quality_score', 0)}/100")
         print(f"   Efficiency score: {performance_metrics.get('efficiency_score', 0)}/100")
         print("   ✅ Final archive creation complete")
+        print()
+        
+        # Step 8: Update Navbar Template
+        print("Step 8: Update Navbar Template...")
+        try:
+            logger.info("📝 Updating navbar template with new archive...")
+            navbar_result = update_navbar_template(base_path=base_path)
+            
+            if navbar_result["success"]:
+                print(f"   ✅ Navbar updated: {navbar_result['dropdown_info']['archive_count']} archives across {navbar_result['dropdown_info']['season_count']} seasons")
+                if navbar_result.get("backup_path"):
+                    print(f"   💾 Backup saved: {navbar_result['backup_path']}")
+            else:
+                print(f"   ⚠️  Navbar update failed: {navbar_result['error']}")
+                print("   ⚠️  Archive created successfully but navbar needs manual update")
+                navbar_result = {"success": False, "error": navbar_result['error']}
+                
+        except Exception as e:
+            logger.warning(f"⚠️  Navbar update failed: {str(e)}")
+            print(f"   ⚠️  Navbar update failed: {e}")
+            print("   ⚠️  Archive created successfully but navbar needs manual update")
+            navbar_result = {"success": False, "error": str(e)}
         print()
         
         print("=== Archive Generation Pipeline Complete ===")
@@ -2987,6 +3016,354 @@ def convert_html_for_archive(html_content: str, archive_path: str) -> str:
     except Exception as e:
         print(f"       ⚠️ HTML conversion error: {e}")
         return html_content
+
+
+# ====================================================================================
+# NAVBAR AUTOMATION FUNCTIONS
+# ====================================================================================
+
+def scan_archive_structure(base_path=None):
+    """
+    Scan the Season/ directory structure and discover all existing archives
+    
+    Args:
+        base_path: Base directory containing Season/ folder (defaults to current working directory)
+    
+    Returns:
+        Dict with archive structure organized by season and archive folders
+    """
+    from pathlib import Path
+    
+    try:
+        # Determine base path
+        if base_path is None:
+            base_path = Path.cwd()
+        else:
+            base_path = Path(base_path)
+        
+        season_dir = base_path / "Season"
+        
+        if not season_dir.exists():
+            return {
+                "success": True,
+                "seasons": [],
+                "total_archives": 0,
+                "message": "No Season directory found - no archives exist yet"
+            }
+        
+        # Scan for seasons
+        seasons = []
+        total_archives = 0
+        
+        for season_path in sorted(season_dir.iterdir()):
+            if not season_path.is_dir():
+                continue
+            
+            try:
+                season_number = int(season_path.name)
+            except ValueError:
+                # Not a season number directory, skip
+                continue
+            
+            # Scan for archives within this season
+            archives = []
+            for archive_path in sorted(season_path.iterdir()):
+                if not archive_path.is_dir():
+                    continue
+                
+                archive_name = archive_path.name
+                
+                # Check if it's a valid archive (has Home.html or index.html)
+                has_home = (archive_path / "Home.html").exists()
+                has_index = (archive_path / "index.html").exists()
+                has_metadata = (archive_path / "archive_metadata.json").exists()
+                
+                if has_home or has_index or has_metadata:
+                    # Get creation timestamp for sorting
+                    # Try metadata first (most accurate), then directory mtime
+                    creation_time = None
+                    if has_metadata:
+                        try:
+                            import json
+                            with open(archive_path / "archive_metadata.json", 'r') as f:
+                                metadata = json.load(f)
+                                creation_time = metadata.get("archive_info", {}).get("created_date")
+                        except:
+                            pass
+                    
+                    # Fallback to directory modification time
+                    if not creation_time:
+                        creation_time = archive_path.stat().st_mtime
+                    
+                    archives.append({
+                        "name": archive_name,
+                        "path": str(archive_path),
+                        "relative_path": f"Season/{season_number}/{archive_name}",
+                        "has_home": has_home,
+                        "has_index": has_index,
+                        "has_metadata": has_metadata,
+                        "is_final": archive_name.lower() == "final",
+                        "creation_time": creation_time
+                    })
+                    total_archives += 1
+            
+            if archives:
+                seasons.append({
+                    "season_number": season_number,
+                    "path": str(season_path),
+                    "archives": archives,
+                    "archive_count": len(archives)
+                })
+        
+        return {
+            "success": True,
+            "seasons": seasons,
+            "total_archives": total_archives,
+            "season_count": len(seasons)
+        }
+        
+    except Exception as e:
+        return {
+            "success": False,
+            "error": f"Failed to scan archive structure: {e}",
+            "seasons": [],
+            "total_archives": 0
+        }
+
+
+def generate_navbar_dropdown_html(archive_structure):
+    """
+    Generate HTML for the Trends History dropdown menu based on discovered archives
+    
+    Args:
+        archive_structure: Result from scan_archive_structure()
+    
+    Returns:
+        Dict with generated HTML
+    """
+    try:
+        if not archive_structure["success"]:
+            return {
+                "success": False,
+                "error": archive_structure.get("error", "Archive scan failed")
+            }
+        
+        seasons = archive_structure["seasons"]
+        
+        if not seasons:
+            # No archives, return minimal dropdown
+            dropdown_html = '''                            <button class="dropdown2-button">Trends History</button>
+                            <div class="dropdown2-content">
+                                <a href="https://trends.pathofdiablo.com/Home.html">Current</a>
+                            </div>'''
+            return {
+                "success": True,
+                "html": dropdown_html,
+                "season_count": 0,
+                "archive_count": 0
+            }
+        
+        # Build dropdown HTML
+        html_parts = []
+        html_parts.append('                            <button class="dropdown2-button">Trends History</button>')
+        html_parts.append('                            <div class="dropdown2-content">')
+        html_parts.append('                                <a href="https://trends.pathofdiablo.com/Home.html">Current</a>')
+        
+        # Sort seasons in descending order (newest first)
+        sorted_seasons = sorted(seasons, key=lambda s: s["season_number"], reverse=True)
+        
+        for season in sorted_seasons:
+            season_number = season["season_number"]
+            archives = season["archives"]
+            
+            # Sort archives by creation time (newest first)
+            # creation_time can be either ISO string or Unix timestamp
+            def get_sort_time(archive):
+                creation_time = archive.get("creation_time")
+                if isinstance(creation_time, str):
+                    # ISO datetime string
+                    try:
+                        from datetime import datetime
+                        dt = datetime.fromisoformat(creation_time.replace('Z', '+00:00'))
+                        return dt.timestamp()
+                    except:
+                        return 0
+                elif isinstance(creation_time, (int, float)):
+                    # Unix timestamp
+                    return creation_time
+                else:
+                    return 0
+            
+            sorted_archives = sorted(archives, key=get_sort_time, reverse=True)
+            
+            # Add season dropdown
+            html_parts.append('                                <div class="dropdown2-item dropdown-sub">')
+            html_parts.append(f'                                    <a class="dropdown-sub-button">S{season_number}</a>')
+            html_parts.append('                                    <div class="dropdown-sub-content">')
+            
+            for archive in sorted_archives:
+                archive_name = archive["name"]
+                relative_path = archive["relative_path"]
+                html_parts.append(f'                                        <a href="https://trends.pathofdiablo.com/{relative_path}/Home">{archive_name}</a>')
+            
+            html_parts.append('                                    </div>')
+            html_parts.append('                                </div>')
+        
+        html_parts.append('                            </div>')
+        
+        dropdown_html = '\n'.join(html_parts)
+        
+        return {
+            "success": True,
+            "html": dropdown_html,
+            "season_count": len(seasons),
+            "archive_count": archive_structure["total_archives"]
+        }
+        
+    except Exception as e:
+        return {
+            "success": False,
+            "error": f"Failed to generate navbar dropdown HTML: {e}"
+        }
+
+
+def update_navbar_template(base_path=None, template_path=None, backup=True):
+    """
+    Update the navbar.html template with current archive structure
+    
+    Args:
+        base_path: Base directory containing Season/ folder (defaults to current working directory)
+        template_path: Path to navbar.html template (defaults to templates/navbar.html)
+        backup: Whether to create a backup of the original template
+    
+    Returns:
+        Dict with update results
+    """
+    from pathlib import Path
+    import shutil
+    import re
+    
+    try:
+        # Determine paths
+        if base_path is None:
+            base_path = Path.cwd()
+        else:
+            base_path = Path(base_path)
+        
+        if template_path is None:
+            template_path = base_path / "templates" / "navbar.html"
+        else:
+            template_path = Path(template_path)
+        
+        if not template_path.exists():
+            return {
+                "success": False,
+                "error": f"Template not found: {template_path}"
+            }
+        
+        # Step 1: Scan archive structure
+        archive_structure = scan_archive_structure(base_path)
+        if not archive_structure["success"]:
+            return {
+                "success": False,
+                "error": f"Archive scan failed: {archive_structure.get('error', 'Unknown error')}"
+            }
+        
+        # Step 2: Generate new dropdown HTML
+        dropdown_result = generate_navbar_dropdown_html(archive_structure)
+        if not dropdown_result["success"]:
+            return {
+                "success": False,
+                "error": f"Dropdown generation failed: {dropdown_result.get('error', 'Unknown error')}"
+            }
+        
+        new_dropdown_html = dropdown_result["html"]
+        
+        # Step 3: Read current template
+        with open(template_path, 'r', encoding='utf-8') as f:
+            template_content = f.read()
+        
+        # Step 4: Create backup if requested
+        if backup:
+            backup_path = template_path.with_suffix('.html.bak')
+            shutil.copy2(template_path, backup_path)
+        
+        # Step 5: Replace the dropdown section
+        # Find the dropdown section between the "Trends History" button and its closing </div>
+        # Pattern: Match from <div class="navbar-item dropdown2"> through the entire dropdown structure
+        
+        pattern = r'(<div class="navbar-item dropdown2">)\s*<button class="dropdown2-button">Trends History</button>.*?(?=</div>\s*</div>\s*</div>\s*</nav>)'
+        
+        replacement = f'\\1\n{new_dropdown_html}\n                        '
+        
+        updated_content = re.sub(pattern, replacement, template_content, flags=re.DOTALL)
+        
+        # Check if replacement occurred
+        if updated_content == template_content:
+            return {
+                "success": False,
+                "error": "Failed to locate navbar dropdown section for replacement",
+                "pattern_used": pattern,
+                "suggestion": "Navbar template structure may have changed"
+            }
+        
+        # Step 6: Write updated template
+        with open(template_path, 'w', encoding='utf-8') as f:
+            f.write(updated_content)
+        
+        return {
+            "success": True,
+            "template_path": str(template_path),
+            "backup_path": str(backup_path) if backup else None,
+            "archive_structure": archive_structure,
+            "dropdown_info": {
+                "season_count": dropdown_result["season_count"],
+                "archive_count": dropdown_result["archive_count"]
+            },
+            "message": f"Navbar updated with {dropdown_result['archive_count']} archives across {dropdown_result['season_count']} seasons"
+        }
+        
+    except Exception as e:
+        return {
+            "success": False,
+            "error": f"Failed to update navbar template: {e}"
+        }
+
+
+def refresh_navbar_archives(base_path=None, template_path=None):
+    """
+    Standalone function to refresh navbar with current archive structure
+    Useful for manual updates or testing
+    
+    Args:
+        base_path: Base directory containing Season/ folder
+        template_path: Path to navbar.html template
+    
+    Returns:
+        Dict with update results
+    """
+    print("=== Refreshing Navbar Archives ===")
+    print()
+    
+    # Scan and update
+    result = update_navbar_template(base_path=base_path, template_path=template_path)
+    
+    if result["success"]:
+        print(f"✅ SUCCESS: Navbar updated")
+        print(f"📊 Archives: {result['dropdown_info']['archive_count']} across {result['dropdown_info']['season_count']} seasons")
+        print(f"📝 Template: {result['template_path']}")
+        if result.get("backup_path"):
+            print(f"💾 Backup: {result['backup_path']}")
+    else:
+        print(f"❌ FAILED: {result['error']}")
+    
+    print()
+    return result
+
+
+# ====================================================================================
+# END NAVBAR AUTOMATION FUNCTIONS
+# ====================================================================================
 
 
 def process_archive_content(season_number, archive_type, base_path=None, archive_path=None):
