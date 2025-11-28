@@ -3175,45 +3175,25 @@ def generate_navbar_dropdown_html(archive_structure):
             season_number = season["season_number"]
             archives = season["archives"]
             
-            # Hybrid sorting: Month names by calendar order (Dec->Jan), then by creation time
-            # This ensures recent monthly archives stay at top even if older archives were re-created
-            month_order = {
-                "January": 1, "February": 2, "March": 3, "April": 4,
-                "May": 5, "June": 6, "July": 7, "August": 8,
-                "September": 9, "October": 10, "November": 11, "December": 12
-            }
-            
-            def archive_sort_key(archive):
-                name = archive["name"]
+            # Sort archives purely by creation time (newest first)
+            # This ensures the dropdown shows true chronological order regardless of archive names
+            def get_sort_time(archive):
                 creation_time = archive.get("creation_time", 0)
                 
-                # Convert creation_time to timestamp for secondary sorting
+                # Convert creation_time to timestamp
                 if isinstance(creation_time, str):
                     try:
                         from datetime import datetime
                         dt = datetime.fromisoformat(creation_time.replace('Z', '+00:00'))
-                        timestamp = dt.timestamp()
+                        return dt.timestamp()
                     except:
-                        timestamp = 0
+                        return 0
                 elif isinstance(creation_time, (int, float)):
-                    timestamp = creation_time
+                    return creation_time
                 else:
-                    timestamp = 0
-                
-                # Priority 1: Month names get sorted by reverse calendar order (Dec=1, Nov=2, ..., Jan=12)
-                if name in month_order:
-                    priority = 1
-                    month_rank = 13 - month_order[name]  # December=1, November=2, January=12
-                    return (priority, month_rank, -timestamp)
-                
-                # Priority 2: "Final" archive
-                if name.lower() == "final":
-                    return (2, 0, -timestamp)
-                
-                # Priority 3: Everything else by creation time (newest first)
-                return (3, 0, -timestamp)
+                    return 0
             
-            sorted_archives = sorted(archives, key=archive_sort_key)
+            sorted_archives = sorted(archives, key=get_sort_time, reverse=True)
             
             # Add season dropdown
             html_parts.append('                                <div class="dropdown2-item dropdown-sub">')
