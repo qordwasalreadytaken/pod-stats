@@ -212,7 +212,7 @@
                     <li>Runs <code>python3 scripts/generate_pages.py --page dataupdate</code></li>
                     <li>Fetches fresh API data (server stats, game servers, character data)</li>
                     <li>Updates <code>unified-usage-over-time.csv</code> with new snapshot</li>
-                    <li>Generates tracking pages (sc-usage-over-time.html, hc-usage-over-time.html, server-stats-over-time.html)</li>
+                    <li>Generates tracking pages (<a href="sc-usage-over-time.html">sc-usage-over-time.html</a>, <a href="hc-usage-over-time.html">hc-usage-over-time.html</a>, <a href="server-stats-over-time.html">server-stats-over-time.html</a>)</li>
                 </ul>
             </li>
             <li><strong>Page Generation Phase:</strong>
@@ -276,7 +276,7 @@
         <div class="trigger-info">
             <div class="info-grid">
                 <div class="info-label">Scheduled:</div>
-                <div>Daily at 6:00 AM UTC</div>
+                <div>Daily at 6:00 AM and 6:00 PM UTC</div>
                 
                 <div class="info-label">Manual:</div>
                 <div>Can be triggered manually from GitHub Actions tab</div>
@@ -294,7 +294,7 @@
         </ol>
 
         <h4>🎯 Why This Exists:</h4>
-        <p>This is the <span class="important">DATA SOURCE</span> for the entire project. It runs early in the morning (6 AM UTC) to fetch fresh ladder data, creating the JSON files that every other workflow depends on:</p>
+        <p>This is the <span class="important">DATA SOURCE</span> for the entire project. It runs early in the morning and evening (6 AM and 6 PM UTC) to fetch fresh ladder data, creating the JSON files that every other workflow depends on:</p>
         <ul>
             <li><code>sc_ladder.json</code> - Complete Softcore ladder data</li>
             <li><code>hc_ladder.json</code> - Complete Hardcore ladder data</li>
@@ -303,13 +303,13 @@
 
         <h4>📊 Data Flow:</h4>
         <div class="code-block">
-Daily Ladder Fetch (6 AM UTC)
-    ↓
-Creates sc_ladder.json & hc_ladder.json
-    ↓
-Update and Deploy (7 AM & 7 PM UTC)
-    ↓
-Reads JSON files → Generates pages → Deploys
+Daily Ladder Fetch (6 AM & 6 PM UTC)<br>
+    ↓<br>
+Creates sc_ladder.json & hc_ladder.json<br>
+    ↓<br>
+Update and Deploy (7 AM & 7 PM UTC)<br>
+    ↓<br>
+Reads JSON files → Generates pages → Deploys<br>
         </div>
 
         <h4>⚠️ Important Notes:</h4>
@@ -341,20 +341,20 @@ Reads JSON files → Generates pages → Deploys
 
         <h4>📋 Input Parameters:</h4>
         <div class="code-block">
-update_mode:
-  - both (default) - Generate SC and HC pages
-  - softcore - Generate SC pages only
-  - hardcore - Generate HC pages only
-
-page_type:
-  - all (default) - All pages + dataupdate
-  - home - Home page only
-  - funfacts - Fun facts page only
-  - items - Items/equipment page only
-  - mercenaries - Mercenary page only
-  - class - Class pages only
-
-reason:
+update_mode:<br>
+  - both (default) - Generate SC and HC pages<br>
+  - softcore - Generate SC pages only<br>
+  - hardcore - Generate HC pages only<br>
+<br>
+page_type:<br>
+  - all (default) - All pages + dataupdate<br>
+  - home - Home page only<br>
+  - funfacts - Fun facts page only<br>
+  - items - Items/equipment page only<br>
+  - mercenaries - Mercenary page only<br>
+  - class - Class pages only<br>
+<br>
+reason:<br>
   - Text field for logging why you ran the force update
         </div>
 
@@ -422,19 +422,19 @@ reason:
 
         <h4>📁 Archive Structure:</h4>
         <div class="code-block">
-Season/
-  ├── 1/
-  │   ├── November/
-  │   │   ├── index.html
-  │   │   ├── sc_ladder.json
-  │   │   ├── hc_ladder.json
-  │   │   ├── Home.html
-  │   │   ├── FunFacts.html
-  │   │   ├── charts/
-  │   │   └── css/
-  │   ├── December/
-  │   └── Final/
-  └── 2/
+Season/<br>
+  ├── 1/<br>
+  │   ├── November/<br>
+  │   │   ├── index.html<br>
+  │   │   ├── sc_ladder.json<br>
+  │   │   ├── hc_ladder.json<br>
+  │   │   ├── Home.html<br>
+  │   │   ├── FunFacts.html<br>
+  │   │   ├── charts/<br>
+  │   │   └── css/<br>
+  │   ├── December/<br>
+  │   └── Final/<br>
+  └── 2/<br>
         </div>
 
         <h4>🛡️ Season Freeze Behavior:</h4>
@@ -475,13 +475,13 @@ Season/
 
         <h4>📋 Input Parameters:</h4>
         <div class="code-block">
-archive_type:
-  - monthly (default) - Create a monthly snapshot
-  - final - Create the final season archive
-
-force_creation:
-  - false (default) - Respect season timing
-  - true - Force archive creation regardless of season status
+archive_type:<br>
+  - monthly (default) - Create a monthly snapshot<br>
+  - final - Create the final season archive<br>
+<br>
+force_creation:<br>
+  - false (default) - Respect season timing<br>
+  - true - Force archive creation regardless of season status<br>
         </div>
 
         <h4>📋 What It Does:</h4>
@@ -576,15 +576,15 @@ force_creation:
 
     <h3>Current Recommended Configuration:</h3>
     <div class="code-block">
-✅ ENABLED:
-  - daily-ladder-fetch.yml (CRITICAL - fetches raw data)
-  - update-and-deploy.yml (CRITICAL - main production)
-  - force-update.yml (emergency use)
-  - monthly-archive.yml (automatic preservation)
-  - manual-archive.yml (on-demand archives)
-
-❌ DISABLED:
-  - static.yml (causes conflicts with update-and-deploy)
+✅ ENABLED:<br>
+  - daily-ladder-fetch.yml (CRITICAL - fetches raw data)<br>
+  - update-and-deploy.yml (CRITICAL - main production)<br>
+  - force-update.yml (emergency use)<br>
+  - monthly-archive.yml (automatic preservation)<br>
+  - manual-archive.yml (on-demand archives)<br>
+<br>
+❌ DISABLED:<br>
+  - static.yml (causes conflicts with update-and-deploy)<br>
     </div>
 
     <h2 id="supplemental">📊 Supplemental Files (Internal/Developer Use)</h2>
@@ -629,7 +629,7 @@ GameServer,ALL,USA,Seattle_Players,123,145,...
 
     <h3>🌐 Usage Over Time HTML Pages</h3>
 
-    <h4>sc-usage-over-time.html & hc-usage-over-time.html</h4>
+    <h4><a href="sc-usage-over-time.html">sc-usage-over-time.html</a> & <a href="hc-usage-over-time.html">hc-usage-over-time.html</a></h4>
     <div class="workflow-section" style="border-left-color: #f59e0b;">
         <p><strong>Purpose:</strong> Interactive pages showing skill and item usage trends for Softcore and Hardcore leagues.</p>
         
@@ -653,7 +653,7 @@ GameServer,ALL,USA,Seattle_Players,123,145,...
         <p>Root directory of repository, not linked from main navigation but accessible directly via URL.</p>
     </div>
 
-    <h4>server-stats-over-time.html</h4>
+    <h4><a href="server-stats-over-time.html">server-stats-over-time.html</a></h4>
     <div class="workflow-section" style="border-left-color: #f59e0b;">
         <p><strong>Purpose:</strong> Track server population and infrastructure metrics over time.</p>
         
@@ -691,15 +691,15 @@ GameServer,ALL,USA,Seattle_Players,123,145,...
         <h4>📋 Contents:</h4>
         <p>Each file contains an array of character objects with complete data:</p>
         <div class="code-block">
-{
-  "Name": "CharacterName",
-  "Class": "Amazon",
-  "Level": 95,
-  "Experience": 3520485923,
-  "SkillTabs": [...],  // All skill levels
-  "Equipped": [...],   // All equipped items with full details
-  "MercenaryEquipped": [...],  // Mercenary gear
-  "Tag": "...",        // Corruptions, synthetics, etc.
+{<br>
+  "Name": "CharacterName",<br>
+  "Class": "Amazon",<br>
+  "Level": 95,<br>
+  "Experience": 3520485923,<br>
+  "SkillTabs": [...],  // All skill levels<br>
+  "Equipped": [...],   // All equipped items with full details<br>
+  "MercenaryEquipped": [...],  // Mercenary gear<br>
+  "Tag": "...",        // Corruptions, etc.<br>
 }
         </div>
 
@@ -727,15 +727,15 @@ GameServer,ALL,USA,Seattle_Players,123,145,...
 
     <h3>📝 Accessing Supplemental Files</h3>
     <div class="code-block">
-# View usage tracking
-https://yourusername.github.io/pod-stats/sc-usage-over-time.html
-https://yourusername.github.io/pod-stats/hc-usage-over-time.html
-https://yourusername.github.io/pod-stats/server-stats-over-time.html
-
-# Download raw data
-https://raw.githubusercontent.com/yourusername/pod-stats/main/sc_ladder.json
-https://raw.githubusercontent.com/yourusername/pod-stats/main/hc_ladder.json
-https://raw.githubusercontent.com/yourusername/pod-stats/main/unified-usage-over-time.csv
+# View usage tracking<br>
+<a href="sc-usage-over-time.html">sc-usage-over-time.html</a><br>
+<a href="hc-usage-over-time.html">hc-usage-over-time.html</a><br>
+<a href="server-stats-over-time.html">server-stats-over-time.html</a><br>
+<br>
+# Download raw data<br>
+https://raw.githubusercontent.com/yourusername/pod-stats/main/sc_ladder.json<br>
+https://raw.githubusercontent.com/yourusername/pod-stats/main/hc_ladder.json<br>
+https://raw.githubusercontent.com/yourusername/pod-stats/main/unified-usage-over-time.csv<br>
     </div>
 
     <h2 id="troubleshooting">🔧 Troubleshooting</h2>
