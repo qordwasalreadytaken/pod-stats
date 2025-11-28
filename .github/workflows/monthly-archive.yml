@@ -2,8 +2,10 @@ name: Monthly Archive Generation
 
 on:
   schedule:
-    # Run on the 28th of every month at 2:00 AM UTC
-    - cron: '0 2 28 * *'
+    # TEMPORARY: Run at 2:15 PM UTC on Nov 28, 2025 for testing
+    - cron: '15 14 28 * *'
+    # ORIGINAL: Run on the 28th of every month at 2:00 AM UTC
+    # - cron: '0 2 28 * *'
   workflow_dispatch: # Allow manual triggering
 
 permissions:
