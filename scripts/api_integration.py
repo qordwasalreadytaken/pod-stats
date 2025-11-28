@@ -3175,25 +3175,45 @@ def generate_navbar_dropdown_html(archive_structure):
             season_number = season["season_number"]
             archives = season["archives"]
             
-            # Sort archives by creation time (newest first)
-            # creation_time can be either ISO string or Unix timestamp
-            def get_sort_time(archive):
-                creation_time = archive.get("creation_time")
+            # Hybrid sorting: Month names by calendar order (Dec->Jan), then by creation time
+            # This ensures recent monthly archives stay at top even if older archives were re-created
+            month_order = {
+                "January": 1, "February": 2, "March": 3, "April": 4,
+                "May": 5, "June": 6, "July": 7, "August": 8,
+                "September": 9, "October": 10, "November": 11, "December": 12
+            }
+            
+            def archive_sort_key(archive):
+                name = archive["name"]
+                creation_time = archive.get("creation_time", 0)
+                
+                # Convert creation_time to timestamp for secondary sorting
                 if isinstance(creation_time, str):
-                    # ISO datetime string
                     try:
                         from datetime import datetime
                         dt = datetime.fromisoformat(creation_time.replace('Z', '+00:00'))
-                        return dt.timestamp()
+                        timestamp = dt.timestamp()
                     except:
-                        return 0
+                        timestamp = 0
                 elif isinstance(creation_time, (int, float)):
-                    # Unix timestamp
-                    return creation_time
+                    timestamp = creation_time
                 else:
-                    return 0
+                    timestamp = 0
+                
+                # Priority 1: Month names get sorted by reverse calendar order (Dec=1, Nov=2, ..., Jan=12)
+                if name in month_order:
+                    priority = 1
+                    month_rank = 13 - month_order[name]  # December=1, November=2, January=12
+                    return (priority, month_rank, -timestamp)
+                
+                # Priority 2: "Final" archive
+                if name.lower() == "final":
+                    return (2, 0, -timestamp)
+                
+                # Priority 3: Everything else by creation time (newest first)
+                return (3, 0, -timestamp)
             
-            sorted_archives = sorted(archives, key=get_sort_time, reverse=True)
+            sorted_archives = sorted(archives, key=archive_sort_key)
             
             # Add season dropdown
             html_parts.append('                                <div class="dropdown2-item dropdown-sub">')
@@ -3288,10 +3308,10 @@ def update_navbar_template(base_path=None, template_path=None, backup=True):
             shutil.copy2(template_path, backup_path)
         
         # Step 5: Replace the dropdown section
-        # Find the dropdown section between the "Trends History" button and its closing </div>
-        # Pattern: Match from <div class="navbar-item dropdown2"> through the entire dropdown structure
+        # Match from <div class="navbar-item dropdown2"> through all nested content until the closing </div>
+        # that ends the dropdown2 div
         
-        pattern = r'(<div class="navbar-item dropdown2">)\s*<button class="dropdown2-button">Trends History</button>.*?(?=</div>\s*</div>\s*</div>\s*</nav>)'
+        pattern = r'(<div class="navbar-item dropdown2">).*?</div>\s*</div>(?=\s*</div>\s*</div>\s*</nav>)'
         
         replacement = f'\\1\n{new_dropdown_html}\n                        '
         
