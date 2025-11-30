@@ -1141,21 +1141,22 @@ class FunFactsHTMLGenerator:
         <!-- Level 95+ Summary -->
         <div class="fun-facts-row">
             <div class="fun-facts-column">
-            <h4>High-Level Character Counts</h4>
-            <ul>
-                {"".join(f"<li>Level {lvl}: {count} characters</li>" for lvl, count in level_counter.items() if lvl in [99, 98, 97, 96, 95])}
-            </ul>
-        </div>
+                <h4>High-Level Character Counts</h4>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;">
+                    {"".join(f"<div style='color: #ccc; margin: 4px 0;'>Level {lvl}: {count} characters</div>" for lvl, count in level_counter.items() if lvl in [99, 98, 97, 96, 95])}
+                </div>
+            </div>
         <!-- Level 99 Accounts -->
             <div class="fun-facts-column">
-        <h4>Top Accounts by Number of Level 99 Characters</h4>
-        <ul>
-            {"".join(
-                f"<li><a href='https://beta.pathofdiablo.com/ladder?account/{acct}'>{acct}</a>: {count} characters at level 99</li>"
-                for acct, count in top_99s
-            )}
-        </ul> 
-       </div></div>
+                <h4>Top Accounts by Number of Level 99 Characters</h4>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;">
+                    {"".join(
+                        f"<div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/ladder?account={acct}'>{acct}</a>: {count} characters at level 99</div>"
+                        for acct, count in top_99s
+                    )}
+                </div>
+            </div>
+        </div>
 
         {class_dominance_html}
 
