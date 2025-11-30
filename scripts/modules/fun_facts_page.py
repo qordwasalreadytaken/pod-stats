@@ -422,7 +422,7 @@ class FunFactsAnalyzer:
             
             # Skip characters with 3 or fewer respecs
             total_respecs = entry.get('total_respecs', 0)
-            if total_respecs <= 3:
+            if total_respecs <= 2:
                 continue
             
             # Query the API to get character mode
