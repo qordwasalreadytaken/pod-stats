@@ -919,8 +919,8 @@ class FunFactsHTMLGenerator:
         
         def generate_top_list(stat_data):
             return ''.join(
-                f"""<li><a href="https://beta.pathofdiablo.com/armory?name={char['name']}" target="_blank">
-                {char['name']}</a> - Level {char['level']} {char['class']} ({char['value']:,})</li>"""
+                f"""<div style='color: #ccc; margin: 4px 0;'><a href="https://beta.pathofdiablo.com/armory?name={char['name']}" target="_blank">
+                {char['name']}</a> - Level {char['level']} {char['class']} ({char['value']:,})</div>"""
                 for char in stat_data
             )
         
@@ -936,11 +936,11 @@ class FunFactsHTMLGenerator:
         <div class="fun-facts-row">
             <div class="fun-facts-column">
                 <h3>Top 5 Characters with the most Strength:</h3>
-                <ul>{generate_top_list(top_stats.get('Strength', []))}</ul>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;">{generate_top_list(top_stats.get('Strength', []))}</div>
             </div>
             <div class="fun-facts-column">
                 <h3>Top 5 Characters with the most Dexterity:</h3>
-                <ul>{generate_top_list(top_stats.get('Dexterity', []))}</ul>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;">{generate_top_list(top_stats.get('Dexterity', []))}</div>
             </div>
         </div>
 
@@ -948,11 +948,11 @@ class FunFactsHTMLGenerator:
         <div class="fun-facts-row">
             <div class="fun-facts-column">
                 <h3>Top 5 Characters with the most Vitality:</h3>
-                <ul>{generate_top_list(top_stats.get('Vitality', []))}</ul>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;">{generate_top_list(top_stats.get('Vitality', []))}</div>
             </div>
             <div class="fun-facts-column">
                 <h3>Top 5 Characters with the most Energy:</h3>
-                <ul>{generate_top_list(top_stats.get('Energy', []))}</ul>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;">{generate_top_list(top_stats.get('Energy', []))}</div>
             </div>
         </div>
 
@@ -960,11 +960,11 @@ class FunFactsHTMLGenerator:
         <div class="fun-facts-row">
             <div class="fun-facts-column">
                 <h3>The 5 Characters with the Most Life*:</h3>
-                <ul>{generate_top_list(top_stats.get('Life', []))}</ul>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;">{generate_top_list(top_stats.get('Life', []))}</div>
             </div>
             <div class="fun-facts-column">
                 <h3>The 5 Characters with the Most Mana*:</h3>
-                <ul>{generate_top_list(top_stats.get('Mana', []))}</ul>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;">{generate_top_list(top_stats.get('Mana', []))}</div>
             </div>
         </div>
         <em>*"Most" Life and Mana values are from a snapshot in time and may or may not be affected by bonuses from BO, Oak, etc.</em>
@@ -973,11 +973,11 @@ class FunFactsHTMLGenerator:
         <div class="fun-facts-row">
             <div class="fun-facts-column">
                 <h3>The 5 Characters with the Most Magic Find:</h3>
-                <ul>{generate_top_list(top_stats.get('MagicFind', []))}</ul>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;">{generate_top_list(top_stats.get('MagicFind', []))}</div>
             </div>
             <div class="fun-facts-column">
                 <h3>The 5 Characters with the Most Gold Find:</h3>
-                <ul>{generate_top_list(top_stats.get('GoldFind', []))}</ul>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;">{generate_top_list(top_stats.get('GoldFind', []))}</div>
             </div>
         </div>
         """
@@ -995,25 +995,33 @@ class FunFactsHTMLGenerator:
         <div class="fun-facts-row">
             <div class="fun-facts-column">
                 <h3>Life Statistics</h3>
-                <p><strong>Average Life:</strong> {averages['life']:.2f}</p>
-                <p><strong>Median Life:</strong> {medians['life']:.2f}</p>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;">
+                    <p style="color: #ccc; margin: 4px 0;"><strong>Average Life:</strong> {averages['life']:.2f}</p>
+                    <p style="color: #ccc; margin: 4px 0;"><strong>Median Life:</strong> {medians['life']:.2f}</p>
+                </div>
             </div>
             <div class="fun-facts-column">
                 <h3>Mana Statistics</h3>
-                <p><strong>Average Mana:</strong> {averages['mana']:.2f}</p>
-                <p><strong>Median Mana:</strong> {medians['mana']:.2f}</p>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;">
+                    <p style="color: #ccc; margin: 4px 0;"><strong>Average Mana:</strong> {averages['mana']:.2f}</p>
+                    <p style="color: #ccc; margin: 4px 0;"><strong>Median Mana:</strong> {medians['mana']:.2f}</p>
+                </div>
             </div>
         </div>
         <div class="fun-facts-row">
             <div class="fun-facts-column">
                 <h3>Magic Find Statistics</h3>
-                <p><strong>Average Magic Find:</strong> {averages['mf']:.2f}</p>
-                <p><strong>Median Magic Find:</strong> {medians['mf']:.2f}</p>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;">
+                    <p style="color: #ccc; margin: 4px 0;"><strong>Average Magic Find:</strong> {averages['mf']:.2f}</p>
+                    <p style="color: #ccc; margin: 4px 0;"><strong>Median Magic Find:</strong> {medians['mf']:.2f}</p>
+                </div>
             </div>
             <div class="fun-facts-column">
                 <h3>Gold Find Statistics</h3>
-                <p><strong>Average Gold Find:</strong> {averages['gf']:.2f}</p>
-                <p><strong>Median Gold Find:</strong> {medians['gf']:.2f}</p>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;">
+                    <p style="color: #ccc; margin: 4px 0;"><strong>Average Gold Find:</strong> {averages['gf']:.2f}</p>
+                    <p style="color: #ccc; margin: 4px 0;"><strong>Median Gold Find:</strong> {medians['gf']:.2f}</p>
+                </div>
             </div>
         </div>
         """
@@ -1384,16 +1392,16 @@ class FunFactsHTMLGenerator:
         <div class="fun-facts-row">
             <div class="fun-facts-column">
                 <h3>Top Respecced Characters</h3>
-                <ul>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;">
                     {"".join(
-                        f'''<li>
+                        f'''<div style='color: #ccc; margin: 4px 0;'>
                             <a href="https://beta.pathofdiablo.com/armory?name={char['name']}" target="_blank">{char['name']}</a>: 
                             {char['total_respecs']} respecs 
 <!--                            ({char['total_points_removed']} skill points, {char['total_stats_removed']} stat points reset) -->
-                        </li>'''
+                        </div>'''
                         for char in characters
                     )}
-                </ul>
+                </div>
             </div>
         </div>
         """
