@@ -98,6 +98,11 @@ class FunFactsAnalyzer:
         top_builds_data = self.analyze_top_10_builds(min_level=80)
         print(f"✓ Found {len(top_builds_data)} top builds")
         
+        # Analyze class-specific ladder leaders
+        print("Analyzing class-specific ladder leaders...")
+        class_ladder_leaders = self.analyze_class_ladder_leaders(top_n=5)
+        print(f"✓ Found class ladder leaders")
+        
         return {
             'character_count': character_count,
             'averages': averages,
@@ -107,7 +112,8 @@ class FunFactsAnalyzer:
             'cbf_data': cbf_data,
             'top_accounts_data': top_accounts_data,
             'respec_data': respec_data,
-            'top_builds_data': top_builds_data
+            'top_builds_data': top_builds_data,
+            'class_ladder_leaders': class_ladder_leaders
         }
     
     def _get_top_characters_all_stats(self):
@@ -567,6 +573,62 @@ class FunFactsAnalyzer:
         # Sort all builds by player count (descending) and return top 10
         all_builds.sort(key=lambda x: x["player_count"], reverse=True)
         return all_builds[:10]
+    
+    def analyze_class_ladder_leaders(self, top_n=5):
+        """
+        Fetch and display the top ranked characters from each class-specific ladder.
+        
+        Args:
+            top_n: Number of top characters to return per class (default 5)
+        
+        Returns:
+            Dict with class names as keys and lists of top characters as values
+        """
+        # Map class IDs to full class names
+        class_mapping = {
+            1: "Amazon",
+            7: "Assassin",
+            5: "Barbarian",
+            6: "Druid",
+            3: "Necromancer",
+            4: "Paladin",
+            2: "Sorceress"
+        }
+        
+        class_leaders = {}
+        
+        for class_id, class_name in class_mapping.items():
+            try:
+                # Fetch from class-specific ladder endpoint
+                api_url = f"https://beta.pathofdiablo.com/api/ladder/13/0/{class_id}/0"
+                response = requests.get(api_url, timeout=10)
+                
+                if response.status_code == 200:
+                    ladder_data = response.json()
+                    all_chars = ladder_data.get("ladder", [])
+                    
+                    # Get top N characters
+                    top_chars = []
+                    for char in all_chars[:top_n]:
+                        top_chars.append({
+                            'rank': char.get('rank', 0),
+                            'name': char.get('charName', 'Unknown'),
+                            'level': char.get('level', 0),
+                            'account': char.get('account', 'Unknown'),
+                            'exp': char.get('exp', 0)
+                        })
+                    
+                    class_leaders[class_name] = top_chars
+                    print(f"  ✓ {class_name}: {len(top_chars)} top characters")
+                else:
+                    print(f"  ⚠️ Failed to fetch {class_name} ladder: {response.status_code}")
+                    class_leaders[class_name] = []
+                    
+            except Exception as e:
+                print(f"  ⚠️ Error fetching {class_name} ladder: {e}")
+                class_leaders[class_name] = []
+        
+        return class_leaders
 
 
 class FunFactsHTMLGenerator:
@@ -585,6 +647,7 @@ class FunFactsHTMLGenerator:
         overview_html = FunFactsHTMLGenerator._generate_overview_section(analysis_data)
         class_1k_html = FunFactsHTMLGenerator._generate_1k_class_distribution_section(mode, mode_prefix, level_filter_text)
         top_accounts_html = FunFactsHTMLGenerator._generate_top_accounts_section(analysis_data.get('top_accounts_data', {}))
+        class_ladder_html = FunFactsHTMLGenerator._generate_class_ladder_leaders_section(analysis_data.get('class_ladder_leaders', {}))
         respec_html = FunFactsHTMLGenerator._generate_respec_leaderboard_section(analysis_data.get('respec_data', {}))
         top_builds_html = FunFactsHTMLGenerator._generate_top_10_builds_section(analysis_data.get('top_builds_data', []))
         top_stats_html = FunFactsHTMLGenerator._generate_top_stats_section(analysis_data['top_stats'])
@@ -651,6 +714,10 @@ class FunFactsHTMLGenerator:
                     <hr>
                     
                     {top_accounts_html}
+                    
+                    <hr>
+                    
+                    {class_ladder_html}
                     
                     <hr>
                     
@@ -1074,6 +1141,117 @@ class FunFactsHTMLGenerator:
                         )}
                     </ul>
             </div>
+        </div>
+        """
+
+    @staticmethod
+    def _generate_class_ladder_leaders_section(class_ladder_leaders):
+        """Generate the class-specific ladder leaders section"""
+        
+        if not class_ladder_leaders:
+            return "<p>No class ladder leaders data available.</p>"
+        
+        # Class color mapping
+        class_colors = {
+            "Amazon": "rgb(255, 102, 105)",
+            "Assassin": "rgb(255, 255, 255)",
+            "Barbarian": "rgb(150, 105, 32)",
+            "Druid": "rgb(255, 186, 74)",
+            "Necromancer": "rgb(179, 255, 253)",
+            "Paladin": "rgb(255, 243, 112)",
+            "Sorceress": "rgb(188, 107, 255)"
+        }
+        
+        # Track accounts per class to find those with multiple top 5 chars
+        class_account_chars = defaultdict(lambda: defaultdict(list))
+        
+        for class_name, top_chars in class_ladder_leaders.items():
+            for char in top_chars:
+                account = char.get('account', 'Unknown')
+                class_account_chars[class_name][account].append({
+                    'rank': char.get('rank', 999),
+                    'name': char.get('name', 'Unknown'),
+                    'level': char.get('level', 0)
+                })
+        
+        # Generate HTML showing accounts grouped by class, highlighting multiple appearances
+        class_sections = []
+        for class_name in ["Amazon", "Assassin", "Barbarian", "Druid", "Necromancer", "Paladin", "Sorceress"]:
+            if class_name not in class_account_chars:
+                continue
+            
+            border_color = class_colors.get(class_name, '#666')
+            
+            # Sort accounts by number of characters (descending), then by best rank
+            sorted_accounts = sorted(
+                class_account_chars[class_name].items(),
+                key=lambda x: (-len(x[1]), min(c['rank'] for c in x[1]))
+            )
+            
+            # Build account entries
+            accounts_html = ""
+            for account, chars in sorted_accounts:
+                # Only show accounts with multiple top 5 characters
+                if len(chars) < 2:
+                    continue
+                
+                # Sort characters by rank
+                chars.sort(key=lambda x: x['rank'])
+                
+                # Build character list
+                char_list = []
+                for char in chars:
+                    char_list.append(
+                        f'<a href="https://beta.pathofdiablo.com/armory?name={char["name"]}" target="_blank" '
+                        f'style="color: #bbb;">#{char["rank"]} {char["name"]}</a> (Level {char["level"]})'
+                    )
+                
+                char_list_html = ', '.join(char_list)
+                
+                accounts_html += f"""
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <a href='https://beta.pathofdiablo.com/ladder?account={account}' target='_blank' 
+                               style="font-size: 16px; font-weight: bold; color: #ffffff;">{account}</a>
+                            <span style="color: #888; font-size: 14px; margin-left: 10px;">
+                                ({len(chars)} characters in top 5)
+                            </span>
+                        </div>
+                    </div>
+                    <div style="color: #aaa; font-size: 13px; margin-top: 6px; margin-left: 4px;">
+                        {char_list_html}
+                    </div>
+                </div>
+                """
+            
+            # Only add section if there are accounts with multiple characters
+            if accounts_html:
+                class_sections.append(f"""
+                <div style="margin: 16px 0;">
+                    <h3 style="border-left: 4px solid {border_color}; padding-left: 12px; margin: 12px 0;">
+                        {class_name}
+                    </h3>
+                    {accounts_html}
+                </div>
+                """)
+        
+        all_classes_html = "\n".join(class_sections)
+        
+        if not all_classes_html:
+            return "<p>No accounts have multiple characters in the top 5 of any class ladder.</p>"
+        
+        return f"""
+        <h2 id="class-ladder-leaders">
+            Class Ladder Dominance
+            <a href="#class-ladder-leaders" class="anchor-link">
+                <img src="icons/anchor.png" alt="🔗" class="anchor-icon">
+            </a>
+        </h2>
+        <p>Accounts with multiple characters in the top 5 of the same class ladder.</p>
+        
+        <div class="class-ladder-leaders-container">
+            {all_classes_html}
         </div>
         """
 
