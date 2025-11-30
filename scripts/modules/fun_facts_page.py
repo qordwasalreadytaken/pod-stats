@@ -646,8 +646,10 @@ class FunFactsHTMLGenerator:
         # Generate individual sections
         overview_html = FunFactsHTMLGenerator._generate_overview_section(analysis_data)
         class_1k_html = FunFactsHTMLGenerator._generate_1k_class_distribution_section(mode, mode_prefix, level_filter_text)
-        top_accounts_html = FunFactsHTMLGenerator._generate_top_accounts_section(analysis_data.get('top_accounts_data', {}))
-        class_ladder_html = FunFactsHTMLGenerator._generate_class_ladder_leaders_section(analysis_data.get('class_ladder_leaders', {}))
+        top_accounts_html = FunFactsHTMLGenerator._generate_top_accounts_section(
+            analysis_data.get('top_accounts_data', {}),
+            analysis_data.get('class_ladder_leaders', {})
+        )
         respec_html = FunFactsHTMLGenerator._generate_respec_leaderboard_section(analysis_data.get('respec_data', {}))
         top_builds_html = FunFactsHTMLGenerator._generate_top_10_builds_section(analysis_data.get('top_builds_data', []))
         top_stats_html = FunFactsHTMLGenerator._generate_top_stats_section(analysis_data['top_stats'])
@@ -714,10 +716,6 @@ class FunFactsHTMLGenerator:
                     <hr>
                     
                     {top_accounts_html}
-                    
-                    <hr>
-                    
-                    {class_ladder_html}
                     
                     <hr>
                     
@@ -1021,8 +1019,8 @@ class FunFactsHTMLGenerator:
         """
 
     @staticmethod
-    def _generate_top_accounts_section(top_accounts_data):
-        """Generate the top accounts analysis section based on kfun_facts_html from github-make-homes.py"""
+    def _generate_top_accounts_section(top_accounts_data, class_ladder_leaders=None):
+        """Generate the top accounts analysis section with integrated class ladder dominance"""
         
         if not top_accounts_data:
             return "<p>No top accounts data available.</p>"
@@ -1040,6 +1038,97 @@ class FunFactsHTMLGenerator:
         sorted_by_xp = top_accounts_data.get('sorted_by_xp', [])
         sorted_by_levels = top_accounts_data.get('sorted_by_levels', [])
         sorted_by_count = top_accounts_data.get('sorted_by_count', [])
+        
+        # Class color mapping
+        class_colors = {
+            "Amazon": "rgb(255, 102, 105)",
+            "Assassin": "rgb(255, 255, 255)",
+            "Barbarian": "rgb(150, 105, 32)",
+            "Druid": "rgb(255, 186, 74)",
+            "Necromancer": "rgb(179, 255, 253)",
+            "Paladin": "rgb(255, 243, 112)",
+            "Sorceress": "rgb(188, 107, 255)"
+        }
+        
+        # Generate class ladder dominance section if data provided
+        class_dominance_html = ""
+        if class_ladder_leaders:
+            # Track accounts per class to find those with multiple top 5 chars
+            class_account_chars = defaultdict(lambda: defaultdict(list))
+            
+            for class_name, top_chars in class_ladder_leaders.items():
+                for char in top_chars:
+                    account = char.get('account', 'Unknown')
+                    class_account_chars[class_name][account].append({
+                        'rank': char.get('rank', 999),
+                        'name': char.get('name', 'Unknown'),
+                        'level': char.get('level', 0)
+                    })
+            
+            # Generate HTML for each class
+            class_sections = []
+            for class_name in ["Amazon", "Assassin", "Barbarian", "Druid", "Necromancer", "Paladin", "Sorceress"]:
+                if class_name not in class_account_chars:
+                    continue
+                
+                border_color = class_colors.get(class_name, '#666')
+                
+                # Sort accounts by number of characters (descending), then by best rank
+                sorted_accounts = sorted(
+                    class_account_chars[class_name].items(),
+                    key=lambda x: (-len(x[1]), min(c['rank'] for c in x[1]))
+                )
+                
+                # Build account entries
+                accounts_html = ""
+                for account, chars in sorted_accounts:
+                    # Only show accounts with multiple top 5 characters
+                    if len(chars) < 2:
+                        continue
+                    
+                    # Sort characters by rank
+                    chars.sort(key=lambda x: x['rank'])
+                    
+                    # Build character list
+                    char_list = []
+                    for char in chars:
+                        char_list.append(
+                            f'<a href="https://beta.pathofdiablo.com/armory?name={char["name"]}" target="_blank" '
+                            f'style="color: #bbb;">#{char["rank"]} {char["name"]}</a> (Level {char["level"]})'
+                        )
+                    
+                    char_list_html = ', '.join(char_list)
+                    
+                    accounts_html += f"""
+                    <div style="margin: 6px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px; border-left: 4px solid {border_color};">
+                        <div>
+                            <a href='https://beta.pathofdiablo.com/ladder?account={account}' target='_blank' 
+                               style="font-size: 16px; font-weight: bold; color: #ffffff;">{account}</a>
+                            <span style="color: #888; font-size: 14px; margin-left: 10px;">
+                                ({len(chars)} characters in top 5)
+                            </span>
+                        </div>
+                        <div style="color: #aaa; font-size: 13px; margin-top: 6px;">
+                            {char_list_html}
+                        </div>
+                    </div>
+                    """
+                
+                # Only add section if there are accounts with multiple characters
+                if accounts_html:
+                    class_sections.append(f"""
+                    <div style="margin: 12px 0;">
+                        <h3 style="margin: 10px 0;">{class_name} Ladder Dominance</h3>
+                        {accounts_html}
+                    </div>
+                    """)
+            
+            if class_sections:
+                class_dominance_html = f"""
+                <h3 style="margin-top: 20px;">Class-Specific Ladder Leaders (Top 5)</h3>
+                <p style="color: #ccc; margin-bottom: 12px;">Accounts with multiple characters in the top 5 of the same class ladder.</p>
+                {"".join(class_sections)}
+                """
 
         return f"""
         <h2 id="top-account-stats">
@@ -1068,78 +1157,96 @@ class FunFactsHTMLGenerator:
         </ul> 
        </div></div>
 
-        <!-- Per-Class Top 5 Lists -->
+        {class_dominance_html}
+
+        <!-- Per-Class Top 1K Lists -->
+        <h3 style="margin-top: 20px;">Accounts with Multiple Characters in Top 1K</h3>
         <div class="fun-facts-row">
             <div class="fun-facts-column">
-                <h3>Accounts with multiple Amazons in the top 1K</h3>
-                <ul>{"".join(f"<li><a href='https://beta.pathofdiablo.com/account/{acct}'>{acct}</a>: {count.get('ama', 0)} Amazons</li>" for acct, count in most_zons)}</ul>
+                <h4>Amazons</h4>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px; border-left: 4px solid {class_colors['Amazon']};">
+                    {"".join(f"<div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/{acct}'>{acct}</a>: {count.get('ama', 0)} Amazons</div>" for acct, count in most_zons)}
+                </div>
             </div>
             <div class="fun-facts-column">
-                <h3>Accounts with multiple Assassins in the top 1K</h3>
-                <ul>{"".join(f"<li><a href='https://beta.pathofdiablo.com/account/{acct}'>{acct}</a>: {count.get('asn', 0)} Assassins</li>" for acct, count in most_sins)}</ul>
+                <h4>Assassins</h4>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px; border-left: 4px solid {class_colors['Assassin']};">
+                    {"".join(f"<div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/{acct}'>{acct}</a>: {count.get('asn', 0)} Assassins</div>" for acct, count in most_sins)}
+                </div>
             </div>
         </div>
         <div class="fun-facts-row">
             <div class="fun-facts-column">
-                <h3>Accounts with multiple Barbarians in the top 1K</h3>
-                <ul>{"".join(f"<li><a href='https://beta.pathofdiablo.com/account/{acct}'>{acct}</a>: {count.get('bar', 0)} Barbarians</li>" for acct, count in most_barbs)}</ul>
+                <h4>Barbarians</h4>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px; border-left: 4px solid {class_colors['Barbarian']};">
+                    {"".join(f"<div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/{acct}'>{acct}</a>: {count.get('bar', 0)} Barbarians</div>" for acct, count in most_barbs)}
+                </div>
             </div>
             <div class="fun-facts-column">
-                <h3>Accounts with multiple Druids in the top 1K</h3>
-                <ul>{"".join(f"<li><a href='https://beta.pathofdiablo.com/account/{acct}'>{acct}</a>: {count.get('dru', 0)} Druids</li>" for acct, count in most_druids)}</ul>
-            </div>
-        </div>
-        <div class="fun-facts-row">
-            <div class="fun-facts-column">
-                <h3>Accounts with multiple Necromancers in the top 1K</h3>
-                <ul>{"".join(f"<li><a href='https://beta.pathofdiablo.com/account/{acct}'>{acct}</a>: {count.get('nec', 0)} Necromancers</li>" for acct, count in most_necros)}</ul>
-            </div>
-            <div class="fun-facts-column">
-                <h3>Accounts with multiple Paladins in the top 1K</h3>
-                <ul>{"".join(f"<li><a href='https://beta.pathofdiablo.com/account/{acct}'>{acct}</a>: {count.get('pal', 0)} Paladins</li>" for acct, count in most_pallys)}</ul>
+                <h4>Druids</h4>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px; border-left: 4px solid {class_colors['Druid']};">
+                    {"".join(f"<div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/{acct}'>{acct}</a>: {count.get('dru', 0)} Druids</div>" for acct, count in most_druids)}
+                </div>
             </div>
         </div>
         <div class="fun-facts-row">
             <div class="fun-facts-column">
-                <h3>Accounts with multiple Sorceresses in the top 1K</h3>
-                <ul>{"".join(f"<li><a href='https://beta.pathofdiablo.com/account/{acct}'>{acct}</a>: {count.get('sor', 0)} Sorceresses</li>" for acct, count in most_sorcs)}</ul>
+                <h4>Necromancers</h4>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px; border-left: 4px solid {class_colors['Necromancer']};">
+                    {"".join(f"<div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/{acct}'>{acct}</a>: {count.get('nec', 0)} Necromancers</div>" for acct, count in most_necros)}
+                </div>
+            </div>
+            <div class="fun-facts-column">
+                <h4>Paladins</h4>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px; border-left: 4px solid {class_colors['Paladin']};">
+                    {"".join(f"<div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/{acct}'>{acct}</a>: {count.get('pal', 0)} Paladins</div>" for acct, count in most_pallys)}
+                </div>
+            </div>
+        </div>
+        <div class="fun-facts-row">
+            <div class="fun-facts-column">
+                <h4>Sorceresses</h4>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px; border-left: 4px solid {class_colors['Sorceress']};">
+                    {"".join(f"<div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/{acct}'>{acct}</a>: {count.get('sor', 0)} Sorceresses</div>" for acct, count in most_sorcs)}
+                </div>
             </div>
         </div>
 
         <!-- All 7 Classes -->
-        <h3>Accounts with all 7 classes in the top 1K: {len(complete_class_accounts)}</h3>
-        <p>{", ".join(f"<a href='https://beta.pathofdiablo.com/ladder?account={acct}'>{acct}</a>" for acct in complete_class_accounts[:5])}</p>
+        <h3 style="margin-top: 20px;">Accounts with all 7 classes in the top 1K</h3>
+        <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;">
+            <p style="color: #ccc;">{len(complete_class_accounts)} accounts: {", ".join(f"<a href='https://beta.pathofdiablo.com/ladder?account={acct}'>{acct}</a>" for acct in complete_class_accounts[:10])}</p>
+        </div>
 
         <!-- XP / Level / Count -->
+        <h3 style="margin-top: 20px;">Top Accounts by Metrics</h3>
         <div class="fun-facts-row">
             <div class="fun-facts-column">
-                <h3>Accounts with the most experience</h3>
-                    <ul>
-                        {"".join(
-                            f"<li><a href='https://beta.pathofdiablo.com/account/{acct}'>{acct}</a>: {stats['xp']:,} XP, {stats['count']} chars, avg level {stats['levels']/stats['count']:.2f}</li>"
-                            for acct, stats in sorted_by_xp
-                        )}
-                    </ul>
-           </div>
+                <h4>Most Experience</h4>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;">
+                    {"".join(
+                        f"<div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/{acct}'>{acct}</a>: {stats['xp']:,} XP, {stats['count']} chars, avg level {stats['levels']/stats['count']:.2f}</div>"
+                        for acct, stats in sorted_by_xp
+                    )}
+                </div>
+            </div>
             <div class="fun-facts-column">
-                <h3>Accounts with the most Levels</h3>
-                    <ul>
-                        {"".join(
-                            f"<li><a href='https://beta.pathofdiablo.com/account/{acct}'>{acct}</a>: {stats['levels']} levels, {stats['count']} chars, avg level {stats['levels']/stats['count']:.2f}</li>"
-                            for acct, stats in sorted_by_levels
-                        )}
-                    </ul>
+                <h4>Most Total Levels</h4>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;">
+                    {"".join(
+                        f"<div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/{acct}'>{acct}</a>: {stats['levels']} levels, {stats['count']} chars, avg level {stats['levels']/stats['count']:.2f}</div>"
+                        for acct, stats in sorted_by_levels
+                    )}
+                </div>
             </div>
         </div>
-        <div class="fun-facts-row">
-            <div class="fun-facts-column">
-                <h3>Accounts with the most characters in the top 1K</h3>
-                    <ul>
-                        {"".join(
-                            f"<li><a href='https://beta.pathofdiablo.com/account/{acct}'>{acct}</a>: {stats['count']} characters, total level {stats['levels']}, avg level {stats['levels']/stats['count']:.2f}</li>"
-                            for acct, stats in sorted_by_count
-                        )}
-                    </ul>
+        <div style="margin-top: 12px;">
+            <h4>Most Characters in Top 1K</h4>
+            <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;">
+                {"".join(
+                    f"<div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/{acct}'>{acct}</a>: {stats['count']} characters, total level {stats['levels']}, avg level {stats['levels']/stats['count']:.2f}</div>"
+                    for acct, stats in sorted_by_count
+                )}
             </div>
         </div>
         """
