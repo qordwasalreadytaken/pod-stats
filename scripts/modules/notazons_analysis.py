@@ -503,6 +503,7 @@ def analyze_notazons(league="sc"):
     <html>
     <head>
         <title>{{ what_class }} Analysis Report</title>
+        <link rel="shortcut icon" type="image/x-icon" href="icons/pod.ico">
         <link rel="stylesheet" type="text/css" href="./css/test-css.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>

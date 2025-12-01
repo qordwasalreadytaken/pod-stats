@@ -1216,6 +1216,7 @@ class ClassPagesHTMLGenerator:
         <!DOCTYPE html>
         <html>
         <head>
+        <link rel="shortcut icon" type="image/x-icon" href="icons/pod.ico">
         <link rel="stylesheet" type="text/css" href="./css/test-css.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Path of Diablo (PoD) {class_name} build trends. This page includes data analytics and statistics for {class_name} skills and equipment.">
