@@ -199,11 +199,11 @@ class ItemsEquipmentAnalyzer:
             elif quality_code == "q_runeword":
                 summary_key = item_title
             elif quality_code == "q_crafted":
-                summary_key = f"Crafted {base_type}"
+                summary_key = "Crafted"
             elif quality_code == "q_rare":
-                summary_key = f"Rare {base_type}"
+                summary_key = "Rare"
             elif quality_code == "q_magic":
-                summary_key = f"Magic {base_type}"
+                summary_key = "Magic"
             else:
                 summary_key = f"Normal {base_type}"
             
@@ -424,22 +424,34 @@ class ItemsEquipmentAnalyzer:
         sorted_just_socketed_runes = '\n'.join(f"<li>{item}: {count}</li>" for item, count in just_socketed_runes.most_common())
         sorted_just_socketed_excluding_runewords_runes = '\n'.join(f"<li>{item}: {count}</li>" for item, count in just_socketed_excluding_runewords_runes.most_common())
         
-        # Build other items list exactly like the original
-        all_other_items = []
-        all_other_items.extend(f"{item}: {count}" for item, count in just_socketed_non_runes.items())
+        # Build other items list and sort by count in descending order
+        all_other_items_with_counts = []
+        
+        # Non-rune items with their counts
+        for item, count in just_socketed_non_runes.items():
+            all_other_items_with_counts.append((count, f"{item}: {count}"))
         
         # Magic jewels with detailed breakdown
         if just_socketed_magic['Misc. Magic Jewels'] > 0:
-            magic_detail = f"Misc. Magic Jewels: {just_socketed_magic['Misc. Magic Jewels']} ({just_socketed_magic['splash']} include melee splash, {just_socketed_magic['attack speed']} include IAS, {just_socketed_magic['enhanced damage']} include ED; of those, there are {just_socketed_magic['iassplash']} IAS/Splash and {just_socketed_magic['iased']} IAS/ED)"
-            all_other_items.append(magic_detail)
+            magic_count = just_socketed_magic['Misc. Magic Jewels']
+            magic_detail = f"Misc. Magic Jewels: {magic_count} ({just_socketed_magic['splash']} include melee splash, {just_socketed_magic['attack speed']} include IAS, {just_socketed_magic['enhanced damage']} include ED; of those, there are {just_socketed_magic['iassplash']} IAS/Splash and {just_socketed_magic['iased']} IAS/ED)"
+            all_other_items_with_counts.append((magic_count, magic_detail))
         
         # Rare jewels with breakdown  
         if just_socketed_rare['Misc. Rare Jewels'] > 0:
-            rare_detail = f"Misc. Rare Jewels: {just_socketed_rare['Misc. Rare Jewels']} ({just_socketed_rare['splash']} include melee splash, {just_socketed_rare['enhanced damage']} include ED)"
-            all_other_items.append(rare_detail)
+            rare_count = just_socketed_rare['Misc. Rare Jewels']
+            rare_detail = f"Misc. Rare Jewels: {rare_count} ({just_socketed_rare['splash']} include melee splash, {just_socketed_rare['enhanced damage']} include ED)"
+            all_other_items_with_counts.append((rare_count, rare_detail))
         
         # Rainbow facets
-        all_other_items.extend(f"Rainbow Facet ({element}): {counts['count']} ({counts['perfect']} are perfect)" for element, counts in just_socketed_facets.items())
+        for element, counts in just_socketed_facets.items():
+            facet_count = counts['count']
+            facet_text = f"Rainbow Facet ({element}): {facet_count} ({counts['perfect']} are perfect)"
+            all_other_items_with_counts.append((facet_count, facet_text))
+        
+        # Sort by count descending, then format as HTML
+        all_other_items_with_counts.sort(key=lambda x: x[0], reverse=True)
+        all_other_items = [item_text for _, item_text in all_other_items_with_counts]
         
         other_items_html = '<ul>' + '\n'.join(f"<li>{item}</li>" for item in all_other_items) + '</ul>'
         
@@ -515,6 +527,9 @@ class ItemsEquipmentAnalyzer:
                 if tag in two_handed_bases:
                     if quality == "q_runeword":
                         label = f"{title} ({tag})"
+                    elif quality == "q_magic" and " of Teleportation" in title:
+                        # Normalize all magic staves of teleportation
+                        label = "Magic Staff of Teleportation"
                     else:
                         label = title
                     two_handed_weapons[label] += 1
@@ -1689,7 +1704,7 @@ class ItemsEquipmentHTMLGenerator:
             <div class="content" style="display: none;">{unused_set_items_html}</div>
         </div>
         <br>
-        <em>*Reference list used for <a href="https://github.com/GreenDude120/builds_data/blob/main/items_list.py">all runewords, uniques, and set items</a> can be found here</em>
+        <em>*Items declared unused by comparing to a list of ALL items. Reference list used for all runewords, uniques, and set items can be found <a href="https://github.com/GreenDude120/builds_data/blob/main/items_list.py">here</a></em>
         <br>
         """
 
