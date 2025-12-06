@@ -1028,7 +1028,7 @@ class ItemsEquipmentHTMLGenerator:
                     <a href="https://github.com/qordwasalreadytaken/pod-stats/blob/main/README.md" class="top-button about-button" target="_blank"></a>
                 </div>
 
-                <div style="background-color: #ff6b6b; color: white; padding: 15px; text-align: center; font-weight: bold; border-bottom: 3px solid #c92a2a; margin-bottom: 20px;">
+                <div class="banner" style="top:50px; left:10%; width:80%;">
                     ⚠️ This is a test preview of next season's display. Please direct any feedback to Qord. ⚠️
                 </div>
 
