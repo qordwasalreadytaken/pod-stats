@@ -463,6 +463,15 @@ def generate_standard_html_head(title, description=None):
     """
 
 
+def generate_test_banner():
+    """Generate test site banner"""
+    return """
+    <div style="background-color: #ff6b6b; color: white; padding: 15px; text-align: center; font-weight: bold; border-bottom: 3px solid #c92a2a; margin-bottom: 20px;">
+        ⚠️ This is a test preview of next season's display. Please direct any feedback to Qord. ⚠️
+    </div>
+    """
+
+
 def generate_standard_navigation():
     """Generate standard navigation HTML"""
     return """

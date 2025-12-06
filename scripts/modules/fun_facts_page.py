@@ -699,6 +699,10 @@ class FunFactsHTMLGenerator:
                     <a href="https://github.com/qordwasalreadytaken/pod-stats/blob/main/README.md" class="top-button about-button" target="_blank"></a>
                 </div>
 
+                <div style="background-color: #ff6b6b; color: white; padding: 15px; text-align: center; font-weight: bold; border-bottom: 3px solid #c92a2a; margin-bottom: 20px;">
+                    ⚠️ This is a test preview of next season's display. Please direct any feedback to Qord. ⚠️
+                </div>
+
                 <div class="main page-intro">
                     <h1>PoD FUN FACTS & STATISTICS</h1>
                     <h2>Interesting statistics and patterns from ladder characters</h2>

@@ -1253,6 +1253,11 @@ class ClassPagesHTMLGenerator:
             <a href="Sorceress" id="Sorceress" class="top-button sorceress-button"></a>
             <a href="https://github.com/qordwasalreadytaken/pod-stats/blob/main/README.md" class="top-button about-button" target="_blank"></a>
         </div>
+
+        <div style="background-color: #ff6b6b; color: white; padding: 15px; text-align: center; font-weight: bold; border-bottom: 3px solid #c92a2a; margin-bottom: 20px;">
+            ⚠️ This is a test preview of next season's display. Please direct any feedback to Qord. ⚠️
+        </div>
+
 <div page-intro-class>
             <h1>{class_name} {self.mode_name} Skill Distribution </h1>
             <div class="summary-container">

@@ -16,7 +16,8 @@ from modules.shared_utils import (
     get_ladder_summary_html, 
     generate_standard_html_head,
     generate_standard_navigation,
-    generate_standard_javascript
+    generate_standard_javascript,
+    generate_test_banner
 )
 
 
@@ -421,6 +422,7 @@ class HomePageGenerator:
         <body class="special-background">
             <div class="is-clipped">
                 {generate_standard_navigation()}
+                {generate_test_banner()}
 
                 <div class="main page-intro">
                     <h1>PoD {mode.upper()} STATS, <u>ALL</u> RANKED LADDER CHARACTERS</h1>
