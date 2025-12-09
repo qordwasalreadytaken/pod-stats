@@ -699,10 +699,6 @@ class FunFactsHTMLGenerator:
                     <a href="https://github.com/qordwasalreadytaken/pod-stats/blob/main/README.md" class="top-button about-button" target="_blank"></a>
                 </div>
 
-                <div class="banner" style="top:50px; left:10%; width:80%;">
-                    ⚠️ This is a test site for PoD's Trends site. Please direct any feedback to Qord. ⚠️
-                </div>
-
                 <div class="main page-intro">
                     <h1>PoD FUN FACTS & STATISTICS</h1>
                     <h2>Interesting statistics and patterns from ladder characters</h2>
@@ -984,7 +980,6 @@ class FunFactsHTMLGenerator:
                 <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;">{generate_top_list(top_stats.get('GoldFind', []))}</div>
             </div>
         </div>
-        <br>
         """
 
     @staticmethod
@@ -1173,7 +1168,6 @@ class FunFactsHTMLGenerator:
 
         {class_dominance_html}
 
-        <br>
         <!-- Per-Class Top 1K Lists -->
         <h3 style="margin-top: 20px;">Accounts with Multiple Characters in Top 1K</h3>
         <div class="fun-facts-row">
@@ -1233,7 +1227,6 @@ class FunFactsHTMLGenerator:
             <p style="color: #ccc;">{len(complete_class_accounts)} accounts: {", ".join(f"<a href='https://beta.pathofdiablo.com/ladder?account={acct}'>{acct}</a>" for acct in complete_class_accounts[:10])}</p>
         </div>
 
-        <br>
         <!-- XP / Level / Count -->
         <h3 style="margin-top: 20px;">Top Accounts by Metrics</h3>
         <div class="fun-facts-row">
@@ -1265,7 +1258,6 @@ class FunFactsHTMLGenerator:
                 )}
             </div>
         </div>
-        <br>
         """
 
     @staticmethod
@@ -1412,7 +1404,6 @@ class FunFactsHTMLGenerator:
                 </div>
             </div>
         </div>
-        <br>
         """
     
     @staticmethod
@@ -1458,7 +1449,6 @@ class FunFactsHTMLGenerator:
                     {skills_list}
                 </div>
             </div>
-            <br>
             """
         
         return f"""

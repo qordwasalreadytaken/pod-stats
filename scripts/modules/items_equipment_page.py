@@ -1029,7 +1029,7 @@ class ItemsEquipmentHTMLGenerator:
                 </div>
 
                 <div class="banner" style="top:50px; left:10%; width:80%;">
-                    ⚠️ This is a test preview of next season's display. Please direct any feedback to Qord. ⚠️
+                    ⚠️ This is a test site for PoD's Trends site. Please direct any feedback to Qord. ⚠️
                 </div>
 
                 <div class="main page-intro">
