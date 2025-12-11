@@ -301,12 +301,14 @@
             for (const item of equipped) {
                 if (!item || !item.Title) continue;
 
+//                const itemName = item.Title.toLowerCase();
                 const itemName = item.Title.toLowerCase();
+                const itemName2 = item.TextTag.toLowerCase();
 
-                if (itemName.includes(query)) {
+                if (itemName.includes(query)||itemName2.includes(query)) {
                     matchedItems.push({
                         slot: item.Worn || "Unknown",
-                        name: item.Title,
+                        name: item.Title + " - " + item.TextTag,
                         type: "Character"
                     });
                 }
@@ -318,11 +320,12 @@
                     if (!item || !item.Title) continue;
 
                     const itemName = item.Title.toLowerCase();
+                    const itemName2 = item.TextTag.toLowerCase();
 
-                    if (itemName.includes(query)) {
+                    if (itemName.includes(query) || itemName2.includes(query)) {
                         matchedItems.push({
                             slot: item.Worn || "Unknown",
-                            name: item.Title,
+                            name: item.Title + " - " + item.TextTag,
                             type: "Mercenary"
                         });
                     }
