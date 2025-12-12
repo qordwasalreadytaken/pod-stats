@@ -60,6 +60,13 @@
                     <!-- Tooltip will be appended by JavaScript here -->
                     
                 </div>
+                <div id="hover-container-charms">
+                    <!-- 10x4 grid of charm slots -->
+                    <div id="charm-0-0" class="charm-slot"></div><div id="charm-1-0" class="charm-slot"></div><div id="charm-2-0" class="charm-slot"></div><div id="charm-3-0" class="charm-slot"></div><div id="charm-4-0" class="charm-slot"></div><div id="charm-5-0" class="charm-slot"></div><div id="charm-6-0" class="charm-slot"></div><div id="charm-7-0" class="charm-slot"></div><div id="charm-8-0" class="charm-slot"></div><div id="charm-9-0" class="charm-slot"></div>
+                    <div id="charm-0-1" class="charm-slot"></div><div id="charm-1-1" class="charm-slot"></div><div id="charm-2-1" class="charm-slot"></div><div id="charm-3-1" class="charm-slot"></div><div id="charm-4-1" class="charm-slot"></div><div id="charm-5-1" class="charm-slot"></div><div id="charm-6-1" class="charm-slot"></div><div id="charm-7-1" class="charm-slot"></div><div id="charm-8-1" class="charm-slot"></div><div id="charm-9-1" class="charm-slot"></div>
+                    <div id="charm-0-2" class="charm-slot"></div><div id="charm-1-2" class="charm-slot"></div><div id="charm-2-2" class="charm-slot"></div><div id="charm-3-2" class="charm-slot"></div><div id="charm-4-2" class="charm-slot"></div><div id="charm-5-2" class="charm-slot"></div><div id="charm-6-2" class="charm-slot"></div><div id="charm-7-2" class="charm-slot"></div><div id="charm-8-2" class="charm-slot"></div><div id="charm-9-2" class="charm-slot"></div>
+                    <div id="charm-0-3" class="charm-slot"></div><div id="charm-1-3" class="charm-slot"></div><div id="charm-2-3" class="charm-slot"></div><div id="charm-3-3" class="charm-slot"></div><div id="charm-4-3" class="charm-slot"></div><div id="charm-5-3" class="charm-slot"></div><div id="charm-6-3" class="charm-slot"></div><div id="charm-7-3" class="charm-slot"></div><div id="charm-8-3" class="charm-slot"></div><div id="charm-9-3" class="charm-slot"></div>
+                </div>
             </div>
             <div id="info">
                 <div id="info-line1">
@@ -346,6 +353,11 @@ if ("weapon2" in wornItems) {
   if ("boots" in wornItems) $("#hover-container-boots").append(createImageHTML(wornItems["boots"], "hover-container-boots"));
   if ("weapon2" in wornItems) $("#hover-container-weapon2").append(createImageHTML(wornItems["weapon2"], "hover-container-weapon2"));
   
+  // Render charms from Inventory (not Equipped)
+  if (data["Inventory"]) {
+    renderCharms(data["Inventory"]);
+  }
+  
   // Merc Items
   var mercWornItems = findWornItems(data["MercenaryEquipped"]);
   
@@ -622,6 +634,120 @@ function createImageHTML(itemObject, hoverContainerId) {
     //console.log("Tooltip appended with content:", imageHTML);  // Debugging check
 } 
     //console.log("Image url2:", imageHTML);  // Debugging check
+
+function renderCharms(inventoryItems) {
+    // Clear any existing charms from all predefined slots
+    for (let y = 0; y < 4; y++) {
+        for (let x = 0; x < 10; x++) {
+            $(`#charm-${x}-${y}`).empty().removeClass('charm-occupied');
+        }
+    }
+    
+    // Filter for charms only in the bottom 4 rows (y >= 5, which are rows 5,6,7,8)
+    const charms = inventoryItems.filter(item => {
+        const isCharm = item["TextTag"] && item["TextTag"].toLowerCase().includes("charm");
+        const position = item["Position"];
+        const inBottomRows = position && position.y >= 5 && position.y <= 8;
+        return isCharm && inBottomRows;
+    });
+    
+    console.log("Found charms in bottom 4 rows:", charms.length);
+    
+    // Place charms in their slots
+    charms.forEach((charm, index) => {
+        const position = charm["Position"];
+        const size = charm["Size"];
+        
+        if (!position || !size) {
+            console.warn("Charm missing position or size data:", charm);
+            return;
+        }
+        
+        // Adjust y position to be relative to the charm inventory (row 5 becomes 0)
+        const gridX = position.x;
+        const gridY = position.y - 5;
+        
+        // Find the slot for this charm
+        const slotId = `charm-${gridX}-${gridY}`;
+        const slot = $(`#${slotId}`);
+        
+        if (slot.length === 0) {
+            console.warn("Slot not found for charm:", slotId);
+            return;
+        }
+        
+        // Create charm content (image + tooltip)
+        const charmContent = createCharmContent(charm, index, size);
+        slot.append(charmContent);
+        
+        // If charm spans multiple cells, mark those cells as occupied
+        if (size.invwidth > 1 || size.invheight > 1) {
+            for (let dy = 0; dy < size.invheight; dy++) {
+                for (let dx = 0; dx < size.invwidth; dx++) {
+                    if (dx === 0 && dy === 0) continue; // Skip the main cell
+                    const occupiedSlotId = `charm-${gridX + dx}-${gridY + dy}`;
+                    $(`#${occupiedSlotId}`).addClass('charm-occupied');
+                }
+            }
+        }
+    });
+}
+
+function createCharmContent(charmObject, index, size) {
+    // Determine charm image based on Tag field
+    let charmImage = "";
+    const tag = charmObject["Tag"].toLowerCase();
+    const title = charmObject["Title"] ? charmObject["Title"].toLowerCase() : "";
+    
+    // Check for unique charms first
+    if (tag === "large charm" && title.includes("hellfire torch")) {
+        charmImage = "torch.png";
+    } else if (tag === "small charm" && title.includes("annihilus")) {
+        charmImage = "anni.png";
+    } else if (tag === "small charm") {
+        charmImage = "charms.png";
+    } else if (tag === "large charm") {
+        charmImage = "charml.png";
+    } else if (tag === "grand charm") {
+        charmImage = "charmg.png";
+    } else {
+        charmImage = "charms.png";
+    }
+    
+    const imageUrl = `./img/${charmImage}`;
+    
+    // Calculate exact pixel size for multi-cell charms (95% of cell size)
+    const cellWidth = 59;
+    const cellHeight = 58;
+    const width = size.invwidth * cellWidth * 0.95;
+    const height = size.invheight * cellHeight * 0.95;
+    
+    // Generate tooltip content
+    const tooltipContent = createItemHTML(charmObject);
+    const propertySize = charmObject["PropertyList"].length;
+    const maxCharWidth = Math.max.apply(Math, charmObject["PropertyList"].map(x => x.length));
+    const tooltipClass = propertySize > 10 || maxCharWidth > 40 ? "itemhover-box itemhover-box-small" : "itemhover-box";
+    
+    return `
+        <div class="charm-hover-wrapper" style="
+            width: ${width}px;
+            height: ${height}px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        ">
+            <img src="${imageUrl}" style="
+                width: 100%;
+                height: 100%;
+                display: block;
+                pointer-events: none;
+            " />
+            <div class="${tooltipClass}">
+                ${tooltipContent}
+            </div>
+        </div>
+    `;
+}
 
 });
 

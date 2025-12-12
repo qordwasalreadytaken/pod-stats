@@ -14,7 +14,7 @@
 .container {
     max-width: 100vw; /* Prevents the container from exceeding the viewport width */
     overflow-x: auto;
-    overflow-x: hidden;
+    overflow-x: hodden;
     padding-left: 0;  /* Adjust if padding is causing overflow */
     padding-right: 0;
     margin: 0 auto;  /* Center container without overflow */
@@ -123,13 +123,6 @@ div, span {
     transition: opacity 0.3s ease;
     pointer-events: none;
 }
-@media (max-width: 768px) {
-    .itemhover-box {
-        max-width: 90%;
-    }
-}
-
-
 
 /* Tooltip style for #merc-items - aligned with the top of #merc-items */
 #merc-items {
@@ -271,7 +264,7 @@ img {
     max-max-width: 100%;
     position: relative;
     top: 0;
-    height: 235px;
+    height: 480px;
     margin-bottom: 10px;
 }
 
@@ -408,11 +401,11 @@ img {
 }
 
 #life-orb {
-    background-image: url("https://beta.pathofdiablo.com/armory-assets/img/orb-health.png");
+    background-image: url("https://pathofdiablo.com/p/armory/img/orb-health.png");
 }
 
 #mana-orb {
-    background-image: url("https://beta.pathofdiablo.com/armory-assets/img/orb-mana.png");
+    background-image: url("https://pathofdiablo.com/p/armory/img/orb-mana.png");
 }
 
 .line-wrapper {
@@ -469,7 +462,7 @@ img {
 }
 
 #hover-container-weapon1, #merc-hover-container-weapon1 {
-    background-image: url("https://beta.pathofdiablo.com/armory-assets/img/invslot-weapon.png");
+    background-image: url("https://pathofdiablo.com/p/armory/img/invslot-weapon.png");
     background-size: 100% 100%;
     width: 118px;
     height: 232px;
@@ -478,7 +471,7 @@ img {
 }
 
 #hover-container-helmet, #merc-hover-container-helmet {
-    background-image: url("https://beta.pathofdiablo.com/armory-assets/img/invslot-helmet.png");
+    background-image: url("https://pathofdiablo.com/p/armory/img/invslot-helmet.png");
     background-size: 100% 100%;
     width: 112px;
     height: 114px;
@@ -487,7 +480,7 @@ img {
 }
 
 #hover-container-amulet {
-    background-image: url("https://beta.pathofdiablo.com/armory-assets/img/invslot-amulet.png");
+    background-image: url("https://pathofdiablo.com/p/armory/img/invslot-amulet.png");
     background-size: 100% 100%;
     width: 54px;
     height: 56px;
@@ -496,7 +489,7 @@ img {
 }
 
 #hover-container-ring1 {
-    background-image: url("https://beta.pathofdiablo.com/armory-assets/img/invslot-ring.png");
+    background-image: url("https://pathofdiablo.com/p/armory/img/invslot-ring.png");
     background-size: 100% 100%;
     width: 54px;
     height: 56px;
@@ -505,7 +498,7 @@ img {
 }
 
 #hover-container-ring2 {
-    background-image: url("https://beta.pathofdiablo.com/armory-assets/img/invslot-ring.png");
+    background-image: url("https://pathofdiablo.com/p/armory/img/invslot-ring.png");
     background-size: 100% 100%;
     width: 54px;
     height: 56px;
@@ -514,7 +507,7 @@ img {
 }
 
 #hover-container-body, #merc-hover-container-body {
-    background-image: url("https://beta.pathofdiablo.com/armory-assets/img/invslot-body.png");
+    background-image: url("https://pathofdiablo.com/p/armory/img/invslot-body.png");
     background-size: 100% 100%;
     width: 114px;
     height: 174px;
@@ -523,7 +516,7 @@ img {
 }
 
 #hover-container-belt {
-    background-image: url("https://beta.pathofdiablo.com/armory-assets/img/invslot-belt.png");
+    background-image: url("https://pathofdiablo.com/p/armory/img/invslot-belt.png");
     background-size: 100% 100%;
     width: 114px;
     height: 56px;
@@ -532,7 +525,7 @@ img {
 }
 
 #hover-container-gloves {
-    background-image: url("https://beta.pathofdiablo.com/armory-assets/img/invslot-gloves.png");
+    background-image: url("https://pathofdiablo.com/p/armory/img/invslot-gloves.png");
     background-size: 100% 100%;
     width: 116px;
     height: 116px;
@@ -541,7 +534,7 @@ img {
 }
 
 #hover-container-boots {
-    background-image: url("https://beta.pathofdiablo.com/armory-assets/img/invslot-boots.png");
+    background-image: url("https://pathofdiablo.com/p/armory/img/invslot-boots.png");
     background-size: 100% 100%;
     width: 116px;
     height: 116px;
@@ -550,13 +543,105 @@ img {
 }
 
 #hover-container-weapon2, #merc-hover-container-weapon2 {
-    background-image: url("https://beta.pathofdiablo.com/armory-assets/img/invslot-weapon.png");
+    background-image: url("https://pathofdiablo.com/p/armory/img/invslot-weapon.png");
     background-size: 100% 100%;
     width: 126px;
     height: 232px;
     top: 0;
     left: 466px;
 }
+
+#hover-container-charms {
+    background-image: url("../img/charm_inventory.png");
+    background-size: 100% 100%;
+    width: 590px;
+    height: 232px;
+    top: 240px;
+    left: 5px;
+    position: relative;
+}
+
+/* Define all 40 charm inventory cells (10 columns x 4 rows) */
+.charm-slot {
+    position: absolute;
+    width: 59px;
+    height: 58px;
+    cursor: pointer;
+    overflow: visible;
+}
+
+.charm-slot.charm-occupied {
+    pointer-events: none;
+}
+
+.charm-slot img {
+    pointer-events: none;
+    max-width: none !important;
+    max-height: none !important;
+    margin: 0 !important;
+    position: absolute !important;
+    object-fit: fill !important;
+    top: 0;
+    left: 0;
+}
+
+/* Charm hover wrapper - each charm gets its own hover container */
+.charm-hover-wrapper {
+    position: relative;
+}
+
+.charm-hover-wrapper:hover .itemhover-box {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Row 0 */
+#charm-0-0 { left: 2px; top: 3px; }
+#charm-1-0 { left: 61px; top: 3px; }
+#charm-2-0 { left: 120px; top: 3px; }
+#charm-3-0 { left: 179px; top: 3px; }
+#charm-4-0 { left: 238px; top: 3px; }
+#charm-5-0 { left: 295px; top: 3px; }
+#charm-6-0 { left: 354px; top: 3px; }
+#charm-7-0 { left: 413px; top: 3px; }
+#charm-8-0 { left: 472px; top: 3px; }
+#charm-9-0 { left: 531px; top: 3px; }
+
+/* Row 1 */
+#charm-0-1 { left: 2px; top: 61px; }
+#charm-1-1 { left: 61px; top: 61px; }
+#charm-2-1 { left: 120px; top: 61px; }
+#charm-3-1 { left: 179px; top: 61px; }
+#charm-4-1 { left: 238px; top: 61px; }
+#charm-5-1 { left: 295px; top: 61px; }
+#charm-6-1 { left: 354px; top: 61px; }
+#charm-7-1 { left: 413px; top: 61px; }
+#charm-8-1 { left: 472px; top: 61px; }
+#charm-9-1 { left: 531px; top: 61px; }
+
+/* Row 2 */
+#charm-0-2 { left: 2px; top: 119px; }
+#charm-1-2 { left: 61px; top: 119px; }
+#charm-2-2 { left: 120px; top: 119px; }
+#charm-3-2 { left: 179px; top: 119px; }
+#charm-4-2 { left: 238px; top: 119px; }
+#charm-5-2 { left: 295px; top: 119px; }
+#charm-6-2 { left: 354px; top: 119px; }
+#charm-7-2 { left: 413px; top: 119px; }
+#charm-8-2 { left: 472px; top: 119px; }
+#charm-9-2 { left: 531px; top: 119px; }
+
+/* Row 3 */
+#charm-0-3 { left: 2px; top: 177px; }
+#charm-1-3 { left: 61px; top: 177px; }
+#charm-2-3 { left: 120px; top: 177px; }
+#charm-3-3 { left: 179px; top: 177px; }
+#charm-4-3 { left: 238px; top: 177px; }
+#charm-5-3 { left: 295px; top: 177px; }
+#charm-6-3 { left: 354px; top: 177px; }
+#charm-7-3 { left: 413px; top: 177px; }
+#charm-8-3 { left: 472px; top: 177px; }
+#charm-9-3 { left: 531px; top: 177px; }
 
 #skills {
     color: #a99877;
@@ -592,7 +677,7 @@ img {
     left: 0;
     height: 100%;
     width: 100%;
-    background: url("https://beta.pathofdiablo.com/armory-assets/img/skills/unknown.png");
+    background: url("https://pathofdiablo.com/p/armory/img/skills/unknown.png");
     background-color: #000;
     background-size: 100% 100%;
 }
@@ -743,3 +828,94 @@ img {
     margin-left: 10px;
     position: relative;
   }
+#hover-container-charms {
+    background-image: url("../img/charm_inventory.png");
+    background-size: 100% 100%;
+    width: 590px;
+    height: 232px;
+    top: 240px;
+    left: 5px;
+    position: relative;
+}
+
+/* Define all 40 charm inventory cells (10 columns x 4 rows) */
+.charm-slot {
+    position: absolute;
+    width: 59px;
+    height: 58px;
+    cursor: pointer;
+    overflow: visible;
+}
+
+.charm-slot.charm-occupied {
+    pointer-events: none;
+}
+
+.charm-slot img {
+    pointer-events: none;
+    max-width: none !important;
+    max-height: none !important;
+    margin: 0 !important;
+    position: absolute !important;
+    object-fit: fill !important;
+    top: 0;
+    left: 0;
+}
+
+/* Charm hover wrapper - each charm gets its own hover container */
+.charm-hover-wrapper {
+    position: relative;
+}
+
+.charm-hover-wrapper:hover .itemhover-box {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Row 0 */
+#charm-0-0 { left: 2px; top: 3px; }
+#charm-1-0 { left: 61px; top: 3px; }
+#charm-2-0 { left: 120px; top: 3px; }
+#charm-3-0 { left: 179px; top: 3px; }
+#charm-4-0 { left: 238px; top: 3px; }
+#charm-5-0 { left: 295px; top: 3px; }
+#charm-6-0 { left: 354px; top: 3px; }
+#charm-7-0 { left: 413px; top: 3px; }
+#charm-8-0 { left: 472px; top: 3px; }
+#charm-9-0 { left: 531px; top: 3px; }
+
+/* Row 1 */
+#charm-0-1 { left: 2px; top: 61px; }
+#charm-1-1 { left: 61px; top: 61px; }
+#charm-2-1 { left: 120px; top: 61px; }
+#charm-3-1 { left: 179px; top: 61px; }
+#charm-4-1 { left: 238px; top: 61px; }
+#charm-5-1 { left: 295px; top: 61px; }
+#charm-6-1 { left: 354px; top: 61px; }
+#charm-7-1 { left: 413px; top: 61px; }
+#charm-8-1 { left: 472px; top: 61px; }
+#charm-9-1 { left: 531px; top: 61px; }
+
+/* Row 2 */
+#charm-0-2 { left: 2px; top: 119px; }
+#charm-1-2 { left: 61px; top: 119px; }
+#charm-2-2 { left: 120px; top: 119px; }
+#charm-3-2 { left: 179px; top: 119px; }
+#charm-4-2 { left: 238px; top: 119px; }
+#charm-5-2 { left: 295px; top: 119px; }
+#charm-6-2 { left: 354px; top: 119px; }
+#charm-7-2 { left: 413px; top: 119px; }
+#charm-8-2 { left: 472px; top: 119px; }
+#charm-9-2 { left: 531px; top: 119px; }
+
+/* Row 3 */
+#charm-0-3 { left: 2px; top: 177px; }
+#charm-1-3 { left: 61px; top: 177px; }
+#charm-2-3 { left: 120px; top: 177px; }
+#charm-3-3 { left: 179px; top: 177px; }
+#charm-4-3 { left: 238px; top: 177px; }
+#charm-5-3 { left: 295px; top: 177px; }
+#charm-6-3 { left: 354px; top: 177px; }
+#charm-7-3 { left: 413px; top: 177px; }
+#charm-8-3 { left: 472px; top: 177px; }
+#charm-9-3 { left: 531px; top: 177px; }
