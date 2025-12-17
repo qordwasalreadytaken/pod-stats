@@ -225,7 +225,7 @@ div, span {
     color: #8484f0;
 }
 
-.item-durability, .item-block, .item-defense, .item-level, .item-defense-block, .item-level-durability {
+.item-durability, .item-block, .item-defense, .item-level, .item-defense-block, .item-level-durability, .item-damage {
     color: white;
 }
 
@@ -461,7 +461,22 @@ img {
     position: absolute;
 }
 
-#hover-container-weapon1, #merc-hover-container-weapon1 {
+#hover-container-weapon1 {
+    background-image: url("https://beta.pathofdiablo.com/armory-assets/img/invslot-weapon-1.png");
+    background-size: 100% 100%;
+    width: 118px;
+    height: 232px;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    transition: background-image 0.3s ease;
+}
+
+#hover-container-weapon1.swapped {
+    background-image: url("https://beta.pathofdiablo.com/armory-assets/img/invslot-weapon-2.png");
+}
+
+#merc-hover-container-weapon1 {
     background-image: url("https://pathofdiablo.com/p/armory/img/invslot-weapon.png");
     background-size: 100% 100%;
     width: 118px;
@@ -542,7 +557,22 @@ img {
     left: 348px;
 }
 
-#hover-container-weapon2, #merc-hover-container-weapon2 {
+#hover-container-weapon2 {
+    background-image: url("https://beta.pathofdiablo.com/armory-assets/img/invslot-weapon-1.png");
+    background-size: 100% 100%;
+    width: 126px;
+    height: 232px;
+    top: 0;
+    left: 466px;
+    cursor: pointer;
+    transition: background-image 0.3s ease;
+}
+
+#hover-container-weapon2.swapped {
+    background-image: url("https://beta.pathofdiablo.com/armory-assets/img/invslot-weapon-2.png");
+}
+
+#merc-hover-container-weapon2 {
     background-image: url("https://pathofdiablo.com/p/armory/img/invslot-weapon.png");
     background-size: 100% 100%;
     width: 126px;
@@ -828,94 +858,3 @@ img {
     margin-left: 10px;
     position: relative;
   }
-#hover-container-charms {
-    background-image: url("../img/charm_inventory.png");
-    background-size: 100% 100%;
-    width: 590px;
-    height: 232px;
-    top: 240px;
-    left: 5px;
-    position: relative;
-}
-
-/* Define all 40 charm inventory cells (10 columns x 4 rows) */
-.charm-slot {
-    position: absolute;
-    width: 59px;
-    height: 58px;
-    cursor: pointer;
-    overflow: visible;
-}
-
-.charm-slot.charm-occupied {
-    pointer-events: none;
-}
-
-.charm-slot img {
-    pointer-events: none;
-    max-width: none !important;
-    max-height: none !important;
-    margin: 0 !important;
-    position: absolute !important;
-    object-fit: fill !important;
-    top: 0;
-    left: 0;
-}
-
-/* Charm hover wrapper - each charm gets its own hover container */
-.charm-hover-wrapper {
-    position: relative;
-}
-
-.charm-hover-wrapper:hover .itemhover-box {
-    visibility: visible;
-    opacity: 1;
-}
-
-/* Row 0 */
-#charm-0-0 { left: 2px; top: 3px; }
-#charm-1-0 { left: 61px; top: 3px; }
-#charm-2-0 { left: 120px; top: 3px; }
-#charm-3-0 { left: 179px; top: 3px; }
-#charm-4-0 { left: 238px; top: 3px; }
-#charm-5-0 { left: 295px; top: 3px; }
-#charm-6-0 { left: 354px; top: 3px; }
-#charm-7-0 { left: 413px; top: 3px; }
-#charm-8-0 { left: 472px; top: 3px; }
-#charm-9-0 { left: 531px; top: 3px; }
-
-/* Row 1 */
-#charm-0-1 { left: 2px; top: 61px; }
-#charm-1-1 { left: 61px; top: 61px; }
-#charm-2-1 { left: 120px; top: 61px; }
-#charm-3-1 { left: 179px; top: 61px; }
-#charm-4-1 { left: 238px; top: 61px; }
-#charm-5-1 { left: 295px; top: 61px; }
-#charm-6-1 { left: 354px; top: 61px; }
-#charm-7-1 { left: 413px; top: 61px; }
-#charm-8-1 { left: 472px; top: 61px; }
-#charm-9-1 { left: 531px; top: 61px; }
-
-/* Row 2 */
-#charm-0-2 { left: 2px; top: 119px; }
-#charm-1-2 { left: 61px; top: 119px; }
-#charm-2-2 { left: 120px; top: 119px; }
-#charm-3-2 { left: 179px; top: 119px; }
-#charm-4-2 { left: 238px; top: 119px; }
-#charm-5-2 { left: 295px; top: 119px; }
-#charm-6-2 { left: 354px; top: 119px; }
-#charm-7-2 { left: 413px; top: 119px; }
-#charm-8-2 { left: 472px; top: 119px; }
-#charm-9-2 { left: 531px; top: 119px; }
-
-/* Row 3 */
-#charm-0-3 { left: 2px; top: 177px; }
-#charm-1-3 { left: 61px; top: 177px; }
-#charm-2-3 { left: 120px; top: 177px; }
-#charm-3-3 { left: 179px; top: 177px; }
-#charm-4-3 { left: 238px; top: 177px; }
-#charm-5-3 { left: 295px; top: 177px; }
-#charm-6-3 { left: 354px; top: 177px; }
-#charm-7-3 { left: 413px; top: 177px; }
-#charm-8-3 { left: 472px; top: 177px; }
-#charm-9-3 { left: 531px; top: 177px; }
