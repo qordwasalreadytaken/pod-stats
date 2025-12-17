@@ -201,12 +201,7 @@ $(document).ready(function() {
         document.getElementById("alertBanner").style.display = "block";
     }
 
-    // Scroll event listeners
-    $(window).scroll(function() {
-        const scroll = $(window).scrollTop();
-        $('.arrow').toggleClass('fade', scroll >= 1);
-    });
-
+    // Scroll event listener
     $('#main').scroll(function() {
         const scroll = $('#main').scrollTop();
         $('.arrow').toggleClass('fade', scroll >= 1);
