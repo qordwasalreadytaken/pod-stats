@@ -26,6 +26,11 @@ class MercenaryAnalyzer:
             'unique': Counter(), 
             'set': Counter()
         }
+        # Track runeword bases: runeword_name -> base_item -> [characters]
+        merc_runeword_bases = defaultdict(lambda: defaultdict(list))
+        # Track unique and set item users: item_name -> [characters]
+        merc_unique_users = defaultdict(list)
+        merc_set_users = defaultdict(list)
         
         for char_data in self.all_characters:
             if not isinstance(char_data, dict):
@@ -51,9 +56,9 @@ class MercenaryAnalyzer:
                 merc_equipped = char_data.get("mercenary", {})
             
             char_info = {
-                "Name": char_data.get("name", "Unknown"),
-                "Level": char_data.get("level", 0),
-                "Class": char_data.get("class", "Unknown")
+                "name": char_data.get("Name", "Unknown"),
+                "level": char_data.get("Stats", {}).get("Level", 0) if "Stats" in char_data else char_data.get("Level", 0),
+                "class": char_data.get("Class", "Unknown")
             }
             
             # Handle different data structures
@@ -74,10 +79,15 @@ class MercenaryAnalyzer:
                     # Update global item counters for mercenary items
                     if quality_code == "q_runeword":
                         merc_item_counters['runeword'][item_title] += 1
+                        # Track base item for runewords
+                        base_item = item_data.get("Tag") or item_data.get("TextTag") or "Unknown"
+                        merc_runeword_bases[item_title][base_item].append(char_info)
                     elif quality_code == "q_unique":
                         merc_item_counters['unique'][item_title] += 1
+                        merc_unique_users[item_title].append(char_info)
                     elif quality_code == "q_set":
                         merc_item_counters['set'][item_title] += 1
+                        merc_set_users[item_title].append(char_info)
             elif isinstance(merc_equipped, list):
                 # Handle list structure if that's what we have
                 for i, item_data in enumerate(merc_equipped):
@@ -97,10 +107,15 @@ class MercenaryAnalyzer:
                     # Update global item counters for mercenary items
                     if quality_code == "q_runeword":
                         merc_item_counters['runeword'][item_title] += 1
+                        # Track base item for runewords
+                        base_item = item_data.get("Tag") or item_data.get("TextTag") or "Unknown"
+                        merc_runeword_bases[item_title][base_item].append(char_info)
                     elif quality_code == "q_unique":
                         merc_item_counters['unique'][item_title] += 1
+                        merc_unique_users[item_title].append(char_info)
                     elif quality_code == "q_set":
                         merc_item_counters['set'][item_title] += 1
+                        merc_set_users[item_title].append(char_info)
         
         return {
             'mercenary_counts': mercenary_counts,
@@ -108,6 +123,9 @@ class MercenaryAnalyzer:
             'mercenary_names': mercenary_names,
             'merc_users': merc_users,
             'merc_item_counters': merc_item_counters,
+            'merc_runeword_bases': merc_runeword_bases,
+            'merc_unique_users': merc_unique_users,
+            'merc_set_users': merc_set_users,
             'debug_info': {
                 'total_chars_processed': len([char for char in self.all_characters if isinstance(char, dict)]),
                 'chars_with_mercs': len([char for char in self.all_characters if isinstance(char, dict) and char.get("MercenaryType")]),
@@ -157,12 +175,15 @@ class MercenaryHTMLGenerator:
         mercenary_equipment = analysis_data['mercenary_equipment'] 
         mercenary_names = analysis_data['mercenary_names']
         merc_item_counters = analysis_data['merc_item_counters']
+        merc_runeword_bases = analysis_data['merc_runeword_bases']
+        merc_unique_users = analysis_data['merc_unique_users']
+        merc_set_users = analysis_data['merc_set_users']
         
         # Generate individual sections
         type_counts_html = MercenaryHTMLGenerator._generate_type_counts_section(mercenary_counts)
         names_html = MercenaryHTMLGenerator._generate_names_section(mercenary_names)
         equipment_html = MercenaryHTMLGenerator._generate_equipment_section(mercenary_equipment)
-        popular_items_html = MercenaryHTMLGenerator._generate_popular_items_section(merc_item_counters)
+        popular_items_html = MercenaryHTMLGenerator._generate_popular_items_section(merc_item_counters, merc_runeword_bases, merc_unique_users, merc_set_users)
         stats_html = MercenaryHTMLGenerator._generate_statistics_section(stats_data)
         
         html_content = f"""
@@ -373,46 +394,156 @@ class MercenaryHTMLGenerator:
         """
 
     @staticmethod
-    def _generate_popular_items_section(merc_item_counters):
-        """Generate most popular mercenary items section"""
+    def _generate_popular_items_section(merc_item_counters, merc_runeword_bases, merc_unique_users, merc_set_users):
+        """Generate most popular mercenary items section with expandable lists and character details"""
         
-        runewords_html = ''.join(
-            f'<li>{item}: {count}</li>' 
-            for item, count in merc_item_counters['runeword'].most_common(15)
-        )
+        # Generate expandable runewords list with base items
+        all_runewords = merc_item_counters['runeword'].most_common()
+        runewords_html = MercenaryHTMLGenerator._generate_merc_runeword_list(all_runewords, merc_runeword_bases)
         
-        uniques_html = ''.join(
-            f'<li>{item}: {count}</li>' 
-            for item, count in merc_item_counters['unique'].most_common(15)
-        )
+        # Generate expandable uniques and sets lists with character details
+        all_uniques = merc_item_counters['unique'].most_common()
+        uniques_html = MercenaryHTMLGenerator._generate_merc_item_list(all_uniques, merc_unique_users)
         
-        sets_html = ''.join(
-            f'<li>{item}: {count}</li>' 
-            for item, count in merc_item_counters['set'].most_common(15)
-        )
+        all_sets = merc_item_counters['set'].most_common()
+        sets_html = MercenaryHTMLGenerator._generate_merc_item_list(all_sets, merc_set_users)
         
         return f"""
         <h2 id="popular-merc-items">
-            Most Popular Mercenary Items
+            Mercenary Items Usage
             <a href="#popular-merc-items" class="anchor-link">
                 <img src="icons/anchor.png" alt="🔗" class="anchor-icon">
             </a>
         </h2>
-        <div class="container">
-            <div class="column">
-                <h3>Top Runewords on Mercenaries</h3>
-                <ul>{runewords_html if runewords_html else '<li>No runewords found</li>'}</ul>
+        
+        <h3 id="merc-runewords">Runewords on Mercenaries</h3>
+        <button type="button" class="collapsible">
+            <img src="icons/Runewords_click.png" alt="Runewords Open" class="icon open-icon hidden">
+            <img src="icons/Runewords.png" alt="Runewords Close" class="icon close-icon">
+        </button>
+        <div class="content" style="display: none;">
+            <div id="merc-runewords-list">
+                {runewords_html if runewords_html else '<p>No runewords found on mercenaries</p>'}
             </div>
-            <div class="column">
-                <h3>Top Unique Items on Mercenaries</h3>
-                <ul>{uniques_html if uniques_html else '<li>No unique items found</li>'}</ul>
+        </div>
+        
+        <h3 id="merc-uniques">Unique Items on Mercenaries</h3>
+        <button type="button" class="collapsible">
+            <img src="icons/Uniques_click.png" alt="Uniques Open" class="icon open-icon hidden">
+            <img src="icons/Uniques.png" alt="Uniques Close" class="icon close-icon">
+        </button>
+        <div class="content" style="display: none;">
+            <div id="merc-uniques-list">
+                {uniques_html if uniques_html else '<p>No unique items found on mercenaries</p>'}
             </div>
-            <div class="column">
-                <h3>Top Set Items on Mercenaries</h3>
-                <ul>{sets_html if sets_html else '<li>No set items found</li>'}</ul>
+        </div>
+        
+        <h3 id="merc-sets">Set Items on Mercenaries</h3>
+        <button type="button" class="collapsible">
+            <img src="icons/Sets_click.png" alt="Sets Open" class="icon open-icon hidden">
+            <img src="icons/Sets.png" alt="Sets Close" class="icon close-icon">
+        </button>
+        <div class="content" style="display: none;">
+            <div id="merc-sets-list">
+                {sets_html if sets_html else '<p>No set items found on mercenaries</p>'}
             </div>
         </div>
         """
+
+    @staticmethod
+    def _generate_merc_runeword_list(runewords, runeword_bases):
+        """Generate expandable list of runewords with base item breakdown"""
+        items_html = ""
+        
+        for runeword_name, count in runewords:
+            slug = runeword_name.lower().replace(" ", "-").replace("'", "").replace('"', "")
+            
+            base_items = runeword_bases.get(runeword_name, {})
+            
+            # Generate base item breakdown
+            base_html = ""
+            for base_item, characters in sorted(base_items.items(), key=lambda kv: len(kv[1]), reverse=True):
+                characters_html = "".join(
+                    f"""
+                    <div class="character-info">
+                        <div class="character-link">
+                            <a href="https://beta.pathofdiablo.com/armory?name={char["name"]}" target="_blank">
+                                {char["name"]}
+                            </a>
+                        </div>
+                        <div>Level {char["level"]} {char["class"]}</div>
+                        <div class="hover-trigger" data-character-name="{char["name"]}"></div>
+                    </div>
+                    <div class="character">
+                        <div class="popup hidden"></div>
+                    </div>
+                    """ for char in characters
+                )
+                
+                base_slug = f"{slug}-{base_item.lower().replace(' ', '-')}"
+                base_html += f"""
+                <button class="collapsible">
+                    <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+                    <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+                    <strong>{base_item} ({len(characters)} uses)</strong>
+                </button>
+                <div class="content" style="display: none;" id="{base_slug}">
+                    {characters_html if characters else "<p>No characters using this base.</p>"}
+                </div>
+                """
+            
+            items_html += f"""
+            <button class="collapsible" id="{slug}">
+                <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+                <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+                <strong>{runeword_name} ({count} total)</strong>
+            </button>
+            <div class="content" style="display: none;">
+                {base_html if base_html else "<p>No base item data available.</p>"}
+            </div>
+            """
+        
+        return items_html
+
+    @staticmethod
+    def _generate_merc_item_list(items, item_users):
+        """Generate expandable list for unique/set items with character details"""
+        items_html = ""
+        
+        for item_name, count in items:
+            slug = item_name.lower().replace(" ", "-").replace("'", "").replace('"', "")
+            
+            # Get characters using this item
+            characters = item_users.get(item_name, [])
+            characters_html = "".join(
+                f"""
+                <div class="character-info">
+                    <div class="character-link">
+                        <a href="https://beta.pathofdiablo.com/armory?name={char["name"]}" target="_blank">
+                            {char["name"]}
+                        </a>
+                    </div>
+                    <div>Level {char["level"]} {char["class"]}</div>
+                    <div class="hover-trigger" data-character-name="{char["name"]}"></div>
+                </div>
+                <div class="character">
+                    <div class="popup hidden"></div>
+                </div>
+                """ for char in characters
+            )
+            
+            items_html += f"""
+            <button class="collapsible" id="{slug}">
+                <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+                <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+                <strong>{item_name} ({count} uses)</strong>
+            </button>
+            <div class="content" style="display: none;">
+                {characters_html if characters else "<p>No character data available.</p>"}
+            </div>
+            """
+        
+        return items_html
 
     @staticmethod
     def _map_readable_mercenary_name(mercenary_type):
