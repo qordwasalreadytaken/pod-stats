@@ -208,8 +208,9 @@
                 <input type="text" id="skills" value="" placeholder="e.g., Hydra, Frozen Orb">
             </div>
             <div class="form-group">
-                <label for="minPoints">Minimum skill points required:</label>
-                <input type="number" id="minPoints" value="19" min="1" max="20">
+                <label for="minPoints">Minimum skill points required (comma-separated for multiple skills):</label>
+                <input type="text" id="minPoints" value="19" placeholder="e.g., 14, 20 or just 19">
+                <small>If you provide fewer numbers than skills, the last number will be used for remaining skills.</small>
             </div>
             <div class="form-group">
                 <label>
@@ -289,7 +290,7 @@
             }
         }
 
-        function findCharactersWithSpecificSkills(targetSkills, minPoints = 19) {
+        function findCharactersWithSpecificSkills(targetSkills, minPointsArray = [19]) {
             if (!characterData) {
                 displayError('Character data not loaded. Please try again.');
                 return [];
@@ -324,11 +325,16 @@
                 let hasAllSkills = true;
                 const skillDetails = {};
 
-                for (const targetSkill of targetSkills) {
+                for (let i = 0; i < targetSkills.length; i++) {
+                    const targetSkill = targetSkills[i];
                     const targetSkillLower = targetSkill.toLowerCase();
                     const foundSkill = charSkillsLowerCase[targetSkillLower];
                     
-                    if (foundSkill && foundSkill.level >= minPoints) {
+                    // Get the required points for this skill
+                    // If we have fewer numbers than skills, use the last number
+                    const requiredPoints = i < minPointsArray.length ? minPointsArray[i] : minPointsArray[minPointsArray.length - 1];
+                    
+                    if (foundSkill && foundSkill.level >= requiredPoints) {
                         skillDetails[foundSkill.originalName] = foundSkill.level;
                     } else {
                         hasAllSkills = false;
@@ -365,10 +371,10 @@
             }
 
             const targetSkills = ["Ice Arrow", "Fire Arrow"];
-            const minPoints = 19;
+            const minPointsArray = [19];
 
-            const result = findCharactersWithSpecificSkills(targetSkills, minPoints);
-            displayResults(result, targetSkills, minPoints);
+            const result = findCharactersWithSpecificSkills(targetSkills, minPointsArray);
+            displayResults(result, targetSkills, minPointsArray);
         }
 
         async function performCustomSearch() {
@@ -380,17 +386,23 @@
             }
 
             const skillsInput = document.getElementById('skills').value;
-            const minPoints = parseInt(document.getElementById('minPoints').value) || 19;
+            const minPointsInput = document.getElementById('minPoints').value;
 
             const targetSkills = skillsInput.split(',').map(skill => skill.trim()).filter(skill => skill.length > 0);
+            
+            // Parse comma-separated numbers, default to [19] if empty
+            const minPointsArray = minPointsInput.split(',').map(p => parseInt(p.trim())).filter(p => !isNaN(p));
+            if (minPointsArray.length === 0) {
+                minPointsArray.push(19); // Default value
+            }
 
             if (targetSkills.length === 0) {
                 displayError('Please enter at least one skill to search for.');
                 return;
             }
 
-            const result = findCharactersWithSpecificSkills(targetSkills, minPoints);
-            displayResults(result, targetSkills, minPoints);
+            const result = findCharactersWithSpecificSkills(targetSkills, minPointsArray);
+            displayResults(result, targetSkills, minPointsArray);
         }
 
         async function loadDataOnly() {
@@ -436,11 +448,17 @@
             resultsDiv.innerHTML = `<div class="error">${message}</div>`;
         }
 
-        function displayResults(result, targetSkills, minPoints) {
+        function displayResults(result, targetSkills, minPointsArray) {
             const resultsDiv = document.getElementById('results');
             const leagueName = currentLeague === 'hc' ? 'Hardcore' : 'Softcore';
             
             const totalTime = dataLoadTime + result.searchTime;
+            
+            // Create a readable description of the search criteria
+            let searchDescription = targetSkills.map((skill, index) => {
+                const points = index < minPointsArray.length ? minPointsArray[index] : minPointsArray[minPointsArray.length - 1];
+                return `${skill} (${points}+ points)`;
+            }).join(' and ');
             
             let html = '';
 
@@ -448,14 +466,14 @@
                 html += `
                     <div class="results">
                         <h3>No Results Found</h3>
-                        <p>No ${leagueName} characters found with ${targetSkills.join(' and ')} at ${minPoints}+ points.</p>
+                        <p>No ${leagueName} characters found with ${searchDescription}.</p>
                     </div>
                 `;
             } else {
                 html += `
                     <div class="results">
                         <h3>Search Results - ${leagueName} League</h3>
-                        <p>Found ${result.characters.length} ${leagueName} character(s) with ${targetSkills.join(' and ')} at ${minPoints}+ points:</p>
+                        <p>Found ${result.characters.length} ${leagueName} character(s) with ${searchDescription}:</p>
                 `;
 
                 // Class color mapping
