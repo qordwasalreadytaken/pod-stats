@@ -19,6 +19,7 @@ from modules.home_page import generate_home_page
 from modules.items_equipment_page import generate_items_equipment_page
 from modules.mercenary_page import generate_mercenary_page
 from modules.fun_facts_page import generate_fun_facts_page
+from modules.charm_page import generate_charm_page
 from modules.class_pages import generate_all_class_pages, generate_single_class_page
 from modules.shared_utils import load_character_data, filter_characters_by_level
 
@@ -183,6 +184,17 @@ def generate_all_pages(json_file_path="sc_ladder.json", is_hardcore=False, hc_le
             print(f"✓ Fun Facts page saved as {facts_filename}")
         else:
             print("✗ Failed to generate fun facts page")
+        
+        # Generate Charm Page
+        print("Generating charm analysis page...")
+        charm_html = generate_charm_page(all_characters, timestamp, is_hardcore, hc_level_filter)
+        if charm_html:
+            charm_filename = f"{prefix}charms.html" if prefix else "charms.html"
+            with open(charm_filename, 'w', encoding='utf-8') as f:
+                f.write(charm_html)
+            print(f"✓ Charm Analysis page saved as {charm_filename}")
+        else:
+            print("✗ Failed to generate charm analysis page")
             
         # Generate Class Pages
         print("Generating class pages...")

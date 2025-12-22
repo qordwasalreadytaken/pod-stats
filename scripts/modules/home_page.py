@@ -321,11 +321,18 @@ class HomePageGenerator:
                 
             <div class="nav-card">
                 <a href="{hc_prefix}Items">
-                    Equipment usage and trends
+                    Equipment usage 
                 </a>
             </div>
 
+            
             <div class="nav-card">
+                <a href="{hc_prefix}charms">
+                    Charm analysis and usage
+                </a>
+            </div>
+
+                        <div class="nav-card">
                 <a href="{hc_prefix}Mercenaries">
                     Mercenary data analysis
                 </a>
@@ -333,7 +340,7 @@ class HomePageGenerator:
             
             <div class="nav-card">
                 <a href="{hc_prefix}FunFacts">
-                    Interesting statistics, character rankings, and fun facts
+                    Fun facts and statistics
                 </a>
             </div>
 <!--            

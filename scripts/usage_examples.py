@@ -14,6 +14,7 @@ python3 scripts/generate_pages.py --page dataupdate #--mode sc --data sc_ladder.
 python3 scripts/generate_pages.py --page class --class Barbarian --mode hc --data hc_ladder.json --force
 python3 scripts/generate_pages.py --page class --class Druid --mode sc --data sc_ladder.json --force
 python3 scripts/generate_pages.py --page all --mode sc --force
+python3 scripts/generate_pages.py --page charms --mode sc --force
 python3 scripts/generate_pages.py --mode hc --page all --data hc_ladder.json --hc-level-filter 70 --force
 
 Manual archive generation:
