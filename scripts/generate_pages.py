@@ -392,6 +392,11 @@ def generate_single_page(page_type, json_file_path="sc_ladder.json", is_hardcore
             html_content = generate_fun_facts_page(all_characters, timestamp, is_hardcore, hc_level_filter)
             filename = f"{prefix}FunFacts.html"
             
+        elif page_type.lower() == 'charms':
+            print("Generating charm analysis page...")
+            html_content = generate_charm_page(all_characters, timestamp, is_hardcore, hc_level_filter)
+            filename = f"{prefix}charms.html" if prefix else "charms.html"
+            
         elif page_type.lower() == 'class':
             if not class_name:
                 print("ERROR: Class name required for class page generation")
@@ -414,7 +419,7 @@ def generate_single_page(page_type, json_file_path="sc_ladder.json", is_hardcore
             
         else:
             print(f"ERROR: Unknown page type '{page_type}'")
-            print("Valid types: home, items, mercenary, funfacts, class, dataupdate")
+            print("Valid types: home, items, mercenary, funfacts, charms, class, dataupdate")
             return False
         
         if html_content:
@@ -443,7 +448,7 @@ def main():
     parser = argparse.ArgumentParser(description='Generate PoD analytics pages')
     parser.add_argument('--mode', choices=['sc', 'hc'], default='sc',
                       help='Game mode (sc=softcore, hc=hardcore)')
-    parser.add_argument('--page', choices=['all', 'home', 'items', 'mercenary', 'funfacts', 'class', 'dataupdate'], 
+    parser.add_argument('--page', choices=['all', 'home', 'items', 'mercenary', 'funfacts', 'charms', 'class', 'dataupdate'], 
                       default='all', help='Which page(s) to generate')
     parser.add_argument('--data', default='sc_ladder.json',
                       help='Path to character data JSON file (relative to root directory)')

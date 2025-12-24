@@ -4,6 +4,7 @@ Generates HTML for the charm analysis page
 """
 
 from typing import Dict, List, Any
+from collections import Counter
 
 
 def generate_standard_javascript():
@@ -114,6 +115,10 @@ class CharmAnalysisHTMLGenerator:
             analysis_data.get('grand_charms', {})
         )
         
+        unique_charms_html = CharmAnalysisHTMLGenerator._generate_unique_charms_section(
+            analysis_data.get('unique_charms', {})
+        )
+        
         rare_finds_html = CharmAnalysisHTMLGenerator._generate_rare_finds_section(
             analysis_data.get('rare_finds', {})
         )
@@ -188,6 +193,10 @@ class CharmAnalysisHTMLGenerator:
                     <hr>
                     
                     {grand_charms_html}
+                    
+                    <hr>
+                    
+                    {unique_charms_html}
                     
                     <hr>
                     
@@ -351,9 +360,9 @@ class CharmAnalysisHTMLGenerator:
         
         # Generate most popular trees (by_tree is already a list of tuples)
         if isinstance(by_tree, dict):
-            top_trees = sorted(by_tree.items(), key=lambda x: x[1], reverse=True)[:15]
+            top_trees = sorted(by_tree.items(), key=lambda x: x[1], reverse=True)[:21]
         else:
-            top_trees = by_tree[:15]
+            top_trees = by_tree[:21]
         
         trees_html = "<ol>"
         for tree_name, count in top_trees:
@@ -380,7 +389,7 @@ class CharmAnalysisHTMLGenerator:
                     {class_html}
                 </div>
                 <div class="column">
-                    <h3>Top 15 Skill Trees:</h3>
+                    <h3>Skillers by Tree:</h3>
                     {trees_html}
                 </div>
             </div>
@@ -521,6 +530,121 @@ class CharmAnalysisHTMLGenerator:
                     <h3>Top 15 Individual Properties:</h3>
                     {props_html}
                 </div>
+            </div>
+        </div>
+        """
+    
+    @staticmethod
+    def _generate_unique_charms_section(unique_charms_data: Dict[str, Any]) -> str:
+        """Generate HTML for unique charms section (Gheed's, Torch, Anni)"""
+        
+        gheeds_data = unique_charms_data.get('gheeds', {})
+        torch_data = unique_charms_data.get('torches', {})
+        anni_data = unique_charms_data.get('annis', {})
+        
+        # Gheed's Fortune stats
+        gheeds_total = gheeds_data.get('total_count', 0)
+        gheeds_charms = gheeds_data.get('charms', [])
+        
+        gheeds_html = "<p>No Gheed's Fortune charms found.</p>"
+        if gheeds_charms:
+            best_gheeds = gheeds_charms[:10]  # Top 10
+            gheeds_html = f"""
+            <h3>Gheed's Fortune ({gheeds_total:,} found)</h3>
+            <p>Top 10 by Magic Find:</p>
+            <ol>
+            """
+            for gheed in best_gheeds:
+                mf = gheed.get('mf', 0)
+                gold = gheed.get('gold_find', 0)
+                vendor = gheed.get('vendor_discount', 0)
+                char_name = gheed.get('char_name', 'Unknown')
+                char_class = gheed.get('char_class', 'Unknown')
+                gheeds_html += f"""
+                <li><strong>{mf}% MF</strong> | {gold}% Gold Find | {vendor}% Vendor Prices
+                    <br><small>Character: {char_name} ({char_class})</small>
+                </li>
+                """
+            gheeds_html += "</ol>"
+        
+        # Hellfire Torch stats
+        torch_total = torch_data.get('total_count', 0)
+        torch_charms = torch_data.get('charms', [])
+        torch_by_class = torch_data.get('by_class', Counter())
+        
+        torch_html = "<p>No Hellfire Torches found.</p>"
+        if torch_charms:
+            best_torches = torch_charms[:10]  # Top 10
+            
+            # Class distribution
+            class_dist_html = "<ul>"
+            for class_bonus, count in torch_by_class.most_common():
+                class_dist_html += f"<li>{class_bonus}: {count:,}</li>"
+            class_dist_html += "</ul>"
+            
+            torch_html = f"""
+            <h3>Hellfire Torches ({torch_total:,} found)</h3>
+            <p>Distribution by class:</p>
+            {class_dist_html}
+            <p>Top 10 by All Resistances:</p>
+            <ol>
+            """
+            for torch in best_torches:
+                all_res = torch.get('all_res', 0)
+                attrs = torch.get('attributes', 0)
+                class_bonus = torch.get('class_bonus', 'Unknown Class')
+                char_name = torch.get('char_name', 'Unknown')
+                char_class = torch.get('char_class', 'Unknown')
+                torch_html += f"""
+                <li><strong>{all_res} All Res</strong> | {attrs} Attributes | {class_bonus}
+                    <br><small>Character: {char_name} ({char_class})</small>
+                </li>
+                """
+            torch_html += "</ol>"
+        
+        # Annihilus stats
+        anni_total = anni_data.get('total_count', 0)
+        anni_charms = anni_data.get('charms', [])
+        
+        anni_html = "<p>No Annihilus charms found.</p>"
+        if anni_charms:
+            best_annis = anni_charms[:10]  # Top 10
+            anni_html = f"""
+            <h3>Annihilus ({anni_total:,} found)</h3>
+            <p>Top 10 by All Resistances:</p>
+            <ol>
+            """
+            for anni in best_annis:
+                all_res = anni.get('all_res', 0)
+                attrs = anni.get('attributes', 0)
+                char_name = anni.get('char_name', 'Unknown')
+                char_class = anni.get('char_class', 'Unknown')
+                anni_html += f"""
+                <li><strong>{all_res} All Res</strong> | {attrs} Attributes
+                    <br><small>Character: {char_name} ({char_class})</small>
+                </li>
+                """
+            anni_html += "</ol>"
+        
+        return f"""
+        <h2 id="unique-charms">
+            Unique Charms
+            <a href="#unique-charms" class="anchor-link">
+                <img src="icons/anchor.png" alt="🔗" class="anchor-icon">
+            </a>
+        </h2>
+        <button type="button" class="collapsible unique-button">
+            <img src="icons/Special_click.png" alt="Unique Charms Open" class="icon open-icon hidden">
+            <img src="icons/Special.png" alt="Unique Charms Close" class="icon close-icon">
+        </button>
+        <div class="content" style="display: none;">
+            <div id="unique-charms-content">
+                <p>Analysis of unique charms found on ladder characters.</p>
+                {gheeds_html}
+                <hr>
+                {torch_html}
+                <hr>
+                {anni_html}
             </div>
         </div>
         """

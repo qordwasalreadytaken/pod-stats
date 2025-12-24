@@ -7,6 +7,7 @@ Basic page generation:
 python3 scripts/generate_pages.py --mode hc --page all --data hc_ladder.json --hc-level-filter 70
 python3 scripts/generate_pages.py --page all --mode sc
 python3 scripts/generate_pages.py --page funfacts --mode sc
+python3 scripts/generate_pages.py --page charms --mode sc
 
 Force regeneration (skip caching and ignore season freeze):
 python3 scripts/generate_pages.py --page all --mode sc --data sc_ladder.json --force
@@ -209,6 +210,7 @@ def demo_command_line_usage():
     print("   python3 scripts/generate_pages.py --mode sc --page all")
     print("   python3 scripts/generate_pages.py --mode hc --page all --hc-level-filter 70")
     print("   python3 scripts/generate_pages.py --page class --class Barbarian --mode sc")
+    print("   python3 scripts/generate_pages.py --page charms --mode sc")
     print()
     
     print("🔄 Force Page Regeneration (Override Season Freeze):")

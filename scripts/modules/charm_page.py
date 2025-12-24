@@ -44,8 +44,12 @@ def is_skiller(item):
     
     props = item.get("PropertyList", [])
     for prop in props:
+        # Look for +1 to skill tree properties
+        # Some trees have "Skills" in the name, some don't (Curses, Traps, etc.)
         if "+1 to" in prop and "Only)" in prop:
-            return True
+            # Exclude item-specific bonuses like "+1 to All Skills"
+            if "All Skills" not in prop:
+                return True
     return False
 
 
@@ -94,6 +98,11 @@ def analyze_all_charms(characters):
     skiller_by_class = Counter()
     skiller_by_tree = Counter()
     
+    # Unique charm tracking
+    gheeds_charms = []
+    torch_charms = []
+    anni_charms = []
+    
     # Rare finds
     high_poison_charms = []
     
@@ -138,8 +147,54 @@ def analyze_all_charms(characters):
             charm_type = categorize_charm_type(tag)
             props = item.get("PropertyList", [])
             
-            # Check for Anni/Torch for resist totals
-            if is_unique_charm(item):
+            # Track unique charms (Gheed's, Torch, Anni)
+            if is_unique_charm(item) and is_charm_active(item):
+                # Identify charm type by properties
+                charm_data = {
+                    'char_name': char_name,
+                    'char_class': char_class,
+                    'char_level': char_level,
+                    'properties': props
+                }
+                
+                # Gheed's Fortune (Grand Charm with gold find and vendor prices)
+                has_gold_find = any("Extra Gold from Monsters" in p for p in props)
+                has_vendor = any("Reduces all Vendor Prices" in p for p in props)
+                if has_gold_find and has_vendor:
+                    # Extract values
+                    for prop in props:
+                        if "Extra Gold from Monsters" in prop:
+                            charm_data['gold_find'] = extract_numeric_value(prop)
+                        elif "Reduces all Vendor Prices" in prop:
+                            charm_data['vendor_discount'] = extract_numeric_value(prop)
+                        elif "Better Chance of Getting Magic Items" in prop:
+                            charm_data['mf'] = extract_numeric_value(prop)
+                    gheeds_charms.append(charm_data)
+                
+                # Hellfire Torch (Large Charm with +3 to class skills)
+                has_class_skills = any("+3 to" in p and "Skill Levels" in p for p in props)
+                if has_class_skills:
+                    for prop in props:
+                        if "+3 to" in prop and "Skill Levels" in prop:
+                            charm_data['class_bonus'] = prop
+                        elif "to all Attributes" in prop:
+                            charm_data['attributes'] = extract_numeric_value(prop)
+                        elif "All Resistances" in prop:
+                            charm_data['all_res'] = extract_numeric_value(prop)
+                    torch_charms.append(charm_data)
+                
+                # Annihilus (Small Charm with +1 to all skills and experience)
+                has_all_skills = any("+1 to All Skills" in p for p in props)
+                has_exp = any("Experience Gained" in p for p in props)
+                if has_all_skills and has_exp:
+                    for prop in props:
+                        if "to all Attributes" in prop:
+                            charm_data['attributes'] = extract_numeric_value(prop)
+                        elif "All Resistances" in prop:
+                            charm_data['all_res'] = extract_numeric_value(prop)
+                    anni_charms.append(charm_data)
+                
+                # Add resist totals to character
                 for prop in props:
                     if "All Resistances" in prop:
                         val = extract_numeric_value(prop)
@@ -267,7 +322,7 @@ def analyze_all_charms(characters):
                 if is_skiller(item):
                     # Track skiller
                     for prop in props:
-                        if "+1 to" in prop and "Only)" in prop:
+                        if "+1 to" in prop and "Only)" in prop and "All Skills" not in prop:
                             skiller_by_tree[prop] += 1
                             # Extract class from property
                             if "Amazon" in prop:
@@ -416,7 +471,7 @@ def analyze_all_charms(characters):
         'skillers': {
             'total_skillers': sum(skiller_by_class.values()),
             'by_class': dict(skiller_by_class),
-            'by_tree': skiller_by_tree.most_common(20)
+            'by_tree': skiller_by_tree.most_common(21)
         },
         'small_charms': {
             'total_count': small_count,
@@ -432,6 +487,21 @@ def analyze_all_charms(characters):
             'total_count': grand_count,
             'top_combos': grand_combos.most_common(20),
             'top_properties': grand_properties.most_common(20)
+        },
+        'unique_charms': {
+            'gheeds': {
+                'total_count': len(gheeds_charms),
+                'charms': sorted(gheeds_charms, key=lambda x: x.get('mf', 0), reverse=True)
+            },
+            'torches': {
+                'total_count': len(torch_charms),
+                'charms': sorted(torch_charms, key=lambda x: x.get('all_res', 0), reverse=True),
+                'by_class': Counter([c['class_bonus'] for c in torch_charms if 'class_bonus' in c])
+            },
+            'annis': {
+                'total_count': len(anni_charms),
+                'charms': sorted(anni_charms, key=lambda x: x.get('all_res', 0), reverse=True)
+            }
         },
         'rare_finds': {
             'interesting_finds': interesting_finds
