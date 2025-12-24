@@ -1,0 +1,448 @@
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>PoD Charm Analysis - Hardcore</title>
+            <link rel="shortcut icon" type="image/x-icon" href="icons/pod.ico">
+            <link rel="stylesheet" type="text/css" href="./css/test-css.css">
+        </head>
+        <body class="special-background">
+            <div class="is-clipped">
+                <div id="navbar-placeholder"></div>
+                <script>
+                fetch("templates/navbar.html")
+                    .then(res => res.text())
+                    .then(html => {
+                    document.getElementById("navbar-placeholder").innerHTML = html;
+                    });
+                </script>
+
+                <div class="hamburger" onclick="toggleMenu()">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+                
+                <div class="top-buttons">
+                    <a href="Home" class="top-button home-button" onclick="setActive('Home')"></a>
+                    <a href="#" id="SC_HC" class="top-button"> </a>
+                    <a href="Amazon" id="Amazon" class="top-button amazon-button"></a>
+                    <a href="Assassin" id="Assassin" class="top-button assassin-button"></a>
+                    <a href="Barbarian" id="Barbarian" class="top-button barbarian-button"></a>
+                    <a href="Druid" id="Druid" class="top-button druid-button"></a>
+                    <a href="Necromancer" id="Necromancer" class="top-button necromancer-button"></a>
+                    <a href="Paladin" id="Paladin" class="top-button paladin-button"></a>
+                    <a href="Sorceress" id="Sorceress" class="top-button sorceress-button"></a>
+                    <a href="https://github.com/qordwasalreadytaken/pod-stats/blob/main/README.md" class="top-button about-button" target="_blank"></a>
+                </div>
+
+                <div class="banner" style="top:50px; left:10%; width:80%;">
+                    ⚠️ This is a test site for PoD's Trends site. Please direct any feedback to Qord. ⚠️
+                </div>
+
+                <div class="main page-intro">
+                    <h1>PoD CHARM ANALYSIS - HARDCORE</h1>
+                    <h2>Comprehensive analysis of charm usage patterns from ladder characters</h2>
+                    
+                    
+        <h2 id="charm-overview">
+            Charm Usage Overview
+            <a href="#charm-overview" class="anchor-link">
+                <img src="icons/anchor.png" alt="🔗" class="anchor-icon">
+            </a>
+        </h2>
+        <div class="intro-section">
+            <p><strong>Total Characters:</strong> 1,033</p>
+            <p><strong>Characters Using Charms:</strong> 964 (93.3%)</p>
+            <p><strong>Total Active Charms:</strong> 17,583</p>
+            <p><strong>Average Charms per Character:</strong> 18.2</p>
+            
+            <h3>Charm Distribution by Size:</h3>
+            <ul>
+                <li><strong>Small Charms:</strong> 9,805 (55.8%)</li>
+                <li><strong>Large Charms:</strong> 2,773 (15.8%)</li>
+                <li><strong>Grand Charms:</strong> 5,005 (28.5%)</li>
+            </ul>
+        </div>
+        
+                    
+                    <hr>
+                    
+                    
+        <h2 id="top-characters">
+            Top Characters by Charm Stats
+            <a href="#top-characters" class="anchor-link">
+                <img src="icons/anchor.png" alt="🔗" class="anchor-icon">
+            </a>
+        </h2>
+        <button type="button" class="collapsible runewords-button">
+            <img src="icons/Special_click.png" alt="Top Characters Open" class="icon open-icon hidden">
+            <img src="icons/Special.png" alt="Top Characters Close" class="icon close-icon">
+        </button>
+        <div class="content" style="display: none;">
+            <div id="top-chars" class="container">
+                <div class="column">
+                    <h3>Most +Life from Charms:</h3>
+                    <ol>
+                <li>
+                    <a href="https://trends.pathofdiablo.com/hcPaladin#Tymian" target="_blank">Tymian</a>
+                    (Paladin Lvl 96) - 665 +Life
+                </li>
+                
+                <li>
+                    <a href="https://trends.pathofdiablo.com/hcAmazon#SSF-HC" target="_blank">SSF-HC</a>
+                    (Amazon Lvl 82) - 567 +Life
+                </li>
+                
+                <li>
+                    <a href="https://trends.pathofdiablo.com/hcSorceress#Majoranka" target="_blank">Majoranka</a>
+                    (Sorceress Lvl 94) - 566 +Life
+                </li>
+                
+                <li>
+                    <a href="https://trends.pathofdiablo.com/hcSorceress#Saturejka" target="_blank">Saturejka</a>
+                    (Sorceress Lvl 98) - 564 +Life
+                </li>
+                
+                <li>
+                    <a href="https://trends.pathofdiablo.com/hcDruid#Varax" target="_blank">Varax</a>
+                    (Druid Lvl 83) - 560 +Life
+                </li>
+                </ol>
+                </div>
+                <div class="column">
+                    <h3>Most Total Resists (incl. Anni/Torch):</h3>
+                    <ol>
+                <li>
+                    <a href="https://trends.pathofdiablo.com/hcAmazon#LastWAY" target="_blank">LastWAY</a>
+                    (Amazon Lvl 94) - 456 Total Resists
+                </li>
+                
+                <li>
+                    <a href="https://trends.pathofdiablo.com/hcAmazon#Zradda" target="_blank">Zradda</a>
+                    (Amazon Lvl 88) - 439 Total Resists
+                </li>
+                
+                <li>
+                    <a href="https://trends.pathofdiablo.com/hcSorceress#ss_sork" target="_blank">ss_sork</a>
+                    (Sorceress Lvl 89) - 416 Total Resists
+                </li>
+                
+                <li>
+                    <a href="https://trends.pathofdiablo.com/hcBarbarian#hiyooooooo" target="_blank">hiyooooooo</a>
+                    (Barbarian Lvl 91) - 376 Total Resists
+                </li>
+                
+                <li>
+                    <a href="https://trends.pathofdiablo.com/hcSorceress#DevBadInvScamer" target="_blank">DevBadInvScamer</a>
+                    (Sorceress Lvl 88) - 368 Total Resists
+                </li>
+                </ol>
+                </div>
+            </div>
+            
+            <div id="top-chars-combat" class="container">
+                <div class="column">
+                    <h3>Most +Max Damage from Charms:</h3>
+                    <ol>
+                <li>
+                    <a href="https://trends.pathofdiablo.com/hcBarbarian#Pripadai" target="_blank">Pripadai</a>
+                    (Barbarian Lvl 87) - 111 +Max Damage (+719 total ar)
+                </li>
+                
+                <li>
+                    <a href="https://trends.pathofdiablo.com/hcBarbarian#Cucaracha_EZBRZ" target="_blank">Cucaracha_EZBRZ</a>
+                    (Barbarian Lvl 88) - 98 +Max Damage (+621 total ar)
+                </li>
+                
+                <li>
+                    <a href="https://trends.pathofdiablo.com/hcBarbarian#Artheon" target="_blank">Artheon</a>
+                    (Barbarian Lvl 90) - 89 +Max Damage (+579 total ar)
+                </li>
+                
+                <li>
+                    <a href="https://trends.pathofdiablo.com/hcAmazon#eG-Altyshka" target="_blank">eG-Altyshka</a>
+                    (Amazon Lvl 85) - 76 +Max Damage (+493 total ar)
+                </li>
+                
+                <li>
+                    <a href="https://trends.pathofdiablo.com/hcAmazon#XD" target="_blank">XD</a>
+                    (Amazon Lvl 85) - 76 +Max Damage (+501 total ar)
+                </li>
+                </ol>
+                </div>
+                <div class="column">
+                    <h3>Most +Attack Rating from Charms:</h3>
+                    <ol>
+                <li>
+                    <a href="https://trends.pathofdiablo.com/hcBarbarian#Pripadai" target="_blank">Pripadai</a>
+                    (Barbarian Lvl 87) - 719 +Attack Rating (+111 total max dmg)
+                </li>
+                
+                <li>
+                    <a href="https://trends.pathofdiablo.com/hcBarbarian#Cucaracha_EZBRZ" target="_blank">Cucaracha_EZBRZ</a>
+                    (Barbarian Lvl 88) - 621 +Attack Rating (+98 total max dmg)
+                </li>
+                
+                <li>
+                    <a href="https://trends.pathofdiablo.com/hcBarbarian#Barbercore" target="_blank">Barbercore</a>
+                    (Barbarian Lvl 90) - 597 +Attack Rating (+24 total max dmg)
+                </li>
+                
+                <li>
+                    <a href="https://trends.pathofdiablo.com/hcBarbarian#Artheon" target="_blank">Artheon</a>
+                    (Barbarian Lvl 90) - 579 +Attack Rating (+89 total max dmg)
+                </li>
+                
+                <li>
+                    <a href="https://trends.pathofdiablo.com/hcBarbarian#ImThatGuy" target="_blank">ImThatGuy</a>
+                    (Barbarian Lvl 90) - 555 +Attack Rating (+2 total max dmg)
+                </li>
+                </ol>
+                </div>
+            </div>
+            
+            <div id="top-chars-mf">
+                <h3>Most Magic Find from Charms:</h3>
+                <ol>
+                <li>
+                    <a href="https://trends.pathofdiablo.com/hcSorceress#Lofi" target="_blank">Lofi</a>
+                    (Sorceress Lvl 94) - 151 % MF
+                </li>
+                
+                <li>
+                    <a href="https://trends.pathofdiablo.com/hcBarbarian#Van_Leatherman" target="_blank">Van_Leatherman</a>
+                    (Barbarian Lvl 83) - 112 % MF
+                </li>
+                
+                <li>
+                    <a href="https://trends.pathofdiablo.com/hcDruid#BananaCream" target="_blank">BananaCream</a>
+                    (Druid Lvl 88) - 92 % MF
+                </li>
+                
+                <li>
+                    <a href="https://trends.pathofdiablo.com/hcSorceress#MephFarmer" target="_blank">MephFarmer</a>
+                    (Sorceress Lvl 87) - 82 % MF
+                </li>
+                
+                <li>
+                    <a href="https://trends.pathofdiablo.com/hcBarbarian#Barbcore" target="_blank">Barbcore</a>
+                    (Barbarian Lvl 91) - 81 % MF
+                </li>
+                </ol>
+            </div>
+        </div>
+        
+                    
+                    <hr>
+                    
+                    
+        <h2 id="skillers">
+            Skiller Grand Charms
+            <a href="#skillers" class="anchor-link">
+                <img src="icons/anchor.png" alt="🔗" class="anchor-icon">
+            </a>
+        </h2>
+        <button type="button" class="collapsible uniques-button">
+            <img src="icons/Special_click.png" alt="Skillers Open" class="icon open-icon hidden">
+            <img src="icons/Special.png" alt="Skillers Close" class="icon close-icon">
+        </button>
+        <div class="content" style="display: none;">
+            <p><strong>Total Skillers in Use:</strong> 1,460</p>
+            
+            <div id="skillers-content" class="container">
+                <div class="column">
+                    <h3>Skillers by Class:</h3>
+                    <ul><li><strong>Sorceress:</strong> 286 (19.6%)</li><li><strong>Necromancer:</strong> 253 (17.3%)</li><li><strong>Assassin:</strong> 198 (13.6%)</li><li><strong>Paladin:</strong> 194 (13.3%)</li><li><strong>Druid:</strong> 189 (12.9%)</li><li><strong>Barbarian:</strong> 171 (11.7%)</li><li><strong>Amazon:</strong> 169 (11.6%)</li></ul>
+                </div>
+                <div class="column">
+                    <h3>Top 15 Skill Trees:</h3>
+                    <ol><li><strong>+1 to Combat Skills (Paladin Only):</strong> 125</li><li><strong>+1 to Traps (Assassin Only):</strong> 122</li><li><strong>+1 to Curses (Necromancer Only):</strong> 116</li><li><strong>+1 to Lightning Skills (Sorceress Only):</strong> 108</li><li><strong>+1 to Fire Skills (Sorceress Only):</strong> 105</li><li><strong>+1 to Shape Shifting Skills (Druid Only):</strong> 104</li><li><strong>+1 to Javelin and Spear Skills (Amazon Only):</strong> 97</li><li><strong>+1 to Poison and Bone Skills (Necromancer Only):</strong> 81</li><li><strong>+1 to Masteries (Barbarian Only):</strong> 80</li><li><strong>+1 to Cold Skills (Sorceress Only):</strong> 73</li><li><strong>+1 to Warcries (Barbarian Only):</strong> 67</li><li><strong>+1 to Summoning Skills (Druid Only):</strong> 66</li><li><strong>+1 to Offensive Auras (Paladin Only):</strong> 60</li><li><strong>+1 to Bow and Crossbow Skills (Amazon Only):</strong> 60</li><li><strong>+1 to Summoning Skills (Necromancer Only):</strong> 56</li></ol>
+                </div>
+            </div>
+        </div>
+        
+                    
+                    <hr>
+                    
+                    
+        <h2 id="small-charms">
+            Small Charms
+            <a href="#small-charms" class="anchor-link">
+                <img src="icons/anchor.png" alt="🔗" class="anchor-icon">
+            </a>
+        </h2>
+        <button type="button" class="collapsible sets-button">
+            <img src="icons/Special_click.png" alt="Small Charms Open" class="icon open-icon hidden">
+            <img src="icons/Special.png" alt="Small Charms Close" class="icon close-icon">
+        </button>
+        <div class="content" style="display: none;">
+            <p><strong>Total Small Charms:</strong> 9,805</p>
+            
+            <div id="small-charms-content" class="container">
+                <div class="column">
+                    <h3>Top 15 Property Combinations:</h3>
+                    <ol><li>+1 to Dexterity | Lightning Resist +7%: <strong>15</strong></li><li>Adds 1-2 cold damage | Fire Resist +7%: <strong>14</strong></li><li>+1 to Strength | Lightning Resist +6%: <strong>13</strong></li><li>+1 to Strength | Cold Resist +6%: <strong>12</strong></li><li>+3% Faster Run/Walk | Fire Resist +11%: <strong>11</strong></li><li>+3% Faster Run/Walk | Lightning Resist +10%: <strong>11</strong></li><li>+3% Faster Run/Walk | Fire Resist +9%: <strong>11</strong></li><li>+1 to Dexterity | Fire Resist +7%: <strong>11</strong></li><li>+1 to Strength | Fire Resist +5%: <strong>11</strong></li><li>+1 to Strength | Poison Resist +7%: <strong>11</strong></li><li>+5% Faster Hit Recovery | Fire Resist +11%: <strong>10</strong></li><li>+2 to Dexterity | Lightning Resist +9%: <strong>10</strong></li><li>+1 to Strength | Poison Resist +6%: <strong>10</strong></li><li>+1 to Strength | Lightning Resist +7%: <strong>10</strong></li><li>+1 to Strength | Fire Resist +6%: <strong>10</strong></li></ol>
+                </div>
+                <div class="column">
+                    <h3>Top 15 Individual Properties:</h3>
+                    <ol><li>+20 to Life: <strong>656</strong></li><li>+19 to Life: <strong>509</strong></li><li>+1 to Strength: <strong>403</strong></li><li>+18 to Life: <strong>378</strong></li><li>7% Better Chance of Getting Magic Items: <strong>320</strong></li><li>+1 to Dexterity: <strong>307</strong></li><li>+5% Faster Hit Recovery: <strong>294</strong></li><li>+16 to Life: <strong>289</strong></li><li>+17 to Life: <strong>288</strong></li><li>+3% Faster Run/Walk: <strong>281</strong></li><li>+15 to Life: <strong>276</strong></li><li>+14 to Life: <strong>253</strong></li><li>6% Better Chance of Getting Magic Items: <strong>229</strong></li><li>+10 to Life: <strong>215</strong></li><li>Fire Resist +7%: <strong>204</strong></li></ol>
+                </div>
+            </div>
+        </div>
+        
+                    
+                    <hr>
+                    
+                    
+        <h2 id="large-charms">
+            Large Charms
+            <a href="#large-charms" class="anchor-link">
+                <img src="icons/anchor.png" alt="🔗" class="anchor-icon">
+            </a>
+        </h2>
+        <button type="button" class="collapsible sets-button">
+            <img src="icons/Special_click.png" alt="Large Charms Open" class="icon open-icon hidden">
+            <img src="icons/Special.png" alt="Large Charms Close" class="icon close-icon">
+        </button>
+        <div class="content" style="display: none;">
+            <p><strong>Total Large Charms:</strong> 2,773</p>
+            
+            <div id="large-charms-content" class="container">
+                <div class="column">
+                    <h3>Top 15 Property Combinations:</h3>
+                    <ol><li>+1 to Maximum Damage | Fire Resist +11%: <strong>4</strong></li><li>+2 to Strength | Fire Resist +7%: <strong>4</strong></li><li>+4 to Mana | +9 to Life: <strong>4</strong></li><li>+10 to Life | +3 Defense: <strong>4</strong></li><li>+3 to Strength | Poison Resist +5%: <strong>3</strong></li><li>+2 to Dexterity | Lightning Resist +6%: <strong>3</strong></li><li>+4 to Dexterity | Lightning Resist +8%: <strong>3</strong></li><li>+10 poison damage over 3 seconds | +3 to Strength: <strong>3</strong></li><li>+2 to Mana | +3 to Dexterity: <strong>3</strong></li><li>+2 to Dexterity | +4 to Attack Rating: <strong>3</strong></li><li>+8% Faster Hit Recovery | Cold Resist +5%: <strong>3</strong></li><li>+6 to Life | +8 to Attack Rating: <strong>3</strong></li><li>+2 Defense | +2 to Strength: <strong>3</strong></li><li>+8 Defense | +8% Faster Hit Recovery: <strong>3</strong></li><li>Adds 1-2 Fire damage | Lightning Resist +6%: <strong>3</strong></li></ol>
+                </div>
+                <div class="column">
+                    <h3>Top 15 Individual Properties:</h3>
+                    <ol><li>+3 to Strength: <strong>100</strong></li><li>+8% Faster Hit Recovery: <strong>98</strong></li><li>+3 to Dexterity: <strong>96</strong></li><li>+2 to Strength: <strong>83</strong></li><li>+2 to Dexterity: <strong>80</strong></li><li>+5% Faster Run/Walk: <strong>73</strong></li><li>+10 to Life: <strong>69</strong></li><li>+15 to Life: <strong>62</strong></li><li>+5 to Strength: <strong>58</strong></li><li>+6 poison damage over 3 seconds: <strong>56</strong></li><li>+20 to Life: <strong>50</strong></li><li>+9 to Life: <strong>49</strong></li><li>+30 to Life: <strong>48</strong></li><li>+35 to Life: <strong>47</strong></li><li>+33 to Life: <strong>47</strong></li></ol>
+                </div>
+            </div>
+        </div>
+        
+                    
+                    <hr>
+                    
+                    
+        <h2 id="grand-charms">
+            Grand Charms (Non-Skillers)
+            <a href="#grand-charms" class="anchor-link">
+                <img src="icons/anchor.png" alt="🔗" class="anchor-icon">
+            </a>
+        </h2>
+        <button type="button" class="collapsible sets-button">
+            <img src="icons/Special_click.png" alt="Grand Charms Open" class="icon open-icon hidden">
+            <img src="icons/Special.png" alt="Grand Charms Close" class="icon close-icon">
+        </button>
+        <div class="content" style="display: none;">
+            <p><strong>Total Grand Charms (Non-Skillers):</strong> 3,545</p>
+            
+            <div id="grand-charms-content" class="container">
+                <div class="column">
+                    <h3>Top 15 Property Combinations:</h3>
+                    <ol><li>+10 to Maximum Damage | +53 to Attack Rating: <strong>3</strong></li><li>+16 to Life | All Resistances +13: <strong>3</strong></li><li>+12% Faster Hit Recovery | Cold Resist +22%: <strong>3</strong></li><li>+10 to Maximum Damage | +73 to Attack Rating: <strong>3</strong></li><li>+7% Faster Run/Walk | Fire Resist +20%: <strong>3</strong></li><li>+12% Faster Hit Recovery | +15 poison damage over 4 seconds: <strong>3</strong></li><li>+3 to Strength | Poison Resist +14%: <strong>3</strong></li><li>+7% Faster Run/Walk | Poison Resist +21%: <strong>3</strong></li><li>+4 to Dexterity | Fire Resist +26%: <strong>3</strong></li><li>+1 to Maximum Damage | Lightning Resist +13%: <strong>3</strong></li><li>+1 to Maximum Damage | Adds 1-2 Fire damage: <strong>3</strong></li><li>+3 to Strength | Adds 1-3 Fire damage: <strong>3</strong></li><li>+3 to Dexterity | Lightning Resist +16%: <strong>3</strong></li><li>+12% Faster Hit Recovery | All Resistances +14: <strong>2</strong></li><li>+10 to Maximum Damage | +67 to Attack Rating: <strong>2</strong></li></ol>
+                </div>
+                <div class="column">
+                    <h3>Top 15 Individual Properties:</h3>
+                    <ol><li>+12% Faster Hit Recovery: <strong>235</strong></li><li>+7% Faster Run/Walk: <strong>146</strong></li><li>+1 to Maximum Damage: <strong>107</strong></li><li>+4 to Strength: <strong>85</strong></li><li>+40 to Life: <strong>75</strong></li><li>+3 to Strength: <strong>68</strong></li><li>+6 to Strength: <strong>66</strong></li><li>+4 to Dexterity: <strong>65</strong></li><li>+5 to Strength: <strong>58</strong></li><li>+6 poison damage over 3 seconds: <strong>57</strong></li><li>+33 to Life: <strong>53</strong></li><li>+32 to Life: <strong>53</strong></li><li>+39 to Life: <strong>51</strong></li><li>+3 to Dexterity: <strong>51</strong></li><li>+6 to Dexterity: <strong>50</strong></li></ol>
+                </div>
+            </div>
+        </div>
+        
+                    
+                    <hr>
+                    
+                    
+        <h2 id="rare-finds">
+            Rare Finds & Fun Facts
+            <a href="#rare-finds" class="anchor-link">
+                <img src="icons/anchor.png" alt="🔗" class="anchor-icon">
+            </a>
+        </h2>
+        <button type="button" class="collapsible sets-button">
+            <img src="icons/Special_click.png" alt="Rare Finds Open" class="icon open-icon hidden">
+            <img src="icons/Special.png" alt="Rare Finds Close" class="icon close-icon">
+        </button>
+        <div class="content" style="display: none;">
+            <div id="rare-finds-content">
+                <h3>Interesting Charm Discoveries:</h3>
+                <ul><li><strong>Most Popular Small Charm Combo:</strong> +1 to Dexterity | Lightning Resist +7% - 15 in use</li><li><strong>Most Charms on Single Character:</strong> barbycore (Barbarian) with 37 active charms</li><li><strong>Most Common Small Charm Property:</strong> "+20 to Life" appears on 656 small charms</li><li><strong>Most Popular Skiller:</strong> +1 to Combat Skills (Paladin Only) - 125 in use</li></ul>
+            </div>
+        </div>
+        
+                    
+                </div>
+                
+                <div class="footer">
+                    <p>PoD data current as of 2025-12-24 11:51:16</p>
+                </div>
+            </div>
+            
+            
+    <script>
+        // Collapsible functionality
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.display === "block") {
+                    content.style.display = "none";
+                } else {
+                    content.style.display = "block";
+                }
+                
+                // Toggle icons
+                var openIcon = this.querySelector('.open-icon');
+                var closeIcon = this.querySelector('.close-icon');
+                if (openIcon && closeIcon) {
+                    openIcon.classList.toggle('hidden');
+                    closeIcon.classList.toggle('hidden');
+                }
+            });
+        }
+
+        // Character popup functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const hoverTriggers = document.querySelectorAll('.hover-trigger');
+            
+            hoverTriggers.forEach(trigger => {
+                trigger.addEventListener('mouseenter', function() {
+                    const characterName = this.getAttribute('data-character-name');
+                    const popup = this.nextElementSibling.querySelector('.popup');
+                    
+                    if (popup && !popup.classList.contains('loaded')) {
+                        fetch(`https://beta.pathofdiablo.com/armory?name=${characterName}`)
+                            .then(response => response.text())
+                            .then(html => {
+                                popup.innerHTML = html;
+                                popup.classList.add('loaded');
+                                popup.classList.remove('hidden');
+                            })
+                            .catch(error => {
+                                console.error('Error loading character data:', error);
+                            });
+                    } else if (popup) {
+                        popup.classList.remove('hidden');
+                    }
+                });
+                
+                trigger.addEventListener('mouseleave', function() {
+                    const popup = this.nextElementSibling.querySelector('.popup');
+                    if (popup) {
+                        setTimeout(() => {
+                            popup.classList.add('hidden');
+                        }, 200);
+                    }
+                });
+            });
+        });
+    </script>
+    
+        </body>
+        </html>
+        
