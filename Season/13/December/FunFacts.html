@@ -1,0 +1,1158 @@
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>PoD Fun Facts & Statistics</title>
+            <link rel="shortcut icon" type="image/x-icon" href="../../../icons/pod.ico">
+            <link rel="stylesheet" type="text/css" href="./css/test-css.css">
+        </head>
+        <body class="special-background">
+            <div class="is-clipped">
+                <div id="navbar-placeholder"></div>
+                <script>
+                fetch("templates/navbar.html")
+                    .then(res => res.text())
+                    .then(html => {
+                    document.getElementById("navbar-placeholder").innerHTML = html;
+                    });
+                </script>
+
+                <div class="hamburger" onclick="toggleMenu()">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+                
+                <div class="top-buttons">
+                    <a href="Home" class="top-button home-button" onclick="setActive('Home')"></a>
+                    <a href="#" id="SC_HC" class="top-button"> </a>
+                    <a href="Amazon" id="Amazon" class="top-button amazon-button"></a>
+                    <a href="Assassin" id="Assassin" class="top-button assassin-button"></a>
+                    <a href="Barbarian" id="Barbarian" class="top-button barbarian-button"></a>
+                    <a href="Druid" id="Druid" class="top-button druid-button"></a>
+                    <a href="Necromancer" id="Necromancer" class="top-button necromancer-button"></a>
+                    <a href="Paladin" id="Paladin" class="top-button paladin-button"></a>
+                    <a href="Sorceress" id="Sorceress" class="top-button sorceress-button"></a>
+                    <a href="https://github.com/qordwasalreadytaken/pod-stats/blob/main/README.md" class="top-button about-button" target="_blank"></a>
+                </div>
+
+                <div class="banner" style="top:50px; left:10%; width:80%;">
+                    ⚠️ This is a test site for PoD's Trends site. Please direct any feedback to Qord. ⚠️
+                </div>
+
+                <div class="banner" style="top:50px; left:25%; width:50%;">
+            Viewing Post Season 13 historical data from the end of December
+        </div>
+
+                <div class="main page-intro">
+                    <h1>PoD FUN FACTS & STATISTICS</h1>
+                    <h2>Interesting statistics and patterns from ladder characters</h2>
+
+                    
+        <h2 id="top-1k-class-distribution">
+            Top 1,000 Ladder Class Distribution
+            <a href="#top-1k-class-distribution" class="anchor-link">
+                <img src="../../../icons/anchor.png" alt="🔗" class="anchor-icon">
+            </a>
+        </h2>
+        <h3>Looking at the class distribution for the ladders top 1,000 characters shows which classes are played for longer, a measure of which classes are more popular in the endgame</h3>
+        <div>
+            <img src="charts/sc_1kclass_distribution.png">
+        </div>
+        
+                    
+                    <hr>
+                                        
+                    
+        <h2 id="overview">
+            Ladder Statistics Overview
+            <a href="#overview" class="anchor-link">
+                <img src="../../../icons/anchor.png" alt="🔗" class="anchor-icon">
+            </a>
+        </h2>
+        <div class="fun-facts-row">
+            <div class="fun-facts-column">
+                <h3>Total Characters Analyzed: 1,449</h3>
+                <p>The analysis below includes data from all ranked ladder characters</p>
+            </div>
+        </div>
+        
+                    
+                    <hr>
+                    
+                    
+        <h2 id="top-builds">
+            Top 10 Most Popular Builds
+            <a href="#top-builds" class="anchor-link">
+                <img src="../../../icons/anchor.png" alt="🔗" class="anchor-icon">
+            </a>
+        </h2>
+        <p>The most popular character builds across all classes (Level 80+), determined by analyzing skill point allocation and build similarity.</p>
+        
+        <div class="top-builds-container">
+            
+            <div class="build-item" style="background-color: #2a2a2a; margin: 8px 0; padding: 12px; border-radius: 6px; border-left: 3px solid rgb(255, 255, 255);">
+                <h3 style="margin: 0 0 5px 0;">
+                    #1 - Assassin: Wake of Fire / Wake of Inferno / Fire Blast
+                </h3>
+                <div style="color: #cccccc; margin-bottom: 5px; font-size: 14px;">
+                    <strong>110 players</strong> (57.0% of all Assassins)
+                </div>
+                <div>
+                    <strong>Key Skills:</strong><br>
+                    Wake of Fire: 20.0 avg points<br>Wake of Inferno: 20.0 avg points<br>Fire Blast: 19.9 avg points<br>Blade Shield: 16.5 avg points<br>Blade Fury: 7.1 avg points
+                </div>
+            </div>
+            <br>
+            
+            <div class="build-item" style="background-color: #2a2a2a; margin: 8px 0; padding: 12px; border-radius: 6px; border-left: 3px solid rgb(179, 255, 253);">
+                <h3 style="margin: 0 0 5px 0;">
+                    #2 - Necromancer: Iron Maiden / Life Tap / Hemorrhage
+                </h3>
+                <div style="color: #cccccc; margin-bottom: 5px; font-size: 14px;">
+                    <strong>90 players</strong> (41.3% of all Necromancers)
+                </div>
+                <div>
+                    <strong>Key Skills:</strong><br>
+                    Iron Maiden: 20.0 avg points<br>Life Tap: 20.0 avg points<br>Hemorrhage: 20.0 avg points<br>Weaken: 19.9 avg points<br>Summon Mastery: 6.2 avg points
+                </div>
+            </div>
+            <br>
+            
+            <div class="build-item" style="background-color: #2a2a2a; margin: 8px 0; padding: 12px; border-radius: 6px; border-left: 3px solid rgb(188, 107, 255);">
+                <h3 style="margin: 0 0 5px 0;">
+                    #3 - Sorceress: Lightning Mastery / Teleport / Thunder Storm
+                </h3>
+                <div style="color: #cccccc; margin-bottom: 5px; font-size: 14px;">
+                    <strong>74 players</strong> (27.3% of all Sorceresss)
+                </div>
+                <div>
+                    <strong>Key Skills:</strong><br>
+                    Lightning Mastery: 19.4 avg points<br>Teleport: 19.0 avg points<br>Thunder Storm: 18.6 avg points<br>Telekinesis: 18.4 avg points<br>Lightning Surge: 15.8 avg points
+                </div>
+            </div>
+            <br>
+            
+            <div class="build-item" style="background-color: #2a2a2a; margin: 8px 0; padding: 12px; border-radius: 6px; border-left: 3px solid rgb(179, 255, 253);">
+                <h3 style="margin: 0 0 5px 0;">
+                    #4 - Necromancer: Summon Mastery / Fire Golem / Corpse Explosion
+                </h3>
+                <div style="color: #cccccc; margin-bottom: 5px; font-size: 14px;">
+                    <strong>56 players</strong> (25.7% of all Necromancers)
+                </div>
+                <div>
+                    <strong>Key Skills:</strong><br>
+                    Summon Mastery: 19.9 avg points<br>Fire Golem: 19.6 avg points<br>Corpse Explosion: 18.2 avg points<br>Convocation: 16.4 avg points<br>Raise Skeleton Warrior: 6.4 avg points
+                </div>
+            </div>
+            <br>
+            
+            <div class="build-item" style="background-color: #2a2a2a; margin: 8px 0; padding: 12px; border-radius: 6px; border-left: 3px solid rgb(150, 105, 32);">
+                <h3 style="margin: 0 0 5px 0;">
+                    #5 - Barbarian: Whirling Axes / Double Swing / Battle Cry
+                </h3>
+                <div style="color: #cccccc; margin-bottom: 5px; font-size: 14px;">
+                    <strong>52 players</strong> (27.4% of all Barbarians)
+                </div>
+                <div>
+                    <strong>Key Skills:</strong><br>
+                    Whirling Axes: 20.0 avg points<br>Double Swing: 19.4 avg points<br>Battle Cry: 19.4 avg points<br>Grim Ward: 13.0 avg points<br>Battle Orders: 4.1 avg points
+                </div>
+            </div>
+            <br>
+            
+            <div class="build-item" style="background-color: #2a2a2a; margin: 8px 0; padding: 12px; border-radius: 6px; border-left: 3px solid rgb(255, 186, 74);">
+                <h3 style="margin: 0 0 5px 0;">
+                    #6 - Druid: Summon Dire Wolf / Rabies / Poison Creeper
+                </h3>
+                <div style="color: #cccccc; margin-bottom: 5px; font-size: 14px;">
+                    <strong>42 players</strong> (22.1% of all Druids)
+                </div>
+                <div>
+                    <strong>Key Skills:</strong><br>
+                    Summon Dire Wolf: 20.0 avg points<br>Rabies: 20.0 avg points<br>Poison Creeper: 19.6 avg points<br>Lycanthropy: 17.6 avg points<br>Oak Sage: 10.3 avg points
+                </div>
+            </div>
+            <br>
+            
+            <div class="build-item" style="background-color: #2a2a2a; margin: 8px 0; padding: 12px; border-radius: 6px; border-left: 3px solid rgb(255, 243, 112);">
+                <h3 style="margin: 0 0 5px 0;">
+                    #7 - Paladin: Fist of the Heavens / Holy Bolt / Holy Shock
+                </h3>
+                <div style="color: #cccccc; margin-bottom: 5px; font-size: 14px;">
+                    <strong>42 players</strong> (21.5% of all Paladins)
+                </div>
+                <div>
+                    <strong>Key Skills:</strong><br>
+                    Fist of the Heavens: 20.0 avg points<br>Holy Bolt: 19.8 avg points<br>Holy Shock: 16.6 avg points<br>Holy Shield: 13.4 avg points<br>Sanctuary: 8.8 avg points
+                </div>
+            </div>
+            <br>
+            
+            <div class="build-item" style="background-color: #2a2a2a; margin: 8px 0; padding: 12px; border-radius: 6px; border-left: 3px solid rgb(255, 102, 105);">
+                <h3 style="margin: 0 0 5px 0;">
+                    #8 - Amazon: Immolation Arrow / Fire Arrow / Multiple Shot
+                </h3>
+                <div style="color: #cccccc; margin-bottom: 5px; font-size: 14px;">
+                    <strong>38 players</strong> (19.8% of all Amazons)
+                </div>
+                <div>
+                    <strong>Key Skills:</strong><br>
+                    Immolation Arrow: 19.8 avg points<br>Fire Arrow: 18.8 avg points<br>Multiple Shot: 17.9 avg points<br>Lethal Strike: 12.9 avg points<br>Exploding Arrow: 8.9 avg points
+                </div>
+            </div>
+            <br>
+            
+            <div class="build-item" style="background-color: #2a2a2a; margin: 8px 0; padding: 12px; border-radius: 6px; border-left: 3px solid rgb(255, 102, 105);">
+                <h3 style="margin: 0 0 5px 0;">
+                    #9 - Amazon: Cold Arrow / Ice Arrow / Freezing Arrow
+                </h3>
+                <div style="color: #cccccc; margin-bottom: 5px; font-size: 14px;">
+                    <strong>35 players</strong> (18.2% of all Amazons)
+                </div>
+                <div>
+                    <strong>Key Skills:</strong><br>
+                    Cold Arrow: 20.0 avg points<br>Ice Arrow: 19.2 avg points<br>Freezing Arrow: 18.7 avg points<br>Immolation Arrow: 8.9 avg points<br>Fire Arrow: 7.9 avg points
+                </div>
+            </div>
+            <br>
+            
+            <div class="build-item" style="background-color: #2a2a2a; margin: 8px 0; padding: 12px; border-radius: 6px; border-left: 3px solid rgb(255, 186, 74);">
+                <h3 style="margin: 0 0 5px 0;">
+                    #10 - Druid: Maul / Lycanthropy / Shock Wave
+                </h3>
+                <div style="color: #cccccc; margin-bottom: 5px; font-size: 14px;">
+                    <strong>32 players</strong> (16.8% of all Druids)
+                </div>
+                <div>
+                    <strong>Key Skills:</strong><br>
+                    Maul: 19.7 avg points<br>Lycanthropy: 19.6 avg points<br>Shock Wave: 19.4 avg points<br>Werebear: 18.6 avg points<br>Oak Sage: 8.7 avg points
+                </div>
+            </div>
+            <br>
+            
+        </div>
+        
+                    
+                    <hr>
+                    
+                    
+        <h2 id="top-account-stats">
+            Top Account Statistics 
+            <a href="#top-account-stats" class="anchor-link">
+                <img src="../../../icons/anchor.png" alt="🔗" class="anchor-icon">
+            </a>
+        </h2>
+
+        <!-- Level 95+ Summary -->
+        <div class="fun-facts-row">
+            <div class="fun-facts-column">
+                <h4>High-Level Character Counts</h4>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;">
+                    <div style='color: #ccc; margin: 4px 0;'>Level 99: 24 characters</div><div style='color: #ccc; margin: 4px 0;'>Level 98: 25 characters</div><div style='color: #ccc; margin: 4px 0;'>Level 97: 51 characters</div><div style='color: #ccc; margin: 4px 0;'>Level 96: 90 characters</div><div style='color: #ccc; margin: 4px 0;'>Level 95: 121 characters</div>
+                </div>
+            </div>
+        <!-- Level 99 Accounts -->
+            <div class="fun-facts-column">
+                <h4>Top Accounts by Number of Level 99 Characters</h4>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;">
+                    <div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/ladder?account=fugged'>fugged</a>: 3 characters at level 99</div><div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/ladder?account=mackanmusic'>mackanmusic</a>: 2 characters at level 99</div><div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/ladder?account=sabian'>sabian</a>: 2 characters at level 99</div>
+                </div>
+            </div>
+        </div>
+
+        
+                <h3 style="margin-top: 20px;">Class-Specific Ladder Leaders (Top 5)</h3>
+                <p style="color: #ccc; margin-bottom: 12px;">Accounts with multiple characters in the top 5 of the same class ladder.</p>
+                
+                    <div style="margin: 12px 0;">
+                        <h3 style="margin: 10px 0;">Barbarian Ladder Dominance</h3>
+                        
+                    <div style="margin: 6px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px; border-left: 4px solid rgb(150, 105, 32);">
+                        <div>
+                            <a href='https://beta.pathofdiablo.com/ladder?account=Sethy' target='_blank' 
+                               style="font-size: 16px; font-weight: bold; color: #ffffff;">Sethy</a>
+                            <span style="color: #888; font-size: 14px; margin-left: 10px;">
+                                (3 characters in top 5)
+                            </span>
+                        </div>
+                        <div style="color: #aaa; font-size: 13px; margin-top: 6px;">
+                            <a href="https://beta.pathofdiablo.com/armory?name=sethius" target="_blank" style="color: #bbb;">#2 sethius</a> (Level 98), <a href="https://beta.pathofdiablo.com/armory?name=sethixus" target="_blank" style="color: #bbb;">#3 sethixus</a> (Level 98), <a href="https://beta.pathofdiablo.com/armory?name=sethicus" target="_blank" style="color: #bbb;">#5 sethicus</a> (Level 98)
+                        </div>
+                    </div>
+                    
+                    </div>
+                    
+                    <div style="margin: 12px 0;">
+                        <h3 style="margin: 10px 0;">Druid Ladder Dominance</h3>
+                        
+                    <div style="margin: 6px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px; border-left: 4px solid rgb(255, 186, 74);">
+                        <div>
+                            <a href='https://beta.pathofdiablo.com/ladder?account=Sethy' target='_blank' 
+                               style="font-size: 16px; font-weight: bold; color: #ffffff;">Sethy</a>
+                            <span style="color: #888; font-size: 14px; margin-left: 10px;">
+                                (3 characters in top 5)
+                            </span>
+                        </div>
+                        <div style="color: #aaa; font-size: 13px; margin-top: 6px;">
+                            <a href="https://beta.pathofdiablo.com/armory?name=sethion" target="_blank" style="color: #bbb;">#3 sethion</a> (Level 97), <a href="https://beta.pathofdiablo.com/armory?name=sethionas" target="_blank" style="color: #bbb;">#4 sethionas</a> (Level 97), <a href="https://beta.pathofdiablo.com/armory?name=sethionus" target="_blank" style="color: #bbb;">#5 sethionus</a> (Level 97)
+                        </div>
+                    </div>
+                    
+                    </div>
+                    
+                    <div style="margin: 12px 0;">
+                        <h3 style="margin: 10px 0;">Paladin Ladder Dominance</h3>
+                        
+                    <div style="margin: 6px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px; border-left: 4px solid rgb(255, 243, 112);">
+                        <div>
+                            <a href='https://beta.pathofdiablo.com/ladder?account=Sethy' target='_blank' 
+                               style="font-size: 16px; font-weight: bold; color: #ffffff;">Sethy</a>
+                            <span style="color: #888; font-size: 14px; margin-left: 10px;">
+                                (3 characters in top 5)
+                            </span>
+                        </div>
+                        <div style="color: #aaa; font-size: 13px; margin-top: 6px;">
+                            <a href="https://beta.pathofdiablo.com/armory?name=sethias" target="_blank" style="color: #bbb;">#3 sethias</a> (Level 98), <a href="https://beta.pathofdiablo.com/armory?name=sethigon" target="_blank" style="color: #bbb;">#4 sethigon</a> (Level 98), <a href="https://beta.pathofdiablo.com/armory?name=sethior" target="_blank" style="color: #bbb;">#5 sethior</a> (Level 98)
+                        </div>
+                    </div>
+                    
+                    </div>
+                    
+                    <div style="margin: 12px 0;">
+                        <h3 style="margin: 10px 0;">Sorceress Ladder Dominance</h3>
+                        
+                    <div style="margin: 6px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px; border-left: 4px solid rgb(188, 107, 255);">
+                        <div>
+                            <a href='https://beta.pathofdiablo.com/ladder?account=fugged' target='_blank' 
+                               style="font-size: 16px; font-weight: bold; color: #ffffff;">fugged</a>
+                            <span style="color: #888; font-size: 14px; margin-left: 10px;">
+                                (2 characters in top 5)
+                            </span>
+                        </div>
+                        <div style="color: #aaa; font-size: 13px; margin-top: 6px;">
+                            <a href="https://beta.pathofdiablo.com/armory?name=thunderballz" target="_blank" style="color: #bbb;">#2 thunderballz</a> (Level 99), <a href="https://beta.pathofdiablo.com/armory?name=sorkeys" target="_blank" style="color: #bbb;">#3 sorkeys</a> (Level 99)
+                        </div>
+                    </div>
+                    
+                    </div>
+                    
+                
+
+        <br>
+        <!-- Per-Class Top 1K Lists -->
+        <h3 style="margin-top: 20px;">Accounts with Multiple Characters in Top 1K</h3>
+        <div class="fun-facts-row">
+            <div class="fun-facts-column">
+                <h4>Amazons</h4>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px; border-left: 4px solid rgb(255, 102, 105);">
+                    <div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/Doomlord'>Doomlord</a>: 2 Amazons</div><div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/fugged'>fugged</a>: 2 Amazons</div><div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/eye1'>eye1</a>: 2 Amazons</div><div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/Mavina'>Mavina</a>: 2 Amazons</div><div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/artesia'>artesia</a>: 2 Amazons</div>
+                </div>
+            </div>
+            <div class="fun-facts-column">
+                <h4>Assassins</h4>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px; border-left: 4px solid rgb(255, 255, 255);">
+                    <div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/sabian'>sabian</a>: 2 Assassins</div><div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/fugged'>fugged</a>: 2 Assassins</div><div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/vpgorman'>vpgorman</a>: 2 Assassins</div><div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/Beavvis'>Beavvis</a>: 2 Assassins</div><div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/Cripler'>Cripler</a>: 2 Assassins</div>
+                </div>
+            </div>
+        </div>
+        <div class="fun-facts-row">
+            <div class="fun-facts-column">
+                <h4>Barbarians</h4>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px; border-left: 4px solid rgb(150, 105, 32);">
+                    <div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/Sethy'>Sethy</a>: 3 Barbarians</div><div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/ArtD'>ArtD</a>: 2 Barbarians</div><div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/petrovi4'>petrovi4</a>: 2 Barbarians</div><div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/skelton'>skelton</a>: 2 Barbarians</div><div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/zardoz13'>zardoz13</a>: 2 Barbarians</div>
+                </div>
+            </div>
+            <div class="fun-facts-column">
+                <h4>Druids</h4>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px; border-left: 4px solid rgb(255, 186, 74);">
+                    <div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/Sethy'>Sethy</a>: 3 Druids</div><div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/zardoz13'>zardoz13</a>: 3 Druids</div><div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/ArtD'>ArtD</a>: 2 Druids</div><div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/petrovi4'>petrovi4</a>: 2 Druids</div><div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/Cripler'>Cripler</a>: 2 Druids</div>
+                </div>
+            </div>
+        </div>
+        <div class="fun-facts-row">
+            <div class="fun-facts-column">
+                <h4>Necromancers</h4>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px; border-left: 4px solid rgb(179, 255, 253);">
+                    <div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/zardoz13'>zardoz13</a>: 5 Necromancers</div><div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/ser8328'>ser8328</a>: 3 Necromancers</div><div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/eye1'>eye1</a>: 2 Necromancers</div><div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/ArtD'>ArtD</a>: 2 Necromancers</div><div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/lebenssele'>lebenssele</a>: 2 Necromancers</div>
+                </div>
+            </div>
+            <div class="fun-facts-column">
+                <h4>Paladins</h4>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px; border-left: 4px solid rgb(255, 243, 112);">
+                    <div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/Sethy'>Sethy</a>: 3 Paladins</div><div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/NotRaken'>NotRaken</a>: 2 Paladins</div><div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/eye1'>eye1</a>: 2 Paladins</div><div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/ArtD'>ArtD</a>: 2 Paladins</div><div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/Cripler'>Cripler</a>: 2 Paladins</div>
+                </div>
+            </div>
+        </div>
+        <div class="fun-facts-row">
+            <div class="fun-facts-column">
+                <h4>Sorceresses</h4>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px; border-left: 4px solid rgb(188, 107, 255);">
+                    <div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/fugged'>fugged</a>: 5 Sorceresses</div><div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/skelton'>skelton</a>: 4 Sorceresses</div><div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/zardoz13'>zardoz13</a>: 4 Sorceresses</div><div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/esgtroll'>esgtroll</a>: 3 Sorceresses</div><div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/petrovi4'>petrovi4</a>: 3 Sorceresses</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- All 7 Classes -->
+        <h3 style="margin-top: 20px;">Accounts with all 7 classes in the top 1K</h3>
+        <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;">
+            <p style="color: #ccc;">1 accounts: <a href='https://beta.pathofdiablo.com/ladder?account=eye1'>eye1</a></p>
+        </div>
+
+        <br>
+        <!-- XP / Level / Count -->
+        <h3 style="margin-top: 20px;">Top Accounts by Metrics</h3>
+        <div class="fun-facts-row">
+            <div class="fun-facts-column">
+                <h4>Most Experience</h4>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;">
+                    <div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/fugged'>fugged</a>: 35,555,615,133 XP, 12 chars, avg level 96.58</div><div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/Sethy'>Sethy</a>: 34,437,747,709 XP, 11 chars, avg level 97.36</div><div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/zardoz13'>zardoz13</a>: 30,620,301,168 XP, 15 chars, avg level 92.00</div><div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/eye1'>eye1</a>: 27,563,870,031 XP, 11 chars, avg level 94.55</div><div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/ArtD'>ArtD</a>: 26,941,479,051 XP, 11 chars, avg level 94.36</div>
+                </div>
+            </div>
+            <div class="fun-facts-column">
+                <h4>Most Total Levels</h4>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;">
+                    <div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/zardoz13'>zardoz13</a>: 1380 levels, 15 chars, avg level 92.00</div><div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/fugged'>fugged</a>: 1159 levels, 12 chars, avg level 96.58</div><div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/Sethy'>Sethy</a>: 1071 levels, 11 chars, avg level 97.36</div><div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/eye1'>eye1</a>: 1040 levels, 11 chars, avg level 94.55</div><div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/ArtD'>ArtD</a>: 1038 levels, 11 chars, avg level 94.36</div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 12px;">
+            <h4>Most Characters in Top 1K</h4>
+            <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;">
+                <div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/zardoz13'>zardoz13</a>: 15 characters, total level 1380, avg level 92.00</div><div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/fugged'>fugged</a>: 12 characters, total level 1159, avg level 96.58</div><div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/eye1'>eye1</a>: 11 characters, total level 1040, avg level 94.55</div><div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/Sethy'>Sethy</a>: 11 characters, total level 1071, avg level 97.36</div><div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/ArtD'>ArtD</a>: 11 characters, total level 1038, avg level 94.36</div><div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/petrovi4'>petrovi4</a>: 10 characters, total level 946, avg level 94.60</div><div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/Cripler'>Cripler</a>: 10 characters, total level 941, avg level 94.10</div><div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/skelton'>skelton</a>: 9 characters, total level 848, avg level 94.22</div><div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/Beavvis'>Beavvis</a>: 7 characters, total level 665, avg level 95.00</div><div style='color: #ccc; margin: 4px 0;'><a href='https://beta.pathofdiablo.com/account/artesia'>artesia</a>: 7 characters, total level 658, avg level 94.00</div>
+            </div>
+        </div>
+        <br>
+        
+                    
+                    <hr>
+                    
+                    
+        <h2 id="respec-leaderboard">
+            Most Respecs / Tokens Used
+            <a href="#respec-leaderboard" class="anchor-link">
+                <img src="../../../icons/anchor.png" alt="🔗" class="anchor-icon">
+            </a>
+        </h2>
+        <p>Characters who have used the most respec tokens to reset their skills and stats, based on observations of skill/stat points being decreased.</p>
+        
+        <div class="fun-facts-row">
+            <div class="fun-facts-column">
+                <h3>Top Respecced Characters</h3>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;">
+                    <div style='color: #ccc; margin: 4px 0;'>
+                            <a href="https://beta.pathofdiablo.com/armory?name=versabi" target="_blank">versabi</a>: 
+                            4 respecs 
+<!--                            (183 skill points, 0 stat points reset) -->
+                        </div><div style='color: #ccc; margin: 4px 0;'>
+                            <a href="https://beta.pathofdiablo.com/armory?name=nythera" target="_blank">nythera</a>: 
+                            4 respecs 
+<!--                            (106 skill points, 0 stat points reset) -->
+                        </div><div style='color: #ccc; margin: 4px 0;'>
+                            <a href="https://beta.pathofdiablo.com/armory?name=pbicb" target="_blank">pbicb</a>: 
+                            4 respecs 
+<!--                            (76 skill points, 0 stat points reset) -->
+                        </div><div style='color: #ccc; margin: 4px 0;'>
+                            <a href="https://beta.pathofdiablo.com/armory?name=sethikeyira" target="_blank">sethikeyira</a>: 
+                            3 respecs 
+<!--                            (224 skill points, 0 stat points reset) -->
+                        </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        
+                    
+                    <hr>
+                  
+                    
+        <h2 id="undead-characters">
+            Undead Characters
+            <a href="#undead-characters" class="anchor-link">
+                <img src="../../../icons/anchor.png" alt="🔗" class="anchor-icon">
+            </a>
+        </h2>
+        <h3>16 Characters have not died</h3>
+        <button type="button" class="collapsible small-collapsible">
+            <img src="../../../icons/open.png" alt="Undead Open" class="icon-small open-icon hidden">
+            <img src="../../../icons/closed.png" alt="Undead Close" class="icon-small close-icon">
+            <strong>View Undead Characters</strong>
+        </button>
+        <div class="content" style="display: none;">  
+            <div id="undead">
+            <div class="character-info">
+                <div class="character-link">
+                    <a href="https://beta.pathofdiablo.com/armory?name=Beatrix-Kiddo" target="_blank">
+                        Beatrix-Kiddo
+                    </a>
+                </div>
+                <div>Level 97 Assassin</div>
+                <div class="hover-trigger" data-character-name="Beatrix-Kiddo"></div>
+            </div>
+            <div class="character">
+                <div class="popup hidden"></div>
+            </div>
+            
+            <div class="character-info">
+                <div class="character-link">
+                    <a href="https://beta.pathofdiablo.com/armory?name=Tharsh" target="_blank">
+                        Tharsh
+                    </a>
+                </div>
+                <div>Level 96 Barbarian</div>
+                <div class="hover-trigger" data-character-name="Tharsh"></div>
+            </div>
+            <div class="character">
+                <div class="popup hidden"></div>
+            </div>
+            
+            <div class="character-info">
+                <div class="character-link">
+                    <a href="https://beta.pathofdiablo.com/armory?name=DrArt" target="_blank">
+                        DrArt
+                    </a>
+                </div>
+                <div>Level 95 Druid</div>
+                <div class="hover-trigger" data-character-name="DrArt"></div>
+            </div>
+            <div class="character">
+                <div class="popup hidden"></div>
+            </div>
+            
+            <div class="character-info">
+                <div class="character-link">
+                    <a href="https://beta.pathofdiablo.com/armory?name=AspireToInspire" target="_blank">
+                        AspireToInspire
+                    </a>
+                </div>
+                <div>Level 94 Necromancer</div>
+                <div class="hover-trigger" data-character-name="AspireToInspire"></div>
+            </div>
+            <div class="character">
+                <div class="popup hidden"></div>
+            </div>
+            
+            <div class="character-info">
+                <div class="character-link">
+                    <a href="https://beta.pathofdiablo.com/armory?name=memi_nec" target="_blank">
+                        memi_nec
+                    </a>
+                </div>
+                <div>Level 94 Necromancer</div>
+                <div class="hover-trigger" data-character-name="memi_nec"></div>
+            </div>
+            <div class="character">
+                <div class="popup hidden"></div>
+            </div>
+            
+            <div class="character-info">
+                <div class="character-link">
+                    <a href="https://beta.pathofdiablo.com/armory?name=Soul_collector" target="_blank">
+                        Soul_collector
+                    </a>
+                </div>
+                <div>Level 92 Necromancer</div>
+                <div class="hover-trigger" data-character-name="Soul_collector"></div>
+            </div>
+            <div class="character">
+                <div class="popup hidden"></div>
+            </div>
+            
+            <div class="character-info">
+                <div class="character-link">
+                    <a href="https://beta.pathofdiablo.com/armory?name=Grimluck" target="_blank">
+                        Grimluck
+                    </a>
+                </div>
+                <div>Level 92 Barbarian</div>
+                <div class="hover-trigger" data-character-name="Grimluck"></div>
+            </div>
+            <div class="character">
+                <div class="popup hidden"></div>
+            </div>
+            
+            <div class="character-info">
+                <div class="character-link">
+                    <a href="https://beta.pathofdiablo.com/armory?name=CTaDoBoD" target="_blank">
+                        CTaDoBoD
+                    </a>
+                </div>
+                <div>Level 92 Druid</div>
+                <div class="hover-trigger" data-character-name="CTaDoBoD"></div>
+            </div>
+            <div class="character">
+                <div class="popup hidden"></div>
+            </div>
+            
+            <div class="character-info">
+                <div class="character-link">
+                    <a href="https://beta.pathofdiablo.com/armory?name=Titties" target="_blank">
+                        Titties
+                    </a>
+                </div>
+                <div>Level 91 Sorceress</div>
+                <div class="hover-trigger" data-character-name="Titties"></div>
+            </div>
+            <div class="character">
+                <div class="popup hidden"></div>
+            </div>
+            
+            <div class="character-info">
+                <div class="character-link">
+                    <a href="https://beta.pathofdiablo.com/armory?name=TooFatToFly" target="_blank">
+                        TooFatToFly
+                    </a>
+                </div>
+                <div>Level 91 Necromancer</div>
+                <div class="hover-trigger" data-character-name="TooFatToFly"></div>
+            </div>
+            <div class="character">
+                <div class="popup hidden"></div>
+            </div>
+            
+            <div class="character-info">
+                <div class="character-link">
+                    <a href="https://beta.pathofdiablo.com/armory?name=Asmorahn" target="_blank">
+                        Asmorahn
+                    </a>
+                </div>
+                <div>Level 90 Assassin</div>
+                <div class="hover-trigger" data-character-name="Asmorahn"></div>
+            </div>
+            <div class="character">
+                <div class="popup hidden"></div>
+            </div>
+            
+            <div class="character-info">
+                <div class="character-link">
+                    <a href="https://beta.pathofdiablo.com/armory?name=MoTaHkA" target="_blank">
+                        MoTaHkA
+                    </a>
+                </div>
+                <div>Level 90 Assassin</div>
+                <div class="hover-trigger" data-character-name="MoTaHkA"></div>
+            </div>
+            <div class="character">
+                <div class="popup hidden"></div>
+            </div>
+            
+            <div class="character-info">
+                <div class="character-link">
+                    <a href="https://beta.pathofdiablo.com/armory?name=Barbacore" target="_blank">
+                        Barbacore
+                    </a>
+                </div>
+                <div>Level 90 Barbarian</div>
+                <div class="hover-trigger" data-character-name="Barbacore"></div>
+            </div>
+            <div class="character">
+                <div class="popup hidden"></div>
+            </div>
+            
+            <div class="character-info">
+                <div class="character-link">
+                    <a href="https://beta.pathofdiablo.com/armory?name=oi_oi" target="_blank">
+                        oi_oi
+                    </a>
+                </div>
+                <div>Level 90 Druid</div>
+                <div class="hover-trigger" data-character-name="oi_oi"></div>
+            </div>
+            <div class="character">
+                <div class="popup hidden"></div>
+            </div>
+            
+            <div class="character-info">
+                <div class="character-link">
+                    <a href="https://beta.pathofdiablo.com/armory?name=FuryARt" target="_blank">
+                        FuryARt
+                    </a>
+                </div>
+                <div>Level 89 Druid</div>
+                <div class="hover-trigger" data-character-name="FuryARt"></div>
+            </div>
+            <div class="character">
+                <div class="popup hidden"></div>
+            </div>
+            
+            <div class="character-info">
+                <div class="character-link">
+                    <a href="https://beta.pathofdiablo.com/armory?name=Crowfoot" target="_blank">
+                        Crowfoot
+                    </a>
+                </div>
+                <div>Level 88 Druid</div>
+                <div class="hover-trigger" data-character-name="Crowfoot"></div>
+            </div>
+            <div class="character">
+                <div class="popup hidden"></div>
+            </div>
+            </div>
+        </div>
+        
+                    
+                    <hr>
+                    
+                    
+        <h2 id="cbf-analysis">
+            Cannot Be Frozen Analysis
+            <a href="#cbf-analysis" class="anchor-link">
+                <img src="../../../icons/anchor.png" alt="🔗" class="anchor-icon">
+            </a>
+        </h2>
+        <h3>22 Characters achieve Cannot Be Frozen through 2 or more sources of Half Freeze Duration</h3>
+        <button type="button" class="collapsible small-collapsible">
+            <img src="../../../icons/open.png" alt="CBF Open" class="icon-small open-icon hidden">
+            <img src="../../../icons/closed.png" alt="CBF Close" class="icon-small close-icon">
+            <strong>View Characters with CBF from Multiple Sources of Half Freeze</strong>
+        </button>
+        <div class="content" style="display: none;">
+            <div id="cbf-missing">
+            <div class="character-info">
+                <div class="character-link">
+                    <a href="https://beta.pathofdiablo.com/armory?name=ZephyraBlair" target="_blank">ZephyraBlair</a>
+                </div>
+                <div>Level 99 Amazon</div>
+                <div class="hover-trigger" data-character-name="ZephyraBlair"></div>
+            </div>
+            <div class="character">
+                <div class="popup hidden"></div>
+            </div>
+            
+            <div class="character-info">
+                <div class="character-link">
+                    <a href="https://beta.pathofdiablo.com/armory?name=SCplebsMack" target="_blank">SCplebsMack</a>
+                </div>
+                <div>Level 99 Amazon</div>
+                <div class="hover-trigger" data-character-name="SCplebsMack"></div>
+            </div>
+            <div class="character">
+                <div class="popup hidden"></div>
+            </div>
+            
+            <div class="character-info">
+                <div class="character-link">
+                    <a href="https://beta.pathofdiablo.com/armory?name=Wisdom-EL" target="_blank">Wisdom-EL</a>
+                </div>
+                <div>Level 98 Sorceress</div>
+                <div class="hover-trigger" data-character-name="Wisdom-EL"></div>
+            </div>
+            <div class="character">
+                <div class="popup hidden"></div>
+            </div>
+            
+            <div class="character-info">
+                <div class="character-link">
+                    <a href="https://beta.pathofdiablo.com/armory?name=Ama-mao" target="_blank">Ama-mao</a>
+                </div>
+                <div>Level 97 Amazon</div>
+                <div class="hover-trigger" data-character-name="Ama-mao"></div>
+            </div>
+            <div class="character">
+                <div class="popup hidden"></div>
+            </div>
+            
+            <div class="character-info">
+                <div class="character-link">
+                    <a href="https://beta.pathofdiablo.com/armory?name=BALLS" target="_blank">BALLS</a>
+                </div>
+                <div>Level 96 Sorceress</div>
+                <div class="hover-trigger" data-character-name="BALLS"></div>
+            </div>
+            <div class="character">
+                <div class="popup hidden"></div>
+            </div>
+            
+            <div class="character-info">
+                <div class="character-link">
+                    <a href="https://beta.pathofdiablo.com/armory?name=SCplebsKgesus" target="_blank">SCplebsKgesus</a>
+                </div>
+                <div>Level 95 Sorceress</div>
+                <div class="hover-trigger" data-character-name="SCplebsKgesus"></div>
+            </div>
+            <div class="character">
+                <div class="popup hidden"></div>
+            </div>
+            
+            <div class="character-info">
+                <div class="character-link">
+                    <a href="https://beta.pathofdiablo.com/armory?name=aristotle" target="_blank">aristotle</a>
+                </div>
+                <div>Level 94 Assassin</div>
+                <div class="hover-trigger" data-character-name="aristotle"></div>
+            </div>
+            <div class="character">
+                <div class="popup hidden"></div>
+            </div>
+            
+            <div class="character-info">
+                <div class="character-link">
+                    <a href="https://beta.pathofdiablo.com/armory?name=Auro" target="_blank">Auro</a>
+                </div>
+                <div>Level 94 Paladin</div>
+                <div class="hover-trigger" data-character-name="Auro"></div>
+            </div>
+            <div class="character">
+                <div class="popup hidden"></div>
+            </div>
+            
+            <div class="character-info">
+                <div class="character-link">
+                    <a href="https://beta.pathofdiablo.com/armory?name=Ifeb" target="_blank">Ifeb</a>
+                </div>
+                <div>Level 94 Necromancer</div>
+                <div class="hover-trigger" data-character-name="Ifeb"></div>
+            </div>
+            <div class="character">
+                <div class="popup hidden"></div>
+            </div>
+            
+            <div class="character-info">
+                <div class="character-link">
+                    <a href="https://beta.pathofdiablo.com/armory?name=FarmDuriel" target="_blank">FarmDuriel</a>
+                </div>
+                <div>Level 93 Sorceress</div>
+                <div class="hover-trigger" data-character-name="FarmDuriel"></div>
+            </div>
+            <div class="character">
+                <div class="popup hidden"></div>
+            </div>
+            
+            <div class="character-info">
+                <div class="character-link">
+                    <a href="https://beta.pathofdiablo.com/armory?name=baba-mussang" target="_blank">baba-mussang</a>
+                </div>
+                <div>Level 92 Barbarian</div>
+                <div class="hover-trigger" data-character-name="baba-mussang"></div>
+            </div>
+            <div class="character">
+                <div class="popup hidden"></div>
+            </div>
+            
+            <div class="character-info">
+                <div class="character-link">
+                    <a href="https://beta.pathofdiablo.com/armory?name=Hard-Fisting" target="_blank">Hard-Fisting</a>
+                </div>
+                <div>Level 92 Paladin</div>
+                <div class="hover-trigger" data-character-name="Hard-Fisting"></div>
+            </div>
+            <div class="character">
+                <div class="popup hidden"></div>
+            </div>
+            
+            <div class="character-info">
+                <div class="character-link">
+                    <a href="https://beta.pathofdiablo.com/armory?name=pokeyourface" target="_blank">pokeyourface</a>
+                </div>
+                <div>Level 92 Amazon</div>
+                <div class="hover-trigger" data-character-name="pokeyourface"></div>
+            </div>
+            <div class="character">
+                <div class="popup hidden"></div>
+            </div>
+            
+            <div class="character-info">
+                <div class="character-link">
+                    <a href="https://beta.pathofdiablo.com/armory?name=eezdathuyrujsa" target="_blank">eezdathuyrujsa</a>
+                </div>
+                <div>Level 92 Paladin</div>
+                <div class="hover-trigger" data-character-name="eezdathuyrujsa"></div>
+            </div>
+            <div class="character">
+                <div class="popup hidden"></div>
+            </div>
+            
+            <div class="character-info">
+                <div class="character-link">
+                    <a href="https://beta.pathofdiablo.com/armory?name=frankklam" target="_blank">frankklam</a>
+                </div>
+                <div>Level 91 Assassin</div>
+                <div class="hover-trigger" data-character-name="frankklam"></div>
+            </div>
+            <div class="character">
+                <div class="popup hidden"></div>
+            </div>
+            
+            <div class="character-info">
+                <div class="character-link">
+                    <a href="https://beta.pathofdiablo.com/armory?name=Data_Tele" target="_blank">Data_Tele</a>
+                </div>
+                <div>Level 91 Sorceress</div>
+                <div class="hover-trigger" data-character-name="Data_Tele"></div>
+            </div>
+            <div class="character">
+                <div class="popup hidden"></div>
+            </div>
+            
+            <div class="character-info">
+                <div class="character-link">
+                    <a href="https://beta.pathofdiablo.com/armory?name=TeddyBowazon" target="_blank">TeddyBowazon</a>
+                </div>
+                <div>Level 91 Amazon</div>
+                <div class="hover-trigger" data-character-name="TeddyBowazon"></div>
+            </div>
+            <div class="character">
+                <div class="popup hidden"></div>
+            </div>
+            
+            <div class="character-info">
+                <div class="character-link">
+                    <a href="https://beta.pathofdiablo.com/armory?name=SadieAddler" target="_blank">SadieAddler</a>
+                </div>
+                <div>Level 91 Amazon</div>
+                <div class="hover-trigger" data-character-name="SadieAddler"></div>
+            </div>
+            <div class="character">
+                <div class="popup hidden"></div>
+            </div>
+            
+            <div class="character-info">
+                <div class="character-link">
+                    <a href="https://beta.pathofdiablo.com/armory?name=NANITA" target="_blank">NANITA</a>
+                </div>
+                <div>Level 90 Amazon</div>
+                <div class="hover-trigger" data-character-name="NANITA"></div>
+            </div>
+            <div class="character">
+                <div class="popup hidden"></div>
+            </div>
+            
+            <div class="character-info">
+                <div class="character-link">
+                    <a href="https://beta.pathofdiablo.com/armory?name=Txiki" target="_blank">Txiki</a>
+                </div>
+                <div>Level 91 Assassin</div>
+                <div class="hover-trigger" data-character-name="Txiki"></div>
+            </div>
+            <div class="character">
+                <div class="popup hidden"></div>
+            </div>
+            
+            <div class="character-info">
+                <div class="character-link">
+                    <a href="https://beta.pathofdiablo.com/armory?name=Kooparian" target="_blank">Kooparian</a>
+                </div>
+                <div>Level 90 Barbarian</div>
+                <div class="hover-trigger" data-character-name="Kooparian"></div>
+            </div>
+            <div class="character">
+                <div class="popup hidden"></div>
+            </div>
+            
+            <div class="character-info">
+                <div class="character-link">
+                    <a href="https://beta.pathofdiablo.com/armory?name=Metalbarb" target="_blank">Metalbarb</a>
+                </div>
+                <div>Level 89 Barbarian</div>
+                <div class="hover-trigger" data-character-name="Metalbarb"></div>
+            </div>
+            <div class="character">
+                <div class="popup hidden"></div>
+            </div>
+            </div>
+        </div>
+        
+                    
+                    <hr>
+                    
+                    
+        <h2 id="top-characters">
+            Top Characters by Statistics
+            <a href="#top-characters" class="anchor-link">
+                <img src="../../../icons/anchor.png" alt="🔗" class="anchor-icon">
+            </a>
+        </h2>
+        
+        <!-- Strength & Dexterity Row -->
+        <div class="fun-facts-row">
+            <div class="fun-facts-column">
+                <h3>Top 5 Characters with the most Strength:</h3>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;"><div style='color: #ccc; margin: 4px 0;'><a href="https://beta.pathofdiablo.com/armory?name=Diablo_Slayer" target="_blank">
+                Diablo_Slayer</a> - Level 91 Barbarian (350)</div><div style='color: #ccc; margin: 4px 0;'><a href="https://beta.pathofdiablo.com/armory?name=Sevenspades" target="_blank">
+                Sevenspades</a> - Level 94 Assassin (262)</div><div style='color: #ccc; margin: 4px 0;'><a href="https://beta.pathofdiablo.com/armory?name=WildeJagd" target="_blank">
+                WildeJagd</a> - Level 96 Barbarian (256)</div><div style='color: #ccc; margin: 4px 0;'><a href="https://beta.pathofdiablo.com/armory?name=Buntaro" target="_blank">
+                Buntaro</a> - Level 89 Druid (253)</div><div style='color: #ccc; margin: 4px 0;'><a href="https://beta.pathofdiablo.com/armory?name=Jaqaxe" target="_blank">
+                Jaqaxe</a> - Level 88 Barbarian (247)</div></div>
+            </div>
+            <div class="fun-facts-column">
+                <h3>Top 5 Characters with the most Dexterity:</h3>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;"><div style='color: #ccc; margin: 4px 0;'><a href="https://beta.pathofdiablo.com/armory?name=AraiRima" target="_blank">
+                AraiRima</a> - Level 93 Barbarian (495)</div><div style='color: #ccc; margin: 4px 0;'><a href="https://beta.pathofdiablo.com/armory?name=KAPATEKA" target="_blank">
+                KAPATEKA</a> - Level 93 Barbarian (495)</div><div style='color: #ccc; margin: 4px 0;'><a href="https://beta.pathofdiablo.com/armory?name=arinaprince" target="_blank">
+                arinaprince</a> - Level 97 Amazon (480)</div><div style='color: #ccc; margin: 4px 0;'><a href="https://beta.pathofdiablo.com/armory?name=blorpo" target="_blank">
+                blorpo</a> - Level 89 Barbarian (470)</div><div style='color: #ccc; margin: 4px 0;'><a href="https://beta.pathofdiablo.com/armory?name=Nastyhoe" target="_blank">
+                Nastyhoe</a> - Level 96 Amazon (457)</div></div>
+            </div>
+        </div>
+
+        <!-- Vitality & Energy Row -->
+        <div class="fun-facts-row">
+            <div class="fun-facts-column">
+                <h3>Top 5 Characters with the most Vitality:</h3>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;"><div style='color: #ccc; margin: 4px 0;'><a href="https://beta.pathofdiablo.com/armory?name=SCplebsMagikarp" target="_blank">
+                SCplebsMagikarp</a> - Level 98 Assassin (520)</div><div style='color: #ccc; margin: 4px 0;'><a href="https://beta.pathofdiablo.com/armory?name=LL_Cc" target="_blank">
+                LL_Cc</a> - Level 98 Sorceress (510)</div><div style='color: #ccc; margin: 4px 0;'><a href="https://beta.pathofdiablo.com/armory?name=TheHornblower" target="_blank">
+                TheHornblower</a> - Level 98 Necromancer (510)</div><div style='color: #ccc; margin: 4px 0;'><a href="https://beta.pathofdiablo.com/armory?name=Stormage" target="_blank">
+                Stormage</a> - Level 97 Necromancer (510)</div><div style='color: #ccc; margin: 4px 0;'><a href="https://beta.pathofdiablo.com/armory?name=Beil" target="_blank">
+                Beil</a> - Level 96 Necromancer (505)</div></div>
+            </div>
+            <div class="fun-facts-column">
+                <h3>Top 5 Characters with the most Energy:</h3>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;"><div style='color: #ccc; margin: 4px 0;'><a href="https://beta.pathofdiablo.com/armory?name=soldieroflight" target="_blank">
+                soldieroflight</a> - Level 95 Sorceress (520)</div><div style='color: #ccc; margin: 4px 0;'><a href="https://beta.pathofdiablo.com/armory?name=zayaya" target="_blank">
+                zayaya</a> - Level 97 Sorceress (506)</div><div style='color: #ccc; margin: 4px 0;'><a href="https://beta.pathofdiablo.com/armory?name=sorcereno" target="_blank">
+                sorcereno</a> - Level 95 Sorceress (506)</div><div style='color: #ccc; margin: 4px 0;'><a href="https://beta.pathofdiablo.com/armory?name=OmO" target="_blank">
+                OmO</a> - Level 92 Sorceress (503)</div><div style='color: #ccc; margin: 4px 0;'><a href="https://beta.pathofdiablo.com/armory?name=Dinkerr" target="_blank">
+                Dinkerr</a> - Level 95 Sorceress (500)</div></div>
+            </div>
+        </div>
+
+        <!-- Life & Mana Row -->
+        <div class="fun-facts-row">
+            <div class="fun-facts-column">
+                <h3>The 5 Characters with the Most Life*:</h3>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;"><div style='color: #ccc; margin: 4px 0;'><a href="https://beta.pathofdiablo.com/armory?name=Morttty" target="_blank">
+                Morttty</a> - Level 90 Druid (5,079)</div><div style='color: #ccc; margin: 4px 0;'><a href="https://beta.pathofdiablo.com/armory?name=dru-mussang" target="_blank">
+                dru-mussang</a> - Level 90 Druid (4,397)</div><div style='color: #ccc; margin: 4px 0;'><a href="https://beta.pathofdiablo.com/armory?name=Animan" target="_blank">
+                Animan</a> - Level 88 Druid (4,252)</div><div style='color: #ccc; margin: 4px 0;'><a href="https://beta.pathofdiablo.com/armory?name=Yoogi" target="_blank">
+                Yoogi</a> - Level 90 Druid (4,102)</div><div style='color: #ccc; margin: 4px 0;'><a href="https://beta.pathofdiablo.com/armory?name=Bobaa" target="_blank">
+                Bobaa</a> - Level 90 Druid (3,862)</div></div>
+            </div>
+            <div class="fun-facts-column">
+                <h3>The 5 Characters with the Most Mana*:</h3>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;"><div style='color: #ccc; margin: 4px 0;'><a href="https://beta.pathofdiablo.com/armory?name=Blastmaster" target="_blank">
+                Blastmaster</a> - Level 96 Sorceress (2,603)</div><div style='color: #ccc; margin: 4px 0;'><a href="https://beta.pathofdiablo.com/armory?name=zayaya" target="_blank">
+                zayaya</a> - Level 97 Sorceress (2,549)</div><div style='color: #ccc; margin: 4px 0;'><a href="https://beta.pathofdiablo.com/armory?name=ThunderBawls" target="_blank">
+                ThunderBawls</a> - Level 93 Sorceress (2,496)</div><div style='color: #ccc; margin: 4px 0;'><a href="https://beta.pathofdiablo.com/armory?name=soldieroflight" target="_blank">
+                soldieroflight</a> - Level 95 Sorceress (2,408)</div><div style='color: #ccc; margin: 4px 0;'><a href="https://beta.pathofdiablo.com/armory?name=Yuurrp" target="_blank">
+                Yuurrp</a> - Level 92 Sorceress (2,292)</div></div>
+            </div>
+        </div>
+        <em>*"Most" Life and Mana values are from a snapshot in time and may or may not be affected by bonuses from BO, Oak, etc.</em>
+        
+        <!-- Magic Find & Gold Find Row -->
+        <div class="fun-facts-row">
+            <div class="fun-facts-column">
+                <h3>The 5 Characters with the Most Magic Find:</h3>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;"><div style='color: #ccc; margin: 4px 0;'><a href="https://beta.pathofdiablo.com/armory?name=Azaraih" target="_blank">
+                Azaraih</a> - Level 95 Paladin (612)</div><div style='color: #ccc; margin: 4px 0;'><a href="https://beta.pathofdiablo.com/armory?name=Support-zI" target="_blank">
+                Support-zI</a> - Level 91 Sorceress (507)</div><div style='color: #ccc; margin: 4px 0;'><a href="https://beta.pathofdiablo.com/armory?name=NaturesWrath" target="_blank">
+                NaturesWrath</a> - Level 98 Sorceress (502)</div><div style='color: #ccc; margin: 4px 0;'><a href="https://beta.pathofdiablo.com/armory?name=slamhammin" target="_blank">
+                slamhammin</a> - Level 94 Sorceress (491)</div><div style='color: #ccc; margin: 4px 0;'><a href="https://beta.pathofdiablo.com/armory?name=Buffpuff" target="_blank">
+                Buffpuff</a> - Level 93 Sorceress (489)</div></div>
+            </div>
+            <div class="fun-facts-column">
+                <h3>The 5 Characters with the Most Gold Find:</h3>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;"><div style='color: #ccc; margin: 4px 0;'><a href="https://beta.pathofdiablo.com/armory?name=SamueI" target="_blank">
+                SamueI</a> - Level 94 Barbarian (1,603)</div><div style='color: #ccc; margin: 4px 0;'><a href="https://beta.pathofdiablo.com/armory?name=Itheslav" target="_blank">
+                Itheslav</a> - Level 92 Barbarian (1,538)</div><div style='color: #ccc; margin: 4px 0;'><a href="https://beta.pathofdiablo.com/armory?name=SkyCongcong" target="_blank">
+                SkyCongcong</a> - Level 92 Barbarian (1,326)</div><div style='color: #ccc; margin: 4px 0;'><a href="https://beta.pathofdiablo.com/armory?name=goldbaba" target="_blank">
+                goldbaba</a> - Level 91 Barbarian (792)</div><div style='color: #ccc; margin: 4px 0;'><a href="https://beta.pathofdiablo.com/armory?name=Thorned" target="_blank">
+                Thorned</a> - Level 91 Paladin (478)</div></div>
+            </div>
+        </div>
+        <br>
+        
+                    
+                    <hr>
+                    
+                    
+        <h2 id="averages-medians">
+            Average & Median Statistics
+            <a href="#averages-medians" class="anchor-link">
+                <img src="../../../icons/anchor.png" alt="🔗" class="anchor-icon">
+            </a>
+        </h2>
+        <div class="fun-facts-row">
+            <div class="fun-facts-column">
+                <h3>Life Statistics</h3>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;">
+                    <p style="color: #ccc; margin: 4px 0;"><strong>Average Life:</strong> 1413.08</p>
+                    <p style="color: #ccc; margin: 4px 0;"><strong>Median Life:</strong> 1376.00</p>
+                </div>
+            </div>
+            <div class="fun-facts-column">
+                <h3>Mana Statistics</h3>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;">
+                    <p style="color: #ccc; margin: 4px 0;"><strong>Average Mana:</strong> 459.18</p>
+                    <p style="color: #ccc; margin: 4px 0;"><strong>Median Mana:</strong> 340.00</p>
+                </div>
+            </div>
+        </div>
+        <div class="fun-facts-row">
+            <div class="fun-facts-column">
+                <h3>Magic Find Statistics</h3>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;">
+                    <p style="color: #ccc; margin: 4px 0;"><strong>Average Magic Find:</strong> 111.85</p>
+                    <p style="color: #ccc; margin: 4px 0;"><strong>Median Magic Find:</strong> 90.00</p>
+                </div>
+            </div>
+            <div class="fun-facts-column">
+                <h3>Gold Find Statistics</h3>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;">
+                    <p style="color: #ccc; margin: 4px 0;"><strong>Average Gold Find:</strong> 94.63</p>
+                    <p style="color: #ccc; margin: 4px 0;"><strong>Median Gold Find:</strong> 93.00</p>
+                </div>
+            </div>
+        </div>
+        
+                    
+                </div>
+                
+                <div class="footer">
+                    <p>PoD data current as of Season 13 Monthly Archive - 2025-12-28 14:51</p>
+                </div>
+            </div>
+            
+            <!-- Include your existing JavaScript -->
+            <script src="js/collapsible.js"></script>
+            <script src="js/navigation.js"></script>
+            <script src="js/armory-popup.js"></script>
+            
+            <!-- SC/HC Toggle Button -->
+            <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const scHcButton = document.getElementById("SC_HC");
+                const currentUrl = window.location.href;
+                const filename = currentUrl.split("/").pop();
+
+                const isHardcore = filename.startsWith("hc");
+
+                if (isHardcore) {
+                    scHcButton.classList.add("hardcore");
+                    scHcButton.classList.remove("softcore");
+                } else {
+                    scHcButton.classList.add("softcore");
+                    scHcButton.classList.remove("hardcore");
+                }
+
+                updateButtonImage(isHardcore);
+
+                scHcButton.addEventListener("click", function () {
+                    let newUrl;
+
+                    if (isHardcore) {
+                        newUrl = currentUrl.replace(/hc(\w+)$/, "$1");
+                    } else {
+                        newUrl = currentUrl.replace(/\/(\w+)$/, "/hc$1");
+                    }
+
+                    if (newUrl !== currentUrl) {
+                        window.location.href = newUrl;
+                    }
+                });
+
+                function updateButtonImage(isHardcore) {
+                    if (isHardcore) {
+                        scHcButton.style.backgroundImage = "url('icons/Hardcore_click.png')";
+                    } else {
+                        scHcButton.style.backgroundImage = "url('icons/Softcore_click.png')";
+                    }
+                }
+            });
+            </script>
+        </body>
+        </html>
+        
