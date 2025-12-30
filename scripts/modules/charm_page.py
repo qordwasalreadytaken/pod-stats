@@ -66,6 +66,81 @@ def extract_numeric_value(prop_text, pattern=None):
     return None
 
 
+def check_charm_space_availability(inventory):
+    """
+    Check if there's space for torch (2x4 large charm) and anni (1x1 small charm) in charm area
+    Returns dict with has_torch_space and has_anni_space booleans
+    """
+    # Charm area is 10 wide (x: 0-9) and 4 tall (y: 5-8)
+    # Create a 10x4 grid to track occupied spaces
+    grid = [[False for _ in range(10)] for _ in range(4)]
+    
+    # Mark occupied spaces from existing charms
+    for item in inventory:
+        if not isinstance(item, dict):
+            continue
+        
+        position = item.get("Position", {})
+        y_pos = position.get("y", 0)
+        x_pos = position.get("x", 0)
+        
+        # Only check charm area
+        if 5 <= y_pos <= 8:
+            # Map y coordinate to grid row (y=5 -> row 0, y=8 -> row 3)
+            grid_y = y_pos - 5
+            
+            # Determine item size based on tag
+            tag = item.get("Tag", "").lower()
+            if "small charm" in tag:
+                # Small charm: 1x1
+                if grid_y < 4 and x_pos < 10:
+                    grid[grid_y][x_pos] = True
+            elif "large charm" in tag:
+                # Large charm (torch): 2x4 (2 wide, 4 tall)
+                for dy in range(4):
+                    for dx in range(2):
+                        if grid_y + dy < 4 and x_pos + dx < 10:
+                            grid[grid_y + dy][x_pos + dx] = True
+            elif "grand charm" in tag:
+                # Grand charm: 1x1
+                if grid_y < 4 and x_pos < 10:
+                    grid[grid_y][x_pos] = True
+    
+    # Check if there's space for a torch (2x4)
+    has_torch_space = False
+    for start_y in range(1):  # Can only start at y=0 (needs 4 rows)
+        for start_x in range(9):  # Can start at x=0 to x=8 (needs 2 columns)
+            # Check if this 2x4 area is free
+            is_free = True
+            for dy in range(4):
+                for dx in range(2):
+                    if grid[start_y + dy][start_x + dx]:
+                        is_free = False
+                        break
+                if not is_free:
+                    break
+            if is_free:
+                has_torch_space = True
+                break
+        if has_torch_space:
+            break
+    
+    # Check if there's space for an anni (1x1) and count total empty spaces
+    has_anni_space = False
+    empty_spaces = 0
+    for y in range(4):
+        for x in range(10):
+            if not grid[y][x]:
+                has_anni_space = True
+                empty_spaces += 1
+    
+    return {
+        'has_torch_space': has_torch_space,
+        'has_anni_space': has_anni_space,
+        'empty_spaces': empty_spaces
+    }
+
+
 def analyze_all_charms(characters):
     """Comprehensive charm analysis"""
     
@@ -112,6 +187,17 @@ def analyze_all_charms(characters):
     chars_by_class_without_torch = defaultdict(set)
     chars_by_class_with_anni = defaultdict(set)
     chars_by_class_without_anni = defaultdict(set)
+    
+    # Track characters without torch/anni who have JUST enough space (likely sharing)
+    # Torch is 2x4 = 8 spaces, so look for chars with torch space and <=10 empty spaces
+    # Anni is 1x1 = 1 space, so look for chars with anni space and <=3 empty spaces
+    chars_without_torch_with_just_enough_space = set()
+    chars_without_anni_with_just_enough_space = set()
+    empty_space_counts_without_torch = []
+    empty_space_counts_without_anni = []
+    
+    # Track characters using a torch that doesn't match their class
+    chars_with_wrong_class_torch = []  # List of dicts with char info and torch class
     
     # Rare finds
     high_poison_charms = []
@@ -194,15 +280,29 @@ def analyze_all_charms(characters):
                 # Hellfire Torch (Large Charm with +3 to class skills)
                 has_class_skills = any("+3 to" in p and "Skill Levels" in p for p in props)
                 if has_class_skills:
+                    torch_class = None
                     for prop in props:
                         if "+3 to" in prop and "Skill Levels" in prop:
                             charm_data['class_bonus'] = prop
+                            # Extract the class name from the property
+                            # Format is like "+3 to Barbarian Skill Levels"
+                            torch_class = prop.replace("+3 to ", "").replace(" Skill Levels", "").strip()
                         elif "to all Attributes" in prop:
                             charm_data['attributes'] = extract_numeric_value(prop)
                         elif "All Resistances" in prop:
                             charm_data['all_res'] = extract_numeric_value(prop)
                         elif "Experience Gained" in prop:
                             charm_data['exp_gain'] = extract_numeric_value(prop)
+                    
+                    # Check if torch class matches character class
+                    if torch_class and torch_class != char_class:
+                        chars_with_wrong_class_torch.append({
+                            'char_name': char_name,
+                            'char_class': char_class,
+                            'torch_class': torch_class,
+                            'torch_stats': f"{charm_data.get('attributes', 0)}/{charm_data.get('all_res', 0)}"
+                        })
+                    
                     torch_charms.append(charm_data)
                     has_torch_this_char = True
                 
@@ -425,6 +525,10 @@ def analyze_all_charms(characters):
         if char_has_charms:
             chars_with_charms += 1
         
+        # Check for available charm space
+        inventory = char.get("Inventory", [])
+        space_check = check_charm_space_availability(inventory)
+        
         # Track torch/anni ownership for this character
         if has_torch_this_char:
             chars_with_torch.add(char_name)
@@ -432,6 +536,13 @@ def analyze_all_charms(characters):
         else:
             chars_without_torch.add(char_name)
             chars_by_class_without_torch[char_class].add(char_name)
+            # Track empty space stats for chars without torch
+            empty_count = space_check.get('empty_spaces', 0)
+            empty_space_counts_without_torch.append(empty_count)
+            # Check if they have JUST enough space for a torch (<=10 empty spaces)
+            # Torch is 2x4 = 8 spaces, so <=10 suggests they're reserving that spot
+            if space_check['has_torch_space'] and empty_count <= 10:
+                chars_without_torch_with_just_enough_space.add(char_name)
         
         if has_anni_this_char:
             chars_with_anni.add(char_name)
@@ -439,6 +550,13 @@ def analyze_all_charms(characters):
         else:
             chars_without_anni.add(char_name)
             chars_by_class_without_anni[char_class].add(char_name)
+            # Track empty space stats for chars without anni
+            empty_count = space_check.get('empty_spaces', 0)
+            empty_space_counts_without_anni.append(empty_count)
+            # Check if they have JUST enough space for an anni (<=3 empty spaces)
+            # Anni is 1x1 = 1 space, so <=3 suggests they're reserving that spot
+            if space_check['has_anni_space'] and empty_count <= 3:
+                chars_without_anni_with_just_enough_space.add(char_name)
     
     # Sort character lists by various metrics
     char_list = list(char_data.values())
@@ -607,6 +725,9 @@ def analyze_all_charms(characters):
                 'total_count': len(torch_charms),
                 'chars_with_torch': len(chars_with_torch),
                 'chars_without_torch': len(chars_without_torch),
+                'chars_without_torch_with_just_enough_space': len(chars_without_torch_with_just_enough_space),
+                'avg_empty_spaces_without_torch': sum(empty_space_counts_without_torch) / len(empty_space_counts_without_torch) if empty_space_counts_without_torch else 0,
+                'chars_with_wrong_class_torch': chars_with_wrong_class_torch,
                 'by_class_with': {cls: len(names) for cls, names in chars_by_class_with_torch.items()},
                 'by_class_without': {cls: len(names) for cls, names in chars_by_class_without_torch.items()},
                 'perfect_20_20_count': sum(1 for t in torch_charms if t.get('attributes', 0) == 20 and t.get('all_res', 0) == 20),
@@ -619,6 +740,8 @@ def analyze_all_charms(characters):
                 'total_count': len(anni_charms),
                 'chars_with_anni': len(chars_with_anni),
                 'chars_without_anni': len(chars_without_anni),
+                'chars_without_anni_with_just_enough_space': len(chars_without_anni_with_just_enough_space),
+                'avg_empty_spaces_without_anni': sum(empty_space_counts_without_anni) / len(empty_space_counts_without_anni) if empty_space_counts_without_anni else 0,
                 'by_class_with': {cls: len(names) for cls, names in chars_by_class_with_anni.items()},
                 'by_class_without': {cls: len(names) for cls, names in chars_by_class_without_anni.items()},
                 'perfect_20_20_10_count': sum(1 for a in anni_charms if a.get('attributes', 0) == 20 and a.get('all_res', 0) == 20 and a.get('exp_gain', 0) == 10),

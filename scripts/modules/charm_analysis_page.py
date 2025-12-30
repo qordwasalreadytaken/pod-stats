@@ -50,7 +50,8 @@ class CharmAnalysisHTMLGenerator:
         )
         
         unique_charms_html = CharmAnalysisHTMLGenerator._generate_unique_charms_section(
-            analysis_data.get('unique_charms', {})
+            analysis_data.get('unique_charms', {}),
+            ladder_type
         )
         
         rare_finds_html = CharmAnalysisHTMLGenerator._generate_rare_finds_section(
@@ -469,12 +470,15 @@ class CharmAnalysisHTMLGenerator:
         """
     
     @staticmethod
-    def _generate_unique_charms_section(unique_charms_data: Dict[str, Any]) -> str:
+    def _generate_unique_charms_section(unique_charms_data: Dict[str, Any], ladder_type: str) -> str:
         """Generate HTML for unique charms section (Gheed's, Torch, Anni)"""
         
         gheeds_data = unique_charms_data.get('gheeds', {})
         torch_data = unique_charms_data.get('torches', {})
         anni_data = unique_charms_data.get('annis', {})
+        
+        # Determine mode prefix for trends links
+        mode_prefix = "SC" if ladder_type == 'sc' else "HC"
         
         # Gheed's Fortune stats - simple count and perfect count
         gheeds_total = gheeds_data.get('total_count', 0)
@@ -492,6 +496,9 @@ class CharmAnalysisHTMLGenerator:
         torch_total = torch_data.get('total_count', 0)
         chars_with_torch = torch_data.get('chars_with_torch', 0)
         chars_without_torch = torch_data.get('chars_without_torch', 0)
+        chars_without_torch_just_enough = torch_data.get('chars_without_torch_with_just_enough_space', 0)
+        avg_empty_without_torch = torch_data.get('avg_empty_spaces_without_torch', 0)
+        wrong_class_torches = torch_data.get('chars_with_wrong_class_torch', [])
         torch_perfect = torch_data.get('perfect_20_20_count', 0)
         avg_attrs = torch_data.get('avg_attributes', 0)
         avg_res = torch_data.get('avg_all_res', 0)
@@ -501,6 +508,8 @@ class CharmAnalysisHTMLGenerator:
         total_chars = chars_with_torch + chars_without_torch
         pct_with_torch = (chars_with_torch / total_chars * 100) if total_chars > 0 else 0
         pct_without_torch = (chars_without_torch / total_chars * 100) if total_chars > 0 else 0
+        pct_without_just_enough = (chars_without_torch_just_enough / chars_without_torch * 100) if chars_without_torch > 0 else 0
+        pct_wrong_class = (len(wrong_class_torches) / chars_with_torch * 100) if chars_with_torch > 0 else 0
         
         # Build class breakdown
         all_classes = sorted(set(list(by_class_with.keys()) + list(by_class_without.keys())))
@@ -511,22 +520,45 @@ class CharmAnalysisHTMLGenerator:
             class_breakdown_html += f"<tr><td style='padding: 5px; border: 1px solid #444;'>{cls}</td><td style='padding: 5px; border: 1px solid #444;'>{with_count:,}</td><td style='padding: 5px; border: 1px solid #444;'>{without_count:,}</td></tr>"
         class_breakdown_html += "</table>"
         
+        # Build wrong class torch details
+        wrong_class_html = ""
+        if wrong_class_torches:
+            wrong_class_html = "<h4>Characters Using Wrong Class Torch:</h4>"
+            wrong_class_html += "<table style='margin: 10px 0; border-collapse: collapse;'>"
+            wrong_class_html += "<tr><th style='padding: 5px; border: 1px solid #444;'>Character</th><th style='padding: 5px; border: 1px solid #444;'>Char Class</th><th style='padding: 5px; border: 1px solid #444;'>Torch Class</th><th style='padding: 5px; border: 1px solid #444;'>Stats</th></tr>"
+            for entry in sorted(wrong_class_torches, key=lambda x: x['char_name']):
+                char_name = entry['char_name']
+                char_class = entry['char_class']
+                # Create trends link: https://trends.pathofdiablo.com/{hcClass or Class}#{CHARACTER_NAME}
+                # For SC: /Assassin#charname, For HC: /hcAssassin#charname
+                class_path = f"hc{char_class}" if ladder_type == 'hc' else char_class
+                trends_url = f"https://trends.pathofdiablo.com/{class_path}#{char_name}"
+                char_link = f"<a href='{trends_url}' target='_blank'>{char_name}</a>"
+                wrong_class_html += f"<tr><td style='padding: 5px; border: 1px solid #444;'>{char_link}</td><td style='padding: 5px; border: 1px solid #444;'>{char_class}</td><td style='padding: 5px; border: 1px solid #444;'>{entry['torch_class']}</td><td style='padding: 5px; border: 1px solid #444;'>{entry['torch_stats']}</td></tr>"
+            wrong_class_html += "</table>"
+        
         torch_html = f"""
         <h3>Hellfire Torch</h3>
         <ul>
             <li><strong>Characters with Torch:</strong> {chars_with_torch:,} ({pct_with_torch:.1f}%)</li>
+            <li><strong>Characters using wrong class torch:</strong> {len(wrong_class_torches):,} ({pct_wrong_class:.1f}%)</li>
             <li><strong>Characters without Torch:</strong> {chars_without_torch:,} ({pct_without_torch:.1f}%)</li>
+            <li><strong>Characters without Torch with ≤3 empty spaces (torch-sized gap):</strong> {chars_without_torch_just_enough:,} ({pct_without_just_enough:.1f}%) - <em>possibly sharing</em></li>
+            <li><strong>Average empty charm spaces (chars without torch):</strong> {avg_empty_without_torch:.1f} out of 40 slots</li>
             <li><strong>Perfect (20/20):</strong> {torch_perfect:,}</li>
             <li><strong>Average Stats:</strong> {avg_attrs:.1f} Attributes / {avg_res:.1f} All Res</li>
         </ul>
         <h4>By Class:</h4>
         {class_breakdown_html}
+        {wrong_class_html}
         """
         
         # Annihilus stats
         anni_total = anni_data.get('total_count', 0)
         chars_with_anni = anni_data.get('chars_with_anni', 0)
         chars_without_anni = anni_data.get('chars_without_anni', 0)
+        chars_without_anni_just_enough = anni_data.get('chars_without_anni_with_just_enough_space', 0)
+        avg_empty_without_anni = anni_data.get('avg_empty_spaces_without_anni', 0)
         anni_perfect = anni_data.get('perfect_20_20_10_count', 0)
         anni_anti_perfect = anni_data.get('anti_perfect_10_10_5_count', 0)
         avg_anni_attrs = anni_data.get('avg_attributes', 0)
@@ -537,6 +569,7 @@ class CharmAnalysisHTMLGenerator:
         
         pct_with_anni = (chars_with_anni / total_chars * 100) if total_chars > 0 else 0
         pct_without_anni = (chars_without_anni / total_chars * 100) if total_chars > 0 else 0
+        pct_without_anni_just_enough = (chars_without_anni_just_enough / chars_without_anni * 100) if chars_without_anni > 0 else 0
         
         # Build class breakdown for anni
         all_classes_anni = sorted(set(list(by_class_with_anni.keys()) + list(by_class_without_anni.keys())))
@@ -552,6 +585,8 @@ class CharmAnalysisHTMLGenerator:
         <ul>
             <li><strong>Characters with Anni:</strong> {chars_with_anni:,} ({pct_with_anni:.1f}%)</li>
             <li><strong>Characters without Anni:</strong> {chars_without_anni:,} ({pct_without_anni:.1f}%)</li>
+            <li><strong>Characters without Anni with ≤3 empty spaces (anni-sized gap):</strong> {chars_without_anni_just_enough:,} ({pct_without_anni_just_enough:.1f}%) - <em>possibly sharing</em></li>
+            <li><strong>Average empty charm spaces (chars without anni):</strong> {avg_empty_without_anni:.1f} out of 40 slots</li>
             <li><strong>Perfect (20/20/10):</strong> {anni_perfect:,}</li>
             <li><strong>Anti-Perfect (10/10/5):</strong> {anni_anti_perfect:,}</li>
             <li><strong>Average Stats:</strong> {avg_anni_attrs:.1f} Attributes / {avg_anni_res:.1f} All Res / {avg_anni_exp:.1f}% Exp</li>
