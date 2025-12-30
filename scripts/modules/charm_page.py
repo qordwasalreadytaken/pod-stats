@@ -118,7 +118,7 @@ def analyze_all_charms(characters):
     
     # Perfect charm tracking
     perfect_3_20_20_small = []  # 3 max dmg, 20 AR, 20 life
-    perfect_20_16_small = []  # 20 life, 16 mana
+    perfect_20_16_small = []  # 20 life, 17 mana
     perfect_45_life_skillers = []  # Skillers with 45 life
     perfect_10_76_40_grand = []  # 10 max dmg, 76 AR, 40 life
     
@@ -339,7 +339,7 @@ def analyze_all_charms(characters):
                 
                 # Check for perfect 20 life / 16 mana small charm
                 has_20_life_2 = any("+20 to Life" in p for p in props)
-                has_16_mana = any("+16 to Mana" in p for p in props)
+                has_16_mana = any("+17 to Mana" in p for p in props)
                 if has_20_life_2 and has_16_mana:
                     perfect_20_16_small.append({
                         'char': char_name,
@@ -504,8 +504,8 @@ def analyze_all_charms(characters):
     
     if perfect_20_16_small:
         interesting_finds.append(
-            f"<strong>Perfect 20/16 Small Charms:</strong> {len(perfect_20_16_small):,} found "
-            f"(+20 life, +16 mana)"
+            f"<strong>Perfect 20/17 Small Charms:</strong> {len(perfect_20_16_small):,} found "
+            f"(+20 life, +17 mana)"
         )
     
     if perfect_45_life_skillers:
