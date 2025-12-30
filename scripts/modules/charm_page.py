@@ -103,8 +103,24 @@ def analyze_all_charms(characters):
     torch_charms = []
     anni_charms = []
     
+    # Character tracking for torch/anni ownership
+    chars_with_torch = set()
+    chars_without_torch = set()
+    chars_with_anni = set()
+    chars_without_anni = set()
+    chars_by_class_with_torch = defaultdict(set)
+    chars_by_class_without_torch = defaultdict(set)
+    chars_by_class_with_anni = defaultdict(set)
+    chars_by_class_without_anni = defaultdict(set)
+    
     # Rare finds
     high_poison_charms = []
+    
+    # Perfect charm tracking
+    perfect_3_20_20_small = []  # 3 max dmg, 20 AR, 20 life
+    perfect_20_16_small = []  # 20 life, 16 mana
+    perfect_45_life_skillers = []  # Skillers with 45 life
+    perfect_10_76_40_grand = []  # 10 max dmg, 76 AR, 40 life
     
     for char in characters:
         if not isinstance(char, dict):
@@ -113,6 +129,10 @@ def analyze_all_charms(characters):
         char_name = char.get("Name", "Unknown")
         char_class = char.get("Class", "Unknown")
         char_level = char.get("Stats", {}).get("Level", 0)
+        
+        # Initialize tracking for this character (will update if they have torch/anni)
+        has_torch_this_char = False
+        has_anni_this_char = False
         
         inventory = char.get("Inventory", [])
         if not isinstance(inventory, list):
@@ -181,7 +201,10 @@ def analyze_all_charms(characters):
                             charm_data['attributes'] = extract_numeric_value(prop)
                         elif "All Resistances" in prop:
                             charm_data['all_res'] = extract_numeric_value(prop)
+                        elif "Experience Gained" in prop:
+                            charm_data['exp_gain'] = extract_numeric_value(prop)
                     torch_charms.append(charm_data)
+                    has_torch_this_char = True
                 
                 # Annihilus (Small Charm with +1 to all skills and experience)
                 has_all_skills = any("+1 to All Skills" in p for p in props)
@@ -192,7 +215,10 @@ def analyze_all_charms(characters):
                             charm_data['attributes'] = extract_numeric_value(prop)
                         elif "All Resistances" in prop:
                             charm_data['all_res'] = extract_numeric_value(prop)
+                        elif "Experience Gained" in prop:
+                            charm_data['exp_gain'] = extract_numeric_value(prop)
                     anni_charms.append(charm_data)
+                    has_anni_this_char = True
                 
                 # Add resist totals to character
                 for prop in props:
@@ -299,6 +325,28 @@ def analyze_all_charms(characters):
             if charm_type == "small":
                 small_count += 1
                 all_small_charms.append({'props': props, 'char': char_name})
+                
+                # Check for perfect 3-20-20 small charm
+                has_3_max = any("+3 to Maximum Damage" in p for p in props)
+                has_20_ar = any("+20 to Attack Rating" in p for p in props)
+                has_20_life = any("+20 to Life" in p for p in props)
+                if has_3_max and has_20_ar and has_20_life:
+                    perfect_3_20_20_small.append({
+                        'char': char_name,
+                        'class': char_class,
+                        'props': props
+                    })
+                
+                # Check for perfect 20 life / 16 mana small charm
+                has_20_life_2 = any("+20 to Life" in p for p in props)
+                has_16_mana = any("+16 to Mana" in p for p in props)
+                if has_20_life_2 and has_16_mana:
+                    perfect_20_16_small.append({
+                        'char': char_name,
+                        'class': char_class,
+                        'props': props
+                    })
+                
                 for prop in props:
                     small_properties[prop] += 1
                     prop_combo.append(prop)
@@ -339,11 +387,33 @@ def analyze_all_charms(characters):
                                 skiller_by_class["Paladin"] += 1
                             elif "Sorceress" in prop:
                                 skiller_by_class["Sorceress"] += 1
+                    
+                    # Check for perfect 45 life skiller
+                    has_45_life = any("+45 to Life" in p for p in props)
+                    if has_45_life:
+                        perfect_45_life_skillers.append({
+                            'char': char_name,
+                            'class': char_class,
+                            'props': props
+                        })
+                    
                     all_skillers.append({'props': props, 'char': char_name, 'class': char_class})
                 else:
                     # Non-skiller grand charm
                     grand_count += 1
                     all_grand_charms.append({'props': props, 'char': char_name})
+                    
+                    # Check for perfect 10 max dmg, 76 AR, 40 life grand charm
+                    has_10_max = any("+10 to Maximum Damage" in p for p in props)
+                    has_76_ar = any("+76 to Attack Rating" in p for p in props)
+                    has_40_life = any("+40 to Life" in p for p in props)
+                    if has_10_max and has_76_ar and has_40_life:
+                        perfect_10_76_40_grand.append({
+                            'char': char_name,
+                            'class': char_class,
+                            'props': props
+                        })
+                    
                     for prop in props:
                         grand_properties[prop] += 1
                         prop_combo.append(prop)
@@ -354,6 +424,21 @@ def analyze_all_charms(characters):
         
         if char_has_charms:
             chars_with_charms += 1
+        
+        # Track torch/anni ownership for this character
+        if has_torch_this_char:
+            chars_with_torch.add(char_name)
+            chars_by_class_with_torch[char_class].add(char_name)
+        else:
+            chars_without_torch.add(char_name)
+            chars_by_class_without_torch[char_class].add(char_name)
+        
+        if has_anni_this_char:
+            chars_with_anni.add(char_name)
+            chars_by_class_with_anni[char_class].add(char_name)
+        else:
+            chars_without_anni.add(char_name)
+            chars_by_class_without_anni[char_class].add(char_name)
     
     # Sort character lists by various metrics
     char_list = list(char_data.values())
@@ -408,6 +493,30 @@ def analyze_all_charms(characters):
         most_popular_skiller, skiller_count = skiller_by_tree.most_common(1)[0]
         interesting_finds.append(
             f"<strong>Most Popular Skiller:</strong> {most_popular_skiller} - {skiller_count:,} in use"
+        )
+    
+    # Perfect charm counts
+    if perfect_3_20_20_small:
+        interesting_finds.append(
+            f"<strong>Perfect 3/20/20 Small Charms:</strong> {len(perfect_3_20_20_small):,} found "
+            f"(+3 max dmg, +20 AR, +20 life)"
+        )
+    
+    if perfect_20_16_small:
+        interesting_finds.append(
+            f"<strong>Perfect 20/16 Small Charms:</strong> {len(perfect_20_16_small):,} found "
+            f"(+20 life, +16 mana)"
+        )
+    
+    if perfect_45_life_skillers:
+        interesting_finds.append(
+            f"<strong>Perfect 45 Life Skillers:</strong> {len(perfect_45_life_skillers):,} found"
+        )
+    
+    if perfect_10_76_40_grand:
+        interesting_finds.append(
+            f"<strong>Perfect 10/76/40 Grand Charms:</strong> {len(perfect_10_76_40_grand):,} found "
+            f"(+10 max dmg, +76 AR, +40 life)"
         )
     
     return {
@@ -491,15 +600,32 @@ def analyze_all_charms(characters):
         'unique_charms': {
             'gheeds': {
                 'total_count': len(gheeds_charms),
-                'charms': sorted(gheeds_charms, key=lambda x: x.get('mf', 0), reverse=True)
+                'charms': sorted(gheeds_charms, key=lambda x: x.get('mf', 0), reverse=True),
+                'perfect_40mf_count': sum(1 for g in gheeds_charms if g.get('mf', 0) == 40)
             },
             'torches': {
                 'total_count': len(torch_charms),
+                'chars_with_torch': len(chars_with_torch),
+                'chars_without_torch': len(chars_without_torch),
+                'by_class_with': {cls: len(names) for cls, names in chars_by_class_with_torch.items()},
+                'by_class_without': {cls: len(names) for cls, names in chars_by_class_without_torch.items()},
+                'perfect_20_20_count': sum(1 for t in torch_charms if t.get('attributes', 0) == 20 and t.get('all_res', 0) == 20),
+                'avg_attributes': sum(t.get('attributes', 0) for t in torch_charms) / len(torch_charms) if torch_charms else 0,
+                'avg_all_res': sum(t.get('all_res', 0) for t in torch_charms) / len(torch_charms) if torch_charms else 0,
                 'charms': sorted(torch_charms, key=lambda x: x.get('all_res', 0), reverse=True),
                 'by_class': Counter([c['class_bonus'] for c in torch_charms if 'class_bonus' in c])
             },
             'annis': {
                 'total_count': len(anni_charms),
+                'chars_with_anni': len(chars_with_anni),
+                'chars_without_anni': len(chars_without_anni),
+                'by_class_with': {cls: len(names) for cls, names in chars_by_class_with_anni.items()},
+                'by_class_without': {cls: len(names) for cls, names in chars_by_class_without_anni.items()},
+                'perfect_20_20_10_count': sum(1 for a in anni_charms if a.get('attributes', 0) == 20 and a.get('all_res', 0) == 20 and a.get('exp_gain', 0) == 10),
+                'anti_perfect_10_10_5_count': sum(1 for a in anni_charms if a.get('attributes', 0) == 10 and a.get('all_res', 0) == 10 and a.get('exp_gain', 0) == 5),
+                'avg_attributes': sum(a.get('attributes', 0) for a in anni_charms) / len(anni_charms) if anni_charms else 0,
+                'avg_all_res': sum(a.get('all_res', 0) for a in anni_charms) / len(anni_charms) if anni_charms else 0,
+                'avg_exp_gain': sum(a.get('exp_gain', 0) for a in anni_charms) / len(anni_charms) if anni_charms else 0,
                 'charms': sorted(anni_charms, key=lambda x: x.get('all_res', 0), reverse=True)
             }
         },

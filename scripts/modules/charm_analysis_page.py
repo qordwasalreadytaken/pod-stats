@@ -542,89 +542,89 @@ class CharmAnalysisHTMLGenerator:
         torch_data = unique_charms_data.get('torches', {})
         anni_data = unique_charms_data.get('annis', {})
         
-        # Gheed's Fortune stats
+        # Gheed's Fortune stats - simple count and perfect count
         gheeds_total = gheeds_data.get('total_count', 0)
-        gheeds_charms = gheeds_data.get('charms', [])
+        gheeds_40mf = gheeds_data.get('perfect_40mf_count', 0)
         
-        gheeds_html = "<p>No Gheed's Fortune charms found.</p>"
-        if gheeds_charms:
-            best_gheeds = gheeds_charms[:10]  # Top 10
-            gheeds_html = f"""
-            <h3>Gheed's Fortune ({gheeds_total:,} found)</h3>
-            <p>Top 10 by Magic Find:</p>
-            <ol>
-            """
-            for gheed in best_gheeds:
-                mf = gheed.get('mf', 0)
-                gold = gheed.get('gold_find', 0)
-                vendor = gheed.get('vendor_discount', 0)
-                char_name = gheed.get('char_name', 'Unknown')
-                char_class = gheed.get('char_class', 'Unknown')
-                gheeds_html += f"""
-                <li><strong>{mf}% MF</strong> | {gold}% Gold Find | {vendor}% Vendor Prices
-                    <br><small>Character: {char_name} ({char_class})</small>
-                </li>
-                """
-            gheeds_html += "</ol>"
+        gheeds_html = f"""
+        <h3>Gheed's Fortune</h3>
+        <ul>
+            <li><strong>Total Count:</strong> {gheeds_total:,}</li>
+            <li><strong>Perfect (40% MF):</strong> {gheeds_40mf:,}</li>
+        </ul>
+        """
         
         # Hellfire Torch stats
         torch_total = torch_data.get('total_count', 0)
-        torch_charms = torch_data.get('charms', [])
-        torch_by_class = torch_data.get('by_class', Counter())
+        chars_with_torch = torch_data.get('chars_with_torch', 0)
+        chars_without_torch = torch_data.get('chars_without_torch', 0)
+        torch_perfect = torch_data.get('perfect_20_20_count', 0)
+        avg_attrs = torch_data.get('avg_attributes', 0)
+        avg_res = torch_data.get('avg_all_res', 0)
+        by_class_with = torch_data.get('by_class_with', {})
+        by_class_without = torch_data.get('by_class_without', {})
         
-        torch_html = "<p>No Hellfire Torches found.</p>"
-        if torch_charms:
-            best_torches = torch_charms[:10]  # Top 10
-            
-            # Class distribution
-            class_dist_html = "<ul>"
-            for class_bonus, count in torch_by_class.most_common():
-                class_dist_html += f"<li>{class_bonus}: {count:,}</li>"
-            class_dist_html += "</ul>"
-            
-            torch_html = f"""
-            <h3>Hellfire Torches ({torch_total:,} found)</h3>
-            <p>Distribution by class:</p>
-            {class_dist_html}
-            <p>Top 10 by All Resistances:</p>
-            <ol>
-            """
-            for torch in best_torches:
-                all_res = torch.get('all_res', 0)
-                attrs = torch.get('attributes', 0)
-                class_bonus = torch.get('class_bonus', 'Unknown Class')
-                char_name = torch.get('char_name', 'Unknown')
-                char_class = torch.get('char_class', 'Unknown')
-                torch_html += f"""
-                <li><strong>{all_res} All Res</strong> | {attrs} Attributes | {class_bonus}
-                    <br><small>Character: {char_name} ({char_class})</small>
-                </li>
-                """
-            torch_html += "</ol>"
+        total_chars = chars_with_torch + chars_without_torch
+        pct_with_torch = (chars_with_torch / total_chars * 100) if total_chars > 0 else 0
+        pct_without_torch = (chars_without_torch / total_chars * 100) if total_chars > 0 else 0
+        
+        # Build class breakdown
+        all_classes = sorted(set(list(by_class_with.keys()) + list(by_class_without.keys())))
+        class_breakdown_html = "<table style='margin: 10px 0; border-collapse: collapse;'><tr><th style='padding: 5px; border: 1px solid #444;'>Class</th><th style='padding: 5px; border: 1px solid #444;'>With Torch</th><th style='padding: 5px; border: 1px solid #444;'>Without Torch</th></tr>"
+        for cls in all_classes:
+            with_count = by_class_with.get(cls, 0)
+            without_count = by_class_without.get(cls, 0)
+            class_breakdown_html += f"<tr><td style='padding: 5px; border: 1px solid #444;'>{cls}</td><td style='padding: 5px; border: 1px solid #444;'>{with_count:,}</td><td style='padding: 5px; border: 1px solid #444;'>{without_count:,}</td></tr>"
+        class_breakdown_html += "</table>"
+        
+        torch_html = f"""
+        <h3>Hellfire Torch</h3>
+        <ul>
+            <li><strong>Characters with Torch:</strong> {chars_with_torch:,} ({pct_with_torch:.1f}%)</li>
+            <li><strong>Characters without Torch:</strong> {chars_without_torch:,} ({pct_without_torch:.1f}%)</li>
+            <li><strong>Perfect (20/20):</strong> {torch_perfect:,}</li>
+            <li><strong>Average Stats:</strong> {avg_attrs:.1f} Attributes / {avg_res:.1f} All Res</li>
+        </ul>
+        <h4>By Class:</h4>
+        {class_breakdown_html}
+        """
         
         # Annihilus stats
         anni_total = anni_data.get('total_count', 0)
-        anni_charms = anni_data.get('charms', [])
+        chars_with_anni = anni_data.get('chars_with_anni', 0)
+        chars_without_anni = anni_data.get('chars_without_anni', 0)
+        anni_perfect = anni_data.get('perfect_20_20_10_count', 0)
+        anni_anti_perfect = anni_data.get('anti_perfect_10_10_5_count', 0)
+        avg_anni_attrs = anni_data.get('avg_attributes', 0)
+        avg_anni_res = anni_data.get('avg_all_res', 0)
+        avg_anni_exp = anni_data.get('avg_exp_gain', 0)
+        by_class_with_anni = anni_data.get('by_class_with', {})
+        by_class_without_anni = anni_data.get('by_class_without', {})
         
-        anni_html = "<p>No Annihilus charms found.</p>"
-        if anni_charms:
-            best_annis = anni_charms[:10]  # Top 10
-            anni_html = f"""
-            <h3>Annihilus ({anni_total:,} found)</h3>
-            <p>Top 10 by All Resistances:</p>
-            <ol>
-            """
-            for anni in best_annis:
-                all_res = anni.get('all_res', 0)
-                attrs = anni.get('attributes', 0)
-                char_name = anni.get('char_name', 'Unknown')
-                char_class = anni.get('char_class', 'Unknown')
-                anni_html += f"""
-                <li><strong>{all_res} All Res</strong> | {attrs} Attributes
-                    <br><small>Character: {char_name} ({char_class})</small>
-                </li>
-                """
-            anni_html += "</ol>"
+        pct_with_anni = (chars_with_anni / total_chars * 100) if total_chars > 0 else 0
+        pct_without_anni = (chars_without_anni / total_chars * 100) if total_chars > 0 else 0
+        
+        # Build class breakdown for anni
+        all_classes_anni = sorted(set(list(by_class_with_anni.keys()) + list(by_class_without_anni.keys())))
+        class_breakdown_anni_html = "<table style='margin: 10px 0; border-collapse: collapse;'><tr><th style='padding: 5px; border: 1px solid #444;'>Class</th><th style='padding: 5px; border: 1px solid #444;'>With Anni</th><th style='padding: 5px; border: 1px solid #444;'>Without Anni</th></tr>"
+        for cls in all_classes_anni:
+            with_count = by_class_with_anni.get(cls, 0)
+            without_count = by_class_without_anni.get(cls, 0)
+            class_breakdown_anni_html += f"<tr><td style='padding: 5px; border: 1px solid #444;'>{cls}</td><td style='padding: 5px; border: 1px solid #444;'>{with_count:,}</td><td style='padding: 5px; border: 1px solid #444;'>{without_count:,}</td></tr>"
+        class_breakdown_anni_html += "</table>"
+        
+        anni_html = f"""
+        <h3>Annihilus</h3>
+        <ul>
+            <li><strong>Characters with Anni:</strong> {chars_with_anni:,} ({pct_with_anni:.1f}%)</li>
+            <li><strong>Characters without Anni:</strong> {chars_without_anni:,} ({pct_without_anni:.1f}%)</li>
+            <li><strong>Perfect (20/20/10):</strong> {anni_perfect:,}</li>
+            <li><strong>Anti-Perfect (10/10/5):</strong> {anni_anti_perfect:,}</li>
+            <li><strong>Average Stats:</strong> {avg_anni_attrs:.1f} Attributes / {avg_anni_res:.1f} All Res / {avg_anni_exp:.1f}% Exp</li>
+        </ul>
+        <h4>By Class:</h4>
+        {class_breakdown_anni_html}
+        """
         
         return f"""
         <h2 id="unique-charms">
