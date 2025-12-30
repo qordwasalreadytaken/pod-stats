@@ -5,73 +5,7 @@ Generates HTML for the charm analysis page
 
 from typing import Dict, List, Any
 from collections import Counter
-
-
-def generate_standard_javascript():
-    """Generate standard JavaScript for collapsibles and character popups"""
-    return """
-    <script>
-        // Collapsible functionality
-        var coll = document.getElementsByClassName("collapsible");
-        var i;
-
-        for (i = 0; i < coll.length; i++) {
-            coll[i].addEventListener("click", function() {
-                this.classList.toggle("active");
-                var content = this.nextElementSibling;
-                if (content.style.display === "block") {
-                    content.style.display = "none";
-                } else {
-                    content.style.display = "block";
-                }
-                
-                // Toggle icons
-                var openIcon = this.querySelector('.open-icon');
-                var closeIcon = this.querySelector('.close-icon');
-                if (openIcon && closeIcon) {
-                    openIcon.classList.toggle('hidden');
-                    closeIcon.classList.toggle('hidden');
-                }
-            });
-        }
-
-        // Character popup functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const hoverTriggers = document.querySelectorAll('.hover-trigger');
-            
-            hoverTriggers.forEach(trigger => {
-                trigger.addEventListener('mouseenter', function() {
-                    const characterName = this.getAttribute('data-character-name');
-                    const popup = this.nextElementSibling.querySelector('.popup');
-                    
-                    if (popup && !popup.classList.contains('loaded')) {
-                        fetch(`https://beta.pathofdiablo.com/armory?name=${characterName}`)
-                            .then(response => response.text())
-                            .then(html => {
-                                popup.innerHTML = html;
-                                popup.classList.add('loaded');
-                                popup.classList.remove('hidden');
-                            })
-                            .catch(error => {
-                                console.error('Error loading character data:', error);
-                            });
-                    } else if (popup) {
-                        popup.classList.remove('hidden');
-                    }
-                });
-                
-                trigger.addEventListener('mouseleave', function() {
-                    const popup = this.nextElementSibling.querySelector('.popup');
-                    if (popup) {
-                        setTimeout(() => {
-                            popup.classList.add('hidden');
-                        }, 200);
-                    }
-                });
-            });
-        });
-    </script>
-    """
+from .shared_utils import generate_standard_javascript
 
 
 class CharmAnalysisHTMLGenerator:
