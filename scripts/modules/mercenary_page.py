@@ -117,6 +117,9 @@ class MercenaryAnalyzer:
                         merc_item_counters['set'][item_title] += 1
                         merc_set_users[item_title].append(char_info)
         
+        # Analyze socketable items
+        socketable_data = self._analyze_mercenary_socketables()
+        
         return {
             'mercenary_counts': mercenary_counts,
             'mercenary_equipment': mercenary_equipment,
@@ -126,12 +129,149 @@ class MercenaryAnalyzer:
             'merc_runeword_bases': merc_runeword_bases,
             'merc_unique_users': merc_unique_users,
             'merc_set_users': merc_set_users,
+            'socketable_data': socketable_data,
             'debug_info': {
                 'total_chars_processed': len([char for char in self.all_characters if isinstance(char, dict)]),
                 'chars_with_mercs': len([char for char in self.all_characters if isinstance(char, dict) and char.get("MercenaryType")]),
                 'equipment_items_found': sum(len(categories) for categories in mercenary_equipment.values())
             }
         }
+    
+    def _analyze_mercenary_socketables(self):
+        """Analyze what items are socketed in mercenary equipment"""
+        just_socketed_runes = Counter()  # All runes (including in runewords)
+        just_socketed_excluding_runewords_runes = Counter()  # Runes excluding runewords
+        just_socketed_non_runes = Counter()  # Non-rune items
+        just_socketed_magic = defaultdict(int)  # Magic jewels with default 0
+        just_socketed_rare = defaultdict(int)  # Rare jewels with default 0
+        just_socketed_facets = defaultdict(lambda: {"count": 0, "perfect": 0})  # Rainbow facets
+        
+        rune_names = {
+            "El Rune", "Eld Rune", "Tir Rune", "Nef Rune", "Eth Rune", "Ith Rune", "Tal Rune", "Ral Rune", 
+            "Ort Rune", "Thul Rune", "Amn Rune", "Sol Rune", "Shael Rune", "Dol Rune", "Hel Rune", "Io Rune", 
+            "Lum Rune", "Ko Rune", "Fal Rune", "Lem Rune", "Pul Rune", "Um Rune", "Mal Rune", "Ist Rune",
+            "Gul Rune", "Vex Rune", "Ohm Rune", "Lo Rune", "Sur Rune", "Ber Rune", "Jah Rune", "Cham Rune", "Zod Rune"
+        }
+        
+        def extract_element(item):
+            if item.get('Title') == 'Rainbow Facet':
+                element_types = ["fire", "cold", "lightning", "poison", "physical", "magic"]
+                for element in element_types:
+                    for prop in item.get('PropertyList', []):
+                        if element in prop.lower():
+                            return element.capitalize()
+            return item.get('Title', 'Unknown')
+        
+        # Process all characters' mercenary equipment
+        for char in self.all_characters:
+            if not isinstance(char, dict):
+                continue
+            
+            # Get mercenary equipment - try multiple possible field names
+            merc_equipped = char.get("mercenary_equipped", {})
+            if not merc_equipped:
+                merc_equipped = char.get("MercenaryEquipped", {})
+            if not merc_equipped:
+                merc_equipped = char.get("mercenary", {})
+            
+            # Process dict structure
+            if isinstance(merc_equipped, dict):
+                for worn_category, item in merc_equipped.items():
+                    if not isinstance(item, dict):
+                        continue
+                    self._process_socketed_item(item, rune_names, just_socketed_runes, 
+                                               just_socketed_excluding_runewords_runes,
+                                               just_socketed_non_runes, just_socketed_magic,
+                                               just_socketed_rare, just_socketed_facets,
+                                               extract_element)
+            # Process list structure
+            elif isinstance(merc_equipped, list):
+                for item in merc_equipped:
+                    if not isinstance(item, dict):
+                        continue
+                    self._process_socketed_item(item, rune_names, just_socketed_runes,
+                                               just_socketed_excluding_runewords_runes,
+                                               just_socketed_non_runes, just_socketed_magic,
+                                               just_socketed_rare, just_socketed_facets,
+                                               extract_element)
+        
+        return {
+            'just_socketed_runes': just_socketed_runes,
+            'just_socketed_excluding_runewords_runes': just_socketed_excluding_runewords_runes,
+            'just_socketed_non_runes': just_socketed_non_runes,
+            'just_socketed_magic': just_socketed_magic,
+            'just_socketed_rare': just_socketed_rare,
+            'just_socketed_facets': just_socketed_facets
+        }
+    
+    def _process_socketed_item(self, item, rune_names, just_socketed_runes,
+                               just_socketed_excluding_runewords_runes,
+                               just_socketed_non_runes, just_socketed_magic,
+                               just_socketed_rare, just_socketed_facets,
+                               extract_element):
+        """Process a single socketed item from mercenary equipment"""
+        if item.get('SocketCount', '0') == '0':
+            return
+        
+        is_runeword = item.get('QualityCode') == 'q_runeword'
+        
+        # Process each socketed item
+        for socketed_item in item.get('Sockets', []):
+            title = socketed_item.get('Title', '')
+            quality_code = socketed_item.get('QualityCode', '')
+            
+            if title in rune_names:
+                # Count all runes (including those in runewords)
+                just_socketed_runes[title] += 1
+                
+                # Count runes excluding runewords
+                if not is_runeword:
+                    just_socketed_excluding_runewords_runes[title] += 1
+            else:
+                # Non-rune items (only count if not in runewords)
+                if not is_runeword:
+                    if title == 'Rainbow Facet':
+                        element = extract_element(socketed_item)
+                        just_socketed_facets[element]["count"] += 1
+                        
+                        # Check for perfect facets - look for +5 and -5 (without % signs)
+                        properties = socketed_item.get('PropertyList', [])
+                        
+                        has_plus_five = any('+5' in prop for prop in properties)
+                        has_minus_five = any('-5' in prop for prop in properties)
+                        if has_plus_five and has_minus_five:
+                            just_socketed_facets[element]["perfect"] += 1
+                    elif quality_code == "q_magic":
+                        # Count magic jewels and analyze properties
+                        just_socketed_magic['Misc. Magic Jewels'] += 1
+                        properties = socketed_item.get('PropertyList', [])
+                        prop_text = ' '.join(properties).lower()
+                        
+                        # Check for splash (look for "splash" in any property)
+                        if 'splash' in prop_text:
+                            just_socketed_magic['splash'] += 1
+                        # Check for attack speed (look for "increased attack speed")
+                        if 'increased attack speed' in prop_text:
+                            just_socketed_magic['attack speed'] += 1
+                        # Check for enhanced damage 
+                        if 'enhanced damage' in prop_text or 'damage to' in prop_text:
+                            just_socketed_magic['enhanced damage'] += 1
+                        # Combination checks
+                        if 'splash' in prop_text and 'increased attack speed' in prop_text:
+                            just_socketed_magic['iassplash'] += 1
+                        if 'increased attack speed' in prop_text and ('enhanced damage' in prop_text or 'damage to' in prop_text):
+                            just_socketed_magic['iased'] += 1
+                    elif quality_code == "q_rare":
+                        just_socketed_rare['Misc. Rare Jewels'] += 1
+                        properties = socketed_item.get('PropertyList', [])
+                        prop_text = ' '.join(properties).lower()
+                        
+                        if 'splash' in prop_text:
+                            just_socketed_rare['splash'] += 1
+                        if 'enhanced damage' in prop_text or 'damage to' in prop_text:
+                            just_socketed_rare['enhanced damage'] += 1
+                    else:
+                        just_socketed_non_runes[title] += 1
     
     def get_mercenary_statistics(self, analysis_data):
         """Calculate additional mercenary statistics"""
@@ -178,12 +318,14 @@ class MercenaryHTMLGenerator:
         merc_runeword_bases = analysis_data['merc_runeword_bases']
         merc_unique_users = analysis_data['merc_unique_users']
         merc_set_users = analysis_data['merc_set_users']
+        socketable_data = analysis_data['socketable_data']
         
         # Generate individual sections
         type_counts_html = MercenaryHTMLGenerator._generate_type_counts_section(mercenary_counts)
         names_html = MercenaryHTMLGenerator._generate_names_section(mercenary_names)
         equipment_html = MercenaryHTMLGenerator._generate_equipment_section(mercenary_equipment)
         popular_items_html = MercenaryHTMLGenerator._generate_popular_items_section(merc_item_counters, merc_runeword_bases, merc_unique_users, merc_set_users)
+        socketable_html = MercenaryHTMLGenerator._generate_socketable_section(socketable_data)
         stats_html = MercenaryHTMLGenerator._generate_statistics_section(stats_data)
         
         html_content = f"""
@@ -239,6 +381,10 @@ class MercenaryHTMLGenerator:
                     <hr>
 
                     {popular_items_html}
+
+                    <hr>
+                    
+                    {socketable_html}
 
                     <hr> 
                                         
@@ -544,6 +690,96 @@ class MercenaryHTMLGenerator:
             """
         
         return items_html
+
+    @staticmethod
+    def _generate_socketable_section(socketable_data):
+        """Generate HTML for mercenary socketable items section"""
+        just_socketed_runes = socketable_data['just_socketed_runes']
+        just_socketed_excluding_runewords_runes = socketable_data['just_socketed_excluding_runewords_runes']
+        just_socketed_non_runes = socketable_data['just_socketed_non_runes']
+        just_socketed_magic = socketable_data['just_socketed_magic']
+        just_socketed_rare = socketable_data['just_socketed_rare']
+        just_socketed_facets = socketable_data['just_socketed_facets']
+        
+        # Format rune lists
+        sorted_just_socketed_runes = '\n'.join(f"<li>{item}: {count}</li>" for item, count in just_socketed_runes.most_common())
+        sorted_just_socketed_excluding_runewords_runes = '\n'.join(f"<li>{item}: {count}</li>" for item, count in just_socketed_excluding_runewords_runes.most_common())
+        
+        # Build other items list and sort by count in descending order
+        all_other_items_with_counts = []
+        
+        # Non-rune items with their counts
+        for item, count in just_socketed_non_runes.items():
+            all_other_items_with_counts.append((count, f"{item}: {count}"))
+        
+        # Magic jewels with detailed breakdown
+        if just_socketed_magic['Misc. Magic Jewels'] > 0:
+            magic_count = just_socketed_magic['Misc. Magic Jewels']
+            magic_detail = f"Misc. Magic Jewels: {magic_count} ({just_socketed_magic['splash']} include melee splash, {just_socketed_magic['attack speed']} include IAS, {just_socketed_magic['enhanced damage']} include ED; of those, there are {just_socketed_magic['iassplash']} IAS/Splash and {just_socketed_magic['iased']} IAS/ED)"
+            all_other_items_with_counts.append((magic_count, magic_detail))
+        
+        # Rare jewels with breakdown  
+        if just_socketed_rare['Misc. Rare Jewels'] > 0:
+            rare_count = just_socketed_rare['Misc. Rare Jewels']
+            rare_detail = f"Misc. Rare Jewels: {rare_count} ({just_socketed_rare['splash']} include melee splash, {just_socketed_rare['enhanced damage']} include ED)"
+            all_other_items_with_counts.append((rare_count, rare_detail))
+        
+        # Rainbow facets
+        for element, counts in just_socketed_facets.items():
+            facet_count = counts['count']
+            facet_text = f"Rainbow Facet ({element}): {facet_count} ({counts['perfect']} are perfect)"
+            all_other_items_with_counts.append((facet_count, facet_text))
+        
+        # Sort by count descending, then format as HTML
+        all_other_items_with_counts.sort(key=lambda x: x[0], reverse=True)
+        all_other_items = [item_text for _, item_text in all_other_items_with_counts]
+        
+        other_items_html = '<ul>' + '\n'.join(f"<li>{item}</li>" for item in all_other_items) + '</ul>' if all_other_items else '<p>No non-rune items found in sockets</p>'
+        
+        html = f"""
+        <h2 id="socketable-reporting">
+            Mercenary Socketable Reporting
+            <a href="#socketable-reporting" class="anchor-link">
+                <img src="icons/anchor.png" alt="🔗" class="anchor-icon">
+            </a>
+        </h2>
+        <h3>What are people putting in mercenary equipment sockets</h3>
+
+        <button type="button" class="collapsible sets-button">
+            <img src="icons/Special_click.png" alt="Synth Open" class="icon open-icon hidden">
+            <img src="icons/Special.png" alt="Synth Close" class="icon close-icon">
+        </button>  
+        <div class="content" style="display: none;">  
+            <h2>Socketed Runes Count</h2>
+            <h3>Mercenary Equipment Only</h3>
+            <div id="special" class="container">
+                <br>
+                <div class="column">
+                    <!-- Left Column -->
+                    <h2>Most Common Runes <br>(Including Runewords)</h2>
+                    <ul id="sorted_just_socketed_runes">
+                        {sorted_just_socketed_runes if sorted_just_socketed_runes else '<li>No runes found</li>'}
+                    </ul>
+                </div>
+
+                <!-- Right Column -->
+                <div class="column">
+                    <h2>Most Common Runes <br>(Excluding Runewords)</h2>
+                    <ul id="sorted_just_socketed_excluding_runewords_runes">
+                        {sorted_just_socketed_excluding_runewords_runes if sorted_just_socketed_excluding_runewords_runes else '<li>No runes found</li>'}
+                    </ul>
+                </div>
+            </div>
+
+            <div>
+                <h2>Other Items Found in Sockets</h2>
+                <h3>Mercenary Equipment Only</h3>
+                {other_items_html}
+            </div>
+        </div>
+        <br>"""
+        
+        return html
 
     @staticmethod
     def _map_readable_mercenary_name(mercenary_type):
