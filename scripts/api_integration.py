@@ -4221,6 +4221,52 @@ def update_unified_csv_from_character_data(characters, league, snapshot_label):
             
             is_synth = "Synthesized" in item.get("Tag", "")
             usage_counter[key][1 if is_synth else 0] += 1
+        
+        # Count unique charms from inventory (Gheed's, Torch, Anni)
+        # Only count charms in active charm area (bottom 4 rows, y: 5-8)
+        inventory = char.get("Inventory", [])
+        if isinstance(inventory, list):
+            for item in inventory:
+                if not isinstance(item, dict):
+                    continue
+                
+                # Check if charm is in active area (bottom 4 rows)
+                position = item.get("Position", {})
+                y_pos = position.get("y", 0)
+                if not (5 <= y_pos <= 8):
+                    continue
+                
+                quality_code = item.get("QualityCode")
+                if quality_code != "q_unique":
+                    continue
+                
+                props = item.get("PropertyList", [])
+                if not props:
+                    continue
+                
+                charm_name = None
+                
+                # Gheed's Fortune (Grand Charm with gold find and vendor prices)
+                has_gold_find = any("Extra Gold from Monsters" in p for p in props)
+                has_vendor = any("Reduces all Vendor Prices" in p for p in props)
+                if has_gold_find and has_vendor:
+                    charm_name = "Gheed's Fortune"
+                
+                # Hellfire Torch (Large Charm with +3 to class skills)
+                has_class_skills = any("+3 to" in p and "Skill Levels" in p for p in props)
+                if has_class_skills:
+                    charm_name = "Hellfire Torch"
+                
+                # Annihilus (Small Charm with +1 to all skills and experience)
+                has_all_skills = any("+1 to All Skills" in p for p in props)
+                has_exp = any("Experience Gained" in p for p in props)
+                if has_all_skills and has_exp:
+                    charm_name = "Annihilus"
+                
+                if charm_name:
+                    key = (charm_name, "", "Unique Charm", league)
+                    is_synth = "Synthesized" in item.get("Tag", "")
+                    usage_counter[key][1 if is_synth else 0] += 1
     
     # Update existing rows or create new ones
     for (name, cls, typ, lg), (normal, synth) in usage_counter.items():
@@ -4378,8 +4424,8 @@ def generate_web_pages():
     
     # Organize data by league and type
     data_by_league = {
-        'SC': {'Skills': {}, 'Uniques': [], 'Sets': [], 'Runewords': [], 'Mercenary Uniques': [], 'Mercenary Sets': [], 'Mercenary Runewords': []},
-        'HC': {'Skills': {}, 'Uniques': [], 'Sets': [], 'Runewords': [], 'Mercenary Uniques': [], 'Mercenary Sets': [], 'Mercenary Runewords': []},
+        'SC': {'Skills': {}, 'Uniques': [], 'Sets': [], 'Runewords': [], 'Unique Charms': [], 'Mercenary Uniques': [], 'Mercenary Sets': [], 'Mercenary Runewords': []},
+        'HC': {'Skills': {}, 'Uniques': [], 'Sets': [], 'Runewords': [], 'Unique Charms': [], 'Mercenary Uniques': [], 'Mercenary Sets': [], 'Mercenary Runewords': []},
         'ALL': {'Server': [], 'GameServer': []}
     }
     
@@ -4397,7 +4443,7 @@ def generate_web_pages():
                 if char_class not in data_by_league[league]['Skills']:
                     data_by_league[league]['Skills'][char_class] = []
                 data_by_league[league]['Skills'][char_class].append((name, usage_data))
-            elif data_type in ['Unique', 'Set', 'Runeword', 'Mercenary Unique', 'Mercenary Set', 'Mercenary Runeword']:
+            elif data_type in ['Unique', 'Set', 'Runeword', 'Unique Charm', 'Mercenary Unique', 'Mercenary Set', 'Mercenary Runeword']:
                 data_by_league[league][data_type + 's' if not data_type.endswith('s') else data_type].append((name, usage_data))
         elif league == 'ALL':
             data_by_league['ALL'][data_type].append((name, usage_data))
@@ -4533,6 +4579,7 @@ def generate_league_html(league, league_data, time_columns):
             ('Uniques', '💎'),
             ('Sets', '📦'), 
             ('Runewords', '🔮'),
+            ('Unique Charms', '✨'),
             ('Mercenary Uniques', '⚔️💎'),
             ('Mercenary Sets', '⚔️📦'),
             ('Mercenary Runewords', '⚔️🔮')
@@ -4543,6 +4590,7 @@ def generate_league_html(league, league_data, time_columns):
             'Uniques': 'rgb(144, 136, 88)',
             'Sets': 'rgb(0, 196, 0)',
             'Runewords': 'rgb(144, 136, 88)',
+            'Unique Charms': 'rgb(255, 165, 0)',
             'Mercenary Uniques': 'rgb(144, 136, 88)',
             'Mercenary Sets': 'rgb(0, 196, 0)',
             'Mercenary Runewords': 'rgb(144, 136, 88)'
