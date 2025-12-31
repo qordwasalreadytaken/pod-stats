@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="shortcut icon" type="image/x-icon" href="icons/pod.ico">
+    <title>Character Name Search</title>
+    <link rel="stylesheet" type="text/css" href="./css/test-css.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body class="not-main" style="background-color: #000000; background-image: none;">
+    <div class="is-clipped">
+        <div id="navbar-placeholder"></div>
+        <script>
+        fetch("templates/navbar.html")
+            .then(res => res.text())
+            .then(html => {
+            document.getElementById("navbar-placeholder").innerHTML = html;
+            });
+        </script>
+
+    <div class="hamburger hamburger2" onclick="toggleMenu()">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
+    <div class="top-buttons">
+        <a href="Home" class="top-button home-button" onclick="setActive('Home')"></a>
+        <a href="#" id="SC_HC" class="top-button"> </a>
+        <a href="Amazon" id="Amazon" class="top-button amazon-button"></a>
+        <a href="Assassin" id="Assassin" class="top-button assassin-button"></a>
+        <a href="Barbarian" id="Barbarian" class="top-button barbarian-button"></a>
+        <a href="Druid" id="Druid" class="top-button druid-button"></a>
+        <a href="Necromancer" id="Necromancer" class="top-button necromancer-button"></a>
+        <a href="Paladin" id="Paladin" class="top-button paladin-button"></a>
+        <a href="Sorceress" id="Sorceress" class="top-button sorceress-button"></a>
+        <a href="https://github.com/qordwasalreadytaken/pod-stats/blob/main/README.md" class="top-button about-button" target="_blank"></a>
+    </div>
+    <style>
+        /* Additional styles specific to search functionality */
+        .search-form {
+            background-color: #3a3f44;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border: 2px solid #555;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #d5f2e3;
+            font-family: 'armory', sans-serif;
+        }
+        .form-group input[type="text"], 
+        .form-group input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #555;
+            border-radius: 4px;
+            font-size: 14px;
+            background-color: #232323;
+            color: #f5f5f5;
+            font-family: 'armory', sans-serif;
+        }
+        .form-group input[type="text"]:focus, 
+        .form-group input[type="number"]:focus {
+            border-color: #d5f2e3;
+            outline: none;
+            box-shadow: 0 0 5px rgba(213, 242, 227, 0.3);
+        }
+        .form-group small {
+            color: #e0e0e2;
+            font-family: 'armory', sans-serif;
+        }
+        .search-button {
+            background-color: #3a3f44;
+            color: #d5f2e3;
+            padding: 12px 24px;
+            border: 2px solid #555;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-family: 'armory', sans-serif;
+            font-weight: bold;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+        .search-button:hover {
+            background-color: #555;
+            border-color: #d5f2e3;
+            box-shadow: 0 0 10px rgba(213, 242, 227, 0.3);
+        }
+        .loading {
+            color: #e0e0e2;
+            font-style: italic;
+            font-family: 'armory', sans-serif;
+        }
+        .results {
+            margin-top: 20px;
+        }
+        .character-card {
+            background-color: #3a3f44;
+            border: 2px solid #555;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .character-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #d5f2e3;
+            margin-bottom: 8px;
+            font-family: 'd2', sans-serif;
+        }
+        .character-info {
+            color: #e0e0e2;
+            margin-bottom: 10px;
+            font-family: 'armory', sans-serif;
+        }
+        .character-info a {
+            color: #d5f2e3;
+            text-decoration: none;
+        }
+        .character-info a:hover {
+            text-decoration: underline;
+        }
+        .skills {
+            background-color: #232323;
+            padding: 10px;
+            border-radius: 4px;
+            border-left: 4px solid #d5f2e3;
+            margin-top: 10px;
+        }
+        .equipment {
+            background-color: #232323;
+            padding: 10px;
+            border-radius: 4px;
+            border-left: 4px solid #d5a623;
+            margin-top: 10px;
+        }
+        .skills strong, .equipment strong {
+            color: #d5f2e3;
+            font-family: 'armory', sans-serif;
+        }
+        .skill-item, .equipment-item {
+            margin-bottom: 5px;
+            padding: 5px;
+            background-color: #3a3f44;
+            border-radius: 3px;
+            color: #f5f5f5;
+            font-family: 'armory', sans-serif;
+        }
+        .timing-info {
+            background-color: #3a3f44;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border: 2px solid #555;
+        }
+        .timing-info h3 {
+            color: #d5f2e3;
+            font-family: 'armory', sans-serif;
+            margin-top: 0;
+        }
+        .error {
+            background-color: #5a2a2a;
+            color: #ffaaaa;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border: 2px solid #aa5555;
+            font-family: 'armory', sans-serif;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .stat-card {
+            background-color: #232323;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            border: 1px solid #555;
+        }
+        .stat-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #d5f2e3;
+            font-family: 'd2', sans-serif;
+        }
+        .stat-label {
+            color: #e0e0e2;
+            font-size: 14px;
+            font-family: 'armory', sans-serif;
+        }
+        
+        /* Override main class margin to align left */
+        .main {
+            margin-left: 20px !important;
+            margin-right: 20px;
+            max-width: 1000px;
+        }
+        
+        .mercenary-section {
+            background-color: #2a2520;
+            padding: 10px;
+            border-radius: 4px;
+            border-left: 4px solid #ff8c00;
+            margin-top: 10px;
+        }
+        
+        .mercenary-section strong {
+            color: #ff8c00;
+            font-family: 'armory', sans-serif;
+        }
+    </style>
+</head>
+
+        <h1>Character Name Search</h1>
+        <h3>Find characters by name</h3>
+        <p style="color: #e0e0e2; margin-bottom: 20px; font-family: 'armory', sans-serif;">
+            Search for characters by their name. Supports partial matches (e.g., searching "fire" will find "fire-ice", "FireBall", etc.)
+        </p>
+        <div class="search-form">
+        <div class="search-section">
+            <h3>Search for Character</h3>
+            <input type="text" id="characterName" placeholder="Enter character name (e.g. fire-ice)" onkeypress="if(event.key === 'Enter') performCharacterSearch()">
+            
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="searchHardcore" onchange="onLeagueChange()"> 
+                    Search Hardcore (HC) characters
+                </label>
+                <small>
+                    Unchecked: Softcore (SC) | Checked: Hardcore (HC)
+                </small>
+            </div>
+            
+            <button class="search-button" onclick="performCharacterSearch()">Search Characters</button>
+        </div>
+        </div>
+
+        <div id="results"></div>
+    </div>
+
+    <script>
+    async function performCharacterSearch() {
+        displayLoading();
+
+        if (!characterData) {
+            const loaded = await loadCharacterData();
+            if (!loaded) return;
+        }
+
+        const nameQuery = document.getElementById('characterName').value.trim();
+        if (!nameQuery) {
+            displayError('Please enter a character name to search for.');
+            return;
+        }
+
+        const result = findCharactersByName(nameQuery);
+        displayCharacterResults(result, nameQuery);
+    }
+
+    function findCharactersByName(query) {
+        if (!characterData) {
+            displayError('Character data not loaded. Please try again.');
+            return { matches: [], searchTime: 0, totalCharacters: characterData?.length || 0 };
+        }
+
+        const searchStartTime = performance.now();
+        const matchingCharacters = [];
+        const searchQuery = query.toLowerCase();
+
+        for (const char of characterData) {
+            const charName = char.Name || "";
+            const compareNameWith = charName.toLowerCase();
+
+            if (compareNameWith.includes(searchQuery)) {
+                const charClass = char.Class || "Unknown";
+                const charLevel = char.Stats?.Level || "Unknown";
+
+                // Gather mercenary info
+                const mercInfo = char.Mercenary || {};
+                const mercType = mercInfo.Type || "None";
+                const mercName = mercInfo.Name || "";
+                const mercLevel = mercInfo.Level || 0;
+                const mercEquipped = char.MercenaryEquipped || [];
+                const mercEquipment = [];
+                for (const item of mercEquipped) {
+                    const itemName = item.Title || item.Name || "Unknown Item";
+                    mercEquipment.push(itemName);
+                }
+
+                matchingCharacters.push({
+                    name: charName,
+                    class: charClass,
+                    level: charLevel,
+                    mercenary: {
+                        type: mercType,
+                        name: mercName,
+                        level: mercLevel,
+                        equipment: mercEquipment
+                    }
+                });
+            }
+        }
+
+        const searchEndTime = performance.now();
+        const searchTime = searchEndTime - searchStartTime;
+
+        return {
+            matches: matchingCharacters,
+            searchTime: searchTime,
+            totalCharacters: characterData.length
+        };
+    }
+
+    function displayCharacterResults(result, query) {
+        const resultsDiv = document.getElementById('results');
+        const leagueName = currentLeague === 'hc' ? 'Hardcore' : 'Softcore';
+        const totalTime = dataLoadTime + result.searchTime;
+        
+        let html = '';
+
+        if (result.matches.length === 0) {
+            html = `<div class="error">No characters found matching "${query}" in ${leagueName} league.</div>`;
+        } else {
+            html += `<h2 style="color: #d5f2e3; font-family: 'armory', sans-serif;">Found ${result.matches.length} character(s) matching "${query}"</h2>`;
+
+            // Class color mapping
+            const classColors = {
+                "Amazon": "rgb(255, 102, 105)",
+                "Assassin": "rgb(255, 255, 255)",
+                "Barbarian": "rgb(150, 105, 32)",
+                "Druid": "rgb(255, 186, 74)",
+                "Necromancer": "rgb(179, 255, 253)",
+                "Paladin": "rgb(255, 243, 112)",
+                "Sorceress": "rgb(188, 107, 255)"
+            };
+
+            for (const char of result.matches) {
+//                const armoryUrl = `https://pathofdiablo.com/p/armory/?name=${encodeURIComponent(char.name)}`;
+                const armoryUrl = `https://trends.pathofdiablo.com/${encodeURIComponent(char.class)}#${encodeURIComponent(char.name)}`;
+                const classColor = classColors[char.class] || "#555";
+                
+                html += `
+                    <div class="character-card" style="border-left: 3px solid ${classColor};">
+                        <div class="character-name">${char.name}</div>
+                        <div class="character-info">
+                            <strong>Class:&nbsp; </strong> ${char.class} | &nbsp;
+                            <strong>Level:&nbsp; </strong> ${char.level} | &nbsp;
+                            <a href="${armoryUrl}" target="_blank">Trends Listing</a>
+                        </div>
+                `;
+
+                // Display mercenary
+                if (char.mercenary.type !== "None" && char.mercenary.type !== "") {
+                    html += `
+                        <div class="mercenary-section">
+                            <strong>Mercenary:</strong> ${char.mercenary.type}`;
+                    
+                    if (char.mercenary.name) {
+                        html += ` "${char.mercenary.name}"`;
+                    }
+                    if (char.mercenary.level > 0) {
+                        html += ` (Level ${char.mercenary.level})`;
+                    }
+                    
+                    if (char.mercenary.equipment.length > 0) {
+                        html += `<br><strong>Equipment:</strong> ${char.mercenary.equipment.join(', ')}`;
+                    }
+                    
+                    html += '</div>';
+                }
+
+                html += `</div>`;
+            }
+        }
+
+        html += `
+            <div class="timing-info">
+                <h3>Search Performance - ${leagueName} League</h3>
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="stat-number">${result.matches.length}</div>
+                        <div class="stat-label">Matches Found</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">${result.totalCharacters}</div>
+                        <div class="stat-label">Total Characters</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">${dataLoadTime.toFixed(2)}ms</div>
+                        <div class="stat-label">Data Load Time</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">${result.searchTime.toFixed(2)}ms</div>
+                        <div class="stat-label">Search Time</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">${totalTime.toFixed(2)}ms</div>
+                        <div class="stat-label">Total Time</div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        resultsDiv.innerHTML = html;
+    }
+
+    // Essential variables and functions
+    let characterData = null;
+    let dataLoadTime = 0;
+    let currentLeague = 'sc'; // 'sc' for softcore, 'hc' for hardcore
+    let loadedLeague = null; // Track which league data is currently loaded
+
+    function onLeagueChange() {
+        const isHardcore = document.getElementById('searchHardcore').checked;
+        const newLeague = isHardcore ? 'hc' : 'sc';
+        
+        if (newLeague !== currentLeague) {
+            currentLeague = newLeague;
+            // Clear loaded data when switching leagues
+            characterData = null;
+            loadedLeague = null;
+            
+            // Clear results
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '';
+            
+            console.log(`Switched to ${newLeague.toUpperCase()} league. Data will be reloaded on next search.`);
+        }
+    }
+
+    async function loadCharacterData() {
+        const startTime = performance.now();
+        
+        // Check if we already have the correct data loaded
+        if (characterData && loadedLeague === currentLeague) {
+            console.log(`${currentLeague.toUpperCase()} data already loaded, skipping reload.`);
+            return true;
+        }
+        
+        const filename = currentLeague === 'hc' ? 'hc_ladder.json' : 'sc_ladder.json';
+        const leagueName = currentLeague === 'hc' ? 'Hardcore' : 'Softcore';
+        
+        try {
+            console.log(`Starting to fetch ${filename}...`);
+            const response = await fetch(filename);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            console.log(`Parsing ${leagueName} JSON data...`);
+            characterData = await response.json();
+            loadedLeague = currentLeague;
+            
+            const endTime = performance.now();
+            dataLoadTime = endTime - startTime;
+            
+            console.log(`${leagueName} data loaded successfully. ${characterData.length} characters loaded in ${dataLoadTime.toFixed(2)}ms`);
+            return true;
+            
+        } catch (error) {
+            console.error(`Error loading ${leagueName} character data:`, error);
+            displayError(`Failed to load ${leagueName} character data: ${error.message}. Make sure ${filename} is in the same directory as this HTML file.`);
+            return false;
+        }
+    }
+
+    function displayLoading() {
+        const resultsDiv = document.getElementById('results');
+        resultsDiv.innerHTML = '<div class="loading">Loading and searching data...</div>';
+    }
+
+    function displayError(message) {
+        const resultsDiv = document.getElementById('results');
+        resultsDiv.innerHTML = `<div class="error">${message}</div>`;
+    }
+
+    // Navigation functions
+    function toggleMenu() {
+        console.log('Toggle menu called');
+        // Hamburger menu functionality
+    }
+
+    function setActive(buttonName) {
+        console.log('Setting active button:', buttonName);
+        // Set active button functionality
+    }
+    </script>
+
+    </div>
+</body>
+</html>
