@@ -860,19 +860,26 @@
     }
 
     .popup {
-        display: none;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        display: none; /* Initially hidden */
+        position: fixed; /* Keeps it positioned relative to the viewport */
+        top: 50%; /* Adjust as needed */
+        left: 50%; /* Center it */
+        transform: translate(-50%, -50%); /* Perfect centering */
         width: 600px;
-        height: 600px;
+        height: 500px;
         background-color: #232323;
         border: 1px solid black;
         box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
         padding: 10px;
         z-index: 1000;
+        overflow-y: auto;
+        scrollbar-width: none; /* Firefox */
     }
+
+    .popup::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+    }
+
     
     @media (max-width: 768px) {
         .popup {
