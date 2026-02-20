@@ -32,7 +32,9 @@ html, body {
     max-width: 100%;
     background: #000;
 /*    padding: 5px; */
-    overflow: hidden;
+/*    overflow: hidden; */
+    overflow-y: auto;
+    scrollbar-width: none; /* Firefox */
 }
 
 body {
@@ -41,6 +43,8 @@ body {
     -ms-overflow-style: none;
     margin: 0;
     padding: 0;
+    overflow-y: auto;
+    scrollbar-width: none; /* Firefox */
 }
 
 html::-webkit-scrollbar, body::-webkit-scrollbar {
@@ -659,6 +663,7 @@ img {
 #charm-7-2 { left: 413px; top: 115px; }
 #charm-8-2 { left: 470px; top: 115px; }
 #charm-9-2 { left: 527px; top: 115px; }
+
 /* Row 3 */
 #charm-0-3 { left: 11px; top: 171px; }
 #charm-1-3 { left: 68px; top: 171px; }
@@ -670,6 +675,7 @@ img {
 #charm-7-3 { left: 413px; top: 171px; }
 #charm-8-3 { left: 470px; top: 171px; }
 #charm-9-3 { left: 527px; top: 171px; }
+
 #skills {
     color: #a99877;
     max-max-width: 100%;
