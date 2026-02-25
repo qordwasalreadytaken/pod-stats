@@ -247,10 +247,30 @@ def GetAllHCCharData():
 
     print(f"✅ Saved {len(character_data)} unique characters to hc_ladder.json")
 
+def copy_ladders_to_dailies():
+    """Copy sc_ladder.json and hc_ladder.json to dailies/ with a date-stamped filename."""
+    today = datetime.now().strftime('%m-%d')
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    dailies_dir = os.path.abspath(os.path.join(script_dir, '..', 'dailies'))
+    os.makedirs(dailies_dir, exist_ok=True)
+    for base in ['sc_ladder.json', 'hc_ladder.json']:
+        src = os.path.abspath(os.path.join(script_dir, '..', base))
+        if os.path.exists(src):
+            if base.startswith('sc_'):
+                dst = os.path.join(dailies_dir, f"{today}-sc_ladder.json")
+            elif base.startswith('hc_'):
+                dst = os.path.join(dailies_dir, f"{today}-hc_ladder.json")
+            else:
+                continue
+            import shutil
+            shutil.copy2(src, dst)
+            print(f"Copied {src} to {dst}")
+
 
 def main():
     GetAllCharData()
     GetAllHCCharData()
+#    copy_ladders_to_dailies()
 
 
 if __name__ == "__main__":

@@ -324,6 +324,33 @@ class MercenaryHTMLGenerator:
         type_counts_html = MercenaryHTMLGenerator._generate_type_counts_section(mercenary_counts)
         names_html = MercenaryHTMLGenerator._generate_names_section(mercenary_names)
         equipment_html = MercenaryHTMLGenerator._generate_equipment_section(mercenary_equipment)
+
+        # Build mercenary item summary data by slot (merc type + slot)
+        merc_item_summary_data = {}
+        combined_by_slot = {}
+
+        for merc_type, slots in mercenary_equipment.items():
+            readable_merc = MercenaryHTMLGenerator._map_readable_mercenary_name(merc_type)
+            for worn_category, counter in slots.items():
+                readable_slot = MercenaryHTMLGenerator._map_readable_slot_name(worn_category)
+
+                # Per-merc, per-slot category
+                category_key = f"{readable_merc} - {readable_slot}"
+                merc_item_summary_data[category_key] = counter
+
+                # Combined across all mercs for this slot
+                if readable_slot not in combined_by_slot:
+                    from collections import Counter as _Counter
+                    combined_by_slot[readable_slot] = _Counter()
+                combined_by_slot[readable_slot].update(counter)
+
+        # Append combined "All Merc" categories at the end
+        for slot_name, counter in combined_by_slot.items():
+            all_category_key = f"All Merc - {slot_name}"
+            merc_item_summary_data[all_category_key] = counter
+
+        merc_item_summary_html = MercenaryHTMLGenerator._generate_item_summary_section(merc_item_summary_data)
+
         popular_items_html = MercenaryHTMLGenerator._generate_popular_items_section(merc_item_counters, merc_runeword_bases, merc_unique_users, merc_set_users)
         socketable_html = MercenaryHTMLGenerator._generate_socketable_section(socketable_data)
         stats_html = MercenaryHTMLGenerator._generate_statistics_section(stats_data)
@@ -397,7 +424,11 @@ class MercenaryHTMLGenerator:
                     <hr>
                     
                     {equipment_html}
-                    
+
+                    <hr>
+
+                    {merc_item_summary_html}
+
                     <hr>
                    
                 </div>
@@ -807,6 +838,50 @@ class MercenaryHTMLGenerator:
             "slot_3": "Slot 3"
         }
         return worn_mapping.get(worn_category, worn_category.title())
+
+    @staticmethod
+    def _generate_item_summary_section(item_summary_data):
+        """Generate HTML for mercenary item popularity by slot section"""
+        if not item_summary_data:
+            items_html = "<p>No item summary data available.</p>"
+        else:
+            items_html = ""
+            for category, counter in item_summary_data.items():
+                sorted_items = counter.most_common()
+                items_list = "".join(
+                    f"<div>{name}: {count}</div>" for name, count in sorted_items
+                )
+
+                items_html += f"""
+                <button class="collapsible">
+                    <img src="icons/open-grey.png" class="icon-small open-icon hidden">
+                    <img src="icons/closed-grey.png" class="icon-small close-icon">
+                    <strong>{category} ({sum(counter.values())} items)</strong>
+                </button>
+                <div class="content" style="display: none;">
+                    {items_list if items_list else "<p>No items found in this category.</p>"}
+                </div>
+                """
+        
+        return f"""
+        <h2 id="merc-item-popularity-slot">
+            Mercenary Item Popularity by Slot
+            <a href="#merc-item-popularity-slot" class="anchor-link">
+                <img src="icons/anchor.png" alt="🔗" class="anchor-icon">
+            </a>
+        </h2>
+        <h3>Mercenary items categorized by equipment slot</h3>
+        <button type="button" class="collapsible sets-button">
+            <img src="icons/Special_click.png" alt="Item Summary Open" class="icon open-icon hidden">
+            <img src="icons/Special.png" alt="Item Summary Close" class="icon close-icon">
+        </button>  
+        <div class="content" style="display: none;">  
+            <div id="merc-item-summary">
+                {items_html}
+            </div>
+        </div>
+        """
+
 
 
 def _generate_equipment_coverage_list(equipment_stats):
