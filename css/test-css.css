@@ -1094,6 +1094,7 @@
         padding: 10px;
         font-size: 18px;
         z-index: 1000; /* Ensures it stays on top of other elements */
+        pointer-events: none;  /* add this */
     }
     .dropdown {
         position: absolute;
@@ -1139,18 +1140,6 @@
     .dropdown:hover .dropdown-content {
         display: block;
     }    
-    .banner {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        background-color: rgba(0, 0, 0, 0.5); /* Transparent black background */
-        color: white;
-        text-align: center;
-        padding: 10px;
-        font-size: 18px;
-        z-index: 1000; /* Ensures it stays on top of other elements */
-    }
     #is-48x48c{
         height: 48px;
         width: 48px;
