@@ -21,6 +21,9 @@ from .shared_utils import generate_standard_javascript
 class ItemsEquipmentAnalyzer:
     def __init__(self, all_characters):
         self.all_characters = all_characters
+        # Lazy cache for full-set metadata so we only parse once
+        self._full_set_item_to_code = None
+        self._full_set_code_meta = None
         
     def analyze_all_items(self):
         """
@@ -51,6 +54,10 @@ class ItemsEquipmentAnalyzer:
         
         all_equipped_items = []
         item_summary_by_category = defaultdict(Counter)
+
+        # Prepare full-set metadata (if available)
+        self._load_full_set_metadata()
+        full_sets_by_display = defaultdict(list) if self._full_set_item_to_code else {}
         
         # Process each character
         for char_data in self.all_characters:
@@ -65,7 +72,7 @@ class ItemsEquipmentAnalyzer:
             
             # Process equipped items - note capital E for "Equipped"
             equipped_items = char_data.get("Equipped", [])
-                
+
             self._process_character_items(
                 equipped_items, char_info,
                 runeword_counter, unique_counter, set_counter, synth_counter,
@@ -74,6 +81,26 @@ class ItemsEquipmentAnalyzer:
                 crafted_users, magic_users, rare_users,
                 all_equipped_items, item_summary_by_category
             )
+
+            # Track characters wearing full sets (only if metadata is available)
+            if self._full_set_item_to_code:
+                char_set_counts = defaultdict(int)
+                for item_data in equipped_items:
+                    if not isinstance(item_data, dict):
+                        continue
+                    title = item_data.get("Title", "")
+                    set_code = self._full_set_item_to_code.get(title)
+                    if not set_code:
+                        continue
+                    char_set_counts[set_code] += 1
+
+                for set_code, count in char_set_counts.items():
+                    meta = self._full_set_code_meta.get(set_code)
+                    if not meta:
+                        continue
+                    if count >= meta["total_pieces"]:
+                        display_name = meta["display_name"]
+                        full_sets_by_display[display_name].append(char_info)
         
         # Generate socket analysis
         socketed_runes_html = self._generate_socketable_analysis()
@@ -141,8 +168,90 @@ class ItemsEquipmentAnalyzer:
             'synth_sources': synth_sources,
             'weapon_analysis_html': weapon_analysis_html,
             'loadout_data': loadout_data,
-            'build_enabling_data': build_enabling_data
+            'build_enabling_data': build_enabling_data,
+            'full_sets': dict(full_sets_by_display) if full_sets_by_display else {}
         }
+
+    def _load_full_set_metadata(self):
+        """Parse full-sets.json style file to build set-piece metadata.
+
+        The file is a JS-like source containing objects such as:
+        { name: "Immortal King's Will", ..., set: "IK", ... }
+        We only care about mapping item title -> set code and set code -> piece count.
+        """
+        if self._full_set_item_to_code is not None and self._full_set_code_meta is not None:
+            return
+
+        # Default to no data if anything goes wrong
+        self._full_set_item_to_code = {}
+        self._full_set_code_meta = {}
+
+        try:
+            base_dir = Path(__file__).parent.parent.parent
+            full_sets_path = base_dir / "full-sets.json"
+            if not full_sets_path.exists():
+                return
+
+            item_to_code = {}
+            code_to_items = defaultdict(list)
+
+            # Simple line-based parser; we don't need full JS parsing
+            import re
+            name_re = re.compile(r'name:\s*"([^"]+)"')
+            set_re = re.compile(r'set:\s*"([^"]+)"')
+
+            with full_sets_path.open("r", encoding="utf-8") as f:
+                for line in f:
+                    if "name:" not in line or "set:" not in line:
+                        continue
+                    name_match = name_re.search(line)
+                    set_match = set_re.search(line)
+                    if not name_match or not set_match:
+                        continue
+                    item_name = name_match.group(1)
+                    set_code = set_match.group(1)
+
+                    item_to_code[item_name] = set_code
+                    code_to_items[set_code].append(item_name)
+
+            if not item_to_code:
+                return
+
+            code_meta = {}
+            for code, items in code_to_items.items():
+                # Determine a human-readable display name
+                first_name = items[0]
+                display = self._infer_set_display_name(code, first_name)
+                code_meta[code] = {
+                    "total_pieces": len(set(items)),
+                    "display_name": display,
+                }
+
+            self._full_set_item_to_code = item_to_code
+            self._full_set_code_meta = code_meta
+        except Exception:
+            # On any error, fall back to having no full-set metadata
+            self._full_set_item_to_code = {}
+            self._full_set_code_meta = {}
+
+    @staticmethod
+    def _infer_set_display_name(set_code, first_item_name):
+        """Infer a readable set name from the first item's name.
+
+        For most sets, the item name starts with the set name and contains
+        an apostrophe, e.g. "Tal Rasha's Guardianship". In that case we
+        return "Tal Rasha's". Otherwise we fall back to the set code.
+        """
+        if "'" in first_item_name:
+            parts = first_item_name.split()
+            collected = []
+            for part in parts:
+                collected.append(part)
+                if "'" in part:
+                    break
+            if collected:
+                return " ".join(collected)
+        return set_code
     
     def _process_character_items(self, equipped_items, char_info, 
                                 runeword_counter, unique_counter, set_counter, synth_counter,
@@ -943,7 +1052,7 @@ class ItemsEquipmentHTMLGenerator:
         )
         
         sets_html = ItemsEquipmentHTMLGenerator._generate_sets_section(
-            counters['set'], users['set']
+            counters['set'], users['set'], analysis_data.get('full_sets', {})
         )
         
         # Generate other sections...
@@ -1204,8 +1313,8 @@ class ItemsEquipmentHTMLGenerator:
         """
 
     @staticmethod
-    def _generate_sets_section(set_counter, set_users):
-        """Generate HTML for set items section"""
+    def _generate_sets_section(set_counter, set_users, full_sets):
+        """Generate HTML for set items section, including full-set wearers."""
         # Similar to uniques and runewords
         most_common = set_counter.most_common(10)
         least_common = set_counter.most_common()[:-11:-1] 
@@ -1214,6 +1323,60 @@ class ItemsEquipmentHTMLGenerator:
         most_popular_html = ''.join(f'<li>{name}: {count}</li>' for name, count in most_common)
         least_popular_html = ''.join(f'<li>{name}: {count}</li>' for name, count in least_common)
         all_sets_html = ItemsEquipmentHTMLGenerator._generate_all_list_items(all_sets, set_users)
+
+        # Build full-set wearer sections
+        full_sets = full_sets or {}
+        full_sets_inner_html = ""
+        if isinstance(full_sets, dict) and full_sets:
+            # Sort by number of characters descending, then by set name
+            for set_name, characters in sorted(full_sets.items(), key=lambda x: (-len(x[1]), x[0])):
+                set_slug = set_name.lower().replace(' ', '-').replace("'", "").replace('"', "")
+                character_list_html = "".join(
+                    f"""
+                    <div class="character-info">
+                        <div class="character-link">
+                            <a href="https://beta.pathofdiablo.com/armory?name={char["name"]}" target="_blank">
+                                {char["name"]}
+                            </a>
+                        </div>
+                        <div>Level {char["level"]} {char["class"]}</div>
+                        <div class="hover-trigger" data-character-name="{char["name"]}"></div>
+                    </div>
+                    <div class="character">
+                        <div class="popup hidden"></div>
+                    </div>
+                    """ for char in characters
+                )
+
+                full_sets_inner_html += f"""
+                <button class="collapsible">
+                    <img src="icons/open.png" alt="Open" class="icon-small open-icon hidden">
+                    <img src="icons/closed.png" alt="Close" class="icon-small close-icon">
+                    <strong>
+                        <a href="#fullset-{set_slug}" class="anchor-link">
+                            {set_name}: {len(characters)} characters
+                        </a>
+                    </strong>
+                </button>
+                <div class="content" style="display: none;" id="fullset-{set_slug}">
+                    {character_list_html if characters else "<p>No character data available.</p>"}
+                </div>
+                """
+
+        full_sets_section_html = ""
+        if full_sets_inner_html:
+            full_sets_section_html = f"""
+            <button type="button" class="collapsible small-collapsible">
+                <img src="icons/open.png" alt="Full Sets Open" class="icon-small open-icon hidden">
+                <img src="icons/closed.png" alt="Full Sets Close" class="icon-small close-icon">
+                <strong>Characters Wearing Full Sets</strong>
+            </button>
+            <div class="content" style="display: none;">
+                <div id="fullsets">
+                    {full_sets_inner_html}
+                </div>
+            </div>
+            """
         
         return f"""
         <h2 id="set-usage">
@@ -1249,6 +1412,8 @@ class ItemsEquipmentHTMLGenerator:
                     {all_sets_html}
                 </div>
             </div>
+
+            {full_sets_section_html}
         </div>
         """
 
