@@ -7,6 +7,7 @@ from collections import Counter, defaultdict
 from datetime import datetime
 from .shared_utils import generate_standard_javascript
 
+merc_lvl_check = 60
 
 class MercenaryAnalyzer:
     def __init__(self, all_characters):
@@ -18,6 +19,7 @@ class MercenaryAnalyzer:
         Returns comprehensive mercenary analysis data
         """
         mercenary_counts = Counter()
+        mercenary_counts_80_plus = Counter()
         mercenary_equipment = defaultdict(lambda: defaultdict(Counter))
         mercenary_names = Counter()
         merc_users = defaultdict(list)  # Track which characters use which merc items
@@ -42,6 +44,18 @@ class MercenaryAnalyzer:
                 
             # Count mercenary types
             mercenary_counts[mercenary_type] += 1
+
+            # Track high-level mercenaries (level 80 or higher)
+            merc_level_raw = char_data.get("MercenaryLevel")
+            merc_level = 0
+            if isinstance(merc_level_raw, (int, float)):
+                merc_level = int(merc_level_raw)
+            elif isinstance(merc_level_raw, str):
+                level_str = merc_level_raw.strip()
+                if level_str.isdigit():
+                    merc_level = int(level_str)
+            if merc_level >= merc_lvl_check:
+                mercenary_counts_80_plus[mercenary_type] += 1
             
             # Track mercenary names
             mercenary_name = char_data.get("MercenaryName")
@@ -122,6 +136,7 @@ class MercenaryAnalyzer:
         
         return {
             'mercenary_counts': mercenary_counts,
+            'mercenary_counts_80_plus': mercenary_counts_80_plus,
             'mercenary_equipment': mercenary_equipment,
             'mercenary_names': mercenary_names,
             'merc_users': merc_users,
@@ -312,6 +327,7 @@ class MercenaryHTMLGenerator:
         """Generate the complete HTML for the mercenary analysis page"""
         
         mercenary_counts = analysis_data['mercenary_counts']
+        mercenary_counts_80_plus = analysis_data.get('mercenary_counts_80_plus', Counter())
         mercenary_equipment = analysis_data['mercenary_equipment'] 
         mercenary_names = analysis_data['mercenary_names']
         merc_item_counters = analysis_data['merc_item_counters']
@@ -321,7 +337,7 @@ class MercenaryHTMLGenerator:
         socketable_data = analysis_data['socketable_data']
         
         # Generate individual sections
-        type_counts_html = MercenaryHTMLGenerator._generate_type_counts_section(mercenary_counts)
+        type_counts_html = MercenaryHTMLGenerator._generate_type_counts_section(mercenary_counts, mercenary_counts_80_plus)
         names_html = MercenaryHTMLGenerator._generate_names_section(mercenary_names)
         equipment_html = MercenaryHTMLGenerator._generate_equipment_section(mercenary_equipment)
 
@@ -474,10 +490,13 @@ class MercenaryHTMLGenerator:
         """
 
     @staticmethod
-    def _generate_type_counts_section(mercenary_counts):
+    def _generate_type_counts_section(mercenary_counts, mercenary_counts_80_plus=None):
         """Generate mercenary type counts section"""
+        mercenary_counts_80_plus = mercenary_counts_80_plus or Counter()
+
         counts_html = ''.join(
-            f'<li>{merc_type}: {count}</li>' 
+#            f'<li>{merc_type}: {count} (level {merc_lvl_check}+ : {mercenary_counts_80_plus.get(merc_type, 0)})</li>'
+            f'<li>{merc_type}: {count}</li>'
             for merc_type, count in mercenary_counts.most_common()
         )
         
