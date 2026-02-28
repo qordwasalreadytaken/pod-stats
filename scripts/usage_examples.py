@@ -8,6 +8,7 @@ python3 scripts/generate_pages.py --mode hc --page all --data hc_ladder.json --h
 python3 scripts/generate_pages.py --page all --mode sc
 python3 scripts/generate_pages.py --page funfacts --mode sc
 python3 scripts/generate_pages.py --page charms --mode sc
+python3 scripts/generate_pages.py --page mercenary --mode sc
 
 Force regeneration (skip caching and ignore season freeze):
 python3 scripts/generate_pages.py --page all --mode sc --data sc_ladder.json --force

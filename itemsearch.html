@@ -274,6 +274,13 @@
             return;
         }
 
+        // Update the address bar for shareable URL
+        updateAddressBarWithSearch(
+            document.getElementById('itemName').value,
+            document.getElementById('searchHardcore').checked,
+            document.getElementById('includeMercenaries').checked
+        );
+
         const result = findCharactersWithItemMatch(itemQuery);
         displayItemResults(result, itemQuery);
     }
@@ -573,6 +580,45 @@
     function setActive(buttonName) {
         console.log('Setting active button:', buttonName);
         // Set active button functionality
+    }
+
+
+    // --- Shareable URL logic (address bar only) ---
+    function parseURLParameters() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const item = urlParams.get('item');
+        const league = urlParams.get('league');
+        const mercs = urlParams.get('mercs');
+        if (item) {
+            document.getElementById('itemName').value = item;
+        }
+        if (league) {
+            const isHardcore = league.toLowerCase() === 'hc' || league.toLowerCase() === 'hardcore';
+            document.getElementById('searchHardcore').checked = isHardcore;
+            currentLeague = isHardcore ? 'hc' : 'sc';
+        }
+        if (mercs !== null) {
+            document.getElementById('includeMercenaries').checked = mercs === '1' || mercs.toLowerCase() === 'true';
+        }
+        return item !== null;
+    }
+
+    window.addEventListener('load', async () => {
+        const hasSearchParams = parseURLParameters();
+        if (hasSearchParams) {
+            await performItemSearch();
+        }
+    });
+
+    // Update the address bar with current search parameters (for shareable URL)
+    function updateAddressBarWithSearch(item, isHardcore, includeMercs) {
+        const baseURL = window.location.origin + window.location.pathname;
+        const params = new URLSearchParams();
+        params.set('item', item);
+        params.set('league', isHardcore ? 'hc' : 'sc');
+        params.set('mercs', includeMercs ? '1' : '0');
+        const newUrl = baseURL + '?' + params.toString();
+        window.history.replaceState({}, '', newUrl);
     }
     </script>
 

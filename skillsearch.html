@@ -208,9 +208,12 @@
                 <input type="text" id="skills" value="" placeholder="e.g., Hydra, Frozen Orb">
             </div>
             <div class="form-group">
-                <label for="minPoints">Minimum skill points required (comma-separated for multiple skills):</label>
-                <input type="text" id="minPoints" value="19" placeholder="e.g., 14, 20 or just 19">
-                <small>If you provide fewer numbers than skills, the last number will be used for remaining skills.</small>
+                <label for="minPoints">Skill point conditions (comma-separated for multiple skills):</label>
+                <input type="text" id="minPoints" value="19" placeholder=">10, <10, =0 or just 19">
+                <small>
+                    You can use &gt;, &gt;=, &lt;, &lt;=, = before a number (e.g., <code>&gt;10</code>, <code>&lt;10</code>, <code>=0</code>).<br>
+                    If you provide fewer conditions than skills, the last one will be used for remaining skills.
+                </small>
             </div>
             <div class="form-group">
                 <label>
@@ -291,7 +294,7 @@
             }
         }
 
-        function findCharactersWithSpecificSkills(targetSkills, minPointsArray = [19]) {
+        function findCharactersWithSpecificSkills(targetSkills, conditionsArray) {
             if (!characterData) {
                 displayError('Character data not loaded. Please try again.');
                 return [];
@@ -322,7 +325,7 @@
                     }
                 }
 
-                // Check if character has all target skills with required points (case-insensitive)
+                // Check if character has all target skills with required conditions (case-insensitive)
                 let hasAllSkills = true;
                 const skillDetails = {};
 
@@ -330,13 +333,12 @@
                     const targetSkill = targetSkills[i];
                     const targetSkillLower = targetSkill.toLowerCase();
                     const foundSkill = charSkillsLowerCase[targetSkillLower];
-                    
-                    // Get the required points for this skill
-                    // If we have fewer numbers than skills, use the last number
-                    const requiredPoints = i < minPointsArray.length ? minPointsArray[i] : minPointsArray[minPointsArray.length - 1];
-                    
-                    if (foundSkill && foundSkill.level >= requiredPoints) {
-                        skillDetails[foundSkill.originalName] = foundSkill.level;
+                    const condition = i < conditionsArray.length ? conditionsArray[i] : conditionsArray[conditionsArray.length - 1];
+                    const skillLevel = foundSkill ? foundSkill.level : 0; // Missing skill treated as 0 points
+
+                    if (matchesCondition(skillLevel, condition)) {
+                        const displayName = foundSkill ? foundSkill.originalName : targetSkill;
+                        skillDetails[displayName] = skillLevel;
                     } else {
                         hasAllSkills = false;
                         break;
@@ -372,10 +374,10 @@
             }
 
             const targetSkills = ["Ice Arrow", "Fire Arrow"];
-            const minPointsArray = [19];
+            const conditionsArray = [{ op: '>=', value: 19 }];
 
-            const result = findCharactersWithSpecificSkills(targetSkills, minPointsArray);
-            displayResults(result, targetSkills, minPointsArray);
+            const result = findCharactersWithSpecificSkills(targetSkills, conditionsArray);
+            displayResults(result, targetSkills, conditionsArray);
         }
 
         async function performCustomSearch() {
@@ -390,20 +392,65 @@
             const minPointsInput = document.getElementById('minPoints').value;
 
             const targetSkills = skillsInput.split(',').map(skill => skill.trim()).filter(skill => skill.length > 0);
-            
-            // Parse comma-separated numbers, default to [19] if empty
-            const minPointsArray = minPointsInput.split(',').map(p => parseInt(p.trim())).filter(p => !isNaN(p));
-            if (minPointsArray.length === 0) {
-                minPointsArray.push(19); // Default value
-            }
+
+            const conditionsArray = parseConditionsInput(minPointsInput, targetSkills.length);
 
             if (targetSkills.length === 0) {
                 displayError('Please enter at least one skill to search for.');
                 return;
             }
+            updateAddressBarWithSearch(skillsInput, minPointsInput, document.getElementById('searchHardcore').checked);
+            const result = findCharactersWithSpecificSkills(targetSkills, conditionsArray);
+            displayResults(result, targetSkills, conditionsArray);
+        }
 
-            const result = findCharactersWithSpecificSkills(targetSkills, minPointsArray);
-            displayResults(result, targetSkills, minPointsArray);
+        function parseConditionsInput(minPointsInput, skillCount) {
+            const tokens = minPointsInput.split(',').map(t => t.trim()).filter(t => t.length > 0);
+            const conditions = [];
+            const re = /^(<=|>=|<|>|=)?\s*(\d+)$/;
+
+            for (const token of tokens) {
+                const match = token.match(re);
+                if (!match) continue;
+
+                let op = match[1];
+                const value = parseInt(match[2], 10);
+
+                // Default operator: ">=" for positive numbers, "=" for zero
+                if (!op) {
+                    op = value === 0 ? '=' : '>=';
+                }
+
+                conditions.push({ op, value });
+            }
+
+            if (conditions.length === 0) {
+                conditions.push({ op: '>=', value: 19 });
+            }
+
+            // If fewer conditions than skills, repeat the last condition
+            while (conditions.length < skillCount) {
+                conditions.push(conditions[conditions.length - 1]);
+            }
+
+            return conditions;
+        }
+
+        function matchesCondition(level, condition) {
+            switch (condition.op) {
+                case '>':
+                    return level > condition.value;
+                case '>=':
+                    return level >= condition.value;
+                case '<':
+                    return level < condition.value;
+                case '<=':
+                    return level <= condition.value;
+                case '=':
+                    return level === condition.value;
+                default:
+                    return level >= condition.value;
+            }
         }
 
         async function loadDataOnly() {
@@ -449,7 +496,7 @@
             resultsDiv.innerHTML = `<div class="error">${message}</div>`;
         }
 
-        function displayResults(result, targetSkills, minPointsArray) {
+        function displayResults(result, targetSkills, conditionsArray) {
             const resultsDiv = document.getElementById('results');
             const leagueName = currentLeague === 'hc' ? 'Hardcore' : 'Softcore';
             
@@ -457,8 +504,16 @@
             
             // Create a readable description of the search criteria
             let searchDescription = targetSkills.map((skill, index) => {
-                const points = index < minPointsArray.length ? minPointsArray[index] : minPointsArray[minPointsArray.length - 1];
-                return `${skill} (${points}+ points)`;
+                const condition = index < conditionsArray.length ? conditionsArray[index] : conditionsArray[conditionsArray.length - 1];
+                const opTextMap = {
+                    '>': 'more than',
+                    '>=': 'at least',
+                    '<': 'less than',
+                    '<=': 'at most',
+                    '=': 'exactly'
+                };
+                const phrase = opTextMap[condition.op] || 'at least';
+                return `${skill} (${phrase} ${condition.value} points)`;
             }).join(' and ');
             
             let html = '';
@@ -641,6 +696,17 @@
         console.log('Setting active button:', buttonName);
         // Set active button functionality
     }
+
+    // Update the address bar with current search parameters (for shareable URL)
+    function updateAddressBarWithSearch(skills, levels, isHardcore) {
+        const baseURL = window.location.origin + window.location.pathname;
+        const params = new URLSearchParams();
+        params.set('skills', skills);
+        params.set('levels', levels || '19');
+        params.set('league', isHardcore ? 'hc' : 'sc');
+        const newUrl = baseURL + '?' + params.toString();
+        window.history.replaceState({}, '', newUrl);
+    }    
     </script>
 
     </div>

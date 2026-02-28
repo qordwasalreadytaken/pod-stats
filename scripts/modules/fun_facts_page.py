@@ -12,6 +12,18 @@ import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 from modules.home_page import fetch_1k_ladder_characters, analyze_api_class_distribution, HomePageGenerator
 
+def get_current_season():
+    """Get the current season from the API"""
+    url = "https://beta.pathofdiablo.com/api/ladder-summaries"
+    try:
+        response = requests.get(url, timeout=10)
+        response.raise_for_status()
+        seasons = response.json()
+        current = next((s["season"] for s in seasons if s.get("current")), None)
+        return current
+    except requests.RequestException as e:
+        print(f"Error fetching season: {e}")
+        return None
 
 class FunFactsAnalyzer:
     def __init__(self, all_characters, is_hardcore=False):
@@ -312,8 +324,15 @@ class FunFactsAnalyzer:
                     print(f"⚠️ Error fetching page {page}: {e}")
             return all_characters
 
-        # Fetch fresh ladder data from API
-        base_ladder_url = "https://beta.pathofdiablo.com/api/ladder/13/0/0/"
+        # Determine game mode based on the analyzer's hardcore flag
+        game_mode = 1 if self.is_hardcore else 0  # 0 = softcore, 1 = hardcore
+        season = get_current_season()
+        # Fetch fresh ladder data from API, mirroring home_page.fetch_1k_ladder_characters
+        base_ladder_url = (
+            f"https://beta.pathofdiablo.com/api/ladder/{season}/{game_mode}/0/"
+            if season
+            else f"https://beta.pathofdiablo.com/api/ladder/13/{game_mode}/0/"
+        )
         
         try:
             all_characters = fetch_1kladder_characters(base_ladder_url, start_page=1, end_page=5)
@@ -596,11 +615,15 @@ class FunFactsAnalyzer:
         }
         
         class_leaders = {}
-        
+
+        # Determine season and game mode (HC/SC) for ladder queries
+        game_mode = 1 if self.is_hardcore else 0  # 0 = softcore, 1 = hardcore
+        season = get_current_season() or 13
+
         for class_id, class_name in class_mapping.items():
             try:
                 # Fetch from class-specific ladder endpoint
-                api_url = f"https://beta.pathofdiablo.com/api/ladder/13/0/{class_id}/0"
+                api_url = f"https://beta.pathofdiablo.com/api/ladder/{season}/{game_mode}/{class_id}/0"
                 response = requests.get(api_url, timeout=10)
                 
                 if response.status_code == 200:
