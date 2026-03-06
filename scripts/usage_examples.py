@@ -28,6 +28,8 @@ Running examples:
 python3 scripts/usage_examples.py        # Run all code examples
 python3 scripts/usage_examples.py demo   # Show command line examples only
 
+python3 scripts/generate_pages.py --page all --no-charms --mode sc --force
+python3 scripts/generate_pages.py --page all --no-charms --mode hc --data hc_ladder.json --hc-level-filter 70 --force
 """
 
 from generate_pages import generate_all_pages, generate_single_page

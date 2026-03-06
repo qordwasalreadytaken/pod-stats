@@ -47,15 +47,16 @@ except ImportError:
 import api_integration
 
 
-def generate_all_pages(json_file_path="sc_ladder.json", is_hardcore=False, hc_level_filter=None, force=False):
+def generate_all_pages(json_file_path="sc_ladder.json", is_hardcore=False, hc_level_filter=None, force=False, exclude_charms=False):
     """
-    Generate all analytics pages (home, items, mercenary, fun facts, and all class pages)
+    Generate all analytics pages (home, items, mercenary, fun facts, charms, and all class pages)
     
     Args:
         json_file_path: Path to character data JSON file (relative to root directory)
         is_hardcore: Whether this is hardcore mode data
         hc_level_filter: Minimum level filter for hardcore characters (e.g., 70)
         force: Force generation even if season is frozen
+        exclude_charms: If True, skip generating the charm analysis page
     """
     
     # Check if the live site should be frozen due to season end
@@ -185,16 +186,19 @@ def generate_all_pages(json_file_path="sc_ladder.json", is_hardcore=False, hc_le
         else:
             print("✗ Failed to generate fun facts page")
         
-        # Generate Charm Page
-        print("Generating charm analysis page...")
-        charm_html = generate_charm_page(all_characters, timestamp, is_hardcore, hc_level_filter)
-        if charm_html:
-            charm_filename = f"{prefix}charms.html" if prefix else "charms.html"
-            with open(charm_filename, 'w', encoding='utf-8') as f:
-                f.write(charm_html)
-            print(f"✓ Charm Analysis page saved as {charm_filename}")
+        # Generate Charm Page (optional)
+        if exclude_charms:
+            print("Skipping charm analysis page (exclude_charms=True)")
         else:
-            print("✗ Failed to generate charm analysis page")
+            print("Generating charm analysis page...")
+            charm_html = generate_charm_page(all_characters, timestamp, is_hardcore, hc_level_filter)
+            if charm_html:
+                charm_filename = f"{prefix}charms.html" if prefix else "charms.html"
+                with open(charm_filename, 'w', encoding='utf-8') as f:
+                    f.write(charm_html)
+                print(f"✓ Charm Analysis page saved as {charm_filename}")
+            else:
+                print("✗ Failed to generate charm analysis page")
             
         # Generate Class Pages
         print("Generating class pages...")
@@ -460,6 +464,8 @@ def main():
                       help='Custom label for data snapshot (only used with --page dataupdate)')
     parser.add_argument('--force', action='store_true',
                       help='Force generation even if season is frozen (for testing/emergency updates)')
+    parser.add_argument('--no-charms', action='store_true',
+                      help='Skip generating the charm analysis page when using --page all')
     
     args = parser.parse_args()
     
@@ -472,7 +478,7 @@ def main():
         data_file = 'hc_ladder.json'
     
     if args.page == 'all':
-        success = generate_all_pages(data_file, is_hardcore, hc_level_filter, args.force)
+        success = generate_all_pages(data_file, is_hardcore, hc_level_filter, args.force, exclude_charms=args.no_charms)
     elif args.page == 'dataupdate':
         success = update_data_and_generate_tracking_pages(args.snapshot_label)
     else:

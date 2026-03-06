@@ -4536,7 +4536,7 @@ def generate_league_html(league, league_data, time_columns):
     
     <div class="league-header">
         <h1>Path of Diablo - {title}</h1>
-        <p>Interactive skill and item usage analytics</p>
+        <p>Skill point investment and item counts over time</p>
         <p><em>Hover over items to see usage trends • Click columns to sort</em></p>
     </div>
 """)

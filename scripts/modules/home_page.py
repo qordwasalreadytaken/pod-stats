@@ -325,13 +325,13 @@ class HomePageGenerator:
                 </a>
             </div>
 
-            
+<!--            
             <div class="nav-card">
                 <a href="{hc_prefix}charms">
                     Charm analysis and usage
                 </a>
             </div>
-
+-->
                         <div class="nav-card">
                 <a href="{hc_prefix}Mercenaries">
                     Mercenary data analysis
@@ -375,7 +375,14 @@ class HomePageGenerator:
                     Character Search
                 </a>
             </div>
-                        
+
+            <h3>Supplemental Data</h3>
+            <div class="navigation-cards">
+                
+            <div class="nav-card">
+                Skill point investment and raw item counts for <a href="sc-usage-over-time"> Softcore </a> and <a href="hc-usage-over-time"> Hardcore </a>
+            </div>
+
         </div>
         </br>
         """
