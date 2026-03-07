@@ -5,6 +5,7 @@
     <title>Character Item Search</title>
     <link rel="stylesheet" type="text/css" href="./css/test-css.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="item-bases.js"></script>
 </head>
 <body class="not-main" style="background-color: #000000; background-image: none;">
     <div class="is-clipped">
@@ -63,6 +64,18 @@
             background-color: #232323;
             color: #f5f5f5;
             font-family: 'armory', sans-serif;
+        }
+        #itemName {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #555;
+            border-radius: 4px;
+            font-size: 14px;
+            background-color: #232323;
+            color: #f5f5f5;
+            font-family: 'armory', sans-serif;
+            box-sizing: border-box;
+            margin-bottom: 10px;
         }
         .form-group input[type="text"]:focus, 
         .form-group input[type="number"]:focus {
@@ -260,6 +273,258 @@
     </div>
 
     <script>
+
+    // --- Query parsing helpers ---
+    function parseItemSearchQuery(rawQuery) {
+        if (!rawQuery) return null;
+
+        const lower = rawQuery.trim().toLowerCase();
+        if (!lower) return null;
+
+        const parts = lower.split(/\s+with\s+/, 2);
+        let itemExpr = parts[0] ? parts[0].trim() : '';
+        let socketExpr = parts[1] ? parts[1].trim() : null;
+
+        let itemAst = itemExpr ? parseBooleanExpression(itemExpr) : null;
+        let socketAst = socketExpr ? parseBooleanExpression(socketExpr) : null;
+
+        // Heuristic rewrite so queries like "glad and shield with skull" behave
+        // like "shield with skull and glad" (i.e., character must have Gladiator's Bane
+        // somewhere AND a shield with a skull in it), without breaking
+        // base alternation like "pavise or monarch with skull".
+        if (socketAst && itemAst && itemAst.length > 1) {
+            const hasAnd = /\sand\s/.test(itemExpr);
+            const hasOr = /\sor\s/.test(itemExpr);
+
+            // Only rewrite when the left side uses AND but no OR
+            if (hasAnd && !hasOr) {
+                const lastAndIndex = itemExpr.lastIndexOf(' and ');
+                if (lastAndIndex !== -1) {
+                    const leftPart = itemExpr.slice(0, lastAndIndex).trim();
+                    const primaryTerm = itemExpr.slice(lastAndIndex + 5).trim();
+
+                    if (leftPart && primaryTerm) {
+                        // The primaryTerm (e.g. "shield") is the socketed item;
+                        // earlier terms (e.g. "glad") are treated like additional
+                        // character-level conditions alongside the right-hand side.
+                        itemExpr = primaryTerm;
+                        itemAst = parseBooleanExpression(itemExpr);
+
+                        const combinedSocketExpr = leftPart + ' and ' + socketExpr;
+                        socketExpr = combinedSocketExpr;
+                        socketAst = parseBooleanExpression(socketExpr);
+                    }
+                }
+            }
+        }
+
+        return {
+            itemExpr,
+            socketExpr,
+            itemAst,
+            socketAst
+        };
+    }
+
+    function parseBooleanExpression(expr) {
+        const trimmed = expr.trim();
+        if (!trimmed) return null;
+
+        const parts = trimmed.split(/\s+(and|or)\s+/);
+        if (parts.length === 1) {
+            return [{ type: 'term', value: trimmed }];
+        }
+
+        const ast = [];
+        for (let i = 0; i < parts.length; i++) {
+            const part = parts[i].trim();
+            if (!part) continue;
+            if (part === 'and' || part === 'or') {
+                // Operator
+                if (ast.length === 0 || ast[ast.length - 1].type === 'op') {
+                    // Malformed expression, fall back to simple term
+                    return [{ type: 'term', value: trimmed }];
+                }
+                ast.push({ type: 'op', value: part });
+            } else {
+                // Term
+                if (ast.length > 0 && ast[ast.length - 1].type === 'term') {
+                    // Two terms in a row – treat entire expr as a single term
+                    return [{ type: 'term', value: trimmed }];
+                }
+                ast.push({ type: 'term', value: part });
+            }
+        }
+
+        if (!ast.length || ast[0].type !== 'term' || ast[ast.length - 1].type !== 'term') {
+            return [{ type: 'term', value: trimmed }];
+        }
+
+        return ast;
+    }
+
+    // --- Base item lookup using item-bases.js ---
+    let baseLookupByName = null;
+
+    function normalizeBaseLookupKey(name) {
+        if (!name) return '';
+        return name.toLowerCase().replace(/[^a-z0-9]/g, '');
+    }
+
+    function ensureBaseLookupInitialized() {
+        if (baseLookupByName !== null) return;
+        if (typeof bases === 'undefined' || !bases) {
+            baseLookupByName = {};
+            return;
+        }
+
+        baseLookupByName = {};
+        for (const baseKey in bases) {
+            if (!Object.prototype.hasOwnProperty.call(bases, baseKey)) continue;
+            const displayName = baseKey.replace(/_/g, ' ');
+            const norm = normalizeBaseLookupKey(displayName);
+            if (!baseLookupByName[norm]) {
+                baseLookupByName[norm] = bases[baseKey];
+            }
+        }
+    }
+
+    function getBaseForItem(item) {
+        if (!item) return null;
+        ensureBaseLookupInitialized();
+        if (!baseLookupByName) return null;
+
+        const tag = item.Tag || item.TextTag;
+        if (!tag) return null;
+        const normTag = normalizeBaseLookupKey(tag);
+        return baseLookupByName[normTag] || null;
+    }
+
+    // Expand certain generic terms (like "shield") into broader category checks,
+    // using base item type/group information from item-bases.js when possible.
+    function buildItemMatchFn(itemGetter) {
+        return function(term) {
+            const t = term.toLowerCase();
+
+            // Category: any shield (Monarch, Aegis, class shields, etc.)
+            if (t === 'shield' || t === 'shields') {
+                return itemGetter(item => {
+                    const base = getBaseForItem(item);
+                    if (!base) return false;
+                    return base.type === 'shield' || base.shield === true || base.group === 'offhand';
+                });
+            }
+
+            // Category: any helm / helmet (based primarily on slot and common base names)
+            if (t === 'helm' || t === 'helmet' || t === 'helms' || t === 'helmets') {
+                return itemGetter(item => {
+                    const base = getBaseForItem(item);
+                    if (base) {
+                        if (base.group === 'helm' || base.type === 'helm') {
+                            return true;
+                        }
+                    }
+
+                    // Fallback: slot-based and name-based helm detection
+                    const worn = (item.Worn || '').toLowerCase();
+                    if (worn === 'helmet') return true;
+
+                    const tag = (item.Tag || '').toLowerCase();
+                    const textTag = (item.TextTag || '').toLowerCase();
+                    const helmKeywords = [
+                        'helm', 'circlet', 'crown', 'coronet', 'tiara', 'diadem',
+                        'cap', 'hat', 'hood', 'mask', 'bone visage', 'armet',
+                        'spired helm'
+                    ];
+
+                    return helmKeywords.some(hk =>
+                        tag.includes(hk) || textTag.includes(hk)
+                    );
+                });
+            }
+
+            // Category: any body armor (chest piece)
+            if (t === 'armor' || t === 'armour' || t === 'armors' || t === 'armours') {
+                return itemGetter(item => {
+                    const base = getBaseForItem(item);
+                    if (base) {
+                        if (base.group === 'armor' || base.type === 'armor') {
+                            return true;
+                        }
+                    }
+
+                    // Fallback: slot-based and name-based armor detection
+                    const worn = (item.Worn || '').toLowerCase();
+                    if (worn === 'body') return true;
+
+                    const tag = (item.Tag || '').toLowerCase();
+                    const textTag = (item.TextTag || '').toLowerCase();
+                    const armorKeywords = [
+                        'armor', 'mail', 'plate', 'hide', 'shell', 'shroud',
+                        'fleece', 'hauberk', 'coat', 'cuirass',
+                        'breastplate', 'scale', 'chain'
+                    ];
+
+                    return armorKeywords.some(ak =>
+                        tag.includes(ak) || textTag.includes(ak)
+                    );
+                });
+            }
+
+            // Category: any weapon (one- or two-handed, including caster weapons but excluding shields)
+            if (t === 'weapon' || t === 'weapons') {
+                return itemGetter(item => {
+                    const base = getBaseForItem(item);
+                    if (base) {
+                        if (base.type === 'shield' || base.shield === true || base.group === 'offhand') {
+                            return false;
+                        }
+                        if (base.group === 'weapon' || base.WEAPON === true) {
+                            return true;
+                        }
+                        return false;
+                    }
+                    return false;
+                });
+            }
+
+            // Default: simple substring match on Title/TextTag
+            return itemGetter(item => {
+                const title = (item.Title || '').toLowerCase();
+                const textTag = (item.TextTag || '').toLowerCase();
+                return title.includes(t) || textTag.includes(t);
+            });
+        };
+    }
+
+    function evaluateBooleanExpression(ast, matchFn) {
+        if (!ast || !ast.length) return true;
+        if (ast.length === 1) {
+            return matchFn(ast[0].value);
+        }
+
+        let result = matchFn(ast[0].value);
+        for (let i = 1; i < ast.length; i += 2) {
+            const opNode = ast[i];
+            const termNode = ast[i + 1];
+            if (!termNode) break;
+
+            const termMatch = matchFn(termNode.value);
+            if (opNode.value === 'and') {
+                result = result && termMatch;
+            } else {
+                result = result || termMatch;
+            }
+        }
+        return result;
+    }
+
+    function getSocketArray(item) {
+        if (!item || !item.Sockets) return [];
+        if (Array.isArray(item.Sockets)) return item.Sockets;
+        return Object.values(item.Sockets);
+    }
+
     async function performItemSearch() {
         displayLoading();
 
@@ -268,24 +533,30 @@
             if (!loaded) return;
         }
 
-        const itemQuery = document.getElementById('itemName').value.trim().toLowerCase();
-        if (!itemQuery) {
+        const rawQuery = document.getElementById('itemName').value.trim();
+        if (!rawQuery) {
             displayError('Please enter an item name to search for.');
+            return;
+        }
+
+        const parsedQuery = parseItemSearchQuery(rawQuery);
+        if (!parsedQuery || !parsedQuery.itemAst) {
+            displayError('Please enter a valid search query.');
             return;
         }
 
         // Update the address bar for shareable URL
         updateAddressBarWithSearch(
-            document.getElementById('itemName').value,
+            rawQuery,
             document.getElementById('searchHardcore').checked,
             document.getElementById('includeMercenaries').checked
         );
 
-        const result = findCharactersWithItemMatch(itemQuery);
-        displayItemResults(result, itemQuery);
+        const result = findCharactersWithItemMatch(parsedQuery);
+        displayItemResults(result, rawQuery);
     }
 
-    function findCharactersWithItemMatch(query) {
+    function findCharactersWithItemMatch(parsedQuery) {
         if (!characterData) {
             displayError('Character data not loaded. Please try again.');
             return [];
@@ -294,6 +565,7 @@
         const searchStartTime = performance.now();
         const matchingCharacters = [];
         const includeMercenaries = document.getElementById('includeMercenaries').checked;
+        const hasSocketConditions = !!parsedQuery.socketAst;
 
         for (const char of characterData) {
             const charName = char.Name || "Unknown";
@@ -304,38 +576,138 @@
 
             const matchedItems = [];
 
-            // Search character equipment
+            const allItemsForChar = [];
             for (const item of equipped) {
-                if (!item || !item.Title) continue;
-
-//                const itemName = item.Title.toLowerCase();
-                const itemName = item.Title.toLowerCase();
-                const itemName2 = item.TextTag.toLowerCase();
-
-                if (itemName.includes(query)||itemName2.includes(query)) {
-                    matchedItems.push({
-                        slot: item.Worn || "Unknown",
-                        name: item.Title + " - " + item.TextTag,
-                        type: "Character"
-                    });
+                allItemsForChar.push({ item, type: "Character" });
+            }
+            if (includeMercenaries) {
+                for (const item of mercEquipped) {
+                    allItemsForChar.push({ item, type: "Mercenary" });
                 }
             }
 
-            // Search mercenary equipment if enabled
-            if (includeMercenaries) {
-                for (const item of mercEquipped) {
-                    if (!item || !item.Title) continue;
+            if (hasSocketConditions) {
+                // Item-level match: base item AND its sockets must satisfy conditions
+                const checkItemMatches = (item, typeLabel) => {
+                    if (!item || !item.Title) return false;
 
-                    const itemName = item.Title.toLowerCase();
-                    const itemName2 = item.TextTag.toLowerCase();
+                    const baseMatch = evaluateBooleanExpression(
+                        parsedQuery.itemAst,
+                        buildItemMatchFn(predicate => predicate(item) ? true : false)
+                    );
+                    if (!baseMatch) return false;
 
-                    if (itemName.includes(query) || itemName2.includes(query)) {
+                    // Require that this item has at least one of the socket terms
+                    const sockets = getSocketArray(item);
+                    const socketTerms = parsedQuery.socketAst
+                        .filter(node => node.type === 'term')
+                        .map(node => node.value.toLowerCase());
+
+                    let hasSocketTerm = false;
+                    for (const term of socketTerms) {
+                        for (const sock of sockets) {
+                            const sTitle = (sock.Title || '').toLowerCase();
+                            const sTag = (sock.TextTag || '').toLowerCase();
+                            if (sTitle.includes(term) || sTag.includes(term)) {
+                                hasSocketTerm = true;
+                                break;
+                            }
+                        }
+                        if (hasSocketTerm) break;
+                    }
+
+                    if (hasSocketTerm) {
                         matchedItems.push({
                             slot: item.Worn || "Unknown",
                             name: item.Title + " - " + item.TextTag,
-                            type: "Mercenary"
+                            type: typeLabel
                         });
+                        return true;
                     }
+                    return false;
+                };
+
+                for (const item of equipped) {
+                    checkItemMatches(item, "Character");
+                }
+
+                if (includeMercenaries) {
+                    for (const item of mercEquipped) {
+                        checkItemMatches(item, "Mercenary");
+                    }
+                }
+
+                // Additionally require that the full socket expression is satisfied
+                // somewhere on the character (items OR sockets anywhere)
+                if (matchedItems.length > 0) {
+                    const charSocketExprSatisfied = evaluateBooleanExpression(
+                        parsedQuery.socketAst,
+                        term => {
+                            const t = term.toLowerCase();
+
+                            // Match against any item title/tag on the character
+                            for (const entry of allItemsForChar) {
+                                const it = entry.item;
+                                if (!it || !it.Title) continue;
+                                const title = (it.Title || '').toLowerCase();
+                                const tag = (it.TextTag || '').toLowerCase();
+                                if (title.includes(t) || tag.includes(t)) {
+                                    return true;
+                                }
+                            }
+
+                            // Match against any socketed item title/tag on the character
+                            for (const entry of allItemsForChar) {
+                                const it = entry.item;
+                                const socketsAll = getSocketArray(it);
+                                for (const sock of socketsAll) {
+                                    const sTitle = (sock.Title || '').toLowerCase();
+                                    const sTag = (sock.TextTag || '').toLowerCase();
+                                    if (sTitle.includes(t) || sTag.includes(t)) {
+                                        return true;
+                                    }
+                                }
+                            }
+
+                            return false;
+                        }
+                    );
+
+                    if (!charSocketExprSatisfied) {
+                        matchedItems.length = 0;
+                    }
+                }
+            } else {
+                // Character-level match: items satisfying boolean expression across character/merc equipment
+                const seenItems = new Set();
+
+                const charMatches = evaluateBooleanExpression(
+                    parsedQuery.itemAst,
+                    buildItemMatchFn(predicate => {
+                        let termMatched = false;
+                        for (const entry of allItemsForChar) {
+                            const item = entry.item;
+                            if (!item || !item.Title) continue;
+
+                            if (predicate(item)) {
+                                termMatched = true;
+                                const key = (item.Worn || "?") + "|" + item.Title + "|" + (item.TextTag || "");
+                                if (!seenItems.has(key)) {
+                                    seenItems.add(key);
+                                    matchedItems.push({
+                                        slot: item.Worn || "Unknown",
+                                        name: item.Title + " - " + item.TextTag,
+                                        type: entry.type
+                                    });
+                                }
+                            }
+                        }
+                        return termMatched;
+                    })
+                );
+
+                if (!charMatches) {
+                    matchedItems.length = 0;
                 }
             }
 
