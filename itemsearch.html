@@ -235,10 +235,17 @@
 
         <h1>Character & Mercenary Item Search</h1>
         <h3>Find characters and mercenaries using specific items</h3>
-        <p style="color: #e0e0e2; margin-bottom: 20px; font-family: 'armory', sans-serif;">
+        <p style="color: #e0e0e2; margin-bottom: 10px; font-family: 'armory', sans-serif;">
             Search through both character equipment and mercenary equipment. Results will be color-coded:<br>
             <span style="background-color: #2a4a2a; padding: 2px 6px; border-radius: 3px;">Green: Character Equipment</span> | 
             <span style="background-color: #4a3a2a; padding: 2px 6px; border-radius: 3px;">Brown: Mercenary Equipment</span>
+        </p>
+        <p style="color: #e0e0e2; margin-bottom: 20px; font-family: 'armory', sans-serif; font-size: 0.9rem;">
+            Basic: type an item name (e.g. <strong>shako</strong>, <strong>enigma</strong>). Use <strong>and</strong> / <strong>or</strong> between terms (e.g. <strong>enigma and shako</strong>, <strong>shako or griff</strong>).<br>
+            Sockets: <strong>with</strong> matches what is in the sockets (e.g. <strong>shield with skull</strong>, <strong>griff with jewel</strong>).<br>
+            Negative sockets: use <strong>!with</strong> or <strong>without</strong> to exclude socket contents (e.g. <strong>shako !with rune</strong>, <strong>shield without rune or jewel</strong>).<br>
+            Combined: earlier terms are extra requirements on the same character (e.g. <strong>enigma and shako !with topaz</strong>, <strong>glad and shield with skull</strong>).<br>
+            Multiple clauses: separate full queries with <strong>;</strong> to require all on the same character (e.g. <strong>griff with jewel; shield with jewel</strong>).
         </p>
         <div class="search-form">
         <div class="search-section">
@@ -281,17 +288,52 @@
         const lower = rawQuery.trim().toLowerCase();
         if (!lower) return null;
 
-        const parts = lower.split(/\s+with\s+/, 2);
-        let itemExpr = parts[0] ? parts[0].trim() : '';
-        let socketExpr = parts[1] ? parts[1].trim() : null;
+        // Support both "with" (must have in sockets) and negative forms
+        // "!with" / "without" (must NOT have in sockets)
+        let itemExpr = lower;
+        let socketExpr = null;
+        let socketMode = null; // 'with' or 'notWith'
+
+        const notWithMatch = lower.match(/\s+!with\s+/);
+        const withoutMatch = lower.match(/\s+without\s+/);
+        const withMatch = lower.match(/\s+with\s+/);
+
+        // Determine the earliest negative-socket operator, if any
+        let negativeMatch = null;
+        if (notWithMatch) negativeMatch = notWithMatch;
+        if (withoutMatch && (!negativeMatch || withoutMatch.index < negativeMatch.index)) {
+            negativeMatch = withoutMatch;
+        }
+
+        if (negativeMatch && (!withMatch || negativeMatch.index <= withMatch.index)) {
+            // Negative form takes precedence if it appears first
+            socketMode = 'notWith';
+            const idx = negativeMatch.index;
+            const sepLen = negativeMatch[0].length;
+            itemExpr = lower.slice(0, idx).trim();
+            socketExpr = lower.slice(idx + sepLen).trim() || null;
+        } else if (withMatch) {
+            socketMode = 'with';
+            const idx = withMatch.index;
+            const sepLen = withMatch[0].length;
+            itemExpr = lower.slice(0, idx).trim();
+            socketExpr = lower.slice(idx + sepLen).trim() || null;
+        } else {
+            itemExpr = lower;
+            socketExpr = null;
+        }
 
         let itemAst = itemExpr ? parseBooleanExpression(itemExpr) : null;
         let socketAst = socketExpr ? parseBooleanExpression(socketExpr) : null;
+        let extraItemExpr = null;
+        let extraItemAst = null;
 
         // Heuristic rewrite so queries like "glad and shield with skull" behave
         // like "shield with skull and glad" (i.e., character must have Gladiator's Bane
         // somewhere AND a shield with a skull in it), without breaking
         // base alternation like "pavise or monarch with skull".
+        // For positive "with" and negative "!with"/"without" we both
+        // treat earlier terms as extra character-level conditions.
         if (socketAst && itemAst && itemAst.length > 1) {
             const hasAnd = /\sand\s/.test(itemExpr);
             const hasOr = /\sor\s/.test(itemExpr);
@@ -304,15 +346,16 @@
                     const primaryTerm = itemExpr.slice(lastAndIndex + 5).trim();
 
                     if (leftPart && primaryTerm) {
-                        // The primaryTerm (e.g. "shield") is the socketed item;
-                        // earlier terms (e.g. "glad") are treated like additional
-                        // character-level conditions alongside the right-hand side.
+                        // Behavior for both positive and negative socket queries like
+                        // "glad and shield with skull" or
+                        // "enigma and shako !with topaz": the last term is the
+                        // base item whose sockets are checked, while earlier terms
+                        // become extra character-level item conditions.
                         itemExpr = primaryTerm;
                         itemAst = parseBooleanExpression(itemExpr);
 
-                        const combinedSocketExpr = leftPart + ' and ' + socketExpr;
-                        socketExpr = combinedSocketExpr;
-                        socketAst = parseBooleanExpression(socketExpr);
+                        extraItemExpr = leftPart;
+                        extraItemAst = parseBooleanExpression(extraItemExpr);
                     }
                 }
             }
@@ -322,7 +365,9 @@
             itemExpr,
             socketExpr,
             itemAst,
-            socketAst
+            socketAst,
+            socketMode,
+            extraItemAst
         };
     }
 
@@ -539,10 +584,23 @@
             return;
         }
 
-        const parsedQuery = parseItemSearchQuery(rawQuery);
-        if (!parsedQuery || !parsedQuery.itemAst) {
+        // Support multiple clauses separated by ';', each a full query
+        // with its own base and socket conditions. All clauses must be
+        // satisfied by the same character (logical AND across clauses).
+        const clauseStrings = rawQuery.split(';').map(s => s.trim()).filter(s => s.length > 0);
+        if (clauseStrings.length === 0) {
             displayError('Please enter a valid search query.');
             return;
+        }
+
+        const parsedClauses = [];
+        for (const clause of clauseStrings) {
+            const pq = parseItemSearchQuery(clause);
+            if (!pq || !pq.itemAst) {
+                displayError(`Please enter a valid search query (problem near: "${clause}").`);
+                return;
+            }
+            parsedClauses.push(pq);
         }
 
         // Update the address bar for shareable URL
@@ -552,8 +610,80 @@
             document.getElementById('includeMercenaries').checked
         );
 
-        const result = findCharactersWithItemMatch(parsedQuery);
+        const result = parsedClauses.length === 1
+            ? findCharactersWithItemMatch(parsedClauses[0])
+            : findCharactersWithItemMatchForClauses(parsedClauses);
         displayItemResults(result, rawQuery);
+    }
+
+    // Combine results from multiple parsed queries (clauses). A character
+    // must satisfy all clauses to be returned; matched items from all
+    // satisfied clauses are merged and deduplicated per character.
+    function findCharactersWithItemMatchForClauses(parsedQueries) {
+        if (!parsedQueries || parsedQueries.length === 0) {
+            return {
+                characters: [],
+                searchTime: 0,
+                totalCharacters: characterData ? characterData.length : 0,
+                includedMercenaries: document.getElementById('includeMercenaries').checked
+            };
+        }
+
+        const clauseResults = parsedQueries.map(pq => findCharactersWithItemMatch(pq));
+
+        const totalSearchTime = clauseResults.reduce((sum, r) => sum + (r.searchTime || 0), 0);
+        const totalCharacters = clauseResults[0] ? clauseResults[0].totalCharacters : (characterData ? characterData.length : 0);
+        const includedMercenaries = clauseResults[0] ? clauseResults[0].includedMercenaries : document.getElementById('includeMercenaries').checked;
+
+        const numClauses = clauseResults.length;
+        const charMap = new Map();
+
+        for (const result of clauseResults) {
+            for (const char of result.characters) {
+                const key = `${char.name}|${char.class}|${char.level}`;
+                if (!charMap.has(key)) {
+                    charMap.set(key, {
+                        name: char.name,
+                        class: char.class,
+                        level: char.level,
+                        items: [],
+                        mercenary: char.mercenary,
+                        matchCount: 0,
+                        seenItemKeys: new Set()
+                    });
+                }
+                const entry = charMap.get(key);
+                entry.matchCount += 1;
+
+                for (const item of char.items) {
+                    const itemKey = `${item.slot}|${item.name}|${item.type}`;
+                    if (!entry.seenItemKeys.has(itemKey)) {
+                        entry.seenItemKeys.add(itemKey);
+                        entry.items.push(item);
+                    }
+                }
+            }
+        }
+
+        const combinedCharacters = [];
+        for (const entry of charMap.values()) {
+            if (entry.matchCount === numClauses && entry.items.length > 0) {
+                combinedCharacters.push({
+                    name: entry.name,
+                    class: entry.class,
+                    level: entry.level,
+                    items: entry.items,
+                    mercenary: entry.mercenary
+                });
+            }
+        }
+
+        return {
+            characters: combinedCharacters,
+            searchTime: totalSearchTime,
+            totalCharacters,
+            includedMercenaries
+        };
     }
 
     function findCharactersWithItemMatch(parsedQuery) {
@@ -566,6 +696,8 @@
         const matchingCharacters = [];
         const includeMercenaries = document.getElementById('includeMercenaries').checked;
         const hasSocketConditions = !!parsedQuery.socketAst;
+        const socketMode = parsedQuery.socketMode || 'with';
+        const extraItemAst = parsedQuery.extraItemAst || null;
 
         for (const char of characterData) {
             const charName = char.Name || "Unknown";
@@ -575,6 +707,7 @@
             const mercEquipped = char.MercenaryEquipped || []; // Mercenary equipment
 
             const matchedItems = [];
+            const seenItemKeys = new Set();
 
             const allItemsForChar = [];
             for (const item of equipped) {
@@ -584,6 +717,28 @@
                 for (const item of mercEquipped) {
                     allItemsForChar.push({ item, type: "Mercenary" });
                 }
+            }
+
+            // If we have extra character-level item conditions (from queries like
+            // "enigma and shako !with topaz"), ensure the character satisfies them
+            // across their equipment before we consider socket-level matches.
+            let extraItemSatisfied = true;
+            if (extraItemAst) {
+                extraItemSatisfied = evaluateBooleanExpression(
+                    extraItemAst,
+                    buildItemMatchFn(predicate => {
+                        let termMatched = false;
+                        for (const entry of allItemsForChar) {
+                            const item = entry.item;
+                            if (!item || !item.Title) continue;
+                            if (predicate(item)) {
+                                termMatched = true;
+                                break;
+                            }
+                        }
+                        return termMatched;
+                    })
+                );
             }
 
             if (hasSocketConditions) {
@@ -597,33 +752,73 @@
                     );
                     if (!baseMatch) return false;
 
-                    // Require that this item has at least one of the socket terms
                     const sockets = getSocketArray(item);
-                    const socketTerms = parsedQuery.socketAst
-                        .filter(node => node.type === 'term')
-                        .map(node => node.value.toLowerCase());
 
-                    let hasSocketTerm = false;
-                    for (const term of socketTerms) {
-                        for (const sock of sockets) {
-                            const sTitle = (sock.Title || '').toLowerCase();
-                            const sTag = (sock.TextTag || '').toLowerCase();
-                            if (sTitle.includes(term) || sTag.includes(term)) {
-                                hasSocketTerm = true;
-                                break;
+                    if (socketMode === 'with') {
+                        // Require that this item has at least one of the socket terms
+                        const socketTerms = parsedQuery.socketAst
+                            .filter(node => node.type === 'term')
+                            .map(node => node.value.toLowerCase());
+
+                        let hasSocketTerm = false;
+                        for (const term of socketTerms) {
+                            for (const sock of sockets) {
+                                const sTitle = (sock.Title || '').toLowerCase();
+                                const sTag = (sock.TextTag || '').toLowerCase();
+                                if (sTitle.includes(term) || sTag.includes(term)) {
+                                    hasSocketTerm = true;
+                                    break;
+                                }
                             }
+                            if (hasSocketTerm) break;
                         }
-                        if (hasSocketTerm) break;
+
+                        if (hasSocketTerm) {
+                            const key = (item.Worn || "?") + "|" + item.Title + "|" + (item.TextTag || "");
+                            if (!seenItemKeys.has(key)) {
+                                seenItemKeys.add(key);
+                                matchedItems.push({
+                                    slot: item.Worn || "Unknown",
+                                    name: item.Title + " - " + item.TextTag,
+                                    type: typeLabel
+                                });
+                            }
+                            return true;
+                        }
+                        return false;
+                    } else if (socketMode === 'notWith') {
+                        // Require that this item's sockets DO NOT satisfy the socket expression
+                        const exprResult = evaluateBooleanExpression(
+                            parsedQuery.socketAst,
+                            term => {
+                                const t = term.toLowerCase();
+                                for (const sock of sockets) {
+                                    const sTitle = (sock.Title || '').toLowerCase();
+                                    const sTag = (sock.TextTag || '').toLowerCase();
+                                    if (sTitle.includes(t) || sTag.includes(t)) {
+                                        return true;
+                                    }
+                                }
+                                return false;
+                            }
+                        );
+
+                        // We only match when the forbidden expression is NOT satisfied
+                        if (!exprResult) {
+                            const key = (item.Worn || "?") + "|" + item.Title + "|" + (item.TextTag || "");
+                            if (!seenItemKeys.has(key)) {
+                                seenItemKeys.add(key);
+                                matchedItems.push({
+                                    slot: item.Worn || "Unknown",
+                                    name: item.Title + " - " + item.TextTag,
+                                    type: typeLabel
+                                });
+                            }
+                            return true;
+                        }
+                        return false;
                     }
 
-                    if (hasSocketTerm) {
-                        matchedItems.push({
-                            slot: item.Worn || "Unknown",
-                            name: item.Title + " - " + item.TextTag,
-                            type: typeLabel
-                        });
-                        return true;
-                    }
                     return false;
                 };
 
@@ -637,50 +832,10 @@
                     }
                 }
 
-                // Additionally require that the full socket expression is satisfied
-                // somewhere on the character (items OR sockets anywhere)
-                if (matchedItems.length > 0) {
-                    const charSocketExprSatisfied = evaluateBooleanExpression(
-                        parsedQuery.socketAst,
-                        term => {
-                            const t = term.toLowerCase();
-
-                            // Match against any item title/tag on the character
-                            for (const entry of allItemsForChar) {
-                                const it = entry.item;
-                                if (!it || !it.Title) continue;
-                                const title = (it.Title || '').toLowerCase();
-                                const tag = (it.TextTag || '').toLowerCase();
-                                if (title.includes(t) || tag.includes(t)) {
-                                    return true;
-                                }
-                            }
-
-                            // Match against any socketed item title/tag on the character
-                            for (const entry of allItemsForChar) {
-                                const it = entry.item;
-                                const socketsAll = getSocketArray(it);
-                                for (const sock of socketsAll) {
-                                    const sTitle = (sock.Title || '').toLowerCase();
-                                    const sTag = (sock.TextTag || '').toLowerCase();
-                                    if (sTitle.includes(t) || sTag.includes(t)) {
-                                        return true;
-                                    }
-                                }
-                            }
-
-                            return false;
-                        }
-                    );
-
-                    if (!charSocketExprSatisfied) {
-                        matchedItems.length = 0;
-                    }
-                }
+                // We no longer need an extra character-level socket expression check here
+                // because earlier terms become extraItemAst and are enforced separately.
             } else {
                 // Character-level match: items satisfying boolean expression across character/merc equipment
-                const seenItems = new Set();
-
                 const charMatches = evaluateBooleanExpression(
                     parsedQuery.itemAst,
                     buildItemMatchFn(predicate => {
@@ -692,8 +847,8 @@
                             if (predicate(item)) {
                                 termMatched = true;
                                 const key = (item.Worn || "?") + "|" + item.Title + "|" + (item.TextTag || "");
-                                if (!seenItems.has(key)) {
-                                    seenItems.add(key);
+                                if (!seenItemKeys.has(key)) {
+                                    seenItemKeys.add(key);
                                     matchedItems.push({
                                         slot: item.Worn || "Unknown",
                                         name: item.Title + " - " + item.TextTag,
@@ -709,6 +864,39 @@
                 if (!charMatches) {
                     matchedItems.length = 0;
                 }
+            }
+
+            // If extra character-level item conditions are not met, discard any
+            // item matches gathered for this character.
+            if (!extraItemSatisfied) {
+                matchedItems.length = 0;
+            } else if (matchedItems.length > 0 && extraItemAst) {
+                // Character passed the extra conditions and already has at least
+                // one base/socket match; now collect and display the specific
+                // items that satisfy the extra character-level expression.
+                evaluateBooleanExpression(
+                    extraItemAst,
+                    buildItemMatchFn(predicate => {
+                        let termMatched = false;
+                        for (const entry of allItemsForChar) {
+                            const item = entry.item;
+                            if (!item || !item.Title) continue;
+                            if (predicate(item)) {
+                                termMatched = true;
+                                const key = (item.Worn || "?") + "|" + item.Title + "|" + (item.TextTag || "");
+                                if (!seenItemKeys.has(key)) {
+                                    seenItemKeys.add(key);
+                                    matchedItems.push({
+                                        slot: item.Worn || "Unknown",
+                                        name: item.Title + " - " + item.TextTag,
+                                        type: entry.type
+                                    });
+                                }
+                            }
+                        }
+                        return termMatched;
+                    })
+                );
             }
 
             if (matchedItems.length > 0) {
