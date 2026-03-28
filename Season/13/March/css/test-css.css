@@ -9,7 +9,7 @@
     }
 
     a {
-        color: #d5f2e3;  /* Change the link color */
+        color: #d6a69f;  /* Change the link color */
     }
 /*
     body {  
@@ -55,10 +55,11 @@
         background-size: contain, auto;
     } */
     .special-background {  
-        background-image: url("../icons/Header_background.jpg"), url("../icons/stone_background_2600.jpg");
-        background-position: top center, bottom center;
-        background-repeat: no-repeat, repeat;
-        background-size: contain, auto; /* Use 'cover' for better scaling */
+        background-image: url("../icons/pod-logo.png");
+        background-position: top 70px right 50px;
+        background-repeat: no-repeat;
+        background-size: 400px auto;
+        background-color: #000000;
         padding-top: 15%;
     }
     
@@ -267,24 +268,13 @@
         }
     }
 
-    .collapsible .icon.hidden, .icon-small.hidden {
-        display: none;
-    }
-    
-    .collapsible .close-icon {
-        display: inline;
-    }
-    
-    .collapsible.active .open-icon {
-        display: inline;
-    }
-    
-    .collapsible.active .close-icon {
-        display: none;
+    .collapsible .icon.hidden, 
+    .collapsible .icon-small.hidden {
+        display: none !important;
     }
 
     .hidden {
-        display: none;
+        display: none !important;
     }
     
     .collapsible strong {
@@ -448,6 +438,10 @@
     @media (max-width: 768px) {
         .hamburger {
             display: flex;
+        }
+        .hamburger2 {
+            display: flex;
+            margin-top: 50px;
         }
         .top-buttons {
             display: none;
@@ -852,11 +846,10 @@
     .hover-trigger-dead {
         height: 35px; /* Adjust based on your images */
         text-align: center;
-        width: auto;
         display: inline-block;
         padding: 10px 20px;
         background-image: url('../icons/Dead.png'); /* Path to your PNG */
-        background-size: cover; /* Ensure the image covers the button */
+        background-size: contain; /* Ensure the image covers the button */
         background-repeat: no-repeat;
         background-position: center;
         color: white; /* Keeps text visible */
@@ -867,11 +860,11 @@
     }
 
     .popup {
-        display: none;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        display: none; /* Initially hidden */
+        position: fixed; /* Keeps it positioned relative to the viewport */
+        top: 50%; /* Adjust as needed */
+        left: 50%; /* Center it */
+        transform: translate(-50%, -50%); /* Perfect centering */
         width: 600px;
         height: 500px;
         background-color: #232323;
@@ -879,7 +872,14 @@
         box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
         padding: 10px;
         z-index: 1000;
+        overflow-y: auto;
+        scrollbar-width: none; /* Firefox */
     }
+
+    .popup::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+    }
+
     
     @media (max-width: 768px) {
         .popup {
@@ -899,7 +899,7 @@
 
     /* Optional: Style for when the popup is visible */
     .popup.active {
-        display: block;
+        display: block !important;
     }
 
     .class-intro {
@@ -949,7 +949,6 @@
 
 
     .navbar {
-    overflow: hidden;
     background-color: #333;
     font-family: Montserrat, sans-serif;
     min-width: 911px;
@@ -1013,10 +1012,9 @@
     }
     
     .navbar-item-right{
-    margin-left: 200%;
-    margin-right: 20px;
-    
+        margin-left: 75%;
     }
+    
     .navbar-item:hover, .navbar-item-right:hover {
     background-color: #222;
     }
@@ -1040,4 +1038,301 @@
         opacity: 1;
         max-height: 20px;
     }
+
+    .dropdown {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+    }
+
+    .dropdown button {
+        background-color: #3a3f44;
+        color: white;
+        padding: 10px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .dropdown button:hover {
+        background-color: #232323;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #3a3f44;
+        color: white;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        right: 0;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #f1f1f1;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+    .banner {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Transparent black background */
+        color: white;
+        text-align: center;
+        padding: 10px;
+        font-size: 18px;
+        z-index: 1000; /* Ensures it stays on top of other elements */
+        pointer-events: none;  /* add this */
+    }
+    .dropdown {
+        position: absolute;
+        top: 60px;
+        right: 30px;
+    }
+
+    .dropdown button {
+        background-color: #3a3f44;
+        color: white;
+        padding: 10px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .dropdown button:hover {
+        background-color: #232323;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #3a3f44;
+        color: white;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        right: 0;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #f1f1f1;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }    
+    #is-48x48c{
+        height: 48px;
+        width: 48px;
+    }
+    .is-48x48c{
+        height: 48px;
+        width: 48px;
+    }
+    .navbar-start {
+        overflow: visible; /* Ensures dropdowns aren't clipped */
+        position: relative; /* Helps with stacking and positioning */
+    }
+    .navbar-item.dropdown2 {
+        position: relative; /* Needed for dropdown2-content to position properly */
+    }
     
+    .dropdown2-button {
+        background: none;
+        border: none;
+        font-size: 1rem;
+        color: white;
+        cursor: pointer;
+    }
+    
+    .dropdown2-content {
+        display: none;
+        position: absolute;
+        background-color: #3a3f44;
+        color: white;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        right: 0;
+        top: 100%;
+    }
+
+    .dropdown2-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+   
+    .dropdown2-content a:hover {
+        background-color: #f0f0f0; /* Adds hover effect for links */
+    }
+    
+    .navbar-start .dropdown2:hover .dropdown2-content {
+        display: block !important; /* Forces it to show */
+    }
+    /* Default: Hide the burger and show the full navbar */
+.navbar-burger {
+    display: none; /* Hidden by default */
+}
+
+@media screen and (max-width: 1024px) {
+    /* On smaller screens (mobile/tablet), show the burger */
+    .navbar-burger {
+        display: block;
+    }
+
+    /* Hide the full navbar menu by default */
+    .navbar-menu {
+        display: none;
+    }
+
+    /* Show the full menu when toggled */
+    .navbar-menu.is-active {
+        display: flex;
+        flex-direction: column;
+        background-color: #333; /* Optional: Add mobile-friendly background color */
+        padding: 1rem;
+    }
+}
+
+
+.navbar-burger {
+    position: absolute; /* Ensures you can move it freely */
+    top: 0.5rem; /* Adjust vertical positioning */
+    margin-left: 20%; /* Pushes it to the right edge */
+    display: none; /* Hidden by default for desktop */
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1024px) {
+    .navbar-burger {
+        display: block; /* Show only on mobile screens */
+    }
+}
+.dropdown2-content {
+    display: none; /* Hidden by default */
+    position: absolute;
+    background-color: #3a3f44;
+    color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    left: 0;
+    top: 100%;
+}
+
+.dropdown2-content.is-active {
+    display: block; /* Show dropdown when active */
+}
+
+.dropdown2-item {
+    position: relative;
+}
+
+.dropdown-sub {
+    position: relative;
+}
+
+.dropdown-sub-content {
+    display: none;
+    position: absolute;
+    background-color: #3a3f44;
+    color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    left: 100%;
+    top: 5%;
+}
+
+.dropdown-sub:hover .dropdown-sub-content {
+    display: block;
+}
+
+/* So the hrefs don't get hidden behind the top navbar */
+.content {
+    scroll-margin-top: 100px;
+  }
+  
+.base-item {
+    padding-left: 1.5em;
+}
+
+/* Family hierarchical structure styles */
+.family-container {
+    margin: 20px 0;
+    border: 2px solid #444;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.family-header {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 6px 6px 0 0;
+}
+
+.family-collapsible {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #fff;
+    background: transparent;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+}
+
+.family-title {
+    margin: 0;
+    color: #fff;
+    display: inline;
+}
+
+.family-container .family-content {
+    padding: 15px;
+    border-top: 1px solid #555;
+    display: none !important; /* Initially hidden - use !important to override any conflicts */
+}
+
+/* Ensure family content shows when activated by JavaScript */
+.family-container .family-content[style*="display: block"] {
+    display: block !important;
+}
+
+.variant-container {
+    margin: 15px 0;
+    padding: 15px;
+    border: 1px solid #666;
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.variant-title {
+    color: #ccc;
+    margin-bottom: 10px;
+}
+
+.variant-skills {
+    margin: 10px 0;
+}
