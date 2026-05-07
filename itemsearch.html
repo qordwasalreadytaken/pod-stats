@@ -241,7 +241,7 @@
             <span style="background-color: #4a3a2a; padding: 2px 6px; border-radius: 3px;">Brown: Mercenary Equipment</span>
         </p>
         <p style="color: #e0e0e2; margin-bottom: 20px; font-family: 'armory', sans-serif; font-size: 0.9rem;">
-            Basic: type an item name (e.g. <strong>shako</strong>, <strong>enigma</strong>). Use <strong>and</strong> / <strong>or</strong> between terms (e.g. <strong>enigma and shako</strong>, <strong>shako or griff</strong>).<br>
+            Basic: type an item name (e.g. <strong>shako</strong>, <strong>enigma</strong>). Use <strong>and</strong> / <strong>or</strong> between terms (e.g. <strong>enigma and shako</strong>, <strong>shako or griff</strong>). Put a term in <strong>quotes</strong> for an exact match (e.g. <strong>"doom"</strong>).<br>
             Sockets: <strong>with</strong> matches what is in the sockets (e.g. <strong>shield with skull</strong>, <strong>griff with jewel</strong>).<br>
             Negative sockets: use <strong>!with</strong> or <strong>without</strong> to exclude socket contents (e.g. <strong>shako !with rune</strong>, <strong>shield without rune or jewel</strong>).<br>
             Combined: earlier terms are extra requirements on the same character (e.g. <strong>enigma and shako !with topaz</strong>, <strong>glad and shield with skull</strong>).<br>
@@ -250,7 +250,7 @@
         <div class="search-form">
         <div class="search-section">
             <h3>Search for Item</h3>
-            <input type="text" id="itemName" placeholder="Enter item name (e.g. Dangoon)">
+            <input type="text" id="itemName" placeholder="Enter item name (e.g. Dangoon or &quot;Doom&quot;)">
             
             <div class="form-group">
                 <label>
@@ -449,7 +449,12 @@
     // using base item type/group information from item-bases.js when possible.
     function buildItemMatchFn(itemGetter) {
         return function(term) {
-            const t = term.toLowerCase();
+            const parsedTerm = parseSearchTerm(term);
+            const t = parsedTerm.value;
+
+            if (parsedTerm.exact) {
+                return itemGetter(item => itemFieldMatches(item, parsedTerm));
+            }
 
             // Category: any shield (Monarch, Aegis, class shields, etc.)
             if (t === 'shield' || t === 'shields') {
@@ -535,11 +540,32 @@
 
             // Default: simple substring match on Title/TextTag
             return itemGetter(item => {
-                const title = (item.Title || '').toLowerCase();
-                const textTag = (item.TextTag || '').toLowerCase();
-                return title.includes(t) || textTag.includes(t);
+                return itemFieldMatches(item, parsedTerm);
             });
         };
+    }
+
+    function parseSearchTerm(term) {
+        const normalized = (term || '').trim().toLowerCase();
+        const isDoubleQuoted = normalized.length >= 2 && normalized.startsWith('"') && normalized.endsWith('"');
+        const isSingleQuoted = normalized.length >= 2 && normalized.startsWith("'") && normalized.endsWith("'");
+        const exact = isDoubleQuoted || isSingleQuoted;
+
+        return {
+            exact,
+            value: exact ? normalized.slice(1, -1).trim() : normalized
+        };
+    }
+
+    function itemFieldMatches(item, parsedTerm) {
+        const title = (item.Title || '').toLowerCase();
+        const textTag = (item.TextTag || '').toLowerCase();
+
+        if (parsedTerm.exact) {
+            return title === parsedTerm.value || textTag === parsedTerm.value;
+        }
+
+        return title.includes(parsedTerm.value) || textTag.includes(parsedTerm.value);
     }
 
     function evaluateBooleanExpression(ast, matchFn) {
@@ -758,14 +784,12 @@
                         // Require that this item has at least one of the socket terms
                         const socketTerms = parsedQuery.socketAst
                             .filter(node => node.type === 'term')
-                            .map(node => node.value.toLowerCase());
+                            .map(node => parseSearchTerm(node.value));
 
                         let hasSocketTerm = false;
                         for (const term of socketTerms) {
                             for (const sock of sockets) {
-                                const sTitle = (sock.Title || '').toLowerCase();
-                                const sTag = (sock.TextTag || '').toLowerCase();
-                                if (sTitle.includes(term) || sTag.includes(term)) {
+                                if (itemFieldMatches(sock, term)) {
                                     hasSocketTerm = true;
                                     break;
                                 }
@@ -791,11 +815,9 @@
                         const exprResult = evaluateBooleanExpression(
                             parsedQuery.socketAst,
                             term => {
-                                const t = term.toLowerCase();
+                                const parsedTerm = parseSearchTerm(term);
                                 for (const sock of sockets) {
-                                    const sTitle = (sock.Title || '').toLowerCase();
-                                    const sTag = (sock.TextTag || '').toLowerCase();
-                                    if (sTitle.includes(t) || sTag.includes(t)) {
+                                    if (itemFieldMatches(sock, parsedTerm)) {
                                         return true;
                                     }
                                 }
