@@ -16,92 +16,155 @@
             src: url('armory/font/avqest.ttf');
         }
         body {
-            margin: 100px;
-            margin-top: 175px;
+            margin: 20px;
+            margin-top: 20px;
             line-height: 1.6;
-            background-color: #000;
-            color: #f5f5f5;
+            background-color: #0d0d0d;
+            color: #a9a9a9;
             font-family: armory, sans-serif;
             font-size: large;
         }
         .special-background {
             background-image: url('icons/pod-logo.png');
-            background-position: top 24px right 28px;
+            background-position: top 24px left 2px;
             background-repeat: no-repeat;
-            background-size: 360px auto;
-            background-color: #000;
+            background-size: 170px auto;
+            background-color: black;
             padding-top: 0;
         }
-        .main { max-width: 1200px; margin-left: 0; margin-top: 0; }
-        h1 { color: #f5f5f5; font-family: d2, sans-serif; }
-        h2, h3 { color: #f5f5f5; font-family: armory, sans-serif; }
-        p { color: #f5f5f5; font-family: armory, sans-serif; }
-        a { color: #d6a69f; }
+        .main { max-width: 1200px; margin-left: 150px; margin-top: 0; }
+        h1 { color: #d3d3d3; font-family: d2, sans-serif; text-shadow: 0 0 6px rgba(0,0,0,0.9); }
+        h2, h3 { color: #a0a0a0; font-family: armory, sans-serif; text-shadow: 0 0 4px rgba(0,0,0,0.8); }
+        p { color: #a9a9a9; font-family: armory, sans-serif; }
+        a { color: #a0a0c0; }
         .qords-hero {
-            background: radial-gradient(circle at 20% 20%, rgba(255,186,74,0.25), transparent 60%),
-                        radial-gradient(circle at 80% 30%, rgba(179,255,253,0.20), transparent 55%),
-                        linear-gradient(130deg, rgba(24,24,24,0.96), rgba(35,35,35,0.95));
-            border: 2px solid #555; border-radius: 10px; padding: 18px; margin-bottom: 18px;
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 50%, #2a2a2a 100%);
+            border: 3px solid #555555;
+            border-radius: 2px;
+            padding: 20px;
+            margin-bottom: 20px;
             animation: heroFade 0.7s ease-out;
+            box-shadow: inset 0 0 8px rgba(0,0,0,0.9), 0 0 12px rgba(85,85,85,0.4);
         }
         @keyframes heroFade { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
-        .qords-subtitle { color: #cfd8dc; margin-top: 6px; margin-bottom: 8px; }
+        .qords-subtitle { color: #c0c0c0; margin-top: 6px; margin-bottom: 8px; font-style: italic; }
         .mode-toggle {
-            display:inline-flex; gap:6px; margin: 6px 0 12px;
-            background:#151515; border:1px solid #444; border-radius:999px; padding:4px;
+            display:inline-flex; gap:2px; margin: 8px 0 14px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+            border: 2px solid #404040;
+            border-radius: 0;
+            padding: 2px;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.9);
         }
         .mode-toggle .mode-link {
-            display:inline-block; text-decoration:none; color:#cfcfcf;
-            border:1px solid transparent; border-radius:999px;
-            padding:6px 12px; font-size:13px; letter-spacing:0.2px;
+            display:inline-block; text-decoration:none; color:#808080;
+            border: 1px solid #303030;
+            border-radius: 0;
+            padding: 6px 14px; font-size: 12px; letter-spacing: 0.3px;
+            background: linear-gradient(to bottom, #1a1a1a, #0d0d0d);
         }
-        .mode-toggle .mode-link:hover { background:#2a2a2a; color:#ffffff; }
+        .mode-toggle .mode-link:hover { background: linear-gradient(to bottom, #2a2a2a, #1a1a1a); color: #d3d3d3; }
         .mode-toggle .mode-link.active {
-            background:#3b2b12; border-color:#8d6a2d; color:#ffcf73; font-weight:bold;
+            background: linear-gradient(to bottom, #4a4a4a, #303030);
+            border-color: #555555;
+            color: #e8e8e8;
+            font-weight: bold;
+            box-shadow: inset 0 1px 2px rgba(232,232,232,0.2);
         }
         .controls { display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:10px; }
         .controls input, .controls select, .controls button {
-            background:#1e1e1e; color:#f5f5f5; border:1px solid #555; border-radius:6px;
-            padding:8px 10px; font-family:armory,sans-serif;
+            background: linear-gradient(to bottom, #1a1a1a, #0d0d0d);
+            color: #a0a0a0;
+            border: 2px solid #404040;
+            border-radius: 0;
+            padding: 8px 10px;
+            font-family: armory, sans-serif;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.8);
         }
-        .controls button { cursor:pointer; background:#333; border-color:#777; }
-        .controls button:hover { background:#424242; }
+        .controls button {
+            cursor: pointer;
+            background: linear-gradient(to bottom, #303030, #1a1a1a);
+            border-color: #404040;
+        }
+        .controls button:hover {
+            background: linear-gradient(to bottom, #4a4a4a, #303030);
+            color: #d3d3d3;
+        }
         .info-box {
-            background:#1a1a1a; border-left:4px solid #bc6bff; border-radius:6px;
-            padding:10px 12px; color:#d0d0d0; margin-bottom:14px;
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+            border: 2px solid #404040;
+            border-left: 4px solid #555555;
+            border-radius: 0;
+            padding: 12px 14px;
+            color: #a0a0a0;
+            margin-bottom: 16px;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.8);
         }
+        .info-box strong { color: #d3d3d3; }
         .mini-stats {
             display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
             gap:10px; margin:14px 0;
         }
-        .mini-stat { border:1px solid #4f4f4f; border-radius:6px; background:#202020; padding:10px; text-align:center; }
-        .mini-stat .value { color:#ffba4a; font-family:d2,sans-serif; font-size:22px; }
-        .mini-stat .label { color:#bbb; font-size:13px; }
-        .table-wrap { overflow-x:auto; border:1px solid #444; border-radius:8px; background:#171717; margin-bottom:18px; }
+        .mini-stat {
+            border: 2px solid #404040;
+            border-radius: 0;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+            padding: 12px;
+            text-align: center;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.9), 0 2px 4px rgba(0,0,0,0.6);
+        }
+        .mini-stat .value { color: #c0c0c0; font-family: d2, sans-serif; font-size: 22px; text-shadow: 0 0 4px rgba(0,0,0,0.8); }
+        .mini-stat .label { color: #808080; font-size: 12px; }
+        .table-wrap {
+            overflow-x: auto;
+            border: 2px solid #404040;
+            border-radius: 0;
+            background: #0d0d0d;
+            margin-bottom: 18px;
+            box-shadow: inset 0 1px 4px rgba(0,0,0,0.95), 0 0 8px rgba(0,0,0,0.7);
+        }
         table.rank-table { width:100%; border-collapse:collapse; min-width:900px; }
-        .rank-table th, .rank-table td { padding:9px; border-bottom:1px solid #2f2f2f; text-align:left; color:#ececec; font-size:14px; }
-        .rank-table th { position:sticky; top:0; background:#202020; color:#ffecb3; z-index:1; }
-        .rank-table tr:hover { background:#242424; }
-        .rank-num { font-weight:bold; color:#ffba4a; }
-        .cp-title { color:#9cd8ff; font-weight:bold; margin-right:4px; }
-        .xp-cell { color:#b3fff3; font-family:d2,sans-serif; letter-spacing:0.4px; }
+        .rank-table th, .rank-table td { padding: 9px; border-bottom: 1px solid #303030; text-align: left; color: #a0a0a0; font-size: 13px; }
+        .rank-table th {
+            position: sticky;
+            top: 0;
+            background: linear-gradient(to bottom, #303030, #1a1a1a);
+            color: #d3d3d3;
+            z-index: 1;
+            font-weight: bold;
+            border-bottom: 2px solid #404040;
+        }
+        .rank-table tr:hover { background: linear-gradient(to right, rgba(85,85,85,0.15), transparent); }
+        .rank-num { font-weight: bold; color: #a0a0a0; }
+        .cp-title { color: #909090; font-weight: bold; margin-right: 4px; text-shadow: 0 0 3px rgba(0,0,0,0.8); }
+        .xp-cell { color: #d3d3d3; font-family: d2, sans-serif; letter-spacing: 0.4px; }
         .title-pill {
-            display:inline-block; border:1px solid #555; border-radius:999px;
-            padding:2px 8px; background:#252525; font-size:12px; color:#c5c5c5;
-            margin:1px 4px 1px 0; white-space:nowrap;
+            display: inline-block;
+            border: 1px solid #303030;
+            border-radius: 1px;
+            padding: 3px 8px;
+            background: linear-gradient(to bottom, #1a1a1a, #0d0d0d);
+            font-size: 11px;
+            color: #808080;
+            margin: 2px 4px 2px 0;
+            white-space: nowrap;
         }
         .title-pill.apex {
-            border-color:#8d63d6; background:#25173b;
-            color:#d7c2ff; font-weight:bold;
-            box-shadow: 0 0 6px rgba(141,99,214,0.35);
+            border-color: #404080;
+            background: linear-gradient(to bottom, #202040, #0d0d20);
+            color: #a0a0c0;
+            font-weight: bold;
+            box-shadow: inset 0 1px 2px rgba(64,64,128,0.4);
         }
         .title-pill.legendary {
-            border-color:#c8922a; background:#2e2010;
-            color:#ffcc66; font-weight:bold;
-            box-shadow: 0 0 7px rgba(200,146,42,0.38);
+            border-color: #555555;
+            background: linear-gradient(to bottom, #3a3a2a, #202010);
+            color: #d3d3d3;
+            font-weight: bold;
+            box-shadow: inset 0 1px 3px rgba(85,85,85,0.5);
         }
-        .status { color:#d5f2e3; margin:6px 0 14px; }
-        .generated-note { color:#666; font-size:12px; margin-top:4px; }
+        .status { color: #a9a9a9; margin:6px 0 14px; }
+        .generated-note { color: #666; font-size:12px; margin-top:4px; }
         .back-to-top {
             position: fixed;
             right: 16px;
@@ -109,15 +172,16 @@
             width: 42px;
             height: 42px;
             display: none;
-            border: 1px solid #444;
-            border-radius: 50%;
-            background: #1f1f1f;
-            color: #e8e8e8;
+            border: 2px solid #404040;
+            border-radius: 1px;
+            background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+            color: #a0a0a0;
             cursor: pointer;
             z-index: 10;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.8);
         }
         .back-to-top::before { content: '↑'; font-size: 18px; line-height: 1; }
-        .back-to-top:hover { background:#2b2b2b; }
+        .back-to-top:hover { background: linear-gradient(135deg, #303030, #2a2a2a); color: #d3d3d3; }
         @media (max-width: 768px) {
             body { margin: 10px; font-size: medium; }
             .special-background {
@@ -161,7 +225,7 @@
             change with the times. This page is intentionally unserious. 
         </div>
 
-        <p class="status">Generated 2026-05-10 08:00 &nbsp;·&nbsp; XP from <em>seasons 9-13</em> &nbsp;·&nbsp; Item tags from current ladder characters</p>
+        <p class="status">Generated 2026-05-10 20:31 &nbsp;·&nbsp; XP from <em>seasons 9-13</em> &nbsp;·&nbsp; Item tags from current ladder characters</p>
 
         <div class="mini-stats">
         <div class="mini-stat"><div class="value">3,940</div><div class="label">Accounts Ranked</div></div>
