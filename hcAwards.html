@@ -32,7 +32,36 @@
             background-color: black;
             padding-top: 0;
         }
-        .main { max-width: 1200px; margin-left: 150px; margin-top: 0; }
+        .main {
+            max-width: 1200px;
+            margin-left: 150px;
+            margin-top: 0;
+            position: relative;
+            --main-pad-x: 30px;
+            padding: 36px 30px 34px;
+            background: black;
+            box-shadow: inset 0 1px 4px rgba(0,0,0,0.95), 0 0 8px rgba(0,0,0,0.7);
+        }
+        .main::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 2;
+            background:
+                url('d2images/border-top-left.gif') left top no-repeat,
+                url('d2images/border-top-right.gif') right top no-repeat,
+                url('d2images/border-bottom-left.gif') left bottom no-repeat,
+                url('d2images/border-bottom-right.gif') right bottom no-repeat,
+                url('d2images/border-top-mid.gif') left top repeat-x,
+                url('d2images/border-bottom.gif') left bottom repeat-x,
+                url('d2images/border-left.gif') left top repeat-y,
+                url('d2images/border-right.gif') right top repeat-y;
+        }
+        .main > * {
+            position: relative;
+            z-index: 1;
+        }
         h1 { color: #d3d3d3; font-family: d2, sans-serif; text-shadow: 0 0 6px rgba(0,0,0,0.9); }
         h2, h3 { color: #a0a0a0; font-family: armory, sans-serif; text-shadow: 0 0 4px rgba(0,0,0,0.8); }
         p { color: #a9a9a9; font-family: armory, sans-serif; }
@@ -40,7 +69,7 @@
         .qords-hero {
             background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 50%, #2a2a2a 100%);
             border: 3px solid #555555;
-            border-radius: 2px;
+            border-radius: 1px;
             padding: 20px;
             margin-bottom: 20px;
             animation: heroFade 0.7s ease-out;
@@ -120,7 +149,7 @@
             border: 2px solid #404040;
             border-radius: 0;
             background: #0d0d0d;
-            margin-bottom: 18px;
+            margin-bottom: 75px;
             box-shadow: inset 0 1px 4px rgba(0,0,0,0.95), 0 0 8px rgba(0,0,0,0.7);
         }
         table.rank-table { width:100%; border-collapse:collapse; min-width:900px; }
@@ -164,6 +193,45 @@
             box-shadow: inset 0 1px 3px rgba(85,85,85,0.5);
         }
         .status { color: #a9a9a9; margin:6px 0 14px; }
+        .section-break {
+            height: 50px;
+            margin: 22px 0 24px;
+            margin-left: calc(-1 * var(--main-pad-x) + 20px);
+            margin-right: calc(-1 * var(--main-pad-x) + 20px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background:
+                url('d2images/break-left.gif') left center no-repeat,
+                url('d2images/break-right.gif') right center no-repeat,
+                url('d2images/break-mid.gif') center center repeat-x;
+        }
+        .section-break span {
+            padding: 0 10px;
+            color: #f2e8d6;
+            font-family: armory, sans-serif;
+            font-size: 1.17em;
+            letter-spacing: 0.4px;
+            text-shadow: 0 1px 0 rgba(0,0,0,0.95), 0 0 6px rgba(0,0,0,0.9);
+        }
+        h3 {
+            height: 50px;
+            margin: 0;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            margin-left: calc(-1 * var(--main-pad-x) + 20px);
+            margin-right: calc(-1 * var(--main-pad-x) + 20px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #f2e8d6;
+            text-shadow: 0 1px 0 rgba(0,0,0,0.95), 0 0 6px rgba(0,0,0,0.9);
+            background:
+                url('d2images/break-left.gif') left top no-repeat,
+                url('d2images/break-right.gif') right top no-repeat,
+                url('d2images/break-mid.gif') center top repeat-x;
+        }
         .generated-note { color: #666; font-size:12px; margin-top:4px; }
         .back-to-top {
             position: fixed;
@@ -188,7 +256,12 @@
                 background-size: 200px auto;
                 background-position: top 8px right 8px;
             }
-            .main { margin-left: 0 !important; margin-right: 0; }
+            .main {
+                margin-left: 0 !important;
+                margin-right: 0;
+                --main-pad-x: 16px;
+                padding: 24px 16px 22px;
+            }
             .page-intro { padding-top: 8px; }
         }
     </style>
@@ -216,8 +289,10 @@
             </div>
         </div>
 
+        <div class="section-break"><span>How this works</span></div>
+
         <div class="info-box">
-            <strong>How this works:</strong> XP is a made-up score aggregated across <em>seasons 9-13</em>
+            XP is a made-up score aggregated across <em>seasons 9-13</em>
             (rank, level, character count), with a boost from equipment worn by current ladder characters. 
             XP will rise and fall across seasons as accounts come and go, and as characters equip and unequip items.
             Awards are tied to both accounts across seasons and equipment
@@ -225,7 +300,7 @@
             change with the times. This page is intentionally unserious. 
         </div>
 
-        <p class="status">Generated 2026-05-10 20:32 &nbsp;·&nbsp; XP from <em>seasons 9-13</em> &nbsp;·&nbsp; Item tags from current ladder characters</p>
+        <p class="status">Generated 2026-05-10 22:15 &nbsp;·&nbsp; XP from <em>seasons 9-13</em> &nbsp;·&nbsp; Item tags from current ladder characters</p>
 
         <div class="mini-stats">
         <div class="mini-stat"><div class="value">2,901</div><div class="label">Accounts Ranked</div></div>
