@@ -66,6 +66,40 @@
         h2, h3 { color: #a0a0a0; font-family: armory, sans-serif; text-shadow: 0 0 4px rgba(0,0,0,0.8); }
         p { color: #a9a9a9; font-family: armory, sans-serif; }
         a { color: #a0a0c0; }
+        .title-panel {
+            position: relative;
+            max-width: 1200px;
+            margin-left: 150px;
+            margin-bottom: 0;
+            padding: 18px 24px 16px;
+            text-align: center;
+            background: url('d2images/small-border-back.gif') center center repeat;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+        }
+        .title-panel::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background:
+                url('d2images/small-border-top-left.gif') left top no-repeat,
+                url('d2images/small-border-top-right.gif') right top no-repeat,
+                url('d2images/small-border-top.gif') left top repeat-x,
+                url('d2images/small-border-bottom.gif') left bottom repeat-x,
+                url('d2images/small-border-left.gif') left top repeat-y,
+                url('d2images/small-border-right.gif') right top repeat-y;
+        }
+        .title-panel h1 {
+            margin: 0;
+            color: #f2e8d6;
+            text-shadow: 0 1px 0 rgba(0,0,0,0.95), 0 0 8px rgba(0,0,0,0.9);
+        }
+        .between-section {
+            height: 4px;
+            max-width: 1200px;
+            margin-left: 150px;
+            background: url('d2images/in-between-back.gif') center center repeat-x;
+        }
         .qords-hero {
             background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 50%, #2a2a2a 100%);
             border: 3px solid #555555;
@@ -169,28 +203,30 @@
         .xp-cell { color: #d3d3d3; font-family: d2, sans-serif; letter-spacing: 0.4px; }
         .title-pill {
             display: inline-block;
-            border: 1px solid #303030;
+            border: 1px solid #555555;
             border-radius: 1px;
             padding: 3px 8px;
-            background: linear-gradient(to bottom, #1a1a1a, #0d0d0d);
+            background: linear-gradient(to bottom, #3a3a2a, #202010);
             font-size: 11px;
-            color: #808080;
+            color: #d3d3d3;
             margin: 2px 4px 2px 0;
             white-space: nowrap;
-        }
-        .title-pill.apex {
-            border-color: #404080;
-            background: linear-gradient(to bottom, #202040, #0d0d20);
-            color: #a0a0c0;
-            font-weight: bold;
-            box-shadow: inset 0 1px 2px rgba(64,64,128,0.4);
-        }
-        .title-pill.legendary {
-            border-color: #555555;
-            background: linear-gradient(to bottom, #3a3a2a, #202010);
-            color: #d3d3d3;
             font-weight: bold;
             box-shadow: inset 0 1px 3px rgba(85,85,85,0.5);
+        }
+        .title-pill.apex {
+            border-color: #8d63d6;
+            background: #25173b;
+            color: #d7c2ff;
+            font-weight: bold;
+            box-shadow: 0 0 6px rgba(141,99,214,0.35);
+        }
+        .title-pill.legendary {
+            border-color: #c8922a;
+            background: #2e2010;
+            color: #ffcc66;
+            font-weight: bold;
+            box-shadow: 0 0 7px rgba(200,146,42,0.38);
         }
         .status { color: #a9a9a9; margin:6px 0 14px; }
         .section-break {
@@ -250,6 +286,29 @@
         }
         .back-to-top::before { content: '↑'; font-size: 18px; line-height: 1; }
         .back-to-top:hover { background: linear-gradient(135deg, #303030, #2a2a2a); color: #d3d3d3; }
+        .about-wrap {
+            display: flex;
+            justify-content: center;
+            margin: 0 0 28px;
+            position: relative;
+            z-index: 3;
+        }
+        .about-btn {
+            border: 2px solid #404040;
+            border-radius: 1px;
+            background: linear-gradient(to bottom, #2a2a2a, #1a1a1a);
+            color: #d3d3d3;
+            font-family: armory, sans-serif;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            padding: 8px 18px;
+            cursor: pointer;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.85), 0 0 6px rgba(0,0,0,0.5);
+        }
+        .about-btn:hover {
+            background: linear-gradient(to bottom, #3a3a3a, #242424);
+            color: #f2e8d6;
+        }
         @media (max-width: 768px) {
             body { margin: 10px; font-size: medium; }
             .special-background {
@@ -262,15 +321,33 @@
                 --main-pad-x: 16px;
                 padding: 24px 16px 22px;
             }
+            .title-panel {
+                margin-left: 0;
+                margin-right: 0;
+                padding: 16px 18px 14px;
+            }
+            .between-section {
+                margin-left: 0;
+                margin-right: 0;
+                height: 28px;
+            }
+            .about-wrap {
+                margin-bottom: 22px;
+            }
             .page-intro { padding-top: 8px; }
         }
     </style>
 </head>
 <body class="special-background">
 <div class="is-clipped">
+    <div class="title-panel">
+        <h1>Sqord's Awards and Arbitrary Ranks</h1>
+    </div>
+
+    <div class="between-section"></div>
+
     <div class="main page-intro">
         <div class="qords-hero">
-            <h1>Sqord's Awards and Arbitrary Ranks</h1>
             <p class="qords-subtitle">Infinite points. No goal. Dubious prestige. Highly scientific nonsense.</p>
             <div class="mode-toggle" aria-label="Ladder mode toggle">
                 <a class="mode-link active" href="Awards.html">Softcore</a>
@@ -300,7 +377,7 @@
             change with the times. This page is intentionally unserious. 
         </div>
 
-        <p class="status">Generated 2026-05-10 22:14 &nbsp;·&nbsp; XP from <em>seasons 9-13</em> &nbsp;·&nbsp; Item tags from current ladder characters</p>
+        <p class="status">Generated 2026-05-11 07:56 &nbsp;·&nbsp; XP from <em>seasons 9-13</em> &nbsp;·&nbsp; Item tags from current ladder characters</p>
 
         <div class="mini-stats">
         <div class="mini-stat"><div class="value">3,940</div><div class="label">Accounts Ranked</div></div>
@@ -27906,6 +27983,10 @@
             </table>
         </div>
 
+        <div class="about-wrap">
+            <button class="about-btn" onclick="showAboutPopup()">About</button>
+        </div>
+
         <button onclick="topFunction()" id="backToTopBtn" class="back-to-top"></button>
     </div>
 </div>
@@ -27941,6 +28022,7 @@ window.onscroll = function() {
     backToTopBtn.style.display = (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) ? "block" : "none";
 };
 function topFunction() { document.body.scrollTop = 0; document.documentElement.scrollTop = 0; }
+function showAboutPopup() { alert("about me"); }
 
 function toggleMenu() { document.querySelector(".top-buttons").classList.toggle("show"); }
 function setActive(n) { console.log("active", n); }
