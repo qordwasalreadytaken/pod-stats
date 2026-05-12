@@ -269,6 +269,13 @@
                 url('d2images/break-mid.gif') center top repeat-x;
         }
         .generated-note { color: #666; font-size:12px; margin-top:4px; }
+        .merged-marker {
+            color: #ffcc66;
+            margin-left: 3px;
+            font-weight: bold;
+            text-shadow: 0 0 4px rgba(200,146,42,0.55);
+            cursor: help;
+        }
         .back-to-top {
             position: fixed;
             right: 16px;
@@ -306,6 +313,51 @@
             box-shadow: inset 0 1px 2px rgba(0,0,0,0.85), 0 0 6px rgba(0,0,0,0.5);
         }
         .about-btn:hover {
+            background: linear-gradient(to bottom, #3a3a3a, #242424);
+            color: #f2e8d6;
+        }
+        .about-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.72);
+            align-items: center;
+            justify-content: center;
+            padding: 18px;
+        }
+        .about-modal.open {
+            display: flex;
+        }
+        .about-dialog {
+            width: min(760px, 100%);
+            max-height: 80vh;
+            overflow-y: auto;
+            border: 2px solid #404040;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.9), 0 0 18px rgba(0,0,0,0.8);
+            padding: 18px 20px 16px;
+        }
+        .about-dialog h4 {
+            margin: 0 0 12px;
+            color: #f2e8d6;
+            font-family: d2, sans-serif;
+            font-size: 18px;
+        }
+        .about-dialog p {
+            margin: 0 0 12px;
+            color: #c0c0c0;
+        }
+        .about-dialog .about-close {
+            margin-top: 6px;
+            border: 2px solid #404040;
+            background: linear-gradient(to bottom, #2a2a2a, #1a1a1a);
+            color: #d3d3d3;
+            font-family: armory, sans-serif;
+            padding: 7px 16px;
+            cursor: pointer;
+        }
+        .about-dialog .about-close:hover {
             background: linear-gradient(to bottom, #3a3a3a, #242424);
             color: #f2e8d6;
         }
@@ -374,10 +426,11 @@
             XP will rise and fall across seasons as accounts come and go, and as characters equip and unequip items.
             Awards are tied to both accounts across seasons and equipment
             current ladder characters are using. Some awards will follow you through seasons, and others will
-            change with the times. This page is intentionally unserious. 
+            change with the times. This page is intentionally unserious.
+            Accounts marked with <strong>*</strong> represent merged player identities spanning multiple configured accounts.
         </div>
 
-        <p class="status">Generated 2026-05-12 07:19 &nbsp;·&nbsp; XP from <em>seasons 9-13</em> &nbsp;·&nbsp; Item tags from current ladder characters</p>
+        <p class="status">Generated 2026-05-12 07:50 &nbsp;·&nbsp; XP from <em>seasons 9-13</em> &nbsp;·&nbsp; Item tags from current ladder characters</p>
 
         <div class="mini-stats">
         <div class="mini-stat"><div class="value">2,901</div><div class="label">Accounts Ranked</div></div>
@@ -20714,6 +20767,16 @@
             <button class="about-btn" onclick="showAboutPopup()">About</button>
         </div>
 
+        <div id="aboutModal" class="about-modal" onclick="hideAboutPopup(event)">
+            <div class="about-dialog" onclick="event.stopPropagation()">
+                <h4>About</h4>
+                <p>Built on the back of the Trends reporting site, the aim of this is to look at entire accounts, both in current form and over time, and credit players for their work beyond the right now. This takes into account ladder participation, ranking, character and level count, and experience from seasons 9-13, then adds XP points based on what current ladder season characters have equipped.</p>
+                <p>For players who return season after season but use a different account each season, we can accomodate that as well; Just reach out to Qord and he'll make sure you get the credit you deserve for your time playing.</p>
+                <p>Awards are primarilly for entertainment vlaue, and as such many of them will rotate with the seasons. Some will get removed, and others will get added. Some are character specific and others are based on data over time. There are awards for appearing on the ladder ranks over time, as well as awards based on item properties of currently worn equipment.</p>
+                <button class="about-close" onclick="hideAboutPopup()">Close</button>
+            </div>
+        </div>
+
         <button onclick="topFunction()" id="backToTopBtn" class="back-to-top"></button>
     </div>
 </div>
@@ -20749,7 +20812,17 @@ window.onscroll = function() {
     backToTopBtn.style.display = (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) ? "block" : "none";
 };
 function topFunction() { document.body.scrollTop = 0; document.documentElement.scrollTop = 0; }
-function showAboutPopup() { alert("about me"); }
+function showAboutPopup() { document.getElementById("aboutModal").classList.add("open"); }
+function hideAboutPopup(event) {
+    if (!event || event.target.id === "aboutModal") {
+        document.getElementById("aboutModal").classList.remove("open");
+    }
+}
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape") {
+        document.getElementById("aboutModal").classList.remove("open");
+    }
+});
 
 function toggleMenu() { document.querySelector(".top-buttons").classList.toggle("show"); }
 function setActive(n) { console.log("active", n); }
