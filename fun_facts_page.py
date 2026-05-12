@@ -282,7 +282,7 @@ class FunFactsAnalyzer:
                 level_ranges['99'] += 1
         
         return level_ranges
-    
+
     def analyze_top_accounts(self):
         """
         Analyze top accounts and their character distribution patterns.
