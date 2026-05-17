@@ -1,0 +1,59 @@
+name: Daily Qord Ranking Update
+
+on:
+  schedule:
+    # Daily at 08:00 UTC
+    - cron: '0 8 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate-qord-rankings:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+
+      - name: Verify ranking script exists
+        run: |
+          if [ ! -f generate_qords_ranking.py ]; then
+            echo "generate_qords_ranking.py was not found at repo root."
+            echo "Copy the script into pod-stats/ before running this workflow."
+            exit 1
+          fi
+
+      - name: Generate ranking pages
+        run: |
+          python generate_qords_ranking.py
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+            git add awards.html hcawards.html \
+              awards-noitems.html hcawards-noitems.html \
+              awards-xp-breakdown.html hcawards-xp-breakdown.html
+
+          if ! git diff --cached --quiet; then
+            git commit -m "Daily Qord ranking update"
+            git push
+          else
+            echo "No ranking file changes to commit"
+          fi
