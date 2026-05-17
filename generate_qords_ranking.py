@@ -1283,8 +1283,8 @@ def mini_stats_html(rows, local_source, current_season):
 def generate_html(rows, is_hardcore, local_source, current_season, seasons, show_xp_breakdown=False):
     hc_label      = "Hardcore " if is_hardcore else ""
     hc_suffix     = " (HC)" if is_hardcore else ""
-    sc_page       = "awards.html"
-    hc_page       = "hcawards.html"
+    sc_page       = "ranking.html"
+    hc_page       = "hcranking.html"
     sc_hc_link    = sc_page if is_hardcore else hc_page
     sc_hc_label   = "Switch to SC" if is_hardcore else "Switch to HC"
     generated_at  = datetime.now().strftime("%Y-%m-%d %H:%M")
@@ -1298,7 +1298,7 @@ def generate_html(rows, is_hardcore, local_source, current_season, seasons, show
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Sqord's Arbitrary Path of Diablo Ranking: nonsense account XP across seasons {season_range}, tiered awards, and weird titles presented by Sethy and Qord.">
+    <meta name="description" content="Sqord's Arbitrary Path of Diablo Ranking: nonsense account XP across seasons {season_range}, tiered ranking, and weird titles presented by Sethy and Qord.">
     <title>The Order of Sanctuary {hc_suffix}</title>
     <link rel="shortcut icon" type="image/x-icon" href="icons/pod.ico">
     <style>
@@ -1742,8 +1742,8 @@ def generate_html(rows, is_hardcore, local_source, current_season, seasons, show
             XP is a made-up score aggregated across <em>seasons {season_range}</em>
             (rank, level, character count), with a boost from equipment worn by current ladder characters. 
             XP will rise and fall across seasons as accounts come and go, and as characters equip and unequip items.
-            Awards are tied to both accounts across seasons and equipment
-            current ladder characters are using. Some awards will follow you through seasons, and others will
+            Rankings are tied to both accounts across seasons and equipment
+            current ladder characters are using. Some rankings will follow you through seasons, and others will
             change with the times. This page is intentionally unserious.
 <!--            Accounts marked with <strong>*</strong> represent merged player identities spanning multiple configured accounts. -->
         </div>
@@ -1762,7 +1762,7 @@ def generate_html(rows, is_hardcore, local_source, current_season, seasons, show
                         {'<th>History XP</th>' if show_xp_breakdown else ''}
                         {'<th>Current Item XP</th>' if show_xp_breakdown else ''}
                         <th>Arbitrary XP</th>
-                        <th>Awards</th>
+                        <th>Ranking</th>
                     </tr>
                 </thead>
                 <tbody id="leaderboardBody">
@@ -1779,7 +1779,7 @@ def generate_html(rows, is_hardcore, local_source, current_season, seasons, show
             <div class="about-dialog" onclick="event.stopPropagation()">
                 <h4>About</h4>
                 <p>Built on the back of the Trends reporting site and the data analysis it allows, the aim of this is to look at entire accounts, both in current form and over time, and credit players for their work beyond the right now. This takes into account ladder participation, ranking, character and level count, and experience from seasons {season_range}, then adds XP points based on what current ladder season characters have equipped.</p>
-                <p>Awards are primarily for entertainment value, and as such many of them will rotate with the seasons. Some will get removed, and others will get added. Some are character specific and others are based on data over time. There are awards for appearing on the ladder ranks over time, as well as awards based on item properties of currently worn equipment. The source of some awards is obvious, and others will take some time to figure out. </p>
+                <p>Rankings are primarily for entertainment value, and as such many of them will rotate with the seasons. Some will get removed, and others will get added. Some are character specific and others are based on data over time. There are rankings for appearing on the ladder ranks over time, as well as rankings based on item properties of currently worn equipment. The source of some rankings is obvious, and others will take some time to figure out. </p>
                 <p>For players who return to the ladder ranks over and over, your participation is reflected in both your XP and prestige level.</p>
                 <p>Please direct any feedback or suggestions to Sethy or Qord.</p>
                 <button class="about-close" onclick="hideAboutPopup()">Close</button>
@@ -1884,12 +1884,12 @@ def generate(mode_label, mode_int, json_candidates, out_filename, seasons_overri
 
 
 if __name__ == "__main__":
-    generate("SC", 0, SC_JSON_CANDIDATES, "awards.html")
-    generate("HC", 1, HC_JSON_CANDIDATES, "hcawards.html")
-    generate("SC (with XP breakdown)", 0, SC_JSON_CANDIDATES, "awards-xp-breakdown.html", show_xp_breakdown=True)
-    generate("HC (with XP breakdown)", 1, HC_JSON_CANDIDATES, "hcawards-xp-breakdown.html", show_xp_breakdown=True)
-    generate("SC (no items)",  0, SC_JSON_CANDIDATES, "awards-noitems.html",    no_items=True)
-    generate("HC (no items)",  1, HC_JSON_CANDIDATES, "hcawards-noitems.html",    no_items=True)
-#    generate("SC (S13 only)",  0, SC_JSON_CANDIDATES, "awards-s13.html",        seasons_override=[13])
-#    generate("SC (S13 no items)", 0, SC_JSON_CANDIDATES, "awards-s13-noitems.html", seasons_override=[13], no_items=True)
+    generate("SC", 0, SC_JSON_CANDIDATES, "ranking.html")
+    generate("HC", 1, HC_JSON_CANDIDATES, "hcranking.html")
+    generate("SC (with XP breakdown)", 0, SC_JSON_CANDIDATES, "ranking-xp-breakdown.html", show_xp_breakdown=True)
+    generate("HC (with XP breakdown)", 1, HC_JSON_CANDIDATES, "hcranking-xp-breakdown.html", show_xp_breakdown=True)
+    generate("SC (no items)",  0, SC_JSON_CANDIDATES, "ranking-noitems.html",    no_items=True)
+    generate("HC (no items)",  1, HC_JSON_CANDIDATES, "hcranking-noitems.html",    no_items=True)
+#    generate("SC (S13 only)",  0, SC_JSON_CANDIDATES, "ranking-s13.html",        seasons_override=[13])
+#    generate("SC (S13 no items)", 0, SC_JSON_CANDIDATES, "ranking-s13-noitems.html", seasons_override=[13], no_items=True)
     print("\nDone.")
