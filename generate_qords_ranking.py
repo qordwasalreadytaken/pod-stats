@@ -675,76 +675,285 @@ def hash32(s):
     return h
 
 
+def award_is_active_for_season(rule, current_season):
+    """Return whether an award rule is active for the current season.
+
+    Supported values for rule["seasons"] or rule.seasons:
+    - "all" (default)
+    - "odd"
+    - "even"
+    - explicit integer season number, e.g. 13
+    - optional future-friendly list/tuple/set of the above
+    """
+    if not current_season:
+        return True
+
+    season_scope = rule.get("seasons", "all") if isinstance(rule, dict) else "all"
+
+    if season_scope in (None, "all"):
+        return True
+    if season_scope == "odd":
+        return current_season % 2 == 1
+    if season_scope == "even":
+        return current_season % 2 == 0
+    if isinstance(season_scope, int):
+        return current_season == season_scope
+    if isinstance(season_scope, str) and season_scope.isdigit():
+        return current_season == int(season_scope)
+    if isinstance(season_scope, (list, tuple, set)):
+        return any(
+            award_is_active_for_season({"seasons": item}, current_season)
+            for item in season_scope
+        )
+    return True
+
+
+def unpack_base_achievement_rule(rule):
+    """Normalize a base achievement rule into (cond, label, seasons)."""
+    if isinstance(rule, dict):
+        return rule["cond"], rule["label"], rule.get("seasons", "all")
+    cond, label = rule
+    return cond, label, "all"
+
+
 BASE_ACHIEVEMENT_RULES = [
-    (lambda r: 0 < r["bestRank"] <= 3, "Ladder Aristocracy"),
-    (lambda r: r["charCount"] >= 15, "Alt Army Commander"),
-    (lambda r: r["top10Count"] >= 3, "Front Page Camper"),
-    (lambda r: (r["totalLevels"] / r["charCount"] if r["charCount"] else 0) >= 98, "Council of Sweats"),
+    {"cond": lambda r: 0 < r["bestRank"] <= 3, "label": "Ladder Aristocracy", "seasons": "all"},
+    {"cond": lambda r: r["charCount"] >= 15, "label": "Alt Army Commander", "seasons": "all"},
+    {"cond": lambda r: r["top10Count"] >= 3, "label": "Top 10 Collector", "seasons": "all"},
+    {"cond": lambda r: (r["totalLevels"] / r["charCount"] if r["charCount"] else 0) >= 98, "label": "Council of Sweats", "seasons": "all"},
 
     # Casual-friendly participation and light-gear milestones.
-    (lambda r: 0 < r["bestRank"] <= 1000, "Made the Ladder"),
-    (lambda r: r["charCount"] >= 3, "Weekend Warrior"),
-    (lambda r: r["runewords"] >= 1, "Runeword Rookie"),
-    (lambda r: r["maxUniqueItems"] >= 2, "Unique Dabbler"),
-    (lambda r: r["mf"] >= 150, "Treasure Curious"),
-    (lambda r: r["corrupted"] >= 1, "Corruption Tourist"),
+    {"cond": lambda r: 250 < r["bestRank"] <= 1000, "label": "Ladder Curious", "seasons": "all"},
+    {"cond": lambda r: r["charCount"] <= 3, "label": "Weekend Warrior", "seasons": "all"},
+    {"cond": lambda r: r["runewords"] < 1, "label": "Runeword Rookie", "seasons": "all"},
+    {"cond": lambda r: r["runewords"] >= 10, "label": "Runeword Junkie", "seasons": "all"},
+    {"cond": lambda r: r["maxUniqueItems"] < 8, "label": "Unique Dabbler", "seasons": "all"},
+    {"cond": lambda r: r["maxUniqueItems"] >= 8, "label": "Unique Collector", "seasons": "all"},
+    {"cond": lambda r: r["mf"] >= 150, "label": "Treasure Curious", "seasons": "all"},
+    {"cond": lambda r: r["corrupted"] >= 1, "label": "Corruption Tourist", "seasons": "all"},
 ]
 
 # Tiered stat achievements: base for meeting threshold, apex for account with most/least.
-# Thresholds are deliberately high — most accounts should only get 0-3 base achievements.
+# Some base awards use percentile cutoffs so they adapt to the current field.
 ACHIEVEMENT_TIERS = [
-    {"key": "jahRunes",      "mode": "max", "threshold": 15,   "base": "Jah Hoarder",             "apex": "Jahs Rule"},
-    {"key": "lightRadius",   "mode": "max", "threshold": 25,   "base": "Beacon of Light",          "apex": "Beacon of the Ancients"},
-    {"key": "demonsBonus",   "mode": "max", "threshold": 600,  "base": "Slayer of Demons",         "apex": "Demon Hunter"},
-    {"key": "lifeLeech",     "mode": "max", "threshold": 50,   "base": "Count of Leeches",         "apex": "Leech Lord"},
-    {"key": "manaLeech",     "mode": "max", "threshold": 50,   "base": "The Thirsting",            "apex": "Bottomless"},
-    {"key": "goldFind",      "mode": "max", "threshold": 700,  "base": "Treasure Hoarder",         "apex": "King Midas"},
-    {"key": "mf",            "mode": "max", "threshold": 600,  "base": "Treasure Hunter",             "apex": "Golden Tyrant"},
-    {"key": "replenishLife", "mode": "max", "threshold": 60,   "base": "The Regenerating",         "apex": "The Everliving"},
-    {"key": "poisonRes",     "mode": "max", "threshold": 600,  "base": "Venom Ward",               "apex": "Serpentproof"},
-    {"key": "coldRes",       "mode": "max", "threshold": 600,  "base": "Frostforged",              "apex": "Winterproof"},
-    {"key": "stamina",       "mode": "max", "threshold": 600,  "base": "The Tireless",             "apex": "All Night Long"},
-    {"key": "totalSockets",  "mode": "max", "threshold": 45,   "base": "Socket Goblin",            "apex": "Perforation Master"},
-    {"key": "ethereals",     "mode": "max", "threshold": 8,    "base": "Ghost-Touched",            "apex": "The Glassiest"},
-    {"key": "crushingBlow",  "mode": "max", "threshold": 150,  "base": "Bonebreaker",              "apex": "Skullsplitter"},
-    {"key": "deadlyStrike",  "mode": "max", "threshold": 300,  "base": "The Executioner",          "apex": "Headsman"},
-    {"key": "dmgReduced",    "mode": "max", "threshold": 120,   "base": "The Unyielding",           "apex": "Adamantine"},
-    {"key": "thornsValue",   "mode": "max", "threshold": 1000,  "base": "The Spiteful",             "apex": "Porcupine"},
-    {"key": "halfFreeze",    "mode": "max", "threshold": 7,    "base": "Mildly Chilled",           "apex": "Permafrost"},
-    {"key": "thornsCount",   "mode": "max", "threshold": 7,    "base": "Touch Me Not",             "apex": "Needle Wall"},
-    {"key": "fireAbsorb",    "mode": "max", "threshold": 30,   "base": "Fire Eater",           "apex": "Inferno Drinker"},
-    {"key": "reqReduced",    "mode": "max", "threshold": 200,   "base": "Bare Minimum",             "apex": "Requirement Annihilator"},
-    {"key": "totalStrength", "mode": "min", "threshold": 100,  "base": "Frail",                   "apex": "Paper Bones", "min_chars": 2},
+    {"key": "jahRunes",      "mode": "max", "threshold": 15,   "base": "Jah Hoarder",             "apex": "Jah Rule", "seasons": "all"},
+    {"key": "lightRadius",   "mode": "max", "threshold": 25,   "base": "Beacon of Light",          "apex": "Beacon of the Ancients", "seasons": "all"},
+    {"key": "demonsBonus",   "mode": "max", "threshold": 600,  "base": "Slayer of Demons",         "apex": "Demon Hunter", "seasons": "all"},
+    {"key": "lifeLeech",     "mode": "max", "percentile": 0.88, "min_value": 20,  "percentile_scope": "char_bracket", "base": "Count of Leeches",         "apex": "Leech Lord", "seasons": "all"},
+    {"key": "manaLeech",     "mode": "max", "threshold": 50,   "base": "The Thirsting",            "apex": "Bottomless", "seasons": "all"},
+    {"key": "goldFind",      "mode": "max", "percentile": 0.90, "min_value": 250, "percentile_scope": "char_bracket", "base": "Gold Lover",         "apex": "King Midas", "seasons": "all"},
+    {"key": "mf",            "mode": "max", "percentile": 0.90, "min_value": 250, "percentile_scope": "char_bracket", "base": "Treasure Hunter",          "apex": "Golden Tyrant", "seasons": "all"},
+    {"key": "replenishLife", "mode": "max", "threshold": 60,   "base": "The Regenerating",         "apex": "The Everliving", "seasons": "all"},
+    {"key": "poisonRes",     "mode": "max", "percentile": 0.90, "min_value": 200, "percentile_scope": "char_bracket", "base": "Venom Ward",               "apex": "Serpentproof", "seasons": "all"},
+    {"key": "coldRes",       "mode": "max", "threshold": 600,  "base": "Frostforged",              "apex": "Winterproof", "seasons": "all"},
+    {"key": "stamina",       "mode": "max", "threshold": 600,  "base": "The Tireless",             "apex": "All Night Long", "seasons": "all"},
+    {"key": "totalSockets",  "mode": "max", "threshold": 45,   "base": "Socket Goblin",            "apex": "Perforation Master", "seasons": "all"},
+    {"key": "ethereals",     "mode": "max", "threshold": 8,    "base": "Ghost-Touched",            "apex": "The Glassiest", "seasons": "all"},
+    {"key": "crushingBlow",  "mode": "max", "percentile": 0.88, "min_value": 40,  "percentile_scope": "char_bracket", "base": "Bonebreaker",              "apex": "Skullsplitter", "seasons": "all"},
+    {"key": "deadlyStrike",  "mode": "max", "threshold": 300,  "base": "The Executioner",          "apex": "The Headsman", "seasons": "all"},
+    {"key": "dmgReduced",    "mode": "max", "threshold": 120,  "base": "The Unyielding",           "apex": "Adamantine", "seasons": "all"},
+    {"key": "thornsValue",   "mode": "max", "threshold": 1000, "base": "The Spiteful",             "apex": "The Porcupine", "seasons": "all"},
+    {"key": "halfFreeze",    "mode": "max", "threshold": 7,    "base": "Mildly Chilled",           "apex": "Permafrost", "seasons": "all"},
+    {"key": "thornsCount",   "mode": "max", "threshold": 7,    "base": "Touch Me Not",             "apex": "Needle Wall", "seasons": "all"},
+    {"key": "fireAbsorb",    "mode": "max", "threshold": 30,   "base": "Fire Eater",               "apex": "Inferno Drinker", "seasons": "all"},
+    {"key": "reqReduced",    "mode": "max", "threshold": 200,  "base": "Bare Minimum",             "apex": "Requirement Annihilator", "seasons": "all"},
+    {"key": "totalStrength", "mode": "min", "threshold": 100,  "base": "Frail",                   "apex": "Paper Bones", "min_chars": 2, "seasons": "all"},
 ]
 
 # Winner-only legendary achievements (former award tile titles).
 LEGENDARY_ACHIEVEMENTS = [
-    {"key": "charCount", "mode": "max", "title": "An Army for the Ages"},
-    {"key": "arbitraryXP", "mode": "max", "title": "The Most Experienced"},
-    {"key": "jahRunes", "mode": "max", "title": "JAH-Makin' Me Crazy"},
-    {"key": "runewords", "mode": "max", "title": "Known Creationist"},
-    {"key": "demonsBonus", "mode": "max", "title": "+Damage to Demons Champion"},
-    {"key": "lifeLeech", "mode": "max", "title": "Life Leech Champion"},
-    {"key": "manaLeech", "mode": "max", "title": "Mana Leech Champion"},
-    {"key": "crushingBlow", "mode": "max", "title": "Crushing Blow Champion"},
-    {"key": "deadlyStrike", "mode": "max", "title": "Deadly Strike Champion"},
-    {"key": "thornsValue", "mode": "max", "title": "The Thorny"},
-    {"key": "dmgReduced", "mode": "max", "title": "It's Merely a Flesh Wound"},
-    {"key": "ethereals", "mode": "max", "title": "The Glassiest"},
-    {"key": "poisonRes", "mode": "max", "title": "Unpoisonable"},
-    {"key": "coldRes", "mode": "max", "title": "Wears Shorts in Winter"},
-    {"key": "fireAbsorb", "mode": "max", "title": "A Fire Inside"},
-    {"key": "mf", "mode": "max", "title": "Magic Find Champion"},
-    {"key": "goldFind", "mode": "max", "title": "Scrooge McDuck"},
-    {"key": "totalSockets", "mode": "max", "title": "Most Holyest"},
-    {"key": "replenishLife", "mode": "max", "title": "Replenish Life Champion"},
-    {"key": "lightRadius", "mode": "max", "title": "A Beacon of Light"},
-    {"key": "stamina", "mode": "max", "title": "Goes the Distance"},
-    {"key": "halfFreeze", "mode": "max", "title": "Half-Frozen"},
-    {"key": "thornsCount", "mode": "max", "title": "Stop Hitting Yourself"},
-    {"key": "reqReduced", "mode": "max", "title": "Requirements Minimizer"},
-    {"key": "totalStrength", "mode": "min", "title": "Frailest Account", "min_chars": 2},
+    {"key": "charCount", "mode": "max", "title": "An Army for the Ages", "seasons": "all"},
+    {"key": "arbitraryXP", "mode": "max", "title": "The Most Experienced", "seasons": "all"},
+    {"key": "jahRunes", "mode": "max", "title": "JAH-Makin' Me Crazy", "seasons": "all"},
+    {"key": "runewords", "mode": "max", "title": "Known Creationist", "seasons": "all"},
+    {"key": "demonsBonus", "mode": "max", "title": "+Damage to Demons Champion", "seasons": "all"},
+    {"key": "lifeLeech", "mode": "max", "title": "Life Leech Champion", "seasons": "all"},
+    {"key": "manaLeech", "mode": "max", "title": "Mana Leech Champion", "seasons": "all"},
+    {"key": "crushingBlow", "mode": "max", "title": "Crushing Blow Champion", "seasons": "all"},
+    {"key": "deadlyStrike", "mode": "max", "title": "Deadly Strike Champion", "seasons": "all"},
+    {"key": "thornsValue", "mode": "max", "title": "The Thorny", "seasons": "all"},
+    {"key": "dmgReduced", "mode": "max", "title": "It's Merely a Flesh Wound", "seasons": "all"},
+    {"key": "ethereals", "mode": "max", "title": "The Glassiest", "seasons": "all"},
+    {"key": "poisonRes", "mode": "max", "title": "Unpoisonable", "seasons": "all"},
+    {"key": "coldRes", "mode": "max", "title": "Wears Shorts in Winter", "seasons": "all"},
+    {"key": "fireAbsorb", "mode": "max", "title": "A Fire Inside", "seasons": "all"},
+    {"key": "mf", "mode": "max", "title": "Magic Find Champion", "seasons": "all"},
+    {"key": "goldFind", "mode": "max", "title": "Scrooge McDuck", "seasons": "all"},
+    {"key": "totalSockets", "mode": "max", "title": "Most Holyest", "seasons": "all"},
+    {"key": "replenishLife", "mode": "max", "title": "Replenish Life Champion", "seasons": "all"},
+    {"key": "lightRadius", "mode": "max", "title": "A Beacon of Light", "seasons": "all"},
+    {"key": "stamina", "mode": "max", "title": "Goes the Distance", "seasons": "all"},
+    {"key": "halfFreeze", "mode": "max", "title": "Half-Frozen", "seasons": "all"},
+    {"key": "thornsCount", "mode": "max", "title": "Stop Hitting Yourself", "seasons": "all"},
+    {"key": "reqReduced", "mode": "max", "title": "Requirements Minimizer", "seasons": "all"},
+    {"key": "totalStrength", "mode": "min", "title": "Frailest Account", "min_chars": 2, "seasons": "all"},
 ]
+
+CHARACTER_COUNT_BRACKETS = [
+    {"key": "solo", "label": "Solo", "min_chars": 1, "max_chars": 2},
+    {"key": "small", "label": "Small Party", "min_chars": 3, "max_chars": 5},
+    {"key": "mid", "label": "Warband", "min_chars": 6, "max_chars": 10},
+]
+
+BRACKETED_ACHIEVEMENTS = [
+    {"key": "arbitraryXP", "mode": "max", "title": "{bracket} Standout", "min_value": 1, "seasons": "all"},
+    {"key": "bestRank", "mode": "min", "title": "{bracket} Climber", "min_value": 1, "seasons": "all"},
+    {"key": "mf", "mode": "max", "title": "{bracket} Treasure Hunter", "min_value": 1, "seasons": "all"},
+    {"key": "runewords", "mode": "max", "title": "{bracket} Runesmith", "min_value": 1, "seasons": "all"},
+    {"key": "corrupted", "mode": "max", "title": "{bracket} Gambler", "min_value": 1, "seasons": "all"},
+]
+
+
+def find_character_count_bracket(char_count):
+    for bracket in CHARACTER_COUNT_BRACKETS:
+        if bracket["min_chars"] <= char_count <= bracket["max_chars"]:
+            return bracket
+    return None
+
+
+def percentile_cutoff(values, percentile):
+    if not values:
+        return None
+    ordered = sorted(values)
+    index = int(percentile * len(ordered)) - 1
+    if index < 0:
+        index = 0
+    elif index >= len(ordered):
+        index = len(ordered) - 1
+    return ordered[index]
+
+
+def tier_candidate_is_eligible(row, tier):
+    key = tier["key"]
+    value = row.get(key, 0)
+    mode = tier["mode"]
+    min_chars = tier.get("min_chars", 1)
+    if row.get("charCount", 0) < min_chars:
+        return False
+
+    if mode == "min":
+        max_value = tier.get("max_value")
+        if value <= 0:
+            return False
+        return max_value is None or value <= max_value
+
+    min_value = tier.get("min_value", 1)
+    return value >= min_value
+
+
+def build_tier_percentile_cutoffs(rows, tier):
+    percentile = tier.get("percentile")
+    if percentile is None:
+        return {}
+
+    eligible_rows = [row for row in rows if tier_candidate_is_eligible(row, tier)]
+    if not eligible_rows:
+        return {}
+
+    cutoffs = {}
+    scope = tier.get("percentile_scope", "global")
+    key = tier["key"]
+
+    global_values = [row.get(key, 0) for row in eligible_rows]
+    cutoffs["__global__"] = percentile_cutoff(global_values, percentile)
+
+    if scope == "char_bracket":
+        for bracket in CHARACTER_COUNT_BRACKETS:
+            bracket_values = [
+                row.get(key, 0)
+                for row in eligible_rows
+                if bracket["min_chars"] <= row.get("charCount", 0) <= bracket["max_chars"]
+            ]
+            cutoff = percentile_cutoff(bracket_values, percentile)
+            if cutoff is not None:
+                cutoffs[bracket["key"]] = cutoff
+
+    return cutoffs
+
+
+def row_meets_tier_base_requirement(row, tier, percentile_cutoffs):
+    if not tier_candidate_is_eligible(row, tier):
+        return False
+
+    key = tier["key"]
+    value = row.get(key, 0)
+    mode = tier["mode"]
+    percentile = tier.get("percentile")
+
+    if percentile is None:
+        threshold = tier["threshold"]
+        if mode == "min":
+            return 0 < value <= threshold
+        return value >= threshold
+
+    pool_key = "__global__"
+    if tier.get("percentile_scope") == "char_bracket":
+        bracket = find_character_count_bracket(row.get("charCount", 0))
+        if bracket and bracket["key"] in percentile_cutoffs:
+            pool_key = bracket["key"]
+
+    cutoff = percentile_cutoffs.get(pool_key)
+    if cutoff is None:
+        cutoff = percentile_cutoffs.get("__global__")
+    if cutoff is None:
+        return False
+
+    if mode == "min":
+        return value <= cutoff
+    return value >= cutoff
+
+
+def bracket_award_candidate_is_eligible(row, award):
+    key = award["key"]
+    value = row.get(key, 0)
+    mode = award["mode"]
+
+    if mode == "min":
+        max_value = award.get("max_value")
+        min_value = award.get("min_value", 1)
+        if value < min_value:
+            return False
+        return max_value is None or value <= max_value
+
+    min_value = award.get("min_value", 1)
+    return value >= min_value
+
+
+def build_bracket_award_percentile_cutoff(rows, award):
+    percentile = award.get("percentile")
+    if percentile is None:
+        return None
+
+    eligible_rows = [row for row in rows if bracket_award_candidate_is_eligible(row, award)]
+    if not eligible_rows:
+        return None
+
+    values = [row.get(award["key"], 0) for row in eligible_rows]
+    return percentile_cutoff(values, percentile)
+
+
+def row_meets_bracket_award_base_requirement(row, award, percentile_cutoff_value=None):
+    if not bracket_award_candidate_is_eligible(row, award):
+        return False
+
+    key = award["key"]
+    value = row.get(key, 0)
+    mode = award["mode"]
+    percentile = award.get("percentile")
+
+    if percentile is None:
+        threshold = award.get("threshold")
+        if threshold is None:
+            return False
+        if mode == "min":
+            return value <= threshold
+        return value >= threshold
+
+    if percentile_cutoff_value is None:
+        return False
+    if mode == "min":
+        return value <= percentile_cutoff_value
+    return value >= percentile_cutoff_value
 
 
 CP_TITLES = {
@@ -850,6 +1059,81 @@ CP_TITLES = {
 }
 
 
+def _rgb_to_hex(red, green, blue):
+    return f"#{red:02x}{green:02x}{blue:02x}"
+
+
+def _hex_to_rgb(hex_color):
+    color = (hex_color or "").lstrip("#")
+    if len(color) != 6:
+        return 160, 160, 160
+    return int(color[0:2], 16), int(color[2:4], 16), int(color[4:6], 16)
+
+
+def interpolate_hex(start_hex, end_hex, ratio):
+    ratio = max(0.0, min(1.0, float(ratio)))
+    start_red, start_green, start_blue = _hex_to_rgb(start_hex)
+    end_red, end_green, end_blue = _hex_to_rgb(end_hex)
+    red = round(start_red + (end_red - start_red) * ratio)
+    green = round(start_green + (end_green - start_green) * ratio)
+    blue = round(start_blue + (end_blue - start_blue) * ratio)
+    return _rgb_to_hex(red, green, blue)
+
+
+def blend_toward_white(hex_color, ratio):
+    red, green, blue = _hex_to_rgb(hex_color)
+    ratio = max(0.0, min(1.0, float(ratio)))
+    boosted_red = round(red + (255 - red) * ratio)
+    boosted_green = round(green + (255 - green) * ratio)
+    boosted_blue = round(blue + (255 - blue) * ratio)
+    return _rgb_to_hex(boosted_red, boosted_green, boosted_blue)
+
+
+def rgba_from_hex(hex_color, alpha):
+    color = (hex_color or "").lstrip("#")
+    if len(color) != 6:
+        return f"rgba(160, 160, 160, {alpha})"
+    red = int(color[0:2], 16)
+    green = int(color[2:4], 16)
+    blue = int(color[4:6], 16)
+    return f"rgba({red}, {green}, {blue}, {alpha})"
+
+
+def build_cp_title_colors():
+    special_colors = {
+        99: "#ffd84d",  # bright gold
+        98: "#e6ecf2",  # bright silver
+        97: "#d5954a",  # bright bronze
+    }
+    tier_families = [
+        (96, 91, "#4b1f8a", "#8d5bff"),  # deep royal purple -> violet
+        (90, 81, "#a30028", "#ff5a36"),  # crimson -> infernal red
+        (80, 71, "#b54a00", "#ff9440"),  # burning orange -> ember
+        (70, 61, "#2a63b8", "#79b8ff"),  # arcane blue
+        (60, 51, "#ffffff", "#ead58b"),  # white -> pale gold
+        (50, 41, "#1f8b4c", "#49c16f"),  # emerald green
+        (40, 31, "#4b6570", "#1d8b92"),  # steel -> dark cyan
+        (30, 21, "#c7e0ff", "#74aee8"),  # pale blue
+        (20, 11, "#8a6a43", "#544536"),  # brown -> iron
+        (10, 1, "#9c9c9c", "#3f3f3f"),   # grey -> dark grey
+    ]
+
+    colors = dict(special_colors)
+
+    for high_level, low_level, start_hex, end_hex in tier_families:
+        span = max(1, high_level - low_level)
+        for level in range(high_level, low_level - 1, -1):
+            ratio = (high_level - level) / span
+            hex_color = interpolate_hex(start_hex, end_hex, ratio)
+            top_glow_ratio = 0.16 * (1.0 - ratio)
+            colors[level] = blend_toward_white(hex_color, top_glow_ratio)
+
+    return colors
+
+
+CP_TITLE_COLORS = build_cp_title_colors()
+
+
 def assign_cp_titles(rows):
     """Assign CP title by arbitrary XP placement (top=99, bottom=1)."""
     total = len(rows)
@@ -857,6 +1141,7 @@ def assign_cp_titles(rows):
         for row in rows:
             row["cpLevel"] = 99
             row["cpTitle"] = CP_TITLES[99]
+            row["cpColor"] = CP_TITLE_COLORS[99]
         return
 
     for idx, row in enumerate(rows):
@@ -865,6 +1150,7 @@ def assign_cp_titles(rows):
         cp_level = max(1, min(99, cp_level))
         row["cpLevel"] = cp_level
         row["cpTitle"] = CP_TITLES.get(cp_level, "Drifter")
+        row["cpColor"] = CP_TITLE_COLORS.get(cp_level, "#909090")
 
 
 def assign_achievements(rows, season_presence=None, class_counts=None, season_class_presence=None, current_season=None):
@@ -912,17 +1198,24 @@ def assign_achievements(rows, season_presence=None, class_counts=None, season_cl
         return f"Prestige {prestige_level}"
     
     winners = {}
+    tier_rankings = {}
     for tier in ACHIEVEMENT_TIERS:
+        if not award_is_active_for_season(tier, current_season):
+            continue
         key = tier["key"]
         mode = tier["mode"]
         min_chars = tier.get("min_chars", 1)
         candidates = [r for r in rows if r.get(key, 0) > 0 and r["charCount"] >= min_chars]
         if not candidates:
             continue
-        winners[key] = min(candidates, key=lambda r: r[key]) if mode == "min" else max(candidates, key=lambda r: r[key])
+        ranked = sorted(candidates, key=lambda r: r[key], reverse=(mode == "max"))
+        tier_rankings[key] = ranked
+        winners[key] = ranked[0]
 
     legendary_winners = {}
     for tier in LEGENDARY_ACHIEVEMENTS:
+        if not award_is_active_for_season(tier, current_season):
+            continue
         key = tier["key"]
         mode = tier["mode"]
         min_chars = tier.get("min_chars", 1)
@@ -930,6 +1223,61 @@ def assign_achievements(rows, season_presence=None, class_counts=None, season_cl
         if not candidates:
             continue
         legendary_winners[key] = min(candidates, key=lambda r: r[key]) if mode == "min" else max(candidates, key=lambda r: r[key])
+
+    # Step 1 redesign: if legendary winner would also be apex, assign apex to the next eligible account.
+    apex_winners = {}
+    for tier in ACHIEVEMENT_TIERS:
+        if not award_is_active_for_season(tier, current_season):
+            continue
+        key = tier["key"]
+        ranked = tier_rankings.get(key, [])
+        if not ranked:
+            continue
+        legend = legendary_winners.get(key)
+        if legend and ranked[0]["accountKey"] == legend["accountKey"]:
+            runner_up = next((r for r in ranked if r["accountKey"] != legend["accountKey"]), None)
+            if runner_up:
+                apex_winners[key] = runner_up
+        else:
+            apex_winners[key] = ranked[0]
+
+    tier_base_cutoffs = {}
+    for tier in ACHIEVEMENT_TIERS:
+        if not award_is_active_for_season(tier, current_season):
+            continue
+        tier_base_cutoffs[tier["key"]] = build_tier_percentile_cutoffs(rows, tier)
+
+    bracket_winners = {}
+    bracket_base_cutoffs = {}
+    for bracket in CHARACTER_COUNT_BRACKETS:
+        bracket_key = bracket["key"]
+        min_chars = bracket["min_chars"]
+        max_chars = bracket["max_chars"]
+        eligible_rows = [
+            r for r in rows
+            if min_chars <= r.get("charCount", 0) <= max_chars
+        ]
+        if not eligible_rows:
+            continue
+
+        for award in BRACKETED_ACHIEVEMENTS:
+            if not award_is_active_for_season(award, current_season):
+                continue
+            key = award["key"]
+            mode = award["mode"]
+            bracket_base_cutoffs[(bracket_key, key)] = build_bracket_award_percentile_cutoff(eligible_rows, award)
+
+            candidates = [
+                candidate
+                for candidate in eligible_rows
+                if bracket_award_candidate_is_eligible(candidate, award)
+            ]
+
+            if not candidates:
+                continue
+
+            ranked = sorted(candidates, key=lambda r: r[key], reverse=(mode == "max"))
+            bracket_winners[(bracket_key, key)] = ranked[0]
 
     # Special achievements: season-based and class-based
     taking_a_break = set()  # accounts in season-1 but not current
@@ -1033,31 +1381,37 @@ def assign_achievements(rows, season_presence=None, class_counts=None, season_cl
         if prestige_label:
             achievements.append(prestige_label)
 
-        for cond, label in BASE_ACHIEVEMENT_RULES:
+        for rule in BASE_ACHIEVEMENT_RULES:
+            cond, label, _season_scope = unpack_base_achievement_rule(rule)
+            if not award_is_active_for_season({"seasons": _season_scope}, current_season):
+                continue
             if cond(row):
                 achievements.append(label)
 
         for tier in ACHIEVEMENT_TIERS:
+            if not award_is_active_for_season(tier, current_season):
+                continue
             key = tier["key"]
-            val = row.get(key, 0)
-            mode = tier["mode"]
-            threshold = tier["threshold"]
-            min_chars = tier.get("min_chars", 1)
+            legend_winner = legendary_winners.get(key)
+            is_legendary_winner_for_key = bool(legend_winner and legend_winner["accountKey"] == row["accountKey"])
+            winner = apex_winners.get(key)
+            is_apex_winner_for_key = bool(winner and winner["accountKey"] == row["accountKey"])
 
-            if row["charCount"] >= min_chars:
-                if mode == "min":
-                    if 0 < val <= threshold:
-                        achievements.append(tier["base"])
-                else:
-                    if val >= threshold:
-                        achievements.append(tier["base"])
+            # Tier exclusivity: apex or legendary winners do not also receive base for the same stat key.
+            if not is_legendary_winner_for_key and not is_apex_winner_for_key and row_meets_tier_base_requirement(
+                row,
+                tier,
+                tier_base_cutoffs.get(key, {}),
+            ):
+                achievements.append(tier["base"])
 
-            winner = winners.get(key)
             if winner and winner["accountKey"] == row["accountKey"]:
                 achievements.append(tier["apex"])
                 apex_set.add(tier["apex"])
 
         for tier in LEGENDARY_ACHIEVEMENTS:
+            if not award_is_active_for_season(tier, current_season):
+                continue
             key = tier["key"]
             winner = legendary_winners.get(key)
             if winner and winner["accountKey"] == row["accountKey"]:
@@ -1093,7 +1447,8 @@ def assign_achievements(rows, season_presence=None, class_counts=None, season_cl
             achievements.append("Yellow Bellied")
         if row.get("maxRareItems", 0) >= 4:
             achievements.append("A Rare Sight")
-        if row.get("maxUniqueItems", 0) >= 5:
+            apex_set.add("A Rare Sight")
+        if row.get("maxUniqueItems", 0) >= 12:
             achievements.append("Uniquely Suited")
         if row.get("maxCraftedItems", 0) >= 4:
             achievements.append("Crafty")
@@ -1103,6 +1458,31 @@ def assign_achievements(rows, season_presence=None, class_counts=None, season_cl
             if class_winners.get(char_class) == row["accountKey"]:
                 achievements.append(achievement_title)
                 legend_set.add(achievement_title)
+
+        # Bracketed low-roster awards.
+        char_count = row.get("charCount", 0)
+        for bracket in CHARACTER_COUNT_BRACKETS:
+            if not (bracket["min_chars"] <= char_count <= bracket["max_chars"]):
+                continue
+            bracket_key = bracket["key"]
+            bracket_label = bracket["label"]
+            for award in BRACKETED_ACHIEVEMENTS:
+                if not award_is_active_for_season(award, current_season):
+                    continue
+                winner = bracket_winners.get((bracket_key, award["key"]))
+                is_bracket_winner = bool(winner and winner["accountKey"] == row["accountKey"])
+
+                base_title = award.get("base")
+                if base_title and not is_bracket_winner and row_meets_bracket_award_base_requirement(
+                    row,
+                    award,
+                    bracket_base_cutoffs.get((bracket_key, award["key"])),
+                ):
+                    achievements.append(base_title.format(bracket=bracket_label))
+
+                winner_title = award.get("apex") or award.get("title")
+                if winner_title and is_bracket_winner:
+                    achievements.append(winner_title.format(bracket=bracket_label))
 
         # Preserve order while deduplicating.
         seen = set()
@@ -1223,12 +1603,18 @@ def fmt(n):
 
 def leaderboard_rows_html(rows, show_xp_breakdown=False):
     parts = []
+    total_columns = 6 if show_xp_breakdown else 4
+    previous_cp_title = None
     for i, row in enumerate(rows, 1):
         acct   = escape(row["account"])
+        acct_filter = escape((row.get("account") or "").lower())
         acct_href = escape(row.get("accountHref") or row["account"])
         merged_marker = '<span class="merged-marker" title="Merged player identity, they\'ve played multiple different accounts">*</span>' if row.get("isMerged") else ''
         cp_title = escape(row.get("cpTitle") or "Drifter")
         cp_level = int(row.get("cpLevel") or 1)
+        cp_color = escape(row.get("cpColor") or CP_TITLE_COLORS.get(cp_level, "#909090"))
+        cp_bar_top = escape(rgba_from_hex(cp_color, 0.30))
+        cp_bar_bottom = escape(rgba_from_hex(cp_color, 0.14))
         apex = row.get("apex_achievements", set())
         legendary = row.get("legendary_achievements", set())
         class_counts = row.get("classCounts", {})
@@ -1255,15 +1641,26 @@ def leaderboard_rows_html(rows, show_xp_breakdown=False):
             for a in row.get("achievements", [])
         ) or '<span class="title-pill">Account Enjoyer</span>'
         award_html = " ".join([ach_html] + class_pills).strip()
+
+        if previous_cp_title is None:
+            parts.append(
+                f'<tr class="cp-break-row" data-title-start="true" aria-hidden="true"><td class="cp-break-gap" colspan="{total_columns}"><span class="cp-break-label" style="--cp-title-color: {cp_color}; --cp-title-bg-top: {cp_bar_top}; --cp-title-bg-bottom: {cp_bar_bottom};">{cp_title}</span></td></tr>'
+            )
+        elif cp_title != previous_cp_title:
+            parts.append(
+                f'<tr class="cp-break-row" aria-hidden="true"><td class="cp-break-gap" colspan="{total_columns}"><span class="cp-break-label" style="--cp-title-color: {cp_color}; --cp-title-bg-top: {cp_bar_top}; --cp-title-bg-bottom: {cp_bar_bottom};">{cp_title}</span></td></tr>'
+            )
+
         parts.append(f"""
-            <tr>
+            <tr class="account-row" data-account="{acct_filter}">
                 <td class="rank-num">{i}</td>
-                <td><a href="https://beta.pathofdiablo.com/account/{acct_href}" target="_blank"><span class="cp-title" title="CP {cp_level}">{cp_title}</span> {acct}{merged_marker}</a></td>
+                <td><a href="https://beta.pathofdiablo.com/account/{acct_href}" target="_blank"><span class="cp-title" title="CP {cp_level}"></span><span class="account-name" style="color: {cp_color};">{acct}</span>{merged_marker}</a></td>
                 {'<td class="xp-cell">' + fmt(row['historyXP']) + '</td>' if show_xp_breakdown else ''}
                 {'<td class="xp-cell">' + fmt(row['currentItemXP']) + '</td>' if show_xp_breakdown else ''}
                 <td class="xp-cell">{fmt(row['arbitraryXP'])}</td>
                 <td>{award_html}</td>
             </tr>""")
+        previous_cp_title = cp_title
     return "\n".join(parts)
 
 
@@ -1475,11 +1872,10 @@ def generate_html(rows, is_hardcore, local_source, current_season, seasons, show
         .mini-stat .label {{ color: #808080; font-size: 12px; }}
         .table-wrap {{
             overflow-x: auto;
-            border: 2px solid #404040;
             border-radius: 0;
             background: #0d0d0d;
             margin-bottom: 75px;
-            box-shadow: inset 0 1px 4px rgba(0,0,0,0.95), 0 0 8px rgba(0,0,0,0.7);
+            box-shadow: inset 0 0 0 2px #404040, inset 0 1px 4px rgba(0,0,0,0.95), 0 0 8px rgba(0,0,0,0.7);
         }}
         table.rank-table {{ width:100%; border-collapse:collapse; min-width:1080px; }}
         .rank-table th, .rank-table td {{ padding: 9px; border-bottom: 1px solid #303030; text-align: left; color: #a0a0a0; font-size: 14px; }}
@@ -1493,8 +1889,53 @@ def generate_html(rows, is_hardcore, local_source, current_season, seasons, show
             border-bottom: 2px solid #404040;
         }}
         .rank-table tr:hover {{ background: linear-gradient(to right, rgba(85,85,85,0.15), transparent); }}
+        .rank-table tr.cp-break-row:hover {{ background: transparent; }}
+        .cp-break-row td {{
+            position: relative;
+            padding: 0;
+            height: 22px;
+            background: black;
+        }}
+        .cp-break-row .cp-break-gap {{ position: relative; }}
+        .cp-break-row .cp-break-label {{
+            left: 18px;
+            right: 18px;
+            top: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            border: 1px solid rgba(170, 145, 92, 0.45);
+            background: linear-gradient(to bottom, var(--cp-title-bg-top, rgba(55, 45, 24, 0.85)), var(--cp-title-bg-bottom, rgba(26, 21, 10, 0.85)));
+            color: #c3af78;
+            font-size: 11px;
+            letter-spacing: 0.7px;
+            text-transform: uppercase;
+            white-space: nowrap;
+            z-index: 4;
+            text-shadow: 0 0 4px rgba(0,0,0,0.85);
+        }}
+        .cp-break-row .cp-break-gap::after {{
+            position: absolute;
+            right: -18px;
+            top: -2px;
+            bottom: -2px;
+            width: 24px;
+            background: #0d0d0d;
+            z-index: 2;
+            pointer-events: none;
+        }}
+        .cp-break-row .cp-break-gap::before {{
+            position: absolute;
+            left: 18px;
+            right: 18px;
+            top: 9px;
+            border-top: 1px solid rgba(120,120,120,0.35);
+            z-index: 3;
+        }}
         .rank-num {{ font-weight: bold; color: #a0a0a0; }}
-        .cp-title {{ color: #909090; font-weight: bold; margin-right: 4px; text-shadow: 0 0 3px rgba(0,0,0,0.8); }}
+        .cp-title {{ display: inline-block; color: #909090; font-weight: bold; margin-right: 12px; text-shadow: 0 0 3px rgba(0,0,0,0.8); }}
+        .account-name {{ font-weight: bold; text-shadow: 0 0 4px rgba(0,0,0,0.8); }}
         .xp-cell {{ color: #d3d3d3; font-family: d2, sans-serif; letter-spacing: 0.4px; }}
         .title-pill {{
             display: inline-block;
@@ -1792,14 +2233,29 @@ def generate_html(rows, is_hardcore, local_source, current_season, seasons, show
 
 <script>
 // All rows pre-computed; JS only handles client-side filtering/display
-const ALL_ROWS = document.querySelectorAll("#leaderboardBody tr");
+const ALL_ROWS = Array.from(document.querySelectorAll("#leaderboardBody tr"));
+
+function findVisibleAccountSibling(row, direction) {{
+    let current = row[direction];
+    while (current) {{
+        if (current.classList.contains("account-row") && current.style.display !== "none") {{
+            return current;
+        }}
+        current = current[direction];
+    }}
+    return null;
+}}
 
 function applyFilter() {{
     const limit      = parseInt(document.getElementById("rowLimit").value) || 50;
     const filterText = document.getElementById("accountFilter").value.toLowerCase().trim();
     let shown = 0;
     ALL_ROWS.forEach(tr => {{
-        const acct = tr.cells[1] ? tr.cells[1].textContent.toLowerCase() : "";
+        if (tr.classList.contains("cp-break-row")) {{
+            tr.style.display = "none";
+            return;
+        }}
+        const acct = tr.dataset.account || (tr.cells[1] ? tr.cells[1].textContent.toLowerCase() : "");
         const matches = !filterText || acct.includes(filterText);
         const underLimit = shown < limit;
         if (matches && underLimit) {{
@@ -1809,6 +2265,16 @@ function applyFilter() {{
         }} else {{
             tr.style.display = "none";
         }}
+    }});
+
+    ALL_ROWS.forEach(tr => {{
+        if (!tr.classList.contains("cp-break-row")) {{
+            return;
+        }}
+        const prevVisible = findVisibleAccountSibling(tr, "previousElementSibling");
+        const nextVisible = findVisibleAccountSibling(tr, "nextElementSibling");
+        const isTitleStart = tr.dataset.titleStart === "true";
+        tr.style.display = nextVisible && (prevVisible || isTitleStart) ? "" : "none";
     }});
 }}
 
@@ -1884,12 +2350,20 @@ def generate(mode_label, mode_int, json_candidates, out_filename, seasons_overri
 
 
 if __name__ == "__main__":
+####### Test runs commands below, comment these out for prod runs!!
+#    generate("SC", 0, SC_JSON_CANDIDATES, "ranking-newcolors-titlegold.html",        seasons_override=[13])
+#    generate("HC", 1, HC_JSON_CANDIDATES, "hcranking-newcolors-titlegold.html",        seasons_override=[13])
+#    generate("SC (S13 only)", 0, SC_JSON_CANDIDATES, "ranking-better-awards.html",        seasons_override=[13])
+#    generate("SC (S13 only)", 1, HC_JSON_CANDIDATES, "hcranking-better-awards.html",        seasons_override=[13])
+#    generate("SC (S13 only)",  0, SC_JSON_CANDIDATES, "ranking-s13.html",        seasons_override=[13])
+#    generate("SC (S13 no items)", 0, SC_JSON_CANDIDATES, "ranking-s13-noitems.html", seasons_override=[13], no_items=True)
+####### Test runs commands above
+####### Prod runs commands below, don't forget to comment these for testing and uncomment them for prod daily runs!!
     generate("SC", 0, SC_JSON_CANDIDATES, "ranking.html")
     generate("HC", 1, HC_JSON_CANDIDATES, "hcranking.html")
     generate("SC (with XP breakdown)", 0, SC_JSON_CANDIDATES, "ranking-xp-breakdown.html", show_xp_breakdown=True)
     generate("HC (with XP breakdown)", 1, HC_JSON_CANDIDATES, "hcranking-xp-breakdown.html", show_xp_breakdown=True)
     generate("SC (no items)",  0, SC_JSON_CANDIDATES, "ranking-noitems.html",    no_items=True)
     generate("HC (no items)",  1, HC_JSON_CANDIDATES, "hcranking-noitems.html",    no_items=True)
-#    generate("SC (S13 only)",  0, SC_JSON_CANDIDATES, "ranking-s13.html",        seasons_override=[13])
-#    generate("SC (S13 no items)", 0, SC_JSON_CANDIDATES, "ranking-s13-noitems.html", seasons_override=[13], no_items=True)
+####### Prod commands above
     print("\nDone.")
