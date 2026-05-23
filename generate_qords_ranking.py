@@ -1615,6 +1615,8 @@ def leaderboard_rows_html(rows, show_xp_breakdown=False):
         cp_color = escape(row.get("cpColor") or CP_TITLE_COLORS.get(cp_level, "#909090"))
         cp_bar_top = escape(rgba_from_hex(cp_color, 0.30))
         cp_bar_bottom = escape(rgba_from_hex(cp_color, 0.14))
+        cp_row_tint_soft = escape(rgba_from_hex(cp_color, 0.10))
+        cp_row_tint_strong = escape(rgba_from_hex(cp_color, 0.22))
         apex = row.get("apex_achievements", set())
         legendary = row.get("legendary_achievements", set())
         class_counts = row.get("classCounts", {})
@@ -1652,13 +1654,13 @@ def leaderboard_rows_html(rows, show_xp_breakdown=False):
             )
 
         parts.append(f"""
-            <tr class="account-row" data-account="{acct_filter}">
+            <tr class="account-row" data-account="{acct_filter}" style="--cp-row-tint-soft: {cp_row_tint_soft}; --cp-row-tint-strong: {cp_row_tint_strong};">
                 <td class="rank-num">{i}</td>
                 <td><a href="https://beta.pathofdiablo.com/account/{acct_href}" target="_blank"><span class="cp-title" title="CP {cp_level}"></span><span class="account-name" style="color: {cp_color};">{acct}</span>{merged_marker}</a></td>
                 {'<td class="xp-cell">' + fmt(row['historyXP']) + '</td>' if show_xp_breakdown else ''}
                 {'<td class="xp-cell">' + fmt(row['currentItemXP']) + '</td>' if show_xp_breakdown else ''}
                 <td class="xp-cell">{fmt(row['arbitraryXP'])}</td>
-                <td>{award_html}</td>
+                <td class="awards-cell">{award_html}</td>
             </tr>""")
         previous_cp_title = cp_title
     return "\n".join(parts)
@@ -1888,7 +1890,25 @@ def generate_html(rows, is_hardcore, local_source, current_season, seasons, show
             font-weight: bold;
             border-bottom: 2px solid #404040;
         }}
+        .account-row .awards-cell {{
+            background-image: linear-gradient(
+                to right,
+                rgba(13,13,13,0.00) 0%,
+                rgba(13,13,13,0.00) 28%,
+                rgba(13,13,13,0.24) 52%,
+                var(--cp-row-tint-soft, rgba(80,80,80,0.08)) 100%
+            );
+        }}
         .rank-table tr:hover {{ background: linear-gradient(to right, rgba(85,85,85,0.15), transparent); }}
+        .rank-table tr.account-row:hover .awards-cell {{
+            background-image: linear-gradient(
+                to right,
+                rgba(85,85,85,0.00) 0%,
+                rgba(85,85,85,0.00) 28%,
+                rgba(85,85,85,0.10) 52%,
+                var(--cp-row-tint-strong, rgba(95,95,95,0.18)) 100%
+            );
+        }}
         .rank-table tr.cp-break-row:hover {{ background: transparent; }}
         .cp-break-row td {{
             position: relative;
@@ -2351,8 +2371,8 @@ def generate(mode_label, mode_int, json_candidates, out_filename, seasons_overri
 
 if __name__ == "__main__":
 ####### Test runs commands below, comment these out for prod runs!!
-#    generate("SC", 0, SC_JSON_CANDIDATES, "ranking-newcolors-titlegold.html",        seasons_override=[13])
-#    generate("HC", 1, HC_JSON_CANDIDATES, "hcranking-newcolors-titlegold.html",        seasons_override=[13])
+#    generate("SC", 0, SC_JSON_CANDIDATES, "ranking-newcolors-background.html",        seasons_override=[13])
+#    generate("HC", 1, HC_JSON_CANDIDATES, "hcranking-newcolors-background.html",        seasons_override=[13])
 #    generate("SC (S13 only)", 0, SC_JSON_CANDIDATES, "ranking-better-awards.html",        seasons_override=[13])
 #    generate("SC (S13 only)", 1, HC_JSON_CANDIDATES, "hcranking-better-awards.html",        seasons_override=[13])
 #    generate("SC (S13 only)",  0, SC_JSON_CANDIDATES, "ranking-s13.html",        seasons_override=[13])
