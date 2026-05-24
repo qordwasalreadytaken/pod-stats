@@ -240,6 +240,7 @@ def build_all_season_stats(mode, seasons):
     by_account   = defaultdict(lambda: {
         "account": "", "accountHref": "", "charCount": 0, "totalLevels": 0, "totalExp": 0,
         "bestRank": 0, "top5Count": 0, "top10Count": 0, "top100Count": 0, "charClasses": set(),
+        "charNames": set(),
         "highLevelBonus": 0,
     })
     char_to_acct = {}  # built from all seasons; last-write wins (current season fetched last)
@@ -288,6 +289,7 @@ def build_all_season_stats(mode, seasons):
             acc["totalLevels"] += char["level"]
             acc["totalExp"]    += char["exp"]
             acc["charClasses"].add(char["charClass"])
+            acc["charNames"].add(char["charName"])
             level_for_bonus = max(0, min(99, char["level"]) - 90)
             acc["highLevelBonus"] += level_for_bonus * 100
 
@@ -725,9 +727,9 @@ BASE_ACHIEVEMENT_RULES = [
     # Casual-friendly participation and light-gear milestones.
     {"cond": lambda r: 250 < r["bestRank"] <= 1000, "label": "Ladder Curious", "seasons": "all"},
     {"cond": lambda r: r["charCount"] <= 3, "label": "Weekend Warrior", "seasons": "all"},
-    {"cond": lambda r: r["runewords"] < 1, "label": "Runeword Rookie", "seasons": "all"},
+    {"cond": lambda r: r["runewords"] == 1, "label": "Runeword Rookie", "seasons": "all"},
     {"cond": lambda r: r["runewords"] >= 10, "label": "Runeword Junkie", "seasons": "all"},
-    {"cond": lambda r: r["maxUniqueItems"] < 8, "label": "Unique Dabbler", "seasons": "all"},
+    {"cond": lambda r: 0 < r["maxUniqueItems"] < 8, "label": "Unique Dabbler", "seasons": "all"},
     {"cond": lambda r: r["maxUniqueItems"] >= 8, "label": "Unique Collector", "seasons": "all"},
     {"cond": lambda r: r["mf"] >= 150, "label": "Treasure Curious", "seasons": "all"},
     {"cond": lambda r: r["corrupted"] >= 1, "label": "Corruption Tourist", "seasons": "all"},
@@ -1438,7 +1440,9 @@ def assign_achievements(rows, season_presence=None, class_counts=None, season_cl
         if acct_lower in afk_since:
             afk_label = f"AFK Since S{afk_since[acct_lower]}"
             achievements.append(afk_label)
-        if row.get("dangoonItems", 0) > 0 or row.get("deleriumHelms", 0) > 0:
+        name_search_text = row.get("nameSearchText", "")
+        has_cheese_name = "cheddar" in name_search_text or "cheese" in name_search_text
+        if row.get("dangoonItems", 0) > 0 or row.get("deleriumHelms", 0) > 0 or has_cheese_name:
             achievements.append("Simply the Best")
             apex_set.add("Simply the Best")
         if row.get("maxMagicItems", 0) >= 3:
@@ -1553,10 +1557,12 @@ ALL_TAG_KEYS = [
 
 
 def build_rows(by_account, item_tags, season_presence=None, class_counts=None, season_class_presence=None, current_season=None, no_items=False):
+    season_presence = season_presence or {}
     class_counts = class_counts or {}
     rows = []
     for acct_lower, acc in by_account.items():
         tags = item_tags.get(acct_lower, {})
+        seasons_seen = sorted(season_presence.get(acct_lower, set()))
         class_count_map = {
             class_code: int(class_counts.get(acct_lower, {}).get(class_code, 0) or 0)
             for class_code in CLASS_DISPLAY_ORDER
@@ -1574,8 +1580,10 @@ def build_rows(by_account, item_tags, season_presence=None, class_counts=None, s
             "top10Count":  acc["top10Count"],
             "top100Count": acc["top100Count"],
             "charClasses": sorted(acc["charClasses"]),
+            "nameSearchText": " ".join([acc["account"]] + sorted(acc.get("charNames") or set())).lower(),
             "classCounts": class_count_map,
-            "seasonCount": len(season_presence.get(acct_lower, set())),
+            "seasonCount": len(seasons_seen),
+            "seasonList": ", ".join(str(season) for season in seasons_seen),
             "highLevelBonus": acc["highLevelBonus"],
         }
         for k in ALL_TAG_KEYS:
@@ -1603,7 +1611,7 @@ def fmt(n):
 
 def leaderboard_rows_html(rows, show_xp_breakdown=False):
     parts = []
-    total_columns = 6 if show_xp_breakdown else 4
+    total_columns = 7 if show_xp_breakdown else 4
     previous_cp_title = None
     for i, row in enumerate(rows, 1):
         acct   = escape(row["account"])
@@ -1660,6 +1668,7 @@ def leaderboard_rows_html(rows, show_xp_breakdown=False):
                 {'<td class="xp-cell">' + fmt(row['historyXP']) + '</td>' if show_xp_breakdown else ''}
                 {'<td class="xp-cell">' + fmt(row['currentItemXP']) + '</td>' if show_xp_breakdown else ''}
                 <td class="xp-cell">{fmt(row['arbitraryXP'])}</td>
+                {'<td class="season-list-cell">' + escape(row.get('seasonList') or '-') + '</td>' if show_xp_breakdown else ''}
                 <td class="awards-cell">{award_html}</td>
             </tr>""")
         previous_cp_title = cp_title
@@ -2223,6 +2232,7 @@ def generate_html(rows, is_hardcore, local_source, current_season, seasons, show
                         {'<th>History XP</th>' if show_xp_breakdown else ''}
                         {'<th>Current Item XP</th>' if show_xp_breakdown else ''}
                         <th>Arbitrary XP</th>
+                        {'<th>Seasons</th>' if show_xp_breakdown else ''}
                         <th>Ranking</th>
                     </tr>
                 </thead>
