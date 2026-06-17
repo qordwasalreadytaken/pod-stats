@@ -272,7 +272,7 @@ const INSIGHT_TYPES = {
 };
 
 async function load() {
-    const res = await fetch("./meta_analysis.json");
+    const res = await fetch("meta_analysis.json");
     DATA = await res.json();
 
     document.getElementById("season").value = season;
