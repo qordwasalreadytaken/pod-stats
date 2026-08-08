@@ -9,7 +9,7 @@
 </head>
 <body style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
     <div id="alertBanner" style="display: none; padding: 10px; background-color: #ffcc00; color: #333;">
-        No ladder snapshot was found for this character.
+        The streamer hasn't set up their account name. Please let them know to configure it!
     </div>
     <div id="app" class="full-height"></div>
 <!--    <button onclick="retrieveCharacterData()" >Click me!</button> -->
@@ -233,49 +233,18 @@ function initializeCharacterSections() {
     });
 }
 
-function showAlert(message) {
-    const banner = document.getElementById("alertBanner");
-    if (!banner) {
-        return;
-    }
-
-    banner.textContent = message;
-    banner.style.display = "block";
-}
-
-function normalizeCharacterName(value) {
-    return String(value || "").trim().toLowerCase();
-}
-
-function ladderSnapshotPath() {
-    const mode = (getQueryParam("mode") || "sc").toLowerCase();
-    return mode === "hc" ? "../hc_ladder.json" : "../sc_ladder.json";
-}
-
 async function fetchCharacterData(characterName) {
-    const snapshotPath = ladderSnapshotPath();
-    const modeLabel = snapshotPath.includes("hc_") ? "hardcore" : "softcore";
+    const url = `https://beta.pathofdiablo.com/api/characters/${encodeURIComponent(characterName)}/summary`;
 
     try {
-        const response = await fetch(snapshotPath, { cache: "force-cache" });
+        const response = await fetch(url);
         if (!response.ok) {
-            throw new Error(`Snapshot load failed with status: ${response.status}`);
+            throw new Error(`API call failed with status: ${response.status}`);
         }
-
-        const ladderCharacters = await response.json();
-        const match = Array.isArray(ladderCharacters)
-            ? ladderCharacters.find(character => normalizeCharacterName(character["Name"]) === normalizeCharacterName(characterName))
-            : null;
-
-        if (!match) {
-            throw new Error(`Character ${characterName} was not found in the ${modeLabel} ladder snapshot.`);
-        }
-
-        document.getElementById("alertBanner").style.display = "none";
-        processCharacterData(match);
+        const data = await response.json();
+        processCharacterData(data);
     } catch (error) {
         console.error("Error fetching character data:", error);
-        showAlert(`No ${modeLabel} ladder snapshot was found for ${characterName}.`);
     }
 }
 

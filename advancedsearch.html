@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="shortcut icon" type="image/x-icon" href="icons/pod.ico">
+    <title>Advanced Character Search</title>
+    <link rel="stylesheet" type="text/css" href="./css/test-css.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="item-bases.js"></script>
+</head>
+<body class="not-main" style="background-color: #000000; background-image: none;">
+    <div class="is-clipped">
+        <div id="navbar-placeholder"></div>
+        <script>
+        fetch("templates/navbar.html")
+            .then(res => res.text())
+            .then(html => {
+                document.getElementById("navbar-placeholder").innerHTML = html;
+            });
+        </script>
+
+    <div class="hamburger hamburger2" onclick="toggleMenu()">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
+    <div class="top-buttons">
+        <a href="Home" class="top-button home-button" onclick="setActive('Home')"></a>
+        <a href="#" id="SC_HC" class="top-button"> </a>
+        <a href="Amazon" id="Amazon" class="top-button amazon-button"></a>
+        <a href="Assassin" id="Assassin" class="top-button assassin-button"></a>
+        <a href="Barbarian" id="Barbarian" class="top-button barbarian-button"></a>
+        <a href="Druid" id="Druid" class="top-button druid-button"></a>
+        <a href="Necromancer" id="Necromancer" class="top-button necromancer-button"></a>
+        <a href="Paladin" id="Paladin" class="top-button paladin-button"></a>
+        <a href="Sorceress" id="Sorceress" class="top-button sorceress-button"></a>
+        <a href="https://github.com/qordwasalreadytaken/pod-stats/blob/main/README.md" class="top-button about-button" target="_blank"></a>
+    </div>
+
+    <style>
+        .search-form {
+            background-color: #3a3f44;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border: 2px solid #555;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #d5f2e3;
+            font-family: 'armory', sans-serif;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #555;
+            border-radius: 4px;
+            font-size: 14px;
+            background-color: #232323;
+            color: #f5f5f5;
+            font-family: 'armory', sans-serif;
+            box-sizing: border-box;
+        }
+        .form-group input[type="text"]:focus,
+        .form-group input[type="number"]:focus {
+            border-color: #d5f2e3;
+            outline: none;
+            box-shadow: 0 0 5px rgba(213, 242, 227, 0.3);
+        }
+        .form-group small {
+            color: #e0e0e2;
+            font-family: 'armory', sans-serif;
+        }
+        .search-button {
+            background-color: #3a3f44;
+            color: #d5f2e3;
+            padding: 12px 24px;
+            border: 2px solid #555;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-family: 'armory', sans-serif;
+            font-weight: bold;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+        .search-button:hover {
+            background-color: #555;
+            border-color: #d5f2e3;
+            box-shadow: 0 0 10px rgba(213, 242, 227, 0.3);
+        }
+        .loading {
+            color: #e0e0e2;
+            font-style: italic;
+            font-family: 'armory', sans-serif;
+        }
+        .results {
+            margin-top: 20px;
+        }
+        .character-card {
+            background-color: #3a3f44;
+            border: 2px solid #555;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .character-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #d5f2e3;
+            margin-bottom: 8px;
+            font-family: 'd2', sans-serif;
+        }
+        .character-info {
+            color: #e0e0e2;
+            margin-bottom: 10px;
+            font-family: 'armory', sans-serif;
+        }
+        .character-info a {
+            color: #d5f2e3;
+            text-decoration: none;
+        }
+        .character-info a:hover {
+            text-decoration: underline;
+        }
+        .skills {
+            background-color: #232323;
+            padding: 10px;
+            border-radius: 4px;
+            border-left: 4px solid #d5f2e3;
+            margin-top: 10px;
+        }
+        .equipment {
+            background-color: #232323;
+            padding: 10px;
+            border-radius: 4px;
+            border-left: 4px solid #d5a623;
+            margin-top: 10px;
+        }
+        .skills strong,
+        .equipment strong {
+            color: #d5f2e3;
+            font-family: 'armory', sans-serif;
+        }
+        .skill-item,
+        .equipment-item {
+            margin-bottom: 5px;
+            padding: 5px;
+            background-color: #3a3f44;
+            border-radius: 3px;
+            color: #f5f5f5;
+            font-family: 'armory', sans-serif;
+        }
+        .timing-info {
+            background-color: #3a3f44;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border: 2px solid #555;
+        }
+        .timing-info h3 {
+            color: #d5f2e3;
+            font-family: 'armory', sans-serif;
+            margin-top: 0;
+        }
+        .error {
+            background-color: #5a2a2a;
+            color: #ffaaaa;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border: 2px solid #aa5555;
+            font-family: 'armory', sans-serif;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .stat-card {
+            background-color: #232323;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            border: 1px solid #555;
+        }
+        .stat-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #d5f2e3;
+            font-family: 'd2', sans-serif;
+        }
+        .stat-label {
+            color: #e0e0e2;
+            font-size: 14px;
+            font-family: 'armory', sans-serif;
+        }
+        .main {
+            margin-left: 20px !important;
+            margin-right: 20px;
+            max-width: 1100px;
+        }
+        .hint {
+            color: #e0e0e2;
+            font-family: 'armory', sans-serif;
+            font-size: 0.9rem;
+        }
+    </style>
+
+        <h1>Advanced Character Search</h1>
+        <h3>Combine character name, item, and skill filters in one search</h3>
+        <p class="hint">
+            Every field is optional. Blank fields are ignored. Filled fields are combined with AND logic.
+            Example: name "gh" + item "doom" + skill "hydra" + level "19".
+        </p>
+
+        <div class="search-form">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="characterName">Character Name Contains:</label>
+                    <input type="text" id="characterName" placeholder="e.g. gh">
+                    <small>Partial, case-insensitive match.</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="itemName">Item Query:</label>
+                    <input type="text" id="itemName" placeholder="e.g. doom, \"doom\", shield with skull">
+                    <small>Supports and/or, with, !with/without, and ; clauses.</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="skills">Skills (comma-separated):</label>
+                    <input type="text" id="skills" placeholder="e.g. Hydra, Frozen Orb">
+                    <small>Case-insensitive. Leave blank to ignore skill filtering.</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="minPoints">Skill Level Conditions (comma-separated):</label>
+                    <input type="text" id="minPoints" value="19" placeholder=">=19, >10, =0">
+                    <small>Use &gt;, &gt;=, &lt;, &lt;=, =. Default behavior for plain number is &gt;=.</small>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="searchHardcore" onchange="onLeagueChange()">
+                    Search Hardcore (HC) characters
+                </label>
+                <small>Unchecked: Softcore (SC) | Checked: Hardcore (HC)</small>
+            </div>
+
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="includeMercenaries" checked>
+                    Include Mercenary Equipment in Item Search
+                </label>
+                <small>Only affects item matching and matched item display.</small>
+            </div>
+
+            <button class="search-button" onclick="performAdvancedSearch()">Advanced Search</button>
+            <button class="search-button" onclick="clearAdvancedSearch()">Clear</button>
+        </div>
+
+        <div id="results"></div>
+    </div>
+
+    <script>
+        let characterData = null;
+        let dataLoadTime = 0;
+        let currentLeague = 'sc';
+        let loadedLeague = null;
+
+        // --- Item-query parsing helpers (adapted from itemsearch.html) ---
+        function parseItemSearchQuery(rawQuery) {
+            if (!rawQuery) return null;
+
+            const lower = rawQuery.trim().toLowerCase();
+            if (!lower) return null;
+
+            let itemExpr = lower;
+            let socketExpr = null;
+            let socketMode = null;
+
+            const notWithMatch = lower.match(/\s+!with\s+/);
+            const withoutMatch = lower.match(/\s+without\s+/);
+            const withMatch = lower.match(/\s+with\s+/);
+
+            let negativeMatch = null;
+            if (notWithMatch) negativeMatch = notWithMatch;
+            if (withoutMatch && (!negativeMatch || withoutMatch.index < negativeMatch.index)) {
+                negativeMatch = withoutMatch;
+            }
+
+            if (negativeMatch && (!withMatch || negativeMatch.index <= withMatch.index)) {
+                socketMode = 'notWith';
+                const idx = negativeMatch.index;
+                const sepLen = negativeMatch[0].length;
+                itemExpr = lower.slice(0, idx).trim();
+                socketExpr = lower.slice(idx + sepLen).trim() || null;
+            } else if (withMatch) {
+                socketMode = 'with';
+                const idx = withMatch.index;
+                const sepLen = withMatch[0].length;
+                itemExpr = lower.slice(0, idx).trim();
+                socketExpr = lower.slice(idx + sepLen).trim() || null;
+            } else {
+                itemExpr = lower;
+                socketExpr = null;
+            }
+
+            let itemAst = itemExpr ? parseBooleanExpression(itemExpr) : null;
+            const socketAst = socketExpr ? parseBooleanExpression(socketExpr) : null;
+            let extraItemAst = null;
+
+            if (socketAst && itemAst && itemAst.length > 1) {
+                const hasAnd = /\sand\s/.test(itemExpr);
+                const hasOr = /\sor\s/.test(itemExpr);
+
+                if (hasAnd && !hasOr) {
+                    const lastAndIndex = itemExpr.lastIndexOf(' and ');
+                    if (lastAndIndex !== -1) {
+                        const leftPart = itemExpr.slice(0, lastAndIndex).trim();
+                        const primaryTerm = itemExpr.slice(lastAndIndex + 5).trim();
+
+                        if (leftPart && primaryTerm) {
+                            itemExpr = primaryTerm;
+                            itemAst = parseBooleanExpression(itemExpr);
+                            extraItemAst = parseBooleanExpression(leftPart);
+                        }
+                    }
+                }
+            }
+
+            return {
+                itemExpr,
+                socketExpr,
+                itemAst,
+                socketAst,
+                socketMode,
+                extraItemAst
+            };
+        }
+
+        function parseBooleanExpression(expr) {
+            const trimmed = expr.trim();
+            if (!trimmed) return null;
+
+            const parts = trimmed.split(/\s+(and|or)\s+/);
+            if (parts.length === 1) {
+                return [{ type: 'term', value: trimmed }];
+            }
+
+            const ast = [];
+            for (let i = 0; i < parts.length; i++) {
+                const part = parts[i].trim();
+                if (!part) continue;
+                if (part === 'and' || part === 'or') {
+                    if (ast.length === 0 || ast[ast.length - 1].type === 'op') {
+                        return [{ type: 'term', value: trimmed }];
+                    }
+                    ast.push({ type: 'op', value: part });
+                } else {
+                    if (ast.length > 0 && ast[ast.length - 1].type === 'term') {
+                        return [{ type: 'term', value: trimmed }];
+                    }
+                    ast.push({ type: 'term', value: part });
+                }
+            }
+
+            if (!ast.length || ast[0].type !== 'term' || ast[ast.length - 1].type !== 'term') {
+                return [{ type: 'term', value: trimmed }];
+            }
+
+            return ast;
+        }
+
+        let baseLookupByName = null;
+
+        function normalizeBaseLookupKey(name) {
+            if (!name) return '';
+            return name.toLowerCase().replace(/[^a-z0-9]/g, '');
+        }
+
+        function ensureBaseLookupInitialized() {
+            if (baseLookupByName !== null) return;
+            if (typeof bases === 'undefined' || !bases) {
+                baseLookupByName = {};
+                return;
+            }
+
+            baseLookupByName = {};
+            for (const baseKey in bases) {
+                if (!Object.prototype.hasOwnProperty.call(bases, baseKey)) continue;
+                const displayName = baseKey.replace(/_/g, ' ');
+                const norm = normalizeBaseLookupKey(displayName);
+                if (!baseLookupByName[norm]) {
+                    baseLookupByName[norm] = bases[baseKey];
+                }
+            }
+        }
+
+        function getBaseForItem(item) {
+            if (!item) return null;
+            ensureBaseLookupInitialized();
+            if (!baseLookupByName) return null;
+
+            const tag = item.Tag || item.TextTag;
+            if (!tag) return null;
+            const normTag = normalizeBaseLookupKey(tag);
+            return baseLookupByName[normTag] || null;
+        }
+
+        function buildItemMatchFn(itemGetter) {
+            return function(term) {
+                const parsedTerm = parseSearchTerm(term);
+                const t = parsedTerm.value;
+
+                if (parsedTerm.exact) {
+                    return itemGetter(item => itemFieldMatches(item, parsedTerm));
+                }
+
+                if (t === 'shield' || t === 'shields') {
+                    return itemGetter(item => {
+                        const base = getBaseForItem(item);
+                        if (!base) return false;
+                        return base.type === 'shield' || base.shield === true || base.group === 'offhand';
+                    });
+                }
+
+                if (t === 'helm' || t === 'helmet' || t === 'helms' || t === 'helmets') {
+                    return itemGetter(item => {
+                        const base = getBaseForItem(item);
+                        if (base && (base.group === 'helm' || base.type === 'helm')) return true;
+
+                        const worn = (item.Worn || '').toLowerCase();
+                        if (worn === 'helmet') return true;
+
+                        const tag = (item.Tag || '').toLowerCase();
+                        const textTag = (item.TextTag || '').toLowerCase();
+                        const helmKeywords = [
+                            'helm', 'circlet', 'crown', 'coronet', 'tiara', 'diadem',
+                            'cap', 'hat', 'hood', 'mask', 'bone visage', 'armet',
+                            'spired helm'
+                        ];
+
+                        return helmKeywords.some(hk => tag.includes(hk) || textTag.includes(hk));
+                    });
+                }
+
+                if (t === 'armor' || t === 'armour' || t === 'armors' || t === 'armours') {
+                    return itemGetter(item => {
+                        const base = getBaseForItem(item);
+                        if (base && (base.group === 'armor' || base.type === 'armor')) return true;
+
+                        const worn = (item.Worn || '').toLowerCase();
+                        if (worn === 'body') return true;
+
+                        const tag = (item.Tag || '').toLowerCase();
+                        const textTag = (item.TextTag || '').toLowerCase();
+                        const armorKeywords = [
+                            'armor', 'mail', 'plate', 'hide', 'shell', 'shroud',
+                            'fleece', 'hauberk', 'coat', 'cuirass',
+                            'breastplate', 'scale', 'chain'
+                        ];
+
+                        return armorKeywords.some(ak => tag.includes(ak) || textTag.includes(ak));
+                    });
+                }
+
+                if (t === 'weapon' || t === 'weapons') {
+                    return itemGetter(item => {
+                        const base = getBaseForItem(item);
+                        if (!base) return false;
+                        if (base.type === 'shield' || base.shield === true || base.group === 'offhand') return false;
+                        return base.group === 'weapon' || base.WEAPON === true;
+                    });
+                }
+
+                return itemGetter(item => itemFieldMatches(item, parsedTerm));
+            };
+        }
+
+        function parseSearchTerm(term) {
+            const normalized = (term || '').trim().toLowerCase();
+            const isDoubleQuoted = normalized.length >= 2 && normalized.startsWith('"') && normalized.endsWith('"');
+            const isSingleQuoted = normalized.length >= 2 && normalized.startsWith("'") && normalized.endsWith("'");
+            const exact = isDoubleQuoted || isSingleQuoted;
+
+            return {
+                exact,
+                value: exact ? normalized.slice(1, -1).trim() : normalized
+            };
+        }
+
+        function itemFieldMatches(item, parsedTerm) {
+            const title = (item.Title || '').toLowerCase();
+            const textTag = (item.TextTag || '').toLowerCase();
+
+            if (parsedTerm.exact) {
+                return title === parsedTerm.value || textTag === parsedTerm.value;
+            }
+
+            return title.includes(parsedTerm.value) || textTag.includes(parsedTerm.value);
+        }
+
+        function evaluateBooleanExpression(ast, matchFn) {
+            if (!ast || !ast.length) return true;
+            if (ast.length === 1) {
+                return matchFn(ast[0].value);
+            }
+
+            let result = matchFn(ast[0].value);
+            for (let i = 1; i < ast.length; i += 2) {
+                const opNode = ast[i];
+                const termNode = ast[i + 1];
+                if (!termNode) break;
+
+                const termMatch = matchFn(termNode.value);
+                if (opNode.value === 'and') {
+                    result = result && termMatch;
+                } else {
+                    result = result || termMatch;
+                }
+            }
+            return result;
+        }
+
+        function getSocketArray(item) {
+            if (!item || !item.Sockets) return [];
+            if (Array.isArray(item.Sockets)) return item.Sockets;
+            return Object.values(item.Sockets);
+        }
+
+        function parseConditionsInput(minPointsInput, skillCount) {
+            const tokens = minPointsInput.split(',').map(t => t.trim()).filter(t => t.length > 0);
+            const conditions = [];
+            const re = /^(<=|>=|<|>|=)?\s*(\d+)$/;
+
+            for (const token of tokens) {
+                const match = token.match(re);
+                if (!match) continue;
+
+                let op = match[1];
+                const value = parseInt(match[2], 10);
+
+                if (!op) {
+                    op = value === 0 ? '=' : '>=';
+                }
+
+                conditions.push({ op, value });
+            }
+
+            if (conditions.length === 0) {
+                conditions.push({ op: '>=', value: 19 });
+            }
+
+            while (conditions.length < skillCount) {
+                conditions.push(conditions[conditions.length - 1]);
+            }
+
+            return conditions;
+        }
+
+        function matchesCondition(level, condition) {
+            switch (condition.op) {
+                case '>':
+                    return level > condition.value;
+                case '>=':
+                    return level >= condition.value;
+                case '<':
+                    return level < condition.value;
+                case '<=':
+                    return level <= condition.value;
+                case '=':
+                    return level === condition.value;
+                default:
+                    return level >= condition.value;
+            }
+        }
+
+        function onLeagueChange() {
+            const isHardcore = document.getElementById('searchHardcore').checked;
+            const newLeague = isHardcore ? 'hc' : 'sc';
+
+            if (newLeague !== currentLeague) {
+                currentLeague = newLeague;
+                characterData = null;
+                loadedLeague = null;
+                document.getElementById('results').innerHTML = '';
+            }
+        }
+
+        async function loadCharacterData() {
+            const startTime = performance.now();
+
+            if (characterData && loadedLeague === currentLeague) {
+                return true;
+            }
+
+            const filename = currentLeague === 'hc' ? 'hc_ladder.json' : 'sc_ladder.json';
+            const leagueName = currentLeague === 'hc' ? 'Hardcore' : 'Softcore';
+
+            try {
+                const response = await fetch(filename);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                characterData = await response.json();
+                loadedLeague = currentLeague;
+
+                const endTime = performance.now();
+                dataLoadTime = endTime - startTime;
+                console.log(`${leagueName} data loaded: ${characterData.length} chars`);
+                return true;
+            } catch (error) {
+                displayError(`Failed to load ${leagueName} character data: ${error.message}`);
+                return false;
+            }
+        }
+
+        function evaluateItemClauseForCharacter(char, parsedQuery, includeMercenaries) {
+            const equipped = char.Equipped || char.Equipment || [];
+            const mercEquipped = char.MercenaryEquipped || [];
+            const hasSocketConditions = !!parsedQuery.socketAst;
+            const socketMode = parsedQuery.socketMode || 'with';
+            const extraItemAst = parsedQuery.extraItemAst || null;
+
+            const allItemsForChar = [];
+            for (const item of equipped) {
+                allItemsForChar.push({ item, type: 'Character' });
+            }
+            if (includeMercenaries) {
+                for (const item of mercEquipped) {
+                    allItemsForChar.push({ item, type: 'Mercenary' });
+                }
+            }
+
+            const matchedItems = [];
+            const seenItemKeys = new Set();
+
+            let extraItemSatisfied = true;
+            if (extraItemAst) {
+                extraItemSatisfied = evaluateBooleanExpression(
+                    extraItemAst,
+                    buildItemMatchFn(predicate => {
+                        for (const entry of allItemsForChar) {
+                            const item = entry.item;
+                            if (!item || !item.Title) continue;
+                            if (predicate(item)) return true;
+                        }
+                        return false;
+                    })
+                );
+            }
+
+            if (hasSocketConditions) {
+                const checkItemMatches = (item, typeLabel) => {
+                    if (!item || !item.Title) return;
+
+                    const baseMatch = evaluateBooleanExpression(
+                        parsedQuery.itemAst,
+                        buildItemMatchFn(predicate => predicate(item) ? true : false)
+                    );
+                    if (!baseMatch) return;
+
+                    const sockets = getSocketArray(item);
+
+                    if (socketMode === 'with') {
+                        const socketTerms = parsedQuery.socketAst
+                            .filter(node => node.type === 'term')
+                            .map(node => parseSearchTerm(node.value));
+
+                        let hasSocketTerm = false;
+                        for (const term of socketTerms) {
+                            for (const sock of sockets) {
+                                if (itemFieldMatches(sock, term)) {
+                                    hasSocketTerm = true;
+                                    break;
+                                }
+                            }
+                            if (hasSocketTerm) break;
+                        }
+
+                        if (hasSocketTerm) {
+                            const key = `${item.Worn || '?'}|${item.Title}|${item.TextTag || ''}|${typeLabel}`;
+                            if (!seenItemKeys.has(key)) {
+                                seenItemKeys.add(key);
+                                matchedItems.push({
+                                    slot: item.Worn || 'Unknown',
+                                    name: `${item.Title} - ${item.TextTag || ''}`,
+                                    type: typeLabel
+                                });
+                            }
+                        }
+                    } else if (socketMode === 'notWith') {
+                        const exprResult = evaluateBooleanExpression(
+                            parsedQuery.socketAst,
+                            term => {
+                                const parsedTerm = parseSearchTerm(term);
+                                for (const sock of sockets) {
+                                    if (itemFieldMatches(sock, parsedTerm)) {
+                                        return true;
+                                    }
+                                }
+                                return false;
+                            }
+                        );
+
+                        if (!exprResult) {
+                            const key = `${item.Worn || '?'}|${item.Title}|${item.TextTag || ''}|${typeLabel}`;
+                            if (!seenItemKeys.has(key)) {
+                                seenItemKeys.add(key);
+                                matchedItems.push({
+                                    slot: item.Worn || 'Unknown',
+                                    name: `${item.Title} - ${item.TextTag || ''}`,
+                                    type: typeLabel
+                                });
+                            }
+                        }
+                    }
+                };
+
+                for (const item of equipped) {
+                    checkItemMatches(item, 'Character');
+                }
+                if (includeMercenaries) {
+                    for (const item of mercEquipped) {
+                        checkItemMatches(item, 'Mercenary');
+                    }
+                }
+            } else {
+                const charMatches = evaluateBooleanExpression(
+                    parsedQuery.itemAst,
+                    buildItemMatchFn(predicate => {
+                        let termMatched = false;
+                        for (const entry of allItemsForChar) {
+                            const item = entry.item;
+                            if (!item || !item.Title) continue;
+
+                            if (predicate(item)) {
+                                termMatched = true;
+                                const key = `${item.Worn || '?'}|${item.Title}|${item.TextTag || ''}|${entry.type}`;
+                                if (!seenItemKeys.has(key)) {
+                                    seenItemKeys.add(key);
+                                    matchedItems.push({
+                                        slot: item.Worn || 'Unknown',
+                                        name: `${item.Title} - ${item.TextTag || ''}`,
+                                        type: entry.type
+                                    });
+                                }
+                            }
+                        }
+                        return termMatched;
+                    })
+                );
+
+                if (!charMatches) {
+                    matchedItems.length = 0;
+                }
+            }
+
+            if (!extraItemSatisfied) {
+                return [];
+            }
+
+            if (matchedItems.length > 0 && extraItemAst) {
+                evaluateBooleanExpression(
+                    extraItemAst,
+                    buildItemMatchFn(predicate => {
+                        let termMatched = false;
+                        for (const entry of allItemsForChar) {
+                            const item = entry.item;
+                            if (!item || !item.Title) continue;
+                            if (predicate(item)) {
+                                termMatched = true;
+                                const key = `${item.Worn || '?'}|${item.Title}|${item.TextTag || ''}|${entry.type}`;
+                                if (!seenItemKeys.has(key)) {
+                                    seenItemKeys.add(key);
+                                    matchedItems.push({
+                                        slot: item.Worn || 'Unknown',
+                                        name: `${item.Title} - ${item.TextTag || ''}`,
+                                        type: entry.type
+                                    });
+                                }
+                            }
+                        }
+                        return termMatched;
+                    })
+                );
+            }
+
+            return matchedItems;
+        }
+
+        function evaluateItemClausesForCharacter(char, parsedClauses, includeMercenaries) {
+            if (!parsedClauses || parsedClauses.length === 0) {
+                return { ok: true, matchedItems: [] };
+            }
+
+            const merged = [];
+            const seen = new Set();
+
+            for (const clause of parsedClauses) {
+                const clauseItems = evaluateItemClauseForCharacter(char, clause, includeMercenaries);
+                if (clauseItems.length === 0) {
+                    return { ok: false, matchedItems: [] };
+                }
+
+                for (const item of clauseItems) {
+                    const key = `${item.slot}|${item.name}|${item.type}`;
+                    if (!seen.has(key)) {
+                        seen.add(key);
+                        merged.push(item);
+                    }
+                }
+            }
+
+            return { ok: true, matchedItems: merged };
+        }
+
+        function getCharacterSkillsMap(char) {
+            const byLower = {};
+            if (!char.SkillTabs) return byLower;
+
+            for (const tab of char.SkillTabs) {
+                for (const skill of tab.Skills || []) {
+                    const skillName = skill.Name;
+                    const skillLevel = skill.Level;
+                    if (!skillName) continue;
+                    byLower[skillName.toLowerCase()] = {
+                        originalName: skillName,
+                        level: skillLevel
+                    };
+                }
+            }
+
+            return byLower;
+        }
+
+        function advancedFilterCharacters(criteria) {
+            const searchStartTime = performance.now();
+            const matches = [];
+
+            for (const char of characterData) {
+                const charName = char.Name || '';
+
+                if (criteria.nameQuery) {
+                    if (!charName.toLowerCase().includes(criteria.nameQuery)) {
+                        continue;
+                    }
+                }
+
+                let matchedItems = [];
+                if (criteria.parsedClauses && criteria.parsedClauses.length > 0) {
+                    const itemEval = evaluateItemClausesForCharacter(char, criteria.parsedClauses, criteria.includeMercenaries);
+                    if (!itemEval.ok) {
+                        continue;
+                    }
+                    matchedItems = itemEval.matchedItems;
+                }
+
+                let matchedSkills = {};
+                if (criteria.targetSkills.length > 0) {
+                    const skillMap = getCharacterSkillsMap(char);
+                    let skillsPass = true;
+                    const details = {};
+
+                    for (let i = 0; i < criteria.targetSkills.length; i++) {
+                        const targetSkill = criteria.targetSkills[i];
+                        const foundSkill = skillMap[targetSkill.toLowerCase()];
+                        const condition = i < criteria.conditionsArray.length
+                            ? criteria.conditionsArray[i]
+                            : criteria.conditionsArray[criteria.conditionsArray.length - 1];
+                        const skillLevel = foundSkill ? foundSkill.level : 0;
+
+                        if (matchesCondition(skillLevel, condition)) {
+                            const displayName = foundSkill ? foundSkill.originalName : targetSkill;
+                            details[displayName] = skillLevel;
+                        } else {
+                            skillsPass = false;
+                            break;
+                        }
+                    }
+
+                    if (!skillsPass) {
+                        continue;
+                    }
+                    matchedSkills = details;
+                }
+
+                const mercenary = {
+                    type: char.MercenaryType || char.Mercenary?.Type || null,
+                    name: char.MercenaryName || char.Mercenary?.Name || null,
+                    level: char.MercenaryLevel || char.Mercenary?.Level || null
+                };
+
+                matches.push({
+                    name: charName,
+                    class: char.Class || 'Unknown',
+                    level: char.Stats?.Level || 'Unknown',
+                    matchedItems,
+                    matchedSkills,
+                    mercenary
+                });
+            }
+
+            const searchEndTime = performance.now();
+            return {
+                matches,
+                searchTime: searchEndTime - searchStartTime,
+                totalCharacters: characterData.length
+            };
+        }
+
+        async function performAdvancedSearch() {
+            displayLoading();
+
+            if (!characterData) {
+                const loaded = await loadCharacterData();
+                if (!loaded) return;
+            }
+
+            const characterNameInput = document.getElementById('characterName').value.trim();
+            const itemQueryInput = document.getElementById('itemName').value.trim();
+            const skillsInput = document.getElementById('skills').value.trim();
+            const minPointsInput = document.getElementById('minPoints').value.trim();
+            const includeMercenaries = document.getElementById('includeMercenaries').checked;
+            const isHardcore = document.getElementById('searchHardcore').checked;
+
+            const hasAnyCriteria = !!characterNameInput || !!itemQueryInput || !!skillsInput;
+            if (!hasAnyCriteria) {
+                displayError('Enter at least one criterion: character name, item query, or skill(s).');
+                return;
+            }
+
+            let parsedClauses = [];
+            if (itemQueryInput) {
+                const clauseStrings = itemQueryInput.split(';').map(s => s.trim()).filter(Boolean);
+                for (const clause of clauseStrings) {
+                    const parsed = parseItemSearchQuery(clause);
+                    if (!parsed || !parsed.itemAst) {
+                        displayError(`Invalid item query near: "${clause}"`);
+                        return;
+                    }
+                    parsedClauses.push(parsed);
+                }
+            }
+
+            let targetSkills = [];
+            let conditionsArray = [];
+            if (skillsInput) {
+                targetSkills = skillsInput.split(',').map(s => s.trim()).filter(Boolean);
+                if (targetSkills.length === 0) {
+                    displayError('Please provide at least one non-empty skill when using skill search.');
+                    return;
+                }
+                conditionsArray = parseConditionsInput(minPointsInput || '19', targetSkills.length);
+            }
+
+            const criteria = {
+                nameQuery: characterNameInput.toLowerCase(),
+                parsedClauses,
+                targetSkills,
+                conditionsArray,
+                includeMercenaries
+            };
+
+            const result = advancedFilterCharacters(criteria);
+            updateAddressBarWithSearch({
+                name: characterNameInput,
+                item: itemQueryInput,
+                skills: skillsInput,
+                levels: minPointsInput,
+                league: isHardcore ? 'hc' : 'sc',
+                mercs: includeMercenaries ? '1' : '0'
+            });
+            displayAdvancedResults(result, criteria);
+        }
+
+        function displayAdvancedResults(result, criteria) {
+            const resultsDiv = document.getElementById('results');
+            const leagueName = currentLeague === 'hc' ? 'Hardcore' : 'Softcore';
+
+            const classColors = {
+                Amazon: 'rgb(255, 102, 105)',
+                Assassin: 'rgb(255, 255, 255)',
+                Barbarian: 'rgb(150, 105, 32)',
+                Druid: 'rgb(255, 186, 74)',
+                Necromancer: 'rgb(179, 255, 253)',
+                Paladin: 'rgb(255, 243, 112)',
+                Sorceress: 'rgb(188, 107, 255)'
+            };
+
+            let criteriaText = [];
+            if (criteria.nameQuery) criteriaText.push(`name contains "${criteria.nameQuery}"`);
+            if (criteria.parsedClauses.length > 0) {
+                criteriaText.push(`item query matches "${document.getElementById('itemName').value.trim()}"`);
+            }
+            if (criteria.targetSkills.length > 0) {
+                const pieces = criteria.targetSkills.map((skill, index) => {
+                    const c = criteria.conditionsArray[Math.min(index, criteria.conditionsArray.length - 1)];
+                    return `${skill} ${c.op}${c.value}`;
+                });
+                criteriaText.push(`skills: ${pieces.join(', ')}`);
+            }
+
+            let html = '';
+            if (result.matches.length === 0) {
+                html += `
+                    <div class="results">
+                        <h3>No Results Found</h3>
+                        <p>No ${leagueName} characters match all active filters: ${criteriaText.join(' AND ')}.</p>
+                    </div>
+                `;
+            } else {
+                html += `
+                    <div class="results">
+                        <h3>Advanced Search Results - ${leagueName} League</h3>
+                        <p>Found ${result.matches.length} character(s) matching: ${criteriaText.join(' AND ')}.</p>
+                `;
+
+                for (const char of result.matches) {
+                    const trendsClass = currentLeague === 'hc' ? `hc${char.class}` : char.class;
+                    const trendsUrl = `https://trends.pathofdiablo.com/${trendsClass}#${char.name}`;
+                    const classColor = classColors[char.class] || '#555';
+
+                    html += `
+                        <div class="character-card" style="margin: 8px 0; padding: 12px; border-radius: 6px; border-left: 3px solid ${classColor};">
+                            <div class="character-name">${char.name}</div>
+                            <div class="character-info">
+                                Class: ${char.class} | Level: ${char.level} | League: ${leagueName} |
+                                <a href="${trendsUrl}" target="_blank">Trends Listing</a>
+                            </div>
+                    `;
+
+                    if (Object.keys(char.matchedSkills).length > 0) {
+                        html += '<div class="skills"><strong>Matched Skills:</strong><br>';
+                        for (const [skill, points] of Object.entries(char.matchedSkills)) {
+                            html += `<div class="skill-item">${skill}: ${points} points</div><br>`;
+                        }
+                        html += '</div>';
+                    }
+
+                    if (char.matchedItems.length > 0) {
+                        const charItems = char.matchedItems.filter(i => i.type === 'Character');
+                        const mercItems = char.matchedItems.filter(i => i.type === 'Mercenary');
+
+                        if (charItems.length > 0) {
+                            html += '<div class="equipment"><strong>Matched Character Equipment:</strong><br>';
+                            for (const item of charItems) {
+                                html += `<div class="equipment-item" style="background-color:#2a4a2a;">${item.slot}: ${item.name}</div><br>`;
+                            }
+                            html += '</div>';
+                        }
+
+                        if (mercItems.length > 0) {
+                            const mercType = char.mercenary.type || 'Unknown Mercenary';
+                            const mercName = char.mercenary.name || 'Unknown';
+                            const mercLevel = char.mercenary.level || 'Unknown';
+                            html += `<div class="equipment" style="border-left-color:#d5a623;"><strong>Matched Mercenary Equipment:</strong><br>`;
+                            html += `<div style="color:#d5a623; font-size:12px; margin-bottom:5px;">${mercType} "${mercName}" (Level ${mercLevel})</div>`;
+                            for (const item of mercItems) {
+                                html += `<div class="equipment-item" style="background-color:#4a3a2a;">${item.slot}: ${item.name}</div><br>`;
+                            }
+                            html += '</div>';
+                        }
+                    }
+
+                    html += '</div>';
+                }
+
+                html += '</div>';
+            }
+
+            html += `
+                <div class="timing-info">
+                    <h3>${leagueName} Ladder</h3>
+                    <div class="stats">
+                        <div class="stat-card">
+                            <div class="stat-number">${result.matches.length}</div>
+                            <div class="stat-label">Matches Found</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">${result.totalCharacters}</div>
+                            <div class="stat-label">Total Characters Searched</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">${result.searchTime.toFixed(2)}ms</div>
+                            <div class="stat-label">Search Time</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            resultsDiv.innerHTML = html;
+        }
+
+        function clearAdvancedSearch() {
+            document.getElementById('characterName').value = '';
+            document.getElementById('itemName').value = '';
+            document.getElementById('skills').value = '';
+            document.getElementById('minPoints').value = '19';
+            document.getElementById('results').innerHTML = '';
+            const baseURL = window.location.origin + window.location.pathname;
+            window.history.replaceState({}, '', baseURL);
+        }
+
+        function displayLoading() {
+            document.getElementById('results').innerHTML = '<div class="loading">Loading and searching data...</div>';
+        }
+
+        function displayError(message) {
+            document.getElementById('results').innerHTML = `<div class="error">${message}</div>`;
+        }
+
+        function parseURLParameters() {
+            const urlParams = new URLSearchParams(window.location.search);
+
+            const name = urlParams.get('name');
+            const item = urlParams.get('item');
+            const skills = urlParams.get('skills');
+            const levels = urlParams.get('levels');
+            const league = urlParams.get('league');
+            const mercs = urlParams.get('mercs');
+
+            if (name !== null) document.getElementById('characterName').value = name;
+            if (item !== null) document.getElementById('itemName').value = item;
+            if (skills !== null) document.getElementById('skills').value = skills;
+            if (levels !== null) document.getElementById('minPoints').value = levels;
+
+            if (league) {
+                const isHardcore = league.toLowerCase() === 'hc' || league.toLowerCase() === 'hardcore';
+                document.getElementById('searchHardcore').checked = isHardcore;
+                currentLeague = isHardcore ? 'hc' : 'sc';
+            }
+
+            if (mercs !== null) {
+                document.getElementById('includeMercenaries').checked = mercs === '1' || mercs.toLowerCase() === 'true';
+            }
+
+            return !!(name || item || skills);
+        }
+
+        function updateAddressBarWithSearch(paramsObj) {
+            const baseURL = window.location.origin + window.location.pathname;
+            const params = new URLSearchParams();
+
+            if (paramsObj.name) params.set('name', paramsObj.name);
+            if (paramsObj.item) params.set('item', paramsObj.item);
+            if (paramsObj.skills) params.set('skills', paramsObj.skills);
+            if (paramsObj.levels) params.set('levels', paramsObj.levels);
+            params.set('league', paramsObj.league || 'sc');
+            params.set('mercs', paramsObj.mercs || '1');
+
+            window.history.replaceState({}, '', `${baseURL}?${params.toString()}`);
+        }
+
+        window.addEventListener('load', async () => {
+            const hasSearchParams = parseURLParameters();
+            if (hasSearchParams) {
+                await performAdvancedSearch();
+            }
+        });
+
+        function toggleMenu() {
+            console.log('Toggle menu called');
+        }
+
+        function setActive(buttonName) {
+            console.log('Setting active button:', buttonName);
+        }
+    </script>
+
+    </div>
+</body>
+</html>

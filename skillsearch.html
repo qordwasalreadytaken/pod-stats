@@ -10,7 +10,7 @@
     <div class="is-clipped">
         <div id="navbar-placeholder"></div>
         <script>
-        fetch("templates/navbar.html")
+        fetch("templates/navbar.html") 
             .then(res => res.text())
             .then(html => {
             document.getElementById("navbar-placeholder").innerHTML = html;
