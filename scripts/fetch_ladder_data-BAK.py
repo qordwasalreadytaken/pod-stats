@@ -109,18 +109,6 @@ def fetch_1kladder_characters(base_ladder_url, pages):
             print(f"⚠️ Failed to fetch page {page}: {response.status_code}")
     return all_characters
 
-def strip_item_ids(char_data):
-    """Remove the 'id' property from each item under Equipped/MercenaryEquipped."""
-    for key in ("Equipped", "MercenaryEquipped"):
-        items = char_data.get(key)
-        if isinstance(items, list):
-            for item in items:
-                if isinstance(item, dict):
-                    item.pop("id", None)
-        elif isinstance(items, dict):
-            items.pop("id", None)
-    return char_data
-
 def fetch_char_summaries(characters):
     char_url = "https://beta.pathofdiablo.com/api/characters/{char_name}/summary"
     final_data = []
@@ -133,7 +121,7 @@ def fetch_char_summaries(characters):
 
         response = requests.get(char_url.format(char_name=char_name))
         if response.status_code == 200:
-            final_data.append(strip_item_ids(response.json()))
+            final_data.append(response.json())
         else:
             print(f"⚠️ Failed to fetch character summary: {char_name}")
     return final_data
