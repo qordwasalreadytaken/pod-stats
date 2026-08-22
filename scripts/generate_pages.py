@@ -144,12 +144,12 @@ def generate_all_pages(json_file_path="sc_ladder.json", is_hardcore=False, hc_le
             with open(home_filename, 'w', encoding='utf-8') as f:
                 f.write(home_html)
             print(f"✓ Home page saved as {home_filename}")
-            
+# Stop generating index.html            
             # For GitHub Pages: Create index.html as default landing page
-            if not is_hardcore:  # Only create index.html for softcore (main site)
-                with open("index.html", 'w', encoding='utf-8') as f:
-                    f.write(home_html)
-                print("✓ GitHub Pages index.html created (copy of Home.html)")
+#            if not is_hardcore:  # Only create index.html for softcore (main site)
+#                with open("index.html", 'w', encoding='utf-8') as f:
+#                    f.write(home_html)
+#                print("✓ GitHub Pages index.html created (copy of Home.html)")
         else:
             print("✗ Failed to generate home page")
             
