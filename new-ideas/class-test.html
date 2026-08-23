@@ -4,13 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Amazon Analysis Report</title>
+    <title id="chosenclasstitle"> Analysis Report</title>
 
     <link rel="shortcut icon" type="image/x-icon" href="../icons/pod.ico">
     <link rel="stylesheet" type="text/css" href="../css/test-css.css">
 
     <style>
         /* Extras not covered by the site stylesheet, for this prototype's controls/filters UI */
+        body{
+            background-image: url("../icons/${chosenClass}_background_2600.jpg"), url("../icons/stone_background_2600.jpg");
+        }
         .controls {
             display: flex;
             flex-wrap: wrap;
@@ -85,16 +88,55 @@
             display: flex;
             flex-wrap: wrap;
             gap: 30px;
+            width: 90%;
         }
 
         .item-report-columns ul {
             margin: 6px 0;
             padding-left: 20px;
+            
         }
+
+        .item-report-columns-width {
+            width: 40%;
+        }
+
+        .page-intro-class {
+            padding-top: 10px;
+        }
+
+.character-info {
+    display: grid;
+    grid-template-columns: 300px 300px 300px;
+    align-items: center;
+    margin-bottom: 0;
+    max-height: 55px;
+}
+
+.character-info > .character {
+    padding: 5px;
+}
+
+.hover-trigger {
+    box-sizing: border-box;
+    width: 165px;
+    height: 55px;
+
+    padding: 10px 20px;
+    background-image: url('../icons/Armoury.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+}
+
     </style>
 </head>
 
-<body class="main special-background-amazon">
+<body class="main special-background-sorceress">
 <div class="is-clipped">
 
     <div class="hamburger hamburger2" onclick="toggleMenu()">
@@ -105,7 +147,7 @@
 
     <div class="top-buttons">
         <a href="#" class="top-button home-button"></a>
-        <a href="#" class="top-button amazon-button active"></a>
+        <a href="#" class="top-button sorceress-button active"></a>
         <a href="#" class="top-button assassin-button"></a>
         <a href="#" class="top-button barbarian-button"></a>
         <a href="#" class="top-button druid-button"></a>
@@ -115,12 +157,12 @@
     </div>
 
 <div class="page-intro-class">
-    <h1>Amazon Softcore Skill Distribution</h1>
+    <h1 id="chosenclass"> Class Analysis</h1>
 
     <div class="summary-container">
 
         <div class="status">
-            <div id="status">Loading amazon.json...</div>
+            <div id="status">Loading ${chosenClass}.json...</div>
         </div>
 
         <div class="controls">
@@ -177,6 +219,28 @@
                 >
             </div>
 
+
+            <div class="control">
+                <label for="class">Class</label>
+                <select id="class">
+                    <option value="amazon">Amazon</option>
+                    <option value="assassin">Assassin</option>
+                    <option value="barbarian">Barbarian</option>
+                    <option value="druid">Druid</option>
+                    <option value="necromancer">Necromancer</option>
+                    <option value="paladin">Paladin</option>
+                    <option value="sorceress">Sorceress</option>
+                </select>
+           </div>
+
+            <div class="control">
+                <label for="mode">Mode</label>
+                <select id="mode">
+                    <option value="sc">SC</option>
+                    <option value="hc">HC</option>
+                </select>
+           </div>
+
             <div class="control">
                 <label>&nbsp;</label>
                 <button id="clearFilters">Clear filters</button>
@@ -192,7 +256,7 @@
         <div id="clusterGrid"></div>
 
         <hr>
-        <h1>Equipment and item details for Amazon</h1>
+        <h1 id="chosenclassequip">Equipment and item details for ${chosenClass}</h1>
 
         <div id="itemReportGrid"></div>
 
@@ -228,6 +292,70 @@
 <button onclick="topFunction()" id="backToTopBtn" class="back-to-top" title="Go to top"></button>
 
 <script>
+
+// Armory pop up
+document.addEventListener("DOMContentLoaded", function () {
+    let activePopup = null;
+
+    document.addEventListener("click", function (event) {
+
+        const trigger = event.target.closest(".hover-trigger");
+
+        if (!trigger) {
+            return;
+        }
+
+        console.log("Trigger clicked");
+
+        event.stopPropagation();
+
+        const characterName = trigger.getAttribute("data-character-name");
+
+        // Find the associated popup
+        const popup = trigger
+            .closest(".character-info")
+            .querySelector(".popup");
+
+        // If this popup is already active, close it
+        if (popup === activePopup) {
+            popup.classList.remove("active");
+            popup.innerHTML = "";
+            activePopup = null;
+            return;
+        }
+
+        // Close any other open popup
+        if (activePopup) {
+            activePopup.classList.remove("active");
+            activePopup.innerHTML = "";
+            activePopup = null;
+        }
+
+        // Create iframe
+        const iframe = document.createElement("iframe");
+
+        iframe.src = `../armory/video_component.html?charName=${characterName}`;
+        iframe.setAttribute("id", "popupFrame");
+
+        popup.appendChild(iframe);
+        popup.classList.add("active");
+
+        activePopup = popup;
+    });
+
+    // Close popup when clicking outside
+    document.addEventListener("click", function (event) {
+
+        if (
+            activePopup &&
+            !event.target.closest(".character-info")
+        ) {
+            activePopup.classList.remove("active");
+            activePopup.innerHTML = "";
+            activePopup = null;
+        }
+    });
+});
 
 function toggleMenu() {
     document.querySelector(".top-buttons").classList.toggle("show");
@@ -294,7 +422,7 @@ function smallCollapsible(labelHtml, contentHtml) {
 }
 
 
-const CLASS_NAME = "Amazon";
+//const CLASS_NAME = "${chosenClass}";
 
 let characters = [];
 let filteredCharacters = [];
@@ -302,6 +430,67 @@ let skillColumns = [];
 let clusters = [];
 
 
+/*
+ * URL handling
+ */
+const params = new URLSearchParams(window.location.search);
+
+const validClasses = [
+    "amazon",
+    "assassin",
+    "barbarian",
+    "druid",
+    "necromancer",
+    "paladin",
+    "sorceress"
+];
+
+const validModes = [
+    "sc",
+    "hc"
+];
+
+const requestedMode = params.get("m");
+const requestedClass = params.get("c");
+
+const chosenMode = validModes.includes(requestedMode)
+    ? requestedMode
+    : "sc";
+
+    const chosenClass = validClasses.includes(requestedClass)
+    ? requestedClass
+    : "amazon";
+
+    document.addEventListener("DOMContentLoaded", () => {
+
+    document.getElementById("mode").value = chosenMode;
+    document.getElementById("class").value = chosenClass;
+
+    document.getElementById("mode")
+        .addEventListener("change", updateURL);
+    document.getElementById("class")
+        .addEventListener("change", updateURL);
+
+    loadCharacters();
+
+});
+function updateURL() {
+
+    const selectedClass =
+        document.getElementById("class").value
+            .trim()
+            .toLowerCase();
+
+    const selectedMode =
+        document.getElementById("mode").value;
+
+    const url = new URL(window.location);
+
+    url.searchParams.set("m", selectedMode);
+    url.searchParams.set("c", selectedClass);
+
+    window.location.href = url;
+}
 /*
  * Load the data
  */
@@ -315,8 +504,10 @@ async function loadCharacters() {
 
         const fetchStart = performance.now();
 
-        const response = await fetch("./data/amazon.json");
- 
+        const response =
+//            await fetch(`./data/${chosenClass}.json`);
+            await fetch(`./data/${chosenMode}${chosenClass}.json`)
+
         const fetchEnd = performance.now();
 
         console.log(
@@ -334,23 +525,7 @@ async function loadCharacters() {
         characters = await response.json();
 
         console.timeEnd("JSON parse");
-
         console.timeEnd("Total load");
-
-        /*
-         * Handle either:
-         *
-         * [
-         *   {...},
-         *   {...}
-         * ]
-         *
-         * or:
-         *
-         * {
-         *   "characters": [...]
-         * }
-         */
 
         if (!Array.isArray(characters)) {
 
@@ -385,9 +560,44 @@ async function loadCharacters() {
             `<span class="error">Error loading data: ${error.message}</span>`;
 
     }
-
 }
 
+/*
+ * Choose class
+ */
+function capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+function updateClassDisplay() {
+
+    document.getElementById("chosenclass").textContent =
+        `${capitalize(chosenClass)} Skill Distribution`;
+
+    document.getElementById("chosenclasstitle").textContent =
+        `${capitalize(chosenClass)} Analysis Reporting`;
+
+    document.getElementById("chosenclassequip").textContent =
+        `Equipment and item details for ${capitalize(chosenClass)}`;
+
+    document.body.style.backgroundImage =
+        `url("../icons/${chosenClass}_background_2600.jpg"), url("../icons/stone_background_2600.jpg")`;
+}
+
+function chooseClass() {
+
+    const selectedClass =
+        document.getElementById("class").value
+            .trim()
+            .toLowerCase();
+
+    const url = new URL(window.location);
+
+    url.searchParams.set("m", chosenMode);
+    url.searchParams.set("c", selectedClass);
+
+    window.location.href = url;
+}  
 
 /*
  * Apply the current filters
@@ -417,13 +627,10 @@ function applyFilters() {
             ? null
             : Number(maxLevelValue);
 
+    console.log(`Chosen class: ${chosenClass}`);
 
     filteredCharacters = characters.filter(character => {
 
-        /*
-         * Change these field names if your JSON
-         * uses something different.
-         */
         const name =
             character.Name ??
             "";
@@ -434,7 +641,6 @@ function applyFilters() {
                 0
             );
 
-
         if (
             search &&
             !String(name)
@@ -444,14 +650,12 @@ function applyFilters() {
             return false;
         }
 
-
         if (
             minLevel !== null &&
             level < minLevel
         ) {
             return false;
         }
-
 
         if (
             maxLevel !== null &&
@@ -460,26 +664,18 @@ function applyFilters() {
             return false;
         }
 
-
         return true;
 
     });
 
     console.timeEnd("Filter");
 
-
     sortCharacters();
-
     renderCharacters();
-
     clusterBuilds();
-
     renderClusters();
-
     renderItemReporting();
-
 }
-
 
 /*
  * Collect every skill name that appears across the
@@ -571,11 +767,24 @@ function clusterBuilds() {
 
         const similarIndices = [];
 
-        for (let j = 0; j < n; j++) {
-            if (cosineSimilarity(vectors[i], vectors[j]) >= threshold) {
-                similarIndices.push(j);
-            }
+// old method without checking clusterIndex
+//    for (let j = 0; j < n; j++) {
+//        if (cosineSimilarity(vectors[i], vectors[j]) >= threshold) {
+//            similarIndices.push(j);
+//        }
+//    }
+
+// new method with checking clusterIndex
+    for (let j = 0; j < n; j++) {
+
+        if (clusterIndex[j] !== -1) {
+            continue;
         }
+
+        if (cosineSimilarity(vectors[i], vectors[j]) >= threshold) {
+            similarIndices.push(j);
+        }
+    }
 
         if (similarIndices.length > 1) {
             for (const j of similarIndices) {
@@ -628,7 +837,7 @@ function clusterBuilds() {
                 .map((name, colIndex) => ({ name, average: averages[colIndex] }))
                 .filter(skill => skill.average >= 1)
                 .sort((a, b) => b.average - a.average)
-                .slice(0, 3);
+                .slice(0, 5);
 
         return {
             id,
@@ -655,15 +864,16 @@ function clusterBuilds() {
 
 const WORN_CATEGORY_MAP = {
     ring1: "Ring", ring2: "Ring",
-    sweapon1: "Left hand", weapon1: "Left hand",
-    sweapon2: "Offhand", weapon2: "Offhand",
+    sweapon1: "Left hand Swap", weapon1: "Left hand",
+    sweapon2: "Right hand Swap", weapon2: "Right Hand",
     body: "Armor", gloves: "Gloves", belt: "Belt",
     helmet: "Helmet", boots: "Boots", amulet: "Amulet"
 };
 
 const QUALITY_COLORS = {
     q_runeword: "#edcd74", q_unique: "#edcd74", q_set: "#45a823",
-    q_magic: "#7074c9", q_rare: "yellow", q_crafted: "orange"
+    q_magic: "#7074c9", q_rare: "yellow", q_crafted: "orange",
+    q_normal: "white", q_superior: "white"
 };
 
 const MERCENARY_NAME_MAP = {
@@ -843,7 +1053,13 @@ function renderClusterCharactersHtml(members) {
             <div class="character-container char2">
                 <div class="character-info">
                     <div class="character-link"><strong>Name: <a href="https://beta.pathofdiablo.com/armory?name=${encodeURIComponent(name)}" target="_blank">${escapeHtml(name)}</a></strong></div>
-                    <strong>Level: ${escapeHtml(String(level))}</strong>
+                    <div><strong>Level: ${escapeHtml(String(level))}</strong></div>
+                    <div class="hover-trigger" data-character-name="${encodeURIComponent(name)}">
+                        <!-- Armory Quickview -->
+                    </div>             
+                    <div class="character">
+                        <div class="popup hidden"></div>
+                    </div>
                 </div>
                 <p><strong>Skills:<br></strong> ${buildSkillsHtml(character)}</p>
                 <p><strong>Equipment:<br></strong> ${buildEquipmentHtml(character)}</p>
@@ -1314,9 +1530,9 @@ function renderMercenaryReportingSection() {
                 const columnsHtml =
                     Array.from(wornCategories.entries())
                         .map(([worn, titleCounts]) => `
-                            <div>
+                            <div style="width: 20%;">
                                 <h4>Most Common ${escapeHtml(worn)}s</h4>
-                                <ul>${sortMapDesc(titleCounts).slice(0, 15).map(([title, count]) => `<li>${escapeHtml(title)}: ${count}</li>`).join("")}</ul>
+                                <ul>${sortMapDesc(titleCounts).slice(0, 10).map(([title, count]) => `<li>${escapeHtml(title)}: ${count}</li>`).join("")}</ul>
                             </div>
                         `).join("");
 
@@ -1465,38 +1681,38 @@ function renderFunFactsSection() {
     `).join("");
 
     const contentHtml = `
-        <p>${funFacts.undeadCount.toLocaleString()} ${escapeHtml(CLASS_NAME)}'s out of ${funFacts.characterCount.toLocaleString()} have not died</p>
+        <p>${funFacts.undeadCount.toLocaleString()} out of ${funFacts.characterCount.toLocaleString()} have not died</p>
         ${smallCollapsible(`${funFacts.undeadCount.toLocaleString()} characters still alive`, aliveListHtml || "<p>No characters found.</p>")}
 
         <div class="item-report-columns">
-            <div>
+            <div class="item-report-columns-width">
                 <h4>Top 5 Strength</h4>
                 ${renderTopStatList(funFacts.topStats.Strength)}
             </div>
-            <div>
+            <div class="item-report-columns-width">
                 <h4>Top 5 Dexterity</h4>
                 ${renderTopStatList(funFacts.topStats.Dexterity)}
             </div>
         </div>
 
         <div class="item-report-columns">
-            <div>
+            <div class="item-report-columns-width">
                 <h4>Top 5 Vitality</h4>
                 ${renderTopStatList(funFacts.topStats.Vitality)}
             </div>
-            <div>
+            <div class="item-report-columns-width">
                 <h4>Top 5 Energy</h4>
                 ${renderTopStatList(funFacts.topStats.Energy)}
             </div>
         </div>
 
         <div class="item-report-columns">
-            <div>
+            <div class="item-report-columns-width">
                 <h4>Top 5 Life</h4>
                 ${renderTopStatList(funFacts.topStats.Life)}
                 <p>Average Life: ${funFacts.averageLife.toFixed(2)} | Median Life: ${funFacts.medianLife.toFixed(2)}</p>
             </div>
-            <div>
+            <div class="item-report-columns-width">
                 <h4>Top 5 Mana</h4>
                 ${renderTopStatList(funFacts.topStats.Mana)}
                 <p>Average Mana: ${funFacts.averageMana.toFixed(2)} | Median Mana: ${funFacts.medianMana.toFixed(2)}</p>
@@ -1504,12 +1720,12 @@ function renderFunFactsSection() {
         </div>
 
         <div class="item-report-columns">
-            <div>
+            <div class="item-report-columns-width">
                 <h4>Top 5 Magic Find</h4>
                 ${renderTopStatList(funFacts.topStats.MagicFind)}
                 <p>Average Magic Find: ${funFacts.averageMf.toFixed(2)} | Median: ${funFacts.medianMf.toFixed(2)}</p>
             </div>
-            <div>
+            <div class="item-report-columns-width">
                 <h4>Top 5 Gold Find</h4>
                 ${renderTopStatList(funFacts.topStats.GoldFind)}
                 <p>Average Gold Find: ${funFacts.averageGf.toFixed(2)} | Median: ${funFacts.medianGf.toFixed(2)}</p>
@@ -1533,9 +1749,15 @@ function sortedEntries(counterMap) {
 function renderUserList(users) {
 
     return users.map(user =>
-        `<div class="item-user-list-entry">
+        `<div class="item-user-list-entry character-info">
             <a href="https://beta.pathofdiablo.com/armory?name=${encodeURIComponent(user.name)}" target="_blank">${escapeHtml(user.name)}</a>
             (Level ${escapeHtml(String(user.level))})
+            <div class="hover-trigger" data-character-name="${encodeURIComponent(user.name)}">
+                <!-- Armory Quickview -->
+            </div>             
+            <div class="character">
+                <div class="popup hidden"></div>
+            </div>
         </div>`
     ).join("");
 
@@ -1593,8 +1815,8 @@ function renderCounterSection(heading, counterMap, { showLeast = false, showBase
         return `<h3>${escapeHtml(heading)}</h3><p>No items found.</p>`;
     }
 
-    const mostUsed = entries.slice(0, 10);
-    const leastUsed = showLeast ? entries.slice(-10).reverse() : [];
+    const mostUsed = entries.slice(0, 5);
+    const leastUsed = showLeast ? entries.slice(-5).reverse() : [];
 
     const contentHtml = `
         <div class="item-report-columns">
@@ -1634,7 +1856,7 @@ function renderCategorizedSection(heading, categoryMap) {
         if (!counterMap || counterMap.size === 0) continue;
 
         const entries = sortedEntries(counterMap);
-        const mostUsed = entries.slice(0, 10);
+        const mostUsed = entries.slice(0, 5);
 
         categoriesHtml += `
             <h4>${escapeHtml(category)}</h4>
@@ -1655,9 +1877,17 @@ function renderCategorizedSection(heading, categoryMap) {
 function renderSynthSourceUserList(users) {
 
     return users.map(user =>
-        `<div class="item-user-list-entry">
+        `<div class="item-user-list-entry character-info">
             <a href="https://beta.pathofdiablo.com/armory?name=${encodeURIComponent(user.name)}" target="_blank">${escapeHtml(user.name)}</a>
             (Level ${escapeHtml(String(user.level))}) &mdash; Used in: <strong>${escapeHtml(user.synthesizedItem)}</strong>
+
+            <div class="hover-trigger" data-character-name="${encodeURIComponent(user.name)}">
+                <!-- Armory Quickview -->
+            </div>
+            <div class="character">
+                <div class="popup hidden"></div>
+            </div>
+
         </div>`
     ).join("");
 
@@ -1809,7 +2039,7 @@ function renderCharacters() {
             character.Class ??
             character.ClassName ??
             character.CharClass ??
-            "Amazon";
+            "${chosenClass}";
 
 
         const cluster =
@@ -1951,6 +2181,13 @@ document
     .getElementById("threshold")
     .addEventListener("input", applyFilters);
 
+document
+    .getElementById("class")
+    .addEventListener("change", chooseClass);
+
+document
+    .getElementById("mode")
+    .addEventListener("change", chooseClass);
 
 document
     .getElementById("clearFilters")
@@ -1965,10 +2202,10 @@ document
 
     });
 
-
 /*
  * Start
  */
+updateClassDisplay();
 loadCharacters();
 
 </script>
