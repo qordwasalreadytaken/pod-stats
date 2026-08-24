@@ -249,6 +249,10 @@
         </div>
 
         <div class="section-heading">
+            <div id="summary"></div>
+       </div>
+
+        <div class="section-heading">
             <h2>Build clusters</h2>
             <div id="clusterInfo" class="results-info"></div>
         </div>
@@ -582,6 +586,9 @@ function updateClassDisplay() {
 
     document.body.style.backgroundImage =
         `url("../icons/${chosenClass}_background_2600.jpg"), url("../icons/stone_background_2600.jpg")`;
+
+    document.getElementById("summary").innerHTML = summaryHTML;
+
 }
 
 function chooseClass() {
@@ -856,6 +863,322 @@ function clusterBuilds() {
 
 }
 
+/*
+ * Add class intro/summary
+ * Skill tree where it makes sense, else more skill/build specific
+ */
+const skillTrees = {
+
+    amazon: {
+        "Javelin & Spear": new Set([
+            "Lightning Fury",
+            "Charged Strike",
+            "Jab",
+            "Power Strike",
+            "Plague Javelin",
+            "Poison Javelin",
+            "Fend"
+        ]),
+        "Bow & Crossbow": new Set([
+            "Multiple Shot",
+            "Immolation Arrow",
+            "Freezing Arrow",
+            "Fire Arrow",
+            "Exploding Arrow",
+            "Guided Arrow",
+            "Magic Arrow",
+            "Strafe"
+        ])
+    },
+
+    assassin: {
+        "Martial Arts": new Set([
+            "Claws of Thunder",
+            "Fists of Fire",
+            "Blades of Ice"
+        ]),
+        "Traps": new Set([
+            "Wake of Fire",
+            "Wake of Inferno",
+            "Lightning Sentry",
+            "Death Sentry",
+            "Charged Bolt Sentry",
+            "Shock Web"
+        ])
+    },
+
+    barbarian: {
+        "Warcry": new Set([
+            "War Cry"
+        ]),
+        "Throw": new Set([
+            "Ethereal Throw",
+            "Double Throw"
+        ]),
+        "Whirling Axes": new Set([
+            "Whirling Axes",
+            "Battle Cry"
+        ]),
+        "Combat": new Set([
+            "Cleave",
+            "Concentrate",
+            "Bash",
+            "Frenzy"
+        ]),
+        "Whirlwind": new Set([
+            "Whirlwind"
+        ])
+    },
+
+    sorceress: {
+        "Melee Sorc Skills": new Set([
+            "Frigerate",
+            "Enflame"
+        ]),
+        "Cold Spells": new Set([
+            "Freezing Pulse",
+            "Frozen Orb",
+            "Blizzard",
+            "Ice Bolt",
+            "Cold Mastery",
+            "Glacial Spike"
+        ]),
+        "Lightning Spells": new Set([
+            "Nova",
+            "Lightning",
+            "Chain Lightning",
+            "Lightning Mastery",
+            "Thunder Storm"
+        ]),
+        "Fire Spells": new Set([
+            "Fire Ball",
+            "Meteor",
+            "Hydra",
+            "Fire Mastery",
+            "Enflame"
+        ])
+    },
+
+    paladin: {
+        "FoH": new Set([
+            "Fist of the Heavens",
+            "Holy Bolt"
+        ]),
+        "Melee Combat": new Set([
+            "Smite",
+            "Charge",
+            "Zeal",
+            "Dashing Strike"
+        ]),
+        "Hammerdins": new Set([
+            "Blessed Hammer",
+            "Blessed Aim"
+        ])
+    },
+
+    necromancer: {
+        "Poison & Bone": new Set([
+            "Bone Spear",
+            "Bone Spirit",
+            "Poison Nova",
+            "Teeth",
+            "Corpse Explosion",
+            "Deadly Poison"
+        ]),
+        "Summoning": new Set([
+            "Raise Skeleton",
+            "Skeleton Mastery",
+            "Revive",
+            "Clay Golem",
+            "Fire Golem"
+        ]),
+        "Hemo": new Set([
+            "Hemorrhage",
+            "Amplify Damage",
+            "Decrepify",
+            "Lower Resist",
+            "Iron Maiden"
+        ])
+    },
+
+    druid: {
+        "Elemental": new Set([
+            "Hurricane",
+            "Tornado",
+            "Firestorm",
+            "Molten Boulder"
+        ]),
+        "Shape Shifting": new Set([
+            "Werewolf",
+            "Werebear",
+            "Feral Rage",
+            "Maul"
+        ]),
+        "Summoning": new Set([
+            "Raven",
+            "Summon Grizzly",
+            "Summon Dire Wolf"
+        ])
+    }
+};
+// Need to change to use data -> skilltabs -> names instead of static mapping
+// Maybe use that for amazon, sorc, assassin, necro, but use the above static for others?
+// Or just use the top 5 like test site?
+
+function summarizeFavoredSkillTrees(
+    characters,
+    treeThreshold = 60,
+    hybridThreshold = 35
+) {
+
+    const trees = skillTrees[chosenClass];
+
+    if (!trees || characters.length === 0) {
+        return null;
+    }
+
+    const favoredCounts = {};
+    const hybridCounts = {};
+
+    for (const treeName of Object.keys(trees)) {
+        favoredCounts[treeName] = 0;
+    }
+
+    /*
+     * Examine each character individually.
+     */
+    for (const character of characters) {
+
+        const treePoints = {};
+
+        for (const treeName of Object.keys(trees)) {
+            treePoints[treeName] = 0;
+        }
+
+        /*
+         * Add the character's points for each skill
+         * belonging to each tree.
+         */
+        for (const [treeName, skills] of Object.entries(trees)) {
+
+            for (const skillName of skills) {
+
+                for (const tab of character.SkillTabs ?? []) {
+
+                    for (const skill of tab.Skills ?? []) {
+
+                        if (skill.Name === skillName) {
+                            treePoints[treeName] +=
+                                Number(skill.Level) || 0;
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        /*
+         * Favored trees
+         */
+        for (const [treeName, points] of Object.entries(treePoints)) {
+
+            if (points >= treeThreshold) {
+                favoredCounts[treeName]++;
+            }
+
+        }
+
+        /*
+         * Hybrid builds
+         */
+        const highTrees =
+            Object.entries(treePoints)
+                .filter(([_, points]) =>
+                    points >= hybridThreshold
+                )
+                .map(([treeName]) => treeName);
+
+        if (highTrees.length >= 2) {
+
+            const label =
+                highTrees.length === Object.keys(trees).length
+                    ? "all trees"
+                    : highTrees.sort().join(" + ");
+
+            hybridCounts[label] =
+                (hybridCounts[label] ?? 0) + 1;
+        }
+
+    }
+
+    /*
+     * Convert counts to percentages.
+     */
+    const total = characters.length;
+
+    const favored = Object.entries(favoredCounts)
+        .filter(([_, count]) => count > 0)
+        .sort((a, b) => b[1] - a[1])
+        .map(([tree, count]) => ({
+            tree,
+            count,
+            percent: (count / total) * 100
+        }));
+
+    const hybrids = Object.entries(hybridCounts)
+        .sort((a, b) => b[1] - a[1])
+        .map(([trees, count]) => ({
+            trees,
+            count,
+            percent: (count / total) * 100
+        }));
+
+    return {
+        total,
+        favored,
+        hybrids
+    };
+}
+
+function renderSkillTreeSummary(summary) {
+
+    if (!summary) {
+        return "";
+    }
+
+    return `
+        <h3>${capitalize(chosenClass)} Skill Tree Summary</h3>
+            <table style='width:100%;'><tr><td style='vertical-align:top;'>
+            <strong>Favored Trees:</strong><br>
+            
+            ${summary.favored.map(item => `
+            <div>
+                &nbsp;&nbsp;&nbsp;&nbsp;${item.percent.toFixed(2)}%
+                favor ${escapeHtml(item.tree)}
+            </div>
+            
+        `).join("")}
+        </td><td style='vertical-align:top;'>
+        <br>
+        <td style='vertical-align:top;'>
+        <strong>Hybrid Builds:</strong><br>
+        
+        ${summary.hybrids.length > 0
+            ? summary.hybrids.map(item => `
+                <div>
+                    &nbsp;&nbsp;&nbsp;&nbsp;${item.percent.toFixed(2)}%
+                    invest in ${escapeHtml(item.trees)}
+                </div>
+            `).join("")
+            : "<div><i>No hybrid builds found</i></div>"
+        }
+        </td></tr></table>
+    `;
+}
+
 
 /*
  * Item/equipment/skill/mercenary formatting, matching
@@ -1114,7 +1437,11 @@ function renderClusters() {
     }
 
     grid.appendChild(fragment);
-
+    
+    const summary = summarizeFavoredSkillTrees(filteredCharacters);
+    console.log(summary);
+    const summaryHTML = renderSkillTreeSummary(summary);
+    document.getElementById("summary").innerHTML = summaryHTML;
 }
 
 
