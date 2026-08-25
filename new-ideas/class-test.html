@@ -133,6 +133,24 @@
     border: none;
 }
 
+.skill-label {
+  font-size: 16px;
+}
+
+.skill-bar-container {
+  margin-bottom: 0px;
+}
+
+.skill-bar {
+    margin-left: 10px;
+}    
+
+.skill-icon-smaller {
+  width: 25px !important;
+  height: 25px !important;
+  display: inline !important;
+}
+
     </style>
 </head>
 
@@ -587,7 +605,7 @@ function updateClassDisplay() {
     document.body.style.backgroundImage =
         `url("../icons/${chosenClass}_background_2600.jpg"), url("../icons/stone_background_2600.jpg")`;
 
-    document.getElementById("summary").innerHTML = summaryHTML;
+//    document.getElementById("summary").innerHTML = summaryHTML;
 
 }
 
@@ -851,8 +869,22 @@ function clusterBuilds() {
             isMisc: id === miscClusterId,
             members,
             label: topSkills
-                .map(skill => `<img src="../icons/${escapeHtml(skill.name)}.png" alt="${escapeHtml(skill.name)}" class="skill-icon-smaller"> ${escapeHtml(skill.name)}(${skill.average.toFixed(0)})`)
-                .join(", ")
+                .map(skill => `
+                    <div class="skillbar-container">
+                    <div class="skill-row">
+                    <div class="skill-bar-container">
+                    &nbsp;&nbsp;<img src="../icons/${escapeHtml(skill.name)}.png" alt="${escapeHtml(skill.name)}" class="skill-icon-smaller"> 
+                    <div class="skill-bar" >
+                    <span class="skill-label">                    
+<!--                        <img src="../icons/${escapeHtml(skill.name)}.png" alt="${escapeHtml(skill.name)}" class="skill-icon-smaller"> -->
+                        ${escapeHtml(skill.name)}(${skill.average.toFixed(0)*members.length})
+                    </span>
+                    </div>
+                    </div>
+                    </div>
+                    </div>`)
+
+                .join(" "),
         };
 
     });
@@ -1024,6 +1056,90 @@ const skillTrees = {
 // Need to change to use data -> skilltabs -> names instead of static mapping
 // Maybe use that for amazon, sorc, assassin, necro, but use the above static for others?
 // Or just use the top 5 like test site?
+
+function getTopSkills(characters, limit = 5) {
+
+    const skills = new Map();
+
+    for (const character of characters) {
+
+        for (const tab of character.SkillTabs ?? []) {
+
+            for (const skill of tab.Skills ?? []) {
+
+                const level =
+                    Number(skill.Level) || 0;
+
+                if (!skills.has(skill.Name)) {
+                    skills.set(skill.Name, {
+                        total: 0,
+                        users: 0
+                    });
+                }
+
+                const entry = skills.get(skill.Name);
+
+                entry.total += level;
+
+                if (level > 1) {
+                    entry.users++;
+                }
+            }
+        }
+    }
+
+    return Array.from(skills.entries())
+        .map(([skill, data]) => ({
+            skill,
+            average: data.total / characters.length,
+            users: data.users,
+            percent: (data.users / characters.length) * 100
+        }))
+        .sort((a, b) => b.average - a.average)
+        .slice(0, limit);
+}
+
+function getAllSkills(characters, limit = 90) {
+
+    const skills = new Map();
+
+    for (const character of characters) {
+
+        for (const tab of character.SkillTabs ?? []) {
+
+            for (const skill of tab.Skills ?? []) {
+
+                const level =
+                    Number(skill.Level) || 1;
+
+                if (!skills.has(skill.Name)) {
+                    skills.set(skill.Name, {
+                        total: 0,
+                        users: 0
+                    });
+                }
+
+                const entry = skills.get(skill.Name);
+
+                entry.total += level;
+
+                if (level > 1) {
+                    entry.users++;
+                }
+            }
+        }
+    }
+
+    return Array.from(skills.entries())
+        .map(([skill, data]) => ({
+            skill,
+            average: data.total / characters.length,
+            users: data.users,
+            percent: (data.users / characters.length) * 100
+        }))
+        .sort((a, b) => b.average - a.average)
+        .slice(0, limit);
+}
 
 function summarizeFavoredSkillTrees(
     characters,
@@ -1415,6 +1531,26 @@ function renderClusters() {
 
     for (const cluster of clusters) {
 
+    const allskills = getAllSkills(cluster.members.map(member => member.character));
+    console.log("Cluster members:", cluster.members.length);
+    console.log("All skills:", allskills);
+    console.log("All skills length:", allskills.length);
+    const allskillsHTML = allskills.map(skill => `
+                    <div class="skillbar-container">
+                    <div class="skill-row">
+                    <div class="skill-bar-container">
+                    &nbsp;&nbsp;&nbsp;&nbsp;<img src="../icons/${escapeHtml(skill.skill)}.png" alt="${escapeHtml(skill.skill)}" class="skill-icon-smaller"> 
+                    <div class='skill-mini-bar' style='width: ${(skill.average*cluster.members.length).toFixed(2) * 4}px;'></div>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="skill-label">                    
+<!--                        <img src="../icons/${escapeHtml(skill.skill)}.png" alt="${escapeHtml(skill.skill)}" class="skill-icon-smaller"> -->
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    ${escapeHtml(skill.skill)}(${(skill.average*cluster.members.length).toFixed(0)})
+                    </span>
+                    </div>
+                    </div>
+                    
+                    </div>
+    `).join("");
+
         const percentage =
             total > 0 ? (cluster.members.length / total) * 100 : 0;
 
@@ -1425,9 +1561,10 @@ function renderClusters() {
         card.innerHTML = `
             <h2>
                 <span class="cluster-size">${cluster.members.length.toLocaleString()}</span>
-                characters (${percentage.toFixed(1)}%) &mdash;
+                characters (${percentage.toFixed(1)}%) Main Skill Investment;
                 ${cluster.isMisc ? "Misc / no dominant build" : (cluster.label || "(no dominant skills)")}
             </h2>
+            ${smallCollapsible("All Skills", allskillsHTML)}
             ${smallCollapsible("Most Common Equipment", renderClusterEquipmentHtml(cluster.members))}
             ${smallCollapsible(`${cluster.members.length.toLocaleString()} characters in this cluster`, renderClusterCharactersHtml(cluster.members))}
         `;
@@ -1440,8 +1577,31 @@ function renderClusters() {
     
     const summary = summarizeFavoredSkillTrees(filteredCharacters);
     console.log(summary);
-    const summaryHTML = renderSkillTreeSummary(summary);
+//    const summaryHTML = renderSkillTreeSummary(summary);
+//    document.getElementById("summary").innerHTML = summaryHTML;
+const topSkills = getTopSkills(filteredCharacters);
+
+const summaryHTML = `
+    <h3>Top Skills</h3>
+
+    ${topSkills.map(skill => `
+        <div class="skill-summary">
+            <img
+                src="../icons/${escapeHtml(skill.skill)}.png"
+                alt="${escapeHtml(skill.skill)}"
+                class="skill-icon-smaller"
+            >
+
+            <strong>${escapeHtml(skill.skill)}</strong>
+
+            Average: ${skill.average.toFixed(1)} points
+            · Used by: ${skill.percent.toFixed(1)}% of characters
+        </div>
+    `).join("")}
+`;    
     document.getElementById("summary").innerHTML = summaryHTML;
+
+
 }
 
 
