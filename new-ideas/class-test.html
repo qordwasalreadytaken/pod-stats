@@ -151,6 +151,11 @@
   display: inline !important;
 }
 
+.skill-label {
+    color: black;
+
+}
+
     </style>
 </head>
 
@@ -283,7 +288,7 @@
         <div id="itemReportGrid"></div>
 
         <hr>
-        <h2>Character list</h2>
+<!--        <h2>Character list</h2>
         <div class="results-info">
             Showing <span id="resultCount">0</span> characters
         </div>
@@ -300,12 +305,12 @@
 
             <tbody id="characterTable">
             </tbody>
-        </table>
+        </table> 
 
         <div id="characterDetails" class="content" style="display: none;">
             <h2 id="detailsName"></h2>
             <pre id="detailsData"></pre>
-        </div>
+        </div> -->
 
     </div>
 </div>
@@ -393,6 +398,22 @@ window.onscroll = function () {
     backToTopBtn.style.display =
         (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) ? "block" : "none";
 };
+
+
+/*
+ * helper for adding link anchors to section headings in the pages (icons swap, .content toggles display).
+ * pages (icons swap, .content toggles display).
+ */
+function renderSectionHeading(heading) {
+    return `
+        <h3 id="${encodeURIComponent(heading)}">
+            ${escapeHtml(heading)}
+            <a href="#${encodeURIComponent(heading)}" class="anchor-link">
+                <img src="icons/anchor.png" alt="🔗" class="anchor-icon">
+            </a>
+        </h3>
+    `;
+}
 
 /*
  * Collapsible button/content pattern matching the site's existing
@@ -496,6 +517,8 @@ const chosenMode = validModes.includes(requestedMode)
     loadCharacters();
 
 });
+
+
 function updateURL() {
 
     const selectedClass =
@@ -877,7 +900,8 @@ function clusterBuilds() {
                     <div class="skill-bar" >
                     <span class="skill-label">                    
 <!--                        <img src="../icons/${escapeHtml(skill.name)}.png" alt="${escapeHtml(skill.name)}" class="skill-icon-smaller"> -->
-                        ${escapeHtml(skill.name)}(${skill.average.toFixed(0)*members.length})
+<!--                        ${escapeHtml(skill.name)}(${skill.average.toFixed(0)*members.length}) -->
+                        ${escapeHtml(skill.name)}(${(skill.average*members.length).toFixed(0)})
                     </span>
                     </div>
                     </div>
@@ -1492,7 +1516,10 @@ function renderClusterCharactersHtml(members) {
             <div class="character-container char2">
                 <div class="character-info">
                     <div class="character-link"><strong>Name: <a href="https://beta.pathofdiablo.com/armory?name=${encodeURIComponent(name)}" target="_blank">${escapeHtml(name)}</a></strong></div>
-                    <div><strong>Level: ${escapeHtml(String(level))}</strong></div>
+                    <div><strong>Level: ${escapeHtml(String(level))}</strong>
+                    <a href="#${encodeURIComponent(name)}" class="anchor-link">
+                        <img src="icons/anchor.png" alt="🔗" class="anchor-icon">
+                    </a></div>
                     <div class="hover-trigger" data-character-name="${encodeURIComponent(name)}">
                         <!-- Armory Quickview -->
                     </div>             
@@ -1543,7 +1570,8 @@ function renderClusters() {
                     <div class='skill-mini-bar' style='width: ${(skill.average*cluster.members.length).toFixed(2) * 4}px;'></div>
                     &nbsp;&nbsp;&nbsp;&nbsp;<span class="skill-label">                    
 <!--                        <img src="../icons/${escapeHtml(skill.skill)}.png" alt="${escapeHtml(skill.skill)}" class="skill-icon-smaller"> -->
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    ${escapeHtml(skill.skill)}(${(skill.average*cluster.members.length).toFixed(0)})
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    ${escapeHtml(skill.skill)}(${(skill.average*cluster.members.length).toFixed(0)}) 
+<!--                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    ${escapeHtml(skill.skill)}(${(skill.average.toFixed(0)*cluster.members.length)}) -->
                     </span>
                     </div>
                     </div>
@@ -1562,6 +1590,9 @@ function renderClusters() {
             <h2>
                 <span class="cluster-size">${cluster.members.length.toLocaleString()}</span>
                 characters (${percentage.toFixed(1)}%) Main Skill Investment;
+                <a href="#${encodeURIComponent(cluster.members.length)}" class="anchor-link">
+                    <img src="icons/anchor.png" alt="🔗" class="anchor-icon">
+                </a>                
                 ${cluster.isMisc ? "Misc / no dominant build" : (cluster.label || "(no dominant skills)")}
             </h2>
             ${smallCollapsible("All Skills", allskillsHTML)}
@@ -1579,9 +1610,9 @@ function renderClusters() {
     console.log(summary);
 //    const summaryHTML = renderSkillTreeSummary(summary);
 //    document.getElementById("summary").innerHTML = summaryHTML;
-const topSkills = getTopSkills(filteredCharacters);
+    const topSkills = getTopSkills(filteredCharacters);
 
-const summaryHTML = `
+    const summaryHTML = `
     <h3>Top Skills</h3>
 
     ${topSkills.map(skill => `
@@ -1928,7 +1959,7 @@ function renderSocketReportingSection() {
     `;
 
     return `
-        <h3 id="socketable-reporting">Socketable Reporting</h3>
+        ${renderSectionHeading("Socketable Reporting")}
         <p>What are people putting in sockets</p>
         ${bigCollapsible("Special", "sets-button", contentHtml)}
     `;
@@ -2040,7 +2071,7 @@ function renderMercenaryReportingSection() {
     `;
 
     return `
-        <h3 id="merc-equipment">Mercenary Reporting</h3>
+        ${renderSectionHeading("Mercenary Reporting")}
         <p>Mercenary counts and most used equipment</p>
         ${bigCollapsible("Merc", "", contentHtml)}
     `;
@@ -2221,7 +2252,7 @@ function renderFunFactsSection() {
     `;
 
     return `
-        <h3 id="fun-facts">Softcore Fun Facts</h3>
+        ${renderSectionHeading("Fun Facts")}
         ${bigCollapsible("Special", "sets-button", contentHtml)}
     `;
 
@@ -2267,7 +2298,8 @@ function renderBaseGroups(users) {
         Array.from(baseGroups.entries()).sort((a, b) => b[1].length - a[1].length);
 
     return sorted.map(([base, baseUsers]) =>
-        smallCollapsible(`${escapeHtml(base)} (${baseUsers.length.toLocaleString()} users)`, `<div class="item-user-list">${renderUserList(baseUsers)}</div>`)
+//        `<div class="item-user-list">${renderUserList(baseUsers)}</div>`
+        smallCollapsible(`${escapeHtml(base)} (${baseUsers.length.toLocaleString()} users)`, `<div class="item-user-list">${renderUserList(baseUsers)}</div>`) 
     ).join("");
 
 }
@@ -2280,6 +2312,14 @@ function renderItemDetails(entries, { showBases = false } = {}) {
             `${escapeHtml(title)} (${data.count.toLocaleString()} users)`,
             `<div class="item-user-list">${showBases ? renderBaseGroups(data.users) : renderUserList(data.users)}</div>`
         )
+    ).join("");
+
+}
+
+function renderNonameItemDetails(entries, { showBases = false } = {}) {
+
+    return entries.map(([title, data]) =>
+            `<div class="item-user-list">${showBases ? renderBaseGroups(data.users) : renderUserList(data.users)}</div>`
     ).join("");
 
 }
@@ -2322,7 +2362,7 @@ function renderCounterSection(heading, counterMap, { showLeast = false, showBase
     `;
 
     return `
-        <h3>${escapeHtml(heading)}</h3>
+        ${renderSectionHeading(heading)}
         ${bigCollapsible(iconName, buttonClass, contentHtml)}
     `;
 
@@ -2346,15 +2386,15 @@ function renderCategorizedSection(heading, categoryMap) {
         const mostUsed = entries.slice(0, 5);
 
         categoriesHtml += `
-            <h4>${escapeHtml(category)}</h4>
-            <ul>${mostUsed.map(([title, data]) => `<li>${escapeHtml(title)}: ${data.count}</li>`).join("")}</ul>
-            ${smallCollapsible(`ALL ${entries.length.toLocaleString()} ${escapeHtml(category)} items`, renderItemDetails(entries))}
+<!--            <h4>${escapeHtml(category)}</h4>
+            <ul>${mostUsed.map(([title, data]) => `<li>${escapeHtml(title)}: ${data.count}</li>`).join("")}</ul> -->
+            ${smallCollapsible(` ${entries.length.toLocaleString()} ${escapeHtml(category)}`, renderNonameItemDetails(entries))}
         `;
 
     }
 
     return `
-        <h3>${escapeHtml(heading)}</h3>
+        ${renderSectionHeading(heading)}
         ${bigCollapsible("Special", "sets-button", categoriesHtml)}
     `;
 
@@ -2395,9 +2435,9 @@ function renderSynthSourcesSection(synthSources) {
     ).join("");
 
     return `
-        <h3 id="synth-from">Synthesized From</h3>
+        ${renderSectionHeading("Synthesized From")}
         <p>Shows where an item's properties are showing up in other items &mdash; e.g. where the slow from Kelpie or the ball lightning from Ondal's Wisdom ended up.</p>
-        ${bigCollapsible("Special", "sets-button", smallCollapsible(`All ${entries.length.toLocaleString()} sources`, itemsHtml))}
+        ${bigCollapsible("Special", "sets-button", itemsHtml)}
     `;
 
 }
@@ -2488,11 +2528,11 @@ function renderCharacters() {
     const tbody =
         document.getElementById("characterTable");
 
-    const resultCount =
-        document.getElementById("resultCount");
+//    const resultCount =
+//        document.getElementById("resultCount");
 
-    resultCount.textContent =
-        filteredCharacters.length.toLocaleString();
+//    resultCount.textContent =
+//        filteredCharacters.length.toLocaleString();
 
 
     /*
@@ -2504,7 +2544,7 @@ function renderCharacters() {
         filteredCharacters.slice(0, 500);
 
 
-    tbody.innerHTML = "";
+//    tbody.innerHTML = "";
 
 
     const fragment =
@@ -2571,7 +2611,7 @@ function renderCharacters() {
     }
 
 
-    tbody.appendChild(fragment);
+//    tbody.appendChild(fragment);
 
     console.timeEnd("Render");
 
@@ -2694,6 +2734,74 @@ document
  */
 updateClassDisplay();
 loadCharacters();
+
+//Anchor in place fix
+// Expand collapsibles and scroll to anchor
+function scrollWithOffset(el, offset = -50) {
+    const y = el.getBoundingClientRect().top + window.pageYOffset + offset;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+}
+
+function expandToAnchor(anchorId) {
+    console.log("expandToAnchor called with:", anchorId);
+    const target = document.getElementById(anchorId);
+    if (!target) return;
+
+    // Step 1: Collect all parent .content elements that need expanding
+    const stack = [];
+    let el = target;
+    while (el) {
+        if (el.classList?.contains('content')) {
+            stack.unshift(el); // add to beginning to expand outermost first
+        }
+        el = el.parentElement;
+    }
+
+    // Step 2: Expand each .content section in order
+    for (const content of stack) {
+        const button = content.previousElementSibling;
+        if (button?.classList.contains('collapsible')) {
+            button.classList.add('active');
+            content.style.display = "block";
+
+            const openIcon = button.querySelector("img.open-icon");
+            const closeIcon = button.querySelector("img.close-icon");
+            if (openIcon) openIcon.classList.add("hidden");
+            if (closeIcon) closeIcon.classList.remove("hidden");
+        }
+    }
+
+    // Step 3: Delay scroll until DOM has reflowed
+    setTimeout(() => {
+        console.log("scrolling to:", target.id);
+        scrollWithOffset(target);
+    }, 250); // Adjust if necessary
+}
+
+// Handle clicks on .anchor-link elements
+document.addEventListener('DOMContentLoaded', () => {
+    // Handle clicks on .anchor-link elements
+    document.querySelectorAll('.anchor-link, a[href^="#"]').forEach(link => {
+        link.addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent default anchor behavior
+            const anchorId = this.getAttribute('href').substring(1);
+            const fullUrl = `${window.location.origin}${window.location.pathname}#${anchorId}`;
+
+            navigator.clipboard.writeText(fullUrl); // Copy full link to clipboard
+            history.pushState(null, '', `#${anchorId}`); // Update URL without page reload
+            expandToAnchor(anchorId); // Expand and scroll
+        });
+    });
+
+    // On initial load with hash
+    if (window.location.hash) {
+        const anchorId = window.location.hash.substring(1);
+        // Wait a bit for collapsibles/content to render
+        setTimeout(() => {
+            expandToAnchor(anchorId);
+        }, 200);
+    }
+});
 
 </script>
 
