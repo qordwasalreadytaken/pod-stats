@@ -6,7 +6,7 @@
     <title>PoD Items & Equipment Analysis</title>
     <link rel="shortcut icon" type="image/x-icon" href="icons/pod.ico">
     <link rel="stylesheet" type="text/css" href="../css/test-css.css">
-    <script src="./data/full-sets.js"></script>
+    <script src="./jsons/full-sets.js"></script>
     <style>
 
         .controls {
@@ -356,7 +356,7 @@ async function loadCharacters() {
     try {
 
         const response =
-            await fetch(`./data/${filename}`);
+            await fetch(`./jsons/${filename}`);
 
         if (!response.ok) {
             throw new Error(
@@ -1481,7 +1481,7 @@ Overall usage and incomplete loadouts
 async function loadItemsData() {
 
     const response =
-        await fetch("./data/items_list.json");
+        await fetch("./jsons/items_list.json");
 
     if (!response.ok) {
         throw new Error(

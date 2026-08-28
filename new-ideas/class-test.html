@@ -550,8 +550,8 @@ async function loadCharacters() {
         const fetchStart = performance.now();
 
         const response =
-//            await fetch(`./data/${chosenClass}.json`);
-            await fetch(`./data/${chosenMode}${chosenClass}.json`)
+//            await fetch(`./jsons/${chosenClass}.json`);
+            await fetch(`./jsons/${chosenMode}${chosenClass}.json`)
 
         const fetchEnd = performance.now();
 
