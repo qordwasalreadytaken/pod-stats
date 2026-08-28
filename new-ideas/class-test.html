@@ -719,10 +719,20 @@ function applyFilters() {
     console.timeEnd("Filter");
 
     sortCharacters();
-    renderCharacters();
+//    renderCharacters();
     clusterBuilds();
     renderClusters();
     renderItemReporting();
+    // Handle URL anchor after everything exists
+    if (window.location.hash) {
+        const anchorId = decodeURIComponent(
+            window.location.hash.substring(1)
+        );
+
+        setTimeout(() => {
+            expandToAnchor(anchorId);
+        }, 50);
+    }    
 }
 
 /*
@@ -1511,15 +1521,27 @@ function renderClusterCharactersHtml(members) {
         const character = member.character;
         const name = character.Name || "Unknown";
         const level = character.Stats?.Level ?? "Unknown";
+        const anchorId = `character-${encodeURIComponent(name)}`;
 
-        return `
-            <div class="character-container char2">
-                <div class="character-info">
-                    <div class="character-link"><strong>Name: <a href="https://beta.pathofdiablo.com/armory?name=${encodeURIComponent(name)}" target="_blank">${escapeHtml(name)}</a></strong></div>
-                    <div><strong>Level: ${escapeHtml(String(level))}</strong>
-                    <a href="#${encodeURIComponent(name)}" class="anchor-link">
+    return `
+        <div class="character-container char2" id="${anchorId}">
+            <div class="character-info">
+                <div class="character-link">
+                    <strong>
+                        Name:
+                        <a href="https://beta.pathofdiablo.com/armory?name=${encodeURIComponent(name)}" target="_blank">
+                            ${escapeHtml(name)}
+                        </a>
+                    </strong>
+                </div>
+
+                <div>
+                    <strong>Level: ${escapeHtml(String(level))}</strong>
+
+                    <a href="#${anchorId}" class="anchor-link">
                         <img src="icons/anchor.png" alt="🔗" class="anchor-icon">
-                    </a></div>
+                </a>
+            </div>
                     <div class="hover-trigger" data-character-name="${encodeURIComponent(name)}">
                         <!-- Armory Quickview -->
                     </div>             
@@ -1583,17 +1605,20 @@ function renderClusters() {
             total > 0 ? (cluster.members.length / total) * 100 : 0;
 
         const card = document.createElement("div");
+        const clusterAnchorId = `cluster-${cluster.id}`;
 
         card.className = "class-intro";
 
         card.innerHTML = `
-            <h2>
-                <span class="cluster-size">${cluster.members.length.toLocaleString()}</span>
+            <h2 id="${clusterAnchorId}">
+                &nbsp;<span class="cluster-size">${cluster.members.length.toLocaleString()}</span>
                 characters (${percentage.toFixed(1)}%) Main Skill Investment;
-                <a href="#${encodeURIComponent(cluster.members.length)}" class="anchor-link">
+                <a href="#${clusterAnchorId}" class="anchor-link">
                     <img src="icons/anchor.png" alt="🔗" class="anchor-icon">
-                </a>                
-                ${cluster.isMisc ? "Misc / no dominant build" : (cluster.label || "(no dominant skills)")}
+                </a>
+                ${cluster.isMisc
+                    ? "Misc / no dominant build"
+                    : (cluster.label || "(no dominant skills)")}
             </h2>
             ${smallCollapsible("All Skills", allskillsHTML)}
             ${smallCollapsible("Most Common Equipment", renderClusterEquipmentHtml(cluster.members))}
@@ -1631,7 +1656,16 @@ function renderClusters() {
     `).join("")}
 `;    
     document.getElementById("summary").innerHTML = summaryHTML;
+    // Handle URL anchor after everything exists
+    if (window.location.hash) {
+        const anchorId = decodeURIComponent(
+            window.location.hash.substring(1)
+        );
 
+        setTimeout(() => {
+            expandToAnchor(anchorId);
+        }, 50);
+    }
 
 }
 
@@ -2011,8 +2045,20 @@ function computeMercenaryAnalysis(charactersToAnalyze) {
             }
 
             const titleCounts = wornCategories.get(readableWorn);
-            titleCounts.set(title, (titleCounts.get(title) || 0) + 1);
+            const itemKey = JSON.stringify({
+                title: item.Title || "Unknown",
+                qualityCode: item.QualityCode || "default",
+                tag: item.Tag || ""
+            });
 
+            if (!titleCounts.has(itemKey)) {
+                titleCounts.set(itemKey, {
+                    item,
+                    count: 0
+                });
+            }
+
+            titleCounts.get(itemKey).count++;
         }
 
     }
@@ -2027,57 +2073,135 @@ function renderMercenaryReportingSection() {
     const analysis = computeMercenaryAnalysis(filteredCharacters);
 
     if (analysis.mercenaryCounts.size === 0) {
-        return `<h3 id="merc-equipment">Mercenary Reporting</h3><p>No mercenary data found.</p>`;
+        return `
+            <h3 id="merc-equipment">
+                Mercenary Reporting
+            </h3>
+            <p>No mercenary data found.</p>
+        `;
     }
 
+    /*
+     * Mercenary type counts
+     */
     const typeCountsHtml =
         sortMapDesc(analysis.mercenaryCounts)
-            .map(([type, count]) => `<li>${escapeHtml(type)}: ${count}</li>`)
+            .map(([type, count]) =>
+                `<li>${escapeHtml(type)}: ${count}</li>`
+            )
             .join("");
 
+
+    /*
+     * Most common mercenary names
+     */
     const nameCountsHtml =
         sortMapDesc(analysis.mercenaryNames)
             .slice(0, 10)
-            .map(([name, count]) => `<li>${escapeHtml(name)}: ${count}</li>`)
+            .map(([name, count]) =>
+                `<li>${escapeHtml(name)}: ${count}</li>`
+            )
             .join("");
 
+
+    /*
+     * Equipment by mercenary type and slot
+     */
     const equipmentHtml =
         Array.from(analysis.mercenaryEquipment.entries())
             .map(([mercType, wornCategories]) => {
 
                 const columnsHtml =
                     Array.from(wornCategories.entries())
-                        .map(([worn, titleCounts]) => `
-                            <div style="width: 20%;">
-                                <h4>Most Common ${escapeHtml(worn)}s</h4>
-                                <ul>${sortMapDesc(titleCounts).slice(0, 10).map(([title, count]) => `<li>${escapeHtml(title)}: ${count}</li>`).join("")}</ul>
-                            </div>
-                        `).join("");
+                        .map(([worn, titleCounts]) => {
+
+                            /*
+                             * titleCounts now contains:
+                             *
+                             * itemKey -> {
+                             *     item: {...},
+                             *     count: number
+                             * }
+                             */
+                            const itemsHtml =
+                                Array.from(titleCounts.values())
+                                    .sort((a, b) =>
+                                        b.count - a.count
+                                    )
+                                    .slice(0, 10)
+                                    .map(({ item, count }) => `
+                                        <li>
+                                            ${coloredItemTitle(item)}:
+                                            ${count}
+                                        </li>
+                                    `)
+                                    .join("");
+
+                            return `
+                                <div style="width: 20%;">
+                                    <h4>
+                                        Most Common ${escapeHtml(worn)}s
+                                    </h4>
+
+                                    <ul>
+                                        ${itemsHtml}
+                                    </ul>
+                                </div>
+                            `;
+
+                        })
+                        .join("");
 
                 return `
                     <h4>${escapeHtml(mercType)}</h4>
-                    <div class="item-report-columns">${columnsHtml}</div>
+
+                    <div class="item-report-columns">
+                        ${columnsHtml}
+                    </div>
                 `;
 
-            }).join("");
+            })
+            .join("");
 
+
+    /*
+     * Full collapsible content
+     */
     const contentHtml = `
         <h4>Mercenary Type Counts</h4>
-        <ul>${typeCountsHtml}</ul>
+
+        <ul>
+            ${typeCountsHtml}
+        </ul>
+
+
         <h4>Most Common Mercenary Names</h4>
-        <ul>${nameCountsHtml}</ul>
+
+        <ul>
+            ${nameCountsHtml}
+        </ul>
+
+
         <h4>Popular Equipment by Mercenary Type</h4>
+
         ${equipmentHtml}
     `;
 
+
+    /*
+     * Main section
+     */
     return `
         ${renderSectionHeading("Mercenary Reporting")}
-        <p>Mercenary counts and most used equipment</p>
+
+        <p>
+            Mercenary counts and most used equipment
+        </p>
+
         ${bigCollapsible("Merc", "", contentHtml)}
     `;
 
 }
-
 
 /*
  * Fun facts: alive count and top-5 stat leaderboards, matching
@@ -2797,9 +2921,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (window.location.hash) {
         const anchorId = window.location.hash.substring(1);
         // Wait a bit for collapsibles/content to render
-        setTimeout(() => {
-            expandToAnchor(anchorId);
-        }, 200);
+    setTimeout(() => {
+        console.log("Looking for anchor:", anchorId);
+        console.log("Found:", document.getElementById(anchorId));
+        expandToAnchor(anchorId);
+    }, 3000);
     }
 });
 

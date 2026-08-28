@@ -1,0 +1,2534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PoD Items & Equipment Analysis</title>
+    <link rel="shortcut icon" type="image/x-icon" href="icons/pod.ico">
+    <link rel="stylesheet" type="text/css" href="../css/test-css.css">
+    <script src="./data/full-sets.js"></script>
+    <style>
+
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: flex-end;
+        }
+
+        .control {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .control label {
+            font-size: 0.85em;
+            color: #d5f2e3;
+        }
+
+        .control input,
+        .control select,
+        .control button {
+            padding: 7px;
+            font-size: 1em;
+            border: 1px solid #555;
+            border-radius: 4px;
+            background: #232323;
+            color: #eee;
+        }
+
+        .control button {
+            cursor: pointer;
+        }
+
+        .control button:hover {
+            background: #333;
+        }
+    </style>
+</head>
+<body class="special-background">
+    <div class="is-clipped">
+        <div id="navbar-placeholder"></div>
+        <script>
+        fetch("templates/navbar.html")
+            .then(res => res.text())
+            .then(html => {
+            document.getElementById("navbar-placeholder").innerHTML = html;
+            });
+        </script>
+
+        <div class="hamburger" onclick="toggleMenu()">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        
+        <div class="top-buttons">
+            <a href="Home" class="top-button home-button" onclick="setActive('Home')"></a>
+            <a href="#" id="SC_HC" class="top-button"> </a>
+            <a href="Amazon" id="Amazon" class="top-button amazon-button"></a>
+            <a href="Assassin" id="Assassin" class="top-button assassin-button"></a>
+            <a href="Barbarian" id="Barbarian" class="top-button barbarian-button"></a>
+            <a href="Druid" id="Druid" class="top-button druid-button"></a>
+            <a href="Necromancer" id="Necromancer" class="top-button necromancer-button"></a>
+            <a href="Paladin" id="Paladin" class="top-button paladin-button"></a>
+            <a href="Sorceress" id="Sorceress" class="top-button sorceress-button"></a>
+            <a href="https://github.com/qordwasalreadytaken/pod-stats/blob/main/README.md" class="top-button about-button" target="_blank"></a>
+        </div>
+
+        <div class="banner" style="top:50px; left:10%; width:80%;">
+            ⚠️ This is a test site for PoD's Trends site. Please direct any feedback to Qord. ⚠️
+        </div>
+
+        <div class="main page-intro">
+
+<div class="summary-container">
+
+<div class="status">
+    <div id="status">Loading ${chosenClass}.json...</div>
+</div>
+
+<div class="controls">
+
+<!--    <div class="control">
+        <label for="search">Character name</label>
+        <input
+            type="text"
+            id="search"
+            placeholder="Search..."
+        >
+    </div> -->
+
+    <div class="control">
+        <label for="minLevel">Minimum level</label>
+        <input
+            type="number"
+            id="minLevel"
+            min="1"
+            max="99"
+            placeholder="Any"
+        >
+    </div>
+
+    <div class="control">
+        <label for="maxLevel">Maximum level</label>
+        <input
+            type="number"
+            id="maxLevel"
+            min="1"
+            max="99"
+            placeholder="Any"
+        >
+    </div>
+
+    <div class="control">
+        <label for="mode">Mode</label>
+        <select id="mode">
+            <option value="sc">SC</option>
+            <option value="hc">HC</option>
+        </select>
+    </div>
+
+    <div class="control">
+        <label>&nbsp;</label>
+        <button id="clearFilters">Clear filters</button>
+    </div>
+
+</div>
+
+            <h1>PoD ITEMS & EQUIPMENT ANALYSIS</h1>
+            <h2>Comprehensive analysis of item usage patterns from ladder characters</h2>
+            
+
+        <div id="itemReportGrid"></div>
+
+            
+            <hr>
+
+</div>
+<button onclick="topFunction()" id="backToTopBtn" class="back-to-top" title="Go to top"></button>
+
+<script>
+
+// Armory pop up
+document.addEventListener("DOMContentLoaded", function () {
+    let activePopup = null;
+
+    document.addEventListener("click", function (event) {
+
+        const trigger = event.target.closest(".hover-trigger");
+
+        if (!trigger) {
+            return;
+        }
+
+        console.log("Trigger clicked");
+
+        event.stopPropagation();
+
+        const characterName = trigger.getAttribute("data-character-name");
+
+        // Find the associated popup
+        const popup = trigger
+            .closest(".character-info")
+            .querySelector(".popup");
+
+        // If this popup is already active, close it
+        if (popup === activePopup) {
+            popup.classList.remove("active");
+            popup.innerHTML = "";
+            activePopup = null;
+            return;
+        }
+
+        // Close any other open popup
+        if (activePopup) {
+            activePopup.classList.remove("active");
+            activePopup.innerHTML = "";
+            activePopup = null;
+        }
+
+        // Create iframe
+        const iframe = document.createElement("iframe");
+
+        iframe.src = `../armory/video_component.html?charName=${characterName}`;
+        iframe.setAttribute("id", "popupFrame");
+
+        popup.appendChild(iframe);
+        popup.classList.add("active");
+
+        activePopup = popup;
+    });
+
+    // Close popup when clicking outside
+    document.addEventListener("click", function (event) {
+
+        if (
+            activePopup &&
+            !event.target.closest(".character-info")
+        ) {
+            activePopup.classList.remove("active");
+            activePopup.innerHTML = "";
+            activePopup = null;
+        }
+    });
+});
+
+function toggleMenu() {
+    document.querySelector(".top-buttons").classList.toggle("show");
+}
+
+function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
+
+window.onscroll = function () {
+    const backToTopBtn = document.getElementById("backToTopBtn");
+    backToTopBtn.style.display =
+        (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) ? "block" : "none";
+};
+
+
+/*
+ * helper for adding link anchors to section headings in the pages (icons swap, .content toggles display).
+ * pages (icons swap, .content toggles display).
+ */
+function renderSectionHeading(heading) {
+    return `
+        <h3 id="${encodeURIComponent(heading)}">
+            ${escapeHtml(heading)}
+            <a href="#${encodeURIComponent(heading)}" class="anchor-link">
+                <img src="icons/anchor.png" alt="🔗" class="anchor-icon">
+            </a>
+        </h3>
+    `;
+}
+
+/*
+ * Collapsible button/content pattern matching the site's existing
+ * pages (icons swap, .content toggles display).
+ */
+function toggleCollapsible(button) {
+
+    const content = button.nextElementSibling;
+    if (!content) return;
+
+    const collapsedIcon = button.querySelector(".icon-collapsed");
+    const expandedIcon = button.querySelector(".icon-expanded");
+    const isCollapsed = content.style.display === "none" || content.style.display === "";
+
+    content.style.display = isCollapsed ? "block" : "none";
+
+    if (collapsedIcon && expandedIcon) {
+        collapsedIcon.classList.toggle("hidden", isCollapsed);
+        expandedIcon.classList.toggle("hidden", !isCollapsed);
+    }
+
+}
+
+
+function bigCollapsible(iconBaseName, extraClass, contentHtml) {
+
+    return `
+        <button type="button" class="collapsible ${extraClass}" onclick="toggleCollapsible(this)">
+            <img src="../icons/${iconBaseName}_click.png" alt="Open" class="icon icon-expanded hidden">
+            <img src="../icons/${iconBaseName}.png" alt="Close" class="icon icon-collapsed">
+        </button>
+        <div class="content" style="display: none;">${contentHtml}</div>
+    `;
+
+}
+
+
+function smallCollapsible(labelHtml, contentHtml) {
+
+    return `
+        <button type="button" class="collapsible small-collapsible" onclick="toggleCollapsible(this)">
+            <img src="../icons/open.png" alt="Open" class="icon-small icon-expanded hidden">
+            <img src="../icons/closed.png" alt="Close" class="icon-small icon-collapsed">
+            <strong>${labelHtml}</strong>
+        </button>
+        <div class="content" style="display: none;">${contentHtml}</div>
+    `;
+
+}
+
+
+//const CLASS_NAME = "${chosenClass}";
+
+let characters = [];
+let filteredCharacters = [];
+let skillColumns = [];
+let clusters = [];
+let itemsData = null;
+
+/*
+ * URL handling
+ */
+const params = new URLSearchParams(window.location.search);
+
+const validModes = [
+    "sc",
+    "hc"
+];
+
+const requestedMode = params.get("m");
+const requestedClass = params.get("c");
+
+const chosenMode = validModes.includes(requestedMode)
+    ? requestedMode
+    : "sc";
+
+    document.addEventListener("DOMContentLoaded", () => {
+
+    document.getElementById("mode").value = chosenMode;
+
+    document.getElementById("mode")
+        .addEventListener("change", updateURL);
+
+    loadCharacters();
+
+});
+
+
+function updateURL() {
+
+    const selectedMode =
+        document.getElementById("mode").value;
+
+    const url = new URL(window.location);
+
+    url.searchParams.set("m", selectedMode);
+
+    window.location.href = url;
+}
+/*
+ * Load the data
+ */
+async function loadCharacters() {
+
+    const status = document.getElementById("status");
+
+    const filename = `${chosenMode}_ladder.json`;
+
+    try {
+
+        const response =
+            await fetch(`./data/${filename}`);
+
+        if (!response.ok) {
+            throw new Error(
+                `HTTP ${response.status}: ${response.statusText}`
+            );
+        }
+
+        characters = await response.json();
+
+        status.innerHTML =
+            `Loaded <strong>${characters.length.toLocaleString()}</strong> characters.`;
+
+        applyFilters();
+
+    } catch (error) {
+
+        console.error(error);
+
+        status.innerHTML =
+            `<span class="error">
+                Error loading data: ${error.message}
+            </span>`;
+    }
+
+}
+/*
+ * Choose class
+ */
+function capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+/*
+ * Apply the current filters
+ */
+function applyFilters() {
+
+    console.time("Filter");
+
+    const minLevelValue =
+        document.getElementById("minLevel").value;
+
+    const maxLevelValue =
+        document.getElementById("maxLevel").value;
+
+    const minLevel =
+        minLevelValue === ""
+            ? null
+            : Number(minLevelValue);
+
+    const maxLevel =
+        maxLevelValue === ""
+            ? null
+            : Number(maxLevelValue);
+
+    filteredCharacters = characters.filter(character => {
+
+        const level =
+            Number(
+                character.Stats.Level ??
+                0
+            );
+
+        if (
+            minLevel !== null &&
+            level < minLevel
+        ) {
+            return false;
+        }
+
+        if (
+            maxLevel !== null &&
+            level > maxLevel
+        ) {
+            return false;
+        }
+
+        return true;
+
+    });
+
+    console.timeEnd("Filter");
+
+//    sortCharacters();
+//    renderCharacters();
+//    clusterBuilds();
+    renderItemReporting();
+    // Handle URL anchor after everything exists
+    if (window.location.hash) {
+        const anchorId = decodeURIComponent(
+            window.location.hash.substring(1)
+        );
+
+        setTimeout(() => {
+            expandToAnchor(anchorId);
+        }, 50);
+    }    
+}
+
+/*
+ * Item/equipment/skill/mercenary formatting, matching
+ * ClassPagesAnalyzer._load_skill_data / map_readable_names in class_pages.py
+ */
+
+const WORN_CATEGORY_MAP = {
+    ring1: "Ring", ring2: "Ring",
+    sweapon1: "Left hand Swap", weapon1: "Left hand",
+    sweapon2: "Right hand Swap", weapon2: "Right Hand",
+    body: "Armor", gloves: "Gloves", belt: "Belt",
+    helmet: "Helmet", boots: "Boots", amulet: "Amulet"
+};
+
+const QUALITY_COLORS = {
+    q_runeword: "#edcd74", q_unique: "#edcd74", q_set: "#45a823",
+    q_magic: "#7074c9", q_rare: "yellow", q_crafted: "orange",
+    q_normal: "white", q_superior: "white"
+};
+
+
+function coloredItemTitle(item) {
+
+    const qualityCode = item.QualityCode || "default";
+    const color = QUALITY_COLORS[qualityCode] || "white";
+
+    if (["q_magic", "q_rare", "q_crafted"].includes(qualityCode)) {
+        const tag = item.Tag || "";
+        const label = qualityCode.split("_")[1];
+        const capitalized = label.charAt(0).toUpperCase() + label.slice(1);
+        return `<span style="color: ${color};">${capitalized}${tag ? " " + escapeHtml(tag) : ""}</span>`;
+    }
+
+    return `<span style="color: ${color};">${escapeHtml(item.Title || "Unknown")}</span>`;
+
+}
+
+
+/*
+ * Map of slot -> Map(itemHtml -> count) for one character's Equipped list
+ */
+function buildEquipmentBySlot(character) {
+
+    const bySlot = new Map();
+
+    for (const item of character.Equipped || []) {
+
+        const worn = item.Worn || "Unknown";
+        const slot = WORN_CATEGORY_MAP[worn] || worn;
+        const html = coloredItemTitle(item);
+
+        if (!bySlot.has(slot)) {
+            bySlot.set(slot, new Map());
+        }
+
+        const counts = bySlot.get(slot);
+        counts.set(html, (counts.get(html) || 0) + 1);
+
+    }
+
+    return bySlot;
+
+}
+
+
+function buildEquipmentHtml(character) {
+
+    const bySlot = buildEquipmentBySlot(character);
+    const parts = [];
+
+    for (const [slot, counts] of bySlot) {
+        for (const [html, count] of counts) {
+            parts.push(`${slot}: ${html}${count > 1 ? ` x${count}` : ""}`);
+        }
+    }
+
+    return parts.join(", ") || "No equipment data";
+
+}
+
+
+
+/*
+ * Aggregate equipment across every member of a cluster, matching
+ * class_pages.py's _generate_cluster_equipment_html output shape.
+ */
+function buildClusterEquipmentSummary(members) {
+
+    const bySlot = new Map();
+
+    for (const member of members) {
+
+        const memberSlots = buildEquipmentBySlot(member.character);
+
+        for (const [slot, counts] of memberSlots) {
+
+            if (!bySlot.has(slot)) {
+                bySlot.set(slot, new Map());
+            }
+
+            const clusterCounts = bySlot.get(slot);
+
+            for (const [html, count] of counts) {
+                clusterCounts.set(html, (clusterCounts.get(html) || 0) + count);
+            }
+
+        }
+
+    }
+
+    return bySlot;
+
+}
+
+
+function renderClusterEquipmentHtml(members) {
+
+    const bySlot = buildClusterEquipmentSummary(members);
+    const total = members.length;
+
+    let html = "";
+
+    for (const [slot, counts] of bySlot) {
+
+        const sorted =
+            Array.from(counts.entries())
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 5);
+
+        html += `<strong>${escapeHtml(slot)}</strong>: <br>`;
+
+        for (const [itemHtml, count] of sorted) {
+            const percentage = total > 0 ? (count / total) * 100 : 0;
+            html += `&nbsp;&nbsp;&nbsp;&nbsp;${itemHtml} ${percentage.toFixed(2)}% (${count})<br>`;
+        }
+
+    }
+
+    return html || "No equipment data";
+
+}
+
+
+
+/*
+ * Global item reporting: runewords, uniques, sets, synth, crafted,
+ * magic, and rare items, matching class_pages.py's
+ * _analyze_equipment_patterns / _process_all_characters* methods.
+ */
+
+const CRAFT_CATEGORIES = [
+    "Rings", "Weapons and Shields", "Arrows and Bolts",
+    "Body Armor", "Gloves", "Belts", "Helmets", "Boots", "Amulets"
+];
+
+
+function categorizeWornSlot(worn, textTag) {
+
+    if (worn === "ring1" || worn === "ring2") {
+        return "Rings";
+    }
+
+    if (["sweapon1", "weapon1", "sweapon2", "weapon2"].includes(worn)) {
+        if (textTag === "Arrow") return "Arrows";
+        if (textTag === "Bolt") return "Bolts";
+        return "Arrows and Bolts";
+    }
+
+    const slotMap = {
+        body: "Body Armor", gloves: "Gloves", belt: "Belts",
+        helmet: "Helmets", boots: "Boots", amulet: "Amulets"
+    };
+
+    return slotMap[worn] || "Weapons and Shields";
+
+}
+
+
+function addUser(counterMap, key, character, base) {
+
+    if (!counterMap.has(key)) {
+        counterMap.set(key, { count: 0, users: [] });
+    }
+
+    const entry = counterMap.get(key);
+    entry.count++;
+    entry.users.push({
+        name: character.Name || "Unknown",
+        level: character.Stats?.Level ?? "Unknown",
+        base: base || null
+    });
+
+}
+
+
+function addCategorizedUser(categoryMap, category, key, character) {
+
+    if (!categoryMap.has(category)) {
+        categoryMap.set(category, new Map());
+    }
+
+    addUser(categoryMap.get(category), key, character);
+
+}
+
+
+function computeEquipmentAnalysis(charactersToAnalyze) {
+
+    const runewords = new Map();
+    const uniques = new Map();
+    const sets = new Map();
+    const synth = new Map();
+    const synthSources = new Map();
+    const crafted = new Map();
+    const magic = new Map();
+    const rare = new Map();
+
+    for (const character of charactersToAnalyze) {
+        for (const item of character.Equipped || []) {
+
+            const title = item.Title || "Unknown Item";
+            const qualityCode = item.QualityCode || "default";
+            const worn = item.Worn || "Unknown";
+            const textTag = item.TextTag || "";
+            const tag = item.Tag || "";
+            const category = categorizeWornSlot(worn, textTag);
+
+            if (qualityCode === "q_runeword") {
+                addUser(runewords, title, character, item.Tag || "Unknown base");
+            } else if (qualityCode === "q_unique") {
+                addUser(uniques, title, character);
+            } else if (qualityCode === "q_set") {
+                addUser(sets, title, character);
+            }
+
+            if (tag.toLowerCase().includes("synth") || textTag.toLowerCase().includes("synth")) {
+                addUser(synth, title, character);
+
+                const synthesizedFrom = item.SynthesisedFrom || [];
+                const allRelatedItems = [title, ...synthesizedFrom];
+
+                for (const sourceItem of allRelatedItems) {
+                    if (!synthSources.has(sourceItem)) {
+                        synthSources.set(sourceItem, []);
+                    }
+                    synthSources.get(sourceItem).push({
+                        name: character.Name || "Unknown",
+                        level: character.Stats?.Level ?? "Unknown",
+                        synthesizedItem: title
+                    });
+                }
+            } else if (qualityCode === "q_crafted") {
+                addCategorizedUser(crafted, category, title, character);
+            } else if (qualityCode === "q_magic") {
+                addCategorizedUser(magic, category, title, character);
+            } else if (qualityCode === "q_rare") {
+                addCategorizedUser(rare, category, title, character);
+            }
+
+        }
+    }
+
+    return { runewords, uniques, sets, synth, synthSources, crafted, magic, rare };
+
+}
+
+
+/*
+ * Socket reporting: what people put into sockets, matching
+ * class_pages.py's _socket_html / count_items_by_type.
+ */
+
+const RUNE_NAMES = new Set([
+    "El Rune", "Eld Rune", "Tir Rune", "Nef Rune", "Eth Rune", "Ith Rune", "Tal Rune", "Ral Rune", "Ort Rune", "Thul Rune", "Amn Rune", "Sol Rune",
+    "Shael Rune", "Dol Rune", "Hel Rune", "Io Rune", "Lum Rune", "Ko Rune", "Fal Rune", "Lem Rune", "Pul Rune", "Um Rune", "Mal Rune", "Ist Rune",
+    "Gul Rune", "Vex Rune", "Ohm Rune", "Lo Rune", "Sur Rune", "Ber Rune", "Jah Rune", "Cham Rune", "Zod Rune"
+]);
+
+
+function countSocketablesByType(items) {
+
+    const runeCounter = new Map();
+    const nonRuneCounter = new Map();
+    const magicJewel = { "Misc. Magic Jewels": 0, splash: 0, "attack speed": 0, "enhanced damage": 0, iassplash: 0, iased: 0 };
+    const rareJewel = { "Misc. Rare Jewels": 0, splash: 0, "enhanced damage": 0 };
+    const facetCounter = new Map();
+
+    for (const item of items) {
+
+        const title = item.Title || "Unknown";
+        const quality = item.QualityCode || "";
+        const properties = item.PropertyList || [];
+
+        if (RUNE_NAMES.has(title)) {
+
+            runeCounter.set(title, (runeCounter.get(title) || 0) + 1);
+
+        } else if (title.includes("Rainbow Facet")) {
+
+            const elementTypes = ["fire", "cold", "lightning", "poison", "physical", "magic"];
+            let element = "Unknown";
+
+            outer:
+            for (const elem of elementTypes) {
+                for (const prop of properties) {
+                    if (String(prop).toLowerCase().includes(elem)) {
+                        element = elem.charAt(0).toUpperCase() + elem.slice(1);
+                        break outer;
+                    }
+                }
+            }
+
+            if (!facetCounter.has(element)) {
+                facetCounter.set(element, { count: 0, perfect: 0 });
+            }
+
+            const facet = facetCounter.get(element);
+            facet.count++;
+
+            const propText = properties.join(" ");
+            if (propText.includes("+5%") && propText.includes("-5%")) {
+                facet.perfect++;
+            }
+
+        } else if (quality === "q_magic") {
+
+            magicJewel["Misc. Magic Jewels"]++;
+
+            for (const prop of properties) {
+                const propText = String(prop).toLowerCase();
+                if (propText.includes("splash")) {
+                    magicJewel.splash++;
+                } else if (propText.includes("attack speed") || propText.includes("ias")) {
+                    magicJewel["attack speed"]++;
+                } else if (propText.includes("enhanced damage")) {
+                    magicJewel["enhanced damage"]++;
+                }
+            }
+
+            const hasIas = properties.some(prop => {
+                const p = String(prop).toLowerCase();
+                return p.includes("attack speed") || p.includes("ias");
+            });
+            const hasSplash = properties.some(prop => String(prop).toLowerCase().includes("splash"));
+            const hasEd = properties.some(prop => String(prop).toLowerCase().includes("enhanced damage"));
+
+            if (hasIas && hasSplash) magicJewel.iassplash++;
+            if (hasIas && hasEd) magicJewel.iased++;
+
+        } else if (quality === "q_rare") {
+
+            rareJewel["Misc. Rare Jewels"]++;
+
+            for (const prop of properties) {
+                const propText = String(prop).toLowerCase();
+                if (propText.includes("splash")) {
+                    rareJewel.splash++;
+                } else if (propText.includes("enhanced damage")) {
+                    rareJewel["enhanced damage"]++;
+                }
+            }
+
+        } else {
+
+            nonRuneCounter.set(title, (nonRuneCounter.get(title) || 0) + 1);
+
+        }
+
+    }
+
+    return { runeCounter, nonRuneCounter, magicJewel, rareJewel, facetCounter };
+
+}
+
+
+function computeSocketAnalysis(charactersToAnalyze) {
+
+    const justSocketed = [];
+    const justSocketedExcludingRunewords = [];
+
+    for (const character of charactersToAnalyze) {
+        for (const item of character.Equipped || []) {
+
+            const socketables = item.Sockets || [];
+            if (socketables.length === 0) continue;
+
+            const isRuneword = item.QualityCode === "q_runeword";
+
+            for (const socketed of socketables) {
+                justSocketed.push(socketed);
+                if (!isRuneword) {
+                    justSocketedExcludingRunewords.push(socketed);
+                }
+            }
+
+        }
+    }
+
+    return {
+        all: countSocketablesByType(justSocketed),
+        excluding: countSocketablesByType(justSocketedExcludingRunewords)
+    };
+
+}
+
+
+function sortMapDesc(map) {
+    return Array.from(map.entries()).sort((a, b) => b[1] - a[1]);
+}
+
+
+function renderRuneList(runeCounter) {
+
+    const sorted = sortMapDesc(runeCounter);
+
+    if (sorted.length === 0) {
+        return "<p>No runes found.</p>";
+    }
+
+    return `<ul>${sorted.map(([name, count]) => `<li>${escapeHtml(name)}: ${count}</li>`).join("")}</ul>`;
+
+}
+
+
+function renderOtherSocketedItems(result) {
+
+    const parts = [];
+
+    for (const [title, count] of sortMapDesc(result.nonRuneCounter)) {
+        parts.push(`${escapeHtml(title)}: ${count}`);
+    }
+
+    const magicJewel = result.magicJewel;
+    parts.push(`Misc. Magic Jewels: ${magicJewel["Misc. Magic Jewels"]} (${magicJewel.splash} Splash, ${magicJewel["attack speed"]} IAS, ${magicJewel["enhanced damage"]} ED; ${magicJewel.iassplash} IAS/Splash, ${magicJewel.iased} IAS/ED)`);
+
+    const rareJewel = result.rareJewel;
+    parts.push(`Misc. Rare Jewels: ${rareJewel["Misc. Rare Jewels"]} (${rareJewel.splash} Splash, ${rareJewel["enhanced damage"]} ED)`);
+
+    for (const [element, counts] of result.facetCounter) {
+        parts.push(`Rainbow Facet (${escapeHtml(element)}): ${counts.count} (${counts.perfect} Perfect)`);
+    }
+
+    return `<ul>${parts.map(part => `<li>${part}</li>`).join("")}</ul>`;
+
+}
+
+
+function renderSocketReportingSection() {
+
+    const analysis = computeSocketAnalysis(filteredCharacters);
+
+    const contentHtml = `
+        <div class="item-report-columns">
+            <div>
+                <h4>Most Common Runes (Including Runewords)</h4>
+                ${renderRuneList(analysis.all.runeCounter)}
+            </div>
+            <div>
+                <h4>Most Common Runes (Excluding Runewords)</h4>
+                ${renderRuneList(analysis.excluding.runeCounter)}
+            </div>
+        </div>
+        <h4>Other Items Found in Sockets</h4>
+        ${renderOtherSocketedItems(analysis.excluding)}
+    `;
+
+    return `
+        ${renderSectionHeading("Socketable Reporting")}
+        <p>What are people putting in sockets</p>
+        ${bigCollapsible("Special", "sets-button", contentHtml)}
+    `;
+
+}
+
+
+function sortedEntries(counterMap) {
+    return Array.from(counterMap.entries()).sort((a, b) => b[1].count - a[1].count);
+}
+
+
+function renderUserList(users) {
+
+    return users.map(user =>
+        `<div class="item-user-list-entry character-info">
+            <a href="https://beta.pathofdiablo.com/armory?name=${encodeURIComponent(user.name)}" target="_blank">${escapeHtml(user.name)}</a>
+            (Level ${escapeHtml(String(user.level))})
+            <div class="hover-trigger" data-character-name="${encodeURIComponent(user.name)}">
+                <!-- Armory Quickview -->
+            </div>             
+            <div class="character">
+                <div class="popup hidden"></div>
+            </div>
+        </div>`
+    ).join("");
+
+}
+
+
+function renderBaseGroups(users) {
+
+    const baseGroups = new Map();
+
+    for (const user of users) {
+        const base = user.base || "Unknown base";
+        if (!baseGroups.has(base)) {
+            baseGroups.set(base, []);
+        }
+        baseGroups.get(base).push(user);
+    }
+
+    const sorted =
+        Array.from(baseGroups.entries()).sort((a, b) => b[1].length - a[1].length);
+
+    return sorted.map(([base, baseUsers]) =>
+//        `<div class="item-user-list">${renderUserList(baseUsers)}</div>`
+        smallCollapsible(`${escapeHtml(base)} (${baseUsers.length.toLocaleString()} users)`, `<div class="item-user-list">${renderUserList(baseUsers)}</div>`) 
+    ).join("");
+
+}
+
+
+function renderItemDetails(entries, { showBases = false } = {}) {
+
+    return entries.map(([title, data]) =>
+        smallCollapsible(
+            `${escapeHtml(title)} (${data.count.toLocaleString()} users)`,
+            `<div class="item-user-list">${showBases ? renderBaseGroups(data.users) : renderUserList(data.users)}</div>`
+        )
+    ).join("");
+
+}
+
+function renderNonameItemDetails(entries, { showBases = false } = {}) {
+
+    return entries.map(([title, data]) =>
+            `<div class="item-user-list">${showBases ? renderBaseGroups(data.users) : renderUserList(data.users)}</div>`
+    ).join("");
+
+}
+
+
+const COUNTER_SECTION_ICONS = {
+    "Runewords": ["Runewords", "runewords-button"],
+    "Uniques": ["Uniques", "uniques-button"],
+    "Set Items": ["Sets", "sets-button"],
+    "Synthesized Items": ["Special", "sets-button"]
+};
+
+
+function renderCounterSection(heading, counterMap, { showLeast = false, showBases = false } = {}) {
+
+    const [iconName, buttonClass] = COUNTER_SECTION_ICONS[heading] || ["Special", "sets-button"];
+    const entries = sortedEntries(counterMap);
+
+    if (entries.length === 0) {
+        return `<h3>${escapeHtml(heading)}</h3><p>No items found.</p>`;
+    }
+
+    const mostUsed = entries.slice(0, 5);
+    const leastUsed = showLeast ? entries.slice(-5).reverse() : [];
+
+    const contentHtml = `
+        <div class="item-report-columns">
+            <div>
+                <h4>Most Used</h4>
+                <ul>${mostUsed.map(([title, data]) => `<li>${escapeHtml(title)}: ${data.count}</li>`).join("")}</ul>
+            </div>
+            ${showLeast ? `
+            <div>
+                <h4>Least Used</h4>
+                <ul>${leastUsed.map(([title, data]) => `<li>${escapeHtml(title)}: ${data.count}</li>`).join("")}</ul>
+            </div>
+            ` : ""}
+        </div>
+        ${smallCollapsible(`ALL ${escapeHtml(heading)}`, renderItemDetails(entries, { showBases }))}
+    `;
+
+    return `
+        ${renderSectionHeading(heading)}
+        ${bigCollapsible(iconName, buttonClass, contentHtml)}
+    `;
+
+}
+
+
+function renderCategorizedSection(heading, categoryMap) {
+
+    if (categoryMap.size === 0) {
+        return `<h3>${escapeHtml(heading)}</h3><p>No items found.</p>`;
+    }
+
+    let categoriesHtml = "";
+
+    for (const category of CRAFT_CATEGORIES) {
+
+        const counterMap = categoryMap.get(category);
+        if (!counterMap || counterMap.size === 0) continue;
+
+        const entries = sortedEntries(counterMap);
+        const mostUsed = entries.slice(0, 5);
+
+        categoriesHtml += `
+<!--            <h4>${escapeHtml(category)}</h4>
+            <ul>${mostUsed.map(([title, data]) => `<li>${escapeHtml(title)}: ${data.count}</li>`).join("")}</ul> -->
+            ${smallCollapsible(` ${entries.length.toLocaleString()} ${escapeHtml(category)}`, renderNonameItemDetails(entries))}
+        `;
+
+    }
+
+    return `
+        ${renderSectionHeading(heading)}
+        ${bigCollapsible("Special", "sets-button", categoriesHtml)}
+    `;
+
+}
+
+
+function renderSynthSourceUserList(users) {
+
+    return users.map(user =>
+        `<div class="item-user-list-entry character-info">
+            <a href="https://beta.pathofdiablo.com/armory?name=${encodeURIComponent(user.name)}" target="_blank">${escapeHtml(user.name)}</a>
+            (Level ${escapeHtml(String(user.level))}) &mdash; Used in: <strong>${escapeHtml(user.synthesizedItem)}</strong>
+
+            <div class="hover-trigger" data-character-name="${encodeURIComponent(user.name)}">
+                <!-- Armory Quickview -->
+            </div>
+            <div class="character">
+                <div class="popup hidden"></div>
+            </div>
+
+        </div>`
+    ).join("");
+
+}
+
+
+function renderSynthSourcesSection(synthSources) {
+
+    if (synthSources.size === 0) {
+        return `<h3>Synthesized From</h3><p>No synthesized items found.</p>`;
+    }
+
+    const entries =
+        Array.from(synthSources.entries()).sort((a, b) => b[1].length - a[1].length);
+
+    const itemsHtml = entries.map(([source, users]) =>
+        smallCollapsible(`${escapeHtml(source)} (Found in ${users.length.toLocaleString()} Items)`, `<div class="item-user-list">${renderSynthSourceUserList(users)}</div>`)
+    ).join("");
+
+    return `
+        ${renderSectionHeading("Synthesized From")}
+        <p>Shows where an item's properties are showing up in other items &mdash; e.g. where the slow from Kelpie or the ball lightning from Ondal's Wisdom ended up.</p>
+        ${bigCollapsible("Special", "sets-button", itemsHtml)}
+    `;
+
+}
+
+
+/*
+ * Full set handling
+ */
+
+const fullSetItemToCode = new Map();
+const fullSetCodeMeta = new Map();
+
+function loadFullSetMetadata() {
+
+    const codeToItems = new Map();
+
+    for (const item of highLevelSets) {
+
+        const itemName = item.name;
+        const setCode = item.set;
+
+        if (!itemName || !setCode) {
+            continue;
+        }
+
+        fullSetItemToCode.set(
+            itemName,
+            setCode
+        );
+
+        if (!codeToItems.has(setCode)) {
+            codeToItems.set(
+                setCode,
+                []
+            );
+        }
+
+        codeToItems.get(setCode).push(itemName);
+
+    }
+
+
+    for (const [setCode, items] of codeToItems) {
+
+        fullSetCodeMeta.set(setCode, {
+
+            totalPieces:
+                new Set(items).size,
+
+            /*
+             * For now, use the set code.
+             * We can improve the display name
+             * separately.
+             */
+            displayName:
+                inferSetDisplayName(setCode, items)
+
+        });
+
+    }
+
+}
+
+function inferSetDisplayName(
+    setCode,
+    firstItemName
+) {
+
+    if (firstItemName.includes("'")) {
+
+        const parts =
+            firstItemName.split(" ");
+
+        const collected = [];
+
+        for (const part of parts) {
+
+            collected.push(part);
+
+            if (part.includes("'")) {
+                break;
+            }
+
+        }
+
+        if (collected.length > 0) {
+            return collected.join(" ");
+        }
+
+    }
+
+    return setCode;
+
+}
+
+
+function findFullSetWearers(charactersToAnalyze) {
+
+    const fullSets =
+        new Map();
+
+
+    for (const character of charactersToAnalyze) {
+
+        /*
+         * Track which pieces of each set
+         * this character is wearing.
+         */
+        const wornSetPieces =
+            new Map();
+
+
+        for (
+            const item of
+            character.Equipped ?? []
+        ) {
+
+            const title =
+                item.Title;
+
+            if (!title) {
+                continue;
+            }
+
+
+            const setCode =
+                fullSetItemToCode.get(title);
+
+            if (!setCode) {
+                continue;
+            }
+
+
+            if (!wornSetPieces.has(setCode)) {
+
+                wornSetPieces.set(
+                    setCode,
+                    new Set()
+                );
+
+            }
+
+
+            wornSetPieces
+                .get(setCode)
+                .add(title);
+
+        }
+
+
+        /*
+         * Check whether every piece
+         * of any set is equipped.
+         */
+        for (
+            const [
+                setCode,
+                wornPieces
+            ]
+            of wornSetPieces
+        ) {
+
+            const metadata =
+                fullSetCodeMeta.get(setCode);
+
+            if (!metadata) {
+                continue;
+            }
+
+
+            if (
+                wornPieces.size >=
+                metadata.totalPieces
+            ) {
+
+                if (!fullSets.has(setCode)) {
+
+                    fullSets.set(
+                        setCode,
+                        {
+                            displayName:
+                                metadata.displayName,
+
+                            characters: []
+                        }
+                    );
+
+                }
+
+
+                fullSets
+                    .get(setCode)
+                    .characters
+                    .push({
+                        name:
+                            character.Name ??
+                            "Unknown",
+
+                        level:
+                            character.Stats?.Level ??
+                            "Unknown",
+
+                        class:
+                            character.Class ??
+                            "Unknown"
+                    });
+
+            }
+
+        }
+
+    }
+
+
+    return fullSets;
+
+}
+
+function renderFullSetsSection(fullSets) {
+
+    if (!fullSets || fullSets.size === 0) {
+        return "";
+    }
+
+
+    const sortedSets =
+        Array.from(fullSets.entries())
+            .sort(
+                ([, a], [, b]) => {
+
+                    const countDifference =
+                        b.characters.length -
+                        a.characters.length;
+
+                    if (
+                        countDifference !== 0
+                    ) {
+                        return countDifference;
+                    }
+
+                    return (
+                        a.displayName.localeCompare(
+                            b.displayName
+                        )
+                    );
+
+                }
+            );
+
+
+    const fullSetsHtml =
+        sortedSets
+            .map(([setCode, setData]) => {
+
+                const anchorId =
+                    `fullset-${setCode.toLowerCase()}`;
+
+
+                const charactersHtml =
+                    setData.characters
+                        .map(character => `
+
+                            <div class="character-info">
+
+                                <div class="character-link">
+
+                                    <a
+                                        href="https://beta.pathofdiablo.com/armory?name=${encodeURIComponent(character.name)}"
+                                        target="_blank"
+                                    >
+                                        ${escapeHtml(character.name)}
+                                    </a>
+
+                                </div>
+
+
+                                <div>
+
+                                    Level
+                                    ${escapeHtml(
+                                        String(character.level)
+                                    )}
+
+                                    ${escapeHtml(
+                                        character.class
+                                    )}
+
+                                </div>
+
+
+                                <div
+                                    class="hover-trigger"
+                                    data-character-name="${encodeURIComponent(character.name)}"
+                                >
+                                </div>
+
+                            </div>
+
+
+                            <div class="character">
+
+                                <div
+                                    class="popup hidden"
+                                >
+                                </div>
+
+                            </div>
+
+                        `)
+                        .join("");
+
+
+                return `
+
+                    <div id="${anchorId}">
+
+                        ${smallCollapsible(
+                            `
+                                <a
+                                    href="#${anchorId}"
+                                    class="anchor-link"
+                                >
+                                    ${escapeHtml(
+                                        setData.displayName
+                                    )}:
+                                    ${setData.characters.length}
+                                    characters
+                                </a>
+                            `,
+
+                            charactersHtml ||
+                            "<p>No character data available.</p>"
+                        )}
+
+                    </div>
+
+                `;
+
+            })
+            .join("");
+
+
+    return `
+
+        ${smallCollapsible(
+
+            "Characters Wearing Full Sets",
+
+            `
+                <div id="fullsets">
+
+                    ${fullSetsHtml}
+
+                </div>
+            `
+
+        )}
+
+    `;
+
+}
+/*
+End of full set analysis
+*/
+
+
+/*
+Overall usage and incomplete loadouts
+*/
+async function loadItemsData() {
+
+    const response =
+        await fetch("./data/items_list.json");
+
+    if (!response.ok) {
+        throw new Error(
+            `Unable to load item data: ${response.status}`
+        );
+    }
+
+    itemsData = await response.json();
+
+}
+
+function analyzeWeaponLoadouts(charactersToAnalyze) {
+
+    const bowBases = new Set([
+        ...(itemsData.zon_bows ?? []),
+        ...(itemsData.bow_bows ?? [])
+    ].map(base => base.toLowerCase()));
+
+    const xbowBases = new Set(
+        (itemsData.cross_bows ?? [])
+            .map(base => base.toLowerCase())
+    );
+
+    const oneOrTwoHand = new Set(
+        (itemsData.one_or_two_hand ?? [])
+            .map(base => base.toLowerCase())
+    );
+
+    const twoHandedBases = new Set(
+        (itemsData.two_handed_bases ?? [])
+            .map(base => base.toLowerCase())
+    );
+
+
+    const loadoutCounts = new Map();
+
+    let totalLoadouts = 0;
+
+    let emptyLoadoutCount = 0;
+    let partiallyEmptySetCount = 0;
+
+
+    function increment(category) {
+
+        loadoutCounts.set(
+            category,
+            (loadoutCounts.get(category) ?? 0) + 1
+        );
+
+    }
+
+
+    function isWeapon(item) {
+
+        return item &&
+            "DamageMinimum" in item &&
+            "DamageMaximum" in item;
+
+    }
+
+
+    function isShield(item) {
+
+        return item &&
+            "Block" in item &&
+            "Defense" in item;
+
+    }
+
+
+    function classifyLoadout(w1, w2) {
+
+        if (!w1 && !w2) {
+            return null;
+        }
+
+
+        const tag1 =
+            w1?.Tag?.toLowerCase() ?? "";
+
+        const tag2 =
+            w2?.Tag?.toLowerCase() ?? "";
+
+        const tags = [tag1, tag2];
+
+
+        /*
+         * Bow + Arrows
+         */
+
+        const hasBow =
+            bowBases.has(tag1) ||
+            bowBases.has(tag2);
+
+        const hasArrows =
+            tags.some(tag =>
+                tag.includes("arrow")
+            );
+
+
+        if (hasBow && hasArrows) {
+            return "Bow + Arrows";
+        }
+
+        if (hasBow) {
+            return "Bow Only (Missing Arrows)";
+        }
+
+        if (hasArrows) {
+            return "Arrows Only (Missing Bow)";
+        }
+
+
+        /*
+         * Crossbow + Bolts
+         */
+
+        const hasCrossbow =
+            xbowBases.has(tag1) ||
+            xbowBases.has(tag2);
+
+        const hasBolts =
+            tags.some(tag =>
+                tag.includes("bolt")
+            );
+
+
+        if (hasCrossbow && hasBolts) {
+            return "Crossbow + Bolts";
+        }
+
+        if (hasCrossbow) {
+            return "Crossbow Only (Missing Bolts)";
+        }
+
+        if (hasBolts) {
+            return "Bolts Only (Missing Crossbow)";
+        }
+
+
+        /*
+         * Two-handed melee weapon
+         */
+
+        if (w1 && !w2 && isWeapon(w1)) {
+
+            if (
+                oneOrTwoHand.has(tag1) ||
+                twoHandedBases.has(tag1)
+            ) {
+                return "A Single Two-Handed Weapon";
+            }
+
+        }
+
+
+        if (w2 && !w1 && isWeapon(w2)) {
+
+            if (
+                oneOrTwoHand.has(tag2) ||
+                twoHandedBases.has(tag2)
+            ) {
+                return "A Single Two-Handed Weapon";
+            }
+
+        }
+
+
+        /*
+         * Weapon + Shield
+         */
+
+        if (
+            (isWeapon(w1) && isShield(w2)) ||
+            (isShield(w1) && isWeapon(w2))
+        ) {
+            return "Weapon + Shield";
+        }
+
+
+        /*
+         * Dual wield
+         */
+
+        if (
+            isWeapon(w1) &&
+            isWeapon(w2)
+        ) {
+            return "Dual Wield";
+        }
+
+
+        /*
+         * Single one-handed weapon
+         */
+
+        if (
+            w1 &&
+            !w2 &&
+            isWeapon(w1)
+        ) {
+
+            if (
+                !oneOrTwoHand.has(tag1) &&
+                !twoHandedBases.has(tag1)
+            ) {
+                return "Single One-Handed Weapon (Missing Shield or Second Weapon)";
+            }
+
+        }
+
+
+        if (
+            w2 &&
+            !w1 &&
+            isWeapon(w2)
+        ) {
+
+            if (
+                !oneOrTwoHand.has(tag2) &&
+                !twoHandedBases.has(tag2)
+            ) {
+                return "Single One-Handed Weapon (Missing Shield or Second Weapon)";
+            }
+
+        }
+
+
+        /*
+         * Shield only
+         */
+
+        if (
+            (isShield(w1) && !w2) ||
+            (isShield(w2) && !w1)
+        ) {
+            return "Shield Only (Missing Weapon)";
+        }
+
+
+        return "Other";
+
+    }
+
+
+    /*
+     * Analyze every character
+     */
+
+    for (const character of charactersToAnalyze) {
+
+        const equipped = {};
+
+
+        for (const item of character.Equipped ?? []) {
+
+            if (
+                item &&
+                item.Worn
+            ) {
+                equipped[item.Worn] = item;
+            }
+
+        }
+
+
+        const hasSet1 =
+            equipped.weapon1 ||
+            equipped.weapon2;
+
+        const hasSet2 =
+            equipped.sweapon1 ||
+            equipped.sweapon2;
+
+
+        /*
+         * Count completely missing loadouts.
+         */
+
+        if (!hasSet1 && !hasSet2) {
+
+            emptyLoadoutCount++;
+
+        } else if (!hasSet1 || !hasSet2) {
+
+            partiallyEmptySetCount++;
+
+        }
+
+
+        let setsCategorized = 0;
+
+
+        const weaponSets = [
+            ["weapon1", "weapon2"],
+            ["sweapon1", "sweapon2"]
+        ];
+
+
+        for (const [slot1, slot2] of weaponSets) {
+
+            const w1 =
+                equipped[slot1];
+
+            const w2 =
+                equipped[slot2];
+
+
+            const category =
+                classifyLoadout(w1, w2);
+
+
+            if (category) {
+
+                increment(category);
+
+                totalLoadouts++;
+
+                setsCategorized++;
+
+            }
+
+        }
+
+
+        /*
+         * This mirrors your Python logic.
+         */
+
+        if (setsCategorized === 0) {
+
+            emptyLoadoutCount++;
+
+        }
+
+    }
+
+
+    return {
+
+        loadoutCounts,
+
+        totalLoadouts,
+
+        emptyLoadoutCount,
+
+        partiallyEmptySetCount
+
+    };
+
+}
+
+function renderLoadoutIntroSection(loadoutData) {
+
+    const completeCategories = new Set([
+        "Weapon + Shield",
+        "Dual Wield",
+        "Bow + Arrows",
+        "Crossbow + Bolts",
+        "A Single Two-Handed Weapon"
+    ]);
+
+    const total =
+        loadoutData.totalLoadouts || 1;
+
+    const entries =
+        Array.from(loadoutData.loadoutCounts.entries())
+            .filter(([category]) =>
+                completeCategories.has(category)
+            )
+            .sort((a, b) => b[1] - a[1]);
+
+
+    if (entries.length === 0) {
+        return `
+            ${renderSectionHeading("Overall Weapon Usage")}
+            <p>No weapon loadout data found.</p>
+            <hr>
+        `;
+    }
+
+
+    const listHtml =
+        entries.map(([category, count]) => {
+
+            const percentage =
+                (count / total) * 100;
+
+            return `
+                <li>
+                    <strong>${escapeHtml(category)}:</strong>
+                    ${count.toLocaleString()}
+                    (${percentage.toFixed(1)}%)
+                </li>
+            `;
+
+        }).join("");
+
+
+    return `
+        ${renderSectionHeading("Overall Weapon Usage")}
+        <p>Weapon sets equipped by analyzed characters:</p>
+
+        <ul>
+            ${listHtml}
+        </ul>
+    `;
+
+}
+
+function renderIncompleteLoadoutsSection(loadoutData) {
+
+    const incompleteCategories = new Set([
+        "Single One-Handed Weapon (Missing Shield or Second Weapon)",
+        "Shield Only (Missing Weapon)",
+        "Bow Only (Missing Arrows)",
+        "Arrows Only (Missing Bow)",
+        "Crossbow Only (Missing Bolts)",
+        "Bolts Only (Missing Crossbow)"
+    ]);
+
+
+    const total =
+        loadoutData.totalLoadouts || 1;
+
+
+    const entries =
+        Array.from(loadoutData.loadoutCounts.entries())
+            .filter(([category]) =>
+                incompleteCategories.has(category)
+            )
+            .sort((a, b) => b[1] - a[1]);
+
+
+    const listHtml =
+        entries.map(([category, count]) => {
+
+            const percentage =
+                (count / total) * 100;
+
+            return `
+                <li>
+                    <strong>${escapeHtml(category)}:</strong>
+                    ${count.toLocaleString()}
+                    (${percentage.toFixed(1)}%)
+                </li>
+            `;
+
+        }).join("");
+
+
+    const contentHtml = `
+        <p>
+            These weapon loadouts are incomplete and missing items:
+        </p>
+
+        <ul>
+            ${listHtml}
+        </ul>
+
+        <p>
+            <strong>Characters with no weapons in either weapon set:</strong>
+            ${loadoutData.emptyLoadoutCount.toLocaleString()}
+        </p>
+
+        <p>
+            <strong>Characters with no weapons on one weapon set:</strong>
+            ${loadoutData.partiallyEmptySetCount.toLocaleString()}
+        </p>
+    `;
+
+
+    return `
+        ${renderSectionHeading("Incomplete Character Loadouts")}
+
+        ${smallCollapsible(
+            "Incomplete Loadouts",
+            contentHtml
+        )}
+    `;
+
+}
+/*
+End of Overall usage and incomplete loadouts
+*/
+
+
+/*
+Start unused items
+*/
+function analyzeUnusedItems(charactersToAnalyze) {
+
+    /*
+     * All items actually used by characters.
+     */
+    const playerUsedItems = new Set();
+
+    /*
+     * All items used by mercenaries.
+     */
+    const mercUsedItems = new Set();
+
+    /*
+     * Maps item name -> characters whose mercenary uses it.
+     */
+    const mercUsers = new Map();
+
+
+    function normalizeItemName(name) {
+
+        return String(name ?? "")
+            .trim()
+            .toLowerCase();
+
+    }
+
+
+    /*
+     * Check player equipment.
+     */
+    for (const character of charactersToAnalyze) {
+
+        for (const item of character.Equipped ?? []) {
+
+            const name =
+                normalizeItemName(item.Title);
+
+            if (name) {
+                playerUsedItems.add(name);
+            }
+
+        }
+
+    }
+
+
+    /*
+     * Check mercenary equipment.
+     */
+    for (const character of charactersToAnalyze) {
+
+        for (const item of character.MercenaryEquipped ?? []) {
+
+            const name =
+                normalizeItemName(item.Title);
+
+            if (!name) {
+                continue;
+            }
+
+
+            mercUsedItems.add(name);
+
+
+            if (!mercUsers.has(name)) {
+                mercUsers.set(name, []);
+            }
+
+
+            mercUsers.get(name).push({
+
+                Name:
+                    character.Name ??
+                    "Unknown",
+
+                Level:
+                    character.Stats?.Level ??
+                    "Unknown",
+
+                Class:
+                    character.Class ??
+                    "Unknown"
+
+            });
+
+        }
+
+    }
+
+
+    const allRunewords =
+        new Set(
+            (itemsData.all_the_runewords ?? [])
+                .map(normalizeItemName)
+        );
+
+    const allUniques =
+        new Set(
+            (itemsData.all_the_uniques ?? [])
+                .map(normalizeItemName)
+        );
+
+    const allSetItems =
+        new Set(
+            (itemsData.all_the_sets ?? [])
+                .map(normalizeItemName)
+        );
+
+
+    /*
+     * An item is "unused" if no player is using it.
+     *
+     * We intentionally do NOT subtract mercUsedItems here,
+     * because we still want to display items that are
+     * "only used on mercenaries".
+     */
+
+    function findUnused(allItems) {
+
+        return new Set(
+            [...allItems]
+                .filter(item =>
+                    !playerUsedItems.has(item)
+                )
+        );
+
+    }
+
+
+    return {
+
+        unusedRunewords:
+            findUnused(allRunewords),
+
+        unusedUniques:
+            findUnused(allUniques),
+
+        unusedSetItems:
+            findUnused(allSetItems),
+
+        mercUsedItems,
+
+        mercUsers
+
+    };
+
+}
+
+function renderUnusedItemsList(
+    items,
+    mercUsedItems,
+    mercUsers
+) {
+
+    if (!items || items.size === 0) {
+
+        return `
+            <p>No unused items found.</p>
+        `;
+
+    }
+
+
+    const sortedItems =
+        Array.from(items)
+            .sort((a, b) =>
+                a.localeCompare(b)
+            );
+
+
+    return `
+
+        <ul>
+
+            ${sortedItems.map(item => {
+
+                const normalizedItem =
+                    item.trim().toLowerCase();
+
+
+                const isMercOnly =
+                    mercUsedItems.has(normalizedItem);
+
+
+                const mercList =
+                    mercUsers.get(normalizedItem) ?? [];
+
+
+                /*
+                 * We only have normalized lowercase names
+                 * here, so this recreates the old Python
+                 * .title() behavior approximately.
+                 */
+
+                const displayItem =
+                    item
+                        .split(" ")
+                        .map(word =>
+                            word.charAt(0).toUpperCase() +
+                            word.slice(1)
+                        )
+                        .join(" ");
+
+
+                const mercCharactersHtml =
+                    mercList.map(character => `
+
+                        <div class="character-info">
+
+                            <div class="character-link">
+
+                                <a
+                                    href="https://beta.pathofdiablo.com/armory?name=${encodeURIComponent(character.Name)}"
+                                    target="_blank"
+                                >
+                                    ${escapeHtml(character.Name)}
+                                </a>
+
+                            </div>
+
+                            <div>
+
+                                Level
+                                ${escapeHtml(String(character.Level))}
+                                ${escapeHtml(character.Class)}
+
+                            </div>
+
+                            <div
+                                class="hover-trigger"
+                                data-character-name="${encodeURIComponent(character.Name)}"
+                            >
+                            </div>
+
+                        </div>
+
+                        <div class="character">
+
+                            <div class="popup hidden"></div>
+
+                        </div>
+
+                    `).join("");
+
+
+                const mercHtmlSection =
+                    mercList.length > 0
+
+                        ? smallCollapsible(
+                            `Characters whose mercs use ${escapeHtml(displayItem)}`,
+                            mercCharactersHtml
+                        )
+
+                        : "";
+
+
+                return `
+
+                    <li>
+
+                        <strong>
+                            ${escapeHtml(displayItem)}
+                        </strong>
+
+                        ${
+                            isMercOnly
+                                ? `
+                                    <span style="color: gray;">
+                                        (only used on mercenaries)
+                                    </span>
+                                `
+                                : ""
+                        }
+
+                        ${mercHtmlSection}
+
+                    </li>
+
+                `;
+
+            }).join("")}
+
+        </ul>
+
+    `;
+
+}
+function renderUnusedItemsSection(unusedItemsData) {
+
+    const unusedRunewordsHtml =
+        renderUnusedItemsList(
+            unusedItemsData.unusedRunewords,
+            unusedItemsData.mercUsedItems,
+            unusedItemsData.mercUsers
+        );
+
+
+    const unusedUniquesHtml =
+        renderUnusedItemsList(
+            unusedItemsData.unusedUniques,
+            unusedItemsData.mercUsedItems,
+            unusedItemsData.mercUsers
+        );
+
+
+    const unusedSetItemsHtml =
+        renderUnusedItemsList(
+            unusedItemsData.unusedSetItems,
+            unusedItemsData.mercUsedItems,
+            unusedItemsData.mercUsers
+        );
+
+
+    const contentHtml = `
+
+        ${smallCollapsible(
+            "Unused Runewords",
+            unusedRunewordsHtml
+        )}
+
+        ${smallCollapsible(
+            "Unused Unique Items",
+            unusedUniquesHtml
+        )}
+
+        ${smallCollapsible(
+            "Unused Set Items",
+            unusedSetItemsHtml
+        )}
+
+    `;
+
+
+    return `
+
+        ${renderSectionHeading("Unused Items")}
+
+        <h3>
+            Some items get no love at the top of the ladder *
+        </h3>
+
+        ${bigCollapsible(
+            "Special",
+            "sets-button",
+            contentHtml
+        )}
+
+        <br>
+
+        <em>
+
+            *Items declared unused by comparing them to a list
+            of all available items.
+
+        </em>
+
+        <br>
+
+    `;
+
+}
+
+
+/*
+End of Unused items
+*/
+
+
+function renderItemReporting() {
+
+    const analysis = computeEquipmentAnalysis(filteredCharacters);
+    const grid = document.getElementById("itemReportGrid");
+    const fullSets = findFullSetWearers(filteredCharacters);
+    const loadoutDeets = analyzeWeaponLoadouts(filteredCharacters);
+    const unusedItemsData = analyzeUnusedItems(filteredCharacters);
+
+    grid.innerHTML =
+        renderLoadoutIntroSection(loadoutDeets) +
+        "<hr>"+
+        renderCounterSection("Runewords", analysis.runewords, { showLeast: true, showBases: true }) +
+        renderCounterSection("Uniques", analysis.uniques, { showLeast: true }) +
+        renderCounterSection("Set Items", analysis.sets, { showLeast: true }) +
+        renderFullSetsSection(fullSets)+
+        "<hr>"+
+        renderCategorizedSection("Crafted Items", analysis.crafted) +
+        renderCategorizedSection("Magic Items", analysis.magic) +
+        renderCategorizedSection("Rare Items", analysis.rare) +
+        "<hr>"+
+        renderCounterSection("Synthesized Items", analysis.synth) +
+        renderSynthSourcesSection(analysis.synthSources) +
+        "<hr>"+
+        renderSocketReportingSection()+
+        "<hr>"+
+        renderUnusedItemsSection(unusedItemsData) +
+        "<hr>"+
+        renderIncompleteLoadoutsSection(loadoutDeets) 
+
+}
+
+
+/*
+ * Show the complete character object
+ */
+function showCharacter(character) {
+
+    const name =
+        character.name ??
+        character.character ??
+        character.charname ??
+        "Character";
+
+
+    document.getElementById("detailsName")
+        .textContent = name;
+
+
+    document.getElementById("detailsData")
+        .textContent =
+            JSON.stringify(character, null, 2);
+
+
+    document.getElementById("characterDetails")
+        .style.display = "block";
+
+
+    document.getElementById("characterDetails")
+        .scrollIntoView({
+            behavior: "smooth"
+        });
+
+}
+
+
+/*
+ * Basic HTML escaping
+ */
+function escapeHtml(value) {
+
+    return value
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+
+}
+
+
+/*
+ * Event handlers
+ */
+
+document
+    .getElementById("minLevel")
+    .addEventListener("input", applyFilters);
+
+document
+    .getElementById("maxLevel")
+    .addEventListener("input", applyFilters);
+
+document
+    .getElementById("clearFilters")
+    .addEventListener("click", () => {
+
+        document.getElementById("minLevel").value = "";
+        document.getElementById("maxLevel").value = "";
+
+        applyFilters();
+
+    });
+
+/*
+ * Start
+ */
+async function initialize() {
+
+    await loadItemsData();
+
+    await loadFullSetMetadata();
+
+    await loadCharacters();
+
+}
+initialize()
+//loadCharacters();
+
+//Anchor in place fix
+// Expand collapsibles and scroll to anchor
+function scrollWithOffset(el, offset = -50) {
+    const y = el.getBoundingClientRect().top + window.pageYOffset + offset;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+}
+
+function expandToAnchor(anchorId) {
+    console.log("expandToAnchor called with:", anchorId);
+    const target = document.getElementById(anchorId);
+    if (!target) return;
+
+    // Step 1: Collect all parent .content elements that need expanding
+    const stack = [];
+    let el = target;
+    while (el) {
+        if (el.classList?.contains('content')) {
+            stack.unshift(el); // add to beginning to expand outermost first
+        }
+        el = el.parentElement;
+    }
+
+    // Step 2: Expand each .content section in order
+    for (const content of stack) {
+        const button = content.previousElementSibling;
+        if (button?.classList.contains('collapsible')) {
+            button.classList.add('active');
+            content.style.display = "block";
+
+            const openIcon = button.querySelector("img.open-icon");
+            const closeIcon = button.querySelector("img.close-icon");
+            if (openIcon) openIcon.classList.add("hidden");
+            if (closeIcon) closeIcon.classList.remove("hidden");
+        }
+    }
+
+    // Step 3: Delay scroll until DOM has reflowed
+    setTimeout(() => {
+        console.log("scrolling to:", target.id);
+        scrollWithOffset(target);
+    }, 250); // Adjust if necessary
+}
+
+// Handle clicks on .anchor-link elements
+document.addEventListener('DOMContentLoaded', () => {
+    // Handle clicks on .anchor-link elements
+    document.querySelectorAll('.anchor-link, a[href^="#"]').forEach(link => {
+        link.addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent default anchor behavior
+            const anchorId = this.getAttribute('href').substring(1);
+            const fullUrl = `${window.location.origin}${window.location.pathname}#${anchorId}`;
+
+            navigator.clipboard.writeText(fullUrl); // Copy full link to clipboard
+            history.pushState(null, '', `#${anchorId}`); // Update URL without page reload
+            expandToAnchor(anchorId); // Expand and scroll
+        });
+    });
+
+    // On initial load with hash
+    if (window.location.hash) {
+        const anchorId = window.location.hash.substring(1);
+        // Wait a bit for collapsibles/content to render
+    setTimeout(() => {
+        console.log("Looking for anchor:", anchorId);
+        console.log("Found:", document.getElementById(anchorId));
+        expandToAnchor(anchorId);
+    }, 3000);
+    }
+});
+
+</script>
+
+</body>
+</html>
