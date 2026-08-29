@@ -1682,27 +1682,37 @@ const CRAFT_CATEGORIES = [
 ];
 
 
-function categorizeWornSlot(worn, textTag) {
+function categorizeWornSlot(worn, textTag, tag) {
 
     if (worn === "ring1" || worn === "ring2") {
         return "Rings";
     }
 
     if (["sweapon1", "weapon1", "sweapon2", "weapon2"].includes(worn)) {
-        if (textTag === "Arrow") return "Arrows";
-        if (textTag === "Bolt") return "Bolts";
+
+        if (textTag === "Arrows" || tag === "Arrows") {
+            return "Arrows and Bolts";
+        }
+
+        if (textTag === "Bolts" || tag === "Bolts") {
+            return "Arrows and Bolts";
+        }
+
         return "Weapons and Shields";
     }
 
     const slotMap = {
-        body: "Body Armor", gloves: "Gloves", belt: "Belts",
-        helmet: "Helmets", boots: "Boots", amulet: "Amulets"
+        body: "Body Armor",
+        gloves: "Gloves",
+        belt: "Belts",
+        helmet: "Helmets",
+        boots: "Boots",
+        amulet: "Amulets"
     };
 
-    return slotMap[worn] || "Weapons and Shields";
+    return slotMap[worn] || "Weapons and Shields" || "Arrows and Bolts";
 
 }
-
 
 function addUser(counterMap, key, character, base) {
 

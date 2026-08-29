@@ -304,6 +304,34 @@ let skillColumns = [];
 let clusters = [];
 let itemsData = null;
 
+const BUILD_ENABLING_CRITERIA = {
+
+    "Ball Lightning Build": {
+        items: ["Ondal's Wisdom"],
+        properties: ["to Ball Lightning"]
+    },
+
+    "Magic Arrow Build": {
+        items: [],
+        properties: ["to Magic Arrow"]
+    },
+
+    "Beast Werebear Build": {
+        items: ["Beast"],
+        properties: []
+    },
+
+    "Templar's Charge Build": {
+        items: ["Templar's Might"],
+        properties: []
+    },
+
+    "Dragonscale Hydra Build": {
+        items: ["Dragonscale"],
+        properties: []
+    }
+
+};
 /*
  * URL handling
  */
@@ -611,24 +639,35 @@ const CRAFT_CATEGORIES = [
 ];
 
 
-function categorizeWornSlot(worn, textTag) {
+function categorizeWornSlot(worn, textTag, tag) {
 
     if (worn === "ring1" || worn === "ring2") {
         return "Rings";
     }
 
     if (["sweapon1", "weapon1", "sweapon2", "weapon2"].includes(worn)) {
-        if (textTag === "Arrow") return "Arrows";
-        if (textTag === "Bolt") return "Bolts";
-        return "Arrows and Bolts";
+
+        if (textTag === "Arrows" || tag === "Arrows") {
+            return "Arrows and Bolts";
+        }
+
+        if (textTag === "Bolts" || tag === "Bolts") {
+            return "Arrows and Bolts";
+        }
+
+        return "Weapons and Shields";
     }
 
     const slotMap = {
-        body: "Body Armor", gloves: "Gloves", belt: "Belts",
-        helmet: "Helmets", boots: "Boots", amulet: "Amulets"
+        body: "Body Armor",
+        gloves: "Gloves",
+        belt: "Belts",
+        helmet: "Helmets",
+        boots: "Boots",
+        amulet: "Amulets"
     };
 
-    return slotMap[worn] || "Weapons and Shields";
+    return slotMap[worn] || "Weapons and Shields" || "Arrows and Bolts";
 
 }
 
@@ -1491,6 +1530,23 @@ async function loadItemsData() {
 
     itemsData = await response.json();
 
+    one_or_two_hand =
+        (itemsData.one_or_two_hand || [])
+            .map(item => String(item).toLowerCase());
+
+    two_handed_bases =
+        (itemsData.two_handed_bases || [])
+            .map(item => String(item).toLowerCase());
+
+    bow_bases = [
+        ...(itemsData.zon_bows || []),
+        ...(itemsData.bow_bows || [])
+    ].map(item => String(item).toLowerCase());
+
+    crossbow_bases =
+        (itemsData.cross_bows || [])
+            .map(item => String(item).toLowerCase());
+
 }
 
 function analyzeWeaponLoadouts(charactersToAnalyze) {
@@ -1892,6 +1948,214 @@ function renderLoadoutIntroSection(loadoutData) {
 
 }
 
+
+/*
+ * Popularity by slot
+ */
+function computeItemPopularityBySlot(charactersToAnalyze) {
+
+    const slotCounts = new Map();
+
+    for (const character of charactersToAnalyze) {
+
+        for (const item of character.Equipped ?? []) {
+
+            if (!item || typeof item !== "object") {
+                continue;
+            }
+
+            const worn =
+                item.Worn || "";
+
+            const textTag =
+                item.TextTag || "";
+
+            const category =
+                categorizeWornSlot(worn, textTag);
+
+            if (!slotCounts.has(category)) {
+                slotCounts.set(category, new Map());
+            }
+
+            const itemsInSlot =
+                slotCounts.get(category);
+
+            /*
+             * Include identifying information in the key.
+             *
+             * This prevents, for example, a rare item and
+             * a unique item with the same title from being
+             * combined incorrectly.
+             */
+            let itemKey;
+
+            const qualityCode =
+                item.QualityCode || "default";
+
+if (
+    ["q_magic", "q_rare", "q_crafted"]
+        .includes(qualityCode)
+) {
+
+    itemKey = qualityCode;
+
+    if (!itemsInSlot.has(itemKey)) {
+
+        const label =
+            qualityCode
+                .replace("q_", "");
+
+        itemsInSlot.set(itemKey, {
+            item: {
+                Title:
+                    label.charAt(0).toUpperCase() +
+                    label.slice(1),
+
+                QualityCode:
+                    qualityCode
+            },
+            count: 0
+        });
+
+    }
+
+} else {
+
+    itemKey = JSON.stringify({
+        title: item.Title || "Unknown",
+        qualityCode,
+        tag: item.Tag || ""
+    });
+
+    if (!itemsInSlot.has(itemKey)) {
+
+        itemsInSlot.set(itemKey, {
+            item,
+            count: 0
+        });
+
+    }
+
+}
+
+itemsInSlot.get(itemKey).count++;
+
+        }
+
+    }
+
+    return slotCounts;
+
+}
+
+function renderItemPopularitySection(itemSummaryData) {
+
+    if (
+        !itemSummaryData ||
+        itemSummaryData.size === 0
+    ) {
+
+        return `
+            ${renderSectionHeading("Item Popularity by Slot")}
+            <p>No item summary data available.</p>
+        `;
+
+    }
+
+
+    const itemsHtml =
+        Array.from(itemSummaryData.entries())
+
+            .map(([category, itemCounts]) => {
+
+                /*
+                 * Sort by popularity.
+                 */
+                const sortedItems =
+                    Array.from(itemCounts.values())
+                        .sort(
+                            (a, b) =>
+                                b.count - a.count
+                        )
+                        .slice(0, 20);
+
+
+                /*
+                 * Total item instances in this category.
+                 */
+                const totalItems =
+                    Array.from(itemCounts.values())
+                        .reduce(
+                            (sum, entry) =>
+                                sum + entry.count,
+                            0
+                        );
+
+
+                const itemListHtml =
+                    sortedItems.length > 0
+
+                        ? sortedItems.map(entry => `
+
+                            <div class="item-summary-row">
+
+                                ${coloredItemTitle(entry.item)}
+
+                                : ${entry.count.toLocaleString()}
+
+                            </div>
+
+                        `).join("")
+
+                        : `
+                            <p>
+                                No items found in this category.
+                            </p>
+                        `;
+
+
+                return `
+
+                    ${smallCollapsible(
+                        `${escapeHtml(category)} (${totalItems.toLocaleString()} items)`,
+                        itemListHtml
+                    )}
+
+                `;
+
+            })
+
+            .join("");
+
+
+    return `
+
+        ${renderSectionHeading("Item Popularity by Slot")}
+
+        <p>
+            The most commonly used items organized by
+            equipment slot.
+        </p>
+
+        ${bigCollapsible(
+            "Special",
+            "sets-button",
+            `
+                <div id="item-summary">
+
+                    ${itemsHtml}
+
+                </div>
+            `
+        )}
+
+    `;
+
+}
+
+/*
+ * Incomplete loadouts section
+ */
 function renderIncompleteLoadoutsSection(loadoutData) {
 
     const incompleteCategories = new Set([
@@ -2333,10 +2597,831 @@ function renderUnusedItemsSection(unusedItemsData) {
     `;
 
 }
+/*
+End of Unused items
+*/
 
 
 /*
-End of Unused items
+Build enabling items
+*/
+function analyzeBuildEnablingItems(charactersToAnalyze) {
+
+    const buildEnablingData = new Map();
+
+
+    /*
+     * Initialize every build.
+     */
+    for (const buildName of Object.keys(BUILD_ENABLING_CRITERIA)) {
+
+        buildEnablingData.set(
+            buildName,
+            []
+        );
+
+    }
+
+
+    /*
+     * Examine each character.
+     */
+    for (const character of charactersToAnalyze) {
+
+        if (
+            !character ||
+            typeof character !== "object"
+        ) {
+            continue;
+        }
+
+
+        const charInfo = {
+
+            name:
+                character.Name ||
+                "Unknown",
+
+            level:
+                character.Stats?.Level ||
+                0,
+
+            characterClass:
+                character.Class ||
+                "Unknown"
+
+        };
+
+
+        /*
+         * Prevent the same character from being
+         * added twice to the same build.
+         */
+        const characterBuilds = new Set();
+
+
+        for (const item of character.Equipped ?? []) {
+
+            if (
+                !item ||
+                typeof item !== "object"
+            ) {
+                continue;
+            }
+
+
+            const itemTitle =
+                item.Title || "";
+
+            const itemProperties =
+                item.PropertyList || [];
+
+
+            /*
+             * Check every build criterion.
+             */
+            for (
+                const [buildName, criteria]
+                of Object.entries(BUILD_ENABLING_CRITERIA)
+            ) {
+
+                /*
+                 * Don't process the same build twice
+                 * for this character.
+                 */
+                if (
+                    characterBuilds.has(buildName)
+                ) {
+                    continue;
+                }
+
+
+                let buildEnabled = false;
+
+                let enablingReason = "";
+
+
+                /*
+                 * Check the item name.
+                 */
+                if (
+                    criteria.items.includes(itemTitle)
+                ) {
+
+                    buildEnabled = true;
+
+                    enablingReason =
+                        `wearing ${itemTitle}`;
+
+                }
+
+
+                /*
+                 * Check item properties.
+                 */
+                if (
+                    !buildEnabled &&
+                    criteria.properties.length > 0
+                ) {
+
+                    for (
+                        const property
+                        of itemProperties
+                    ) {
+
+                        if (
+                            typeof property !== "string"
+                        ) {
+                            continue;
+                        }
+
+
+                        for (
+                            const enablingProperty
+                            of criteria.properties
+                        ) {
+
+                            if (
+                                property.includes(
+                                    enablingProperty
+                                )
+                            ) {
+
+                                buildEnabled = true;
+
+                                enablingReason =
+                                    `item with property "${property}" (${itemTitle})`;
+
+                                break;
+
+                            }
+
+                        }
+
+
+                        if (buildEnabled) {
+                            break;
+                        }
+
+                    }
+
+                }
+
+
+                /*
+                 * Record the character.
+                 */
+                if (buildEnabled) {
+
+                    characterBuilds.add(
+                        buildName
+                    );
+
+
+                    buildEnablingData
+                        .get(buildName)
+                        .push({
+
+                            ...charInfo,
+
+                            enablingReason
+
+                        });
+
+                }
+
+            }
+
+        }
+
+    }
+
+
+    /*
+     * Remove builds with no users.
+     */
+    return new Map(
+
+        Array.from(
+            buildEnablingData.entries()
+        ).filter(
+            ([_, characters]) =>
+                characters.length > 0
+        )
+
+    );
+
+}
+
+function renderBuildEnablingSection(buildEnablingData) {
+
+    if (
+        !buildEnablingData ||
+        buildEnablingData.size === 0
+    ) {
+
+        return `
+            ${renderSectionHeading(
+                "Build Enabling Items"
+            )}
+
+            <p>
+                No build enabling items found
+                in the current data.
+            </p>
+        `;
+
+    }
+
+
+    /*
+     * This is intentionally the sum of all
+     * build entries, matching your Python logic.
+     *
+     * A character could theoretically appear
+     * in more than one build.
+     */
+    const totalBuildUsers =
+
+        Array.from(
+            buildEnablingData.values()
+        ).reduce(
+            (total, characters) =>
+                total + characters.length,
+            0
+        );
+
+
+    const buildsHtml =
+
+        Array.from(
+            buildEnablingData.entries()
+        )
+
+        .sort(
+            (a, b) =>
+
+                b[1].length -
+                a[1].length ||
+
+                a[0].localeCompare(
+                    b[0]
+                )
+        )
+
+        .map(
+            ([buildName, characters]) => {
+
+                const characterListHtml =
+
+                    characters.map(
+                        character => {
+
+                            const name =
+                                character.name;
+
+                            const level =
+                                character.level;
+
+                            const characterClass =
+                                character.characterClass;
+
+                            return `
+
+                                <div class="character-info">
+
+                                    <div class="character-link">
+
+                                        <strong>
+
+                                            <a
+                                                href="https://beta.pathofdiablo.com/armory?name=${encodeURIComponent(name)}"
+                                                target="_blank"
+                                            >
+                                                ${escapeHtml(name)}
+                                            </a>
+
+                                        </strong>
+
+                                    </div>
+
+
+                                    <div>
+
+                                        Level
+                                        ${escapeHtml(String(level))}
+
+                                        ${escapeHtml(characterClass)}
+
+                                        (${escapeHtml(
+                                            character.enablingReason
+                                        )})
+
+                                    </div>
+
+
+                                    <div
+                                        class="hover-trigger"
+                                        data-character-name="${encodeURIComponent(name)}"
+                                    >
+                                    </div>
+
+                                    <div class="character">
+
+                                        <div class="popup hidden">
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            `;
+
+                        }
+                    )
+
+                    .join("");
+
+
+                /*
+                 * Generate a stable anchor ID.
+                 */
+                const buildId =
+
+                    buildName
+                        .toLowerCase()
+                        .replace(/[^a-z0-9]+/g, "-")
+                        .replace(/^-|-$/g, "");
+
+
+                const labelHtml = `
+
+                    <a
+                        href="#${buildId}"
+                        class="anchor-link"
+                    >
+                        ${escapeHtml(buildName)}
+                    </a>
+
+                    :
+                    ${characters.length.toLocaleString()}
+                    characters
+
+                `;
+
+
+                /*
+                 * Put the ID on the content so
+                 * your existing expandToAnchor()
+                 * can find it and expand parents.
+                 */
+                return `
+
+                    <button
+                        type="button"
+                        class="collapsible small-collapsible"
+                        onclick="toggleCollapsible(this)"
+                    >
+
+                        <img
+                            src="../icons/open.png"
+                            alt="Open"
+                            class="icon-small icon-expanded hidden"
+                        >
+
+                        <img
+                            src="../icons/closed.png"
+                            alt="Close"
+                            class="icon-small icon-collapsed"
+                        >
+
+                        <strong>
+
+                            ${labelHtml}
+
+                        </strong>
+
+                    </button>
+
+
+                    <div
+                        class="content"
+                        id="${buildId}"
+                        style="display: none;"
+                    >
+
+                        ${characterListHtml}
+
+                    </div>
+
+                `;
+
+            }
+        )
+
+        .join("");
+
+
+    const contentHtml = `
+
+        <div id="build-enabling">
+
+            ${buildsHtml}
+
+        </div>
+
+    `;
+
+
+    return `
+
+        ${renderSectionHeading(
+            "Build Enabling Items"
+        )}
+
+        <h3>
+
+            ${totalBuildUsers.toLocaleString()}
+            character${totalBuildUsers === 1 ? "" : "s"}
+            with items that enable specific builds
+
+        </h3>
+
+        <p>
+
+            These characters are using items that
+            enable or support specific build archetypes
+            through unique item names or special properties.
+
+        </p>
+
+
+        ${bigCollapsible(
+            "Special",
+            "sets-button",
+            contentHtml
+        )}
+
+    `;
+
+}
+/*
+End of Build enabling items
+*/
+ 
+
+/*
+One or two handed, two handed, and bows
+*/
+function analyzeWeaponUsage(characters) {
+
+    if (!itemsData) {
+        console.error("itemsData has not loaded yet.");
+        return {
+            oneOrTwoHandUsage: new Map(),
+            twoHandedUsage: new Map(),
+            bowUsage: new Map()
+        };
+    }
+
+    const one_or_two_hand =
+        (itemsData.one_or_two_hand || [])
+            .map(item => String(item).toLowerCase());
+
+    const two_handed_bases =
+        (itemsData.two_handed_bases || [])
+            .map(item => String(item).toLowerCase());
+
+    const bow_bases = [
+        ...(itemsData.zon_bows || []),
+        ...(itemsData.bow_bows || [])
+    ].map(item => String(item).toLowerCase());
+
+    const crossbow_bases =
+        (itemsData.cross_bows || [])
+            .map(item => String(item).toLowerCase());
+
+
+    const oneOrTwoHandUsage = new Map();
+    const twoHandedUsage = new Map();
+    const bowUsage = new Map();
+
+    for (const character of characters) {
+
+        const equipped = {};
+
+        for (const item of character.Equipped || []) {
+            if (item?.Worn) {
+                equipped[item.Worn] = item;
+            }
+        }
+
+        /*
+         * ------------------------------------------------------------
+         * ONE-OR-TWO-HANDED WEAPONS USED WITH NO OFFHAND
+         * ------------------------------------------------------------
+         */
+
+        for (const [weaponSlot, offhandSlot] of [
+            ["weapon1", "weapon2"],
+            ["sweapon1", "sweapon2"]
+        ]) {
+
+            const weapon = equipped[weaponSlot];
+            const offhand = equipped[offhandSlot];
+
+            // Must have a weapon and no offhand.
+            if (!weapon || offhand) {
+                continue;
+            }
+
+            const base =
+                String(weapon.Tag || "").toLowerCase();
+
+            if (!one_or_two_hand.includes(base)) {
+                continue;
+            }
+
+            const title =
+                weapon.Title || "Unknown";
+
+            if (!oneOrTwoHandUsage.has(title)) {
+                oneOrTwoHandUsage.set(title, {
+                    total: 0,
+                    bases: new Map()
+                });
+            }
+
+            const itemData =
+                oneOrTwoHandUsage.get(title);
+
+            itemData.total++;
+
+            if (!itemData.bases.has(base)) {
+                itemData.bases.set(base, []);
+            }
+
+            itemData.bases.get(base).push({
+                name: character.Name || "Unknown",
+                class: character.Class || "Unknown",
+                level: character.Stats?.Level ?? "Unknown"
+            });
+        }
+
+
+        /*
+         * ------------------------------------------------------------
+         * ALL EQUIPPED ITEMS
+         * ------------------------------------------------------------
+         */
+
+        for (const item of character.Equipped || []) {
+
+            if (!item || typeof item !== "object") {
+                continue;
+            }
+
+            const title =
+                item.Title || "Unknown";
+
+            const base =
+                String(item.Tag || "").toLowerCase();
+
+
+            /*
+             * --------------------------------------------------------
+             * TWO-HANDED MELEE WEAPONS
+             * --------------------------------------------------------
+             */
+
+            if (two_handed_bases.includes(base)) {
+
+                const label =
+                    title;
+
+                twoHandedUsage.set(
+                    label,
+                    (twoHandedUsage.get(label) || 0) + 1
+                );
+            }
+
+
+            /*
+             * --------------------------------------------------------
+             * BOWS
+             * --------------------------------------------------------
+             */
+
+            if (
+                bow_bases.includes(base) ||
+                crossbow_bases.includes(base)
+            ) {
+
+                const label =
+                    title;
+
+                bowUsage.set(
+                    label,
+                    (bowUsage.get(label) || 0) + 1
+                );
+            }
+        }
+    }
+
+
+    return {
+        oneOrTwoHandUsage,
+        twoHandedUsage,
+        bowUsage
+    };
+}
+
+function slugify(text) {
+  return text
+    .toString()                           // Ensure it's a string
+    .toLowerCase()                        // Convert to lowercase
+    .trim()                               // Remove leading/trailing whitespace
+    .normalize('NFD')                     // Split accented characters into baseline + accent
+    .replace(/[\u0300-\u036f]/g, '')     // Remove accent marks
+    .replace(/[^a-z0-9\s-]/g, '')         // Remove all non-alphanumeric characters except spaces and hyphens
+    .replace(/[\s_-]+/g, '-')             // Replace spaces, underscores, and multiple hyphens with a single hyphen
+    .replace(/^-+|-+$/g, '');             // Trim hyphens from the start and end
+}
+
+function renderOneOrTwoHandedSection(usageMap) {
+
+    if (!usageMap || usageMap.size === 0) {
+        return `
+            ${renderSectionHeading("Characters Wielding 2-Handed Weapons")}
+            <p>No matching weapons found.</p>
+        `;
+    }
+
+    const items =
+        Array.from(usageMap.entries())
+            .sort(
+                (a, b) =>
+                    b[1].total - a[1].total
+            );
+
+    const itemsHtml =
+        items.map(([title, data]) => {
+            const baseHtml =
+                Array.from(data.bases.entries())
+                    .sort(
+                        (a, b) =>
+                            b[1].length - a[1].length
+                    )
+                    .map(([base, characters]) => {
+                        const anchorId =
+                            `one-two-${slugify(title)}-${slugify(base)}`;
+                        const characterHtml =
+                            characters.map(character => `
+                                <div class="character-info">
+                                    <div class="character-link">
+                                        <a
+                                            href="https://beta.pathofdiablo.com/armory?name=${encodeURIComponent(character.name)}"
+                                            target="_blank"
+                                        >
+                                            ${escapeHtml(character.name)}
+                                        </a>
+                                    </div>
+                                    <div>
+                                        Level ${escapeHtml(String(character.level))}
+                                        ${escapeHtml(character.class)}
+                                    </div>
+                                    <div
+                                        class="hover-trigger"
+                                        data-character-name="${encodeURIComponent(character.name)}"
+                                    >
+                                    </div>
+                                </div>
+                                <div class="character">
+                                    <div class="popup hidden"></div>
+                                </div>
+                            `).join("");
+                        return `
+                            <li>
+                                ${smallCollapsible(
+                                    `
+                                        <span id="${anchorId}">
+                                            ${escapeHtml(base || "(Unknown Base)")}
+                                            : ${characters.length}
+                                            <a
+                                                href="#${anchorId}"
+                                                class="anchor-link"
+                                            >
+                                                <img
+                                                    src="icons/anchor.png"
+                                                    alt="🔗"
+                                                    class="anchor-icon"
+                                                >
+                                            </a>
+                                        </span>
+                                    `,
+                                    characterHtml
+                                )}
+                            </li>
+                        `;
+                    })
+                    .join("");
+            return `
+                <li>
+                    <strong>
+                        ${escapeHtml(title)}:
+                        ${data.total}
+                    </strong>
+                    <ul>
+                        ${baseHtml}
+                    </ul>
+                </li>
+            `;
+        }).join("");
+    return `
+        ${renderSectionHeading("Characters Wielding 2-Handed Weapons")}
+        <p>
+            Characters using weapons that can be wielded with either one
+            or two hands, but currently have no offhand equipped.
+        </p>
+        ${bigCollapsible(
+            "Special",
+            "sets-button",
+            `
+                <div class="weapon-columns">
+                    <ul>
+                        ${itemsHtml}
+                    </ul>
+                </div>
+            `
+        )}
+    `;
+}
+
+function renderWeaponPopularityList(
+    usageMap,
+    heading,
+    description = ""
+) {
+    if (!usageMap || usageMap.size === 0) {
+        return `
+            ${renderSectionHeading(heading)}
+            <p>No matching weapons found.</p>
+        `;
+    }
+    const items =
+        Array.from(usageMap.entries())
+            .sort(
+                (a, b) =>
+                    b[1] - a[1]
+            );
+    const listHtml =
+        items.map(([title, count]) => `
+
+            <li>
+                ${escapeHtml(title)}:
+                ${count}
+            </li>
+        `).join("");
+    return `
+        ${renderSectionHeading(heading)}
+        ${description
+            ? `<p>${escapeHtml(description)}</p>`
+            : ""
+        }
+        ${bigCollapsible(
+            "Special",
+            "sets-button",
+            `
+                <div class="weapon-columns">
+                    <ul>
+                        ${listHtml}
+                    </ul>
+                </div>
+            `
+        )}
+    `;
+}
+
+function renderTwoHandedWeaponsSection(usageMap) {
+
+    return renderWeaponPopularityList(
+        usageMap,
+        "Melee Weapons That Require Two Hands",
+        "The most commonly equipped melee weapons that require two hands."
+    );
+}
+
+function renderBowsSection(usageMap) {
+
+    return renderWeaponPopularityList(
+        usageMap,
+        "Bows and Crossbows",
+        "The most commonly equipped bows and crossbows."
+    );
+}
+
+/*
+End one or two handed, two handed, and bows
 */
 
 
@@ -2347,6 +3432,9 @@ function renderItemReporting() {
     const fullSets = findFullSetWearers(filteredCharacters);
     const loadoutDeets = analyzeWeaponLoadouts(filteredCharacters);
     const unusedItemsData = analyzeUnusedItems(filteredCharacters);
+    const itemPopularity = computeItemPopularityBySlot(filteredCharacters);
+    const buildEnabling = analyzeBuildEnablingItems(filteredCharacters);
+    const weaponUsage = analyzeWeaponUsage(filteredCharacters);
 
     grid.innerHTML =
         renderLoadoutIntroSection(loadoutDeets) +
@@ -2366,6 +3454,16 @@ function renderItemReporting() {
         renderSocketReportingSection()+
         "<hr>"+
         renderUnusedItemsSection(unusedItemsData) +
+        "<hr>"+
+        renderItemPopularitySection(itemPopularity)+
+        "<hr>"+
+        renderBuildEnablingSection(buildEnabling) +
+        "<hr>"+
+        renderTwoHandedWeaponsSection(weaponUsage.twoHandedUsage) +
+        "<hr>"+
+        renderOneOrTwoHandedSection(weaponUsage.oneOrTwoHandUsage) +
+        "<hr>"+
+        renderBowsSection(weaponUsage.bowUsage) +
         "<hr>"+
         renderIncompleteLoadoutsSection(loadoutDeets) 
 

@@ -1,0 +1,29 @@
+{
+  "default_season": "13",
+  "script_paths": {
+    "sc_script": "SC-create-archive-pages.py",
+    "hc_script": "hc-create-archive-pages.py"
+  },
+  "archive_settings": {
+    "timeout_minutes": 30,
+    "required_files": [
+      "Home.html",
+      "hcHome.html",
+      "index.html",
+      "sc_ladder.json",
+      "hc_ladder.json"
+    ],
+    "min_json_size_mb": 0.1
+  },
+  "navigation_updates": {
+    "season_pattern": "S\\d+",
+    "season_replacement": "S{season}",
+    "season_path_pattern": "Season/\\d+/",
+    "season_path_replacement": "Season/{season}/"
+  },
+  "banner_templates": {
+    "final": "Viewing Season {season} historical data from the end of the ladder",
+    "monthly": "Viewing Season {season} historical data from {month_year}",
+    "custom": "Viewing Season {season} historical data from {custom_name}"
+  }
+}
