@@ -1094,7 +1094,7 @@
         padding: 10px;
         font-size: 18px;
         z-index: 1000; /* Ensures it stays on top of other elements */
-        pointer-events: none;  /* add this */
+        pointer-events: none;  /* make sure banner stays on top but still allow navbar drop downs to work */
     }
     .dropdown {
         position: absolute;
