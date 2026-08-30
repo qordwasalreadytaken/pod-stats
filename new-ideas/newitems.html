@@ -67,14 +67,13 @@
         <div class="top-buttons">
             <a href="Home" class="top-button home-button" onclick="setActive('Home')"></a>
             <a href="#" id="SC_HC" class="top-button"> </a>
-            <a href="Amazon" id="Amazon" class="top-button amazon-button"></a>
-            <a href="Assassin" id="Assassin" class="top-button assassin-button"></a>
-            <a href="Barbarian" id="Barbarian" class="top-button barbarian-button"></a>
-            <a href="Druid" id="Druid" class="top-button druid-button"></a>
-            <a href="Necromancer" id="Necromancer" class="top-button necromancer-button"></a>
-            <a href="Paladin" id="Paladin" class="top-button paladin-button"></a>
-            <a href="Sorceress" id="Sorceress" class="top-button sorceress-button"></a>
-            <a href="https://github.com/qordwasalreadytaken/pod-stats/blob/main/README.md" class="top-button about-button" target="_blank"></a>
+            <a href="class-test.html?m=sc&c=amazon" class="top-button amazon-button"></a>
+            <a href="class-test.html?m=sc&c=assassin" class="top-button assassin-button"></a>
+            <a href="class-test.html?m=sc&c=barbarian" class="top-button barbarian-button"></a>
+            <a href="class-test.html?m=sc&c=druid" class="top-button druid-button"></a>
+            <a href="class-test.html?m=sc&c=necromancer" class="top-button necromancer-button"></a>
+            <a href="class-test.html?m=sc&c=paladin" class="top-button paladin-button"></a>
+            <a href="class-test.html?m=sc&c=sorceress" class="top-button sorceress-button"></a>
         </div>
 
         <div class="banner" style="top:50px; left:10%; width:80%;">
@@ -394,10 +393,13 @@ async function loadCharacters() {
 
         characters = await response.json();
 
-        status.innerHTML =
-            `Loaded <strong>${characters.length.toLocaleString()}</strong> characters.`;
+//        status.innerHTML =
+//            `Loaded <strong>${characters.length.toLocaleString()}</strong> characters.`;
 
         applyFilters();
+
+        status.innerHTML =
+            `Loaded <strong>${filteredCharacters.length.toLocaleString()}</strong> characters.`;
 
     } catch (error) {
 
@@ -408,7 +410,6 @@ async function loadCharacters() {
                 Error loading data: ${error.message}
             </span>`;
     }
-
 }
 /*
  * Choose class
@@ -421,6 +422,9 @@ function capitalize(str) {
  * Apply the current filters
  */
 function applyFilters() {
+
+//        status.innerHTML =
+//            `Loaded <strong>${characters.length.toLocaleString()}</strong> characters.`;
 
     console.time("Filter");
 
@@ -481,7 +485,11 @@ function applyFilters() {
         setTimeout(() => {
             expandToAnchor(anchorId);
         }, 50);
-    }    
+    } 
+    const status = document.getElementById("status");
+    status.innerHTML =
+        `Loaded <strong>${filteredCharacters.length.toLocaleString()}</strong> characters.`;
+
 }
 
 /*
@@ -3077,12 +3085,17 @@ function analyzeWeaponUsage(characters) {
 
     if (!itemsData) {
         console.error("itemsData has not loaded yet.");
+
         return {
             oneOrTwoHandUsage: new Map(),
             twoHandedUsage: new Map(),
-            bowUsage: new Map()
+            bowUsage: new Map(),
+            classBowUsage: new Map(),
+            uniqueAmmoUsage: new Map(),
+            dualAuraUsage: new Map()
         };
     }
+
 
     const one_or_two_hand =
         (itemsData.one_or_two_hand || [])
@@ -3106,15 +3119,44 @@ function analyzeWeaponUsage(characters) {
     const twoHandedUsage = new Map();
     const bowUsage = new Map();
 
+    // New
+    const classBowUsage = new Map();
+    const uniqueAmmoUsage = new Map();
+    const dualAuraUsage = new Map();
+//    const characterAuraItems = [];
+
+    const unique_projectile_titles = new Set([
+        "Dragonbreath",
+        "Swiftheart",
+        "Moonfire",
+        "Frostbite",
+        "Hailstorm",
+        "FrostbiteB"
+    ]);
+
+    const offensive_aura_titles = new Set([
+        "Dream",
+        "Dragon",
+        "Hand of Justice",
+        "Doom",
+        "Todesfaelle Flamme",
+        "Azurewrath"
+    ]);
+
     for (const character of characters) {
 
         const equipped = {};
+        const recordedUniqueAmmo = new Set();
+        const characterAuraItems = [];
 
         for (const item of character.Equipped || []) {
+
             if (item?.Worn) {
                 equipped[item.Worn] = item;
             }
+
         }
+
 
         /*
          * ------------------------------------------------------------
@@ -3130,7 +3172,6 @@ function analyzeWeaponUsage(characters) {
             const weapon = equipped[weaponSlot];
             const offhand = equipped[offhandSlot];
 
-            // Must have a weapon and no offhand.
             if (!weapon || offhand) {
                 continue;
             }
@@ -3146,10 +3187,12 @@ function analyzeWeaponUsage(characters) {
                 weapon.Title || "Unknown";
 
             if (!oneOrTwoHandUsage.has(title)) {
+
                 oneOrTwoHandUsage.set(title, {
                     total: 0,
                     bases: new Map()
                 });
+
             }
 
             const itemData =
@@ -3196,19 +3239,17 @@ function analyzeWeaponUsage(characters) {
 
             if (two_handed_bases.includes(base)) {
 
-                const label =
-                    title;
-
                 twoHandedUsage.set(
-                    label,
-                    (twoHandedUsage.get(label) || 0) + 1
+                    title,
+                    (twoHandedUsage.get(title) || 0) + 1
                 );
+
             }
 
 
             /*
              * --------------------------------------------------------
-             * BOWS
+             * BOWS / CROSSBOWS
              * --------------------------------------------------------
              */
 
@@ -3217,22 +3258,149 @@ function analyzeWeaponUsage(characters) {
                 crossbow_bases.includes(base)
             ) {
 
-                const label =
-                    title;
-
                 bowUsage.set(
-                    label,
-                    (bowUsage.get(label) || 0) + 1
+                    title,
+                    (bowUsage.get(title) || 0) + 1
                 );
+
+
+                /*
+                 * Non-Amazon bow/crossbow users
+                 */
+
+                const charClass =
+                    String(character.Class || "").toLowerCase();
+
+                if (charClass !== "amazon") {
+
+                    if (!classBowUsage.has(charClass)) {
+                        classBowUsage.set(
+                            charClass,
+                            new Map()
+                        );
+                    }
+
+                    const classUsage =
+                        classBowUsage.get(charClass);
+
+                    if (!classUsage.has(title)) {
+                        classUsage.set(title, []);
+                    }
+
+                    classUsage.get(title).push({
+                        name: character.Name || "Unknown",
+                        level: character.Stats?.Level ?? "Unknown"
+                    });
+                }
             }
+            /*
+             * --------------------------------------------------------
+             * UNIQUE AMMO USAGE
+             * --------------------------------------------------------
+             */
+            if (
+                unique_projectile_titles.has(title) &&
+                item.QualityCode === "q_unique" &&
+                !recordedUniqueAmmo.has(title)
+            ) {
+
+                recordedUniqueAmmo.add(title);
+
+
+                if (!uniqueAmmoUsage.has(title)) {
+                    uniqueAmmoUsage.set(title, []);
+                }
+
+
+                uniqueAmmoUsage.get(title).push({
+
+                    name:
+                        character.Name ||
+                        "Unknown",
+
+                    level:
+                        character.Stats?.Level ??
+                        "Unknown",
+
+                    class:
+                        character.Class ||
+                        "Unknown"
+
+                });
+
+            }
+            if (
+                offensive_aura_titles.has(title)
+            ) {
+
+                characterAuraItems.push(title);
+
+            }
+
         }
+    
+
+        if (
+            characterAuraItems.length >= 2
+        ) {
+
+            /*
+            * Group the character under
+            * every distinct aura item.
+            */
+            const uniqueAuraTitles =
+                [...new Set(characterAuraItems)];
+
+
+            for (
+                const auraTitle
+                of uniqueAuraTitles
+            ) {
+
+                if (
+                    !dualAuraUsage.has(auraTitle)
+                ) {
+
+                    dualAuraUsage.set(
+                        auraTitle,
+                        []
+                    );
+
+                }
+
+
+                dualAuraUsage
+                    .get(auraTitle)
+                    .push({
+
+                        name:
+                            character.Name ||
+                            "Unknown",
+
+                        level:
+                            character.Stats?.Level ??
+                            "Unknown",
+
+                        class:
+                            character.Class ||
+                            "Unknown",
+
+                        auraItems:
+                            characterAuraItems
+
+                    });
+
+            }
+
+        }    
     }
-
-
     return {
         oneOrTwoHandUsage,
         twoHandedUsage,
-        bowUsage
+        bowUsage,
+        classBowUsage,
+        uniqueAmmoUsage,
+        dualAuraUsage
     };
 }
 
@@ -3420,6 +3588,410 @@ function renderBowsSection(usageMap) {
     );
 }
 
+function renderClassBowUsage(classBowUsage) {
+
+    if (!classBowUsage || classBowUsage.size === 0) {
+        return "";
+    }
+
+
+    let classSections = "";
+
+
+    /*
+     * Sort classes alphabetically.
+     */
+    const classes =
+        Array.from(classBowUsage.entries())
+            .sort((a, b) =>
+                a[0].localeCompare(b[0])
+            );
+
+
+    for (const [className, weaponMap] of classes) {
+
+        let weaponHtml = "";
+
+
+        /*
+         * Sort weapons by number of users,
+         * most popular first.
+         */
+        const weapons =
+            Array.from(weaponMap.entries())
+                .sort((a, b) =>
+                    b[1].length - a[1].length ||
+                    a[0].localeCompare(b[0])
+                );
+
+
+        for (const [weaponName, characters] of weapons) {
+
+            weaponHtml += `
+
+                <h4>
+                    ${escapeHtml(weaponName)}
+                    (${characters.length})
+                </h4>
+
+            `;
+
+
+            /*
+             * Characters
+             */
+            for (const character of characters) {
+
+                weaponHtml += `
+
+                    <div class="character-info">
+
+                        <div class="character-link">
+
+                            <strong>
+
+                                <a
+                                    href="https://beta.pathofdiablo.com/armory?name=${encodeURIComponent(character.name)}"
+                                    target="_blank"
+                                >
+                                    ${escapeHtml(character.name)}
+                                </a>
+
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            Level
+                            ${escapeHtml(String(character.level))}
+
+                        </div>
+
+
+                        <div
+                            class="hover-trigger"
+                            data-character-name="${encodeURIComponent(character.name)}"
+                        >
+                        </div>
+
+
+                        <div class="character">
+
+                            <div class="popup hidden">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                `;
+            }
+        }
+
+
+        /*
+         * One collapsible per class.
+         */
+        const displayClass =
+            className.charAt(0).toUpperCase() +
+            className.slice(1);
+
+
+        classSections +=
+            smallCollapsible(
+                escapeHtml(displayClass),
+                weaponHtml
+            );
+
+    }
+
+
+    return `
+
+        ${renderSectionHeading(
+            "Non-Amazon Bow & Crossbow Users"
+        )}
+
+        <p>
+            Characters from other classes currently
+            equipped with a bow or crossbow.
+        </p>
+
+        ${classSections}
+
+    `;
+}
+
+function renderUniqueAmmoUsage(uniqueAmmoUsage) {
+
+    if (
+        !uniqueAmmoUsage ||
+        uniqueAmmoUsage.size === 0
+    ) {
+        return "";
+    }
+
+
+    let itemSections = "";
+
+
+    /*
+     * Sort items by number of users,
+     * most popular first.
+     */
+    const items =
+        Array.from(uniqueAmmoUsage.entries())
+            .sort((a, b) =>
+                b[1].length - a[1].length ||
+                a[0].localeCompare(b[0])
+            );
+
+
+    for (const [itemName, characters] of items) {
+
+        let characterListHtml = "";
+
+
+        /*
+         * Characters
+         */
+        for (const character of characters) {
+
+            characterListHtml += `
+
+                <div class="character-info">
+
+                    <div class="character-link">
+
+                        <strong>
+
+                            <a
+                                href="https://beta.pathofdiablo.com/armory?name=${encodeURIComponent(character.name)}"
+                                target="_blank"
+                            >
+                                ${escapeHtml(character.name)}
+                            </a>
+
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        Level
+                        ${escapeHtml(String(character.level))}
+
+                        ${escapeHtml(character.class)}
+
+                    </div>
+
+
+                    <div
+                        class="hover-trigger"
+                        data-character-name="${encodeURIComponent(character.name)}"
+                    >
+                    </div>
+
+
+                    <div class="character">
+
+                        <div class="popup hidden">
+                        </div>
+
+                    </div>
+
+                </div>
+
+            `;
+        }
+
+
+        /*
+         * One collapsible per item.
+         */
+        const labelHtml = `
+
+            ${escapeHtml(itemName)}
+            (${characters.length})
+
+        `;
+
+
+        itemSections +=
+            smallCollapsible(
+                labelHtml,
+                characterListHtml
+            );
+
+    }
+
+
+    return `
+
+        ${renderSectionHeading(
+            "Unique Arrows & Bolts"
+        )}
+
+        <p>
+            Characters currently using unique
+            arrows or bolts.
+        </p>
+
+        ${itemSections}
+
+    `;
+}
+
+function renderDualAuraUsage(dualAuraUsage) {
+
+    if (
+        !dualAuraUsage ||
+        dualAuraUsage.size === 0
+    ) {
+        return "";
+    }
+
+
+    let itemSections = "";
+
+
+    const auraItems =
+        Array.from(dualAuraUsage.entries())
+
+            .sort(
+                (a, b) =>
+                    b[1].length -
+                    a[1].length ||
+
+                    a[0].localeCompare(
+                        b[0]
+                    )
+            );
+
+
+    for (
+        const [auraTitle, characters]
+        of auraItems
+    ) {
+
+        let characterListHtml = "";
+
+
+        for (
+            const character
+            of characters
+        ) {
+
+            /*
+             * Don't list the current
+             * grouping item twice.
+             */
+            const otherAuraItems =
+
+                character.auraItems
+                    .filter(
+                        item =>
+                            item !== auraTitle
+                    );
+
+
+            characterListHtml += `
+
+                <div class="character-info">
+
+                    <div class="character-link">
+
+                        <strong>
+
+                            <a
+                                href="https://beta.pathofdiablo.com/armory?name=${encodeURIComponent(character.name)}"
+                                target="_blank"
+                            >
+                                ${escapeHtml(character.name)}
+                            </a>
+
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        Level
+                        ${escapeHtml(
+                            String(character.level)
+                        )}
+
+                        ${escapeHtml(
+                            character.class
+                        )}
+
+                        ${
+                            otherAuraItems.length > 0
+                                ? `— Also using: ${escapeHtml(
+                                    otherAuraItems.join(", ")
+                                )}`
+                                : ""
+                        }
+
+                    </div>
+
+
+                    <div
+                        class="hover-trigger"
+                        data-character-name="${encodeURIComponent(character.name)}"
+                    >
+                    </div>
+
+
+                    <div class="character">
+
+                        <div class="popup hidden">
+                        </div>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }
+
+
+        itemSections +=
+            smallCollapsible(
+
+                `${escapeHtml(auraTitle)}
+                (${characters.length})`,
+
+                characterListHtml
+
+            );
+
+    }
+
+
+    return `
+
+        ${renderSectionHeading(
+            "Dual Offensive Aura Items"
+        )}
+
+        <p>
+
+            Characters equipped with two or more
+            items that provide offensive auras.
+
+        </p>
+
+
+        ${itemSections}
+
+    `;
+}
 /*
 End one or two handed, two handed, and bows
 */
@@ -3464,6 +4036,10 @@ function renderItemReporting() {
         renderOneOrTwoHandedSection(weaponUsage.oneOrTwoHandUsage) +
         "<hr>"+
         renderBowsSection(weaponUsage.bowUsage) +
+        renderClassBowUsage(weaponUsage.classBowUsage) +
+        renderUniqueAmmoUsage(weaponUsage.uniqueAmmoUsage) +
+        "<hr>"+
+        renderDualAuraUsage(weaponUsage.dualAuraUsage) +
         "<hr>"+
         renderIncompleteLoadoutsSection(loadoutDeets) 
 
@@ -3540,6 +4116,59 @@ document
         applyFilters();
 
     });
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const scHcButton = document.getElementById("SC_HC");
+
+
+    // Set initial appearance
+    updateScHcButton(chosenMode);
+
+
+    scHcButton.addEventListener("click", event => {
+
+        event.preventDefault();
+
+
+        const newMode =
+            chosenMode === "hc"
+                ? "sc"
+                : "hc";
+
+
+        const url = new URL(window.location);
+
+        url.searchParams.set("m", newMode);
+
+        window.location.href = url;
+
+    });
+
+
+    function updateScHcButton(mode) {
+
+        if (mode === "hc") {
+
+            scHcButton.classList.add("hardcore");
+            scHcButton.classList.remove("softcore");
+
+            scHcButton.style.backgroundImage =
+                "url('../icons/Hardcore_click.png')";
+
+        } else {
+
+            scHcButton.classList.add("softcore");
+            scHcButton.classList.remove("hardcore");
+
+            scHcButton.style.backgroundImage =
+                "url('../icons/Softcore_click.png')";
+
+        }
+
+    }
+
+});    
 
 /*
  * Start

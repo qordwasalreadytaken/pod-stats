@@ -169,15 +169,17 @@
     </div>
 
     <div class="top-buttons">
-        <a href="#" class="top-button home-button"></a>
-        <a href="#" class="top-button sorceress-button active"></a>
-        <a href="#" class="top-button assassin-button"></a>
-        <a href="#" class="top-button barbarian-button"></a>
-        <a href="#" class="top-button druid-button"></a>
-        <a href="#" class="top-button necromancer-button"></a>
-        <a href="#" class="top-button paladin-button"></a>
-        <a href="#" class="top-button sorceress-button"></a>
+        <a href="Home" class="top-button home-button" onclick="setActive('Home')"></a>
+        <a href="#" id="SC_HC" class="top-button"> </a>
+        <a href="#" class="top-button amazon-button" data-class="amazon"></a>
+        <a href="#" class="top-button assassin-button" data-class="assassin"></a>
+        <a href="#" class="top-button barbarian-button" data-class="barbarian"></a>
+        <a href="#" class="top-button druid-button" data-class="druid"></a>
+        <a href="#" class="top-button necromancer-button" data-class="necromancer"></a>
+        <a href="#" class="top-button paladin-button" data-class="paladin"></a>
+        <a href="#" class="top-button sorceress-button" data-class="sorceress"></a>    
     </div>
+ </div>
 
 <div class="page-intro-class">
     <h1 id="chosenclass"> Class Analysis</h1>
@@ -388,6 +390,7 @@ function toggleMenu() {
     document.querySelector(".top-buttons").classList.toggle("show");
 }
 
+
 function topFunction() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
@@ -513,10 +516,58 @@ const chosenMode = validModes.includes(requestedMode)
         .addEventListener("change", updateURL);
     document.getElementById("class")
         .addEventListener("change", updateURL);
+    document.querySelector(".amazon-button")
+        .addEventListener("click", () => changeClass("amazon"));
+
+    document.querySelector(".assassin-button")
+        .addEventListener("click", () => changeClass("assassin"));
+
+    document.querySelector(".barbarian-button")
+        .addEventListener("click", () => changeClass("barbarian"));
+
+    document.querySelector(".druid-button")
+        .addEventListener("click", () => changeClass("druid"));
+
+    document.querySelector(".necromancer-button")
+        .addEventListener("click", () => changeClass("necromancer"));
+
+    document.querySelector(".paladin-button")
+        .addEventListener("click", () => changeClass("paladin"));
+
+    document.querySelector(".sorceress-button")
+        .addEventListener("click", () => changeClass("sorceress"));
 
     loadCharacters();
 
 });
+
+function changeClass(className) {
+
+    const url = new URL(window.location);
+
+    url.searchParams.set("c", className);
+
+    window.location.href = url;
+}
+
+document
+    .querySelectorAll(".top-button")
+    .forEach(button => {
+
+        button.classList.remove("active");
+
+    });
+
+
+const activeButton = document.querySelector(
+    `.${chosenClass}-button`
+);
+
+if (activeButton) {
+
+    activeButton.classList.add("active");
+
+}
 
 
 function updateURL() {
@@ -733,6 +784,10 @@ function applyFilters() {
             expandToAnchor(anchorId);
         }, 50);
     }    
+    const status = document.getElementById("status");
+    status.innerHTML =
+        `Loaded <strong>${filteredCharacters.length.toLocaleString()}</strong> characters.`;
+
 }
 
 /*
@@ -2863,6 +2918,58 @@ document
 
     });
 
+document.addEventListener("DOMContentLoaded", () => {
+
+    const scHcButton = document.getElementById("SC_HC");
+
+
+    // Set initial appearance
+    updateScHcButton(chosenMode);
+
+
+    scHcButton.addEventListener("click", event => {
+
+        event.preventDefault();
+
+
+        const newMode =
+            chosenMode === "hc"
+                ? "sc"
+                : "hc";
+
+
+        const url = new URL(window.location);
+
+        url.searchParams.set("m", newMode);
+
+        window.location.href = url;
+
+    });
+
+
+    function updateScHcButton(mode) {
+
+        if (mode === "hc") {
+
+            scHcButton.classList.add("hardcore");
+            scHcButton.classList.remove("softcore");
+
+            scHcButton.style.backgroundImage =
+                "url('../icons/Hardcore_click.png')";
+
+        } else {
+
+            scHcButton.classList.add("softcore");
+            scHcButton.classList.remove("hardcore");
+
+            scHcButton.style.backgroundImage =
+                "url('../icons/Softcore_click.png')";
+
+        }
+
+    }
+
+});    
 /*
  * Start
  */
