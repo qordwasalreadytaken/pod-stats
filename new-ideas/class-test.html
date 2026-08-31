@@ -170,7 +170,7 @@
     </div>
 
     <div class="top-buttons">
-        <a href="Home" class="top-button home-button" onclick="setActive('Home')"></a>
+        <a href="Home" class="top-button home-button" onclick="setActive('../Home')"></a>
         <a href="#" id="SC_HC" class="top-button"> </a>
         <a href="#" class="top-button amazon-button" data-class="amazon"></a>
         <a href="#" class="top-button assassin-button" data-class="assassin"></a>
@@ -209,6 +209,7 @@
                     id="minLevel"
                     min="1"
                     max="99"
+                    value="60"
                     placeholder="Any"
                 >
             </div>
@@ -519,6 +520,10 @@ const chosenMode = validModes.includes(requestedMode)
 //        .addEventListener("change", updateURL);
 //    document.getElementById("class")
 //        .addEventListener("change", updateURL);
+
+//    document.querySelector(".home-button")
+//        .addEventListener("click", () => {window.location.href = "../Home"});
+
     document.querySelector(".amazon-button")
         .addEventListener("click", () => changeClass("amazon"));
 
@@ -1157,25 +1162,18 @@ function getTopSkills(characters, limit = 5) {
     const skills = new Map();
 
     for (const character of characters) {
-
         for (const tab of character.SkillTabs ?? []) {
-
             for (const skill of tab.Skills ?? []) {
-
                 const level =
                     Number(skill.Level) || 0;
-
                 if (!skills.has(skill.Name)) {
                     skills.set(skill.Name, {
                         total: 0,
                         users: 0
                     });
                 }
-
                 const entry = skills.get(skill.Name);
-
                 entry.total += level;
-
                 if (level > 1) {
                     entry.users++;
                 }
@@ -1195,29 +1193,20 @@ function getTopSkills(characters, limit = 5) {
 }
 
 function getAllSkills(characters, limit = 90) {
-
     const skills = new Map();
-
     for (const character of characters) {
-
         for (const tab of character.SkillTabs ?? []) {
-
             for (const skill of tab.Skills ?? []) {
-
                 const level =
                     Number(skill.Level) || 1;
-
                 if (!skills.has(skill.Name)) {
                     skills.set(skill.Name, {
                         total: 0,
                         users: 0
                     });
                 }
-
                 const entry = skills.get(skill.Name);
-
                 entry.total += level;
-
                 if (level > 1) {
                     entry.users++;
                 }
@@ -1282,13 +1271,9 @@ function summarizeFavoredSkillTrees(
                             treePoints[treeName] +=
                                 Number(skill.Level) || 0;
                         }
-
                     }
-
                 }
-
             }
-
         }
 
         /*
@@ -1299,7 +1284,6 @@ function summarizeFavoredSkillTrees(
             if (points >= treeThreshold) {
                 favoredCounts[treeName]++;
             }
-
         }
 
         /*
@@ -1311,25 +1295,20 @@ function summarizeFavoredSkillTrees(
                     points >= hybridThreshold
                 )
                 .map(([treeName]) => treeName);
-
         if (highTrees.length >= 2) {
-
             const label =
                 highTrees.length === Object.keys(trees).length
                     ? "all trees"
                     : highTrees.sort().join(" + ");
-
             hybridCounts[label] =
                 (hybridCounts[label] ?? 0) + 1;
         }
-
     }
 
     /*
      * Convert counts to percentages.
      */
     const total = characters.length;
-
     const favored = Object.entries(favoredCounts)
         .filter(([_, count]) => count > 0)
         .sort((a, b) => b[1] - a[1])
@@ -1338,7 +1317,6 @@ function summarizeFavoredSkillTrees(
             count,
             percent: (count / total) * 100
         }));
-
     const hybrids = Object.entries(hybridCounts)
         .sort((a, b) => b[1] - a[1])
         .map(([trees, count]) => ({
@@ -1346,7 +1324,6 @@ function summarizeFavoredSkillTrees(
             count,
             percent: (count / total) * 100
         }));
-
     return {
         total,
         favored,
@@ -2093,9 +2070,7 @@ function countSocketablesByType(items) {
         }
 
     }
-
     return { runeCounter, nonRuneCounter, magicJewel, rareJewel, facetCounter };
-
 }
 
 
@@ -2209,7 +2184,6 @@ const MERC_WORN_MAP = {
     body: "Armor", helmet: "Helmet", weapon1: "Weapon", weapon2: "Offhand"
 };
 
-
 function computeMercenaryAnalysis(charactersToAnalyze) {
 
     const mercenaryCounts = new Map();
@@ -2258,11 +2232,8 @@ function computeMercenaryAnalysis(charactersToAnalyze) {
 
             titleCounts.get(itemKey).count++;
         }
-
     }
-
     return { mercenaryCounts, mercenaryNames, mercenaryEquipment };
-
 }
 
 
@@ -2865,13 +2836,10 @@ function renderCharacters() {
     const charactersToRender =
         filteredCharacters.slice(0, 500);
 
-
 //    tbody.innerHTML = "";
-
 
     const fragment =
         document.createDocumentFragment();
-
 
     for (const character of charactersToRender) {
 
@@ -2883,23 +2851,19 @@ function renderCharacters() {
             character.Stats.Level ??
             "";
 
-
         const className =
             character.Class ??
             character.ClassName ??
             character.CharClass ??
             "${chosenClass}";
 
-
         const cluster =
             character.Cluster ??
             character.BuildCluster ??
             "";
 
-
         const row =
             document.createElement("tr");
-
 
         row.innerHTML = `
             <td>
@@ -2921,12 +2885,10 @@ function renderCharacters() {
             </td>
         `;
 
-
         row.querySelector(".character-name")
             .addEventListener("click", () => {
                 showCharacter(character);
             });
-
 
         fragment.appendChild(row);
 
@@ -2936,7 +2898,6 @@ function renderCharacters() {
 //    tbody.appendChild(fragment);
 
     console.timeEnd("Render");
-
 
     if (filteredCharacters.length > 500) {
 
@@ -2952,9 +2913,7 @@ function renderCharacters() {
         `;
 
         tbody.appendChild(row);
-
     }
-
 }
 
 
@@ -2969,25 +2928,20 @@ function showCharacter(character) {
         character.charname ??
         "Character";
 
-
     document.getElementById("detailsName")
         .textContent = name;
-
 
     document.getElementById("detailsData")
         .textContent =
             JSON.stringify(character, null, 2);
 
-
     document.getElementById("characterDetails")
         .style.display = "block";
-
 
     document.getElementById("characterDetails")
         .scrollIntoView({
             behavior: "smooth"
         });
-
 }
 
 
@@ -3002,7 +2956,6 @@ function escapeHtml(value) {
         .replaceAll(">", "&gt;")
         .replaceAll('"', "&quot;")
         .replaceAll("'", "&#039;");
-
 }
 
 
@@ -3055,21 +3008,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const scHcButton = document.getElementById("SC_HC");
 
-
     // Set initial appearance
     updateScHcButton(chosenMode);
-
 
     scHcButton.addEventListener("click", event => {
 
         event.preventDefault();
 
-
         const newMode =
             chosenMode === "hc"
                 ? "sc"
                 : "hc";
-
 
         const url = new URL(window.location);
 
@@ -3077,7 +3026,6 @@ document.addEventListener("DOMContentLoaded", () => {
         url.hash = "";
 
         window.location.href = url;
-
     });
 
 
@@ -3098,11 +3046,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
             scHcButton.style.backgroundImage =
                 "url('../icons/Softcore_click.png')";
-
         }
-
     }
-
 });    
 /*
  * Start
