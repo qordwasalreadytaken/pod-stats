@@ -14,8 +14,8 @@ classes = [
 ]
 
 modes = {
-    "sc": "sc_ladder.json",
-    "hc": "hc_ladder.json"
+    "sc": "../sc_ladder.json",
+    "hc": "../hc_ladder.json"
 }
 
 for mode, source_file in modes.items():
