@@ -54,6 +54,11 @@ jobs:
           mv scripts/hc_ladder.json .
         fi
         
+    - name: Create Class JSON's
+      run: |
+        cd new-ideas
+        python create-class-jsons.py
+
     - name: Commit and push changes
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
