@@ -6593,13 +6593,13 @@
       "BaseLife": 1187,
       "Life": 1197,
       "BaseMana": 221,
-      "Mana": 275,
+      "Mana": 271,
       "Gold": 0,
-      "Stashed": 180723
+      "Stashed": 908533
     },
     "Bonus": {
       "Strength": 35,
-      "Dexterity": 10,
+      "Dexterity": 50,
       "Vitality": 0,
       "Energy": 0,
       "FireResistance": 53,
@@ -6611,10 +6611,10 @@
       "PoisonResistance": 53,
       "MaximumPoisonResistance": 0,
       "MagicFind": 26,
-      "GoldFind": 170,
+      "GoldFind": 137,
       "FasterCastRate": 0,
       "FasterHitRecovery": 0,
-      "IncreasedAttackSpeed": 0,
+      "IncreasedAttackSpeed": 20,
       "CrushingBlow": 0,
       "OpenWounds": 0,
       "DeadlyStrike": 0,
@@ -6801,37 +6801,6 @@
         "Worn": "boots"
       },
       {
-        "Quality": "Rare",
-        "ID": "327330275",
-        "QualityCode": "q_rare",
-        "Title": "Eagle Heart",
-        "Tag": "Amulet",
-        "TextTag": "amulet",
-        "Ethereal": "False",
-        "Enhanced": "False",
-        "AlternateGraphics": "2",
-        "ItemLevel": "94",
-        "LevelReq": 30,
-        "SocketCount": "0",
-        "PropertyList": [
-          "\u00ffc1Corrupted",
-          "+1 to Summon Skills",
-          "+2 to Summoning Skills (Druid Only)",
-          "+44 to Mana",
-          "9% Damage Taken Gained as Mana when Hit",
-          "33% Extra Gold from Monsters"
-        ],
-        "Position": {
-          "x": 2,
-          "y": 0
-        },
-        "Size": {
-          "invheight": 1,
-          "invwidth": 1
-        },
-        "Worn": "amulet"
-      },
-      {
         "Quality": "Unique",
         "ID": "556882192",
         "QualityCode": "q_unique",
@@ -6903,6 +6872,70 @@
           "invwidth": 2
         },
         "Worn": "belt"
+      },
+      {
+        "Quality": "Unique",
+        "ID": "3576789460",
+        "QualityCode": "q_unique",
+        "Title": "The Cat's Eye",
+        "Tag": "Amulet",
+        "TextTag": "amulet",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "AlternateGraphics": "0",
+        "ItemLevel": "91",
+        "LevelReq": 50,
+        "SocketCount": "0",
+        "PropertyList": [
+          "\u00ffc1Corrupted",
+          "+30% Faster Run/Walk",
+          "+20% Increased Attack Speed",
+          "+100 Defense",
+          "+100 Defense vs. Missile",
+          "+25 to Dexterity"
+        ],
+        "Position": {
+          "x": 2,
+          "y": 0
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": "amulet"
+      },
+      {
+        "Quality": "Unique",
+        "ID": "3207223395",
+        "QualityCode": "q_unique",
+        "Title": "Raven Frost",
+        "Tag": "Ring",
+        "TextTag": "ring",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "AlternateGraphics": "2",
+        "ItemLevel": "88",
+        "LevelReq": 45,
+        "SocketCount": "0",
+        "PropertyList": [
+          "\u00ffc1Corrupted",
+          "+10% Faster Run/Walk",
+          "+190 to Attack Rating",
+          "Adds 15-45 cold damage",
+          "+15 to Dexterity",
+          "+40 to Mana",
+          "Cold Absorb 20%",
+          "Cannot Be Frozen"
+        ],
+        "Position": {
+          "x": 7,
+          "y": 0
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": "ring2"
       },
       {
         "Quality": "Normal",
@@ -135374,7 +135407,7 @@
       "Life": 1605,
       "BaseMana": 213,
       "Mana": 687,
-      "Gold": 950000,
+      "Gold": 900000,
       "Stashed": 2500000
     },
     "Bonus": {
@@ -196823,7 +196856,7 @@
     "Class": "Necromancer",
     "Stats": {
       "Level": 96,
-      "Experience": 2931952955,
+      "Experience": 2918496012,
       "Strength": 42,
       "Dexterity": 25,
       "Vitality": 473,
@@ -196832,8 +196865,8 @@
       "Life": 1780,
       "BaseMana": 215,
       "Mana": 555,
-      "Gold": 960000,
-      "Stashed": 2500000
+      "Gold": 0,
+      "Stashed": 133210
     },
     "Bonus": {
       "Strength": 109,
@@ -198444,6 +198477,34 @@
         "Worn": ""
       },
       {
+        "Quality": "Unique",
+        "ID": "1567635458",
+        "QualityCode": "q_unique",
+        "Title": "Gheed's Fortune",
+        "Tag": "Grand Charm",
+        "TextTag": "Charm Large",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "AlternateGraphics": "1",
+        "ItemLevel": "87",
+        "LevelReq": 62,
+        "SocketCount": "0",
+        "PropertyList": [
+          "112% Extra Gold from Monsters",
+          "Reduces all Vendor Prices 14%",
+          "40% Better Chance of Getting Magic Items"
+        ],
+        "Position": {
+          "x": 0,
+          "y": 6
+        },
+        "Size": {
+          "invheight": 3,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
         "Quality": "Normal",
         "ID": "3356224913",
         "QualityCode": "q_normal",
@@ -198486,343 +198547,6 @@
         "Size": {
           "invheight": 2,
           "invwidth": 2
-        },
-        "Worn": ""
-      },
-      {
-        "Quality": "Unique",
-        "ID": "1567635458",
-        "QualityCode": "q_unique",
-        "Title": "Gheed's Fortune",
-        "Tag": "Grand Charm",
-        "TextTag": "Charm Large",
-        "Ethereal": "False",
-        "Enhanced": "False",
-        "AlternateGraphics": "1",
-        "ItemLevel": "87",
-        "LevelReq": 62,
-        "SocketCount": "0",
-        "PropertyList": [
-          "112% Extra Gold from Monsters",
-          "Reduces all Vendor Prices 14%",
-          "40% Better Chance of Getting Magic Items"
-        ],
-        "Position": {
-          "x": 0,
-          "y": 6
-        },
-        "Size": {
-          "invheight": 3,
-          "invwidth": 1
-        },
-        "Worn": ""
-      },
-      {
-        "Quality": "Rare",
-        "ID": "2815464634",
-        "QualityCode": "q_rare",
-        "Title": "Ring",
-        "Tag": "Ring",
-        "TextTag": "ring",
-        "Ethereal": "False",
-        "AlternateGraphics": "2",
-        "ItemLevel": "87",
-        "LevelReq": 18,
-        "PropertyList": [
-          "\u00ffc1Unidentified"
-        ],
-        "Position": {
-          "x": 9,
-          "y": 4
-        },
-        "Size": {
-          "invheight": 1,
-          "invwidth": 1
-        },
-        "Worn": ""
-      },
-      {
-        "Quality": "Magic",
-        "ID": "1969780682",
-        "QualityCode": "q_magic",
-        "Title": "Lord's Matriarchal Javelin",
-        "Tag": "Matriarchal Javelin",
-        "TextTag": "MatriarchalJavelin",
-        "Ethereal": "False",
-        "Enhanced": "True",
-        "DamageMinimum": "51",
-        "DamageMaximum": "93",
-        "ThrowDamageMinimum": "60",
-        "ThrowDamageMaximum": "114",
-        "Durability": "57",
-        "DurabilityMaximum": "100",
-        "ItemLevel": "90",
-        "LevelReq": 48,
-        "SocketCount": "0",
-        "PropertyList": [
-          "+1 to Javelin and Spear Skills (Amazon Only)",
-          "+73% Enhanced Damage",
-          "+110 to Attack Rating"
-        ],
-        "Position": {
-          "x": 3,
-          "y": 0
-        },
-        "Size": {
-          "invheight": 3,
-          "invwidth": 1
-        },
-        "Worn": ""
-      },
-      {
-        "Quality": "Magic",
-        "ID": "1944454777",
-        "QualityCode": "q_magic",
-        "Title": "Small Charm",
-        "Tag": "Small Charm",
-        "TextTag": "Charm Small",
-        "Ethereal": "False",
-        "AlternateGraphics": "0",
-        "ItemLevel": "87",
-        "LevelReq": 27,
-        "PropertyList": [
-          "\u00ffc1Unidentified"
-        ],
-        "Position": {
-          "x": 1,
-          "y": 2
-        },
-        "Size": {
-          "invheight": 1,
-          "invwidth": 1
-        },
-        "Worn": ""
-      },
-      {
-        "Quality": "Magic",
-        "ID": "1328281683",
-        "QualityCode": "q_magic",
-        "Title": "Grand Charm of Sustenance",
-        "Tag": "Grand Charm",
-        "TextTag": "Charm Large",
-        "Ethereal": "False",
-        "Enhanced": "False",
-        "AlternateGraphics": "2",
-        "ItemLevel": "87",
-        "LevelReq": 23,
-        "SocketCount": "0",
-        "PropertyList": [
-          "+24 to Life"
-        ],
-        "Position": {
-          "x": 4,
-          "y": 0
-        },
-        "Size": {
-          "invheight": 3,
-          "invwidth": 1
-        },
-        "Worn": ""
-      },
-      {
-        "Quality": "Magic",
-        "ID": "1902733232",
-        "QualityCode": "q_magic",
-        "Title": "Small Charm",
-        "Tag": "Small Charm",
-        "TextTag": "Charm Small",
-        "Ethereal": "False",
-        "AlternateGraphics": "1",
-        "ItemLevel": "87",
-        "LevelReq": 10,
-        "PropertyList": [
-          "\u00ffc1Unidentified"
-        ],
-        "Position": {
-          "x": 0,
-          "y": 2
-        },
-        "Size": {
-          "invheight": 1,
-          "invwidth": 1
-        },
-        "Worn": ""
-      },
-      {
-        "Quality": "Magic",
-        "ID": "1103820191",
-        "QualityCode": "q_magic",
-        "Title": "Jewel",
-        "Tag": "Jewel",
-        "TextTag": "Jewel",
-        "Ethereal": "False",
-        "AlternateGraphics": "1",
-        "ItemLevel": "87",
-        "LevelReq": 36,
-        "PropertyList": [
-          "\u00ffc1Unidentified"
-        ],
-        "Position": {
-          "x": 9,
-          "y": 3
-        },
-        "Size": {
-          "invheight": 1,
-          "invwidth": 1
-        },
-        "Worn": ""
-      },
-      {
-        "Quality": "Rare",
-        "ID": "1065264270",
-        "QualityCode": "q_rare",
-        "Title": "Death Veil",
-        "Tag": "Circlet",
-        "TextTag": "Circlet",
-        "Ethereal": "False",
-        "Enhanced": "True",
-        "Defense": "31",
-        "Durability": "18",
-        "DurabilityMaximum": "35",
-        "ItemLevel": "89",
-        "LevelReq": 67,
-        "SocketCount": "0",
-        "PropertyList": [
-          "+2 to Sorceress Skill Levels",
-          "4% Life stolen per hit",
-          "+50% Enhanced Defense",
-          "+21 to Strength",
-          "Magic & Elemental Damage Taken Reduced by 2"
-        ],
-        "Position": {
-          "x": 4,
-          "y": 3
-        },
-        "Size": {
-          "invheight": 2,
-          "invwidth": 2
-        },
-        "Worn": ""
-      },
-      {
-        "Quality": "Magic",
-        "ID": "438642974",
-        "QualityCode": "q_magic",
-        "Title": "Jewel",
-        "Tag": "Jewel",
-        "TextTag": "Jewel",
-        "Ethereal": "False",
-        "AlternateGraphics": "0",
-        "ItemLevel": "87",
-        "LevelReq": 35,
-        "PropertyList": [
-          "\u00ffc1Unidentified"
-        ],
-        "Position": {
-          "x": 9,
-          "y": 2
-        },
-        "Size": {
-          "invheight": 1,
-          "invwidth": 1
-        },
-        "Worn": ""
-      },
-      {
-        "Quality": "Magic",
-        "ID": "2450849694",
-        "QualityCode": "q_magic",
-        "Title": "Grand Charm of Greed",
-        "Tag": "Grand Charm",
-        "TextTag": "Charm Large",
-        "Ethereal": "False",
-        "Enhanced": "False",
-        "AlternateGraphics": "2",
-        "ItemLevel": "87",
-        "LevelReq": 14,
-        "SocketCount": "0",
-        "PropertyList": [
-          "40% Extra Gold from Monsters"
-        ],
-        "Position": {
-          "x": 5,
-          "y": 0
-        },
-        "Size": {
-          "invheight": 3,
-          "invwidth": 1
-        },
-        "Worn": ""
-      },
-      {
-        "Quality": "Magic",
-        "ID": "4271516994",
-        "QualityCode": "q_magic",
-        "Title": "Small Charm",
-        "Tag": "Small Charm",
-        "TextTag": "Charm Small",
-        "Ethereal": "False",
-        "AlternateGraphics": "1",
-        "ItemLevel": "87",
-        "LevelReq": 5,
-        "PropertyList": [
-          "\u00ffc1Unidentified"
-        ],
-        "Position": {
-          "x": 9,
-          "y": 1
-        },
-        "Size": {
-          "invheight": 1,
-          "invwidth": 1
-        },
-        "Worn": ""
-      },
-      {
-        "Quality": "Magic",
-        "ID": "2953064811",
-        "QualityCode": "q_magic",
-        "Title": "Jewel",
-        "Tag": "Jewel",
-        "TextTag": "Jewel",
-        "Ethereal": "False",
-        "AlternateGraphics": "1",
-        "ItemLevel": "87",
-        "LevelReq": 1,
-        "PropertyList": [
-          "\u00ffc1Unidentified"
-        ],
-        "Position": {
-          "x": 9,
-          "y": 0
-        },
-        "Size": {
-          "invheight": 1,
-          "invwidth": 1
-        },
-        "Worn": ""
-      },
-      {
-        "Quality": "Magic",
-        "ID": "968458739",
-        "QualityCode": "q_magic",
-        "Title": "Small Charm",
-        "Tag": "Small Charm",
-        "TextTag": "Charm Small",
-        "Ethereal": "False",
-        "AlternateGraphics": "0",
-        "ItemLevel": "87",
-        "LevelReq": 6,
-        "PropertyList": [
-          "\u00ffc1Unidentified"
-        ],
-        "Position": {
-          "x": 8,
-          "y": 4
-        },
-        "Size": {
-          "invheight": 1,
-          "invwidth": 1
         },
         "Worn": ""
       }
