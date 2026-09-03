@@ -15,13 +15,16 @@
         body{
             background-image: url("../icons/${chosenClass}_background_2600.jpg"), url("../icons/stone_background_2600.jpg");
         }
-        .controls {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            align-items: flex-end;
-        }
+.controls {
+    display: none;
+}
 
+body.admin-mode .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: flex-end;
+}
         .control {
             display: flex;
             flex-direction: column;
@@ -188,10 +191,10 @@
     <div class="summary-container">
 
         <div class="status">
-            <div id="status">Loading ${chosenClass}.json...</div>
+            <div id="status">Loading Class Data...</div>
         </div>
 
-        <div class="controls">
+        <div class="controls" id="controls">
 
             <div class="control">
                 <label for="search">Character name</label>
@@ -502,6 +505,7 @@ const validModes = [
 
 const requestedMode = params.get("m");
 const requestedClass = params.get("c");
+const isAdmin = params.get("admin") === "1";
 
 const chosenMode = validModes.includes(requestedMode)
     ? requestedMode
@@ -523,7 +527,7 @@ const chosenMode = validModes.includes(requestedMode)
 
 //    document.querySelector(".home-button")
 //        .addEventListener("click", () => {window.location.href = "../Home"});
-
+    if (isAdmin) {document.body.classList.add("admin-mode");}
     document.querySelector(".amazon-button")
         .addEventListener("click", () => changeClass("amazon"));
 
