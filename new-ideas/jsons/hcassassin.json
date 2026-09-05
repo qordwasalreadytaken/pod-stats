@@ -65939,33 +65939,33 @@
     "IsDead": false,
     "Class": "Assassin",
     "Stats": {
-      "Level": 81,
-      "Experience": 799369974,
+      "Level": 82,
+      "Experience": 815366582,
       "Strength": 94,
       "Dexterity": 57,
       "Vitality": 324,
       "Energy": 25,
-      "BaseLife": 1182,
-      "Life": 1409,
-      "BaseMana": 145,
-      "Mana": 183,
-      "Gold": 0,
+      "BaseLife": 1184,
+      "Life": 1492,
+      "BaseMana": 146,
+      "Mana": 204,
+      "Gold": 6128,
       "Stashed": 1498307
     },
     "Bonus": {
-      "Strength": 31,
+      "Strength": 42,
       "Dexterity": 33,
       "Vitality": 0,
       "Energy": 6,
-      "FireResistance": 116,
+      "FireResistance": 129,
       "MaximumFireResistance": 0,
-      "ColdResistance": 84,
+      "ColdResistance": 97,
       "MaximumColdResistance": 0,
-      "LightningResistance": 129,
+      "LightningResistance": 142,
       "MaximumLightningResistance": 0,
-      "PoisonResistance": 98,
+      "PoisonResistance": 111,
       "MaximumPoisonResistance": 0,
-      "MagicFind": 113,
+      "MagicFind": 137,
       "GoldFind": 200,
       "FasterCastRate": 0,
       "FasterHitRecovery": 24,
@@ -66048,7 +66048,7 @@
       },
       {
         "Name": "Shadow Disciplines",
-        "Total": 7,
+        "Total": 8,
         "Skills": [
           {
             "ID": 2,
@@ -66059,6 +66059,11 @@
             "ID": 8,
             "Name": "Burst of Speed",
             "Level": 5
+          },
+          {
+            "ID": 13,
+            "Name": "Weapon Block",
+            "Level": 1
           },
           {
             "ID": 17,
@@ -66104,7 +66109,7 @@
         ]
       }
     ],
-    "MercenaryExperience": 59192876,
+    "MercenaryExperience": 59564044,
     "MercenaryType": "Desert Mercenary",
     "MercenaryName": "Chalan",
     "MercenaryLevel": "78",
@@ -66177,39 +66182,6 @@
         "Worn": "amulet"
       },
       {
-        "Quality": "Unique",
-        "ID": "4286724674",
-        "QualityCode": "q_unique",
-        "Title": "Chance Guards",
-        "Tag": "Chain Gloves",
-        "TextTag": "Bracers(M)",
-        "Ethereal": "False",
-        "Enhanced": "True",
-        "Defense": "10",
-        "Durability": "15",
-        "DurabilityMaximum": "16",
-        "ItemLevel": "51",
-        "LevelReq": 15,
-        "SocketCount": "0",
-        "PropertyList": [
-          "+25 to Attack Rating",
-          "+20% Enhanced Defense",
-          "+15 Defense",
-          "200% Extra Gold from Monsters",
-          "35% Better Chance of Getting Magic Items",
-          "+2 to Light Radius"
-        ],
-        "Position": {
-          "x": 10,
-          "y": 0
-        },
-        "Size": {
-          "invheight": 2,
-          "invwidth": 2
-        },
-        "Worn": "gloves"
-      },
-      {
         "Quality": "Set",
         "ID": "75158701",
         "QualityCode": "q_set",
@@ -66245,15 +66217,143 @@
       },
       {
         "Quality": "Set",
-        "ID": "3347454665",
+        "ID": "3025985100",
+        "QualityCode": "q_set",
+        "Title": "Natalya's Soul",
+        "Tag": "Mesh Boots",
+        "TextTag": "Mesh Boots",
+        "Ethereal": "False",
+        "Enhanced": "True",
+        "Defense": "41",
+        "Durability": "66",
+        "DurabilityMaximum": "16",
+        "ItemLevel": "85",
+        "LevelReq": 25,
+        "SocketCount": "0",
+        "PropertyList": [
+          "+40% Faster Run/Walk",
+          "+107 Defense",
+          "Heal Stamina Plus +20% (Based on Character Level)",
+          "Cold Resist +18%",
+          "Lightning Resist +18%"
+        ],
+        "Position": {
+          "x": 9,
+          "y": 0
+        },
+        "Size": {
+          "invheight": 2,
+          "invwidth": 2
+        },
+        "Worn": "boots"
+      },
+      {
+        "Quality": "Rare",
+        "ID": "801878463",
+        "QualityCode": "q_rare",
+        "Title": "Bone Turn",
+        "Tag": "Ring",
+        "TextTag": "ring",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "AlternateGraphics": "4",
+        "ItemLevel": "81",
+        "LevelReq": 66,
+        "SocketCount": "0",
+        "PropertyList": [
+          "\u00ffc1Corrupted",
+          "+15 to Attack Rating",
+          "+18 to Strength",
+          "+6 to Energy",
+          "+20 to Mana",
+          "All Resistances +5"
+        ],
+        "Position": {
+          "x": 6,
+          "y": 0
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": "ring1"
+      },
+      {
+        "Quality": "Unique",
+        "ID": "2126429530",
+        "QualityCode": "q_unique",
+        "Title": "Nagelring",
+        "Tag": "Ring",
+        "TextTag": "ring",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "AlternateGraphics": "1",
+        "ItemLevel": "94",
+        "LevelReq": 7,
+        "SocketCount": "0",
+        "PropertyList": [
+          "\u00ffc1Corrupted",
+          "+10% Faster Run/Walk",
+          "+71 to Attack Rating",
+          "Magic & Elemental Damage Taken Reduced by 3",
+          "Attacker Takes Damage of 3",
+          "30% Better Chance of Getting Magic Items"
+        ],
+        "Position": {
+          "x": 7,
+          "y": 0
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": "ring2"
+      },
+      {
+        "Quality": "Unique",
+        "ID": "4286724674",
+        "QualityCode": "q_unique",
+        "Title": "Chance Guards",
+        "Tag": "Chain Gloves",
+        "TextTag": "Bracers(M)",
+        "Ethereal": "False",
+        "Enhanced": "True",
+        "Defense": "10",
+        "Durability": "15",
+        "DurabilityMaximum": "16",
+        "ItemLevel": "51",
+        "LevelReq": 15,
+        "SocketCount": "0",
+        "PropertyList": [
+          "\u00ffc1Corrupted",
+          "+25 to Attack Rating",
+          "+20% Enhanced Defense",
+          "+15 Defense",
+          "200% Extra Gold from Monsters",
+          "35% Better Chance of Getting Magic Items",
+          "+2 to Light Radius"
+        ],
+        "Position": {
+          "x": 10,
+          "y": 0
+        },
+        "Size": {
+          "invheight": 2,
+          "invwidth": 2
+        },
+        "Worn": "gloves"
+      },
+      {
+        "Quality": "Set",
+        "ID": "3508644271",
         "QualityCode": "q_set",
         "Title": "Natalya's Shadow",
         "Tag": "Loricated Mail",
         "TextTag": "Loricated Mail",
         "Ethereal": "False",
         "Enhanced": "True",
-        "Defense": "421",
-        "Durability": "36",
+        "Defense": "480",
+        "Durability": "31",
         "DurabilityMaximum": "36",
         "ItemLevel": "87",
         "LevelReq": 73,
@@ -66307,17 +66407,42 @@
               "invwidth": 1
             },
             "Worn": ""
+          },
+          {
+            "Quality": "Unknown",
+            "ID": "0",
+            "QualityCode": "",
+            "Title": "Perfect Topaz",
+            "Tag": "Perfect Topaz",
+            "TextTag": "Perfect Topaz",
+            "Ethereal": "False",
+            "Enhanced": "False",
+            "ItemLevel": "0",
+            "LevelReq": 18,
+            "SocketCount": "0",
+            "PropertyList": [
+              "24% Better Chance of Getting Magic Items"
+            ],
+            "Position": {
+              "x": 2,
+              "y": 0
+            },
+            "Size": {
+              "invheight": 1,
+              "invwidth": 1
+            },
+            "Worn": ""
           }
         ],
-        "SocketCount": "2",
+        "SocketCount": "3",
         "PropertyList": [
           "+2 to Shadow Disciplines (Assassin Only)",
-          "+160 Defense",
-          "+81 to Life (Based on Character Level)",
+          "+172 Defense",
+          "+82 to Life (Based on Character Level)",
           "Poison Resist +25%",
           "Poison Length Reduced by 75%",
-          "48% Better Chance of Getting Magic Items",
-          "Socketed (2)"
+          "72% Better Chance of Getting Magic Items",
+          "Socketed (3)"
         ],
         "Position": {
           "x": 3,
@@ -66328,98 +66453,6 @@
           "invwidth": 2
         },
         "Worn": "body"
-      },
-      {
-        "Quality": "Set",
-        "ID": "3025985100",
-        "QualityCode": "q_set",
-        "Title": "Natalya's Soul",
-        "Tag": "Mesh Boots",
-        "TextTag": "Mesh Boots",
-        "Ethereal": "False",
-        "Enhanced": "True",
-        "Defense": "41",
-        "Durability": "66",
-        "DurabilityMaximum": "16",
-        "ItemLevel": "85",
-        "LevelReq": 25,
-        "SocketCount": "0",
-        "PropertyList": [
-          "+40% Faster Run/Walk",
-          "+107 Defense",
-          "Heal Stamina Plus +20% (Based on Character Level)",
-          "Cold Resist +18%",
-          "Lightning Resist +18%"
-        ],
-        "Position": {
-          "x": 9,
-          "y": 0
-        },
-        "Size": {
-          "invheight": 2,
-          "invwidth": 2
-        },
-        "Worn": "boots"
-      },
-      {
-        "Quality": "Unique",
-        "ID": "2126429530",
-        "QualityCode": "q_unique",
-        "Title": "Nagelring",
-        "Tag": "Ring",
-        "TextTag": "ring",
-        "Ethereal": "False",
-        "Enhanced": "False",
-        "AlternateGraphics": "1",
-        "ItemLevel": "94",
-        "LevelReq": 7,
-        "SocketCount": "0",
-        "PropertyList": [
-          "+71 to Attack Rating",
-          "Magic & Elemental Damage Taken Reduced by 3",
-          "Attacker Takes Damage of 3",
-          "30% Better Chance of Getting Magic Items"
-        ],
-        "Position": {
-          "x": 7,
-          "y": 0
-        },
-        "Size": {
-          "invheight": 1,
-          "invwidth": 1
-        },
-        "Worn": "ring2"
-      },
-      {
-        "Quality": "Rare",
-        "ID": "801878463",
-        "QualityCode": "q_rare",
-        "Title": "Bone Turn",
-        "Tag": "Ring",
-        "TextTag": "ring",
-        "Ethereal": "False",
-        "Enhanced": "False",
-        "AlternateGraphics": "4",
-        "ItemLevel": "81",
-        "LevelReq": 66,
-        "SocketCount": "0",
-        "PropertyList": [
-          "\u00ffc1Corrupted",
-          "+15 to Attack Rating",
-          "+18 to Strength",
-          "+6 to Energy",
-          "+20 to Mana",
-          "All Resistances +5"
-        ],
-        "Position": {
-          "x": 6,
-          "y": 0
-        },
-        "Size": {
-          "invheight": 1,
-          "invwidth": 1
-        },
-        "Worn": "ring1"
       },
       {
         "Quality": "Unique",
@@ -66433,7 +66466,7 @@
         "DamageMinimum": "87",
         "DamageMaximum": "103",
         "ThrowDamageMinimum": "25",
-        "Durability": "215",
+        "Durability": "212",
         "DurabilityMaximum": "215",
         "ItemLevel": "91",
         "LevelReq": 42,
@@ -66697,58 +66730,6 @@
       },
       {
         "Quality": "Magic",
-        "ID": "1648436347",
-        "QualityCode": "q_magic",
-        "Title": "Large Charm of Sustenance",
-        "Tag": "Large Charm",
-        "TextTag": "Charm Medium",
-        "Ethereal": "False",
-        "Enhanced": "False",
-        "AlternateGraphics": "0",
-        "ItemLevel": "80",
-        "LevelReq": 19,
-        "SocketCount": "0",
-        "PropertyList": [
-          "+17 to Life"
-        ],
-        "Position": {
-          "x": 5,
-          "y": 5
-        },
-        "Size": {
-          "invheight": 2,
-          "invwidth": 1
-        },
-        "Worn": ""
-      },
-      {
-        "Quality": "Magic",
-        "ID": "2395797117",
-        "QualityCode": "q_magic",
-        "Title": "Grand Charm of Sustenance",
-        "Tag": "Grand Charm",
-        "TextTag": "Charm Large",
-        "Ethereal": "False",
-        "Enhanced": "False",
-        "AlternateGraphics": "0",
-        "ItemLevel": "81",
-        "LevelReq": 37,
-        "SocketCount": "0",
-        "PropertyList": [
-          "+26 to Life"
-        ],
-        "Position": {
-          "x": 2,
-          "y": 6
-        },
-        "Size": {
-          "invheight": 3,
-          "invwidth": 1
-        },
-        "Worn": ""
-      },
-      {
-        "Quality": "Magic",
         "ID": "44350724",
         "QualityCode": "q_magic",
         "Title": "Lizard's Large Charm of Life",
@@ -66770,58 +66751,6 @@
         },
         "Size": {
           "invheight": 2,
-          "invwidth": 1
-        },
-        "Worn": ""
-      },
-      {
-        "Quality": "Magic",
-        "ID": "2956364242",
-        "QualityCode": "q_magic",
-        "Title": "Small Charm of Sustenance",
-        "Tag": "Small Charm",
-        "TextTag": "Charm Small",
-        "Ethereal": "False",
-        "Enhanced": "False",
-        "AlternateGraphics": "0",
-        "ItemLevel": "81",
-        "LevelReq": 17,
-        "SocketCount": "0",
-        "PropertyList": [
-          "+11 to Life"
-        ],
-        "Position": {
-          "x": 4,
-          "y": 6
-        },
-        "Size": {
-          "invheight": 1,
-          "invwidth": 1
-        },
-        "Worn": ""
-      },
-      {
-        "Quality": "Magic",
-        "ID": "809295798",
-        "QualityCode": "q_magic",
-        "Title": "Small Charm of Life",
-        "Tag": "Small Charm",
-        "TextTag": "Charm Small",
-        "Ethereal": "False",
-        "Enhanced": "False",
-        "AlternateGraphics": "1",
-        "ItemLevel": "19",
-        "LevelReq": 14,
-        "SocketCount": "0",
-        "PropertyList": [
-          "+8 to Life"
-        ],
-        "Position": {
-          "x": 4,
-          "y": 5
-        },
-        "Size": {
-          "invheight": 1,
           "invwidth": 1
         },
         "Worn": ""
@@ -66879,111 +66808,6 @@
         "Worn": ""
       },
       {
-        "Quality": "Magic",
-        "ID": "3572468588",
-        "QualityCode": "q_magic",
-        "Title": "Small Charm of Life",
-        "Tag": "Small Charm",
-        "TextTag": "Charm Small",
-        "Ethereal": "False",
-        "Enhanced": "False",
-        "AlternateGraphics": "0",
-        "ItemLevel": "41",
-        "LevelReq": 14,
-        "SocketCount": "0",
-        "PropertyList": [
-          "+9 to Life"
-        ],
-        "Position": {
-          "x": 5,
-          "y": 7
-        },
-        "Size": {
-          "invheight": 1,
-          "invwidth": 1
-        },
-        "Worn": ""
-      },
-      {
-        "Quality": "Magic",
-        "ID": "729254835",
-        "QualityCode": "q_magic",
-        "Title": "Garnet Grand Charm of Dexterity",
-        "Tag": "Grand Charm",
-        "TextTag": "Charm Large",
-        "Ethereal": "False",
-        "Enhanced": "False",
-        "AlternateGraphics": "2",
-        "ItemLevel": "23",
-        "LevelReq": 15,
-        "SocketCount": "0",
-        "PropertyList": [
-          "+4 to Dexterity",
-          "Fire Resist +23%"
-        ],
-        "Position": {
-          "x": 6,
-          "y": 6
-        },
-        "Size": {
-          "invheight": 3,
-          "invwidth": 1
-        },
-        "Worn": ""
-      },
-      {
-        "Quality": "Magic",
-        "ID": "960541513",
-        "QualityCode": "q_magic",
-        "Title": "Garnet Grand Charm",
-        "Tag": "Grand Charm",
-        "TextTag": "Charm Large",
-        "Ethereal": "False",
-        "Enhanced": "False",
-        "AlternateGraphics": "0",
-        "ItemLevel": "84",
-        "LevelReq": 15,
-        "SocketCount": "0",
-        "PropertyList": [
-          "Fire Resist +22%"
-        ],
-        "Position": {
-          "x": 7,
-          "y": 6
-        },
-        "Size": {
-          "invheight": 3,
-          "invwidth": 1
-        },
-        "Worn": ""
-      },
-      {
-        "Quality": "Magic",
-        "ID": "3005834116",
-        "QualityCode": "q_magic",
-        "Title": "Small Charm of Life",
-        "Tag": "Small Charm",
-        "TextTag": "Charm Small",
-        "Ethereal": "False",
-        "Enhanced": "False",
-        "AlternateGraphics": "1",
-        "ItemLevel": "42",
-        "LevelReq": 14,
-        "SocketCount": "0",
-        "PropertyList": [
-          "+7 to Life"
-        ],
-        "Position": {
-          "x": 5,
-          "y": 8
-        },
-        "Size": {
-          "invheight": 1,
-          "invwidth": 1
-        },
-        "Worn": ""
-      },
-      {
         "Quality": "Normal",
         "ID": "987518255",
         "QualityCode": "q_normal",
@@ -67025,6 +66849,449 @@
         "Position": {
           "x": 2,
           "y": 5
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Magic",
+        "ID": "2957504856",
+        "QualityCode": "q_magic",
+        "Title": "Shogukusha's Grand Charm of the Glacier",
+        "Tag": "Grand Charm",
+        "TextTag": "Charm Large",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "AlternateGraphics": "1",
+        "ItemLevel": "87",
+        "LevelReq": 42,
+        "SocketCount": "0",
+        "PropertyList": [
+          "+1 to Martial Arts (Assassin Only)",
+          "Adds 3-7 cold damage"
+        ],
+        "Position": {
+          "x": 8,
+          "y": 6
+        },
+        "Size": {
+          "invheight": 3,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Magic",
+        "ID": "1762912925",
+        "QualityCode": "q_magic",
+        "Title": "Shogukusha's Grand Charm",
+        "Tag": "Grand Charm",
+        "TextTag": "Charm Large",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "AlternateGraphics": "0",
+        "ItemLevel": "87",
+        "LevelReq": 42,
+        "SocketCount": "0",
+        "PropertyList": [
+          "+1 to Martial Arts (Assassin Only)"
+        ],
+        "Position": {
+          "x": 7,
+          "y": 6
+        },
+        "Size": {
+          "invheight": 3,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Magic",
+        "ID": "3572468588",
+        "QualityCode": "q_magic",
+        "Title": "Small Charm of Life",
+        "Tag": "Small Charm",
+        "TextTag": "Charm Small",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "AlternateGraphics": "0",
+        "ItemLevel": "41",
+        "LevelReq": 14,
+        "SocketCount": "0",
+        "PropertyList": [
+          "+9 to Life"
+        ],
+        "Position": {
+          "x": 1,
+          "y": 5
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Magic",
+        "ID": "3005834116",
+        "QualityCode": "q_magic",
+        "Title": "Small Charm of Life",
+        "Tag": "Small Charm",
+        "TextTag": "Charm Small",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "AlternateGraphics": "1",
+        "ItemLevel": "42",
+        "LevelReq": 14,
+        "SocketCount": "0",
+        "PropertyList": [
+          "+7 to Life"
+        ],
+        "Position": {
+          "x": 5,
+          "y": 5
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Magic",
+        "ID": "809295798",
+        "QualityCode": "q_magic",
+        "Title": "Small Charm of Life",
+        "Tag": "Small Charm",
+        "TextTag": "Charm Small",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "AlternateGraphics": "1",
+        "ItemLevel": "19",
+        "LevelReq": 14,
+        "SocketCount": "0",
+        "PropertyList": [
+          "+8 to Life"
+        ],
+        "Position": {
+          "x": 7,
+          "y": 5
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Magic",
+        "ID": "1648436347",
+        "QualityCode": "q_magic",
+        "Title": "Large Charm of Sustenance",
+        "Tag": "Large Charm",
+        "TextTag": "Charm Medium",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "AlternateGraphics": "0",
+        "ItemLevel": "80",
+        "LevelReq": 19,
+        "SocketCount": "0",
+        "PropertyList": [
+          "+17 to Life"
+        ],
+        "Position": {
+          "x": 4,
+          "y": 5
+        },
+        "Size": {
+          "invheight": 2,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Magic",
+        "ID": "2956364242",
+        "QualityCode": "q_magic",
+        "Title": "Small Charm of Sustenance",
+        "Tag": "Small Charm",
+        "TextTag": "Charm Small",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "AlternateGraphics": "0",
+        "ItemLevel": "81",
+        "LevelReq": 17,
+        "SocketCount": "0",
+        "PropertyList": [
+          "+11 to Life"
+        ],
+        "Position": {
+          "x": 6,
+          "y": 5
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Magic",
+        "ID": "729254835",
+        "QualityCode": "q_magic",
+        "Title": "Garnet Grand Charm of Dexterity",
+        "Tag": "Grand Charm",
+        "TextTag": "Charm Large",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "AlternateGraphics": "2",
+        "ItemLevel": "23",
+        "LevelReq": 15,
+        "SocketCount": "0",
+        "PropertyList": [
+          "+4 to Dexterity",
+          "Fire Resist +23%"
+        ],
+        "Position": {
+          "x": 6,
+          "y": 6
+        },
+        "Size": {
+          "invheight": 3,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Unique",
+        "ID": "3638287352",
+        "QualityCode": "q_unique",
+        "Title": "Hellfire Torch",
+        "Tag": "Large Charm",
+        "TextTag": "Charm Medium",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "AlternateGraphics": "1",
+        "ItemLevel": "99",
+        "LevelReq": 75,
+        "SocketCount": "0",
+        "PropertyList": [
+          "+3 to Assassin Skill Levels",
+          "+11 to all Attributes",
+          "All Resistances +13",
+          "+8 to Light Radius"
+        ],
+        "Position": {
+          "x": 9,
+          "y": 7
+        },
+        "Size": {
+          "invheight": 2,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Magic",
+        "ID": "960541513",
+        "QualityCode": "q_magic",
+        "Title": "Garnet Grand Charm",
+        "Tag": "Grand Charm",
+        "TextTag": "Charm Large",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "AlternateGraphics": "0",
+        "ItemLevel": "84",
+        "LevelReq": 15,
+        "SocketCount": "0",
+        "PropertyList": [
+          "Fire Resist +22%"
+        ],
+        "Position": {
+          "x": 2,
+          "y": 6
+        },
+        "Size": {
+          "invheight": 3,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Magic",
+        "ID": "2559294103",
+        "QualityCode": "q_magic",
+        "Title": "Shogukusha's Grand Charm",
+        "Tag": "Grand Charm",
+        "TextTag": "Charm Large",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "AlternateGraphics": "0",
+        "ItemLevel": "88",
+        "LevelReq": 42,
+        "SocketCount": "0",
+        "PropertyList": [
+          "+1 to Martial Arts (Assassin Only)"
+        ],
+        "Position": {
+          "x": 5,
+          "y": 6
+        },
+        "Size": {
+          "invheight": 3,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Magic",
+        "ID": "2395797117",
+        "QualityCode": "q_magic",
+        "Title": "Grand Charm of Sustenance",
+        "Tag": "Grand Charm",
+        "TextTag": "Charm Large",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "AlternateGraphics": "0",
+        "ItemLevel": "81",
+        "LevelReq": 37,
+        "SocketCount": "0",
+        "PropertyList": [
+          "+26 to Life"
+        ],
+        "Position": {
+          "x": 2,
+          "y": 0
+        },
+        "Size": {
+          "invheight": 3,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Magic",
+        "ID": "499869100",
+        "QualityCode": "q_magic",
+        "Title": "Iron Small Charm of Blight",
+        "Tag": "Small Charm",
+        "TextTag": "Charm Small",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "AlternateGraphics": "1",
+        "ItemLevel": "85",
+        "LevelReq": 31,
+        "SocketCount": "0",
+        "PropertyList": [
+          "+18 to Attack Rating",
+          "+6 poison damage over 3 seconds"
+        ],
+        "Position": {
+          "x": 9,
+          "y": 6
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Magic",
+        "ID": "3835243438",
+        "QualityCode": "q_magic",
+        "Title": "Lapis Grand Charm of Dexterity",
+        "Tag": "Grand Charm",
+        "TextTag": "Charm Large",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "AlternateGraphics": "1",
+        "ItemLevel": "85",
+        "LevelReq": 10,
+        "SocketCount": "0",
+        "PropertyList": [
+          "+6 to Dexterity",
+          "Cold Resist +17%"
+        ],
+        "Position": {
+          "x": 9,
+          "y": 3
+        },
+        "Size": {
+          "invheight": 3,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Magic",
+        "ID": "1681496014",
+        "QualityCode": "q_magic",
+        "Title": "Lizard's Small Charm",
+        "Tag": "Small Charm",
+        "TextTag": "Charm Small",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "AlternateGraphics": "1",
+        "ItemLevel": "88",
+        "LevelReq": 12,
+        "SocketCount": "0",
+        "PropertyList": [
+          "+1 to Mana"
+        ],
+        "Position": {
+          "x": 9,
+          "y": 2
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Unknown",
+        "ID": "0",
+        "QualityCode": "",
+        "Title": "El Rune",
+        "Tag": "El Rune",
+        "TextTag": "El Rune",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "ItemLevel": "0",
+        "LevelReq": 11,
+        "SocketCount": "0",
+        "PropertyList": [],
+        "Position": {
+          "x": 9,
+          "y": 1
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Unknown",
+        "ID": "0",
+        "QualityCode": "",
+        "Title": "Flawless Amethyst",
+        "Tag": "Flawless Amethyst",
+        "TextTag": "Flawless Amethyst",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "ItemLevel": "0",
+        "LevelReq": 15,
+        "SocketCount": "0",
+        "PropertyList": [],
+        "Position": {
+          "x": 9,
+          "y": 0
         },
         "Size": {
           "invheight": 1,
@@ -67113,7 +67380,7 @@
           "\u00ffc1Corrupted",
           "+30% Faster Hit Recovery",
           "+158% Enhanced Defense",
-          "+162 Defense (Based on Character Level)",
+          "+164 Defense (Based on Character Level)",
           "+15 to Dexterity",
           "Replenish Life 10 per second",
           "Increase Maximum Mana 15%",
