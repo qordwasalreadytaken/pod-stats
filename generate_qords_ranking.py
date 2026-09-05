@@ -1662,8 +1662,16 @@ def leaderboard_rows_html(rows, show_xp_breakdown=False):
             )
 
         parts.append(f"""
-            <tr class="account-row" data-account="{acct_filter}" style="--cp-row-tint-soft: {cp_row_tint_soft}; --cp-row-tint-strong: {cp_row_tint_strong};">
-                <td class="rank-num">{i}</td>
+            <tr class="account-row"
+                data-account="{acct_filter}"
+                data-cp-title="{cp_title}"
+                data-cp-level="{cp_level}"
+                data-cp-color="{cp_color}"
+                data-cp-bar-top="{cp_bar_top}"
+                data-cp-bar-bottom="{cp_bar_bottom}"
+                style="--cp-row-tint-soft: {cp_row_tint_soft}; --cp-row-tint-strong: {cp_row_tint_strong};"
+            >
+                <td class="rank-num" data-original-rank="{i}">{i}</td>
                 <td><a href="https://beta.pathofdiablo.com/account/{acct_href}" target="_blank"><span class="cp-title" title="CP {cp_level}"></span><span class="account-name" style="color: {cp_color};">{acct}</span>{merged_marker}</a></td>
                 {'<td class="xp-cell">' + fmt(row['historyXP']) + '</td>' if show_xp_breakdown else ''}
                 {'<td class="xp-cell">' + fmt(row['currentItemXP']) + '</td>' if show_xp_breakdown else ''}
@@ -1771,7 +1779,7 @@ def generate_html(rows, is_hardcore, local_source, current_season, seasons, show
         a {{ color: #a0a0c0; }}
         .title-panel {{
             position: relative;
-            max-width: 1200px;
+            max-width: 1212px;
             margin-left: 150px;
             margin-bottom: 0;
             padding: 18px 24px 16px;
@@ -1799,7 +1807,7 @@ def generate_html(rows, is_hardcore, local_source, current_season, seasons, show
         }}
         .between-section {{
             height: 4px;
-            max-width: 1200px;
+            max-width: 1260px;
             margin-left: 150px;
             background: url('d2images/in-between-back.gif') center center repeat-x;
         }}
@@ -2186,11 +2194,11 @@ def generate_html(rows, is_hardcore, local_source, current_season, seasons, show
     <div class="main page-intro">
         <div class="qords-hero">
             <p class="qords-subtitle">Infinite points. No goal. Dubious XP. Highly scientific nonsense.</p>
-            <div class="mode-toggle" aria-label="Ladder mode toggle">
-                <a class="mode-link {'active' if not is_hardcore else ''}" href="{sc_page}">Softcore</a>
-                <a class="mode-link {'active' if is_hardcore else ''}" href="{hc_page}">Hardcore</a>
-            </div>
             <div class="controls">
+                <div class="mode-toggle" aria-label="Ladder mode toggle">
+                    <a class="mode-link {'active' if not is_hardcore else ''}" href="{sc_page}">Softcore</a>
+                    <a class="mode-link {'active' if is_hardcore else ''}" href="{hc_page}">Hardcore</a>
+                </div>
                 <label for="rowLimit">Show top</label>
                 <select id="rowLimit">
                     <option value="25">25</option>
@@ -2203,6 +2211,13 @@ def generate_html(rows, is_hardcore, local_source, current_season, seasons, show
                 </select>
                 <label for="accountFilter">Account contains</label>
                 <input id="accountFilter" type="text" placeholder="type account name">
+
+                <label for="sortOrder">Sort by</label>
+                <select id="sortOrder">
+                    <option value="rank">Rank</option>
+                    <option value="name-asc">Account A–Z</option>
+                    <option value="name-desc">Account Z–A</option>
+                </select>                
             </div>
         </div>
 
@@ -2227,13 +2242,13 @@ def generate_html(rows, is_hardcore, local_source, current_season, seasons, show
             <table class="rank-table">
                 <thead>
                     <tr>
-                        <th>#</th>
+                        <th>Rank</th>
                         <th>Account</th>
                         {'<th>History XP</th>' if show_xp_breakdown else ''}
                         {'<th>Current Item XP</th>' if show_xp_breakdown else ''}
                         <th>Arbitrary XP</th>
                         {'<th>Seasons</th>' if show_xp_breakdown else ''}
-                        <th>Ranking</th>
+                        <th>Awards and Accomplishments</th>
                     </tr>
                 </thead>
                 <tbody id="leaderboardBody">
@@ -2263,7 +2278,18 @@ def generate_html(rows, is_hardcore, local_source, current_season, seasons, show
 
 <script>
 // All rows pre-computed; JS only handles client-side filtering/display
-const ALL_ROWS = Array.from(document.querySelectorAll("#leaderboardBody tr"));
+const leaderboardBody =
+    document.getElementById("leaderboardBody");
+
+const ALL_ROWS =
+    Array.from(
+        leaderboardBody.querySelectorAll("tr")
+    );
+
+const ACCOUNT_ROWS =
+    ALL_ROWS.filter(
+        row => row.classList.contains("account-row")
+    );
 
 function findVisibleAccountSibling(row, direction) {{
     let current = row[direction];
@@ -2277,39 +2303,336 @@ function findVisibleAccountSibling(row, direction) {{
 }}
 
 function applyFilter() {{
-    const limit      = parseInt(document.getElementById("rowLimit").value) || 50;
-    const filterText = document.getElementById("accountFilter").value.toLowerCase().trim();
-    let shown = 0;
-    ALL_ROWS.forEach(tr => {{
-        if (tr.classList.contains("cp-break-row")) {{
-            tr.style.display = "none";
-            return;
+
+    const limit =
+        parseInt(
+            document.getElementById("rowLimit").value
+        ) || 50;
+
+    const filterText =
+        document
+            .getElementById("accountFilter")
+            .value
+            .toLowerCase()
+            .trim();
+
+    const sortOrder =
+        document.getElementById("sortOrder").value;
+
+
+    /*
+        Find matching account rows.
+    */
+    let rows =
+        ACCOUNT_ROWS.filter(tr => {{
+
+            const acct =
+                tr.dataset.account ||
+                (
+                    tr.cells[1]
+                        ? tr.cells[1]
+                            .textContent
+                            .toLowerCase()
+                        : ""
+                );
+
+            return !filterText ||
+                   acct.includes(filterText);
+
+        }});
+
+
+    /*
+        Apply alphabetical sorting.
+    */
+    if (sortOrder === "name-asc") {{
+
+        rows.sort((a, b) =>
+            (a.dataset.account || "")
+                .localeCompare(
+                    b.dataset.account || ""
+                )
+        );
+
+    }} else if (sortOrder === "name-desc") {{
+
+        rows.sort((a, b) =>
+            (b.dataset.account || "")
+                .localeCompare(
+                    a.dataset.account || ""
+                )
+        );
+
+    }}
+
+
+    /*
+        Apply the row limit.
+    */
+    rows = rows.slice(0, limit);
+
+
+    /*
+        ============================================================
+        RANK MODE
+        ============================================================
+    */
+    if (sortOrder === "rank") {{
+
+        /*
+            Restore the ORIGINAL DOM order.
+
+            ALL_ROWS contains the original sequence:
+
+                CP title
+                account
+                account
+                account
+                CP title
+                account
+                account
+                ...
+
+            Appending them in this order restores that structure.
+        */
+        leaderboardBody.innerHTML = "";
+
+        ALL_ROWS.forEach(tr => {{
+
+            leaderboardBody.appendChild(tr);
+
+        }});
+
+
+        const visibleRows =
+            new Set(rows);
+
+
+        /*
+            Show/hide account rows.
+        */
+        ACCOUNT_ROWS.forEach(tr => {{
+
+            if (visibleRows.has(tr)) {{
+
+                tr.style.display = "";
+
+                /*
+                    Restore the REAL rank.
+                */
+                tr.cells[0].textContent =
+                    tr.cells[0].dataset.originalRank || "";
+
+            }} else {{
+
+                tr.style.display = "none";
+
+            }}
+
+        }});
+
+
+        /*
+            Show a CP title if there is at least one visible
+            account row belonging to that section.
+        */
+        let currentCPRow = null;
+
+        ALL_ROWS.forEach(tr => {{
+
+            if (
+                tr.classList.contains("cp-break-row")
+            ) {{
+
+                currentCPRow = tr;
+
+                /*
+                    Hide it initially.
+                */
+                tr.style.display = "";
+
+                return;
+
+            }}
+
+
+            if (
+                tr.classList.contains("account-row") &&
+                tr.style.display !== "none" &&
+                currentCPRow
+            ) {{
+
+                /*
+                    At least one visible account belongs to
+                    this CP section.
+                */
+                currentCPRow.style.display = "";
+
+            }}
+
+        }});
+
+
+        /*
+            Now hide CP rows that have no visible accounts.
+        */
+        currentCPRow = null;
+
+        ALL_ROWS.forEach(tr => {{
+
+            if (
+                tr.classList.contains("cp-break-row")
+            ) {{
+
+                currentCPRow = tr;
+
+                /*
+                    Assume hidden until we encounter a visible
+                    account beneath it.
+                */
+                currentCPRow.style.display = "none";
+
+                return;
+
+            }}
+
+
+            if (
+                tr.classList.contains("account-row") &&
+                tr.style.display !== "none" &&
+                currentCPRow
+            ) {{
+
+                currentCPRow.style.display = "";
+
+            }}
+
+        }});
+
+
+        return;
+
+    }}
+
+
+    /*
+        ============================================================
+        ALPHABETICAL MODES
+        ============================================================
+    */
+
+    leaderboardBody.innerHTML = "";
+
+
+    let previousTitle = null;
+
+
+    rows.forEach(tr => {{
+
+        const cpTitle =
+            tr.dataset.cpTitle || "Drifter";
+
+
+        /*
+            Add CP separator when the CP title changes.
+        */
+        if (cpTitle !== previousTitle) {{
+
+            const breakRow =
+                document.createElement("tr");
+
+            breakRow.className =
+                "cp-break-row";
+
+
+            const td =
+                document.createElement("td");
+
+            td.className =
+                "cp-break-gap";
+
+            td.colSpan =
+                document.querySelectorAll(
+                    ".rank-table thead th"
+                ).length;
+
+
+            const label =
+                document.createElement("span");
+
+            label.className =
+                "cp-break-label";
+
+            label.textContent =
+                cpTitle;
+
+
+            /*
+                Restore CP styling.
+            */
+            if (tr.dataset.cpColor) {{
+
+                label.style.setProperty(
+                    "--cp-title-color",
+                    tr.dataset.cpColor
+                );
+
+            }}
+
+            if (tr.dataset.cpBarTop) {{
+
+                label.style.setProperty(
+                    "--cp-title-bg-top",
+                    tr.dataset.cpBarTop
+                );
+
+            }}
+
+            if (tr.dataset.cpBarBottom) {{
+
+                label.style.setProperty(
+                    "--cp-title-bg-bottom",
+                    tr.dataset.cpBarBottom
+                );
+
+            }}
+
+
+            td.appendChild(label);
+            breakRow.appendChild(td);
+
+            leaderboardBody.appendChild(
+                breakRow
+            );
+
+
+            previousTitle =
+                cpTitle;
+
         }}
-        const acct = tr.dataset.account || (tr.cells[1] ? tr.cells[1].textContent.toLowerCase() : "");
-        const matches = !filterText || acct.includes(filterText);
-        const underLimit = shown < limit;
-        if (matches && underLimit) {{
-            tr.style.display = "";
-            shown++;
-            tr.cells[0].textContent = shown;  // renumber
-        }} else {{
-            tr.style.display = "none";
-        }}
+
+
+        tr.style.display = "";
+
+
+        /*
+            IMPORTANT:
+            Preserve the character's REAL rank,
+            NOT their alphabetical position.
+        */
+        tr.cells[0].textContent =
+            tr.cells[0].dataset.originalRank || "";
+
+
+        leaderboardBody.appendChild(tr);
+
     }});
 
-    ALL_ROWS.forEach(tr => {{
-        if (!tr.classList.contains("cp-break-row")) {{
-            return;
-        }}
-        const prevVisible = findVisibleAccountSibling(tr, "previousElementSibling");
-        const nextVisible = findVisibleAccountSibling(tr, "nextElementSibling");
-        const isTitleStart = tr.dataset.titleStart === "true";
-        tr.style.display = nextVisible && (prevVisible || isTitleStart) ? "" : "none";
-    }});
 }}
 
 document.getElementById("rowLimit").addEventListener("change", applyFilter);
 document.getElementById("accountFilter").addEventListener("input", applyFilter);
+document.getElementById("sortOrder").addEventListener("change", applyFilter);
 applyFilter();
 
 var backToTopBtn = document.getElementById("backToTopBtn");
