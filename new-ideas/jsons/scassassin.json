@@ -175645,17 +175645,17 @@
       "Stashed": 2500000
     },
     "Bonus": {
-      "Strength": 51,
+      "Strength": 36,
       "Dexterity": 46,
       "Vitality": 0,
       "Energy": 0,
-      "FireResistance": 202,
+      "FireResistance": 212,
       "MaximumFireResistance": 0,
-      "ColdResistance": 221,
+      "ColdResistance": 201,
       "MaximumColdResistance": 0,
-      "LightningResistance": 171,
+      "LightningResistance": 211,
       "MaximumLightningResistance": 0,
-      "PoisonResistance": 160,
+      "PoisonResistance": 195,
       "MaximumPoisonResistance": 0,
       "MagicFind": 0,
       "GoldFind": 23,
@@ -176084,42 +176084,6 @@
       },
       {
         "Quality": "Unique",
-        "ID": "1265441283",
-        "QualityCode": "q_unique",
-        "Title": "Duriel's Shell",
-        "Tag": "Cuirass",
-        "TextTag": "Cuirass",
-        "Ethereal": "False",
-        "Enhanced": "True",
-        "Defense": "203",
-        "Durability": "149",
-        "DurabilityMaximum": "50",
-        "ItemLevel": "99",
-        "LevelReq": 41,
-        "SocketCount": "0",
-        "PropertyList": [
-          "+162% Enhanced Defense",
-          "+117 Defense (Based on Character Level)",
-          "+15 to Strength",
-          "+94 to Life (Based on Character Level)",
-          "Cold Resist +50%",
-          "Lightning Resist +20%",
-          "Fire Resist +20%",
-          "Poison Resist +20%",
-          "Cannot Be Frozen"
-        ],
-        "Position": {
-          "x": 3,
-          "y": 0
-        },
-        "Size": {
-          "invheight": 3,
-          "invwidth": 2
-        },
-        "Worn": "body"
-      },
-      {
-        "Quality": "Unique",
         "ID": "2733940058",
         "QualityCode": "q_unique",
         "Title": "String of Ears",
@@ -176149,6 +176113,37 @@
           "invwidth": 2
         },
         "Worn": "belt"
+      },
+      {
+        "Quality": "Rare",
+        "ID": "3789230914",
+        "QualityCode": "q_rare",
+        "Title": "Skull Master",
+        "Tag": "Ring",
+        "TextTag": "ring",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "AlternateGraphics": "2",
+        "ItemLevel": "90",
+        "LevelReq": 46,
+        "SocketCount": "0",
+        "PropertyList": [
+          "+64 to Attack Rating",
+          "5% Mana stolen per hit",
+          "4% Life stolen per hit",
+          "+5 to Life",
+          "+38 to Mana",
+          "All Resistances +7"
+        ],
+        "Position": {
+          "x": 6,
+          "y": 0
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": "ring1"
       },
       {
         "Quality": "Normal",
@@ -176288,35 +176283,118 @@
         "Worn": "sweapon2"
       },
       {
-        "Quality": "Rare",
-        "ID": "3789230914",
-        "QualityCode": "q_rare",
-        "Title": "Skull Master",
-        "Tag": "Ring",
-        "TextTag": "ring",
+        "Quality": "Set",
+        "ID": "1503990484",
+        "QualityCode": "q_set",
+        "Title": "Natalya's Shadow",
+        "Tag": "Loricated Mail",
+        "TextTag": "Loricated Mail",
+        "RuneTag": "UmUmOrt",
         "Ethereal": "False",
-        "Enhanced": "False",
-        "AlternateGraphics": "2",
+        "Enhanced": "True",
+        "Defense": "473",
+        "Durability": "36",
+        "DurabilityMaximum": "36",
         "ItemLevel": "90",
-        "LevelReq": 46,
-        "SocketCount": "0",
+        "LevelReq": 73,
+        "Sockets": [
+          {
+            "Quality": "Unknown",
+            "ID": "0",
+            "QualityCode": "",
+            "Title": "Um Rune",
+            "Tag": "Um Rune",
+            "TextTag": "Um Rune",
+            "Ethereal": "False",
+            "Enhanced": "False",
+            "ItemLevel": "0",
+            "LevelReq": 47,
+            "SocketCount": "0",
+            "PropertyList": [
+              "All Resistances +15"
+            ],
+            "Position": {
+              "x": 0,
+              "y": 0
+            },
+            "Size": {
+              "invheight": 1,
+              "invwidth": 1
+            },
+            "Worn": ""
+          },
+          {
+            "Quality": "Unknown",
+            "ID": "0",
+            "QualityCode": "",
+            "Title": "Um Rune",
+            "Tag": "Um Rune",
+            "TextTag": "Um Rune",
+            "Ethereal": "False",
+            "Enhanced": "False",
+            "ItemLevel": "0",
+            "LevelReq": 47,
+            "SocketCount": "0",
+            "PropertyList": [
+              "All Resistances +15"
+            ],
+            "Position": {
+              "x": 1,
+              "y": 0
+            },
+            "Size": {
+              "invheight": 1,
+              "invwidth": 1
+            },
+            "Worn": ""
+          },
+          {
+            "Quality": "Unknown",
+            "ID": "0",
+            "QualityCode": "",
+            "Title": "Ort Rune",
+            "Tag": "Ort Rune",
+            "TextTag": "Ort Rune",
+            "Ethereal": "False",
+            "Enhanced": "False",
+            "ItemLevel": "0",
+            "LevelReq": 21,
+            "SocketCount": "0",
+            "PropertyList": [
+              "Lightning Resist +30%"
+            ],
+            "Position": {
+              "x": 2,
+              "y": 0
+            },
+            "Size": {
+              "invheight": 1,
+              "invwidth": 1
+            },
+            "Worn": ""
+          }
+        ],
+        "SocketCount": "3",
         "PropertyList": [
-          "+64 to Attack Rating",
-          "5% Mana stolen per hit",
-          "4% Life stolen per hit",
-          "+5 to Life",
-          "+38 to Mana",
-          "All Resistances +7"
+          "+2 to Shadow Disciplines (Assassin Only)",
+          "+157 Defense",
+          "+94 to Life (Based on Character Level)",
+          "Lightning Resist +60%",
+          "Fire Resist +30%",
+          "Poison Resist +55%",
+          "Cold Resist +30%",
+          "Poison Length Reduced by 75%",
+          "Socketed (3)"
         ],
         "Position": {
-          "x": 6,
+          "x": 3,
           "y": 0
         },
         "Size": {
-          "invheight": 1,
-          "invwidth": 1
+          "invheight": 3,
+          "invwidth": 2
         },
-        "Worn": "ring1"
+        "Worn": "body"
       },
       {
         "Quality": "Unique",
@@ -177074,25 +177152,38 @@
         "Worn": ""
       },
       {
-        "Quality": "Unknown",
-        "ID": "0",
-        "QualityCode": "",
-        "Title": "Full Rejuvenation Potion",
-        "Tag": "Full Rejuvenation Potion",
-        "TextTag": "Full Rejuv Potion",
+        "Quality": "Unique",
+        "ID": "1265441283",
+        "QualityCode": "q_unique",
+        "Title": "Duriel's Shell",
+        "Tag": "Cuirass",
+        "TextTag": "Cuirass",
         "Ethereal": "False",
-        "Enhanced": "False",
-        "ItemLevel": "0",
-        "LevelReq": 0,
+        "Enhanced": "True",
+        "Defense": "203",
+        "Durability": "149",
+        "DurabilityMaximum": "50",
+        "ItemLevel": "99",
+        "LevelReq": 41,
         "SocketCount": "0",
-        "PropertyList": [],
+        "PropertyList": [
+          "+162% Enhanced Defense",
+          "+117 Defense (Based on Character Level)",
+          "+15 to Strength",
+          "+94 to Life (Based on Character Level)",
+          "Cold Resist +50%",
+          "Lightning Resist +20%",
+          "Fire Resist +20%",
+          "Poison Resist +20%",
+          "Cannot Be Frozen"
+        ],
         "Position": {
-          "x": 7,
-          "y": 4
+          "x": 6,
+          "y": 0
         },
         "Size": {
-          "invheight": 1,
-          "invwidth": 1
+          "invheight": 3,
+          "invwidth": 2
         },
         "Worn": ""
       },
@@ -177211,494 +177302,6 @@
           "invwidth": 1
         },
         "Worn": ""
-      },
-      {
-        "Quality": "Unknown",
-        "ID": "0",
-        "QualityCode": "",
-        "Title": "Super Mana Potion",
-        "Tag": "Super Mana Potion",
-        "TextTag": "Greater Mana Potion",
-        "Ethereal": "False",
-        "Enhanced": "False",
-        "ItemLevel": "0",
-        "LevelReq": 0,
-        "SocketCount": "0",
-        "PropertyList": [],
-        "Position": {
-          "x": 9,
-          "y": 8
-        },
-        "Size": {
-          "invheight": 1,
-          "invwidth": 1
-        },
-        "Worn": ""
-      },
-      {
-        "Quality": "Unknown",
-        "ID": "0",
-        "QualityCode": "",
-        "Title": "Super Mana Potion",
-        "Tag": "Super Mana Potion",
-        "TextTag": "Greater Mana Potion",
-        "Ethereal": "False",
-        "Enhanced": "False",
-        "ItemLevel": "0",
-        "LevelReq": 0,
-        "SocketCount": "0",
-        "PropertyList": [],
-        "Position": {
-          "x": 7,
-          "y": 3
-        },
-        "Size": {
-          "invheight": 1,
-          "invwidth": 1
-        },
-        "Worn": ""
-      },
-      {
-        "Quality": "Unknown",
-        "ID": "0",
-        "QualityCode": "",
-        "Title": "Super Healing Potion",
-        "Tag": "Super Healing Potion",
-        "TextTag": "Greater Healing Potion",
-        "Ethereal": "False",
-        "Enhanced": "False",
-        "ItemLevel": "0",
-        "LevelReq": 0,
-        "SocketCount": "0",
-        "PropertyList": [],
-        "Position": {
-          "x": 5,
-          "y": 4
-        },
-        "Size": {
-          "invheight": 1,
-          "invwidth": 1
-        },
-        "Worn": ""
-      },
-      {
-        "Quality": "Unknown",
-        "ID": "0",
-        "QualityCode": "",
-        "Title": "Flawless Topaz",
-        "Tag": "Flawless Topaz",
-        "TextTag": "Flawless Topaz",
-        "Ethereal": "False",
-        "Enhanced": "False",
-        "ItemLevel": "0",
-        "LevelReq": 15,
-        "SocketCount": "0",
-        "PropertyList": [],
-        "Position": {
-          "x": 5,
-          "y": 3
-        },
-        "Size": {
-          "invheight": 1,
-          "invwidth": 1
-        },
-        "Worn": ""
-      },
-      {
-        "Quality": "Unique",
-        "ID": "1314206109",
-        "QualityCode": "q_unique",
-        "Title": "Hexfire",
-        "Tag": "Shamshir",
-        "TextTag": "Shamshir",
-        "Ethereal": "False",
-        "Enhanced": "True",
-        "DamageMinimum": "60",
-        "DamageMaximum": "61",
-        "ThrowDamageMinimum": "35",
-        "Durability": "75",
-        "DurabilityMaximum": "144",
-        "ItemLevel": "90",
-        "LevelReq": 33,
-        "SocketCount": "0",
-        "PropertyList": [
-          "+3 to fire skills",
-          "+157% Enhanced Damage",
-          "Adds 35-40 damage",
-          "Ignore Target's Defense",
-          "+10% to Maximum Fire Resist",
-          "Fire Resist +25%",
-          "Level 6 Hydra (5/36 Charges)",
-          "Can Summon One Additional Hydra"
-        ],
-        "Position": {
-          "x": 4,
-          "y": 0
-        },
-        "Size": {
-          "invheight": 3,
-          "invwidth": 1
-        },
-        "Worn": "weapon1"
-      },
-      {
-        "Quality": "Set",
-        "ID": "1503990484",
-        "QualityCode": "q_set",
-        "Title": "Natalya's Shadow",
-        "Tag": "Loricated Mail",
-        "TextTag": "Loricated Mail",
-        "RuneTag": "UmUmOrt",
-        "Ethereal": "False",
-        "Enhanced": "True",
-        "Defense": "473",
-        "Durability": "36",
-        "DurabilityMaximum": "36",
-        "ItemLevel": "90",
-        "LevelReq": 73,
-        "Sockets": [
-          {
-            "Quality": "Unknown",
-            "ID": "0",
-            "QualityCode": "",
-            "Title": "Um Rune",
-            "Tag": "Um Rune",
-            "TextTag": "Um Rune",
-            "Ethereal": "False",
-            "Enhanced": "False",
-            "ItemLevel": "0",
-            "LevelReq": 47,
-            "SocketCount": "0",
-            "PropertyList": [
-              "All Resistances +15"
-            ],
-            "Position": {
-              "x": 0,
-              "y": 0
-            },
-            "Size": {
-              "invheight": 1,
-              "invwidth": 1
-            },
-            "Worn": ""
-          },
-          {
-            "Quality": "Unknown",
-            "ID": "0",
-            "QualityCode": "",
-            "Title": "Um Rune",
-            "Tag": "Um Rune",
-            "TextTag": "Um Rune",
-            "Ethereal": "False",
-            "Enhanced": "False",
-            "ItemLevel": "0",
-            "LevelReq": 47,
-            "SocketCount": "0",
-            "PropertyList": [
-              "All Resistances +15"
-            ],
-            "Position": {
-              "x": 1,
-              "y": 0
-            },
-            "Size": {
-              "invheight": 1,
-              "invwidth": 1
-            },
-            "Worn": ""
-          },
-          {
-            "Quality": "Unknown",
-            "ID": "0",
-            "QualityCode": "",
-            "Title": "Ort Rune",
-            "Tag": "Ort Rune",
-            "TextTag": "Ort Rune",
-            "Ethereal": "False",
-            "Enhanced": "False",
-            "ItemLevel": "0",
-            "LevelReq": 21,
-            "SocketCount": "0",
-            "PropertyList": [
-              "Lightning Resist +30%"
-            ],
-            "Position": {
-              "x": 2,
-              "y": 0
-            },
-            "Size": {
-              "invheight": 1,
-              "invwidth": 1
-            },
-            "Worn": ""
-          }
-        ],
-        "SocketCount": "3",
-        "PropertyList": [
-          "+2 to Shadow Disciplines (Assassin Only)",
-          "+157 Defense",
-          "+94 to Life (Based on Character Level)",
-          "Lightning Resist +60%",
-          "Fire Resist +30%",
-          "Poison Resist +55%",
-          "Cold Resist +30%",
-          "Poison Length Reduced by 75%",
-          "Socketed (3)"
-        ],
-        "Position": {
-          "x": 6,
-          "y": 0
-        },
-        "Size": {
-          "invheight": 3,
-          "invwidth": 2
-        },
-        "Worn": ""
-      },
-      {
-        "Quality": "Unique",
-        "ID": "1689511161",
-        "QualityCode": "q_unique",
-        "Title": "Wormskull",
-        "Tag": "Bone Helm",
-        "TextTag": "Bone Helm",
-        "Ethereal": "False",
-        "Enhanced": "False",
-        "Defense": "36",
-        "Durability": "39",
-        "DurabilityMaximum": "40",
-        "ItemLevel": "91",
-        "LevelReq": 21,
-        "SocketCount": "0",
-        "PropertyList": [
-          "+1 to Necromancer Skill Levels",
-          "+80 poison damage over 8 seconds",
-          "5% Life stolen per hit",
-          "+10 to Mana",
-          "Poison Resist +25%"
-        ],
-        "Position": {
-          "x": 0,
-          "y": 0
-        },
-        "Size": {
-          "invheight": 2,
-          "invwidth": 2
-        },
-        "Worn": "helmet"
-      },
-      {
-        "Quality": "Normal",
-        "ID": "3380373326",
-        "QualityCode": "q_runeword",
-        "Title": "Spirit",
-        "Tag": "Crystal Sword",
-        "TextTag": "Crystal Sword",
-        "RuneTag": "TalThulOrtAmn",
-        "Ethereal": "False",
-        "Enhanced": "False",
-        "DamageMinimum": "5",
-        "DamageMaximum": "15",
-        "Durability": "100",
-        "DurabilityMaximum": "100",
-        "ItemLevel": "58",
-        "LevelReq": 25,
-        "Sockets": [
-          {
-            "Quality": "Unknown",
-            "ID": "0",
-            "QualityCode": "",
-            "Title": "Tal Rune",
-            "Tag": "Tal Rune",
-            "TextTag": "Tal Rune",
-            "Ethereal": "False",
-            "Enhanced": "False",
-            "ItemLevel": "0",
-            "LevelReq": 17,
-            "SocketCount": "0",
-            "PropertyList": [
-              "+75 poison damage over 5 seconds"
-            ],
-            "Position": {
-              "x": 0,
-              "y": 0
-            },
-            "Size": {
-              "invheight": 1,
-              "invwidth": 1
-            },
-            "Worn": ""
-          },
-          {
-            "Quality": "Unknown",
-            "ID": "0",
-            "QualityCode": "",
-            "Title": "Thul Rune",
-            "Tag": "Thul Rune",
-            "TextTag": "Thul Rune",
-            "Ethereal": "False",
-            "Enhanced": "False",
-            "ItemLevel": "0",
-            "LevelReq": 23,
-            "SocketCount": "0",
-            "PropertyList": [
-              "+3 cold damage"
-            ],
-            "Position": {
-              "x": 1,
-              "y": 0
-            },
-            "Size": {
-              "invheight": 1,
-              "invwidth": 1
-            },
-            "Worn": ""
-          },
-          {
-            "Quality": "Unknown",
-            "ID": "0",
-            "QualityCode": "",
-            "Title": "Ort Rune",
-            "Tag": "Ort Rune",
-            "TextTag": "Ort Rune",
-            "Ethereal": "False",
-            "Enhanced": "False",
-            "ItemLevel": "0",
-            "LevelReq": 21,
-            "SocketCount": "0",
-            "PropertyList": [
-              "+1 Lightning damage"
-            ],
-            "Position": {
-              "x": 2,
-              "y": 0
-            },
-            "Size": {
-              "invheight": 1,
-              "invwidth": 1
-            },
-            "Worn": ""
-          },
-          {
-            "Quality": "Unknown",
-            "ID": "0",
-            "QualityCode": "",
-            "Title": "Amn Rune",
-            "Tag": "Amn Rune",
-            "TextTag": "Amn Rune",
-            "Ethereal": "False",
-            "Enhanced": "False",
-            "ItemLevel": "0",
-            "LevelReq": 25,
-            "SocketCount": "0",
-            "PropertyList": [
-              "7% Life stolen per hit"
-            ],
-            "Position": {
-              "x": 3,
-              "y": 0
-            },
-            "Size": {
-              "invheight": 1,
-              "invwidth": 1
-            },
-            "Worn": ""
-          }
-        ],
-        "SocketCount": "4",
-        "PropertyList": [
-          "+2 to All Skills",
-          "35% Faster Cast Rate (Based on Character Level)",
-          "+55% Faster Hit Recovery",
-          "+1 Lightning damage",
-          "+3 cold damage",
-          "+75 poison damage over 5 seconds",
-          "7% Life stolen per hit",
-          "+75 Defense vs. Missile",
-          "+94 to Mana (Based on Character Level)",
-          "+3 Magic Absorb",
-          "Socketed (4)"
-        ],
-        "Position": {
-          "x": 2,
-          "y": 0
-        },
-        "Size": {
-          "invheight": 3,
-          "invwidth": 2
-        },
-        "Worn": "weapon1"
-      },
-      {
-        "Quality": "Unique",
-        "ID": "3988398892",
-        "QualityCode": "q_unique",
-        "Title": "Harlequin Crest",
-        "Tag": "Shako",
-        "TextTag": "Shako",
-        "Ethereal": "False",
-        "Enhanced": "False",
-        "Defense": "111",
-        "Durability": "12",
-        "DurabilityMaximum": "12",
-        "ItemLevel": "88",
-        "LevelReq": 62,
-        "SocketCount": "0",
-        "PropertyList": [
-          "\u00ffc1Corrupted",
-          "+2 to All Skills",
-          "+17% Piercing Attack",
-          "+2 to all Attributes",
-          "+141 to Life (Based on Character Level)",
-          "+141 to Mana (Based on Character Level)",
-          "Physical Damage Taken Reduced by 10%",
-          "50% Better Chance of Getting Magic Items"
-        ],
-        "Position": {
-          "x": 3,
-          "y": 3
-        },
-        "Size": {
-          "invheight": 2,
-          "invwidth": 2
-        },
-        "Worn": "helmet"
-      },
-      {
-        "Quality": "Unique",
-        "ID": "365511633",
-        "QualityCode": "q_unique",
-        "Title": "Duriel's Shell",
-        "Tag": "Cuirass",
-        "TextTag": "Cuirass",
-        "Ethereal": "False",
-        "Enhanced": "True",
-        "Defense": "203",
-        "Durability": "44",
-        "DurabilityMaximum": "50",
-        "ItemLevel": "90",
-        "LevelReq": 41,
-        "SocketCount": "0",
-        "PropertyList": [
-          "+191% Enhanced Defense",
-          "+117 Defense (Based on Character Level)",
-          "+15 to Strength",
-          "+94 to Life (Based on Character Level)",
-          "Cold Resist +50%",
-          "Lightning Resist +20%",
-          "Fire Resist +20%",
-          "Poison Resist +20%",
-          "Cannot Be Frozen"
-        ],
-        "Position": {
-          "x": 0,
-          "y": 2
-        },
-        "Size": {
-          "invheight": 3,
-          "invwidth": 2
-        },
-        "Worn": "body"
       }
     ],
     "MercenaryEquipped": []
