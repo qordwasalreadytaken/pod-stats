@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PoD Trends, Ladder Character Data Analysis</title>
+    <link rel="shortcut icon" type="image/x-icon" href="icons/pod.ico">
+    <link rel="stylesheet" type="text/css" href="../css/test-css.css">
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+
+    <style>
+
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: flex-end;
+        }
+
+        .control {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .control label {
+            font-size: 0.85em;
+            color: #d5f2e3;
+        }
+
+        .control input,
+        .control select,
+        .control button {
+            padding: 7px;
+            font-size: 1em;
+            border: 1px solid #555;
+            border-radius: 4px;
+            background: #232323;
+            color: #eee;
+        }
+
+        .control button {
+            cursor: pointer;
+        }
+
+        .control button:hover {
+            background: #333;
+        }
+    </style>
+</head>
+<body class="special-background">
+    <div class="is-clipped">
+        <div id="navbar-placeholder"></div>
+<!--        <script>
+        fetch("templates/navbar.html")
+            .then(res => res.text())
+            .then(html => {
+            document.getElementById("navbar-placeholder").innerHTML = html;
+            });
+        </script> -->
+
+        <div class="hamburger" onclick="toggleMenu()">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        
+        <div class="top-buttons">
+            <a href="Home" class="top-button home-button" onclick="setActive('../Home')"></a>
+            <a href="#" id="SC_HC" class="top-button"> </a>
+            <a href="class-test.html?m=sc&c=amazon" class="top-button amazon-button" onclick="navigateWithMode(event, 'amazon')"></a>
+            <a href="class-test.html?m=sc&c=assassin" class="top-button assassin-button" onclick="navigateWithMode(event, 'assassin')"></a>
+            <a href="class-test.html?m=sc&c=barbarian" class="top-button barbarian-button" onclick="navigateWithMode(event, 'barbarian')"></a>
+            <a href="class-test.html?m=sc&c=druid" class="top-button druid-button" onclick="navigateWithMode(event, 'druid')"></a>
+            <a href="class-test.html?m=sc&c=necromancer" class="top-button necromancer-button" onclick="navigateWithMode(event, 'necromancer')"></a>
+            <a href="class-test.html?m=sc&c=paladin" class="top-button paladin-button" onclick="navigateWithMode(event, 'paladin')"></a>
+            <a href="class-test.html?m=sc&c=sorceress" class="top-button sorceress-button" onclick="navigateWithMode(event, 'sorceress')"></a>
+        </div>
+
+        <div class="banner" style="top:50px; left:10%; width:80%;">
+            ⚠️ This is a test site for PoD's Trends site. Please direct any feedback to Qord. ⚠️
+        </div>
+    </div>
+
+    <div class="main page-intro">
+        <div class="controls">
+
+        <!--    <div class="control">
+                <label for="search">Character name</label>
+                <input
+                    type="text"
+                    id="search"
+                    placeholder="Search..."
+                >
+            </div> -->
+
+            <div class="control">
+                <label for="minLevel">Minimum level</label>
+                <input
+                    type="number"
+                    id="minLevel"
+                    min="1"
+                    max="99"
+                    value="60"
+                    placeholder="Any"
+                >
+            </div>
+
+            <div class="control">
+                <label for="maxLevel">Maximum level</label>
+                <input
+                    type="number"
+                    id="maxLevel"
+                    min="1"
+                    max="99"
+                    placeholder="Any"
+                >
+            </div>
+
+            <div class="control">
+                <label for="mode">Mode</label>
+                <select id="mode">
+                    <option value="sc">SC</option>
+                    <option value="hc">HC</option>
+                </select>
+            </div>
+
+            <div class="control">
+                <label>&nbsp;</label>
+                <button id="clearFilters">Clear filters</button>
+            </div>
+
+        </div>
+                    <h1>PoD <span id="modeDisplay">SC</span> STATS, <u>ALL</u> RANKED LADDER CHARACTERS</h1>
+                    <h3>Since there are class ladders in addition to the top 1,000, and many ranked characters do not appear in the top 1k, they are included below and in the rest of the Trends reporting to get as large a data set as possible when looking at item & equipment usage and skill distribution within classes</h3>
+                    <!-- Embed the Plotly pie chart -->
+                    <!--     <h2>Pick a class below for more detail</h2>-->
+                    <!--     <iframe src="cluster_analysis_report.html"></iframe>  -->
+                    <div id="classDistributionChart"></div>
+                    <h3>THESE PAGES INCLUDE DATA FROM ALL AVAILABLE RANKED LADDER CHARACTERS (THE TOP 1,000 AS WELL AS THE TOP 200 FROM EACH CLASS)</h3>
+                    <!--        <h3>UNLESS STATED OTHERWISE, OTHER PAGE STATS AND DATA ARE FROM THE TOP 200 CHARACTERS OF THE RELEVANT CLASS OR CLASSES</h3> -->
+<!--                    <hr>
+                    <h3>Class and special pages have taken character data and separated it into probable builds. As such, the groupings and associated data
+                        will change regularly to reflect what is currently accurate.
+                        <br> -->
+<!--                        Looking at class and build pages, what you see and what it means:</h3>
+                    <div>
+                        <img src="charts/build-pages-legend.png">
+                    </div>
+                    <h3>Looking at skills you can assume that:</h3>
+                    <ul style="padding-left:20px">
+                     <li>If the first number is 50%, then half of the characters fall into that "build"</li>
+                     <li>If the percent bar following a skill is 100% then every character in that group has points in that skill</li>
+                     <li>If the percent is 100% and the total points is high that skill is likely a main skill or synergy </li>
+                     <li>If the percent is 100% but the total is low that skill is likely one-point-wonder like Hydra and Whirlwind or just a prerequisite </li>
+                     </ul>
+                    <br>
+-->                     
+                    <hr>
+
+                    <div id="ladder-summary">
+                    </div>
+                    <br>
+                     
+                    <hr>
+                    
+                    {navigation_cards}
+                    
+                    <!-- Quick Overview Stats -->
+                    <div class="overview-stats">
+
+                    </div>
+                    
+                    <hr>
+                    
+                    <!-- About the Data -->
+                    <div class="about-section">
+                        <h3>About This Data</h3>
+                        <p>This analysis includes available data from all ranked ladder characters, including:</p>
+                        <ul style="list-style-type: disc; padding-left: 40px;">
+                            <li>The top 1,000 overall ladder characters</li>
+                            <li>The top 200 characters from each class ladder</li>
+                            <li>Equipment usage and skill point allocations</li>
+                            <li>Mercenary equipment and details</li>
+                        </ul>
+                        <p>Character data and associated pages are updated regularly to reflect current ladder standings and trends.</p>
+                    </div>
+                    
+                    <button onclick="topFunction()" id="backToTopBtn" class="back-to-top"></button>
+                </div>
+                
+                <div class="footer">
+                    <p>PoD data current as of {timestamp}</p>
+                </div>
+   
+
+
+<button onclick="topFunction()" id="backToTopBtn" class="back-to-top" title="Go to top"></button>
+
+<script>
+
+// Pie Chart
+function getClassCounts(characters) {
+    const classCounts = {};
+
+    for (const character of characters) {
+        if (!character || typeof character !== "object") {
+            continue;
+        }
+
+        const className = character.Class || "Unknown";
+
+        classCounts[className] =
+            (classCounts[className] || 0) + 1;
+    }
+
+    return classCounts;
+}
+
+
+async function getLadderClassCounts(isHardcore = false) {
+//    generateLadderSummary(true);
+    const characters = await loadLadderData(isHardcore);
+
+    return getClassCounts(characters);
+}
+
+
+async function generateClassDistributionChart(isHardcore = false) {
+    console.log("Generating class distribution chart for", isHardcore ? "hardcore" : "softcore");
+    const ladderFile = isHardcore
+        ? "../hc_ladder.json"
+        : "../sc_ladder.json";
+
+    try {
+        const response = await fetch(ladderFile);
+
+        if (!response.ok) {
+            throw new Error(`Failed to load ${ladderFile}: ${response.status}`);
+        }
+
+        const ladderData = await response.json();
+
+        // Get level filters
+        const minLevelValue = document.getElementById("minLevel").value;
+        const maxLevelValue = document.getElementById("maxLevel").value;
+        
+        const minLevel = minLevelValue === "" ? null : Number(minLevelValue);
+        const maxLevel = maxLevelValue === "" ? null : Number(maxLevelValue);
+
+        const classCounts = {};
+
+        for (const character of ladderData) {
+            if (!character || typeof character !== "object") {
+                continue;
+            }
+
+            // Apply level filtering
+            const level = Number(character.Stats?.Level ?? character.Level ?? 0);
+            
+            if (minLevel !== null && level < minLevel) {
+                continue;
+            }
+            
+            if (maxLevel !== null && level > maxLevel) {
+                continue;
+            }
+
+            const className = character.Class || "Unknown";
+
+            classCounts[className] =
+                (classCounts[className] || 0) + 1;
+        }
+
+        console.log("Class counts:", classCounts);
+
+        const total = Object.values(classCounts)
+            .reduce((sum, count) => sum + count, 0);
+
+        const pieData = Object.entries(classCounts).map(
+            ([className, count]) => ({
+                className,
+                count,
+                percentage: (count / total) * 100
+            })
+        );
+
+        console.log("Pie data:", pieData);
+
+        renderClassDistributionPieChart(pieData);
+
+    } catch (error) {
+        console.error("Error generating class distribution:", error);
+    }
+}
+
+function renderClassDistributionPieChart(pieData) {
+
+    console.log("Rendering pie chart");
+    const chart =
+        document.getElementById("classDistributionChart");
+
+    if (!chart || !pieData.length) {
+        console.log("No chart element found or pie data is empty.");
+        return;
+    }
+
+    const classColorMap = {
+        Amazon: "#FF6669",
+        Assassin: "#FFFFFF",
+        Barbarian: "#966920",
+        Druid: "#FFBA4A",
+        Necromancer: "#B3FFFD",
+        Paladin: "#FFF370",
+        Sorceress: "#BC6BFF"
+    };
+
+    const data = [{
+        type: "pie",
+
+        values:
+            pieData.map(
+                item => item.count
+            ),
+
+        labels:
+            pieData.map(
+                item => item.className
+            ),
+
+        customdata:
+            pieData.map(
+                item => [
+                    item.className
+                ]
+            ),
+
+        textinfo: "percent",
+
+        textposition: "inside",
+
+        hovertemplate:
+            "<b>%{customdata}</b><br>" +
+            "%{value:,} Characters" +
+            "<extra></extra>",
+
+        marker: {
+            colors: pieData.map(
+                item => classColorMap[item.className] || "#888888"
+            ),
+            line: {
+                color: "black",
+                width: 1
+            }
+        },
+
+        pull:
+            pieData.map(() => 0.03),
+
+        hole: 0
+    }];
+    console.log("Pie chart data prepared:", data);
+
+    const layout = {
+
+        title: "Class Distribution",
+
+        paper_bgcolor:
+            "rgba(0,0,0,0)",
+
+        plot_bgcolor:
+            "rgba(0,0,0,0)",
+
+        font: {
+            color: "white"
+        },
+
+        margin: {
+            l: 10,
+            r: 10,
+            t: 50,
+            b: 100
+        },
+
+        height: 400,
+
+        legend: {
+            orientation: "h",
+            yanchor: "top",
+            y: -0.05,
+            xanchor: "center",
+            x: 0.5,
+
+            font: {
+                size: 16,
+                color: "white"
+            },
+
+            bgcolor:
+                "rgba(0,0,0,0)"
+        }
+    };
+
+    Plotly.newPlot(
+        chart,
+        data,
+        layout,
+        {
+            responsive: true
+        }
+    );
+}
+
+// Armory pop up
+document.addEventListener("DOMContentLoaded", function () {
+    let activePopup = null;
+
+    document.addEventListener("click", function (event) {
+
+        const trigger = event.target.closest(".hover-trigger");
+
+        if (!trigger) {
+            return;
+        }
+
+        console.log("Trigger clicked");
+
+        event.stopPropagation();
+
+        const characterName = trigger.getAttribute("data-character-name");
+
+        // Find the associated popup
+        const popup = trigger
+            .closest(".character-info")
+            .querySelector(".popup");
+
+        // If this popup is already active, close it
+        if (popup === activePopup) {
+            popup.classList.remove("active");
+            popup.innerHTML = "";
+            activePopup = null;
+            return;
+        }
+
+        // Close any other open popup
+        if (activePopup) {
+            activePopup.classList.remove("active");
+            activePopup.innerHTML = "";
+            activePopup = null;
+        }
+
+        // Create iframe
+        const iframe = document.createElement("iframe");
+
+        iframe.src = `../armory/video_component.html?charName=${characterName}`;
+        iframe.setAttribute("id", "popupFrame");
+
+        popup.appendChild(iframe);
+        popup.classList.add("active");
+
+        activePopup = popup;
+    });
+
+    // Close popup when clicking outside
+    document.addEventListener("click", function (event) {
+
+        if (
+            activePopup &&
+            !event.target.closest(".character-info")
+        ) {
+            activePopup.classList.remove("active");
+            activePopup.innerHTML = "";
+            activePopup = null;
+        }
+    });
+});
+
+function toggleMenu() {
+    document.querySelector(".top-buttons").classList.toggle("show");
+}
+
+function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
+
+window.onscroll = function () {
+    const backToTopBtn = document.getElementById("backToTopBtn");
+    backToTopBtn.style.display =
+        (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) ? "block" : "none";
+};
+
+
+/*
+ * helper for adding link anchors to section headings in the pages (icons swap, .content toggles display).
+ * pages (icons swap, .content toggles display).
+ */
+function renderSectionHeading(heading) {
+    return `
+        <h3 id="${encodeURIComponent(heading)}">
+            ${escapeHtml(heading)}
+            <a href="#${encodeURIComponent(heading)}" class="anchor-link">
+                <img src="icons/anchor.png" alt="🔗" class="anchor-icon">
+            </a>
+        </h3>
+    `;
+}
+
+/*
+ * Collapsible button/content pattern matching the site's existing
+ * pages (icons swap, .content toggles display).
+ */
+function toggleCollapsible(button) {
+
+    const content = button.nextElementSibling;
+    if (!content) return;
+
+    const collapsedIcon = button.querySelector(".icon-collapsed");
+    const expandedIcon = button.querySelector(".icon-expanded");
+    const isCollapsed = content.style.display === "none" || content.style.display === "";
+
+    content.style.display = isCollapsed ? "block" : "none";
+
+    if (collapsedIcon && expandedIcon) {
+        collapsedIcon.classList.toggle("hidden", isCollapsed);
+        expandedIcon.classList.toggle("hidden", !isCollapsed);
+    }
+
+}
+
+
+function bigCollapsible(iconBaseName, extraClass, contentHtml) {
+
+    return `
+        <button type="button" class="collapsible ${extraClass}" onclick="toggleCollapsible(this)">
+            <img src="../icons/${iconBaseName}_click.png" alt="Open" class="icon icon-expanded hidden">
+            <img src="../icons/${iconBaseName}.png" alt="Close" class="icon icon-collapsed">
+        </button>
+        <div class="content" style="display: none;">${contentHtml}</div>
+    `;
+
+}
+
+
+function smallCollapsible(labelHtml, contentHtml) {
+
+    return `
+        <button type="button" class="collapsible small-collapsible" onclick="toggleCollapsible(this)">
+            <img src="../icons/open.png" alt="Open" class="icon-small icon-expanded hidden">
+            <img src="../icons/closed.png" alt="Close" class="icon-small icon-collapsed">
+            <strong>${labelHtml}</strong>
+        </button>
+        <div class="content" style="display: none;">${contentHtml}</div>
+    `;
+
+}
+
+/*
+ * Apply the current filters
+ */
+function applyFilters() {
+
+//        status.innerHTML =
+//            `Loaded <strong>${characters.length.toLocaleString()}</strong> characters.`;
+
+    console.time("Filter");
+
+    const minLevelValue =
+        document.getElementById("minLevel").value;
+
+    const maxLevelValue =
+        document.getElementById("maxLevel").value;
+
+    const minLevel =
+        minLevelValue === ""
+            ? null
+            : Number(minLevelValue);
+
+    const maxLevel =
+        maxLevelValue === ""
+            ? null
+            : Number(maxLevelValue);
+
+    filteredCharacters = characters.filter(character => {
+
+        const level =
+            Number(
+                character.Stats.Level ??
+                0
+            );
+
+        if (
+            minLevel !== null &&
+            level < minLevel
+        ) {
+            return false;
+        }
+
+        if (
+            maxLevel !== null &&
+            level > maxLevel
+        ) {
+            return false;
+        }
+
+        return true;
+
+    });
+
+    console.timeEnd("Filter");
+
+//    sortCharacters();
+//    renderCharacters();
+//    clusterBuilds();
+//    renderItemReporting();
+    // Handle URL anchor after everything exists
+    if (window.location.hash) {
+        const anchorId = decodeURIComponent(
+            window.location.hash.substring(1)
+        );
+
+        setTimeout(() => {
+            expandToAnchor(anchorId);
+        }, 50);
+    } 
+    const status = document.getElementById("status");
+//    status.innerHTML =
+//        `Loaded <strong>${filteredCharacters.length.toLocaleString()}</strong> characters.`;
+
+}
+
+
+/*
+ * URL handling
+ */
+const params = new URLSearchParams(window.location.search);
+
+const validModes = [
+    "sc",
+    "hc"
+];
+
+const requestedMode = params.get("m");
+const requestedClass = params.get("c");
+
+const chosenMode = validModes.includes(requestedMode)
+    ? requestedMode
+    : "sc";
+
+    document.addEventListener("DOMContentLoaded", () => {
+
+    document.getElementById("mode").value = chosenMode;
+
+    document.getElementById("mode")
+        .addEventListener("change", updateURL);
+
+    loadCharacters();
+
+});
+
+
+function updateURL() {
+
+    const selectedMode =
+        document.getElementById("mode").value;
+
+    const url = new URL(window.location);
+
+    url.searchParams.set("m", selectedMode);
+
+    window.location.href = url;
+}
+/*
+ * Load the data
+ */
+async function loadCharacters() {
+
+    generateLadderSummary(false);
+    const status = document.getElementById("status");
+
+    const filename = `${chosenMode}_ladder.json`;
+
+    try {
+
+        const response =
+            await fetch(`../${filename}`);
+
+        if (!response.ok) {
+            throw new Error(
+                `HTTP ${response.status}: ${response.statusText}`
+            );
+        }
+
+        characters = await response.json();
+
+//        status.innerHTML =
+//            `Loaded <strong>${characters.length.toLocaleString()}</strong> characters.`;
+
+        applyFilters();
+
+//        status.innerHTML =
+//            `Loaded <strong>${filteredCharacters.length.toLocaleString()}</strong> characters.`;
+
+    } catch (error) {
+
+        console.error(error);
+
+        status.innerHTML =
+            `<span class="error">
+                Error loading data: ${error.message}
+            </span>`;
+    }
+}
+
+// Ladder Summary section
+async function generateLadderSummary(isHardcore = false) {
+
+    const season = 13;
+    const gameMode = isHardcore ? 1 : 0;
+
+    const ladderUrl =
+        `https://beta.pathofdiablo.com/api/ladder/${season}/${gameMode}/0/`;
+
+    const firstsUrl =
+        "https://beta.pathofdiablo.com/api/ladder-firsts";
+
+    const classNameMap = {
+        ama: "Amazon",
+        asn: "Assassin",
+        bar: "Barbarian",
+        dru: "Druid",
+        nec: "Necromancer",
+        pal: "Paladin",
+        sor: "Sorceress"
+    };
+
+    try {
+
+        const [ladderResponse, firstsResponse] =
+            await Promise.all([
+                fetch(ladderUrl),
+                fetch(firstsUrl)
+            ]);
+
+        if (!ladderResponse.ok) {
+            throw new Error(
+                `Ladder API returned ${ladderResponse.status}`
+            );
+        }
+
+        if (!firstsResponse.ok) {
+            throw new Error(
+                `Ladder firsts API returned ${firstsResponse.status}`
+            );
+        }
+
+        const ladderJson = await ladderResponse.json();
+        const firstsData = await firstsResponse.json();
+
+        const ladderData = ladderJson.ladder || [];
+
+        // Top 10
+        const top10 = ladderData.slice(0, 10).map(entry => ({
+            name: entry.charName || "Unknown",
+            level: entry.level || 0,
+            className:
+                classNameMap[entry.charClass] ||
+                entry.charClass ||
+                "Unknown",
+            rank: entry.rank || 0,
+            maxLevelDate: entry.maxLevelDate || null
+        }));
+
+        // Ladder firsts for this game mode
+        const firsts = firstsData.filter(
+            entry =>
+                entry.season == season &&
+                entry.gameMode === gameMode
+        );
+
+        console.log("Top 10:", top10);
+        console.log("Ladder firsts:", firsts);
+
+        renderLadderSummary(
+            top10,
+            firsts,
+            season,
+            isHardcore
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Error generating ladder summary:",
+            error
+        );
+    }
+}
+
+function renderLadderSummary(
+    top10,
+    firsts,
+    season,
+    isHardcore
+) {
+
+    const container =
+        document.getElementById("ladder-summary");
+
+    if (!container) {
+        console.error(
+            "Could not find #ladder-summary"
+        );
+        return;
+    }
+
+    const modeLabel =
+        isHardcore ? "Hardcore" : "Softcore";
+
+
+    // -------------------------
+    // Top 10
+    // -------------------------
+
+    let top10Html = `
+        <div class="fun-facts-column">
+            <h4>Top 10 Characters</h4>
+            <ul>
+    `;
+
+    for (const character of top10) {
+
+        const name =
+            character.name;
+
+        const link =
+            `<a href="https://beta.pathofdiablo.com/armory?name=${encodeURIComponent(name)}" target="_blank">${name}</a>`;
+
+        let dateHtml = "";
+
+        if (character.maxLevelDate) {
+
+            const date =
+                character.maxLevelDate.split(" ")[0];
+
+            dateHtml =
+                ` <br>&nbsp;&nbsp;&nbsp;&nbsp;` +
+                `<em>(Level 99 on ${date})</em>`;
+        }
+
+        top10Html +=
+            `<li>${link} – Level ` +
+            `${character.level} ` +
+            `${character.className}` +
+            `${dateHtml}</li>`;
+    }
+
+    top10Html += `
+            </ul>
+        </div>
+    `;
+
+
+    // -------------------------
+    // Ladder Firsts
+    // -------------------------
+
+    const groupedFirsts = {};
+
+    for (const entry of firsts) {
+
+        const key =
+            `${entry.charName}|` +
+            `${entry.charLevel}|` +
+            `${entry.charClass}`;
+
+        if (!groupedFirsts[key]) {
+            groupedFirsts[key] = {
+                name: entry.charName,
+                level: entry.charLevel,
+                className: entry.charClass,
+                kills: []
+            };
+        }
+
+        const difficulty =
+            entry.difficulty || "Unknown";
+
+        const boss =
+            entry.bossName || "Unknown";
+
+        const killDescription =
+            difficulty === "Hell"
+                ? `First ${boss} Kill`
+                : `First ${difficulty} ${boss} Kill`;
+
+        groupedFirsts[key].kills.push(
+            killDescription
+        );
+    }
+
+
+    let firstsHtml = `
+        <div class="fun-facts-column">
+            <h4>Ladder Firsts</h4>
+            <ul style="list-style-type: none; padding-left: 0;">
+    `;
+
+    for (const character of Object.values(groupedFirsts)) {
+
+        const link =
+            `<a href="https://beta.pathofdiablo.com/armory?name=${encodeURIComponent(character.name)}" target="_blank">${character.name}</a>`;
+
+        const kills =
+            character.kills.join(" and ");
+
+        firstsHtml += `
+            <li>
+                ${link}
+                (Level ${character.level} ${character.className})
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;${kills}
+            </li>
+        `;
+    }
+
+    firstsHtml += `
+            </ul>
+        </div>
+    `;
+
+
+    // -------------------------
+    // Final HTML
+    // -------------------------
+
+    container.innerHTML = `
+        <h2>
+            Season ${season} ${modeLabel}
+            Ladder Highlights
+        </h2>
+
+        <div class="fun-facts-row">
+            ${top10Html}
+            ${firstsHtml}
+        </div>
+    `;
+}
+
+
+/*
+ * Basic HTML escaping
+ */
+function escapeHtml(value) {
+
+    return value
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+
+}
+
+
+/*
+ * Navigate to a class page while preserving current mode
+ */
+function navigateWithMode(event, className) {
+    event.preventDefault();
+    const url = `class-test.html?m=${chosenMode}&c=${className}`;
+    window.location.href = url;
+}
+
+/*
+ * Helper to update SC/HC button appearance
+ */
+function updateScHcButton(mode) {
+    const scHcButton = document.getElementById("SC_HC");
+    
+    if (mode === "hc") {
+        scHcButton.classList.add("hardcore");
+        scHcButton.classList.remove("softcore");
+        scHcButton.style.backgroundImage = "url('../icons/Hardcore_click.png')";
+    } else {
+        scHcButton.classList.add("softcore");
+        scHcButton.classList.remove("hardcore");
+        scHcButton.style.backgroundImage = "url('../icons/Softcore_click.png')";
+    }
+}
+
+/*
+ * Update chart when filters change
+ */
+function updateChartWithFilters() {
+    const isHardcore = chosenMode === "hc";
+    generateClassDistributionChart(isHardcore);
+}
+
+/*
+ * Event handlers
+ */
+document.addEventListener("DOMContentLoaded", () => {
+    const scHcButton = document.getElementById("SC_HC");
+    const modeSelect = document.getElementById("mode");
+    const minLevelInput = document.getElementById("minLevel");
+    const maxLevelInput = document.getElementById("maxLevel");
+    const clearFiltersButton = document.getElementById("clearFilters");
+    const modeDisplay = document.getElementById("modeDisplay");
+
+    // Set initial appearance, mode dropdown, and mode display text
+    updateScHcButton(chosenMode);
+    modeSelect.value = chosenMode;
+    modeDisplay.textContent = chosenMode.toUpperCase();
+
+    // SC/HC button click handler
+    scHcButton.addEventListener("click", event => {
+        event.preventDefault();
+        const newMode = chosenMode === "hc" ? "sc" : "hc";
+        const url = new URL(window.location);
+        url.searchParams.set("m", newMode);
+        window.location.href = url;
+    });
+
+    // Mode select change handler
+    modeSelect.addEventListener("change", () => {
+        updateURL();
+    });
+
+    // Level filter change handlers
+    minLevelInput.addEventListener("change", updateChartWithFilters);
+    maxLevelInput.addEventListener("change", updateChartWithFilters);
+
+    // Clear filters button
+    clearFiltersButton.addEventListener("click", () => {
+        minLevelInput.value = "60";
+        maxLevelInput.value = "";
+        updateChartWithFilters();
+    });
+
+    // Initialize the chart
+    updateChartWithFilters();
+});
+
+/*
+ * Update URL based on mode select
+ */
+function updateURL() {
+    const selectedMode = document.getElementById("mode").value;
+    const url = new URL(window.location);
+    url.searchParams.set("m", selectedMode);
+    window.location.href = url;
+}
+
+/*
+ * Load ladder data
+ */
+async function loadLadderData(isHardcore = false) {
+    const filename = isHardcore
+        ? "../hc_ladder.json"
+        : "../sc_ladder.json";
+
+    const response = await fetch(filename);
+
+    if (!response.ok) {
+        throw new Error(
+            `Failed to load ${filename}: ${response.status}`
+        );
+    }
+
+    return await response.json();
+}
+//loadCharacters();
+
+//Anchor in place fix
+// Expand collapsibles and scroll to anchor
+function scrollWithOffset(el, offset = -50) {
+    const y = el.getBoundingClientRect().top + window.pageYOffset + offset;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+}
+
+function expandToAnchor(anchorId) {
+    console.log("expandToAnchor called with:", anchorId);
+    const target = document.getElementById(anchorId);
+    if (!target) return;
+
+    // Step 1: Collect all parent .content elements that need expanding
+    const stack = [];
+    let el = target;
+    while (el) {
+        if (el.classList?.contains('content')) {
+            stack.unshift(el); // add to beginning to expand outermost first
+        }
+        el = el.parentElement;
+    }
+
+    // Step 2: Expand each .content section in order
+    for (const content of stack) {
+        const button = content.previousElementSibling;
+        if (button?.classList.contains('collapsible')) {
+            button.classList.add('active');
+            content.style.display = "block";
+
+            const openIcon = button.querySelector("img.open-icon");
+            const closeIcon = button.querySelector("img.close-icon");
+            if (openIcon) openIcon.classList.add("hidden");
+            if (closeIcon) closeIcon.classList.remove("hidden");
+        }
+    }
+
+    // Step 3: Delay scroll until DOM has reflowed
+    setTimeout(() => {
+        console.log("scrolling to:", target.id);
+        scrollWithOffset(target);
+    }, 250); // Adjust if necessary
+}
+
+// Handle clicks on .anchor-link elements
+document.addEventListener('DOMContentLoaded', () => {
+    // Handle clicks on .anchor-link elements
+    document.querySelectorAll('.anchor-link, a[href^="#"]').forEach(link => {
+        link.addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent default anchor behavior
+            const anchorId = this.getAttribute('href').substring(1);
+            const fullUrl = `${window.location.origin}${window.location.pathname}#${anchorId}`;
+
+            navigator.clipboard.writeText(fullUrl); // Copy full link to clipboard
+            history.pushState(null, '', `#${anchorId}`); // Update URL without page reload
+            expandToAnchor(anchorId); // Expand and scroll
+        });
+    });
+
+    // On initial load with hash
+    if (window.location.hash) {
+        const anchorId = window.location.hash.substring(1);
+        // Wait a bit for collapsibles/content to render
+    setTimeout(() => {
+        console.log("Looking for anchor:", anchorId);
+        console.log("Found:", document.getElementById(anchorId));
+        expandToAnchor(anchorId);
+    }, 3000);
+    }
+});
+
+</script>
+
+</body>
+</html>
