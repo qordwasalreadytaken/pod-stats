@@ -10,13 +10,16 @@
 
     <style>
 
-        .controls {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            align-items: flex-end;
-        }
+.controls {
+    display: none;
+}
 
+body.admin-mode .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: flex-end;
+}
         .control {
             display: flex;
             flex-direction: column;
@@ -642,6 +645,7 @@ const validModes = [
 
 const requestedMode = params.get("m");
 const requestedClass = params.get("c");
+const isAdmin = params.get("admin") === "1";
 
 const chosenMode = validModes.includes(requestedMode)
     ? requestedMode
@@ -650,7 +654,7 @@ const chosenMode = validModes.includes(requestedMode)
     document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById("mode").value = chosenMode;
-
+    if (isAdmin) {document.body.classList.add("admin-mode");}
     document.getElementById("mode")
         .addEventListener("change", updateURL);
 
