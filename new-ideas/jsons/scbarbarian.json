@@ -45331,7 +45331,7 @@
       "BaseLife": 983,
       "Life": 1562,
       "BaseMana": 104,
-      "Mana": 59,
+      "Mana": 112,
       "Gold": 950000,
       "Stashed": 2500000
     },
@@ -47338,15 +47338,17 @@
         "Quality": "Magic",
         "ID": "2526959382",
         "QualityCode": "q_magic",
-        "Title": "Ring",
+        "Title": "Ring of the Wolf",
         "Tag": "Ring",
         "TextTag": "ring",
         "Ethereal": "False",
+        "Enhanced": "False",
         "AlternateGraphics": "1",
         "ItemLevel": "85",
         "LevelReq": 26,
+        "SocketCount": "0",
         "PropertyList": [
-          "\u00ffc1Unidentified"
+          "+12 to Life"
         ],
         "Position": {
           "x": 9,
@@ -47408,15 +47410,17 @@
         "Quality": "Magic",
         "ID": "1217328058",
         "QualityCode": "q_magic",
-        "Title": "Grand Charm",
+        "Title": "Grand Charm of Maiming",
         "Tag": "Grand Charm",
         "TextTag": "Charm Large",
         "Ethereal": "False",
+        "Enhanced": "False",
         "AlternateGraphics": "0",
         "ItemLevel": "85",
         "LevelReq": 63,
+        "SocketCount": "0",
         "PropertyList": [
-          "\u00ffc1Unidentified"
+          "+3 to Maximum Damage"
         ],
         "Position": {
           "x": 2,
@@ -47432,15 +47436,17 @@
         "Quality": "Magic",
         "ID": "1301766840",
         "QualityCode": "q_magic",
-        "Title": "Grand Charm",
+        "Title": "Viridian Grand Charm",
         "Tag": "Grand Charm",
         "TextTag": "Charm Large",
         "Ethereal": "False",
+        "Enhanced": "False",
         "AlternateGraphics": "1",
         "ItemLevel": "88",
         "LevelReq": 7,
+        "SocketCount": "0",
         "PropertyList": [
-          "\u00ffc1Unidentified"
+          "Poison Resist +18%"
         ],
         "Position": {
           "x": 3,
@@ -47456,15 +47462,17 @@
         "Quality": "Magic",
         "ID": "1491191730",
         "QualityCode": "q_magic",
-        "Title": "Small Charm",
+        "Title": "Bronze Small Charm",
         "Tag": "Small Charm",
         "TextTag": "Charm Small",
         "Ethereal": "False",
+        "Enhanced": "False",
         "AlternateGraphics": "1",
         "ItemLevel": "85",
         "LevelReq": 15,
+        "SocketCount": "0",
         "PropertyList": [
-          "\u00ffc1Unidentified"
+          "+7 to Attack Rating"
         ],
         "Position": {
           "x": 8,
@@ -62716,16 +62724,16 @@
       "Dexterity": 35,
       "Vitality": 0,
       "Energy": 0,
-      "FireResistance": 168,
+      "FireResistance": 170,
       "MaximumFireResistance": 0,
-      "ColdResistance": 156,
+      "ColdResistance": 128,
       "MaximumColdResistance": 0,
-      "LightningResistance": 159,
+      "LightningResistance": 162,
       "MaximumLightningResistance": 0,
-      "PoisonResistance": 136,
+      "PoisonResistance": 87,
       "MaximumPoisonResistance": 0,
-      "MagicFind": 208,
-      "GoldFind": 1672,
+      "MagicFind": 229,
+      "GoldFind": 1684,
       "FasterCastRate": 10,
       "FasterHitRecovery": 0,
       "IncreasedAttackSpeed": 20,
@@ -63232,40 +63240,6 @@
         "Worn": "ring2"
       },
       {
-        "Quality": "Rare",
-        "ID": "3903392866",
-        "QualityCode": "q_rare",
-        "Title": "Storm Trample",
-        "Tag": "Chain Boots",
-        "TextTag": "Chain Boots",
-        "Ethereal": "False",
-        "Enhanced": "False",
-        "Defense": "8",
-        "Durability": "16",
-        "DurabilityMaximum": "16",
-        "ItemLevel": "87",
-        "LevelReq": 37,
-        "SocketCount": "0",
-        "PropertyList": [
-          "\u00ffc1Corrupted",
-          "+30% Faster Run/Walk",
-          "Adds 1-11 Lightning damage",
-          "Cold Resist +28%",
-          "Lightning Resist +36%",
-          "Fire Resist +47%",
-          "69% Extra Gold from Monsters"
-        ],
-        "Position": {
-          "x": 9,
-          "y": 0
-        },
-        "Size": {
-          "invheight": 2,
-          "invwidth": 2
-        },
-        "Worn": "boots"
-      },
-      {
         "Quality": "Unique",
         "ID": "1337178253",
         "QualityCode": "q_unique",
@@ -63478,6 +63452,38 @@
           "invwidth": 2
         },
         "Worn": "sweapon2"
+      },
+      {
+        "Quality": "Rare",
+        "ID": "3034201709",
+        "QualityCode": "q_rare",
+        "Title": "Soul Blazer",
+        "Tag": "Demonhide Boots",
+        "TextTag": "Demonhide Boots",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "Defense": "30",
+        "Durability": "7",
+        "DurabilityMaximum": "12",
+        "ItemLevel": "88",
+        "LevelReq": 29,
+        "SocketCount": "0",
+        "PropertyList": [
+          "\u00ffc1Corrupted",
+          "+30% Faster Run/Walk",
+          "Fire Resist +36%",
+          "77% Extra Gold from Monsters",
+          "21% Better Chance of Getting Magic Items"
+        ],
+        "Position": {
+          "x": 9,
+          "y": 0
+        },
+        "Size": {
+          "invheight": 2,
+          "invwidth": 2
+        },
+        "Worn": "boots"
       },
       {
         "Quality": "Normal",
@@ -64057,60 +64063,6 @@
         "Worn": ""
       },
       {
-        "Quality": "Magic",
-        "ID": "3146652236",
-        "QualityCode": "q_magic",
-        "Title": "Amber Small Charm of Greed",
-        "Tag": "Small Charm",
-        "TextTag": "Charm Small",
-        "Ethereal": "False",
-        "Enhanced": "False",
-        "AlternateGraphics": "2",
-        "ItemLevel": "79",
-        "LevelReq": 32,
-        "SocketCount": "0",
-        "PropertyList": [
-          "Lightning Resist +10%",
-          "10% Extra Gold from Monsters"
-        ],
-        "Position": {
-          "x": 8,
-          "y": 7
-        },
-        "Size": {
-          "invheight": 1,
-          "invwidth": 1
-        },
-        "Worn": ""
-      },
-      {
-        "Quality": "Magic",
-        "ID": "3286019626",
-        "QualityCode": "q_magic",
-        "Title": "Ocher Small Charm of Greed",
-        "Tag": "Small Charm",
-        "TextTag": "Charm Small",
-        "Ethereal": "False",
-        "Enhanced": "False",
-        "AlternateGraphics": "2",
-        "ItemLevel": "88",
-        "LevelReq": 15,
-        "SocketCount": "0",
-        "PropertyList": [
-          "Lightning Resist +7%",
-          "9% Extra Gold from Monsters"
-        ],
-        "Position": {
-          "x": 8,
-          "y": 8
-        },
-        "Size": {
-          "invheight": 1,
-          "invwidth": 1
-        },
-        "Worn": ""
-      },
-      {
         "Quality": "Unique",
         "ID": "2831075503",
         "QualityCode": "q_unique",
@@ -64194,24 +64146,188 @@
         "Worn": ""
       },
       {
+        "Quality": "Unique",
+        "ID": "492016442",
+        "QualityCode": "q_unique",
+        "Title": "Hellfire Torch",
+        "Tag": "Large Charm",
+        "TextTag": "Charm Medium",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "AlternateGraphics": "2",
+        "ItemLevel": "99",
+        "LevelReq": 75,
+        "SocketCount": "0",
+        "PropertyList": [
+          "+3 to Barbarian Skill Levels",
+          "+11 to all Attributes",
+          "All Resistances +13",
+          "+8 to Light Radius"
+        ],
+        "Position": {
+          "x": 9,
+          "y": 7
+        },
+        "Size": {
+          "invheight": 2,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
         "Quality": "Magic",
-        "ID": "880086088",
+        "ID": "2190351396",
         "QualityCode": "q_magic",
-        "Title": "Russet Small Charm of Greed",
+        "Title": "Amber Small Charm of Greed",
+        "Tag": "Small Charm",
+        "TextTag": "Charm Small",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "AlternateGraphics": "2",
+        "ItemLevel": "87",
+        "LevelReq": 32,
+        "SocketCount": "0",
+        "PropertyList": [
+          "Lightning Resist +11%",
+          "9% Extra Gold from Monsters"
+        ],
+        "Position": {
+          "x": 8,
+          "y": 5
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Magic",
+        "ID": "3146652236",
+        "QualityCode": "q_magic",
+        "Title": "Amber Small Charm of Greed",
+        "Tag": "Small Charm",
+        "TextTag": "Charm Small",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "AlternateGraphics": "2",
+        "ItemLevel": "79",
+        "LevelReq": 32,
+        "SocketCount": "0",
+        "PropertyList": [
+          "Lightning Resist +10%",
+          "10% Extra Gold from Monsters"
+        ],
+        "Position": {
+          "x": 9,
+          "y": 5
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Magic",
+        "ID": "3286019626",
+        "QualityCode": "q_magic",
+        "Title": "Ocher Small Charm of Greed",
+        "Tag": "Small Charm",
+        "TextTag": "Charm Small",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "AlternateGraphics": "2",
+        "ItemLevel": "88",
+        "LevelReq": 15,
+        "SocketCount": "0",
+        "PropertyList": [
+          "Lightning Resist +7%",
+          "9% Extra Gold from Monsters"
+        ],
+        "Position": {
+          "x": 7,
+          "y": 5
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Magic",
+        "ID": "761252515",
+        "QualityCode": "q_magic",
+        "Title": "Russet Grand Charm of Greed",
+        "Tag": "Grand Charm",
+        "TextTag": "Charm Large",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "AlternateGraphics": "2",
+        "ItemLevel": "88",
+        "LevelReq": 14,
+        "SocketCount": "0",
+        "PropertyList": [
+          "Fire Resist +17%",
+          "36% Extra Gold from Monsters"
+        ],
+        "Position": {
+          "x": 8,
+          "y": 6
+        },
+        "Size": {
+          "invheight": 3,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Magic",
+        "ID": "1509930851",
+        "QualityCode": "q_magic",
+        "Title": "Amber Small Charm of Greed",
+        "Tag": "Small Charm",
+        "TextTag": "Charm Small",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "AlternateGraphics": "2",
+        "ItemLevel": "87",
+        "LevelReq": 32,
+        "SocketCount": "0",
+        "PropertyList": [
+          "Lightning Resist +10%",
+          "7% Extra Gold from Monsters"
+        ],
+        "Position": {
+          "x": 6,
+          "y": 5
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Magic",
+        "ID": "2312045127",
+        "QualityCode": "q_magic",
+        "Title": "Amber Small Charm of Greed",
         "Tag": "Small Charm",
         "TextTag": "Charm Small",
         "Ethereal": "False",
         "Enhanced": "False",
         "AlternateGraphics": "1",
         "ItemLevel": "88",
-        "LevelReq": 15,
+        "LevelReq": 32,
         "SocketCount": "0",
         "PropertyList": [
-          "Fire Resist +6%",
+          "Lightning Resist +10%",
           "10% Extra Gold from Monsters"
         ],
         "Position": {
-          "x": 0,
+          "x": 2,
           "y": 5
         },
         "Size": {
@@ -64238,7 +64354,7 @@
           "9% Extra Gold from Monsters"
         ],
         "Position": {
-          "x": 1,
+          "x": 4,
           "y": 5
         },
         "Size": {
@@ -64265,60 +64381,6 @@
           "10% Extra Gold from Monsters"
         ],
         "Position": {
-          "x": 2,
-          "y": 5
-        },
-        "Size": {
-          "invheight": 1,
-          "invwidth": 1
-        },
-        "Worn": ""
-      },
-      {
-        "Quality": "Magic",
-        "ID": "1753829696",
-        "QualityCode": "q_magic",
-        "Title": "Jade Small Charm of Greed",
-        "Tag": "Small Charm",
-        "TextTag": "Charm Small",
-        "Ethereal": "False",
-        "Enhanced": "False",
-        "AlternateGraphics": "1",
-        "ItemLevel": "88",
-        "LevelReq": 20,
-        "SocketCount": "0",
-        "PropertyList": [
-          "Poison Resist +8%",
-          "10% Extra Gold from Monsters"
-        ],
-        "Position": {
-          "x": 4,
-          "y": 5
-        },
-        "Size": {
-          "invheight": 1,
-          "invwidth": 1
-        },
-        "Worn": ""
-      },
-      {
-        "Quality": "Magic",
-        "ID": "2948694923",
-        "QualityCode": "q_magic",
-        "Title": "Jade Small Charm of Greed",
-        "Tag": "Small Charm",
-        "TextTag": "Charm Small",
-        "Ethereal": "False",
-        "Enhanced": "False",
-        "AlternateGraphics": "1",
-        "ItemLevel": "88",
-        "LevelReq": 20,
-        "SocketCount": "0",
-        "PropertyList": [
-          "Poison Resist +8%",
-          "10% Extra Gold from Monsters"
-        ],
-        "Position": {
           "x": 5,
           "y": 5
         },
@@ -64330,69 +64392,15 @@
       },
       {
         "Quality": "Magic",
-        "ID": "3038628500",
-        "QualityCode": "q_magic",
-        "Title": "Emerald Small Charm of Greed",
-        "Tag": "Small Charm",
-        "TextTag": "Charm Small",
-        "Ethereal": "False",
-        "Enhanced": "False",
-        "AlternateGraphics": "0",
-        "ItemLevel": "87",
-        "LevelReq": 32,
-        "SocketCount": "0",
-        "PropertyList": [
-          "Poison Resist +11%",
-          "9% Extra Gold from Monsters"
-        ],
-        "Position": {
-          "x": 7,
-          "y": 5
-        },
-        "Size": {
-          "invheight": 1,
-          "invwidth": 1
-        },
-        "Worn": ""
-      },
-      {
-        "Quality": "Magic",
-        "ID": "1968427561",
-        "QualityCode": "q_magic",
-        "Title": "Viridian Small Charm of Greed",
-        "Tag": "Small Charm",
-        "TextTag": "Charm Small",
-        "Ethereal": "False",
-        "Enhanced": "False",
-        "AlternateGraphics": "0",
-        "ItemLevel": "87",
-        "LevelReq": 15,
-        "SocketCount": "0",
-        "PropertyList": [
-          "Poison Resist +7%",
-          "10% Extra Gold from Monsters"
-        ],
-        "Position": {
-          "x": 8,
-          "y": 5
-        },
-        "Size": {
-          "invheight": 1,
-          "invwidth": 1
-        },
-        "Worn": ""
-      },
-      {
-        "Quality": "Magic",
-        "ID": "2190351396",
+        "ID": "1662525471",
         "QualityCode": "q_magic",
         "Title": "Amber Small Charm of Greed",
         "Tag": "Small Charm",
         "TextTag": "Charm Small",
         "Ethereal": "False",
         "Enhanced": "False",
-        "AlternateGraphics": "2",
-        "ItemLevel": "87",
+        "AlternateGraphics": "0",
+        "ItemLevel": "88",
         "LevelReq": 32,
         "SocketCount": "0",
         "PropertyList": [
@@ -64400,34 +64408,7 @@
           "9% Extra Gold from Monsters"
         ],
         "Position": {
-          "x": 8,
-          "y": 6
-        },
-        "Size": {
-          "invheight": 1,
-          "invwidth": 1
-        },
-        "Worn": ""
-      },
-      {
-        "Quality": "Magic",
-        "ID": "3375266877",
-        "QualityCode": "q_magic",
-        "Title": "Garnet Small Charm of Greed",
-        "Tag": "Small Charm",
-        "TextTag": "Charm Small",
-        "Ethereal": "False",
-        "Enhanced": "False",
-        "AlternateGraphics": "2",
-        "ItemLevel": "88",
-        "LevelReq": 20,
-        "SocketCount": "0",
-        "PropertyList": [
-          "Fire Resist +8%",
-          "9% Extra Gold from Monsters"
-        ],
-        "Position": {
-          "x": 9,
+          "x": 0,
           "y": 5
         },
         "Size": {
@@ -64438,46 +64419,19 @@
       },
       {
         "Quality": "Magic",
-        "ID": "968076600",
+        "ID": "1392664928",
         "QualityCode": "q_magic",
-        "Title": "Emerald Small Charm of Greed",
-        "Tag": "Small Charm",
-        "TextTag": "Charm Small",
-        "Ethereal": "False",
-        "Enhanced": "False",
-        "AlternateGraphics": "0",
-        "ItemLevel": "88",
-        "LevelReq": 32,
-        "SocketCount": "0",
-        "PropertyList": [
-          "Poison Resist +11%",
-          "9% Extra Gold from Monsters"
-        ],
-        "Position": {
-          "x": 6,
-          "y": 5
-        },
-        "Size": {
-          "invheight": 1,
-          "invwidth": 1
-        },
-        "Worn": ""
-      },
-      {
-        "Quality": "Magic",
-        "ID": "2210680595",
-        "QualityCode": "q_magic",
-        "Title": "Beryl Small Charm of Greed",
+        "Title": "Ruby Small Charm of Greed",
         "Tag": "Small Charm",
         "TextTag": "Charm Small",
         "Ethereal": "False",
         "Enhanced": "False",
         "AlternateGraphics": "1",
-        "ItemLevel": "85",
-        "LevelReq": 15,
+        "ItemLevel": "88",
+        "LevelReq": 32,
         "SocketCount": "0",
         "PropertyList": [
-          "Poison Resist +4%",
+          "Fire Resist +10%",
           "10% Extra Gold from Monsters"
         ],
         "Position": {
@@ -64491,30 +64445,28 @@
         "Worn": ""
       },
       {
-        "Quality": "Unique",
-        "ID": "492016442",
-        "QualityCode": "q_unique",
-        "Title": "Hellfire Torch",
-        "Tag": "Large Charm",
-        "TextTag": "Charm Medium",
+        "Quality": "Magic",
+        "ID": "105023334",
+        "QualityCode": "q_magic",
+        "Title": "Coral Small Charm of Greed",
+        "Tag": "Small Charm",
+        "TextTag": "Charm Small",
         "Ethereal": "False",
         "Enhanced": "False",
-        "AlternateGraphics": "2",
-        "ItemLevel": "99",
-        "LevelReq": 75,
+        "AlternateGraphics": "0",
+        "ItemLevel": "88",
+        "LevelReq": 20,
         "SocketCount": "0",
         "PropertyList": [
-          "+3 to Barbarian Skill Levels",
-          "+11 to all Attributes",
-          "All Resistances +13",
-          "+8 to Light Radius"
+          "Lightning Resist +8%",
+          "9% Extra Gold from Monsters"
         ],
         "Position": {
-          "x": 9,
-          "y": 7
+          "x": 1,
+          "y": 5
         },
         "Size": {
-          "invheight": 2,
+          "invheight": 1,
           "invwidth": 1
         },
         "Worn": ""
