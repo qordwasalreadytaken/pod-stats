@@ -164,7 +164,7 @@
                      
                     <hr>
                     
-                    {navigation_cards}
+                    <div id="navigation"></div>
                     
                     <!-- Quick Overview Stats -->
                     <div class="overview-stats">
@@ -675,10 +675,11 @@ function updateURL() {
  */
 async function loadCharacters() {
 
-    generateLadderSummary(false);
-    const status = document.getElementById("status");
+    const status =
+        document.getElementById("status");
 
-    const filename = `${chosenMode}_ladder.json`;
+    const filename =
+        `${chosenMode}_ladder.json`;
 
     try {
 
@@ -691,15 +692,14 @@ async function loadCharacters() {
             );
         }
 
-        characters = await response.json();
+        characters =
+            await response.json();
 
-//        status.innerHTML =
-//            `Loaded <strong>${characters.length.toLocaleString()}</strong> characters.`;
+        await loadLadderSummary();
+
+        renderNavigation();
 
         applyFilters();
-
-//        status.innerHTML =
-//            `Loaded <strong>${filteredCharacters.length.toLocaleString()}</strong> characters.`;
 
     } catch (error) {
 
@@ -713,96 +713,36 @@ async function loadCharacters() {
 }
 
 // Ladder Summary section
-async function generateLadderSummary(isHardcore = false) {
+async function loadLadderSummary() {
 
-    const season = 13;
-    const gameMode = isHardcore ? 1 : 0;
-
-    const ladderUrl =
-        `https://beta.pathofdiablo.com/api/ladder/${season}/${gameMode}/0/`;
-
-    const firstsUrl =
-        "https://beta.pathofdiablo.com/api/ladder-firsts";
-
-    const classNameMap = {
-        ama: "Amazon",
-        asn: "Assassin",
-        bar: "Barbarian",
-        dru: "Druid",
-        nec: "Necromancer",
-        pal: "Paladin",
-        sor: "Sorceress"
-    };
+    const filename =
+        `${chosenMode}_ladder_summary.json`;
 
     try {
 
-        const [ladderResponse, firstsResponse] =
-            await Promise.all([
-                fetch(ladderUrl),
-                fetch(firstsUrl)
-            ]);
+        const response =
+            await fetch(`../jsons/${filename}`);
 
-        if (!ladderResponse.ok) {
+        if (!response.ok) {
             throw new Error(
-                `Ladder API returned ${ladderResponse.status}`
+                `HTTP ${response.status}: ${response.statusText}`
             );
         }
 
-        if (!firstsResponse.ok) {
-            throw new Error(
-                `Ladder firsts API returned ${firstsResponse.status}`
-            );
-        }
+        const summary = await response.json();
 
-        const ladderJson = await ladderResponse.json();
-        const firstsData = await firstsResponse.json();
-
-        const ladderData = ladderJson.ladder || [];
-
-        // Top 10
-        const top10 = ladderData.slice(0, 10).map(entry => ({
-            name: entry.charName || "Unknown",
-            level: entry.level || 0,
-            className:
-                classNameMap[entry.charClass] ||
-                entry.charClass ||
-                "Unknown",
-            rank: entry.rank || 0,
-            maxLevelDate: entry.maxLevelDate || null
-        }));
-
-        // Ladder firsts for this game mode
-        const firsts = firstsData.filter(
-            entry =>
-                entry.season == season &&
-                entry.gameMode === gameMode
-        );
-
-        console.log("Top 10:", top10);
-        console.log("Ladder firsts:", firsts);
-
-        renderLadderSummary(
-            top10,
-            firsts,
-            season,
-            isHardcore
-        );
+        renderLadderSummary(summary);
 
     } catch (error) {
 
         console.error(
-            "Error generating ladder summary:",
+            "Error loading ladder summary:",
             error
         );
     }
 }
 
-function renderLadderSummary(
-    top10,
-    firsts,
-    season,
-    isHardcore
-) {
+function renderLadderSummary(summary) {
 
     const container =
         document.getElementById("ladder-summary");
@@ -815,7 +755,9 @@ function renderLadderSummary(
     }
 
     const modeLabel =
-        isHardcore ? "Hardcore" : "Softcore";
+        summary.mode === "hc"
+            ? "Hardcore"
+            : "Softcore";
 
 
     // -------------------------
@@ -828,7 +770,7 @@ function renderLadderSummary(
             <ul>
     `;
 
-    for (const character of top10) {
+    for (const character of summary.top10) {
 
         const name =
             character.name;
@@ -867,36 +809,21 @@ function renderLadderSummary(
 
     const groupedFirsts = {};
 
-    for (const entry of firsts) {
+    for (const entry of summary.ladderFirsts) {
 
         const key =
-            `${entry.charName}|` +
-            `${entry.charLevel}|` +
-            `${entry.charClass}`;
+            `${entry.name}|` +
+            `${entry.level}|` +
+            `${entry.className}`;
 
         if (!groupedFirsts[key]) {
             groupedFirsts[key] = {
-                name: entry.charName,
-                level: entry.charLevel,
-                className: entry.charClass,
-                kills: []
+                name: entry.name,
+                level: entry.level,
+                className: entry.className,
+                kills: entry.kills
             };
         }
-
-        const difficulty =
-            entry.difficulty || "Unknown";
-
-        const boss =
-            entry.bossName || "Unknown";
-
-        const killDescription =
-            difficulty === "Hell"
-                ? `First ${boss} Kill`
-                : `First ${difficulty} ${boss} Kill`;
-
-        groupedFirsts[key].kills.push(
-            killDescription
-        );
     }
 
 
@@ -936,7 +863,7 @@ function renderLadderSummary(
 
     container.innerHTML = `
         <h2>
-            Season ${season} ${modeLabel}
+            Season ${summary.season} ${modeLabel}
             Ladder Highlights
         </h2>
 
@@ -947,6 +874,78 @@ function renderLadderSummary(
     `;
 }
 
+// Extra/supplemental navigation
+function renderNavigation() {
+
+    const container =
+        document.getElementById("navigation");
+
+    if (!container) {
+        console.error(
+            "Could not find #navigation"
+        );
+        return;
+    }
+
+    const hcPrefix =
+        chosenMode === "hc" ? "hc" : "";
+
+    container.innerHTML = `
+        <div class="nav-section">
+
+            <h3>Miscellaneous Data Pages</h3>
+
+            <div class="navigation-cards">
+
+                <div class="nav-card">
+                    <a href="newitems.html">
+                        Equipment usage
+                    </a>
+                </div>
+
+                <div class="nav-card">
+                    <a href="${hcPrefix}charms.html">
+                        Charm analysis and usage
+                    </a>
+                </div>
+
+                <div class="nav-card">
+                    <a href="${hcPrefix}Mercenaries.html">
+                        Mercenary data analysis
+                    </a>
+                </div>
+
+                <div class="nav-card">
+                    <a href="${hcPrefix}FunFacts.html">
+                        Fun facts and statistics
+                    </a>
+                </div>
+
+                <div class="nav-card">
+                    <a href="advancedsearch.html">
+                        Skill Search
+                    </a>
+                </div>
+
+            </div>
+
+
+            <h3>Supplemental Data</h3>
+
+            <div class="navigation-cards">
+
+                <div class="nav-card">
+                    Skill point investment and raw item counts for
+                    <a href="sc-usage-over-time.html">Softcore</a>
+                    and
+                    <a href="hc-usage-over-time.html">Hardcore</a>
+                </div>
+
+            </div>
+
+        </div>
+    `;
+}
 
 /*
  * Basic HTML escaping
