@@ -98044,14 +98044,14 @@
     },
     "Bonus": {
       "Strength": 0,
-      "Dexterity": 5,
+      "Dexterity": 3,
       "Vitality": 0,
       "Energy": 0,
-      "FireResistance": 179,
+      "FireResistance": 204,
       "MaximumFireResistance": 0,
       "ColdResistance": 154,
       "MaximumColdResistance": 0,
-      "LightningResistance": 182,
+      "LightningResistance": 175,
       "MaximumLightningResistance": 0,
       "PoisonResistance": 140,
       "MaximumPoisonResistance": 0,
@@ -98234,38 +98234,6 @@
           "invwidth": 2
         },
         "Worn": "boots"
-      },
-      {
-        "Quality": "Rare",
-        "ID": "3245166722",
-        "QualityCode": "q_rare",
-        "Title": "Stone Grasp",
-        "Tag": "Heavy Bracers",
-        "TextTag": "Heavy Bracers",
-        "Ethereal": "False",
-        "Enhanced": "False",
-        "Defense": "37",
-        "Durability": "16",
-        "DurabilityMaximum": "16",
-        "ItemLevel": "80",
-        "LevelReq": 35,
-        "SocketCount": "0",
-        "PropertyList": [
-          "+20% Increased Attack Speed",
-          "+10 to Attack Rating",
-          "+2 to Dexterity",
-          "Lightning Resist +7%",
-          "Fire Resist +25%"
-        ],
-        "Position": {
-          "x": 10,
-          "y": 0
-        },
-        "Size": {
-          "invheight": 2,
-          "invwidth": 2
-        },
-        "Worn": "gloves"
       },
       {
         "Quality": "Rare",
@@ -98573,6 +98541,39 @@
           "invwidth": 1
         },
         "Worn": "sweapon1"
+      },
+      {
+        "Quality": "Set",
+        "ID": "1570282185",
+        "QualityCode": "q_set",
+        "Title": "Laying of Hands",
+        "Tag": "Bramble Mitts",
+        "TextTag": "Bramble Mitts",
+        "Ethereal": "False",
+        "Enhanced": "True",
+        "Defense": "62",
+        "Durability": "9",
+        "DurabilityMaximum": "12",
+        "ItemLevel": "58",
+        "LevelReq": 63,
+        "SocketCount": "0",
+        "PropertyList": [
+          "\u00ffc1Corrupted",
+          "10% Chance to cast level 3 Holy Bolt on striking",
+          "+20% Increased Attack Speed",
+          "+237% Damage to Demons",
+          "+25 Defense",
+          "Fire Resist +50%"
+        ],
+        "Position": {
+          "x": 10,
+          "y": 0
+        },
+        "Size": {
+          "invheight": 2,
+          "invwidth": 2
+        },
+        "Worn": "gloves"
       },
       {
         "Quality": "Unique",
@@ -123817,16 +123818,16 @@
     "Class": "Amazon",
     "Stats": {
       "Level": 61,
-      "Experience": 131219007,
-      "Strength": 90,
-      "Dexterity": 110,
-      "Vitality": 145,
+      "Experience": 132361984,
+      "Strength": 108,
+      "Dexterity": 89,
+      "Vitality": 20,
       "Energy": 15,
-      "BaseLife": 615,
-      "Life": 765,
+      "BaseLife": 240,
+      "Life": 390,
       "BaseMana": 105,
-      "Mana": 199,
-      "Gold": 28060,
+      "Mana": 229,
+      "Gold": 33589,
       "Stashed": 954372
     },
     "Bonus": {
@@ -123853,23 +123854,23 @@
       "DamageReduction": 0,
       "CooldownReduction": 0,
       "WeaponSetMain": {
-        "Strength": 20,
-        "Dexterity": 20,
+        "Strength": 0,
+        "Dexterity": 67,
         "Vitality": 0,
-        "Energy": 0,
-        "FireResistance": 25,
+        "Energy": 20,
+        "FireResistance": 11,
         "MaximumFireResistance": 0,
-        "ColdResistance": 25,
+        "ColdResistance": 11,
         "MaximumColdResistance": 0,
-        "LightningResistance": 25,
+        "LightningResistance": 11,
         "MaximumLightningResistance": 0,
-        "PoisonResistance": 25,
+        "PoisonResistance": 11,
         "MaximumPoisonResistance": 0,
         "MagicFind": 0,
         "GoldFind": 0,
         "FasterCastRate": 0,
         "FasterHitRecovery": 0,
-        "IncreasedAttackSpeed": 0,
+        "IncreasedAttackSpeed": 20,
         "CrushingBlow": 0,
         "OpenWounds": 0,
         "DeadlyStrike": 0,
@@ -123904,12 +123905,23 @@
     "SkillTabs": [
       {
         "Name": "Bow and Crossbow Skills",
-        "Total": 0,
-        "Skills": []
+        "Total": 21,
+        "Skills": [
+          {
+            "ID": 1,
+            "Name": "Magic Arrow",
+            "Level": 1
+          },
+          {
+            "ID": 7,
+            "Name": "Multiple Shot",
+            "Level": 20
+          }
+        ]
       },
       {
         "Name": "Passive and Magic Skills",
-        "Total": 8,
+        "Total": 48,
         "Skills": [
           {
             "ID": 3,
@@ -123942,9 +123954,19 @@
             "Level": 1
           },
           {
+            "ID": 23,
+            "Name": "Decoy",
+            "Level": 20
+          },
+          {
             "ID": 24,
             "Name": "Evade",
             "Level": 1
+          },
+          {
+            "ID": 27,
+            "Name": "Valkyrie",
+            "Level": 20
           },
           {
             "ID": 28,
@@ -123955,39 +123977,8 @@
       },
       {
         "Name": "Javelin and Spear Skills",
-        "Total": 61,
-        "Skills": [
-          {
-            "ID": 5,
-            "Name": "Jab",
-            "Level": 1
-          },
-          {
-            "ID": 9,
-            "Name": "Power Strike",
-            "Level": 18
-          },
-          {
-            "ID": 10,
-            "Name": "Poison Javelin",
-            "Level": 1
-          },
-          {
-            "ID": 15,
-            "Name": "Lightning Bolt",
-            "Level": 20
-          },
-          {
-            "ID": 20,
-            "Name": "Plague Javelin",
-            "Level": 1
-          },
-          {
-            "ID": 30,
-            "Name": "Lightning Fury",
-            "Level": 20
-          }
-        ]
+        "Total": 0,
+        "Skills": []
       }
     ],
     "MercenaryExperience": 27687326,
@@ -124252,127 +124243,66 @@
       },
       {
         "Quality": "Unique",
-        "ID": "3236091292",
+        "ID": "1170570332",
         "QualityCode": "q_unique",
-        "Title": "Titan's Revenge",
-        "Tag": "Ceremonial Javelin",
-        "TextTag": "Ceremonial Javelin",
+        "Title": "Lycander's Aim",
+        "Tag": "Ceremonial Bow",
+        "TextTag": "Ceremonial Bow",
         "Ethereal": "False",
         "Enhanced": "True",
-        "DamageMinimum": "73",
-        "DamageMaximum": "95",
-        "ThrowDamageMinimum": "73",
-        "ThrowDamageMaximum": "146",
-        "Durability": "100",
-        "DurabilityMaximum": "100",
-        "ItemLevel": "62",
+        "DamageMinimum": "54",
+        "DamageMaximum": "116",
+        "ItemLevel": "86",
         "LevelReq": 42,
         "SocketCount": "0",
         "PropertyList": [
-          "+2 to Javelin and Spear Skills (Amazon Only)",
+          "+2 to Bow and Crossbow Skills (Amazon Only)",
           "+2 to Amazon Skill Levels",
-          "+30% Faster Run/Walk",
-          "+172% Enhanced Damage",
+          "+20% Increased Attack Speed",
+          "+185% Enhanced Damage",
           "Adds 25-50 damage",
-          "6% Life stolen per hit",
-          "+20 to Strength",
+          "8% Mana stolen per hit",
+          "+20% Enhanced Defense",
           "+20 to Dexterity",
-          "Increased Stack Size",
-          "Repairs 1 durability in 3 seconds"
+          "+20 to Energy"
         ],
         "Position": {
           "x": 4,
           "y": 0
         },
         "Size": {
-          "invheight": 3,
-          "invwidth": 1
+          "invheight": 4,
+          "invwidth": 2
         },
         "Worn": "weapon1"
       },
       {
         "Quality": "Unique",
-        "ID": "30542473",
+        "ID": "536785886",
         "QualityCode": "q_unique",
-        "Title": "Moser's Blessed Circle",
-        "Tag": "Round Shield",
-        "TextTag": "Round Shield",
+        "Title": "Moonfire",
+        "Tag": "Arrows",
+        "TextTag": "Arrows",
         "Ethereal": "False",
-        "Enhanced": "True",
-        "Block": "62",
-        "Defense": "56",
-        "Durability": "64",
-        "DurabilityMaximum": "64",
-        "ItemLevel": "90",
-        "LevelReq": 31,
-        "Sockets": [
-          {
-            "Quality": "Unknown",
-            "ID": "0",
-            "QualityCode": "",
-            "Title": "Perfect Skull",
-            "Tag": "Perfect Skull",
-            "TextTag": "Perfect Skull",
-            "Ethereal": "False",
-            "Enhanced": "False",
-            "ItemLevel": "0",
-            "LevelReq": 18,
-            "SocketCount": "0",
-            "PropertyList": [
-              "Physical Damage Taken Reduced by 17"
-            ],
-            "Position": {
-              "x": 0,
-              "y": 0
-            },
-            "Size": {
-              "invheight": 1,
-              "invwidth": 1
-            },
-            "Worn": ""
-          },
-          {
-            "Quality": "Unknown",
-            "ID": "0",
-            "QualityCode": "",
-            "Title": "Perfect Skull",
-            "Tag": "Perfect Skull",
-            "TextTag": "Perfect Skull",
-            "Ethereal": "False",
-            "Enhanced": "False",
-            "ItemLevel": "0",
-            "LevelReq": 18,
-            "SocketCount": "0",
-            "PropertyList": [
-              "Physical Damage Taken Reduced by 17"
-            ],
-            "Position": {
-              "x": 1,
-              "y": 0
-            },
-            "Size": {
-              "invheight": 1,
-              "invwidth": 1
-            },
-            "Worn": ""
-          }
-        ],
-        "SocketCount": "2",
+        "Enhanced": "False",
+        "ItemLevel": "66",
+        "LevelReq": 42,
+        "SocketCount": "0",
         "PropertyList": [
-          "+30% Faster Block Rate",
-          "25% Increased Chance of Blocking",
-          "+187% Enhanced Defense",
-          "All Resistances +25",
-          "Physical Damage Taken Reduced by 34",
-          "Socketed (2)"
+          "Adds 31-44 Magic damage",
+          "-10% to Enemy Magic Resistance",
+          "+47 to Dexterity",
+          "All Resistances +11",
+          "+8% Magic Arrow Damage Converted to Magic",
+          "Magic Arrow Fires 4 Additional Arrows"
         ],
         "Position": {
           "x": 5,
           "y": 0
         },
         "Size": {
-          "invheight": 2,
-          "invwidth": 2
+          "invheight": 3,
+          "invwidth": 1
         },
         "Worn": "weapon2"
       }
@@ -124545,32 +124475,6 @@
         ],
         "Position": {
           "x": 6,
-          "y": 6
-        },
-        "Size": {
-          "invheight": 3,
-          "invwidth": 1
-        },
-        "Worn": ""
-      },
-      {
-        "Quality": "Magic",
-        "ID": "15916950",
-        "QualityCode": "q_magic",
-        "Title": "Emerald Grand Charm",
-        "Tag": "Grand Charm",
-        "TextTag": "Charm Large",
-        "Ethereal": "False",
-        "Enhanced": "False",
-        "AlternateGraphics": "0",
-        "ItemLevel": "43",
-        "LevelReq": 22,
-        "SocketCount": "0",
-        "PropertyList": [
-          "Poison Resist +28%"
-        ],
-        "Position": {
-          "x": 5,
           "y": 6
         },
         "Size": {
@@ -125131,6 +125035,90 @@
         },
         "Size": {
           "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Magic",
+        "ID": "15916950",
+        "QualityCode": "q_magic",
+        "Title": "Emerald Grand Charm",
+        "Tag": "Grand Charm",
+        "TextTag": "Charm Large",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "AlternateGraphics": "0",
+        "ItemLevel": "43",
+        "LevelReq": 22,
+        "SocketCount": "0",
+        "PropertyList": [
+          "Poison Resist +28%"
+        ],
+        "Position": {
+          "x": 5,
+          "y": 6
+        },
+        "Size": {
+          "invheight": 3,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Unknown",
+        "ID": "0",
+        "QualityCode": "",
+        "Title": "Ith Rune",
+        "Tag": "Ith Rune",
+        "TextTag": "Ith Rune",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "ItemLevel": "0",
+        "LevelReq": 15,
+        "SocketCount": "0",
+        "PropertyList": [],
+        "Position": {
+          "x": 8,
+          "y": 4
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Unique",
+        "ID": "3919731419",
+        "QualityCode": "q_unique",
+        "Title": "Fleshripper",
+        "Tag": "Fanged Knife",
+        "TextTag": "Fanged Knife",
+        "Ethereal": "False",
+        "Enhanced": "True",
+        "DamageMinimum": "55",
+        "DamageMaximum": "210",
+        "Durability": "118",
+        "DurabilityMaximum": "162",
+        "ItemLevel": "88",
+        "LevelReq": 68,
+        "SocketCount": "0",
+        "PropertyList": [
+          "+269% Enhanced Damage",
+          "-50% Target Defense",
+          "25% Chance of Crushing Blow",
+          "33% Deadly Strike",
+          "50% Chance of Open Wounds",
+          "Prevent Monster Heal",
+          "Slows Target by 20%"
+        ],
+        "Position": {
+          "x": 2,
+          "y": 0
+        },
+        "Size": {
+          "invheight": 3,
           "invwidth": 1
         },
         "Worn": ""
