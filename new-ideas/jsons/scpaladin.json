@@ -308701,9 +308701,9 @@
       "Vitality": 390,
       "Energy": 15,
       "BaseLife": 1437,
-      "Life": 2788,
+      "Life": 1916,
       "BaseMana": 151,
-      "Mana": 299,
+      "Mana": 365,
       "Gold": 0,
       "Stashed": 2219800
     },
@@ -308731,6 +308731,30 @@
       "DamageReduction": 0,
       "CooldownReduction": 10,
       "WeaponSetMain": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Vitality": 22,
+        "Energy": 0,
+        "FireResistance": 44,
+        "MaximumFireResistance": 0,
+        "ColdResistance": 79,
+        "MaximumColdResistance": 0,
+        "LightningResistance": 79,
+        "MaximumLightningResistance": 0,
+        "PoisonResistance": 79,
+        "MaximumPoisonResistance": 0,
+        "MagicFind": 30,
+        "GoldFind": 0,
+        "FasterCastRate": 26,
+        "FasterHitRecovery": 55,
+        "IncreasedAttackSpeed": 40,
+        "CrushingBlow": 0,
+        "OpenWounds": 0,
+        "DeadlyStrike": 0,
+        "DamageReduction": 0,
+        "CooldownReduction": 0
+      },
+      "WeaponSetOffhand": {
         "Strength": 34,
         "Dexterity": 0,
         "Vitality": 0,
@@ -308751,30 +308775,6 @@
         "CrushingBlow": 0,
         "OpenWounds": 0,
         "DeadlyStrike": 20,
-        "DamageReduction": 0,
-        "CooldownReduction": 0
-      },
-      "WeaponSetOffhand": {
-        "Strength": 39,
-        "Dexterity": 0,
-        "Vitality": 22,
-        "Energy": 10,
-        "FireResistance": 44,
-        "MaximumFireResistance": 0,
-        "ColdResistance": 79,
-        "MaximumColdResistance": 0,
-        "LightningResistance": 79,
-        "MaximumLightningResistance": 0,
-        "PoisonResistance": 79,
-        "MaximumPoisonResistance": 0,
-        "MagicFind": 0,
-        "GoldFind": 0,
-        "FasterCastRate": 26,
-        "FasterHitRecovery": 55,
-        "IncreasedAttackSpeed": 40,
-        "CrushingBlow": 20,
-        "OpenWounds": 25,
-        "DeadlyStrike": 0,
         "DamageReduction": 0,
         "CooldownReduction": 0
       }
@@ -309266,36 +309266,34 @@
         "Worn": "ring1"
       },
       {
-        "Quality": "Normal",
-        "ID": "2636276657",
+        "Quality": "Superior",
+        "ID": "512549035",
         "QualityCode": "q_runeword",
-        "Title": "Beast",
-        "Tag": "War Axe",
-        "TextTag": "War Axe",
-        "RuneTag": "BerTirUmMalLum",
+        "Title": "Hand of Justice",
+        "Tag": "Phase Blade",
+        "TextTag": "Phase Blade",
+        "RuneTag": "SurChamAmnLo",
         "Ethereal": "False",
         "Enhanced": "True",
-        "DamageMinimum": "34",
-        "DamageMaximum": "62",
-        "Durability": "116",
-        "DurabilityMaximum": "117",
-        "ItemLevel": "81",
-        "LevelReq": 63,
+        "DamageMinimum": "133",
+        "DamageMaximum": "151",
+        "ItemLevel": "85",
+        "LevelReq": 67,
         "Sockets": [
           {
             "Quality": "Unknown",
             "ID": "0",
             "QualityCode": "",
-            "Title": "Ber Rune",
-            "Tag": "Ber Rune",
-            "TextTag": "Ber Rune",
+            "Title": "Sur Rune",
+            "Tag": "Sur Rune",
+            "TextTag": "Sur Rune",
             "Ethereal": "False",
             "Enhanced": "False",
             "ItemLevel": "0",
-            "LevelReq": 63,
+            "LevelReq": 61,
             "SocketCount": "0",
             "PropertyList": [
-              "20% Chance of Crushing Blow"
+              "Hit Blinds Target +1"
             ],
             "Position": {
               "x": 0,
@@ -309311,16 +309309,16 @@
             "Quality": "Unknown",
             "ID": "0",
             "QualityCode": "",
-            "Title": "Tir Rune",
-            "Tag": "Tir Rune",
-            "TextTag": "Tir Rune",
+            "Title": "Cham Rune",
+            "Tag": "Cham Rune",
+            "TextTag": "Cham Rune",
             "Ethereal": "False",
             "Enhanced": "False",
             "ItemLevel": "0",
-            "LevelReq": 13,
+            "LevelReq": 67,
             "SocketCount": "0",
             "PropertyList": [
-              "+2 to Mana after each Kill"
+              "Freezes target +3"
             ],
             "Position": {
               "x": 1,
@@ -309336,19 +309334,254 @@
             "Quality": "Unknown",
             "ID": "0",
             "QualityCode": "",
-            "Title": "Um Rune",
-            "Tag": "Um Rune",
-            "TextTag": "Um Rune",
+            "Title": "Amn Rune",
+            "Tag": "Amn Rune",
+            "TextTag": "Amn Rune",
             "Ethereal": "False",
             "Enhanced": "False",
             "ItemLevel": "0",
-            "LevelReq": 47,
+            "LevelReq": 25,
             "SocketCount": "0",
             "PropertyList": [
-              "25% Chance of Open Wounds"
+              "7% Life stolen per hit"
             ],
             "Position": {
               "x": 2,
+              "y": 0
+            },
+            "Size": {
+              "invheight": 1,
+              "invwidth": 1
+            },
+            "Worn": ""
+          },
+          {
+            "Quality": "Unknown",
+            "ID": "0",
+            "QualityCode": "",
+            "Title": "Lo Rune",
+            "Tag": "Lo Rune",
+            "TextTag": "Lo Rune",
+            "Ethereal": "False",
+            "Enhanced": "False",
+            "ItemLevel": "0",
+            "LevelReq": 59,
+            "SocketCount": "0",
+            "PropertyList": [
+              "20% Deadly Strike"
+            ],
+            "Position": {
+              "x": 3,
+              "y": 0
+            },
+            "Size": {
+              "invheight": 1,
+              "invwidth": 1
+            },
+            "Worn": ""
+          }
+        ],
+        "SocketCount": "4",
+        "PropertyList": [
+          "+33% Increased Attack Speed",
+          "+332% Enhanced Damage",
+          "Ignore Target's Defense",
+          "+92 to Attack Rating (Based on Character Level)",
+          "-20% to Enemy Fire Resistance",
+          "7% Life stolen per hit",
+          "20% Deadly Strike",
+          "Hit Blinds Target +1",
+          "Freezes target +3",
+          "Level 16 Holy Fire Aura When Equipped",
+          "+50% Increased Holy Fire Area Damage Rate",
+          "Socketed (4)"
+        ],
+        "Position": {
+          "x": 11,
+          "y": 0
+        },
+        "Size": {
+          "invheight": 3,
+          "invwidth": 2
+        },
+        "Worn": "sweapon1"
+      },
+      {
+        "Quality": "Normal",
+        "ID": "3993306354",
+        "QualityCode": "q_runeword",
+        "Title": "Dragon",
+        "Tag": "Sacred Targe",
+        "TextTag": "Sacred Targe",
+        "RuneTag": "SurLoSol",
+        "Ethereal": "False",
+        "Enhanced": "True",
+        "Block": "60",
+        "Defense": "136",
+        "Durability": "43",
+        "DurabilityMaximum": "45",
+        "ItemLevel": "89",
+        "LevelReq": 61,
+        "Sockets": [
+          {
+            "Quality": "Unknown",
+            "ID": "0",
+            "QualityCode": "",
+            "Title": "Sur Rune",
+            "Tag": "Sur Rune",
+            "TextTag": "Sur Rune",
+            "Ethereal": "False",
+            "Enhanced": "False",
+            "ItemLevel": "0",
+            "LevelReq": 61,
+            "SocketCount": "0",
+            "PropertyList": [
+              "+50 to Mana"
+            ],
+            "Position": {
+              "x": 0,
+              "y": 0
+            },
+            "Size": {
+              "invheight": 1,
+              "invwidth": 1
+            },
+            "Worn": ""
+          },
+          {
+            "Quality": "Unknown",
+            "ID": "0",
+            "QualityCode": "",
+            "Title": "Lo Rune",
+            "Tag": "Lo Rune",
+            "TextTag": "Lo Rune",
+            "Ethereal": "False",
+            "Enhanced": "False",
+            "ItemLevel": "0",
+            "LevelReq": 59,
+            "SocketCount": "0",
+            "PropertyList": [
+              "+5% to Maximum Lightning Resist"
+            ],
+            "Position": {
+              "x": 1,
+              "y": 0
+            },
+            "Size": {
+              "invheight": 1,
+              "invwidth": 1
+            },
+            "Worn": ""
+          },
+          {
+            "Quality": "Unknown",
+            "ID": "0",
+            "QualityCode": "",
+            "Title": "Sol Rune",
+            "Tag": "Sol Rune",
+            "TextTag": "Sol Rune",
+            "Ethereal": "False",
+            "Enhanced": "False",
+            "ItemLevel": "0",
+            "LevelReq": 27,
+            "SocketCount": "0",
+            "PropertyList": [
+              "Physical Damage Taken Reduced by 7"
+            ],
+            "Position": {
+              "x": 2,
+              "y": 0
+            },
+            "Size": {
+              "invheight": 1,
+              "invwidth": 1
+            },
+            "Worn": ""
+          }
+        ],
+        "SocketCount": "3",
+        "PropertyList": [
+          "20% Chance to cast level 18 Venom when struck",
+          "12% Chance to cast level 15 Hydra on striking",
+          "+360 Defense",
+          "+230 Defense vs. Missile",
+          "+34 to Strength (Based on Character Level)",
+          "+50 to Mana",
+          "+5% to Maximum Lightning Resist",
+          "All Resistances +44",
+          "Physical Damage Taken Reduced by 7",
+          "Level 14 Holy Fire Aura When Equipped",
+          "Socketed (3)"
+        ],
+        "Position": {
+          "x": 12,
+          "y": 0
+        },
+        "Size": {
+          "invheight": 2,
+          "invwidth": 2
+        },
+        "Worn": "sweapon2"
+      },
+      {
+        "Quality": "Normal",
+        "ID": "4138056917",
+        "QualityCode": "q_runeword",
+        "Title": "Call to Arms",
+        "Tag": "Crystal Sword",
+        "TextTag": "Crystal Sword",
+        "RuneTag": "AmnRalMalIstOhm",
+        "Ethereal": "False",
+        "Enhanced": "True",
+        "DamageMinimum": "18",
+        "DamageMaximum": "56",
+        "Durability": "97",
+        "DurabilityMaximum": "100",
+        "ItemLevel": "86",
+        "LevelReq": 57,
+        "Sockets": [
+          {
+            "Quality": "Unknown",
+            "ID": "0",
+            "QualityCode": "",
+            "Title": "Amn Rune",
+            "Tag": "Amn Rune",
+            "TextTag": "Amn Rune",
+            "Ethereal": "False",
+            "Enhanced": "False",
+            "ItemLevel": "0",
+            "LevelReq": 25,
+            "SocketCount": "0",
+            "PropertyList": [
+              "7% Life stolen per hit"
+            ],
+            "Position": {
+              "x": 0,
+              "y": 0
+            },
+            "Size": {
+              "invheight": 1,
+              "invwidth": 1
+            },
+            "Worn": ""
+          },
+          {
+            "Quality": "Unknown",
+            "ID": "0",
+            "QualityCode": "",
+            "Title": "Ral Rune",
+            "Tag": "Ral Rune",
+            "TextTag": "Ral Rune",
+            "Ethereal": "False",
+            "Enhanced": "False",
+            "ItemLevel": "0",
+            "LevelReq": 19,
+            "SocketCount": "0",
+            "PropertyList": [
+              "+5 Fire damage"
+            ],
+            "Position": {
+              "x": 1,
               "y": 0
             },
             "Size": {
@@ -309373,6 +309606,31 @@
               "Prevent Monster Heal"
             ],
             "Position": {
+              "x": 2,
+              "y": 0
+            },
+            "Size": {
+              "invheight": 1,
+              "invwidth": 1
+            },
+            "Worn": ""
+          },
+          {
+            "Quality": "Unknown",
+            "ID": "0",
+            "QualityCode": "",
+            "Title": "Ist Rune",
+            "Tag": "Ist Rune",
+            "TextTag": "Ist Rune",
+            "Ethereal": "False",
+            "Enhanced": "False",
+            "ItemLevel": "0",
+            "LevelReq": 51,
+            "SocketCount": "0",
+            "PropertyList": [
+              "30% Better Chance of Getting Magic Items"
+            ],
+            "Position": {
               "x": 3,
               "y": 0
             },
@@ -309386,16 +309644,16 @@
             "Quality": "Unknown",
             "ID": "0",
             "QualityCode": "",
-            "Title": "Lum Rune",
-            "Tag": "Lum Rune",
-            "TextTag": "Lum Rune",
+            "Title": "Ohm Rune",
+            "Tag": "Ohm Rune",
+            "TextTag": "Ohm Rune",
             "Ethereal": "False",
             "Enhanced": "False",
             "ItemLevel": "0",
-            "LevelReq": 37,
+            "LevelReq": 57,
             "SocketCount": "0",
             "PropertyList": [
-              "+10 to Energy"
+              "+50% Enhanced Damage"
             ],
             "Position": {
               "x": 4,
@@ -309410,29 +309668,29 @@
         ],
         "SocketCount": "5",
         "PropertyList": [
-          "Level 9 Fanaticism Aura When Equipped",
+          "100% Chance to cast level 31 War Cry when you Kill an Enemy",
+          "+1 to All Skills",
           "+40% Increased Attack Speed",
-          "+248% Enhanced Damage",
-          "20% Chance of Crushing Blow",
-          "25% Chance of Open Wounds",
+          "+279% Enhanced Damage",
+          "+5 Fire damage",
+          "7% Life stolen per hit",
           "Prevent Monster Heal",
-          "+3 to Shape Shifting",
-          "+3 to Wearbear",
-          "+39 to Strength",
-          "+10 to Energy",
-          "+2 to Mana after each Kill",
-          "Level 13 Summon Grizzly (4/5 Charges)",
+          "+3 to Battle Cry",
+          "+6 to Battle Orders",
+          "+6 to Battle Command",
+          "30% Better Chance of Getting Magic Items",
+          "Battle Order's life and mana bonuses are halved.",
           "Socketed (5)"
         ],
         "Position": {
-          "x": 11,
+          "x": 4,
           "y": 0
         },
         "Size": {
           "invheight": 3,
           "invwidth": 2
         },
-        "Worn": "sweapon1"
+        "Worn": "weapon1"
       },
       {
         "Quality": "Normal",
@@ -309567,264 +309825,6 @@
           "+8 Magic Absorb",
           "Attacker Takes Damage of 14",
           "Socketed (4)"
-        ],
-        "Position": {
-          "x": 12,
-          "y": 0
-        },
-        "Size": {
-          "invheight": 2,
-          "invwidth": 2
-        },
-        "Worn": "sweapon2"
-      },
-      {
-        "Quality": "Superior",
-        "ID": "512549035",
-        "QualityCode": "q_runeword",
-        "Title": "Hand of Justice",
-        "Tag": "Phase Blade",
-        "TextTag": "Phase Blade",
-        "RuneTag": "SurChamAmnLo",
-        "Ethereal": "False",
-        "Enhanced": "True",
-        "DamageMinimum": "133",
-        "DamageMaximum": "151",
-        "ItemLevel": "85",
-        "LevelReq": 67,
-        "Sockets": [
-          {
-            "Quality": "Unknown",
-            "ID": "0",
-            "QualityCode": "",
-            "Title": "Sur Rune",
-            "Tag": "Sur Rune",
-            "TextTag": "Sur Rune",
-            "Ethereal": "False",
-            "Enhanced": "False",
-            "ItemLevel": "0",
-            "LevelReq": 61,
-            "SocketCount": "0",
-            "PropertyList": [
-              "Hit Blinds Target +1"
-            ],
-            "Position": {
-              "x": 0,
-              "y": 0
-            },
-            "Size": {
-              "invheight": 1,
-              "invwidth": 1
-            },
-            "Worn": ""
-          },
-          {
-            "Quality": "Unknown",
-            "ID": "0",
-            "QualityCode": "",
-            "Title": "Cham Rune",
-            "Tag": "Cham Rune",
-            "TextTag": "Cham Rune",
-            "Ethereal": "False",
-            "Enhanced": "False",
-            "ItemLevel": "0",
-            "LevelReq": 67,
-            "SocketCount": "0",
-            "PropertyList": [
-              "Freezes target +3"
-            ],
-            "Position": {
-              "x": 1,
-              "y": 0
-            },
-            "Size": {
-              "invheight": 1,
-              "invwidth": 1
-            },
-            "Worn": ""
-          },
-          {
-            "Quality": "Unknown",
-            "ID": "0",
-            "QualityCode": "",
-            "Title": "Amn Rune",
-            "Tag": "Amn Rune",
-            "TextTag": "Amn Rune",
-            "Ethereal": "False",
-            "Enhanced": "False",
-            "ItemLevel": "0",
-            "LevelReq": 25,
-            "SocketCount": "0",
-            "PropertyList": [
-              "7% Life stolen per hit"
-            ],
-            "Position": {
-              "x": 2,
-              "y": 0
-            },
-            "Size": {
-              "invheight": 1,
-              "invwidth": 1
-            },
-            "Worn": ""
-          },
-          {
-            "Quality": "Unknown",
-            "ID": "0",
-            "QualityCode": "",
-            "Title": "Lo Rune",
-            "Tag": "Lo Rune",
-            "TextTag": "Lo Rune",
-            "Ethereal": "False",
-            "Enhanced": "False",
-            "ItemLevel": "0",
-            "LevelReq": 59,
-            "SocketCount": "0",
-            "PropertyList": [
-              "20% Deadly Strike"
-            ],
-            "Position": {
-              "x": 3,
-              "y": 0
-            },
-            "Size": {
-              "invheight": 1,
-              "invwidth": 1
-            },
-            "Worn": ""
-          }
-        ],
-        "SocketCount": "4",
-        "PropertyList": [
-          "+33% Increased Attack Speed",
-          "+332% Enhanced Damage",
-          "Ignore Target's Defense",
-          "+92 to Attack Rating (Based on Character Level)",
-          "-20% to Enemy Fire Resistance",
-          "7% Life stolen per hit",
-          "20% Deadly Strike",
-          "Hit Blinds Target +1",
-          "Freezes target +3",
-          "Level 16 Holy Fire Aura When Equipped",
-          "+50% Increased Holy Fire Area Damage Rate",
-          "Socketed (4)"
-        ],
-        "Position": {
-          "x": 4,
-          "y": 0
-        },
-        "Size": {
-          "invheight": 3,
-          "invwidth": 2
-        },
-        "Worn": "weapon1"
-      },
-      {
-        "Quality": "Normal",
-        "ID": "3993306354",
-        "QualityCode": "q_runeword",
-        "Title": "Dragon",
-        "Tag": "Sacred Targe",
-        "TextTag": "Sacred Targe",
-        "RuneTag": "SurLoSol",
-        "Ethereal": "False",
-        "Enhanced": "True",
-        "Block": "60",
-        "Defense": "136",
-        "Durability": "43",
-        "DurabilityMaximum": "45",
-        "ItemLevel": "89",
-        "LevelReq": 61,
-        "Sockets": [
-          {
-            "Quality": "Unknown",
-            "ID": "0",
-            "QualityCode": "",
-            "Title": "Sur Rune",
-            "Tag": "Sur Rune",
-            "TextTag": "Sur Rune",
-            "Ethereal": "False",
-            "Enhanced": "False",
-            "ItemLevel": "0",
-            "LevelReq": 61,
-            "SocketCount": "0",
-            "PropertyList": [
-              "+50 to Mana"
-            ],
-            "Position": {
-              "x": 0,
-              "y": 0
-            },
-            "Size": {
-              "invheight": 1,
-              "invwidth": 1
-            },
-            "Worn": ""
-          },
-          {
-            "Quality": "Unknown",
-            "ID": "0",
-            "QualityCode": "",
-            "Title": "Lo Rune",
-            "Tag": "Lo Rune",
-            "TextTag": "Lo Rune",
-            "Ethereal": "False",
-            "Enhanced": "False",
-            "ItemLevel": "0",
-            "LevelReq": 59,
-            "SocketCount": "0",
-            "PropertyList": [
-              "+5% to Maximum Lightning Resist"
-            ],
-            "Position": {
-              "x": 1,
-              "y": 0
-            },
-            "Size": {
-              "invheight": 1,
-              "invwidth": 1
-            },
-            "Worn": ""
-          },
-          {
-            "Quality": "Unknown",
-            "ID": "0",
-            "QualityCode": "",
-            "Title": "Sol Rune",
-            "Tag": "Sol Rune",
-            "TextTag": "Sol Rune",
-            "Ethereal": "False",
-            "Enhanced": "False",
-            "ItemLevel": "0",
-            "LevelReq": 27,
-            "SocketCount": "0",
-            "PropertyList": [
-              "Physical Damage Taken Reduced by 7"
-            ],
-            "Position": {
-              "x": 2,
-              "y": 0
-            },
-            "Size": {
-              "invheight": 1,
-              "invwidth": 1
-            },
-            "Worn": ""
-          }
-        ],
-        "SocketCount": "3",
-        "PropertyList": [
-          "20% Chance to cast level 18 Venom when struck",
-          "12% Chance to cast level 15 Hydra on striking",
-          "+360 Defense",
-          "+230 Defense vs. Missile",
-          "+34 to Strength (Based on Character Level)",
-          "+50 to Mana",
-          "+5% to Maximum Lightning Resist",
-          "All Resistances +44",
-          "Physical Damage Taken Reduced by 7",
-          "Level 14 Holy Fire Aura When Equipped",
-          "Socketed (3)"
         ],
         "Position": {
           "x": 5,
