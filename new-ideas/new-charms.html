@@ -1,0 +1,1674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PoD Charm Analysis</title>
+    <link rel="shortcut icon" type="image/x-icon" href="icons/pod.ico">
+    <link rel="stylesheet" type="text/css" href="../css/test-css.css">
+    <script src="./jsons/full-sets.js"></script>
+    <style>
+
+.controls {
+    display: none;
+}
+
+body.admin-mode .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: flex-end;
+}
+        .control {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .control label {
+            font-size: 0.85em;
+            color: #d5f2e3;
+        }
+
+        .control input,
+        .control select,
+        .control button {
+            padding: 7px;
+            font-size: 1em;
+            border: 1px solid #555;
+            border-radius: 4px;
+            background: #232323;
+            color: #eee;
+        }
+
+        .control button {
+            cursor: pointer;
+        }
+
+        .control button:hover {
+            background: #333;
+        }
+    </style>
+</head>
+<body class="special-background">
+    <div class="is-clipped">
+        <div id="navbar-placeholder"></div>
+<!--        <script>
+        fetch("templates/navbar.html")
+            .then(res => res.text())
+            .then(html => {
+            document.getElementById("navbar-placeholder").innerHTML = html;
+            });
+        </script> -->
+
+        <div class="hamburger" onclick="toggleMenu()">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        
+        <div class="top-buttons">
+            <a href="Home" class="top-button home-button" onclick="setActive('../Home')"></a>
+            <a href="#" id="SC_HC" class="top-button"> </a>
+            <a href="class-test.html?m=sc&c=amazon" class="top-button amazon-button"></a>
+            <a href="class-test.html?m=sc&c=assassin" class="top-button assassin-button"></a>
+            <a href="class-test.html?m=sc&c=barbarian" class="top-button barbarian-button"></a>
+            <a href="class-test.html?m=sc&c=druid" class="top-button druid-button"></a>
+            <a href="class-test.html?m=sc&c=necromancer" class="top-button necromancer-button"></a>
+            <a href="class-test.html?m=sc&c=paladin" class="top-button paladin-button"></a>
+            <a href="class-test.html?m=sc&c=sorceress" class="top-button sorceress-button"></a>
+        </div>
+
+        <div class="banner" style="top:50px; left:10%; width:80%;">
+            ⚠️ This is a test site for PoD's Trends site. Please direct any feedback to Qord. ⚠️
+        </div>
+
+        <div class="main page-intro">
+
+<div class="summary-container">
+
+<!--<div class="status">
+    <div id="status">Loading Item Data...</div>
+</div> -->
+
+<div class="controls">
+
+<!--    <div class="control">
+        <label for="search">Character name</label>
+        <input
+            type="text"
+            id="search"
+            placeholder="Search..."
+        >
+    </div> -->
+
+    <div class="control">
+        <label for="minLevel">Minimum level</label>
+        <input
+            type="number"
+            id="minLevel"
+            min="1"
+            max="99"
+            value="60"
+            placeholder="Any"
+        >
+    </div>
+
+    <div class="control">
+        <label for="maxLevel">Maximum level</label>
+        <input
+            type="number"
+            id="maxLevel"
+            min="1"
+            max="99"
+            placeholder="Any"
+        >
+    </div>
+
+    <div class="control">
+        <label for="mode">Mode</label>
+        <select id="mode">
+            <option value="sc">SC</option>
+            <option value="hc">HC</option>
+        </select>
+    </div>
+
+    <div class="control">
+        <label>&nbsp;</label>
+        <button id="clearFilters">Clear filters</button>
+    </div>
+
+</div>
+
+            <h1>PoD Charm Analysis</h1>
+            <h2>Comprehensive analysis of charm usage patterns from ladder characters</h2>
+            
+
+        <div id="charmReportGrid"></div>
+
+            
+            <hr>
+
+</div>
+<button onclick="topFunction()" id="backToTopBtn" class="back-to-top" title="Go to top"></button>
+
+<script>
+
+// Armory pop up
+document.addEventListener("DOMContentLoaded", function () {
+    let activePopup = null;
+
+    document.addEventListener("click", function (event) {
+
+        const trigger = event.target.closest(".hover-trigger");
+
+        if (!trigger) {
+            return;
+        }
+
+        console.log("Trigger clicked");
+
+        event.stopPropagation();
+
+        const characterName = trigger.getAttribute("data-character-name");
+
+        // Find the associated popup
+        const popup = trigger
+            .closest(".character-info")
+            .querySelector(".popup");
+
+        // If this popup is already active, close it
+        if (popup === activePopup) {
+            popup.classList.remove("active");
+            popup.innerHTML = "";
+            activePopup = null;
+            return;
+        }
+
+        // Close any other open popup
+        if (activePopup) {
+            activePopup.classList.remove("active");
+            activePopup.innerHTML = "";
+            activePopup = null;
+        }
+
+        // Create iframe
+        const iframe = document.createElement("iframe");
+
+        iframe.src = `../armory/video_component.html?charName=${characterName}`;
+        iframe.setAttribute("id", "popupFrame");
+
+        popup.appendChild(iframe);
+        popup.classList.add("active");
+
+        activePopup = popup;
+    });
+
+    // Close popup when clicking outside
+    document.addEventListener("click", function (event) {
+
+        if (
+            activePopup &&
+            !event.target.closest(".character-info")
+        ) {
+            activePopup.classList.remove("active");
+            activePopup.innerHTML = "";
+            activePopup = null;
+        }
+    });
+});
+
+function toggleMenu() {
+    document.querySelector(".top-buttons").classList.toggle("show");
+}
+
+function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
+
+window.onscroll = function () {
+    const backToTopBtn = document.getElementById("backToTopBtn");
+    backToTopBtn.style.display =
+        (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) ? "block" : "none";
+};
+
+
+/*
+ * helper for adding link anchors to section headings in the pages (icons swap, .content toggles display).
+ * pages (icons swap, .content toggles display).
+ */
+function renderSectionHeading(heading) {
+    return `
+        <h3 id="${encodeURIComponent(heading)}">
+            ${escapeHtml(heading)}
+            <a href="#${encodeURIComponent(heading)}" class="anchor-link">
+                <img src="icons/anchor.png" alt="🔗" class="anchor-icon">
+            </a>
+        </h3>
+    `;
+}
+
+/*
+ * Collapsible button/content pattern matching the site's existing
+ * pages (icons swap, .content toggles display).
+ */
+function toggleCollapsible(button) {
+
+    const content = button.nextElementSibling;
+    if (!content) return;
+
+    const collapsedIcon = button.querySelector(".icon-collapsed");
+    const expandedIcon = button.querySelector(".icon-expanded");
+    const isCollapsed = content.style.display === "none" || content.style.display === "";
+
+    content.style.display = isCollapsed ? "block" : "none";
+
+    if (collapsedIcon && expandedIcon) {
+        collapsedIcon.classList.toggle("hidden", isCollapsed);
+        expandedIcon.classList.toggle("hidden", !isCollapsed);
+    }
+
+}
+
+
+function bigCollapsible(iconBaseName, extraClass, contentHtml) {
+
+    return `
+        <button type="button" class="collapsible ${extraClass}" onclick="toggleCollapsible(this)">
+            <img src="../icons/${iconBaseName}_click.png" alt="Open" class="icon icon-expanded hidden">
+            <img src="../icons/${iconBaseName}.png" alt="Close" class="icon icon-collapsed">
+        </button>
+        <div class="content" style="display: none;">${contentHtml}</div>
+    `;
+
+}
+
+
+function smallCollapsible(labelHtml, contentHtml) {
+
+    return `
+        <button type="button" class="collapsible small-collapsible" onclick="toggleCollapsible(this)">
+            <img src="../icons/open.png" alt="Open" class="icon-small icon-expanded hidden">
+            <img src="../icons/closed.png" alt="Close" class="icon-small icon-collapsed">
+            <strong>${labelHtml}</strong>
+        </button>
+        <div class="content" style="display: none;">${contentHtml}</div>
+    `;
+
+}
+
+/*
+ * Generic text helpers
+ */
+function slugify(text) {
+  return text
+    .toString()                           // Ensure it's a string
+    .toLowerCase()                        // Convert to lowercase
+    .trim()                               // Remove leading/trailing whitespace
+    .normalize('NFD')                     // Split accented characters into baseline + accent
+    .replace(/[\u0300-\u036f]/g, '')     // Remove accent marks
+    .replace(/[^a-z0-9\s-]/g, '')         // Remove all non-alphanumeric characters except spaces and hyphens
+    .replace(/[\s_-]+/g, '-')             // Replace spaces, underscores, and multiple hyphens with a single hyphen
+    .replace(/^-+|-+$/g, '');             // Trim hyphens from the start and end
+}
+
+function escapeHtml(value) {
+
+    return value
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+
+}
+//const CLASS_NAME = "${chosenClass}";
+
+let characters = [];
+let filteredCharacters = [];
+let skillColumns = [];
+let clusters = [];
+let itemsData = null;
+
+/*
+ * URL handling
+ */
+const params = new URLSearchParams(window.location.search);
+
+const validModes = [
+    "sc",
+    "hc"
+];
+
+const requestedMode = params.get("m");
+const requestedClass = params.get("c");
+const isAdmin = params.get("admin") === "1";
+
+const chosenMode = validModes.includes(requestedMode)
+    ? requestedMode
+    : "sc";
+
+    document.addEventListener("DOMContentLoaded", () => {
+
+    document.getElementById("mode").value = chosenMode;
+    if (isAdmin) {document.body.classList.add("admin-mode");}
+    document.getElementById("mode")
+        .addEventListener("change", updateURL);
+
+//    loadCharacters();
+
+});
+
+
+function updateURL() {
+
+    const selectedMode =
+        document.getElementById("mode").value;
+
+    const url = new URL(window.location);
+
+    url.searchParams.set("m", selectedMode);
+
+    window.location.href = url;
+}
+
+/*
+ * Apply the current filters
+ */
+function applyFilters() {
+
+//        status.innerHTML =
+//            `Loaded <strong>${characters.length.toLocaleString()}</strong> characters.`;
+
+    console.time("Filter");
+
+    const minLevelValue =
+        document.getElementById("minLevel").value;
+
+    const maxLevelValue =
+        document.getElementById("maxLevel").value;
+
+    const minLevel =
+        minLevelValue === ""
+            ? null
+            : Number(minLevelValue);
+
+    const maxLevel =
+        maxLevelValue === ""
+            ? null
+            : Number(maxLevelValue);
+
+    filteredCharacters = characters.filter(character => {
+
+        const level =
+            Number(
+                character.Stats.Level ??
+                0
+            );
+
+        if (
+            minLevel !== null &&
+            level < minLevel
+        ) {
+            return false;
+        }
+
+        if (
+            maxLevel !== null &&
+            level > maxLevel
+        ) {
+            return false;
+        }
+
+        return true;
+
+    });
+
+    console.timeEnd("Filter");
+
+//    sortCharacters();
+//    renderCharacters();
+//    clusterBuilds();
+//    renderItemReporting();
+    // Handle URL anchor after everything exists
+    if (window.location.hash) {
+        const anchorId = decodeURIComponent(
+            window.location.hash.substring(1)
+        );
+
+        setTimeout(() => {
+            expandToAnchor(anchorId);
+        }, 50);
+    } 
+    const status = document.getElementById("status");
+    status.innerHTML =
+        `Loaded <strong>${filteredCharacters.length.toLocaleString()}</strong> characters.`;
+
+}
+
+/*
+ * Charm functions
+ */
+
+let charmData = [];
+let charmAnalysis = null;
+
+async function loadCharmData() {
+    const mode = document.getElementById("mode").value;
+
+    const response = await fetch(
+        mode === "sc"
+            ? "jsons/sc-charms.json"
+            : "jsons/hc-charms.json"
+    );
+
+    charmData = await response.json();
+
+    charmAnalysis = analyzeAllCharms(charmData);
+    renderCharmReport(charmAnalysis, mode);
+
+    console.log("Charm analysis:", charmAnalysis);
+}
+
+function categorizeCharmType(tag) {
+
+    const normalized = (tag || "").toLowerCase();
+
+    if (normalized.includes("small charm")) {
+        return "small";
+    }
+
+    if (normalized.includes("large charm")) {
+        return "large";
+    }
+
+    if (normalized.includes("grand charm")) {
+        return "grand";
+    }
+
+    return null;
+}
+
+function isUniqueCharm(item) {
+
+    const qualityCode = item.QualityCode || "";
+    const tag = item.Tag || "";
+
+    return (
+        qualityCode === "q_unique" &&
+        tag.toLowerCase().includes("charm")
+    );
+}
+
+function isSkiller(item) {
+
+    if (item.Tag !== "Grand Charm") {
+        return false;
+    }
+
+    const properties = item.PropertyList || [];
+
+    return properties.some(prop =>
+        prop.includes("+1 to") &&
+        prop.includes("Only)") &&
+        !prop.includes("All Skills")
+    );
+}
+
+function extractNumericValue(prop) {
+
+    const match = prop.match(/[+\-]?(\d+)/);
+
+    return match ? parseInt(match[1], 10) : null;
+}
+
+function average(values) {
+
+    return values.length
+        ? values.reduce((sum, value) => sum + value, 0) / values.length
+        : 0;
+}
+
+function topEntries(counts, limit) {
+
+    return [...counts.entries()]
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, limit);
+}
+
+function groupCharacters(records) {
+
+    const characters = new Map();
+
+    for (const record of records) {
+
+        const name = record.Name;
+
+        if (!characters.has(name)) {
+            characters.set(name, {
+                Name: record.Name,
+                Class: record.Class,
+                Level: record.Level,
+                Inventory: []
+            });
+        }
+
+        characters.get(name).Inventory.push(record);
+    }
+
+    return characters;
+}
+
+/*
+ * Determine whether a torch (2x4) and/or anni (1x1) could fit in the
+ * remaining charm inventory space (10 wide x 4 tall grid, rows y: 5-8).
+ */
+function checkCharmSpaceAvailability(inventory) {
+
+    const grid = Array.from({ length: 4 }, () => Array(10).fill(false));
+
+    for (const item of inventory) {
+
+        const position = item.Position || {};
+        const yPos = position.y ?? 0;
+        const xPos = position.x ?? 0;
+
+        if (yPos < 5 || yPos > 8) {
+            continue;
+        }
+
+        const gridY = yPos - 5;
+        const tag = (item.Tag || "").toLowerCase();
+
+        if (tag.includes("small charm") || tag.includes("grand charm")) {
+            if (gridY < 4 && xPos < 10) {
+                grid[gridY][xPos] = true;
+            }
+        }
+        else if (tag.includes("large charm")) {
+            for (let dy = 0; dy < 4; dy++) {
+                for (let dx = 0; dx < 2; dx++) {
+                    if (gridY + dy < 4 && xPos + dx < 10) {
+                        grid[gridY + dy][xPos + dx] = true;
+                    }
+                }
+            }
+        }
+    }
+
+    let hasTorchSpace = false;
+
+    for (let startX = 0; startX <= 8 && !hasTorchSpace; startX++) {
+
+        let isFree = true;
+
+        for (let dy = 0; dy < 4 && isFree; dy++) {
+            for (let dx = 0; dx < 2; dx++) {
+                if (grid[dy][startX + dx]) {
+                    isFree = false;
+                    break;
+                }
+            }
+        }
+
+        if (isFree) {
+            hasTorchSpace = true;
+        }
+    }
+
+    let hasAnniSpace = false;
+    let emptySpaces = 0;
+
+    for (let y = 0; y < 4; y++) {
+        for (let x = 0; x < 10; x++) {
+            if (!grid[y][x]) {
+                hasAnniSpace = true;
+                emptySpaces++;
+            }
+        }
+    }
+
+    return { hasTorchSpace, hasAnniSpace, emptySpaces };
+}
+
+/*
+ * Comprehensive charm analysis, mirroring the Python analyze_all_charms().
+ */
+function analyzeAllCharms(records) {
+
+    const characters = groupCharacters(records);
+    const totalCharacters = characters.size;
+
+    let charsWithCharms = 0;
+    let smallCount = 0;
+    let largeCount = 0;
+    let grandCount = 0;
+    let totalCharms = 0;
+    let totalSkillers = 0;
+
+    const charData = new Map();
+
+    const smallProperties = new Map();
+    const smallCombos = new Map();
+    const largeProperties = new Map();
+    const largeCombos = new Map();
+    const grandProperties = new Map();
+    const grandCombos = new Map();
+
+    const skillerByClass = new Map();
+    const skillerByTree = new Map();
+
+    const gheedsCharms = [];
+    const torchCharms = [];
+    const anniCharms = [];
+
+    const charsWithTorch = new Set();
+    const charsWithoutTorch = new Set();
+    const charsByClassWithTorch = new Map();
+    const charsByClassWithoutTorch = new Map();
+
+    const charsWithAnni = new Set();
+    const charsWithoutAnni = new Set();
+    const charsByClassWithAnni = new Map();
+    const charsByClassWithoutAnni = new Map();
+
+    let charsWithoutTorchJustEnough = 0;
+    let charsWithoutAnniJustEnough = 0;
+    const emptySpacesWithoutTorch = [];
+    const emptySpacesWithoutAnni = [];
+
+    const charsWithWrongClassTorch = [];
+    const highPoisonCharms = [];
+
+    let perfect3_20_20Small = 0;
+    let perfect20_17Small = 0;
+    let perfect45LifeSkillers = 0;
+    let perfect10_76_40Grand = 0;
+
+    const incrementMap = (map, key, by = 1) => map.set(key, (map.get(key) || 0) + by);
+
+    for (const character of characters.values()) {
+
+        const charName = character.Name;
+        const charClass = character.Class;
+        const charLevel = character.Level;
+
+        let hasTorchThisChar = false;
+        let hasAnniThisChar = false;
+        let charHasCharms = false;
+
+        if (!charData.has(charName)) {
+            charData.set(charName, {
+                name: charName,
+                class: charClass,
+                level: charLevel,
+                total_life: 0,
+                total_mana: 0,
+                total_resists: 0,
+                total_max_dmg: 0,
+                total_ar: 0,
+                total_mf: 0,
+                fire_res: 0,
+                cold_res: 0,
+                light_res: 0,
+                poison_res: 0,
+                charm_count: 0
+            });
+        }
+
+        const stats = charData.get(charName);
+
+        for (const item of character.Inventory) {
+
+            const tag = item.Tag || "";
+            const props = item.PropertyList || [];
+            const charmType = categorizeCharmType(tag);
+
+            if (isUniqueCharm(item)) {
+
+                const hasGoldFind = props.some(p => p.includes("Extra Gold from Monsters"));
+                const hasVendor = props.some(p => p.includes("Reduces all Vendor Prices"));
+
+                if (hasGoldFind && hasVendor) {
+
+                    const charm = {};
+
+                    for (const prop of props) {
+                        if (prop.includes("Extra Gold from Monsters")) {
+                            charm.gold_find = extractNumericValue(prop);
+                        }
+                        else if (prop.includes("Reduces all Vendor Prices")) {
+                            charm.vendor_discount = extractNumericValue(prop);
+                        }
+                        else if (prop.includes("Better Chance of Getting Magic Items")) {
+                            charm.mf = extractNumericValue(prop);
+                        }
+                    }
+
+                    gheedsCharms.push(charm);
+                }
+
+                const hasClassSkills = props.some(p => p.includes("+3 to") && p.includes("Skill Levels"));
+
+                if (hasClassSkills) {
+
+                    const charm = {};
+                    let torchClass = null;
+
+                    for (const prop of props) {
+                        if (prop.includes("+3 to") && prop.includes("Skill Levels")) {
+                            charm.class_bonus = prop;
+                            torchClass = prop.replace("+3 to ", "").replace(" Skill Levels", "").trim();
+                        }
+                        else if (prop.includes("to all Attributes")) {
+                            charm.attributes = extractNumericValue(prop);
+                        }
+                        else if (prop.includes("All Resistances")) {
+                            charm.all_res = extractNumericValue(prop);
+                        }
+                        else if (prop.includes("Experience Gained")) {
+                            charm.exp_gain = extractNumericValue(prop);
+                        }
+                    }
+
+                    if (torchClass && torchClass !== charClass) {
+                        charsWithWrongClassTorch.push({
+                            char_name: charName,
+                            char_class: charClass,
+                            torch_class: torchClass,
+                            torch_stats: `${charm.attributes || 0}/${charm.all_res || 0}`
+                        });
+                    }
+
+                    torchCharms.push(charm);
+                    hasTorchThisChar = true;
+                }
+
+                const hasAllSkills = props.some(p => p.includes("+1 to All Skills"));
+                const hasExp = props.some(p => p.includes("Experience Gained"));
+
+                if (hasAllSkills && hasExp) {
+
+                    const charm = {};
+
+                    for (const prop of props) {
+                        if (prop.includes("to all Attributes")) {
+                            charm.attributes = extractNumericValue(prop);
+                        }
+                        else if (prop.includes("All Resistances")) {
+                            charm.all_res = extractNumericValue(prop);
+                        }
+                        else if (prop.includes("Experience Gained")) {
+                            charm.exp_gain = extractNumericValue(prop);
+                        }
+                    }
+
+                    anniCharms.push(charm);
+                    hasAnniThisChar = true;
+                }
+
+                for (const prop of props) {
+                    if (prop.includes("All Resistances")) {
+                        const val = extractNumericValue(prop);
+                        if (val) {
+                            stats.total_resists += val * 4;
+                            stats.fire_res += val;
+                            stats.cold_res += val;
+                            stats.light_res += val;
+                            stats.poison_res += val;
+                        }
+                    }
+                }
+
+                continue;
+            }
+
+            if (!charmType) {
+                continue;
+            }
+
+            charHasCharms = true;
+            stats.charm_count++;
+            totalCharms++;
+
+            const propCombo = [];
+
+            for (const prop of props) {
+
+                if (prop.includes("to Life") && !prop.includes("after each Kill")) {
+                    const val = extractNumericValue(prop);
+                    if (val) stats.total_life += val;
+                }
+                else if (prop.includes("to Mana") && !prop.includes("after each Kill")) {
+                    const val = extractNumericValue(prop);
+                    if (val) stats.total_mana += val;
+                }
+                else if (prop.includes("to Maximum Damage")) {
+                    const val = extractNumericValue(prop);
+                    if (val) stats.total_max_dmg += val;
+                }
+                else if (prop.includes("to Attack Rating")) {
+                    const val = extractNumericValue(prop);
+                    if (val) stats.total_ar += val;
+                }
+                else if (prop.includes("Better Chance of Getting Magic Items")) {
+                    const val = extractNumericValue(prop);
+                    if (val) stats.total_mf += val;
+                }
+                else if (prop.includes("Fire Resist") && !prop.includes("All Resistances")) {
+                    const val = extractNumericValue(prop);
+                    if (val) { stats.fire_res += val; stats.total_resists += val; }
+                }
+                else if (prop.includes("Cold Resist") && !prop.includes("All Resistances")) {
+                    const val = extractNumericValue(prop);
+                    if (val) { stats.cold_res += val; stats.total_resists += val; }
+                }
+                else if (prop.includes("Lightning Resist") && !prop.includes("All Resistances")) {
+                    const val = extractNumericValue(prop);
+                    if (val) { stats.light_res += val; stats.total_resists += val; }
+                }
+                else if (prop.includes("Poison Resist") && !prop.includes("All Resistances")) {
+                    const val = extractNumericValue(prop);
+                    if (val) { stats.poison_res += val; stats.total_resists += val; }
+                }
+                else if (prop.includes("All Resistances")) {
+                    const val = extractNumericValue(prop);
+                    if (val) {
+                        stats.total_resists += val * 4;
+                        stats.fire_res += val;
+                        stats.cold_res += val;
+                        stats.light_res += val;
+                        stats.poison_res += val;
+                    }
+                }
+
+                if (prop.toLowerCase().includes("poison damage over")) {
+                    const match = prop.match(/\+(\d+)\s+poison damage over/i);
+                    if (match) {
+                        const poisonDmg = parseInt(match[1], 10);
+                        if (poisonDmg > 200) {
+                            highPoisonCharms.push({
+                                char: charName,
+                                poison_dmg: poisonDmg
+                            });
+                        }
+                    }
+                }
+            }
+
+            if (charmType === "small") {
+
+                smallCount++;
+
+                const has3Max = props.some(p => p.includes("+3 to Maximum Damage"));
+                const has20Ar = props.some(p => p.includes("+20 to Attack Rating"));
+                const has20Life = props.some(p => p.includes("+20 to Life"));
+
+                if (has3Max && has20Ar && has20Life) {
+                    perfect3_20_20Small++;
+                }
+
+                const has17Mana = props.some(p => p.includes("+17 to Mana"));
+
+                if (has20Life && has17Mana) {
+                    perfect20_17Small++;
+                }
+
+                for (const prop of props) {
+                    incrementMap(smallProperties, prop);
+                    propCombo.push(prop);
+                }
+
+                if (propCombo.length >= 2) {
+                    incrementMap(smallCombos, [...propCombo].sort().join(" | "));
+                }
+            }
+            else if (charmType === "large") {
+
+                largeCount++;
+
+                for (const prop of props) {
+                    incrementMap(largeProperties, prop);
+                    propCombo.push(prop);
+                }
+
+                if (propCombo.length >= 2) {
+                    incrementMap(largeCombos, [...propCombo].sort().join(" | "));
+                }
+            }
+            else if (charmType === "grand") {
+
+                if (isSkiller(item)) {
+
+                    for (const prop of props) {
+                        if (prop.includes("+1 to") && prop.includes("Only)") && !prop.includes("All Skills")) {
+
+                            incrementMap(skillerByTree, prop);
+
+                            const classes = ["Amazon", "Assassin", "Barbarian", "Druid", "Necromancer", "Paladin", "Sorceress"];
+                            const matchedClass = classes.find(cls => prop.includes(cls));
+
+                            if (matchedClass) {
+                                incrementMap(skillerByClass, matchedClass);
+                            }
+                        }
+                    }
+
+                    const has45Life = props.some(p => p.includes("+45 to Life"));
+
+                    if (has45Life) {
+                        perfect45LifeSkillers++;
+                    }
+
+                    totalSkillers++;
+                }
+                else {
+
+                    grandCount++;
+
+                    const has10Max = props.some(p => p.includes("+10 to Maximum Damage"));
+                    const has76Ar = props.some(p => p.includes("+76 to Attack Rating"));
+                    const has40Life = props.some(p => p.includes("+40 to Life"));
+
+                    if (has10Max && has76Ar && has40Life) {
+                        perfect10_76_40Grand++;
+                    }
+
+                    for (const prop of props) {
+                        incrementMap(grandProperties, prop);
+                        propCombo.push(prop);
+                    }
+
+                    if (propCombo.length >= 2) {
+                        incrementMap(grandCombos, [...propCombo].sort().join(" | "));
+                    }
+                }
+            }
+        }
+
+        if (charHasCharms) {
+            charsWithCharms++;
+        }
+
+        const spaceCheck = checkCharmSpaceAvailability(character.Inventory);
+
+        if (hasTorchThisChar) {
+            charsWithTorch.add(charName);
+            incrementMap(charsByClassWithTorch, charClass);
+        }
+        else {
+            charsWithoutTorch.add(charName);
+            incrementMap(charsByClassWithoutTorch, charClass);
+            emptySpacesWithoutTorch.push(spaceCheck.emptySpaces);
+            if (spaceCheck.hasTorchSpace && spaceCheck.emptySpaces <= 10) {
+                charsWithoutTorchJustEnough++;
+            }
+        }
+
+        if (hasAnniThisChar) {
+            charsWithAnni.add(charName);
+            incrementMap(charsByClassWithAnni, charClass);
+        }
+        else {
+            charsWithoutAnni.add(charName);
+            incrementMap(charsByClassWithoutAnni, charClass);
+            emptySpacesWithoutAnni.push(spaceCheck.emptySpaces);
+            if (spaceCheck.hasAnniSpace && spaceCheck.emptySpaces <= 3) {
+                charsWithoutAnniJustEnough++;
+            }
+        }
+    }
+
+    const charList = [...charData.values()];
+
+    const topByLife = [...charList].sort((a, b) => b.total_life - a.total_life);
+    const topByResists = [...charList].sort((a, b) => b.total_resists - a.total_resists);
+    const topByMaxDmg = [...charList].sort((a, b) => b.total_max_dmg - a.total_max_dmg);
+    const topByAr = [...charList].sort((a, b) => b.total_ar - a.total_ar);
+    const topByMf = [...charList].sort((a, b) => b.total_mf - a.total_mf);
+
+    const interestingFinds = [];
+
+    if (highPoisonCharms.length) {
+
+        const count313 = highPoisonCharms.filter(c => c.poison_dmg === 313).length;
+
+        if (count313 > 0) {
+            const chars313 = highPoisonCharms.filter(c => c.poison_dmg === 313).map(c => c.char);
+            interestingFinds.push(
+                `<strong>Highest Poison Damage Small Charm:</strong> +313 poison damage over 11 seconds ` +
+                `(${count313} found, used by ${chars313.slice(0, 3).join(", ")})`
+            );
+        }
+    }
+
+    if (smallCombos.size) {
+        const [mostCommonCombo, count] = topEntries(smallCombos, 1)[0];
+        interestingFinds.push(`<strong>Most Popular Small Charm Combo:</strong> ${mostCommonCombo} - ${count.toLocaleString()} in use`);
+    }
+
+    if (charList.length) {
+        const mostCharmsChar = charList.reduce((a, b) => (b.charm_count > a.charm_count ? b : a));
+        if (mostCharmsChar.charm_count > 0) {
+            interestingFinds.push(`<strong>Most Charms on Single Character:</strong> ${mostCharmsChar.name} (${mostCharmsChar.class}) with ${mostCharmsChar.charm_count} active charms`);
+        }
+    }
+
+    if (smallProperties.size) {
+        const [mostCommonProp, propCount] = topEntries(smallProperties, 1)[0];
+        interestingFinds.push(`<strong>Most Common Small Charm Property:</strong> "${mostCommonProp}" appears on ${propCount.toLocaleString()} small charms`);
+    }
+
+    if (skillerByTree.size) {
+        const [mostPopularSkiller, skillerCount] = topEntries(skillerByTree, 1)[0];
+        interestingFinds.push(`<strong>Most Popular Skiller:</strong> ${mostPopularSkiller} - ${skillerCount.toLocaleString()} in use`);
+    }
+
+    if (perfect3_20_20Small > 0) {
+        interestingFinds.push(`<strong>Perfect 3/20/20 Small Charms:</strong> ${perfect3_20_20Small.toLocaleString()} found (+3 max dmg, +20 AR, +20 life)`);
+    }
+
+    if (perfect20_17Small > 0) {
+        interestingFinds.push(`<strong>Perfect 20/17 Small Charms:</strong> ${perfect20_17Small.toLocaleString()} found (+20 life, +17 mana)`);
+    }
+
+    if (perfect45LifeSkillers > 0) {
+        interestingFinds.push(`<strong>Perfect 45 Life Skillers:</strong> ${perfect45LifeSkillers.toLocaleString()} found`);
+    }
+
+    if (perfect10_76_40Grand > 0) {
+        interestingFinds.push(`<strong>Perfect 10/76/40 Grand Charms:</strong> ${perfect10_76_40Grand.toLocaleString()} found (+10 max dmg, +76 AR, +40 life)`);
+    }
+
+    return {
+        overview: {
+            total_characters: totalCharacters,
+            chars_with_charms: charsWithCharms,
+            total_charms: totalCharms,
+            small_count: smallCount,
+            large_count: largeCount,
+            grand_count: grandCount + totalSkillers
+        },
+        top_characters: {
+            most_life: topByLife.filter(c => c.total_life > 0).slice(0, 5),
+            most_resists: topByResists.filter(c => c.total_resists > 0).slice(0, 5),
+            most_max_damage: topByMaxDmg.filter(c => c.total_max_dmg > 0).slice(0, 5),
+            most_ar: topByAr.filter(c => c.total_ar > 0).slice(0, 5),
+            most_mf: topByMf.filter(c => c.total_mf > 0).slice(0, 5)
+        },
+        skillers: {
+            total_skillers: totalSkillers,
+            by_class: skillerByClass,
+            by_tree: topEntries(skillerByTree, 21)
+        },
+        small_charms: {
+            total_count: smallCount,
+            top_combos: topEntries(smallCombos, 20),
+            top_properties: topEntries(smallProperties, 20)
+        },
+        large_charms: {
+            total_count: largeCount,
+            top_combos: topEntries(largeCombos, 15),
+            top_properties: topEntries(largeProperties, 15)
+        },
+        grand_charms: {
+            total_count: grandCount,
+            top_combos: topEntries(grandCombos, 20),
+            top_properties: topEntries(grandProperties, 20)
+        },
+        unique_charms: {
+            gheeds: {
+                total_count: gheedsCharms.length,
+                perfect_40mf_count: gheedsCharms.filter(g => (g.mf || 0) === 40).length
+            },
+            torches: {
+                total_count: torchCharms.length,
+                chars_with_torch: charsWithTorch.size,
+                chars_without_torch: charsWithoutTorch.size,
+                chars_without_torch_with_just_enough_space: charsWithoutTorchJustEnough,
+                avg_empty_spaces_without_torch: average(emptySpacesWithoutTorch),
+                chars_with_wrong_class_torch: charsWithWrongClassTorch,
+                by_class_with: charsByClassWithTorch,
+                by_class_without: charsByClassWithoutTorch,
+                perfect_20_20_count: torchCharms.filter(t => (t.attributes || 0) === 20 && (t.all_res || 0) === 20).length,
+                avg_attributes: average(torchCharms.map(t => t.attributes || 0)),
+                avg_all_res: average(torchCharms.map(t => t.all_res || 0))
+            },
+            annis: {
+                total_count: anniCharms.length,
+                chars_with_anni: charsWithAnni.size,
+                chars_without_anni: charsWithoutAnni.size,
+                chars_without_anni_with_just_enough_space: charsWithoutAnniJustEnough,
+                avg_empty_spaces_without_anni: average(emptySpacesWithoutAnni),
+                by_class_with: charsByClassWithAnni,
+                by_class_without: charsByClassWithoutAnni,
+                perfect_20_20_10_count: anniCharms.filter(a => (a.attributes || 0) === 20 && (a.all_res || 0) === 20 && (a.exp_gain || 0) === 10).length,
+                anti_perfect_10_10_5_count: anniCharms.filter(a => (a.attributes || 0) === 10 && (a.all_res || 0) === 10 && (a.exp_gain || 0) === 5).length,
+                avg_attributes: average(anniCharms.map(a => a.attributes || 0)),
+                avg_all_res: average(anniCharms.map(a => a.all_res || 0)),
+                avg_exp_gain: average(anniCharms.map(a => a.exp_gain || 0))
+            }
+        },
+        rare_finds: {
+            interesting_finds: interestingFinds
+        }
+    };
+}
+
+/*
+ * Rendering
+ */
+
+function renderTopCharacterList(chars, metricKey, metricName, extraKey, mode) {
+
+    if (!chars.length) {
+        return "<p>No data available.</p>";
+    }
+
+    const classPrefix = mode === "hc" ? "hc" : "";
+
+    let html = "<ol>";
+
+    for (const char of chars) {
+
+        let extra = "";
+
+        if (extraKey && char[extraKey]) {
+            extra = ` (+${char[extraKey].toLocaleString()} ${extraKey.replaceAll("_", " ")})`;
+        }
+
+        html += `
+            <li>
+                <a href="https://trends.pathofdiablo.com/${classPrefix}${char.class}#${encodeURIComponent(char.name)}" target="_blank">
+                    ${escapeHtml(char.name)}
+                </a>
+                (${escapeHtml(char.class)} Lvl ${char.level}) -
+                ${char[metricKey].toLocaleString()} ${metricName}${extra}
+            </li>
+        `;
+    }
+
+    html += "</ol>";
+
+    return html;
+}
+
+function renderOverviewSection(overview) {
+
+    const pctWithCharms = overview.total_characters > 0
+        ? (overview.chars_with_charms / overview.total_characters * 100)
+        : 0;
+
+    const avgCharmsPerChar = overview.chars_with_charms > 0
+        ? (overview.total_charms / overview.chars_with_charms)
+        : 0;
+
+    const pctSmall = overview.total_charms > 0 ? (overview.small_count / overview.total_charms * 100) : 0;
+    const pctLarge = overview.total_charms > 0 ? (overview.large_count / overview.total_charms * 100) : 0;
+    const pctGrand = overview.total_charms > 0 ? (overview.grand_count / overview.total_charms * 100) : 0;
+
+    return `
+        ${renderSectionHeading("Charm Usage Overview")}
+        <div class="intro-section">
+            <p><strong>Total Characters:</strong> ${overview.total_characters.toLocaleString()}</p>
+            <p><strong>Characters Using Charms:</strong> ${overview.chars_with_charms.toLocaleString()} (${pctWithCharms.toFixed(1)}%)</p>
+            <p><strong>Total Active Charms:</strong> ${overview.total_charms.toLocaleString()}</p>
+            <p><strong>Average Charms per Character:</strong> ${avgCharmsPerChar.toFixed(1)}</p>
+
+            <h3>Charm Distribution by Size:</h3>
+            <ul>
+                <li><strong>Small Charms:</strong> ${overview.small_count.toLocaleString()} (${pctSmall.toFixed(1)}%)</li>
+                <li><strong>Large Charms:</strong> ${overview.large_count.toLocaleString()} (${pctLarge.toFixed(1)}%)</li>
+                <li><strong>Grand Charms:</strong> ${overview.grand_count.toLocaleString()} (${pctGrand.toFixed(1)}%)</li>
+            </ul>
+        </div>
+    `;
+}
+
+function renderTopCharactersSection(topChars, mode) {
+
+    const content = `
+        <div id="top-chars" class="container">
+            <div class="column">
+                <h3>Most +Life from Charms:</h3>
+                ${renderTopCharacterList(topChars.most_life, "total_life", "+Life", null, mode)}
+            </div>
+            <div class="column">
+                <h3>Most Total Resists (incl. Anni/Torch):</h3>
+                ${renderTopCharacterList(topChars.most_resists, "total_resists", "Total Resists", null, mode)}
+            </div>
+        </div>
+
+        <div id="top-chars-combat" class="container">
+            <div class="column">
+                <h3>Most +Max Damage from Charms:</h3>
+                ${renderTopCharacterList(topChars.most_max_damage, "total_max_dmg", "+Max Damage", "total_ar", mode)}
+            </div>
+            <div class="column">
+                <h3>Most +Attack Rating from Charms:</h3>
+                ${renderTopCharacterList(topChars.most_ar, "total_ar", "+Attack Rating", "total_max_dmg", mode)}
+            </div>
+        </div>
+
+        <div id="top-chars-mf">
+            <h3>Most Magic Find from Charms:</h3>
+            ${renderTopCharacterList(topChars.most_mf, "total_mf", "% MF", null, mode)}
+        </div>
+    `;
+
+    return `
+        ${renderSectionHeading("Top Characters by Charm Stats")}
+        ${bigCollapsible("Special", "runewords-button", content)}
+    `;
+}
+
+function renderSkillersSection(skillers) {
+
+    let classHtml = "<ul>";
+
+    for (const [cls, count] of [...skillers.by_class.entries()].sort((a, b) => b[1] - a[1])) {
+        const pct = skillers.total_skillers > 0 ? (count / skillers.total_skillers * 100) : 0;
+        classHtml += `<li><strong>${escapeHtml(cls)}:</strong> ${count.toLocaleString()} (${pct.toFixed(1)}%)</li>`;
+    }
+
+    classHtml += "</ul>";
+
+    let treesHtml = "<ol>";
+
+    for (const [tree, count] of skillers.by_tree) {
+        treesHtml += `<li><strong>${escapeHtml(tree)}:</strong> ${count.toLocaleString()}</li>`;
+    }
+
+    treesHtml += "</ol>";
+
+    const content = `
+        <p><strong>Total Skillers in Use:</strong> ${skillers.total_skillers.toLocaleString()}</p>
+        <div id="skillers-content" class="container">
+            <div class="column">
+                <h3>Skillers by Class:</h3>
+                ${classHtml}
+            </div>
+            <div class="column">
+                <h3>Skillers by Tree:</h3>
+                ${treesHtml}
+            </div>
+        </div>
+    `;
+
+    return `
+        ${renderSectionHeading("Skiller Grand Charms")}
+        ${bigCollapsible("Special", "uniques-button", content)}
+    `;
+}
+
+function renderCharmSizeSection(heading, extraClass, data, totalLabel, limit = 15) {
+
+    let combosHtml = "<ol>";
+
+    for (const [combo, count] of data.top_combos.slice(0, limit)) {
+        combosHtml += `<li>${escapeHtml(combo)}: <strong>${count}</strong></li>`;
+    }
+
+    combosHtml += "</ol>";
+
+    let propsHtml = "<ol>";
+
+    for (const [prop, count] of data.top_properties.slice(0, limit)) {
+        propsHtml += `<li>${escapeHtml(prop)}: <strong>${count}</strong></li>`;
+    }
+
+    propsHtml += "</ol>";
+
+    const content = `
+        <p><strong>${totalLabel}:</strong> ${data.total_count.toLocaleString()}</p>
+        <div class="container">
+            <div class="column">
+                <h3>Top ${limit} Property Combinations:</h3>
+                ${combosHtml}
+            </div>
+            <div class="column">
+                <h3>Top ${limit} Individual Properties:</h3>
+                ${propsHtml}
+            </div>
+        </div>
+    `;
+
+    return `
+        ${renderSectionHeading(heading)}
+        ${bigCollapsible("Special", extraClass, content)}
+    `;
+}
+
+function renderClassBreakdownTable(byClassWith, byClassWithout, withLabel, withoutLabel) {
+
+    const allClasses = new Set([...byClassWith.keys(), ...byClassWithout.keys()]);
+
+    let html = `
+        <table style="margin: 10px 0; border-collapse: collapse;">
+            <tr>
+                <th style="padding: 5px; border: 1px solid #444;">Class</th>
+                <th style="padding: 5px; border: 1px solid #444;">${withLabel}</th>
+                <th style="padding: 5px; border: 1px solid #444;">${withoutLabel}</th>
+            </tr>
+    `;
+
+    for (const cls of [...allClasses].sort()) {
+
+        const withCount = byClassWith.get(cls) || 0;
+        const withoutCount = byClassWithout.get(cls) || 0;
+
+        html += `
+            <tr>
+                <td style="padding: 5px; border: 1px solid #444;">${escapeHtml(cls)}</td>
+                <td style="padding: 5px; border: 1px solid #444;">${withCount.toLocaleString()}</td>
+                <td style="padding: 5px; border: 1px solid #444;">${withoutCount.toLocaleString()}</td>
+            </tr>
+        `;
+    }
+
+    html += "</table>";
+
+    return html;
+}
+
+function renderUniqueCharmsSection(uniqueCharms, mode) {
+
+    const gheeds = uniqueCharms.gheeds;
+    const torches = uniqueCharms.torches;
+    const annis = uniqueCharms.annis;
+
+    const gheedsHtml = `
+        <h3>Gheed's Fortune</h3>
+        <ul>
+            <li><strong>Total Count:</strong> ${gheeds.total_count.toLocaleString()}</li>
+            <li><strong>Perfect (40% MF):</strong> ${gheeds.perfect_40mf_count.toLocaleString()}</li>
+        </ul>
+    `;
+
+    const totalTrackedChars = torches.chars_with_torch + torches.chars_without_torch;
+    const classPrefix = mode === "hc" ? "hc" : "";
+
+    const pctWithTorch = totalTrackedChars > 0 ? (torches.chars_with_torch / totalTrackedChars * 100) : 0;
+    const pctWithoutTorch = totalTrackedChars > 0 ? (torches.chars_without_torch / totalTrackedChars * 100) : 0;
+    const pctWithoutTorchJustEnough = torches.chars_without_torch > 0
+        ? (torches.chars_without_torch_with_just_enough_space / torches.chars_without_torch * 100)
+        : 0;
+    const pctWrongClass = torches.chars_with_torch > 0
+        ? (torches.chars_with_wrong_class_torch.length / torches.chars_with_torch * 100)
+        : 0;
+
+    let wrongClassHtml = "";
+
+    if (torches.chars_with_wrong_class_torch.length) {
+
+        wrongClassHtml = `
+            <h4>Characters Using Wrong Class Torch:</h4>
+            <table style="margin: 10px 0; border-collapse: collapse;">
+                <tr>
+                    <th style="padding: 5px; border: 1px solid #444;">Character</th>
+                    <th style="padding: 5px; border: 1px solid #444;">Char Class</th>
+                    <th style="padding: 5px; border: 1px solid #444;">Torch Class</th>
+                    <th style="padding: 5px; border: 1px solid #444;">Stats</th>
+                </tr>
+        `;
+
+        const sorted = [...torches.chars_with_wrong_class_torch].sort((a, b) => a.char_name.localeCompare(b.char_name));
+
+        for (const entry of sorted) {
+            const trendsUrl = `https://trends.pathofdiablo.com/${classPrefix}${entry.char_class}#${encodeURIComponent(entry.char_name)}`;
+            wrongClassHtml += `
+                <tr>
+                    <td style="padding: 5px; border: 1px solid #444;"><a href="${trendsUrl}" target="_blank">${escapeHtml(entry.char_name)}</a></td>
+                    <td style="padding: 5px; border: 1px solid #444;">${escapeHtml(entry.char_class)}</td>
+                    <td style="padding: 5px; border: 1px solid #444;">${escapeHtml(entry.torch_class)}</td>
+                    <td style="padding: 5px; border: 1px solid #444;">${escapeHtml(entry.torch_stats)}</td>
+                </tr>
+            `;
+        }
+
+        wrongClassHtml += "</table>";
+    }
+
+    const torchHtml = `
+        <h3>Hellfire Torch</h3>
+        <ul>
+            <li><strong>Characters with Torch:</strong> ${torches.chars_with_torch.toLocaleString()} (${pctWithTorch.toFixed(1)}%)</li>
+            <li><strong>Characters using wrong class torch:</strong> ${torches.chars_with_wrong_class_torch.length.toLocaleString()} (${pctWrongClass.toFixed(1)}%)</li>
+            <li><strong>Characters without Torch:</strong> ${torches.chars_without_torch.toLocaleString()} (${pctWithoutTorch.toFixed(1)}%)</li>
+            <li><strong>Characters without Torch with ≤3 empty spaces (torch-sized gap):</strong> ${torches.chars_without_torch_with_just_enough_space.toLocaleString()} (${pctWithoutTorchJustEnough.toFixed(1)}%) - <em>possibly sharing</em></li>
+            <li><strong>Average empty charm spaces (chars without torch):</strong> ${torches.avg_empty_spaces_without_torch.toFixed(1)} out of 40 slots</li>
+            <li><strong>Perfect (20/20):</strong> ${torches.perfect_20_20_count.toLocaleString()}</li>
+            <li><strong>Average Stats:</strong> ${torches.avg_attributes.toFixed(1)} Attributes / ${torches.avg_all_res.toFixed(1)} All Res</li>
+        </ul>
+        <h4>By Class:</h4>
+        ${renderClassBreakdownTable(torches.by_class_with, torches.by_class_without, "With Torch", "Without Torch")}
+        ${wrongClassHtml}
+    `;
+
+    const pctWithAnni = totalTrackedChars > 0 ? (annis.chars_with_anni / totalTrackedChars * 100) : 0;
+    const pctWithoutAnni = totalTrackedChars > 0 ? (annis.chars_without_anni / totalTrackedChars * 100) : 0;
+    const pctWithoutAnniJustEnough = annis.chars_without_anni > 0
+        ? (annis.chars_without_anni_with_just_enough_space / annis.chars_without_anni * 100)
+        : 0;
+
+    const anniHtml = `
+        <h3>Annihilus</h3>
+        <ul>
+            <li><strong>Characters with Anni:</strong> ${annis.chars_with_anni.toLocaleString()} (${pctWithAnni.toFixed(1)}%)</li>
+            <li><strong>Characters without Anni:</strong> ${annis.chars_without_anni.toLocaleString()} (${pctWithoutAnni.toFixed(1)}%)</li>
+            <li><strong>Characters without Anni with ≤3 empty spaces (anni-sized gap):</strong> ${annis.chars_without_anni_with_just_enough_space.toLocaleString()} (${pctWithoutAnniJustEnough.toFixed(1)}%) - <em>possibly sharing</em></li>
+            <li><strong>Average empty charm spaces (chars without anni):</strong> ${annis.avg_empty_spaces_without_anni.toFixed(1)} out of 40 slots</li>
+            <li><strong>Perfect (20/20/10):</strong> ${annis.perfect_20_20_10_count.toLocaleString()}</li>
+            <li><strong>Anti-Perfect (10/10/5):</strong> ${annis.anti_perfect_10_10_5_count.toLocaleString()}</li>
+            <li><strong>Average Stats:</strong> ${annis.avg_attributes.toFixed(1)} Attributes / ${annis.avg_all_res.toFixed(1)} All Res / ${annis.avg_exp_gain.toFixed(1)}% Exp</li>
+        </ul>
+        <h4>By Class:</h4>
+        ${renderClassBreakdownTable(annis.by_class_with, annis.by_class_without, "With Anni", "Without Anni")}
+    `;
+
+    const content = `
+        <p>Analysis of unique charms found on ladder characters.</p>
+        ${gheedsHtml}
+        <hr>
+        ${torchHtml}
+        <hr>
+        ${anniHtml}
+    `;
+
+    return `
+        ${renderSectionHeading("Unique Charms")}
+        ${bigCollapsible("Special", "unique-button", content)}
+    `;
+}
+
+function renderRareFindsSection(rareFinds) {
+
+    const findsHtml = rareFinds.interesting_finds.length
+        ? "<ul>" + rareFinds.interesting_finds.map(find => `<li>${find}</li>`).join("") + "</ul>"
+        : "<p>No rare finds to display yet.</p>";
+
+    const content = `
+        <h3>Interesting Charm Discoveries:</h3>
+        ${findsHtml}
+    `;
+
+    return `
+        ${renderSectionHeading("Rare Finds & Fun Facts")}
+        ${bigCollapsible("Special", "sets-button", content)}
+    `;
+}
+
+function renderCharmReport(analysis, mode) {
+
+    const reportGrid = document.getElementById("charmReportGrid");
+
+    reportGrid.innerHTML = `
+        ${renderOverviewSection(analysis.overview)}
+        <hr>
+        ${renderTopCharactersSection(analysis.top_characters, mode)}
+        <hr>
+        ${renderSkillersSection(analysis.skillers)}
+        <hr>
+        ${renderCharmSizeSection("Small Charms", "sets-button", analysis.small_charms, "Total Small Charms")}
+        <hr>
+        ${renderCharmSizeSection("Large Charms", "sets-button", analysis.large_charms, "Total Large Charms")}
+        <hr>
+        ${renderCharmSizeSection("Grand Charms (Non-Skillers)", "sets-button", analysis.grand_charms, "Total Grand Charms (Non-Skillers)")}
+        <hr>
+        ${renderUniqueCharmsSection(analysis.unique_charms, mode)}
+        <hr>
+        ${renderRareFindsSection(analysis.rare_finds)}
+    `;
+}
+
+/*
+ * Event handlers
+ */
+
+document
+    .getElementById("minLevel")
+    .addEventListener("input", applyFilters);
+
+document
+    .getElementById("maxLevel")
+    .addEventListener("input", applyFilters);
+
+document
+    .getElementById("clearFilters")
+    .addEventListener("click", () => {
+
+        document.getElementById("minLevel").value = "";
+        document.getElementById("maxLevel").value = "";
+
+        applyFilters();
+
+    });
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const scHcButton = document.getElementById("SC_HC");
+
+
+    // Set initial appearance
+    updateScHcButton(chosenMode);
+    loadCharmData();
+
+    scHcButton.addEventListener("click", event => {
+
+        event.preventDefault();
+
+
+        const newMode =
+            chosenMode === "hc"
+                ? "sc"
+                : "hc";
+
+
+        const url = new URL(window.location);
+
+        url.searchParams.set("m", newMode);
+
+        window.location.href = url;
+
+    });
+
+
+    function updateScHcButton(mode) {
+
+        if (mode === "hc") {
+
+            scHcButton.classList.add("hardcore");
+            scHcButton.classList.remove("softcore");
+
+            scHcButton.style.backgroundImage =
+                "url('../icons/Hardcore_click.png')";
+
+        } else {
+
+            scHcButton.classList.add("softcore");
+            scHcButton.classList.remove("hardcore");
+
+            scHcButton.style.backgroundImage =
+                "url('../icons/Softcore_click.png')";
+
+        }
+
+    }
+
+});
+
+//Anchor in place fix
+// Expand collapsibles and scroll to anchor
+function scrollWithOffset(el, offset = -50) {
+    const y = el.getBoundingClientRect().top + window.pageYOffset + offset;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+}
+
+function expandToAnchor(anchorId) {
+    console.log("expandToAnchor called with:", anchorId);
+    const target = document.getElementById(anchorId);
+    if (!target) return;
+
+    // Step 1: Collect all parent .content elements that need expanding
+    const stack = [];
+    let el = target;
+    while (el) {
+        if (el.classList?.contains('content')) {
+            stack.unshift(el); // add to beginning to expand outermost first
+        }
+        el = el.parentElement;
+    }
+
+    // Step 2: Expand each .content section in order
+    for (const content of stack) {
+        const button = content.previousElementSibling;
+        if (button?.classList.contains('collapsible')) {
+            button.classList.add('active');
+            content.style.display = "block";
+
+            const openIcon = button.querySelector("img.open-icon");
+            const closeIcon = button.querySelector("img.close-icon");
+            if (openIcon) openIcon.classList.add("hidden");
+            if (closeIcon) closeIcon.classList.remove("hidden");
+        }
+    }
+
+    // Step 3: Delay scroll until DOM has reflowed
+    setTimeout(() => {
+        console.log("scrolling to:", target.id);
+        scrollWithOffset(target);
+    }, 250); // Adjust if necessary
+}
+
+// Handle clicks on .anchor-link elements
+document.addEventListener('DOMContentLoaded', () => {
+    // Handle clicks on .anchor-link elements
+    document.querySelectorAll('.anchor-link, a[href^="#"]').forEach(link => {
+        link.addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent default anchor behavior
+            const anchorId = this.getAttribute('href').substring(1);
+            const fullUrl = `${window.location.origin}${window.location.pathname}#${anchorId}`;
+
+            navigator.clipboard.writeText(fullUrl); // Copy full link to clipboard
+            history.pushState(null, '', `#${anchorId}`); // Update URL without page reload
+            expandToAnchor(anchorId); // Expand and scroll
+        });
+    });
+
+    // On initial load with hash
+    if (window.location.hash) {
+        const anchorId = window.location.hash.substring(1);
+        // Wait a bit for collapsibles/content to render
+    setTimeout(() => {
+        console.log("Looking for anchor:", anchorId);
+        console.log("Found:", document.getElementById(anchorId));
+        expandToAnchor(anchorId);
+    }, 3000);
+    }
+});
+
+</script>
+
+</body>
+</html>

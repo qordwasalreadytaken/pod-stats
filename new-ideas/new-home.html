@@ -49,6 +49,9 @@ body.admin-mode .controls {
         .control button:hover {
             background: #333;
         }
+        .chart-container {
+            margin-right: 50%;
+        }
     </style>
 </head>
 <body class="special-background">
@@ -134,12 +137,12 @@ body.admin-mode .controls {
             </div>
 
         </div>
-                    <h1>PoD <span id="modeDisplay">SC</span> STATS, <u>ALL</u> RANKED LADDER CHARACTERS</h1>
+                    <h1>PoD <span id="modeDisplay">SC</span> STATS, <u>ALL</u> RANKED LADDER CHARACTERS level <span id="minLevelDisplay"></span> and up</h1>
                     <h3>Since there are class ladders in addition to the top 1,000, and many ranked characters do not appear in the top 1k, they are included below and in the rest of the Trends reporting to get as large a data set as possible when looking at item & equipment usage and skill distribution within classes</h3>
                     <!-- Embed the Plotly pie chart -->
                     <!--     <h2>Pick a class below for more detail</h2>-->
                     <!--     <iframe src="cluster_analysis_report.html"></iframe>  -->
-                    <div id="classDistributionChart"></div>
+                    <div class="chart-container" id="classDistributionChart"></div>
                     <h3>THESE PAGES INCLUDE DATA FROM ALL AVAILABLE RANKED LADDER CHARACTERS (THE TOP 1,000 AS WELL AS THE TOP 200 FROM EACH CLASS)</h3>
                     <!--        <h3>UNLESS STATED OTHERWISE, OTHER PAGE STATS AND DATA ARE FROM THE TOP 200 CHARACTERS OF THE RELEVANT CLASS OR CLASSES</h3> -->
 <!--                    <hr>
@@ -193,7 +196,6 @@ body.admin-mode .controls {
                 </div>
                 
                 <div class="footer">
-                    <p>PoD data current as of {timestamp}</p>
                 </div>
    
 
@@ -290,14 +292,15 @@ async function generateClassDistributionChart(isHardcore = false) {
 
         console.log("Pie data:", pieData);
 
-        renderClassDistributionPieChart(pieData);
+        const modeLabel = isHardcore ? "HC" : "SC";
+        renderClassDistributionPieChart(pieData, total, modeLabel);
 
     } catch (error) {
         console.error("Error generating class distribution:", error);
     }
 }
 
-function renderClassDistributionPieChart(pieData) {
+function renderClassDistributionPieChart(pieData, total, modeLabel) {
 
     console.log("Rendering pie chart");
     const chart =
@@ -343,7 +346,7 @@ function renderClassDistributionPieChart(pieData) {
         textposition: "inside",
 
         hovertemplate:
-            "<b>%{customdata}</b><br>" +
+            "<b>" + modeLabel + " %{customdata}</b><br>" +
             "%{value:,} Characters" +
             "<extra></extra>",
 
@@ -366,7 +369,7 @@ function renderClassDistributionPieChart(pieData) {
 
     const layout = {
 
-        title: "Class Distribution",
+        title: `Class Distribution of all ${total} ${modeLabel} Ladder Characters`,
 
         paper_bgcolor:
             "rgba(0,0,0,0)",
@@ -570,6 +573,8 @@ function applyFilters() {
 
     const minLevelValue =
         document.getElementById("minLevel").value;
+
+//    document.getElementById("minLevelDisplay").textContent = minLevelValue || "60";
 
     const maxLevelValue =
         document.getElementById("maxLevel").value;
@@ -933,20 +938,13 @@ function renderNavigation() {
 
             </div>
 
-
-            <h3>Supplemental Data</h3>
-
-            <div class="navigation-cards">
-
-                <div class="nav-card">
-                    Skill point investment and raw item counts for
-                    <a href="sc-usage-over-time.html">Softcore</a>
-                    and
-                    <a href="hc-usage-over-time.html">Hardcore</a>
-                </div>
-
+            <div class="controls">
+                <b>Supplemental data:</b>Skill point investment and raw item counts for
+                <a href="sc-usage-over-time.html">Softcore</a>
+                and
+                <a href="hc-usage-over-time.html">Hardcore</a>
+                </p>
             </div>
-
         </div>
     `;
 }
@@ -997,6 +995,10 @@ function updateScHcButton(mode) {
  */
 function updateChartWithFilters() {
     const isHardcore = chosenMode === "hc";
+    const minLevelValue = document.getElementById("minLevel").value;
+
+    document.getElementById("minLevelDisplay").textContent = minLevelValue || "60";
+
     generateClassDistributionChart(isHardcore);
 }
 
