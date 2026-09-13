@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PoD Items & Equipment Analysis</title>
     <link rel="shortcut icon" type="image/x-icon" href="icons/pod.ico">
-    <link rel="stylesheet" type="text/css" href="./css/test-css.css">
-    <script src="./jsons/full-sets.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/test-css.css">
+    <script src="jsons/full-sets.js"></script>
     <style>
 
 .controls {
@@ -68,7 +68,7 @@ body.admin-mode .controls {
         </div>
         
         <div class="top-buttons">
-            <a href="home.html" class="top-button home-button" onclick="setActive('../Home')"></a>
+            <a href="home.html" class="top-button home-button" onclick="setActive('Home')"></a>
             <a href="#" id="SC_HC" class="top-button"> </a>
             <a href="class.html?m=sc&c=amazon" class="top-button amazon-button"></a>
             <a href="class.html?m=sc&c=assassin" class="top-button assassin-button"></a>
@@ -195,7 +195,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Create iframe
         const iframe = document.createElement("iframe");
 
-        iframe.src = `../armory/video_component.html?charName=${characterName}`;
+        iframe.src = `armory/video_component.html?charName=${characterName}`;
         iframe.setAttribute("id", "popupFrame");
 
         popup.appendChild(iframe);
@@ -276,8 +276,8 @@ function bigCollapsible(iconBaseName, extraClass, contentHtml) {
 
     return `
         <button type="button" class="collapsible ${extraClass}" onclick="toggleCollapsible(this)">
-            <img src="../icons/${iconBaseName}_click.png" alt="Open" class="icon icon-expanded hidden">
-            <img src="../icons/${iconBaseName}.png" alt="Close" class="icon icon-collapsed">
+            <img src="icons/${iconBaseName}_click.png" alt="Open" class="icon icon-expanded hidden">
+            <img src="icons/${iconBaseName}.png" alt="Close" class="icon icon-collapsed">
         </button>
         <div class="content" style="display: none;">${contentHtml}</div>
     `;
@@ -289,8 +289,8 @@ function smallCollapsible(labelHtml, contentHtml) {
 
     return `
         <button type="button" class="collapsible small-collapsible" onclick="toggleCollapsible(this)">
-            <img src="../icons/open.png" alt="Open" class="icon-small icon-expanded hidden">
-            <img src="../icons/closed.png" alt="Close" class="icon-small icon-collapsed">
+            <img src="icons/open.png" alt="Open" class="icon-small icon-expanded hidden">
+            <img src="icons/closed.png" alt="Close" class="icon-small icon-collapsed">
             <strong>${labelHtml}</strong>
         </button>
         <div class="content" style="display: none;">${contentHtml}</div>
@@ -388,7 +388,7 @@ async function loadCharacters() {
     try {
 
         const response =
-            await fetch(`./jsons/${filename}`);
+            await fetch(`jsons/${filename}`);
 
         if (!response.ok) {
             throw new Error(
@@ -1533,7 +1533,7 @@ Overall usage and incomplete loadouts
 async function loadItemsData() {
 
     const response =
-        await fetch("./jsons/items_list.json");
+        await fetch("jsons/items_list.json");
 
     if (!response.ok) {
         throw new Error(
@@ -2997,13 +2997,13 @@ function renderBuildEnablingSection(buildEnablingData) {
                     >
 
                         <img
-                            src="../icons/open.png"
+                            src="icons/open.png"
                             alt="Open"
                             class="icon-small icon-expanded hidden"
                         >
 
                         <img
-                            src="../icons/closed.png"
+                            src="icons/closed.png"
                             alt="Close"
                             class="icon-small icon-collapsed"
                         >
@@ -4159,7 +4159,7 @@ document.addEventListener("DOMContentLoaded", () => {
             scHcButton.classList.remove("softcore");
 
             scHcButton.style.backgroundImage =
-                "url('../icons/Hardcore_click.png')";
+                "url('icons/Hardcore_click.png')";
 
         } else {
 
@@ -4167,7 +4167,7 @@ document.addEventListener("DOMContentLoaded", () => {
             scHcButton.classList.remove("hardcore");
 
             scHcButton.style.backgroundImage =
-                "url('../icons/Softcore_click.png')";
+                "url('icons/Softcore_click.png')";
 
         }
 
