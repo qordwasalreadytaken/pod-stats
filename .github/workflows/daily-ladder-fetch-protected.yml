@@ -52,7 +52,7 @@ jobs:
           echo "🔓 Force override enabled - skipping season freeze check"
           echo "season_frozen=false" >> "$GITHUB_OUTPUT"
         else
-          FROZEN=$(python -c "import sys; sys.path.append('scripts'); from api_integration import should_freeze_live_site; print('true' if should_freeze_live_site() else 'false')")
+          FROZEN=$(python -c "import sys; sys.path.append('scripts'); from fetch_ladder_data import should_freeze_live_site; print('true' if should_freeze_live_site() else 'false')")
           if [ "$FROZEN" = "true" ]; then
             echo "🔒 Season is frozen - skipping ladder fetch"
             echo "season_frozen=true" >> "$GITHUB_OUTPUT"

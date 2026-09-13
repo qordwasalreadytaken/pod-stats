@@ -188,6 +188,25 @@ def GetAllHCCharData():
     print(f"✅ Saved {len(character_data)} unique characters to hc_ladder.json")
 
 
+def should_freeze_live_site():
+    """
+    Check if the live site should be frozen (season ended / no active season).
+    Returns True if freeze is needed, False otherwise.
+    """
+    try:
+        url = "https://beta.pathofdiablo.com/api/ladder-summaries"
+        response = requests.get(url, timeout=10)
+        response.raise_for_status()
+        seasons = response.json()
+        for season in seasons:
+            if season.get("current"):
+                return False
+        return True
+    except Exception as e:
+        print(f"⚠️ Error checking season status: {e}")
+        return False
+
+
 def main():
     GetAllCharData()
     GetAllHCCharData()
