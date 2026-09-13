@@ -48,22 +48,18 @@ jobs:
     - name: Check season status
       id: season_check
       run: |
-        if [ "${{ github.event.inputs.force }}" == "true" ]; then
+        if [ "${{ github.event.inputs.force }}" = "true" ]; then
           echo "🔓 Force override enabled - skipping season freeze check"
           echo "season_frozen=false" >> "$GITHUB_OUTPUT"
         else
-          python -c "
-          import sys
-          sys.path.append('scripts')
-          from api_integration import should_freeze_live_site
-          frozen = should_freeze_live_site()
-          if frozen:
-              print('🔒 Season is frozen - skipping ladder fetch')
-              print('season_frozen=true' >> '$GITHUB_OUTPUT')
-          else:
-              print('✅ Season is active - proceeding with fetch')
-              print('season_frozen=false' >> '$GITHUB_OUTPUT')
-          "
+          FROZEN=$(python -c "import sys; sys.path.append('scripts'); from api_integration import should_freeze_live_site; print('true' if should_freeze_live_site() else 'false')")
+          if [ "$FROZEN" = "true" ]; then
+            echo "🔒 Season is frozen - skipping ladder fetch"
+            echo "season_frozen=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "✅ Season is active - proceeding with fetch"
+            echo "season_frozen=false" >> "$GITHUB_OUTPUT"
+          fi
         fi
         
     - name: Run ladder data fetch

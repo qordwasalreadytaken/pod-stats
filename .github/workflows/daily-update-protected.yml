@@ -47,20 +47,14 @@ jobs:
     - name: Check season status
       id: season_check
       run: |
-        # This will check if the season is frozen and exit gracefully if so
-        python -c "
-        import sys
-        sys.path.append('scripts')
-        from api_integration import should_freeze_live_site
-        frozen = should_freeze_live_site()
-        if frozen:
-            print('🔒 Season is frozen - skipping daily update')
-            print('season_frozen=true' >> '$GITHUB_OUTPUT')
-            exit(0)
-        else:
-            print('✅ Season is active - proceeding with update')
-            print('season_frozen=false' >> '$GITHUB_OUTPUT')
-        "
+        FROZEN=$(python -c "import sys; sys.path.append('scripts'); from api_integration import should_freeze_live_site; print('true' if should_freeze_live_site() else 'false')")
+        if [ "$FROZEN" = "true" ]; then
+          echo "🔒 Season is frozen - skipping daily update"
+          echo "season_frozen=true" >> "$GITHUB_OUTPUT"
+        else
+          echo "✅ Season is active - proceeding with update"
+          echo "season_frozen=false" >> "$GITHUB_OUTPUT"
+        fi
         
     - name: Run daily page generation
       if: steps.season_check.outputs.season_frozen == 'false'
