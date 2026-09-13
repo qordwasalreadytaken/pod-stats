@@ -83,11 +83,14 @@ jobs:
           mv scripts/hc_ladder.json .
         fi
         
-    - name: Create Class JSON's
+    - name: Generate Derived JSON Data
       if: steps.season_check.outputs.season_frozen == 'false'
       run: |
         cd new-ideas
         python create-class-jsons.py
+        python create-charm-jsons.py
+        python create-funfacts-jsons.py
+        python create-mercenary-jsons.py
 
     - name: Commit and push changes
       if: steps.season_check.outputs.season_frozen == 'false'

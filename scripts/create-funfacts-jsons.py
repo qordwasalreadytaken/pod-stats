@@ -9,6 +9,7 @@ ranked data that isn't present in the bulk ladder scrape).
 """
 
 import json
+import os
 import requests
 
 CLASS_CODE_MAP = {
@@ -179,9 +180,12 @@ def fetch_class_leaders(is_hardcore, season, top_n=5):
 
 
 if __name__ == "__main__":
+    os.makedirs("jsons", exist_ok=True)
+    sc_src = "../sc_ladder.json" if os.path.exists("../sc_ladder.json") else "jsons/sc_ladder.json"
+    hc_src = "../hc_ladder.json" if os.path.exists("../hc_ladder.json") else "jsons/hc_ladder.json"
 
-    extract_funfacts_data("jsons/sc_ladder.json", "jsons/sc-funfacts.json")
-    extract_funfacts_data("jsons/hc_ladder.json", "jsons/hc-funfacts.json")
+    extract_funfacts_data(sc_src, "jsons/sc-funfacts.json")
+    extract_funfacts_data(hc_src, "jsons/hc-funfacts.json")
 
     season = get_current_season()
 

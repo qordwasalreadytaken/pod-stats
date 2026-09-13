@@ -1,4 +1,5 @@
 import json
+import os
 
 
 def extract_charm_data(input_file, output_file):
@@ -46,12 +47,16 @@ def extract_charm_data(input_file, output_file):
 
 
 if __name__ == "__main__":
+    os.makedirs("jsons", exist_ok=True)
+    sc_src = "../sc_ladder.json" if os.path.exists("../sc_ladder.json") else "jsons/sc_ladder.json"
+    hc_src = "../hc_ladder.json" if os.path.exists("../hc_ladder.json") else "jsons/hc_ladder.json"
+
     extract_charm_data(
-        "jsons/sc_ladder.json",
+        sc_src,
         "jsons/sc-charms.json"
     )
 
     extract_charm_data(
-        "jsons/hc_ladder.json",
+        hc_src,
         "jsons/hc-charms.json"
     )
