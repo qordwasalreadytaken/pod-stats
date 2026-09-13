@@ -82,7 +82,7 @@ jobs:
     - name: Generate Derived JSON Data
       if: steps.season_check.outputs.season_frozen == 'false'
       run: |
-        cd new-ideas
+        cd scripts
         python create-class-jsons.py
         python create-charm-jsons.py
         python create-funfacts-jsons.py
