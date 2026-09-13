@@ -24,16 +24,16 @@
         <div class="line"></div>
     </div>
     <div class="top-buttons">
-        <a href="Home" class="top-button home-button" onclick="setActive('Home')"></a>
+        <a href="home.html" class="top-button home-button" onclick="setActive('../Home')"></a>
         <a href="#" id="SC_HC" class="top-button"> </a>
-        <a href="Amazon" id="Amazon" class="top-button amazon-button"></a>
-        <a href="Assassin" id="Assassin" class="top-button assassin-button"></a>
-        <a href="Barbarian" id="Barbarian" class="top-button barbarian-button"></a>
-        <a href="Druid" id="Druid" class="top-button druid-button"></a>
-        <a href="Necromancer" id="Necromancer" class="top-button necromancer-button"></a>
-        <a href="Paladin" id="Paladin" class="top-button paladin-button"></a>
-        <a href="Sorceress" id="Sorceress" class="top-button sorceress-button"></a>
-        <a href="https://github.com/qordwasalreadytaken/pod-stats/blob/main/README.md" class="top-button about-button" target="_blank"></a>
+        <a href="class.html?m=sc&c=amazon" class="top-button amazon-button"></a>
+        <a href="class.html?m=sc&c=assassin" class="top-button assassin-button"></a>
+        <a href="class.html?m=sc&c=barbarian" class="top-button barbarian-button"></a>
+        <a href="class.html?m=sc&c=druid" class="top-button druid-button"></a>
+        <a href="class.html?m=sc&c=necromancer" class="top-button necromancer-button"></a>
+        <a href="class.html?m=sc&c=paladin" class="top-button paladin-button"></a>
+        <a href="class.html?m=sc&c=sorceress" class="top-button sorceress-button"></a>
+<!--        <a href="https://github.com/qordwasalreadytaken/pod-stats/blob/main/README.md" class="top-button about-button" target="_blank"></a> -->
     </div>
 
     <style>
@@ -1032,8 +1032,11 @@
                 `;
 
                 for (const char of result.matches) {
-                    const trendsClass = currentLeague === 'hc' ? `hc${char.class}` : char.class;
-                    const trendsUrl = `https://trends.pathofdiablo.com/${trendsClass}#${char.name}`;
+//                    const trendsClass = currentLeague === 'hc' ? `hc${char.class}` : char.class;
+                    const trendsClass = char.class.toLowerCase();
+                    const mode = currentLeague === 'hc' ? 'hc' : 'sc';
+//                    const trendsUrl = `https://trends.pathofdiablo.com/${trendsClass}#${char.name}`;
+                    const trendsUrl = `class.html?m=${mode}&c=${trendsClass}#character-${char.name}`;
                     const classColor = classColors[char.class] || '#555';
 
                     html += `

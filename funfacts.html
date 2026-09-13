@@ -61,15 +61,15 @@ body.admin-mode .controls {
         </div>
         
         <div class="top-buttons">
-            <a href="new-home.html" class="top-button home-button" onclick="setActive('../Home')"></a>
+            <a href="home.html" class="top-button home-button" onclick="setActive('../Home')"></a>
             <a href="#" id="SC_HC" class="top-button"> </a>
-            <a href="new-class.html?m=sc&c=amazon" class="top-button amazon-button"></a>
-            <a href="new-class.html?m=sc&c=assassin" class="top-button assassin-button"></a>
-            <a href="new-class.html?m=sc&c=barbarian" class="top-button barbarian-button"></a>
-            <a href="new-class.html?m=sc&c=druid" class="top-button druid-button"></a>
-            <a href="new-class.html?m=sc&c=necromancer" class="top-button necromancer-button"></a>
-            <a href="new-class.html?m=sc&c=paladin" class="top-button paladin-button"></a>
-            <a href="new-class.html?m=sc&c=sorceress" class="top-button sorceress-button"></a>
+            <a href="class.html?m=sc&c=amazon" class="top-button amazon-button"></a>
+            <a href="class.html?m=sc&c=assassin" class="top-button assassin-button"></a>
+            <a href="class.html?m=sc&c=barbarian" class="top-button barbarian-button"></a>
+            <a href="class.html?m=sc&c=druid" class="top-button druid-button"></a>
+            <a href="class.html?m=sc&c=necromancer" class="top-button necromancer-button"></a>
+            <a href="class.html?m=sc&c=paladin" class="top-button paladin-button"></a>
+            <a href="class.html?m=sc&c=sorceress" class="top-button sorceress-button"></a>
         </div>
 
         <div class="banner" style="top:50px; left:10%; width:80%;">
@@ -355,7 +355,7 @@ const CLASS_CODE_TO_NAME = {
 /*
  * Top 1,000 class distribution pie chart. Always uses the fixed top-1000
  * ladder snapshot (jsons/{mode}-top1k.json) and ignores the level filters,
- * matching the site-wide "top 1k" pie chart on new-home.html.
+ * matching the site-wide "top 1k" pie chart on home.html.
  */
 async function loadTop1kPieChart(mode) {
 
@@ -438,7 +438,7 @@ function renderClassDistributionPieChart(pieData, total, modeLabel) {
 }
 
 /*
- * Skill-vector build clustering, matching new-class.html's clusterBuilds()
+ * Skill-vector build clustering, matching class.html's clusterBuilds()
  * (greedy cosine-similarity clustering), scoped to an arbitrary list of
  * characters so it can be run once per class here.
  */
@@ -565,7 +565,7 @@ function clusterCharacterList(characterList, threshold) {
 
 /*
  * Top 10 most popular builds across ALL classes: cluster within each class
- * (like new-class.html), then merge every class's clusters into one list
+ * (like class.html), then merge every class's clusters into one list
  * and keep the 10 biggest by player count.
  */
 function computeTop10Builds(characters, threshold) {

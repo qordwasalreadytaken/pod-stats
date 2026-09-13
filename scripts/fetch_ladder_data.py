@@ -14,73 +14,6 @@ def count_classes(characters):
     """Count the class distribution for the top 1,000 characters."""
     return Counter(char.get("charClass", "Unknown") for char in characters)
 
-def generate_pie_chart(class_counts):
-    """Generate a pie chart for class distribution of the top 1,000 characters."""
-    classes = list(class_counts.keys())
-    counts = list(class_counts.values())
-
-    if not counts:
-        print("⚠️ No characters found for pie chart.")
-        return
-
-    try:
-        armory = FontProperties(fname='../armory/font/avqest.ttf')  # Update path for scripts dir
-    except:
-        armory = None  # Fallback if font not available
-
-    # Class color mapping
-    class_color_map = {
-        "ama": "rgb(255, 102, 105)",      # Amazon - Red
-        "asn": "rgb(255, 255, 255)",      # Assassin - White
-        "bar": "rgb(150, 105, 32)",       # Barbarian - Brown
-        "dru": "rgb(255, 186, 74)",       # Druid - Orange
-        "nec": "rgb(179, 255, 253)",      # Necromancer - Cyan
-        "pal": "rgb(255, 243, 112)",      # Paladin - Yellow
-        "sor": "rgb(188, 107, 255)"       # Sorceress - Lavender
-    }
-    
-    # Convert RGB strings to matplotlib format and map to classes in order
-    def rgb_to_matplotlib(rgb_string):
-        # Extract numbers from "rgb(r, g, b)" format
-        rgb_values = rgb_string.replace("rgb(", "").replace(")", "").split(",")
-        return tuple(int(v.strip()) / 255.0 for v in rgb_values)
-    
-    colors = [rgb_to_matplotlib(class_color_map.get(class_code, "rgb(128, 128, 128)")) for class_code in classes]
-
-    def make_autopct(values):
-        def my_autopct(pct):
-            total = sum(values)
-            val = int(round(pct * total / 100.0))
-            return f'{pct:.1f}% ({val})'
-        return my_autopct
-
-    timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    plt.figure(figsize=(22, 22))
-    plt.subplots_adjust(top=0.5, bottom=0.15)
-
-    wedges, texts, autotexts = plt.pie(
-        counts, labels=classes, autopct=make_autopct(counts), startangle=250,
-        colors=colors, radius=1.4,
-        textprops={'fontsize': 30, 'color': 'white', 'fontproperties': armory if armory else None}
-    )
-
-    title = plt.title(
-        f"Class Distribution of Top 1,000 Characters\n\nAs of {timestamp}",
-        pad=50, fontsize=45, fontproperties=armory if armory else None, loc='left', color="white"
-    )
-    title.set_fontsize(45)  # 🔹 Force title size after creation
-
-    for text in texts:
-        text.set_fontsize(35)  # Class labels
-    for autotext in autotexts:
-        autotext.set_fontsize(25)  # Percentages on slices
-        autotext.set_color('black')
-
-    plt.axis('equal')  # Ensures the pie chart is circular
-    os.makedirs("../charts", exist_ok=True)  # Ensure charts directory exists
-    plt.savefig("../charts/1kclass_distribution.png", dpi=300, bbox_inches='tight', transparent=True)
-    plt.close()  # Avoid memory issues
-    print("✅ Pie chart saved as 1kclass_distribution.png")
 
 def fetch_ladder_characters(base_ladder_url, start_page=1, end_page=5):
     all_characters = []
@@ -164,8 +97,6 @@ def GetAllCharData():
     top_1000_characters = {char["charName"]: char for char in all_characters}.values()
 
     # Step 2: Create pie chart from the top 1,000 characters
-    class_counts = count_classes(top_1000_characters)
-    generate_pie_chart(class_counts)
 
     # Step 3: Continue with class-specific characters
     classes = {
@@ -185,9 +116,6 @@ def GetAllCharData():
 
     # Step 4: Remove duplicates by character name
     unique_characters = {char["charName"]: char for char in all_characters}.values()
-
-#    class_counts = count_classes(unique_characters) # if we wanted a pie chart generated here, i think it's fine to keep in makehome
-#    generate_pie_chart_all(class_counts)
 
     # Step 5: Fetch complete character data
     character_data = []
@@ -259,30 +187,10 @@ def GetAllHCCharData():
 
     print(f"✅ Saved {len(character_data)} unique characters to hc_ladder.json")
 
-def copy_ladders_to_dailies():
-    """Copy sc_ladder.json and hc_ladder.json to dailies/ with a date-stamped filename."""
-    today = datetime.now().strftime('%m-%d')
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    dailies_dir = os.path.abspath(os.path.join(script_dir, '..', 'dailies'))
-    os.makedirs(dailies_dir, exist_ok=True)
-    for base in ['sc_ladder.json', 'hc_ladder.json']:
-        src = os.path.abspath(os.path.join(script_dir, '..', base))
-        if os.path.exists(src):
-            if base.startswith('sc_'):
-                dst = os.path.join(dailies_dir, f"{today}-sc_ladder.json")
-            elif base.startswith('hc_'):
-                dst = os.path.join(dailies_dir, f"{today}-hc_ladder.json")
-            else:
-                continue
-            import shutil
-            shutil.copy2(src, dst)
-            print(f"Copied {src} to {dst}")
-
 
 def main():
     GetAllCharData()
     GetAllHCCharData()
-#    copy_ladders_to_dailies()
 
 
 if __name__ == "__main__":
