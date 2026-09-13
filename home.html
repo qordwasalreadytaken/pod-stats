@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PoD Trends, Ladder Character Data Analysis</title>
     <link rel="shortcut icon" type="image/x-icon" href="icons/pod.ico">
-    <link rel="stylesheet" type="text/css" href="../css/test-css.css">
+    <link rel="stylesheet" type="text/css" href="./css/test-css.css">
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
 
     <style>
@@ -96,7 +96,7 @@ body.admin-mode .controls {
                 <input
                     type="text"
                     id="search"
-                    placeholder="Search..."
+                    placeholder="Search.."
                 >
             </div> -->
 
@@ -234,8 +234,8 @@ async function getLadderClassCounts(isHardcore = false) {
 async function generateClassDistributionChart(isHardcore = false) {
     console.log("Generating class distribution chart for", isHardcore ? "hardcore" : "softcore");
     const ladderFile = isHardcore
-        ? "../hc_ladder.json"
-        : "../sc_ladder.json";
+        ? "./hc_ladder.json"
+        : "./sc_ladder.json";
 
     try {
         const response = await fetch(ladderFile);
@@ -458,7 +458,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Create iframe
         const iframe = document.createElement("iframe");
 
-        iframe.src = `../armory/video_component.html?charName=${characterName}`;
+        iframe.src = `./armory/video_component.html?charName=${characterName}`;
         iframe.setAttribute("id", "popupFrame");
 
         popup.appendChild(iframe);
@@ -539,8 +539,8 @@ function bigCollapsible(iconBaseName, extraClass, contentHtml) {
 
     return `
         <button type="button" class="collapsible ${extraClass}" onclick="toggleCollapsible(this)">
-            <img src="../icons/${iconBaseName}_click.png" alt="Open" class="icon icon-expanded hidden">
-            <img src="../icons/${iconBaseName}.png" alt="Close" class="icon icon-collapsed">
+            <img src="./icons/${iconBaseName}_click.png" alt="Open" class="icon icon-expanded hidden">
+            <img src="./icons/${iconBaseName}.png" alt="Close" class="icon icon-collapsed">
         </button>
         <div class="content" style="display: none;">${contentHtml}</div>
     `;
@@ -552,8 +552,8 @@ function smallCollapsible(labelHtml, contentHtml) {
 
     return `
         <button type="button" class="collapsible small-collapsible" onclick="toggleCollapsible(this)">
-            <img src="../icons/open.png" alt="Open" class="icon-small icon-expanded hidden">
-            <img src="../icons/closed.png" alt="Close" class="icon-small icon-collapsed">
+            <img src="./icons/open.png" alt="Open" class="icon-small icon-expanded hidden">
+            <img src="./icons/closed.png" alt="Close" class="icon-small icon-collapsed">
             <strong>${labelHtml}</strong>
         </button>
         <div class="content" style="display: none;">${contentHtml}</div>
@@ -693,7 +693,7 @@ async function loadCharacters() {
     try {
 
         const response =
-            await fetch(`../${filename}`);
+            await fetch(`./${filename}`);
 
         if (!response.ok) {
             throw new Error(
@@ -730,7 +730,7 @@ async function loadLadderSummary() {
     try {
 
         const response =
-            await fetch(`../jsons/${filename}`);
+            await fetch(`./jsons/${filename}`);
 
         if (!response.ok) {
             throw new Error(
@@ -982,11 +982,11 @@ function updateScHcButton(mode) {
     if (mode === "hc") {
         scHcButton.classList.add("hardcore");
         scHcButton.classList.remove("softcore");
-        scHcButton.style.backgroundImage = "url('../icons/Hardcore_click.png')";
+        scHcButton.style.backgroundImage = "url('./icons/Hardcore_click.png')";
     } else {
         scHcButton.classList.add("softcore");
         scHcButton.classList.remove("hardcore");
-        scHcButton.style.backgroundImage = "url('../icons/Softcore_click.png')";
+        scHcButton.style.backgroundImage = "url('./icons/Softcore_click.png')";
     }
 }
 
@@ -1062,8 +1062,8 @@ function updateURL() {
  */
 async function loadLadderData(isHardcore = false) {
     const filename = isHardcore
-        ? "../hc_ladder.json"
-        : "../sc_ladder.json";
+        ? "./hc_ladder.json"
+        : "./sc_ladder.json";
 
     const response = await fetch(filename);
 

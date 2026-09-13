@@ -6,14 +6,14 @@
 
     <title id="chosenclasstitle"> Analysis Report</title>
 
-    <link rel="shortcut icon" type="image/x-icon" href="../icons/pod.ico">
-    <link rel="stylesheet" type="text/css" href="../css/test-css.css">
+    <link rel="shortcut icon" type="image/x-icon" href="./icons/pod.ico">
+    <link rel="stylesheet" type="text/css" href="./css/test-css.css">
 
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
     <style>
         /* Extras not covered by the site stylesheet, for this prototype's controls/filters UI */
         body{
-            background-image: url("../icons/${chosenClass}_background_2600.jpg"), url("../icons/stone_background_2600.jpg");
+            background-image: url("./icons/${chosenClass}_background_2600.jpg"), url("./icons/stone_background_2600.jpg");
         }
 .controls {
     display: none;
@@ -127,7 +127,7 @@ body.admin-mode .controls {
     height: 55px;
 
     padding: 10px 20px;
-    background-image: url('../icons/Armoury.png');
+    background-image: url('./icons/Armoury.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -173,7 +173,7 @@ body.admin-mode .controls {
     </div>
 
     <div class="top-buttons">
-        <a href="home.html" class="top-button home-button" onclick="setActive('../Home')"></a>
+        <a href="home.html" class="top-button home-button" onclick="setActive('./Home')"></a>
         <a href="#" id="SC_HC" class="top-button"> </a>
         <a href="#" class="top-button amazon-button" data-class="amazon"></a>
         <a href="#" class="top-button assassin-button" data-class="assassin"></a>
@@ -370,7 +370,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Create iframe
         const iframe = document.createElement("iframe");
 
-        iframe.src = `../armory/video_component.html?charName=${characterName}`;
+        iframe.src = `./armory/video_component.html?charName=${characterName}`;
         iframe.setAttribute("id", "popupFrame");
 
         popup.appendChild(iframe);
@@ -452,8 +452,8 @@ function bigCollapsible(iconBaseName, extraClass, contentHtml) {
 
     return `
         <button type="button" class="collapsible ${extraClass}" onclick="toggleCollapsible(this)">
-            <img src="../icons/${iconBaseName}_click.png" alt="Open" class="icon icon-expanded hidden">
-            <img src="../icons/${iconBaseName}.png" alt="Close" class="icon icon-collapsed">
+            <img src="./icons/${iconBaseName}_click.png" alt="Open" class="icon icon-expanded hidden">
+            <img src="./icons/${iconBaseName}.png" alt="Close" class="icon icon-collapsed">
         </button>
         <div class="content" style="display: none;">${contentHtml}</div>
     `;
@@ -465,8 +465,8 @@ function smallCollapsible(labelHtml, contentHtml) {
 
     return `
         <button type="button" class="collapsible small-collapsible" onclick="toggleCollapsible(this)">
-            <img src="../icons/open.png" alt="Open" class="icon-small icon-expanded hidden">
-            <img src="../icons/closed.png" alt="Close" class="icon-small icon-collapsed">
+            <img src="./icons/open.png" alt="Open" class="icon-small icon-expanded hidden">
+            <img src="./icons/closed.png" alt="Close" class="icon-small icon-collapsed">
             <strong>${labelHtml}</strong>
         </button>
         <div class="content" style="display: none;">${contentHtml}</div>
@@ -691,7 +691,7 @@ function updateClassDisplay() {
         `Equipment and item details for ${capitalize(chosenClass)}`;
 
     document.body.style.backgroundImage =
-        `url("../icons/${chosenClass}_background_2600.jpg"), url("../icons/stone_background_2600.jpg")`;
+        `url("./icons/${chosenClass}_background_2600.jpg"), url("./icons/stone_background_2600.jpg")`;
 
 //    document.getElementById("summary").innerHTML = summaryHTML;
 
@@ -976,10 +976,10 @@ function clusterBuilds() {
                     <div class="skillbar-container">
                     <div class="skill-row">
                     <div class="skill-bar-container">
-                    &nbsp;&nbsp;<img src="../icons/${escapeHtml(skill.name)}.png" alt="${escapeHtml(skill.name)}" class="skill-icon-smaller"> 
+                    &nbsp;&nbsp;<img src="./icons/${escapeHtml(skill.name)}.png" alt="${escapeHtml(skill.name)}" class="skill-icon-smaller"> 
                     <div class="skill-bar" >
                     <span class="skill-label">                    
-<!--                        <img src="../icons/${escapeHtml(skill.name)}.png" alt="${escapeHtml(skill.name)}" class="skill-icon-smaller"> -->
+<!--                        <img src="./icons/${escapeHtml(skill.name)}.png" alt="${escapeHtml(skill.name)}" class="skill-icon-smaller"> -->
 <!--                        ${escapeHtml(skill.name)}(${skill.average.toFixed(0)*members.length}) -->
                         ${escapeHtml(skill.name)}(${(skill.average*members.length).toFixed(0)})
                     </span>
@@ -1473,7 +1473,7 @@ function buildSkillsHtml(character) {
 
     return skills
         .map(skill =>
-            `<img src="../icons/${escapeHtml(skill.Name)}.png" alt="${escapeHtml(skill.Name)}" class="skill-icon-smaller"> ${escapeHtml(skill.Name)}:${skill.Level}`
+            `<img src="./icons/${escapeHtml(skill.Name)}.png" alt="${escapeHtml(skill.Name)}" class="skill-icon-smaller"> ${escapeHtml(skill.Name)}:${skill.Level}`
         )
         .join(", ") || "No skills data";
 
@@ -1642,10 +1642,10 @@ function renderClusters() {
                     <div class="skillbar-container">
                     <div class="skill-row">
                     <div class="skill-bar-container">
-                    &nbsp;&nbsp;&nbsp;&nbsp;<img src="../icons/${escapeHtml(skill.skill)}.png" alt="${escapeHtml(skill.skill)}" class="skill-icon-smaller"> 
+                    &nbsp;&nbsp;&nbsp;&nbsp;<img src="./icons/${escapeHtml(skill.skill)}.png" alt="${escapeHtml(skill.skill)}" class="skill-icon-smaller"> 
                     <div class='skill-mini-bar' style='width: ${(skill.average*cluster.members.length).toFixed(2) * 4}px;'></div>
                     &nbsp;&nbsp;&nbsp;&nbsp;<span class="skill-label">                    
-<!--                        <img src="../icons/${escapeHtml(skill.skill)}.png" alt="${escapeHtml(skill.skill)}" class="skill-icon-smaller"> -->
+<!--                        <img src="./icons/${escapeHtml(skill.skill)}.png" alt="${escapeHtml(skill.skill)}" class="skill-icon-smaller"> -->
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    ${escapeHtml(skill.skill)}(${(skill.average*cluster.members.length).toFixed(0)}) 
 <!--                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    ${escapeHtml(skill.skill)}(${(skill.average.toFixed(0)*cluster.members.length)}) -->
                     </span>
@@ -1705,7 +1705,7 @@ function renderClusters() {
     ${topSkills.map(skill => `
         <div class="skill-summary">
             <img
-                src="../icons/${escapeHtml(skill.skill)}.png"
+                src="./icons/${escapeHtml(skill.skill)}.png"
                 alt="${escapeHtml(skill.skill)}"
                 class="skill-icon-smaller"
             >
@@ -3041,7 +3041,7 @@ document.addEventListener("DOMContentLoaded", () => {
             scHcButton.classList.remove("softcore");
 
             scHcButton.style.backgroundImage =
-                "url('../icons/Hardcore_click.png')";
+                "url('./icons/Hardcore_click.png')";
 
         } else {
 
@@ -3049,7 +3049,7 @@ document.addEventListener("DOMContentLoaded", () => {
             scHcButton.classList.remove("hardcore");
 
             scHcButton.style.backgroundImage =
-                "url('../icons/Softcore_click.png')";
+                "url('./icons/Softcore_click.png')";
         }
     }
 });    
