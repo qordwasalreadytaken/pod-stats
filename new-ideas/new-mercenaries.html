@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PoD Mercenary Analysis</title>
+    <link rel="shortcut icon" type="image/x-icon" href="icons/pod.ico">
+    <link rel="stylesheet" type="text/css" href="../css/test-css.css">
+    <style>
+
+.controls {
+    display: none;
+}
+
+body.admin-mode .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: flex-end;
+}
+        .control {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .control label {
+            font-size: 0.85em;
+            color: #d5f2e3;
+        }
+
+        .control input,
+        .control select,
+        .control button {
+            padding: 7px;
+            font-size: 1em;
+            border: 1px solid #555;
+            border-radius: 4px;
+            background: #232323;
+            color: #eee;
+        }
+
+        .control button {
+            cursor: pointer;
+        }
+
+        .control button:hover {
+            background: #333;
+        }
+    </style>
+</head>
+<body class="special-background">
+    <div class="is-clipped">
+        <div id="navbar-placeholder"></div>
+<!--        <script>
+        fetch("templates/navbar.html")
+            .then(res => res.text())
+            .then(html => {
+            document.getElementById("navbar-placeholder").innerHTML = html;
+            });
+        </script> -->
+
+        <div class="hamburger" onclick="toggleMenu()">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        
+        <div class="top-buttons">
+            <a href="new-home.html" class="top-button home-button" onclick="setActive('../Home')"></a>
+            <a href="#" id="SC_HC" class="top-button"> </a>
+            <a href="new-class.html?m=sc&c=amazon" class="top-button amazon-button"></a>
+            <a href="new-class.html?m=sc&c=assassin" class="top-button assassin-button"></a>
+            <a href="new-class.html?m=sc&c=barbarian" class="top-button barbarian-button"></a>
+            <a href="new-class.html?m=sc&c=druid" class="top-button druid-button"></a>
+            <a href="new-class.html?m=sc&c=necromancer" class="top-button necromancer-button"></a>
+            <a href="new-class.html?m=sc&c=paladin" class="top-button paladin-button"></a>
+            <a href="new-class.html?m=sc&c=sorceress" class="top-button sorceress-button"></a>
+        </div>
+
+        <div class="banner" style="top:50px; left:10%; width:80%;">
+            ⚠️ This is a test site for PoD's Trends site. Please direct any feedback to Qord. ⚠️
+        </div>
+
+        <div class="main page-intro">
+
+<div class="summary-container">
+
+<div class="status">
+    <div id="status">Loading Mercenary Data...</div>
+</div>
+
+<div class="controls">
+
+    <div class="control">
+        <label for="minLevel">Minimum level</label>
+        <input
+            type="number"
+            id="minLevel"
+            min="1"
+            max="99"
+            placeholder="Any"
+        >
+    </div>
+
+    <div class="control">
+        <label for="maxLevel">Maximum level</label>
+        <input
+            type="number"
+            id="maxLevel"
+            min="1"
+            max="99"
+            placeholder="Any"
+        >
+    </div>
+
+    <div class="control">
+        <label for="mode">Mode</label>
+        <select id="mode">
+            <option value="sc">SC</option>
+            <option value="hc">HC</option>
+        </select>
+    </div>
+
+    <div class="control">
+        <label>&nbsp;</label>
+        <button id="clearFilters">Clear filters</button>
+    </div>
+
+</div>
+
+            <h1>PoD Mercenary Analysis</h1>
+            <h2>Comprehensive analysis of mercenary usage and equipment patterns from ladder characters</h2>
+
+        <div id="mercReportGrid"></div>
+
+            <hr>
+
+</div>
+<button onclick="topFunction()" id="backToTopBtn" class="back-to-top" title="Go to top"></button>
+
+<script>
+
+// Armory pop up
+document.addEventListener("DOMContentLoaded", function () {
+    let activePopup = null;
+
+    document.addEventListener("click", function (event) {
+
+        const trigger = event.target.closest(".hover-trigger");
+
+        if (!trigger) {
+            return;
+        }
+
+        event.stopPropagation();
+
+        const characterName = trigger.getAttribute("data-character-name");
+
+        // Find the associated popup
+        const popup = trigger
+            .closest(".character-info")
+            .querySelector(".popup");
+
+        // If this popup is already active, close it
+        if (popup === activePopup) {
+            popup.classList.remove("active");
+            popup.innerHTML = "";
+            activePopup = null;
+            return;
+        }
+
+        // Close any other open popup
+        if (activePopup) {
+            activePopup.classList.remove("active");
+            activePopup.innerHTML = "";
+            activePopup = null;
+        }
+
+        // Create iframe
+        const iframe = document.createElement("iframe");
+
+        iframe.src = `../armory/video_component.html?charName=${characterName}`;
+        iframe.setAttribute("id", "popupFrame");
+
+        popup.appendChild(iframe);
+        popup.classList.add("active");
+
+        activePopup = popup;
+    });
+
+    // Close popup when clicking outside
+    document.addEventListener("click", function (event) {
+
+        if (
+            activePopup &&
+            !event.target.closest(".character-info")
+        ) {
+            activePopup.classList.remove("active");
+            activePopup.innerHTML = "";
+            activePopup = null;
+        }
+    });
+});
+
+function toggleMenu() {
+    document.querySelector(".top-buttons").classList.toggle("show");
+}
+
+function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
+
+window.onscroll = function () {
+    const backToTopBtn = document.getElementById("backToTopBtn");
+    backToTopBtn.style.display =
+        (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) ? "block" : "none";
+};
+
+
+/*
+ * helper for adding link anchors to section headings in the pages (icons swap, .content toggles display).
+ */
+function renderSectionHeading(heading) {
+    return `
+        <h3 id="${encodeURIComponent(heading)}">
+            ${escapeHtml(heading)}
+            <a href="#${encodeURIComponent(heading)}" class="anchor-link">
+                <img src="icons/anchor.png" alt="🔗" class="anchor-icon">
+            </a>
+        </h3>
+    `;
+}
+
+/*
+ * Collapsible button/content pattern matching the site's existing
+ * pages (icons swap, .content toggles display).
+ */
+function toggleCollapsible(button) {
+
+    const content = button.nextElementSibling;
+    if (!content) return;
+
+    const collapsedIcon = button.querySelector(".icon-collapsed");
+    const expandedIcon = button.querySelector(".icon-expanded");
+    const isCollapsed = content.style.display === "none" || content.style.display === "";
+
+    content.style.display = isCollapsed ? "block" : "none";
+
+    if (collapsedIcon && expandedIcon) {
+        collapsedIcon.classList.toggle("hidden", isCollapsed);
+        expandedIcon.classList.toggle("hidden", !isCollapsed);
+    }
+
+}
+
+
+function bigCollapsible(iconBaseName, extraClass, contentHtml) {
+
+    return `
+        <button type="button" class="collapsible ${extraClass}" onclick="toggleCollapsible(this)">
+            <img src="../icons/${iconBaseName}_click.png" alt="Open" class="icon icon-expanded hidden">
+            <img src="../icons/${iconBaseName}.png" alt="Close" class="icon icon-collapsed">
+        </button>
+        <div class="content" style="display: none;">${contentHtml}</div>
+    `;
+
+}
+
+
+function smallCollapsible(labelHtml, contentHtml) {
+
+    return `
+        <button type="button" class="collapsible small-collapsible" onclick="toggleCollapsible(this)">
+            <img src="../icons/open.png" alt="Open" class="icon-small icon-expanded hidden">
+            <img src="../icons/closed.png" alt="Close" class="icon-small icon-collapsed">
+            <strong>${labelHtml}</strong>
+        </button>
+        <div class="content" style="display: none;">${contentHtml}</div>
+    `;
+
+}
+
+/*
+ * Generic text helpers
+ */
+function escapeHtml(value) {
+
+    return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+
+}
+
+/*
+ * URL handling
+ */
+const params = new URLSearchParams(window.location.search);
+
+const validModes = [
+    "sc",
+    "hc"
+];
+
+const requestedMode = params.get("m");
+const isAdmin = params.get("admin") === "1";
+
+const chosenMode = validModes.includes(requestedMode)
+    ? requestedMode
+    : "sc";
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    document.getElementById("mode").value = chosenMode;
+    if (isAdmin) {document.body.classList.add("admin-mode");}
+    document.getElementById("mode")
+        .addEventListener("change", updateURL);
+
+});
+
+
+function updateURL() {
+
+    const selectedMode =
+        document.getElementById("mode").value;
+
+    const url = new URL(window.location);
+
+    url.searchParams.set("m", selectedMode);
+
+    window.location.href = url;
+}
+
+/*
+ * Mercenary/rune reference data, matching mercenary_page.py
+ */
+
+const MERCENARY_NAME_MAP = {
+    "Desert Mercenary": "Act 2 Desert Mercenary",
+    "Rogue Scout": "Act 1 Rogue Scout",
+    "Eastern Sorceror": "Act 3 Eastern Sorceror",
+    "Barbarian": "Act 5 Barbarian"
+};
+
+const MERC_WORN_MAP = {
+    body: "Armor",
+    helmet: "Helmet",
+    weapon1: "Weapon",
+    weapon2: "Shield/Offhand"
+};
+
+const RUNE_NAMES = new Set([
+    "El Rune", "Eld Rune", "Tir Rune", "Nef Rune", "Eth Rune", "Ith Rune", "Tal Rune", "Ral Rune",
+    "Ort Rune", "Thul Rune", "Amn Rune", "Sol Rune", "Shael Rune", "Dol Rune", "Hel Rune", "Io Rune",
+    "Lum Rune", "Ko Rune", "Fal Rune", "Lem Rune", "Pul Rune", "Um Rune", "Mal Rune", "Ist Rune",
+    "Gul Rune", "Vex Rune", "Ohm Rune", "Lo Rune", "Sur Rune", "Ber Rune", "Jah Rune", "Cham Rune", "Zod Rune"
+]);
+
+function readableMercType(type) {
+    return MERCENARY_NAME_MAP[type] || type;
+}
+
+function readableSlot(worn) {
+
+    if (MERC_WORN_MAP[worn]) {
+        return MERC_WORN_MAP[worn];
+    }
+
+    const label = worn || "Unknown";
+
+    return label.charAt(0).toUpperCase() + label.slice(1);
+}
+
+function extractFacetElement(socket) {
+
+    const elements = ["fire", "cold", "lightning", "poison", "physical", "magic"];
+    const properties = socket.PropertyList || [];
+
+    for (const element of elements) {
+        for (const prop of properties) {
+            if (prop.toLowerCase().includes(element)) {
+                return element.charAt(0).toUpperCase() + element.slice(1);
+            }
+        }
+    }
+
+    return socket.Title || "Unknown";
+}
+
+/*
+ * Comprehensive mercenary analysis, mirroring the Python
+ * MercenaryAnalyzer.analyze_mercenaries() / _analyze_mercenary_socketables().
+ */
+function analyzeAllMercenaries(records) {
+
+    const mercenaryCounts = new Map();
+    const mercenaryNames = new Map();
+
+    // mercType -> worn -> Map(title -> count)
+    const mercenaryEquipment = new Map();
+
+    const mercItemCounters = {
+        runeword: new Map(),
+        unique: new Map(),
+        set: new Map()
+    };
+
+    // runewordName -> Map(baseItem -> [charInfo])
+    const mercRunewordBases = new Map();
+    // itemName -> [charInfo]
+    const mercUniqueUsers = new Map();
+    const mercSetUsers = new Map();
+
+    let totalCharsWithMercs = 0;
+    let totalEquipmentItems = 0;
+
+    const justSocketedRunes = new Map();
+    const justSocketedExcludingRunewordsRunes = new Map();
+    const justSocketedNonRunes = new Map();
+    const justSocketedMagic = { "Misc. Magic Jewels": 0, splash: 0, "attack speed": 0, "enhanced damage": 0, iassplash: 0, iased: 0 };
+    const justSocketedRare = { "Misc. Rare Jewels": 0, splash: 0, "enhanced damage": 0 };
+    const justSocketedFacets = new Map();
+
+    for (const character of records) {
+
+        const mercType = character.MercenaryType;
+
+        if (!mercType) {
+            continue;
+        }
+
+        totalCharsWithMercs++;
+
+        mercenaryCounts.set(mercType, (mercenaryCounts.get(mercType) || 0) + 1);
+
+        const mercName = character.MercenaryName;
+
+        if (mercName) {
+            mercenaryNames.set(mercName, (mercenaryNames.get(mercName) || 0) + 1);
+        }
+
+        const charInfo = {
+            name: character.Name || "Unknown",
+            level: character.Stats?.Level ?? 0,
+            class: character.Class || "Unknown"
+        };
+
+        if (!mercenaryEquipment.has(mercType)) {
+            mercenaryEquipment.set(mercType, new Map());
+        }
+
+        const slots = mercenaryEquipment.get(mercType);
+
+        for (const item of character.MercenaryEquipped || []) {
+
+            totalEquipmentItems++;
+
+            const worn = item.Worn || "Unknown";
+            const title = item.Title || "Unknown";
+            const qualityCode = item.QualityCode || "";
+
+            if (!slots.has(worn)) {
+                slots.set(worn, new Map());
+            }
+
+            const titleCounts = slots.get(worn);
+            titleCounts.set(title, (titleCounts.get(title) || 0) + 1);
+
+            if (qualityCode === "q_runeword") {
+
+                mercItemCounters.runeword.set(title, (mercItemCounters.runeword.get(title) || 0) + 1);
+
+                const baseItem = item.Tag || item.TextTag || "Unknown";
+
+                if (!mercRunewordBases.has(title)) {
+                    mercRunewordBases.set(title, new Map());
+                }
+
+                const bases = mercRunewordBases.get(title);
+
+                if (!bases.has(baseItem)) {
+                    bases.set(baseItem, []);
+                }
+
+                bases.get(baseItem).push(charInfo);
+
+            } else if (qualityCode === "q_unique") {
+
+                mercItemCounters.unique.set(title, (mercItemCounters.unique.get(title) || 0) + 1);
+
+                if (!mercUniqueUsers.has(title)) {
+                    mercUniqueUsers.set(title, []);
+                }
+
+                mercUniqueUsers.get(title).push(charInfo);
+
+            } else if (qualityCode === "q_set") {
+
+                mercItemCounters.set.set(title, (mercItemCounters.set.get(title) || 0) + 1);
+
+                if (!mercSetUsers.has(title)) {
+                    mercSetUsers.set(title, []);
+                }
+
+                mercSetUsers.get(title).push(charInfo);
+            }
+
+            const socketCount = item.SocketCount;
+
+            if (!socketCount || socketCount === "0") {
+                continue;
+            }
+
+            const isRuneword = qualityCode === "q_runeword";
+
+            for (const socket of item.Sockets || []) {
+
+                const socketTitle = socket.Title || "";
+                const socketQuality = socket.QualityCode || "";
+
+                if (RUNE_NAMES.has(socketTitle)) {
+
+                    justSocketedRunes.set(socketTitle, (justSocketedRunes.get(socketTitle) || 0) + 1);
+
+                    if (!isRuneword) {
+                        justSocketedExcludingRunewordsRunes.set(
+                            socketTitle,
+                            (justSocketedExcludingRunewordsRunes.get(socketTitle) || 0) + 1
+                        );
+                    }
+
+                    continue;
+                }
+
+                if (isRuneword) {
+                    continue;
+                }
+
+                if (socketTitle === "Rainbow Facet") {
+
+                    const element = extractFacetElement(socket);
+
+                    if (!justSocketedFacets.has(element)) {
+                        justSocketedFacets.set(element, { count: 0, perfect: 0 });
+                    }
+
+                    const facet = justSocketedFacets.get(element);
+                    facet.count++;
+
+                    const properties = socket.PropertyList || [];
+                    const hasPlusFive = properties.some(prop => prop.includes("+5"));
+                    const hasMinusFive = properties.some(prop => prop.includes("-5"));
+
+                    if (hasPlusFive && hasMinusFive) {
+                        facet.perfect++;
+                    }
+
+                } else if (socketQuality === "q_magic") {
+
+                    justSocketedMagic["Misc. Magic Jewels"]++;
+
+                    const propText = (socket.PropertyList || []).join(" ").toLowerCase();
+
+                    if (propText.includes("splash")) justSocketedMagic.splash++;
+                    if (propText.includes("increased attack speed")) justSocketedMagic["attack speed"]++;
+                    if (propText.includes("enhanced damage") || propText.includes("damage to")) justSocketedMagic["enhanced damage"]++;
+                    if (propText.includes("splash") && propText.includes("increased attack speed")) justSocketedMagic.iassplash++;
+                    if (propText.includes("increased attack speed") && (propText.includes("enhanced damage") || propText.includes("damage to"))) justSocketedMagic.iased++;
+
+                } else if (socketQuality === "q_rare") {
+
+                    justSocketedRare["Misc. Rare Jewels"]++;
+
+                    const propText = (socket.PropertyList || []).join(" ").toLowerCase();
+
+                    if (propText.includes("splash")) justSocketedRare.splash++;
+                    if (propText.includes("enhanced damage") || propText.includes("damage to")) justSocketedRare["enhanced damage"]++;
+
+                } else {
+                    justSocketedNonRunes.set(socketTitle, (justSocketedNonRunes.get(socketTitle) || 0) + 1);
+                }
+            }
+        }
+    }
+
+    return {
+        totalCharsWithMercs,
+        totalEquipmentItems,
+        mercenaryCounts,
+        mercenaryNames,
+        mercenaryEquipment,
+        mercItemCounters,
+        mercRunewordBases,
+        mercUniqueUsers,
+        mercSetUsers,
+        socketable: {
+            justSocketedRunes,
+            justSocketedExcludingRunewordsRunes,
+            justSocketedNonRunes,
+            justSocketedMagic,
+            justSocketedRare,
+            justSocketedFacets
+        }
+    };
+}
+
+/*
+ * Rendering
+ */
+
+function renderMercUserList(users) {
+
+    return users.map(user => `
+        <div class="item-user-list-entry character-info">
+            <a href="https://beta.pathofdiablo.com/armory?name=${encodeURIComponent(user.name)}" target="_blank">${escapeHtml(user.name)}</a>
+            (Level ${escapeHtml(String(user.level))} ${escapeHtml(user.class)})
+            <div class="hover-trigger" data-character-name="${encodeURIComponent(user.name)}">
+                <!-- Armory Quickview -->
+            </div>
+            <div class="character">
+                <div class="popup hidden"></div>
+            </div>
+        </div>
+    `).join("");
+}
+
+function renderMercBaseGroups(basesMap) {
+
+    const sorted = [...basesMap.entries()].sort((a, b) => b[1].length - a[1].length);
+
+    return sorted.map(([base, users]) =>
+        smallCollapsible(
+            `${escapeHtml(base)} (${users.length.toLocaleString()} uses)`,
+            `<div class="item-user-list">${renderMercUserList(users)}</div>`
+        )
+    ).join("");
+}
+
+function renderMercRunewordList(counterMap, basesMap) {
+
+    const entries = [...counterMap.entries()].sort((a, b) => b[1] - a[1]);
+
+    if (!entries.length) {
+        return "<p>No runewords found on mercenaries.</p>";
+    }
+
+    return entries.map(([name, count]) => {
+
+        const bases = basesMap.get(name) || new Map();
+
+        return smallCollapsible(
+            `${escapeHtml(name)} (${count.toLocaleString()} total)`,
+            renderMercBaseGroups(bases) || "<p>No base item data available.</p>"
+        );
+
+    }).join("");
+}
+
+function renderMercItemList(counterMap, usersMap) {
+
+    const entries = [...counterMap.entries()].sort((a, b) => b[1] - a[1]);
+
+    if (!entries.length) {
+        return "<p>No items found on mercenaries.</p>";
+    }
+
+    return entries.map(([name, count]) => {
+
+        const users = usersMap.get(name) || [];
+
+        return smallCollapsible(
+            `${escapeHtml(name)} (${count.toLocaleString()} uses)`,
+            `<div class="item-user-list">${renderMercUserList(users)}</div>`
+        );
+
+    }).join("");
+}
+
+function renderMercOverviewSection(analysis) {
+
+    return `
+        ${renderSectionHeading("Mercenary Overview Statistics")}
+        <div class="intro-section">
+            <p><strong>Total Characters with Mercenaries:</strong> ${analysis.totalCharsWithMercs.toLocaleString()}</p>
+            <p><strong>Total Mercenary Equipment Items:</strong> ${analysis.totalEquipmentItems.toLocaleString()}</p>
+        </div>
+    `;
+}
+
+function renderMercPopularItemsSection(analysis) {
+
+    const runewordsHtml = renderMercRunewordList(analysis.mercItemCounters.runeword, analysis.mercRunewordBases);
+    const uniquesHtml = renderMercItemList(analysis.mercItemCounters.unique, analysis.mercUniqueUsers);
+    const setsHtml = renderMercItemList(analysis.mercItemCounters.set, analysis.mercSetUsers);
+
+    return `
+        ${renderSectionHeading("Mercenary Items Usage")}
+
+        <h3 id="merc-runewords">Runewords on Mercenaries</h3>
+        ${bigCollapsible("Runewords", "runewords-button", runewordsHtml)}
+
+        <h3 id="merc-uniques">Unique Items on Mercenaries</h3>
+        ${bigCollapsible("Uniques", "uniques-button", uniquesHtml)}
+
+        <h3 id="merc-sets">Set Items on Mercenaries</h3>
+        ${bigCollapsible("Sets", "sets-button", setsHtml)}
+    `;
+}
+
+function renderMercSocketableSection(socketable) {
+
+    const runesHtml = [...socketable.justSocketedRunes.entries()]
+        .sort((a, b) => b[1] - a[1])
+        .map(([name, count]) => `<li>${escapeHtml(name)}: ${count}</li>`)
+        .join("") || "<li>No runes found</li>";
+
+    const runesExclHtml = [...socketable.justSocketedExcludingRunewordsRunes.entries()]
+        .sort((a, b) => b[1] - a[1])
+        .map(([name, count]) => `<li>${escapeHtml(name)}: ${count}</li>`)
+        .join("") || "<li>No runes found</li>";
+
+    const otherItems = [];
+
+    for (const [name, count] of socketable.justSocketedNonRunes.entries()) {
+        otherItems.push([count, `${escapeHtml(name)}: ${count}`]);
+    }
+
+    const magic = socketable.justSocketedMagic;
+
+    if (magic["Misc. Magic Jewels"] > 0) {
+        const c = magic["Misc. Magic Jewels"];
+        otherItems.push([c, `Misc. Magic Jewels: ${c} (${magic.splash} include melee splash, ${magic["attack speed"]} include IAS, ${magic["enhanced damage"]} include ED; of those, there are ${magic.iassplash} IAS/Splash and ${magic.iased} IAS/ED)`]);
+    }
+
+    const rare = socketable.justSocketedRare;
+
+    if (rare["Misc. Rare Jewels"] > 0) {
+        const c = rare["Misc. Rare Jewels"];
+        otherItems.push([c, `Misc. Rare Jewels: ${c} (${rare.splash} include melee splash, ${rare["enhanced damage"]} include ED)`]);
+    }
+
+    for (const [element, counts] of socketable.justSocketedFacets.entries()) {
+        otherItems.push([counts.count, `Rainbow Facet (${escapeHtml(element)}): ${counts.count} (${counts.perfect} are perfect)`]);
+    }
+
+    otherItems.sort((a, b) => b[0] - a[0]);
+
+    const otherItemsHtml = otherItems.length
+        ? `<ul>${otherItems.map(([, text]) => `<li>${text}</li>`).join("")}</ul>`
+        : "<p>No non-rune items found in sockets</p>";
+
+    const content = `
+        <h3>Socketed Runes Count (Mercenary Equipment Only)</h3>
+        <div class="container">
+            <div class="column">
+                <h4>Most Common Runes<br>(Including Runewords)</h4>
+                <ul>${runesHtml}</ul>
+            </div>
+            <div class="column">
+                <h4>Most Common Runes<br>(Excluding Runewords)</h4>
+                <ul>${runesExclHtml}</ul>
+            </div>
+        </div>
+        <h3>Other Items Found in Sockets (Mercenary Equipment Only)</h3>
+        ${otherItemsHtml}
+    `;
+
+    return `
+        ${renderSectionHeading("Mercenary Socketable Reporting")}
+        <p>What are people putting in mercenary equipment sockets</p>
+        ${bigCollapsible("Special", "sets-button", content)}
+    `;
+}
+
+function renderMercTypeCountsSection(mercenaryCounts) {
+
+    const entries = [...mercenaryCounts.entries()].sort((a, b) => b[1] - a[1]);
+
+    const listHtml = entries
+        .map(([type, count]) => `<li>${escapeHtml(readableMercType(type))}: ${count}</li>`)
+        .join("") || "<li>No data available.</li>";
+
+    return `
+        ${renderSectionHeading("Mercenary Type Distribution")}
+        ${bigCollapsible("Merc", "", `<ul>${listHtml}</ul>`)}
+    `;
+}
+
+function renderMercNamesSection(mercenaryNames) {
+
+    const entries = [...mercenaryNames.entries()]
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 20);
+
+    const listHtml = entries
+        .map(([name, count]) => `<li>${escapeHtml(name)}: ${count}</li>`)
+        .join("") || "<li>No data available.</li>";
+
+    return `
+        ${renderSectionHeading("Most Popular Mercenary Names")}
+        ${bigCollapsible("Merc", "", `<ul>${listHtml}</ul>`)}
+    `;
+}
+
+function renderMercEquipmentSection(mercenaryEquipment) {
+
+    let content = "";
+
+    for (const [mercType, slots] of mercenaryEquipment.entries()) {
+
+        let columns = "";
+
+        for (const [worn, titleCounts] of slots.entries()) {
+
+            const items = [...titleCounts.entries()].sort((a, b) => b[1] - a[1]).slice(0, 10);
+
+            if (!items.length) {
+                continue;
+            }
+
+            const itemsHtml = items.map(([name, count]) => `<li>${escapeHtml(name)}: ${count}</li>`).join("");
+
+            columns += `
+                <div class="column">
+                    <h4>${escapeHtml(readableSlot(worn))}</h4>
+                    <ul>${itemsHtml}</ul>
+                </div>
+            `;
+        }
+
+        if (columns) {
+            content += `
+                <h3>${escapeHtml(readableMercType(mercType))}</h3>
+                <div class="container">${columns}</div>
+            `;
+        }
+    }
+
+    return `
+        ${renderSectionHeading("Equipment by Mercenary Type")}
+        ${bigCollapsible("Merc", "", content || "<p>No equipment data available.</p>")}
+    `;
+}
+
+function renderMercItemSummarySection(mercenaryEquipment) {
+
+    // categoryKey -> Map(item -> count)
+    const categories = new Map();
+    const combinedBySlot = new Map();
+
+    for (const [mercType, slots] of mercenaryEquipment.entries()) {
+
+        const readableMerc = readableMercType(mercType);
+
+        for (const [worn, titleCounts] of slots.entries()) {
+
+            const readableWorn = readableSlot(worn);
+
+            categories.set(`${readableMerc} - ${readableWorn}`, titleCounts);
+
+            if (!combinedBySlot.has(readableWorn)) {
+                combinedBySlot.set(readableWorn, new Map());
+            }
+
+            const combined = combinedBySlot.get(readableWorn);
+
+            for (const [item, count] of titleCounts.entries()) {
+                combined.set(item, (combined.get(item) || 0) + count);
+            }
+        }
+    }
+
+    for (const [slot, counter] of combinedBySlot.entries()) {
+        categories.set(`All Merc - ${slot}`, counter);
+    }
+
+    let itemsHtml = "";
+
+    for (const [category, counter] of categories.entries()) {
+
+        const sortedItems = [...counter.entries()].sort((a, b) => b[1] - a[1]);
+        const total = sortedItems.reduce((sum, [, count]) => sum + count, 0);
+        const listHtml = sortedItems.map(([name, count]) => `<div>${escapeHtml(name)}: ${count}</div>`).join("");
+
+        itemsHtml += smallCollapsible(
+            `${escapeHtml(category)} (${total.toLocaleString()} items)`,
+            listHtml || "<p>No items found in this category.</p>"
+        );
+    }
+
+    return `
+        ${renderSectionHeading("Mercenary Item Popularity by Slot")}
+        <p>Mercenary items categorized by equipment slot</p>
+        ${bigCollapsible("Special", "sets-button", itemsHtml || "<p>No item summary data available.</p>")}
+    `;
+}
+
+function renderMercReport(analysis) {
+
+    const reportGrid = document.getElementById("mercReportGrid");
+
+    reportGrid.innerHTML = `
+        ${renderMercOverviewSection(analysis)}
+        <hr>
+        ${renderMercPopularItemsSection(analysis)}
+        <hr>
+        ${renderMercSocketableSection(analysis.socketable)}
+        <hr>
+        ${renderMercTypeCountsSection(analysis.mercenaryCounts)}
+        <hr>
+        ${renderMercNamesSection(analysis.mercenaryNames)}
+        <hr>
+        ${renderMercEquipmentSection(analysis.mercenaryEquipment)}
+        <hr>
+        ${renderMercItemSummarySection(analysis.mercenaryEquipment)}
+    `;
+}
+
+/*
+ * Data loading and filtering
+ */
+
+let mercRecords = [];
+let mercAnalysis = null;
+
+async function loadMercData() {
+
+    const mode = document.getElementById("mode").value;
+
+    const response = await fetch(
+        mode === "sc"
+            ? "jsons/sc-mercs.json"
+            : "jsons/hc-mercs.json"
+    );
+
+    mercRecords = await response.json();
+
+    applyFilters();
+}
+
+function applyFilters() {
+
+    console.time("Filter");
+
+    const minLevelValue =
+        document.getElementById("minLevel").value;
+
+    const maxLevelValue =
+        document.getElementById("maxLevel").value;
+
+    const minLevel =
+        minLevelValue === ""
+            ? null
+            : Number(minLevelValue);
+
+    const maxLevel =
+        maxLevelValue === ""
+            ? null
+            : Number(maxLevelValue);
+
+    const filteredRecords = mercRecords.filter(character => {
+
+        const level =
+            Number(
+                character.Stats?.Level ??
+                0
+            );
+
+        if (
+            minLevel !== null &&
+            level < minLevel
+        ) {
+            return false;
+        }
+
+        if (
+            maxLevel !== null &&
+            level > maxLevel
+        ) {
+            return false;
+        }
+
+        return true;
+
+    });
+
+    console.timeEnd("Filter");
+
+    mercAnalysis = analyzeAllMercenaries(filteredRecords);
+    renderMercReport(mercAnalysis);
+
+    console.log("Mercenary analysis:", mercAnalysis);
+
+    // Handle URL anchor after everything exists
+    if (window.location.hash) {
+        const anchorId = decodeURIComponent(
+            window.location.hash.substring(1)
+        );
+
+        setTimeout(() => {
+            expandToAnchor(anchorId);
+        }, 50);
+    }
+
+    const status = document.getElementById("status");
+    status.innerHTML =
+        `Loaded <strong>${filteredRecords.length.toLocaleString()}</strong> characters with mercenaries.`;
+
+}
+
+/*
+ * Event handlers
+ */
+
+document
+    .getElementById("minLevel")
+    .addEventListener("input", applyFilters);
+
+document
+    .getElementById("maxLevel")
+    .addEventListener("input", applyFilters);
+
+document
+    .getElementById("clearFilters")
+    .addEventListener("click", () => {
+
+        document.getElementById("minLevel").value = "";
+        document.getElementById("maxLevel").value = "";
+
+        applyFilters();
+
+    });
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const scHcButton = document.getElementById("SC_HC");
+
+
+    // Set initial appearance
+    updateScHcButton(chosenMode);
+    loadMercData();
+
+    scHcButton.addEventListener("click", event => {
+
+        event.preventDefault();
+
+
+        const newMode =
+            chosenMode === "hc"
+                ? "sc"
+                : "hc";
+
+
+        const url = new URL(window.location);
+
+        url.searchParams.set("m", newMode);
+
+        window.location.href = url;
+
+    });
+
+
+    function updateScHcButton(mode) {
+
+        if (mode === "hc") {
+
+            scHcButton.classList.add("hardcore");
+            scHcButton.classList.remove("softcore");
+
+            scHcButton.style.backgroundImage =
+                "url('../icons/Hardcore_click.png')";
+
+        } else {
+
+            scHcButton.classList.add("softcore");
+            scHcButton.classList.remove("hardcore");
+
+            scHcButton.style.backgroundImage =
+                "url('../icons/Softcore_click.png')";
+
+        }
+
+    }
+
+});
+
+//Anchor in place fix
+// Expand collapsibles and scroll to anchor
+function scrollWithOffset(el, offset = -50) {
+    const y = el.getBoundingClientRect().top + window.pageYOffset + offset;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+}
+
+function expandToAnchor(anchorId) {
+    const target = document.getElementById(anchorId);
+    if (!target) return;
+
+    // Step 1: Collect all parent .content elements that need expanding
+    const stack = [];
+    let el = target;
+    while (el) {
+        if (el.classList?.contains('content')) {
+            stack.unshift(el); // add to beginning to expand outermost first
+        }
+        el = el.parentElement;
+    }
+
+    // Step 2: Expand each .content section in order
+    for (const content of stack) {
+        const button = content.previousElementSibling;
+        if (button?.classList.contains('collapsible')) {
+            button.classList.add('active');
+            content.style.display = "block";
+
+            const openIcon = button.querySelector("img.icon-expanded");
+            const closeIcon = button.querySelector("img.icon-collapsed");
+            if (openIcon) openIcon.classList.add("hidden");
+            if (closeIcon) closeIcon.classList.remove("hidden");
+        }
+    }
+
+    // Step 3: Delay scroll until DOM has reflowed
+    setTimeout(() => {
+        scrollWithOffset(target);
+    }, 250); // Adjust if necessary
+}
+
+// Handle clicks on .anchor-link elements
+document.addEventListener('DOMContentLoaded', () => {
+    // Handle clicks on .anchor-link elements
+    document.querySelectorAll('.anchor-link, a[href^="#"]').forEach(link => {
+        link.addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent default anchor behavior
+            const anchorId = this.getAttribute('href').substring(1);
+            const fullUrl = `${window.location.origin}${window.location.pathname}#${anchorId}`;
+
+            navigator.clipboard.writeText(fullUrl); // Copy full link to clipboard
+            history.pushState(null, '', `#${anchorId}`); // Update URL without page reload
+            expandToAnchor(anchorId); // Expand and scroll
+        });
+    });
+
+    // On initial load with hash
+    if (window.location.hash) {
+        const anchorId = window.location.hash.substring(1);
+        // Wait a bit for collapsibles/content to render
+        setTimeout(() => {
+            expandToAnchor(anchorId);
+        }, 3000);
+    }
+});
+
+</script>
+
+</body>
+</html>

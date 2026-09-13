@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PoD Fun Facts & Statistics</title>
+    <link rel="shortcut icon" type="image/x-icon" href="icons/pod.ico">
+    <link rel="stylesheet" type="text/css" href="../css/test-css.css">
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+    <style>
+
+.controls {
+    display: none;
+}
+
+body.admin-mode .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: flex-end;
+}
+        .control {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .control label {
+            font-size: 0.85em;
+            color: #d5f2e3;
+        }
+
+        .control input,
+        .control select,
+        .control button {
+            padding: 7px;
+            font-size: 1em;
+            border: 1px solid #555;
+            border-radius: 4px;
+            background: #232323;
+            color: #eee;
+        }
+
+        .control button {
+            cursor: pointer;
+        }
+
+        .control button:hover {
+            background: #333;
+        }
+    </style>
+</head>
+<body class="special-background">
+    <div class="is-clipped">
+        <div id="navbar-placeholder"></div>
+
+        <div class="hamburger" onclick="toggleMenu()">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        
+        <div class="top-buttons">
+            <a href="new-home.html" class="top-button home-button" onclick="setActive('../Home')"></a>
+            <a href="#" id="SC_HC" class="top-button"> </a>
+            <a href="new-class.html?m=sc&c=amazon" class="top-button amazon-button"></a>
+            <a href="new-class.html?m=sc&c=assassin" class="top-button assassin-button"></a>
+            <a href="new-class.html?m=sc&c=barbarian" class="top-button barbarian-button"></a>
+            <a href="new-class.html?m=sc&c=druid" class="top-button druid-button"></a>
+            <a href="new-class.html?m=sc&c=necromancer" class="top-button necromancer-button"></a>
+            <a href="new-class.html?m=sc&c=paladin" class="top-button paladin-button"></a>
+            <a href="new-class.html?m=sc&c=sorceress" class="top-button sorceress-button"></a>
+        </div>
+
+        <div class="banner" style="top:50px; left:10%; width:80%;">
+            ⚠️ This is a test site for PoD's Trends site. Please direct any feedback to Qord. ⚠️
+        </div>
+
+        <div class="main page-intro">
+
+<div class="summary-container">
+
+<div class="status">
+    <div id="status">Loading Fun Facts Data...</div>
+</div>
+
+<div class="controls">
+
+    <div class="control">
+        <label for="minLevel">Minimum level</label>
+        <input
+            type="number"
+            id="minLevel"
+            min="1"
+            max="99"
+            value="80"
+            placeholder="Any"
+        >
+    </div>
+
+    <div class="control">
+        <label for="maxLevel">Maximum level</label>
+        <input
+            type="number"
+            id="maxLevel"
+            min="1"
+            max="99"
+            placeholder="Any"
+        >
+    </div>
+
+    <div class="control">
+        <label for="threshold">Build similarity</label>
+        <input
+            type="number"
+            id="threshold"
+            min="0"
+            max="1"
+            step="0.05"
+            value="0.6"
+        >
+    </div>
+
+    <div class="control">
+        <label for="mode">Mode</label>
+        <select id="mode">
+            <option value="sc">SC</option>
+            <option value="hc">HC</option>
+        </select>
+    </div>
+
+    <div class="control">
+        <label>&nbsp;</label>
+        <button id="clearFilters">Clear filters</button>
+    </div>
+
+</div>
+
+            <h1>PoD Fun Facts & Statistics</h1>
+            <h2>Interesting statistics and patterns from ladder characters</h2>
+
+        <div id="funFactsReportGrid"></div>
+
+            <hr>
+
+</div>
+<button onclick="topFunction()" id="backToTopBtn" class="back-to-top" title="Go to top"></button>
+
+<script>
+
+// Armory pop up
+document.addEventListener("DOMContentLoaded", function () {
+    let activePopup = null;
+
+    document.addEventListener("click", function (event) {
+
+        const trigger = event.target.closest(".hover-trigger");
+
+        if (!trigger) {
+            return;
+        }
+
+        event.stopPropagation();
+
+        const characterName = trigger.getAttribute("data-character-name");
+
+        const popup = trigger
+            .closest(".character-info")
+            .querySelector(".popup");
+
+        if (popup === activePopup) {
+            popup.classList.remove("active");
+            popup.innerHTML = "";
+            activePopup = null;
+            return;
+        }
+
+        if (activePopup) {
+            activePopup.classList.remove("active");
+            activePopup.innerHTML = "";
+            activePopup = null;
+        }
+
+        const iframe = document.createElement("iframe");
+
+        iframe.src = `../armory/video_component.html?charName=${characterName}`;
+        iframe.setAttribute("id", "popupFrame");
+
+        popup.appendChild(iframe);
+        popup.classList.add("active");
+
+        activePopup = popup;
+    });
+
+    document.addEventListener("click", function (event) {
+
+        if (
+            activePopup &&
+            !event.target.closest(".character-info")
+        ) {
+            activePopup.classList.remove("active");
+            activePopup.innerHTML = "";
+            activePopup = null;
+        }
+    });
+});
+
+function toggleMenu() {
+    document.querySelector(".top-buttons").classList.toggle("show");
+}
+
+function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
+
+window.onscroll = function () {
+    const backToTopBtn = document.getElementById("backToTopBtn");
+    backToTopBtn.style.display =
+        (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) ? "block" : "none";
+};
+
+function renderSectionHeading(heading) {
+    return `
+        <h3 id="${encodeURIComponent(heading)}">
+            ${escapeHtml(heading)}
+            <a href="#${encodeURIComponent(heading)}" class="anchor-link">
+                <img src="icons/anchor.png" alt="🔗" class="anchor-icon">
+            </a>
+        </h3>
+    `;
+}
+
+function toggleCollapsible(button) {
+
+    const content = button.nextElementSibling;
+    if (!content) return;
+
+    const collapsedIcon = button.querySelector(".icon-collapsed");
+    const expandedIcon = button.querySelector(".icon-expanded");
+    const isCollapsed = content.style.display === "none" || content.style.display === "";
+
+    content.style.display = isCollapsed ? "block" : "none";
+
+    if (collapsedIcon && expandedIcon) {
+        collapsedIcon.classList.toggle("hidden", isCollapsed);
+        expandedIcon.classList.toggle("hidden", !isCollapsed);
+    }
+
+}
+
+function bigCollapsible(iconBaseName, extraClass, contentHtml) {
+
+    return `
+        <button type="button" class="collapsible ${extraClass}" onclick="toggleCollapsible(this)">
+            <img src="../icons/${iconBaseName}_click.png" alt="Open" class="icon icon-expanded hidden">
+            <img src="../icons/${iconBaseName}.png" alt="Close" class="icon icon-collapsed">
+        </button>
+        <div class="content" style="display: none;">${contentHtml}</div>
+    `;
+
+}
+
+function smallCollapsible(labelHtml, contentHtml) {
+
+    return `
+        <button type="button" class="collapsible small-collapsible" onclick="toggleCollapsible(this)">
+            <img src="../icons/open.png" alt="Open" class="icon-small icon-expanded hidden">
+            <img src="../icons/closed.png" alt="Close" class="icon-small icon-collapsed">
+            <strong>${labelHtml}</strong>
+        </button>
+        <div class="content" style="display: none;">${contentHtml}</div>
+    `;
+
+}
+
+function escapeHtml(value) {
+
+    return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+
+}
+
+/*
+ * URL handling
+ */
+const params = new URLSearchParams(window.location.search);
+
+const validModes = [
+    "sc",
+    "hc"
+];
+
+const requestedMode = params.get("m");
+const isAdmin = params.get("admin") === "1";
+
+const chosenMode = validModes.includes(requestedMode)
+    ? requestedMode
+    : "sc";
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    document.getElementById("mode").value = chosenMode;
+    if (isAdmin) {document.body.classList.add("admin-mode");}
+    document.getElementById("mode")
+        .addEventListener("change", updateURL);
+
+});
+
+function updateURL() {
+
+    const selectedMode =
+        document.getElementById("mode").value;
+
+    const url = new URL(window.location);
+
+    url.searchParams.set("m", selectedMode);
+
+    window.location.href = url;
+}
+
+const CLASS_COLORS = {
+    Amazon: "rgb(255, 102, 105)",
+    Assassin: "rgb(255, 255, 255)",
+    Barbarian: "rgb(150, 105, 32)",
+    Druid: "rgb(255, 186, 74)",
+    Necromancer: "rgb(179, 255, 253)",
+    Paladin: "rgb(255, 243, 112)",
+    Sorceress: "rgb(188, 107, 255)"
+};
+
+const CLASS_COLOR_MAP_HEX = {
+    Amazon: "#FF6669",
+    Assassin: "#FFFFFF",
+    Barbarian: "#966920",
+    Druid: "#FFBA4A",
+    Necromancer: "#B3FFFD",
+    Paladin: "#FFF370",
+    Sorceress: "#BC6BFF"
+};
+
+const ALL_CLASSES = [
+    "Amazon", "Assassin", "Barbarian", "Druid", "Necromancer", "Paladin", "Sorceress"
+];
+
+const CLASS_CODE_TO_NAME = {
+    ama: "Amazon", asn: "Assassin", bar: "Barbarian", dru: "Druid",
+    nec: "Necromancer", pal: "Paladin", sor: "Sorceress"
+};
+
+/*
+ * Top 1,000 class distribution pie chart. Always uses the fixed top-1000
+ * ladder snapshot (jsons/{mode}-top1k.json) and ignores the level filters,
+ * matching the site-wide "top 1k" pie chart on new-home.html.
+ */
+async function loadTop1kPieChart(mode) {
+
+    try {
+
+        const response = await fetch(
+            mode === "sc" ? "jsons/sc-top1k.json" : "jsons/hc-top1k.json"
+        );
+
+        const top1k = await response.json();
+
+        const classCounts = new Map();
+
+        for (const char of top1k) {
+            const className = char.class || "Unknown";
+            classCounts.set(className, (classCounts.get(className) || 0) + 1);
+        }
+
+        const total = top1k.length;
+
+        const pieData = [...classCounts.entries()].map(([className, count]) => ({
+            className,
+            count
+        }));
+
+        renderClassDistributionPieChart(pieData, total, mode === "hc" ? "HC" : "SC");
+
+    } catch (error) {
+        console.error("Error generating top 1k class distribution:", error);
+    }
+}
+
+function renderClassDistributionPieChart(pieData, total, modeLabel) {
+
+    const chart = document.getElementById("classDistributionChart");
+
+    if (!chart || !pieData.length) {
+        return;
+    }
+
+    const data = [{
+        type: "pie",
+        values: pieData.map(item => item.count),
+        labels: pieData.map(item => item.className),
+        customdata: pieData.map(item => [item.className]),
+        textinfo: "percent",
+        textposition: "inside",
+        hovertemplate:
+            "<b>" + modeLabel + " %{customdata}</b><br>" +
+            "%{value:,} Characters" +
+            "<extra></extra>",
+        marker: {
+            colors: pieData.map(item => CLASS_COLOR_MAP_HEX[item.className] || "#888888"),
+            line: { color: "black", width: 1 }
+        },
+        pull: pieData.map(() => 0.03),
+        hole: 0
+    }];
+
+    const layout = {
+        title: `Class Distribution of the Top ${total.toLocaleString()} ${modeLabel} Ladder Characters`,
+        paper_bgcolor: "rgba(0,0,0,0)",
+        plot_bgcolor: "rgba(0,0,0,0)",
+        font: { color: "white" },
+        margin: { l: 10, r: 10, t: 50, b: 100 },
+        height: 400,
+        legend: {
+            orientation: "h",
+            yanchor: "top",
+            y: -0.05,
+            xanchor: "center",
+            x: 0.5,
+            font: { size: 16, color: "white" },
+            bgcolor: "rgba(0,0,0,0)"
+        }
+    };
+
+    Plotly.newPlot(chart, data, layout, { responsive: true });
+
+}
+
+/*
+ * Skill-vector build clustering, matching new-class.html's clusterBuilds()
+ * (greedy cosine-similarity clustering), scoped to an arbitrary list of
+ * characters so it can be run once per class here.
+ */
+function getSkillColumnsFor(characterList) {
+
+    const names = new Set();
+
+    for (const character of characterList) {
+        for (const tab of character.SkillTabs ?? []) {
+            for (const skill of tab.Skills ?? []) {
+                names.add(skill.Name);
+            }
+        }
+    }
+
+    return Array.from(names);
+
+}
+
+function buildSkillVectorFor(character, skillColumns) {
+
+    const levels = new Map();
+
+    for (const tab of character.SkillTabs ?? []) {
+        for (const skill of tab.Skills ?? []) {
+            levels.set(skill.Name, skill.Level);
+        }
+    }
+
+    return skillColumns.map(name => levels.get(name) ?? 0);
+
+}
+
+function cosineSimilarity(a, b) {
+
+    let dot = 0;
+    let normA = 0;
+    let normB = 0;
+
+    for (let i = 0; i < a.length; i++) {
+        dot += a[i] * b[i];
+        normA += a[i] * a[i];
+        normB += b[i] * b[i];
+    }
+
+    if (normA === 0 || normB === 0) {
+        return 0;
+    }
+
+    return dot / (Math.sqrt(normA) * Math.sqrt(normB));
+
+}
+
+function clusterCharacterList(characterList, threshold) {
+
+    const skillColumns = getSkillColumnsFor(characterList);
+    const vectors = characterList.map(character => buildSkillVectorFor(character, skillColumns));
+
+    const n = vectors.length;
+    const clusterIndex = new Array(n).fill(-1);
+
+    let clusterId = 0;
+
+    for (let i = 0; i < n; i++) {
+
+        if (clusterIndex[i] !== -1) {
+            continue;
+        }
+
+        const similarIndices = [];
+
+        for (let j = 0; j < n; j++) {
+
+            if (clusterIndex[j] !== -1) {
+                continue;
+            }
+
+            if (cosineSimilarity(vectors[i], vectors[j]) >= threshold) {
+                similarIndices.push(j);
+            }
+        }
+
+        if (similarIndices.length > 1) {
+            for (const j of similarIndices) {
+                clusterIndex[j] = clusterId;
+            }
+            clusterId++;
+        }
+    }
+
+    const grouped = new Map();
+
+    for (let i = 0; i < n; i++) {
+
+        if (clusterIndex[i] === -1) {
+            continue; // Unassigned singletons aren't a "build"
+        }
+
+        const id = clusterIndex[i];
+
+        if (!grouped.has(id)) {
+            grouped.set(id, []);
+        }
+
+        grouped.get(id).push({ character: characterList[i], vector: vectors[i] });
+    }
+
+    return Array.from(grouped.values()).map(members => {
+
+        const averages = skillColumns.map((_, colIndex) =>
+            members.reduce((sum, m) => sum + m.vector[colIndex], 0) / members.length
+        );
+
+        const topSkills = skillColumns
+            .map((name, colIndex) => ({ name, average: averages[colIndex] }))
+            .sort((a, b) => b.average - a.average)
+            .slice(0, 5);
+
+        return { members, topSkills };
+
+    });
+
+}
+
+/*
+ * Top 10 most popular builds across ALL classes: cluster within each class
+ * (like new-class.html), then merge every class's clusters into one list
+ * and keep the 10 biggest by player count.
+ */
+function computeTop10Builds(characters, threshold) {
+
+    const allBuilds = [];
+
+    for (const className of ALL_CLASSES) {
+
+        const classCharacters = characters.filter(character => character.Class === className);
+
+        if (classCharacters.length < 3) {
+            continue;
+        }
+
+        const clusters = clusterCharacterList(classCharacters, threshold);
+
+        for (const cluster of clusters) {
+
+            const playerCount = cluster.members.length;
+
+            if (playerCount < 3) {
+                continue;
+            }
+
+            const buildNameSkills = cluster.topSkills
+                .filter(skill => skill.average >= 5)
+                .slice(0, 3)
+                .map(skill => skill.name);
+
+            allBuilds.push({
+                class: className,
+                buildName: buildNameSkills.length ? buildNameSkills.join(" / ") : "Miscellaneous Build",
+                playerCount,
+                classPercentage: (playerCount / classCharacters.length) * 100,
+                topSkills: cluster.topSkills
+            });
+        }
+    }
+
+    allBuilds.sort((a, b) => b.playerCount - a.playerCount);
+
+    return allBuilds.slice(0, 10);
+
+}
+
+function renderTopBuildsSection(topBuilds) {
+
+    if (!topBuilds.length) {
+        return `${renderSectionHeading("Top 10 Most Popular Builds")}<p>No build data available.</p>`;
+    }
+
+    const buildsHtml = topBuilds.map((build, index) => {
+
+        const borderColor = CLASS_COLORS[build.class] || "#666";
+
+        const skillsList = build.topSkills
+            .filter(skill => skill.average >= 3)
+            .map(skill => `${escapeHtml(skill.name)}: ${skill.average.toFixed(1)} avg points`)
+            .join("<br>");
+
+        return `
+            <div class="build-item" style="background-color: #2a2a2a; margin: 8px 0; padding: 12px; border-radius: 6px; border-left: 3px solid ${borderColor};">
+                <h3 style="margin: 0 0 5px 0;">#${index + 1} - ${escapeHtml(build.class)}: ${escapeHtml(build.buildName)}</h3>
+                <div style="color: #cccccc; margin-bottom: 5px; font-size: 14px;">
+                    <strong>${build.playerCount.toLocaleString()} players</strong> (${build.classPercentage.toFixed(1)}% of all ${escapeHtml(build.class)}s)
+                </div>
+                <div><strong>Key Skills:</strong><br>${skillsList}</div>
+            </div>
+            <br>
+        `;
+
+    }).join("");
+
+    return `
+        ${renderSectionHeading("Top 10 Most Popular Builds")}
+        <p>The most popular character builds across all classes, determined by analyzing skill point allocation and build similarity.</p>
+        <div class="top-builds-container">${buildsHtml}</div>
+    `;
+
+}
+
+/*
+ * Undead / Cannot Be Frozen / top-stats / averages, mirroring
+ * FunFactsAnalyzer's per-character analysis in fun_facts_page.py.
+ */
+function renderCharacterInfoList(characters) {
+
+    return characters.map(char => `
+        <div class="character-info">
+            <div class="character-link">
+                <a href="https://beta.pathofdiablo.com/armory?name=${encodeURIComponent(char.name)}" target="_blank">
+                    ${escapeHtml(char.name)}
+                </a>
+            </div>
+            <div>Level ${escapeHtml(String(char.level))} ${escapeHtml(char.class)}</div>
+            <div class="hover-trigger" data-character-name="${encodeURIComponent(char.name)}"></div>
+            <div class="character">
+                <div class="popup hidden"></div>
+            </div>
+        </div>
+    `).join("");
+
+}
+
+function computeUndead(characters) {
+
+    const undead = characters
+        .filter(character => character.IsDead === false)
+        .map(character => ({
+            name: character.Name || "Unknown",
+            level: character.Stats?.Level ?? 0,
+            class: character.Class || "Unknown"
+        }));
+
+    return { count: undead.length, characters: undead };
+
+}
+
+function renderUndeadSection(undeadData) {
+
+    return `
+        ${renderSectionHeading("Undead Characters")}
+        <h3>${undeadData.count.toLocaleString()} Characters have not died</h3>
+        ${smallCollapsible("View Undead Characters", `<div id="undead">${renderCharacterInfoList(undeadData.characters)}</div>`)}
+    `;
+
+}
+
+function computeCannotBeFrozen(characters) {
+
+    let cbfAbsentCount = 0;
+    const cbfAbsentCharacters = [];
+
+    for (const character of characters) {
+
+        let halfFreezeSources = 0;
+        let hasCbf = false;
+
+        for (const item of character.Equipped || []) {
+
+            let itemTagged = false;
+
+            for (const prop of item.PropertyList || []) {
+                const propLower = prop.toLowerCase();
+                if (propLower.includes("half freeze duration")) {
+                    halfFreezeSources++;
+                    itemTagged = true;
+                    break;
+                }
+                if (propLower.includes("cannot be frozen")) {
+                    hasCbf = true;
+                }
+            }
+
+            if (!itemTagged) {
+                for (const socket of item.Sockets || []) {
+                    let socketTagged = false;
+                    for (const prop of socket.PropertyList || []) {
+                        const propLower = prop.toLowerCase();
+                        if (propLower.includes("half freeze duration")) {
+                            halfFreezeSources++;
+                            socketTagged = true;
+                            break;
+                        }
+                        if (propLower.includes("cannot be frozen")) {
+                            hasCbf = true;
+                        }
+                    }
+                    if (socketTagged) break;
+                }
+            }
+        }
+
+        if (halfFreezeSources >= 2 && !hasCbf) {
+            cbfAbsentCount++;
+            cbfAbsentCharacters.push({
+                name: character.Name || "Unknown",
+                level: character.Stats?.Level ?? 0,
+                class: character.Class || "Unknown"
+            });
+        }
+    }
+
+    return { cbfAbsentCount, cbfAbsentCharacters };
+
+}
+
+function renderCbfSection(cbfData) {
+
+    return `
+        ${renderSectionHeading("Cannot Be Frozen Analysis")}
+        <h3>${cbfData.cbfAbsentCount.toLocaleString()} Characters achieve Cannot Be Frozen through 2 or more sources of Half Freeze Duration</h3>
+        ${smallCollapsible("View Characters with CBF from Multiple Sources of Half Freeze", `<div id="cbf-missing">${renderCharacterInfoList(cbfData.cbfAbsentCharacters)}</div>`)}
+    `;
+
+}
+
+const TOP_STATS_TO_TRACK = ["Strength", "Dexterity", "Vitality", "Energy", "Life", "Mana", "MagicFind", "GoldFind"];
+
+function getStatValue(character, statName) {
+
+    if (["Strength", "Dexterity", "Vitality", "Energy", "Life", "Mana"].includes(statName)) {
+        return character.Stats?.[statName] ?? 0;
+    }
+
+    if (["MagicFind", "GoldFind"].includes(statName)) {
+        return character.Bonus?.[statName] ?? 0;
+    }
+
+    return character[statName] ?? 0;
+
+}
+
+function computeTopStats(characters) {
+
+    const topStats = {};
+
+    for (const statName of TOP_STATS_TO_TRACK) {
+
+        const sorted = [...characters].sort((a, b) => getStatValue(b, statName) - getStatValue(a, statName));
+
+        topStats[statName] = sorted.slice(0, 5).map(character => ({
+            name: character.Name || "Unknown",
+            level: character.Stats?.Level ?? 0,
+            class: character.Class || "Unknown",
+            value: getStatValue(character, statName)
+        }));
+    }
+
+    return topStats;
+
+}
+
+function renderTopList(statData) {
+
+    return statData.map(char => `
+        <div style="color: #ccc; margin: 4px 0;">
+            <a href="https://beta.pathofdiablo.com/armory?name=${encodeURIComponent(char.name)}" target="_blank">${escapeHtml(char.name)}</a>
+            - Level ${escapeHtml(String(char.level))} ${escapeHtml(char.class)} (${char.value.toLocaleString()})
+        </div>
+    `).join("");
+
+}
+
+function renderTopStatsSection(topStats) {
+
+    return `
+        ${renderSectionHeading("Top Characters by Statistics")}
+
+        <div class="fun-facts-row">
+            <div class="fun-facts-column">
+                <h3>Top 5 Characters with the most Strength:</h3>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;">${renderTopList(topStats.Strength || [])}</div>
+            </div>
+            <div class="fun-facts-column">
+                <h3>Top 5 Characters with the most Dexterity:</h3>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;">${renderTopList(topStats.Dexterity || [])}</div>
+            </div>
+        </div>
+
+        <div class="fun-facts-row">
+            <div class="fun-facts-column">
+                <h3>Top 5 Characters with the most Vitality:</h3>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;">${renderTopList(topStats.Vitality || [])}</div>
+            </div>
+            <div class="fun-facts-column">
+                <h3>Top 5 Characters with the most Energy:</h3>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;">${renderTopList(topStats.Energy || [])}</div>
+            </div>
+        </div>
+
+        <div class="fun-facts-row">
+            <div class="fun-facts-column">
+                <h3>The 5 Characters with the Most Life*:</h3>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;">${renderTopList(topStats.Life || [])}</div>
+            </div>
+            <div class="fun-facts-column">
+                <h3>The 5 Characters with the Most Mana*:</h3>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;">${renderTopList(topStats.Mana || [])}</div>
+            </div>
+        </div>
+        <em>*"Most" Life and Mana values are from a snapshot in time and may or may not be affected by bonuses from BO, Oak, etc.</em>
+
+        <div class="fun-facts-row">
+            <div class="fun-facts-column">
+                <h3>The 5 Characters with the Most Magic Find:</h3>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;">${renderTopList(topStats.MagicFind || [])}</div>
+            </div>
+            <div class="fun-facts-column">
+                <h3>The 5 Characters with the Most Gold Find:</h3>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;">${renderTopList(topStats.GoldFind || [])}</div>
+            </div>
+        </div>
+        <br>
+    `;
+
+}
+
+function median(values) {
+
+    if (!values.length) return 0;
+
+    const sorted = [...values].sort((a, b) => a - b);
+    const mid = Math.floor(sorted.length / 2);
+
+    return sorted.length % 2 !== 0
+        ? sorted[mid]
+        : (sorted[mid - 1] + sorted[mid]) / 2;
+
+}
+
+function computeAverages(characters) {
+
+    const mfValues = [];
+    const gfValues = [];
+    const lifeValues = [];
+    const manaValues = [];
+
+    for (const character of characters) {
+        mfValues.push(character.Bonus?.MagicFind ?? 0);
+        gfValues.push(character.Bonus?.GoldFind ?? 0);
+        lifeValues.push(character.Stats?.Life ?? 0);
+        manaValues.push(character.Stats?.Mana ?? 0);
+    }
+
+    const sum = arr => arr.reduce((total, value) => total + value, 0);
+    const count = characters.length || 1;
+
+    return {
+        averages: {
+            mf: sum(mfValues) / count,
+            gf: sum(gfValues) / count,
+            life: sum(lifeValues) / count,
+            mana: sum(manaValues) / count
+        },
+        medians: {
+            mf: median(mfValues),
+            gf: median(gfValues),
+            life: median(lifeValues),
+            mana: median(manaValues)
+        }
+    };
+
+}
+
+function renderAveragesSection(averages, medians) {
+
+    return `
+        ${renderSectionHeading("Average & Median Statistics")}
+        <div class="fun-facts-row">
+            <div class="fun-facts-column">
+                <h3>Life Statistics</h3>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;">
+                    <p style="color: #ccc; margin: 4px 0;"><strong>Average Life:</strong> ${averages.life.toFixed(2)}</p>
+                    <p style="color: #ccc; margin: 4px 0;"><strong>Median Life:</strong> ${medians.life.toFixed(2)}</p>
+                </div>
+            </div>
+            <div class="fun-facts-column">
+                <h3>Mana Statistics</h3>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;">
+                    <p style="color: #ccc; margin: 4px 0;"><strong>Average Mana:</strong> ${averages.mana.toFixed(2)}</p>
+                    <p style="color: #ccc; margin: 4px 0;"><strong>Median Mana:</strong> ${medians.mana.toFixed(2)}</p>
+                </div>
+            </div>
+        </div>
+        <div class="fun-facts-row">
+            <div class="fun-facts-column">
+                <h3>Magic Find Statistics</h3>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;">
+                    <p style="color: #ccc; margin: 4px 0;"><strong>Average Magic Find:</strong> ${averages.mf.toFixed(2)}</p>
+                    <p style="color: #ccc; margin: 4px 0;"><strong>Median Magic Find:</strong> ${medians.mf.toFixed(2)}</p>
+                </div>
+            </div>
+            <div class="fun-facts-column">
+                <h3>Gold Find Statistics</h3>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;">
+                    <p style="color: #ccc; margin: 4px 0;"><strong>Average Gold Find:</strong> ${averages.gf.toFixed(2)}</p>
+                    <p style="color: #ccc; margin: 4px 0;"><strong>Median Gold Find:</strong> ${medians.gf.toFixed(2)}</p>
+                </div>
+            </div>
+        </div>
+    `;
+
+}
+
+/*
+ * Top account statistics + class ladder dominance, driven entirely by the
+ * prebuilt jsons/{mode}-top1k.json and jsons/{mode}-classleaders.json
+ * (fresh ranked-ladder snapshots from the API); unaffected by the level
+ * filter controls since that filter only applies to the bulk ladder scrape.
+ */
+function computeTopAccounts(top1k) {
+
+    const levelCounter = new Map();
+    const level99Accounts = new Map();
+    const accountClassCounts = new Map();
+    const accountClassSets = new Map();
+    const accountStats = new Map();
+
+    for (const char of top1k) {
+
+        levelCounter.set(char.level, (levelCounter.get(char.level) || 0) + 1);
+
+        if (!char.account) continue;
+
+        if (char.level === 99) {
+            level99Accounts.set(char.account, (level99Accounts.get(char.account) || 0) + 1);
+        }
+
+        if (!accountClassCounts.has(char.account)) accountClassCounts.set(char.account, new Map());
+        const classCounts = accountClassCounts.get(char.account);
+        classCounts.set(char.charClass, (classCounts.get(char.charClass) || 0) + 1);
+
+        if (!accountClassSets.has(char.account)) accountClassSets.set(char.account, new Set());
+        accountClassSets.get(char.account).add(char.charClass);
+
+        if (!accountStats.has(char.account)) accountStats.set(char.account, { count: 0, levels: 0, xp: 0 });
+        const stat = accountStats.get(char.account);
+        stat.count++;
+        stat.levels += char.level || 0;
+        stat.xp += char.exp || 0;
+    }
+
+    const top99s = [...level99Accounts.entries()].sort((a, b) => b[1] - a[1]).slice(0, 3);
+
+    function topAccountsWithClass(classCode, minCount = 2, topN = 5) {
+        return [...accountClassCounts.entries()]
+            .filter(([, counts]) => (counts.get(classCode) || 0) >= minCount)
+            .sort((a, b) => (b[1].get(classCode) || 0) - (a[1].get(classCode) || 0))
+            .slice(0, topN)
+            .map(([account, counts]) => [account, counts.get(classCode) || 0]);
+    }
+
+    const classCodes = Object.keys(CLASS_CODE_TO_NAME);
+
+    const completeClassAccounts = [...accountClassSets.entries()]
+        .filter(([, set]) => classCodes.every(code => set.has(code)))
+        .map(([account]) => account);
+
+    const sortedByXp = [...accountStats.entries()].sort((a, b) => b[1].xp - a[1].xp).slice(0, 5);
+    const sortedByLevels = [...accountStats.entries()].sort((a, b) => b[1].levels - a[1].levels).slice(0, 5);
+    const sortedByCount = [...accountStats.entries()].sort((a, b) => b[1].count - a[1].count).slice(0, 10);
+
+    return {
+        levelCounter,
+        top99s,
+        mostByClass: {
+            ama: topAccountsWithClass("ama"),
+            asn: topAccountsWithClass("asn"),
+            bar: topAccountsWithClass("bar"),
+            dru: topAccountsWithClass("dru"),
+            nec: topAccountsWithClass("nec"),
+            pal: topAccountsWithClass("pal"),
+            sor: topAccountsWithClass("sor")
+        },
+        completeClassAccounts,
+        sortedByXp,
+        sortedByLevels,
+        sortedByCount
+    };
+
+}
+
+function computeClassDominance(classLeaders) {
+
+    const sections = [];
+
+    for (const className of ALL_CLASSES) {
+
+        const chars = classLeaders[className] || [];
+        const byAccount = new Map();
+
+        for (const char of chars) {
+            const account = char.account || "Unknown";
+            if (!byAccount.has(account)) byAccount.set(account, []);
+            byAccount.get(account).push(char);
+        }
+
+        const sorted = [...byAccount.entries()]
+            .filter(([, list]) => list.length >= 2)
+            .sort((a, b) =>
+                b[1].length - a[1].length ||
+                Math.min(...a[1].map(c => c.rank)) - Math.min(...b[1].map(c => c.rank))
+            );
+
+        if (sorted.length) {
+            sections.push({ className, accounts: sorted });
+        }
+    }
+
+    return sections;
+
+}
+
+function renderClassDominanceHtml(dominanceSections) {
+
+    if (!dominanceSections.length) return "";
+
+    const sectionsHtml = dominanceSections.map(({ className, accounts }) => {
+
+        const borderColor = CLASS_COLORS[className] || "#666";
+
+        const accountsHtml = accounts.map(([account, chars]) => {
+
+            const sortedChars = [...chars].sort((a, b) => a.rank - b.rank);
+
+            const charList = sortedChars.map(char =>
+                `<a href="https://beta.pathofdiablo.com/armory?name=${encodeURIComponent(char.name)}" target="_blank" style="color: #bbb;">#${char.rank} ${escapeHtml(char.name)}</a> (Level ${char.level})`
+            ).join(", ");
+
+            return `
+                <div style="margin: 6px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px; border-left: 4px solid ${borderColor};">
+                    <div>
+                        <a href="https://beta.pathofdiablo.com/ladder?account=${encodeURIComponent(account)}" target="_blank" style="font-size: 16px; font-weight: bold; color: #ffffff;">${escapeHtml(account)}</a>
+                        <span style="color: #888; font-size: 14px; margin-left: 10px;">(${chars.length} characters in top 5)</span>
+                    </div>
+                    <div style="color: #aaa; font-size: 13px; margin-top: 6px;">${charList}</div>
+                </div>
+            `;
+
+        }).join("");
+
+        return `
+            <div style="margin: 12px 0;">
+                <h3 style="margin: 10px 0;">${escapeHtml(className)} Ladder Dominance</h3>
+                ${accountsHtml}
+            </div>
+        `;
+
+    }).join("");
+
+    return `
+        <h3 style="margin-top: 20px;">Class-Specific Ladder Leaders (Top 5)</h3>
+        <p style="color: #ccc; margin-bottom: 12px;">Accounts with multiple characters in the top 5 of the same class ladder.</p>
+        ${sectionsHtml}
+    `;
+
+}
+
+function renderClassAccountColumn(label, classCode, entries) {
+
+    const color = CLASS_COLORS[label] || "#666";
+    const plural = label === "Sorceress" ? "Sorceresses" : `${label}s`;
+
+    const rows = entries.map(([account, count]) =>
+        `<div style="color: #ccc; margin: 4px 0;"><a href="https://beta.pathofdiablo.com/account/${encodeURIComponent(account)}">${escapeHtml(account)}</a>: ${count} ${escapeHtml(count === 1 ? label : plural)}</div>`
+    ).join("");
+
+    return `
+        <div class="fun-facts-column">
+            <h4>${escapeHtml(plural)}</h4>
+            <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px; border-left: 4px solid ${color};">
+                ${rows || "<p>No data available.</p>"}
+            </div>
+        </div>
+    `;
+
+}
+
+function renderTopAccountsSection(accountsData, dominanceSections) {
+
+    if (!accountsData) {
+        return `${renderSectionHeading("Top Account Statistics")}<p>No top accounts data available.</p>`;
+    }
+
+    const levelCountsHtml = [99, 98, 97, 96, 95]
+        .filter(level => accountsData.levelCounter.has(level))
+        .map(level => `<div style="color: #ccc; margin: 4px 0;">Level ${level}: ${accountsData.levelCounter.get(level)} characters</div>`)
+        .join("");
+
+    const top99sHtml = accountsData.top99s.map(([account, count]) =>
+        `<div style="color: #ccc; margin: 4px 0;"><a href="https://beta.pathofdiablo.com/ladder?account=${encodeURIComponent(account)}">${escapeHtml(account)}</a>: ${count} characters at level 99</div>`
+    ).join("");
+
+    const completeAccountsHtml = accountsData.completeClassAccounts.slice(0, 10)
+        .map(account => `<a href="https://beta.pathofdiablo.com/ladder?account=${encodeURIComponent(account)}">${escapeHtml(account)}</a>`)
+        .join(", ");
+
+    const xpHtml = accountsData.sortedByXp.map(([account, stats]) =>
+        `<div style="color: #ccc; margin: 4px 0;"><a href="https://beta.pathofdiablo.com/account/${encodeURIComponent(account)}">${escapeHtml(account)}</a>: ${stats.xp.toLocaleString()} XP, ${stats.count} chars, avg level ${(stats.levels / stats.count).toFixed(2)}</div>`
+    ).join("");
+
+    const levelsHtml = accountsData.sortedByLevels.map(([account, stats]) =>
+        `<div style="color: #ccc; margin: 4px 0;"><a href="https://beta.pathofdiablo.com/account/${encodeURIComponent(account)}">${escapeHtml(account)}</a>: ${stats.levels} levels, ${stats.count} chars, avg level ${(stats.levels / stats.count).toFixed(2)}</div>`
+    ).join("");
+
+    const countHtml = accountsData.sortedByCount.map(([account, stats]) =>
+        `<div style="color: #ccc; margin: 4px 0;"><a href="https://beta.pathofdiablo.com/account/${encodeURIComponent(account)}">${escapeHtml(account)}</a>: ${stats.count} characters, total level ${stats.levels}, avg level ${(stats.levels / stats.count).toFixed(2)}</div>`
+    ).join("");
+
+    return `
+        ${renderSectionHeading("Top Account Statistics")}
+
+        <div class="fun-facts-row">
+            <div class="fun-facts-column">
+                <h4>High-Level Character Counts</h4>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;">${levelCountsHtml || "<p>No data available.</p>"}</div>
+            </div>
+            <div class="fun-facts-column">
+                <h4>Top Accounts by Number of Level 99 Characters</h4>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;">${top99sHtml || "<p>No data available.</p>"}</div>
+            </div>
+        </div>
+
+        ${renderClassDominanceHtml(dominanceSections)}
+
+        <br>
+        <h3 style="margin-top: 20px;">Accounts with Multiple Characters in Top 1K</h3>
+        <div class="fun-facts-row">
+            ${renderClassAccountColumn("Amazon", "ama", accountsData.mostByClass.ama)}
+            ${renderClassAccountColumn("Assassin", "asn", accountsData.mostByClass.asn)}
+        </div>
+        <div class="fun-facts-row">
+            ${renderClassAccountColumn("Barbarian", "bar", accountsData.mostByClass.bar)}
+            ${renderClassAccountColumn("Druid", "dru", accountsData.mostByClass.dru)}
+        </div>
+        <div class="fun-facts-row">
+            ${renderClassAccountColumn("Necromancer", "nec", accountsData.mostByClass.nec)}
+            ${renderClassAccountColumn("Paladin", "pal", accountsData.mostByClass.pal)}
+        </div>
+        <div class="fun-facts-row">
+            ${renderClassAccountColumn("Sorceress", "sor", accountsData.mostByClass.sor)}
+        </div>
+
+        <h3 style="margin-top: 20px;">Accounts with all 7 classes in the top 1K</h3>
+        <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;">
+            <p style="color: #ccc;">${accountsData.completeClassAccounts.length} accounts: ${completeAccountsHtml || "none"}</p>
+        </div>
+
+        <br>
+        <h3 style="margin-top: 20px;">Top Accounts by Metrics</h3>
+        <div class="fun-facts-row">
+            <div class="fun-facts-column">
+                <h4>Most Experience</h4>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;">${xpHtml || "<p>No data available.</p>"}</div>
+            </div>
+            <div class="fun-facts-column">
+                <h4>Most Total Levels</h4>
+                <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;">${levelsHtml || "<p>No data available.</p>"}</div>
+            </div>
+        </div>
+        <div style="margin-top: 12px;">
+            <h4>Most Characters in Top 1K</h4>
+            <div style="margin: 8px 0; padding: 10px; background-color: #1a1a1a; border-radius: 4px;">${countHtml || "<p>No data available.</p>"}</div>
+        </div>
+        <br>
+    `;
+
+}
+
+/*
+ * Data loading and filtering
+ */
+
+let allCharacters = [];
+let top1kRecords = [];
+let classLeaders = {};
+
+async function loadFunFactsData() {
+
+    const mode = document.getElementById("mode").value;
+
+    const [charactersResponse, top1kResponse, classLeadersResponse] = await Promise.all([
+        fetch(mode === "sc" ? "jsons/sc-funfacts.json" : "jsons/hc-funfacts.json"),
+        fetch(mode === "sc" ? "jsons/sc-top1k.json" : "jsons/hc-top1k.json"),
+        fetch(mode === "sc" ? "jsons/sc-classleaders.json" : "jsons/hc-classleaders.json")
+    ]);
+
+    allCharacters = await charactersResponse.json();
+    top1kRecords = await top1kResponse.json();
+    classLeaders = await classLeadersResponse.json();
+
+    loadTop1kPieChart(mode);
+    applyFilters();
+
+}
+
+function applyFilters() {
+
+    console.time("Filter");
+
+    const minLevelValue = document.getElementById("minLevel").value;
+    const maxLevelValue = document.getElementById("maxLevel").value;
+    const threshold = Number(document.getElementById("threshold").value) || 0.6;
+
+    const minLevel = minLevelValue === "" ? null : Number(minLevelValue);
+    const maxLevel = maxLevelValue === "" ? null : Number(maxLevelValue);
+
+    const filteredCharacters = allCharacters.filter(character => {
+
+        const level = Number(character.Stats?.Level ?? 0);
+
+        if (minLevel !== null && level < minLevel) return false;
+        if (maxLevel !== null && level > maxLevel) return false;
+
+        return true;
+
+    });
+
+    console.timeEnd("Filter");
+
+    renderFunFactsReport(filteredCharacters, threshold);
+
+    if (window.location.hash) {
+        const anchorId = decodeURIComponent(window.location.hash.substring(1));
+        setTimeout(() => { expandToAnchor(anchorId); }, 50);
+    }
+
+    const status = document.getElementById("status");
+    status.innerHTML = `Loaded <strong>${filteredCharacters.length.toLocaleString()}</strong> characters.`;
+
+}
+
+function renderFunFactsReport(filteredCharacters, threshold) {
+
+    const reportGrid = document.getElementById("funFactsReportGrid");
+
+    const topBuilds = computeTop10Builds(filteredCharacters, threshold);
+    const accountsData = computeTopAccounts(top1kRecords);
+    const dominanceSections = computeClassDominance(classLeaders);
+    const undeadData = computeUndead(filteredCharacters);
+    const cbfData = computeCannotBeFrozen(filteredCharacters);
+    const topStats = computeTopStats(filteredCharacters);
+    const { averages, medians } = computeAverages(filteredCharacters);
+
+    reportGrid.innerHTML = `
+        ${renderSectionHeading("Top 1,000 Ladder Class Distribution")}
+        <h4>Looking at the class distribution for the ladder's top 1,000 characters shows which classes are played for longer, a measure of which classes are more popular in the endgame. This always reflects the top 1,000 regardless of the level filter above.</h4>
+        <div class="chart-container" id="classDistributionChart"></div>
+
+        <hr>
+
+        ${renderSectionHeading("Ladder Statistics Overview")}
+        <div class="fun-facts-row">
+            <div class="fun-facts-column">
+                <h3>Total Characters Analyzed: ${filteredCharacters.length.toLocaleString()}</h3>
+                <p>The analysis below includes data from all ranked ladder characters matching the current level filter</p>
+            </div>
+        </div>
+
+        <hr>
+
+        ${renderTopBuildsSection(topBuilds)}
+
+        <hr>
+
+        ${renderTopAccountsSection(accountsData, dominanceSections)}
+
+        <hr>
+
+        ${renderUndeadSection(undeadData)}
+
+        <hr>
+
+        ${renderCbfSection(cbfData)}
+
+        <hr>
+
+        ${renderTopStatsSection(topStats)}
+
+        <hr>
+
+        ${renderAveragesSection(averages, medians)}
+    `;
+
+    loadTop1kPieChart(document.getElementById("mode").value);
+
+}
+
+/*
+ * Event handlers
+ */
+
+document
+    .getElementById("minLevel")
+    .addEventListener("input", applyFilters);
+
+document
+    .getElementById("maxLevel")
+    .addEventListener("input", applyFilters);
+
+document
+    .getElementById("threshold")
+    .addEventListener("input", applyFilters);
+
+document
+    .getElementById("clearFilters")
+    .addEventListener("click", () => {
+
+        document.getElementById("minLevel").value = "";
+        document.getElementById("maxLevel").value = "";
+        document.getElementById("threshold").value = "0.6";
+
+        applyFilters();
+
+    });
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const scHcButton = document.getElementById("SC_HC");
+
+    updateScHcButton(chosenMode);
+    loadFunFactsData();
+
+    scHcButton.addEventListener("click", event => {
+
+        event.preventDefault();
+
+        const newMode = chosenMode === "hc" ? "sc" : "hc";
+        const url = new URL(window.location);
+
+        url.searchParams.set("m", newMode);
+
+        window.location.href = url;
+
+    });
+
+    function updateScHcButton(mode) {
+
+        if (mode === "hc") {
+            scHcButton.classList.add("hardcore");
+            scHcButton.classList.remove("softcore");
+            scHcButton.style.backgroundImage = "url('../icons/Hardcore_click.png')";
+        } else {
+            scHcButton.classList.add("softcore");
+            scHcButton.classList.remove("hardcore");
+            scHcButton.style.backgroundImage = "url('../icons/Softcore_click.png')";
+        }
+
+    }
+
+});
+
+//Anchor in place fix
+function scrollWithOffset(el, offset = -50) {
+    const y = el.getBoundingClientRect().top + window.pageYOffset + offset;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+}
+
+function expandToAnchor(anchorId) {
+
+    const target = document.getElementById(anchorId);
+    if (!target) return;
+
+    const stack = [];
+    let el = target;
+    while (el) {
+        if (el.classList?.contains('content')) {
+            stack.unshift(el);
+        }
+        el = el.parentElement;
+    }
+
+    for (const content of stack) {
+        const button = content.previousElementSibling;
+        if (button?.classList.contains('collapsible')) {
+            button.classList.add('active');
+            content.style.display = "block";
+
+            const openIcon = button.querySelector("img.icon-expanded");
+            const closeIcon = button.querySelector("img.icon-collapsed");
+            if (openIcon) openIcon.classList.add("hidden");
+            if (closeIcon) closeIcon.classList.remove("hidden");
+        }
+    }
+
+    setTimeout(() => {
+        scrollWithOffset(target);
+    }, 250);
+
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    document.querySelectorAll('.anchor-link, a[href^="#"]').forEach(link => {
+        link.addEventListener('click', function (event) {
+            event.preventDefault();
+            const anchorId = this.getAttribute('href').substring(1);
+            const fullUrl = `${window.location.origin}${window.location.pathname}#${anchorId}`;
+
+            navigator.clipboard.writeText(fullUrl);
+            history.pushState(null, '', `#${anchorId}`);
+            expandToAnchor(anchorId);
+        });
+    });
+
+    if (window.location.hash) {
+        const anchorId = window.location.hash.substring(1);
+        setTimeout(() => {
+            expandToAnchor(anchorId);
+        }, 3000);
+    }
+});
+
+</script>
+
+</body>
+</html>
