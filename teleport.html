@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PoD Teleport Calculator</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 5px;
+        }
+
+        h2 {
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .description {
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        /*
+         * Main three-column layout
+         */
+
+        .calculator {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .section {
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        /*
+         * Inputs
+         */
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group:last-child {
+            margin-bottom: 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 8px;
+            font-size: 16px;
+        }
+
+        .note {
+            color: #666;
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        /*
+         * Results
+         */
+
+        .result {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .result:last-child {
+            border-bottom: none;
+        }
+
+        .result strong {
+            text-align: right;
+        }
+
+        /*
+         * Highlighted result
+         */
+
+        .important {
+            margin-top: 18px;
+            padding: 15px;
+            font-size: 17px;
+            font-weight: bold;
+            text-align: center;
+            border-radius: 5px;
+        }
+
+        .infinite {
+            background: #d8f5d8;
+        }
+
+        .not-infinite {
+            background: #f5d8d8;
+        }
+
+        /*
+         * Formula
+         */
+
+        .formula {
+            margin-top: 15px;
+            padding: 10px;
+            background: #f5f5f5;
+            font-family: monospace;
+            font-size: 13px;
+            overflow-wrap: anywhere;
+        }
+
+        /*
+         * Mobile / narrow screens
+         */
+
+        @media (max-width: 900px) {
+
+            .calculator {
+                grid-template-columns: 1fr;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>PoD Teleport Calculator</h1>
+
+    <p class="description">
+        Calculate Teleport mana cost and determine what it takes
+        to sustain continuous Teleporting.
+    </p>
+
+    <div class="calculator">
+
+        <!-- =====================================================
+             COLUMN 1 — CHARACTER
+             ===================================================== -->
+
+        <div class="section">
+
+            <h2>Character</h2>
+
+            <div class="input-group">
+
+                <label for="maxMana">
+                    Maximum Mana
+                </label>
+
+                <input
+                    type="number"
+                    id="maxMana"
+                    value="1000"
+                    min="1"
+                    step="1"
+                >
+
+            </div>
+
+            <div class="input-group">
+
+                <label for="teleportLevel">
+                    Teleport Skill Level
+                </label>
+
+                <input
+                    type="number"
+                    id="teleportLevel"
+                    value="20"
+                    min="0"
+                    max="99"
+                    step="1"
+                >
+
+            </div>
+
+            <div class="input-group">
+
+                <label for="warmthLevel">
+                    Warmth Skill Level
+                </label>
+
+                <input
+                    type="number"
+                    id="warmthLevel"
+                    value="20"
+                    min="0"
+                    max="40"
+                    step="1"
+                >
+
+                <div class="note">
+                    Warmth regeneration is added automatically.
+                </div>
+
+            </div>
+
+            <div class="input-group">
+
+                <label for="otherRegen">
+                    Other Regenerate Mana %
+                </label>
+
+                <input
+                    type="number"
+                    id="otherRegen"
+                    value="0"
+                    min="0"
+                    step="1"
+                >
+
+                <div class="note">
+                    Regenerate Mana % from equipment and other sources.
+                </div>
+
+            </div>
+
+            <div class="input-group">
+
+                <label for="fcr">
+                    Faster Cast Rate
+                </label>
+
+                <input
+                    type="number"
+                    id="fcr"
+                    value="105"
+                    min="0"
+                    step="1"
+                >
+
+            </div>
+
+        </div>
+
+        <!-- =====================================================
+             COLUMN 2 — TELEPORT
+             ===================================================== -->
+
+        <div class="section">
+
+            <h2>Teleport</h2>
+
+            <div class="result">
+
+                <span>Mana drain</span>
+
+                <strong id="manaDrain">
+                    -
+                </strong>
+
+            </div>
+
+            <div class="result">
+
+                <span>Mana per Teleport</span>
+
+                <strong id="teleportCost">
+                    -
+                </strong>
+
+            </div>
+
+            <div class="result">
+
+                <span>FCR breakpoint</span>
+
+                <strong id="fcrFrames">
+                    -
+                </strong>
+
+            </div>
+
+            <div class="result">
+
+                <span>Teleports / second</span>
+
+                <strong id="teleportsPerSecond">
+                    -
+                </strong>
+
+            </div>
+
+            <div class="formula" id="teleportFormula">
+                -
+            </div>
+
+        </div>
+
+        <!-- =====================================================
+             COLUMN 3 — SUSTAINABILITY
+             ===================================================== -->
+
+        <div class="section">
+
+            <h2>Sustain</h2>
+
+            <div class="result">
+
+                <span>Warmth regeneration</span>
+
+                <strong id="warmthRegen">
+                    -
+                </strong>
+
+            </div>
+
+            <div class="result">
+
+                <span>Other regeneration</span>
+
+                <strong id="otherRegenDisplay">
+                    -
+                </strong>
+
+            </div>
+
+            <div class="result">
+
+                <span>Total regeneration</span>
+
+                <strong id="totalRegen">
+                    -
+                </strong>
+
+            </div>
+
+            <div class="result">
+
+                <span>Mana regenerated / sec</span>
+
+                <strong id="manaRegenerated">
+                    -
+                </strong>
+
+            </div>
+
+            <div class="result">
+
+                <span>Mana consumed / sec</span>
+
+                <strong id="manaConsumed">
+                    -
+                </strong>
+
+            </div>
+
+            <div class="result">
+
+                <span>Net mana / sec</span>
+
+                <strong id="netMana">
+                    -
+                </strong>
+
+            </div>
+
+            <div id="sustainResult"
+                 class="important">
+
+                -
+            </div>
+
+            <div class="result">
+
+                <span>Required total regen</span>
+
+                <strong id="requiredTotalRegen">
+                    -
+                </strong>
+
+            </div>
+
+            <div class="result">
+
+                <span>Required additional regen</span>
+
+                <strong id="requiredAdditionalRegen">
+                    -
+                </strong>
+
+            </div>
+
+            <div class="result">
+
+                <span>Required max mana</span>
+
+                <strong id="requiredMana">
+                    -
+                </strong>
+
+            </div>
+
+            <div class="result">
+
+                <span>Time until empty</span>
+
+                <strong id="timeUntilEmpty">
+                    -
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        /*
+         * ============================================================
+         * TELEPORT FCR BREAKPOINTS
+         * ============================================================
+         */
+
+        const fcrBreakpoints = [
+
+            { fcr: 0,   frames: 13 },
+            { fcr: 9,   frames: 12 },
+            { fcr: 20,  frames: 11 },
+            { fcr: 37,  frames: 10 },
+            { fcr: 63,  frames: 9 },
+            { fcr: 105, frames: 8 },
+            { fcr: 200, frames: 7 }
+
+        ];
+
+        /*
+         * ============================================================
+         * WARMTH
+         * ============================================================
+         *
+         * Index = Warmth skill level
+         */
+
+        const warmthRegen = [
+
+            0,
+
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50,
+            55,
+            60,
+            65,
+
+            70,
+            75,
+            80,
+            85,
+            90,
+            95,
+            100,
+            105,
+            110,
+            115,
+
+            120,
+            125,
+            130,
+            135,
+            140,
+            145,
+            150,
+            155,
+            160,
+            165,
+
+            170,
+            175,
+            180,
+            185,
+            190,
+            195,
+            200,
+            205,
+            210,
+            215
+
+        ];
+
+        /*
+         * ============================================================
+         * GET TELEPORT FRAMES
+         * ============================================================
+         */
+
+        function getTeleportFrames(fcr) {
+
+            let frames = 13;
+
+            for (const breakpoint of fcrBreakpoints) {
+
+                if (fcr >= breakpoint.fcr) {
+
+                    frames = breakpoint.frames;
+
+                }
+
+            }
+
+            return frames;
+
+        }
+
+        /*
+         * ============================================================
+         * CALCULATE
+         * ============================================================
+         */
+
+        function calculate() {
+
+            /*
+             * Inputs
+             */
+
+            const maxMana =
+                Math.max(
+                    Number(document.getElementById("maxMana").value) || 1,
+                    1
+                );
+
+
+            const teleportLevel =
+                Math.max(
+                    Number(document.getElementById("teleportLevel").value) || 0,
+                    0
+                );
+
+
+            const warmthLevel =
+                Math.min(
+                    Math.max(
+                        Number(document.getElementById("warmthLevel").value) || 0,
+                        0
+                    ),
+                    40
+                );
+
+
+            const otherRegen =
+                Math.max(
+                    Number(document.getElementById("otherRegen").value) || 0,
+                    0
+                );
+
+
+            const fcr =
+                Math.max(
+                    Number(document.getElementById("fcr").value) || 0,
+                    0
+                );
+
+            /*
+             * ========================================================
+             * TELEPORT COST
+             * ========================================================
+             */
+
+            const drainReduction = Math.max(0, (teleportLevel * 2) - 2);
+            const manaDrain = Math.max((maxMana * 0.05) - drainReduction, 1);
+            const teleportCost = 12 + manaDrain;
+
+            /*
+             * ========================================================
+             * FCR
+             * ========================================================
+             */
+
+            const frames =
+                getTeleportFrames(fcr);
+
+
+            const teleportsPerSecond =
+                25 / frames;
+
+
+            /*
+             * ========================================================
+             * MANA CONSUMPTION
+             * ========================================================
+             */
+
+            const manaConsumedPerSecond =
+                teleportCost *
+                teleportsPerSecond;
+
+
+            /*
+             * ========================================================
+             * WARMTH
+             * ========================================================
+             */
+
+            const warmth =
+                warmthRegen[warmthLevel];
+
+
+            /*
+             * ========================================================
+             * TOTAL REGEN
+             * ========================================================
+             */
+
+            const totalRegen =
+                warmth +
+                otherRegen;
+
+
+            /*
+             * ========================================================
+             * MANA REGENERATION
+             *
+             * 100% = base regeneration
+             */
+
+            const manaRegeneratedPerSecond =
+                maxMana *
+                (100 + totalRegen) /
+                12000;
+
+
+            /*
+             * ========================================================
+             * NET MANA
+             * ========================================================
+             */
+
+            const netMana =
+                manaRegeneratedPerSecond -
+                manaConsumedPerSecond;
+
+
+            /*
+             * ========================================================
+             * REQUIRED REGENERATION
+             * ========================================================
+             */
+
+            const requiredTotalRegen =
+                (
+                    manaConsumedPerSecond *
+                    12000 /
+                    maxMana
+                ) - 100;
+
+
+            const requiredAdditionalRegen =
+                Math.max(
+                    requiredTotalRegen -
+                    warmth,
+                    0
+                );
+
+
+            /*
+             * ========================================================
+             * REQUIRED MANA
+             *
+             * Search for the first mana value that
+             * sustains Teleport indefinitely.
+             * ========================================================
+             */
+
+            let requiredMana = null;
+
+
+            for (let mana = 1; mana <= 100000; mana++) {
+
+                const drain =
+                    Math.max(
+                        (mana * 0.05) -
+                        (teleportLevel * 2),
+                        1
+                    );
+
+
+                const cost =
+                    12 + drain;
+
+
+                const consumption =
+                    cost *
+                    teleportsPerSecond;
+
+
+                const regeneration =
+                    mana *
+                    (100 + totalRegen) /
+                    12000;
+
+
+                if (regeneration >= consumption) {
+
+                    requiredMana = mana;
+
+                    break;
+
+                }
+
+            }
+
+
+            /*
+             * ========================================================
+             * TIME UNTIL EMPTY
+             * ========================================================
+             */
+
+            let timeUntilEmpty;
+
+
+            if (netMana >= 0) {
+
+                timeUntilEmpty = Infinity;
+
+            } else {
+
+                timeUntilEmpty =
+                    maxMana /
+                    Math.abs(netMana);
+
+            }
+
+
+            /*
+             * ========================================================
+             * DISPLAY
+             * ========================================================
+             */
+
+            document.getElementById("manaDrain")
+                .textContent =
+                manaDrain.toFixed(2);
+
+
+            document.getElementById("teleportCost")
+                .textContent =
+                teleportCost.toFixed(2);
+
+
+            document.getElementById("fcrFrames")
+                .textContent =
+                `${frames} frames`;
+
+
+            document.getElementById("teleportsPerSecond")
+                .textContent =
+                teleportsPerSecond.toFixed(3);
+
+
+            document.getElementById("teleportFormula")
+                .textContent =
+                `12 + max((${maxMana} × 0.05) − (${teleportLevel} × 2), 1) = ${teleportCost.toFixed(2)}`;
+
+
+            document.getElementById("warmthRegen")
+                .textContent =
+                `+${warmth}%`;
+
+
+            document.getElementById("otherRegenDisplay")
+                .textContent =
+                `+${otherRegen}%`;
+
+
+            document.getElementById("totalRegen")
+                .textContent =
+                `+${totalRegen}%`;
+
+
+            document.getElementById("manaRegenerated")
+                .textContent =
+                manaRegeneratedPerSecond.toFixed(2);
+
+
+            document.getElementById("manaConsumed")
+                .textContent =
+                manaConsumedPerSecond.toFixed(2);
+
+
+            document.getElementById("netMana")
+                .textContent =
+                `${netMana >= 0 ? "+" : ""}${netMana.toFixed(2)}`;
+
+
+            /*
+             * ========================================================
+             * SUSTAIN MESSAGE
+             * ========================================================
+             */
+
+            const sustainResult =
+                document.getElementById("sustainResult");
+
+
+            if (netMana >= 0) {
+
+                sustainResult.textContent =
+                    "✓ Infinite Teleport";
+
+                sustainResult.className =
+                    "important infinite";
+
+            } else {
+
+                sustainResult.textContent =
+                    "✗ Mana will eventually run out";
+
+                sustainResult.className =
+                    "important not-infinite";
+
+            }
+
+
+            /*
+             * Required regeneration
+             */
+
+            document.getElementById("requiredTotalRegen")
+                .textContent =
+                `+${Math.max(requiredTotalRegen, 0).toFixed(2)}%`;
+
+
+            document.getElementById("requiredAdditionalRegen")
+                .textContent =
+                `+${requiredAdditionalRegen.toFixed(2)}%`;
+
+
+            /*
+             * Required mana
+             */
+
+            if (requiredMana !== null) {
+
+                document.getElementById("requiredMana")
+                    .textContent =
+                    requiredMana.toLocaleString();
+
+            } else {
+
+                document.getElementById("requiredMana")
+                    .textContent =
+                    "Over 100,000";
+
+            }
+
+
+            /*
+             * Time until empty
+             */
+
+            if (timeUntilEmpty === Infinity) {
+
+                document.getElementById("timeUntilEmpty")
+                    .textContent =
+                    "Infinite";
+
+            } else {
+
+                document.getElementById("timeUntilEmpty")
+                    .textContent =
+                    timeUntilEmpty.toFixed(2) +
+                    " seconds";
+
+            }
+
+        }
+
+
+        /*
+         * ============================================================
+         * INPUT LISTENERS
+         * ============================================================
+         */
+
+        document
+            .querySelectorAll("input")
+            .forEach(input => {
+
+                input.addEventListener(
+                    "input",
+                    calculate
+                );
+
+            });
+
+
+        /*
+         * Initial calculation
+         */
+
+        calculate();
+
+    </script>
+
+</body>
+</html>
