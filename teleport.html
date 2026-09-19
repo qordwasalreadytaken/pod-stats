@@ -847,22 +847,54 @@ document.getElementById("teleportFormula").innerHTML = `
 
             if (netMana >= 0) {
 
+                const infiniteMessages = [
+                    "✓ Infinite Teleports",
+                    "✓ Teleports for daaaaaaays!!!",
+                    "✓ Mana? What's mana?",
+                    "✓ Never stop teleporting!",
+                    "✓ Your mana pool fears no distance.",
+                    "✓ Teleport responsibly. Or don't.",
+                    "✓ Going places. All the places.",
+                    "✓ Fast travel: UNLIMITED",
+                    "✓ *teleports away forever*",
+                    "✓ Blue ball go brrrrrrr.",
+                    "✓ Mana conservation? Never heard of her."
+                ];
+
                 sustainResult.textContent =
-                    "✓ Infinite Teleport";
+                    infiniteMessages[Math.floor(Math.random() * infiniteMessages.length)];
 
                 sustainResult.className =
                     "important infinite";
 
             } else {
 
+                const notInfiniteMessages = [
+                    "✗ No Infinite Teleport for you!",
+                    "✗ Womp womp, out of mana.",
+                    "✗ That's gonna be a no from me, dawg.",
+                    "✗ Your mana pool has left the chat.",
+                    "✗ Teleport budget exceeded.",
+                    "✗ And... we're out of blue juice.",
+                    "✗ You can teleport. Just... not forever.",
+                    "✗ Infinite teleporting was not in the budget.",
+                    "✗ The dream is dead. The mana is gone.",
+                    "✗ Somewhere, a blue potion is crying.",
+                    "✗ Hope you like walking.",
+                    "✗ Teleport.exe has encountered a mana problem.",
+                    "✗ Mana said: 'I'm tired, boss.'",
+                    "✗ That's a lot of teleporting for one tiny mana pool.",
+                    "✗ Maybe try walking? It's free.",
+                    "✗ Hope you like picking mana pots."
+                ];
+
                 sustainResult.textContent =
-                    "✗ No Infinite Teleport for you!";
+                    notInfiniteMessages[Math.floor(Math.random() * notInfiniteMessages.length)];
 
                 sustainResult.className =
                     "important not-infinite";
 
             }
-
 
             /*
              * Required regeneration
