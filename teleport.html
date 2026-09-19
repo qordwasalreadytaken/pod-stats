@@ -11,7 +11,6 @@
             font-family: Arial, sans-serif;
             max-width: 1200px;
             margin: 40px auto;
-            padding: 20px;
         }
 
         h1 {
@@ -148,8 +147,7 @@
     <h1>PoD Teleport Calculator</h1>
 
     <p class="description">
-        Calculate Teleport mana cost and determine what it takes
-        to sustain continuous Teleporting.
+        I think we all want infinite teleport!
     </p>
 
     <div class="calculator">
@@ -539,42 +537,19 @@
              * Inputs
              */
 
-            const maxMana =
-                Math.max(
-                    Number(document.getElementById("maxMana").value) || 1,
-                    1
-                );
+            const maxMana = Math.max(Number(document.getElementById("maxMana").value) || 1, 1);
 
 
-            const teleportLevel =
-                Math.max(
-                    Number(document.getElementById("teleportLevel").value) || 0,
-                    0
-                );
+            const teleportLevel = Math.max(Number(document.getElementById("teleportLevel").value) || 0, 0);
 
 
-            const warmthLevel =
-                Math.min(
-                    Math.max(
-                        Number(document.getElementById("warmthLevel").value) || 0,
-                        0
-                    ),
-                    40
-                );
+            const warmthLevel = Math.min(Math.max(Number(document.getElementById("warmthLevel").value) || 0, 0), 40);
 
 
-            const otherRegen =
-                Math.max(
-                    Number(document.getElementById("otherRegen").value) || 0,
-                    0
-                );
+            const otherRegen = Math.max(Number(document.getElementById("otherRegen").value) || 0, 0);
 
 
-            const fcr =
-                Math.max(
-                    Number(document.getElementById("fcr").value) || 0,
-                    0
-                );
+            const fcr = Math.max(Number(document.getElementById("fcr").value) || 0, 0);
 
             /*
              * ========================================================
@@ -635,14 +610,11 @@
             /*
              * ========================================================
              * MANA REGENERATION
-             *
+             * PoD - Base mana regeneration increased from 0.83% to 1.66% mana per second
              * 100% = base regeneration
              */
 
-            const manaRegeneratedPerSecond =
-                maxMana *
-                (100 + totalRegen) /
-                12000;
+            const manaRegeneratedPerSecond = maxMana * (166 + totalRegen) / 12000;
 
 
             /*
@@ -830,7 +802,7 @@
             } else {
 
                 sustainResult.textContent =
-                    "✗ Mana will eventually run out";
+                    "✗ No Infinite Teleport for you!";
 
                 sustainResult.className =
                     "important not-infinite";
