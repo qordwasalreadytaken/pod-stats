@@ -128,6 +128,33 @@
             overflow-wrap: anywhere;
         }
 
+
+        .teleport-breakdown {
+            margin-top: 10px;
+            font-size: 0.95rem;
+        }
+
+        .formula-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            margin: 4px 0;
+        }
+
+        .formula-row span:last-child {
+            font-variant-numeric: tabular-nums;
+            text-align: right;
+        }
+
+        .formula-divider {
+            border-top: 1px solid #ccc;
+            margin: 8px 0;
+        }
+
+        .formula-total {
+            font-weight: bold;
+            font-size: 1.05rem;
+        }
         /*
          * Mobile / narrow screens
          */
@@ -217,7 +244,7 @@
             <div class="input-group">
 
                 <label for="otherRegen">
-                    Other Regenerate Mana %
+                    Other Mana Regen % (Merc/Insight/Gear etc.)
                 </label>
 
                 <input
@@ -272,7 +299,7 @@
 
             <div class="result">
 
-                <span>Mana per Teleport</span>
+                <span>Mana Cost per Teleport</span>
 
                 <strong id="teleportCost">
                     -
@@ -557,7 +584,7 @@
              * ========================================================
              */
 
-            const drainReduction = Math.max(0, (teleportLevel * 2) - 2);
+            const drainReduction = Math.max(0, (teleportLevel * 2) - 2, 0);
             const manaDrain = Math.max((maxMana * 0.05) - drainReduction, 1);
             const teleportCost = 12 + manaDrain;
 
@@ -746,10 +773,37 @@
                 teleportsPerSecond.toFixed(3);
 
 
-            document.getElementById("teleportFormula")
-                .textContent =
-                `12 + max((${maxMana} × 0.05) − (${teleportLevel} × 2), 1) = ${teleportCost.toFixed(2)}`;
+const fivePercentMana = maxMana * 0.05;
+const variableCost = Math.max(fivePercentMana - drainReduction, 1);
 
+document.getElementById("teleportFormula").innerHTML = `
+    <div class="formula-row">
+        <span>Base cost</span>
+        <span>${12.00.toFixed(2)}</span>
+    </div>
+
+    <div class="formula-row">
+        <span>5% of max mana</span>
+        <span>${fivePercentMana.toFixed(2)}</span>
+    </div>
+
+    <div class="formula-row">
+        <span>Skill lvl drain reduction</span>
+        <span>−${drainReduction.toFixed(2)}</span>
+    </div>
+
+    <div class="formula-row">
+        <span>Actual drain cost</span>
+        <span>${variableCost.toFixed(2)}</span>
+    </div>
+
+    <div class="formula-divider"></div>
+
+    <div class="formula-row formula-total">
+        <span>Mana per Teleport</span>
+        <span>${teleportCost.toFixed(2)}</span>
+    </div>
+`;
 
             document.getElementById("warmthRegen")
                 .textContent =
