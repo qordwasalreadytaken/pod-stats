@@ -56,7 +56,7 @@ jobs:
         
     - name: Create Class JSON's
       run: |
-        cd new-ideas
+        cd scripts
         python create-class-jsons.py
 
     - name: Commit and push changes
