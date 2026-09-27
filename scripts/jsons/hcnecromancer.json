@@ -42740,15 +42740,21 @@
         "Quality": "Rare",
         "ID": "2945873525",
         "QualityCode": "q_rare",
-        "Title": "Amulet",
+        "Title": "Eagle Emblem",
         "Tag": "Amulet",
         "TextTag": "amulet",
         "Ethereal": "False",
+        "Enhanced": "False",
         "AlternateGraphics": "2",
         "ItemLevel": "86",
         "LevelReq": 40,
+        "SocketCount": "0",
         "PropertyList": [
-          "\u00ffc1Unidentified"
+          "+2 to Cold Skills (Sorceress Only)",
+          "6% Mana stolen per hit",
+          "+4 to Strength",
+          "Fire Resist +28%",
+          "Magic & Elemental Damage Taken Reduced by 3"
         ],
         "Position": {
           "x": 6,
@@ -159657,7 +159663,7 @@
     "Class": "Necromancer",
     "Stats": {
       "Level": 96,
-      "Experience": 2861832498,
+      "Experience": 2864148383,
       "Strength": 81,
       "Dexterity": 25,
       "Vitality": 435,
@@ -159666,7 +159672,7 @@
       "Life": 1664,
       "BaseMana": 215,
       "Mana": 586,
-      "Gold": 959100,
+      "Gold": 959064,
       "Stashed": 2500000
     },
     "Bonus": {
@@ -159864,7 +159870,7 @@
         "Ethereal": "False",
         "Enhanced": "True",
         "Defense": "43",
-        "Durability": "15",
+        "Durability": "16",
         "DurabilityMaximum": "16",
         "ItemLevel": "82",
         "LevelReq": 45,
@@ -161871,29 +161877,6 @@
         "Worn": ""
       },
       {
-        "Quality": "Unknown",
-        "ID": "0",
-        "QualityCode": "",
-        "Title": "Super Mana Potion",
-        "Tag": "Super Mana Potion",
-        "TextTag": "Greater Mana Potion",
-        "Ethereal": "False",
-        "Enhanced": "False",
-        "ItemLevel": "0",
-        "LevelReq": 0,
-        "SocketCount": "0",
-        "PropertyList": [],
-        "Position": {
-          "x": 3,
-          "y": 2
-        },
-        "Size": {
-          "invheight": 1,
-          "invwidth": 1
-        },
-        "Worn": ""
-      },
-      {
         "Quality": "Rare",
         "ID": "3187184891",
         "QualityCode": "q_rare",
@@ -161925,6 +161908,60 @@
         "Worn": ""
       },
       {
+        "Quality": "Rare",
+        "ID": "2436761508",
+        "QualityCode": "q_rare",
+        "Title": "Beast Eye",
+        "Tag": "Dim Cellar Relic",
+        "TextTag": "Dim Cellar Relic",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "ItemLevel": "87",
+        "LevelReq": 80,
+        "SocketCount": "0",
+        "PropertyList": [
+          "13% Deadly Strike",
+          "+50% Enhanced Defense",
+          "Cold Absorb 27%",
+          "Poison Absorb 32%",
+          "Physical Damage Taken Reduced by 63",
+          "Magic & Elemental Damage Taken Reduced by 63",
+          "53% Reduced Curse Duration"
+        ],
+        "Position": {
+          "x": 4,
+          "y": 2
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Unknown",
+        "ID": "0",
+        "QualityCode": "",
+        "Title": "Full Rejuvenation Potion",
+        "Tag": "Full Rejuvenation Potion",
+        "TextTag": "Full Rejuv Potion",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "ItemLevel": "0",
+        "LevelReq": 0,
+        "SocketCount": "0",
+        "PropertyList": [],
+        "Position": {
+          "x": 6,
+          "y": 4
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
         "Quality": "Unknown",
         "ID": "0",
         "QualityCode": "",
@@ -161938,8 +161975,8 @@
         "SocketCount": "0",
         "PropertyList": [],
         "Position": {
-          "x": 4,
-          "y": 2
+          "x": 3,
+          "y": 4
         },
         "Size": {
           "invheight": 1,
@@ -161963,6 +162000,52 @@
         "Position": {
           "x": 2,
           "y": 1
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Unknown",
+        "ID": "0",
+        "QualityCode": "",
+        "Title": "Super Mana Potion",
+        "Tag": "Super Mana Potion",
+        "TextTag": "Greater Mana Potion",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "ItemLevel": "0",
+        "LevelReq": 0,
+        "SocketCount": "0",
+        "PropertyList": [],
+        "Position": {
+          "x": 2,
+          "y": 4
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Unknown",
+        "ID": "0",
+        "QualityCode": "",
+        "Title": "Super Mana Potion",
+        "Tag": "Super Mana Potion",
+        "TextTag": "Greater Mana Potion",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "ItemLevel": "0",
+        "LevelReq": 0,
+        "SocketCount": "0",
+        "PropertyList": [],
+        "Position": {
+          "x": 3,
+          "y": 3
         },
         "Size": {
           "invheight": 1,
@@ -162356,8 +162439,7 @@
     "ItemCodeFailedToParse": [
       "ItemCode: ma18 | Properties:   [96] item_fastermovevelocity -> 23 [0]  [151] item_aura -> 11 [756]  [153] item_cannotbefrozen -> 1 [0]  [396] item_absorbpois_percent -> 32 [0]  [511] EOF -> 0 [0]",
       "ItemCode: ma18 | Properties:   [74] hpregen -> 259 [0]  [151] item_aura -> 10 [124]  [330] passive_ltng_mastery -> 37 [0]  [339] passive_avoid -> 17 [0]  [511] EOF -> 0 [0]",
-      "ItemCode: ma18 | Properties:   [60] lifedrainmindam -> 11 [0]  [74] hpregen -> 279 [0]  [109] curse_resistance -> 56 [0]  [198] item_skillonhit -> 13 [5828]  [331] passive_cold_mastery -> 28 [0]  [511] EOF -> 0 [0]",
-      "ItemCode: ma18 | Properties:   [34] normal_damage_reduction -> 63 [0]  [35] magic_damage_reduction -> 63 [0]  [109] curse_resistance -> 46 [0]  [151] item_aura -> 10 [124]  [197] item_skillondeath -> 15 [22297]  [331] passive_cold_mastery -> 32 [0]  [396] item_absorbpois_percent -> 38 [0]  [511] EOF -> 0 [0]"
+      "ItemCode: ma18 | Properties:   [60] lifedrainmindam -> 11 [0]  [74] hpregen -> 279 [0]  [109] curse_resistance -> 56 [0]  [198] item_skillonhit -> 13 [5828]  [331] passive_cold_mastery -> 28 [0]  [511] EOF -> 0 [0]"
     ]
   },
   {
