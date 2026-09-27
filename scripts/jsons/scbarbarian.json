@@ -92254,7 +92254,7 @@
     "Class": "Barbarian",
     "Stats": {
       "Level": 95,
-      "Experience": 2497146901,
+      "Experience": 2498313326,
       "Strength": 133,
       "Dexterity": 20,
       "Vitality": 407,
@@ -92262,9 +92262,9 @@
       "BaseLife": 1831,
       "Life": 2958,
       "BaseMana": 104,
-      "Mana": 139,
-      "Gold": 0,
-      "Stashed": 190311
+      "Mana": 149,
+      "Gold": 7898,
+      "Stashed": 420960
     },
     "Bonus": {
       "Strength": 25,
@@ -92293,7 +92293,7 @@
         "Strength": 30,
         "Dexterity": 0,
         "Vitality": 0,
-        "Energy": 0,
+        "Energy": 10,
         "FireResistance": 0,
         "MaximumFireResistance": 0,
         "ColdResistance": 60,
@@ -92302,12 +92302,12 @@
         "MaximumLightningResistance": 0,
         "PoisonResistance": 0,
         "MaximumPoisonResistance": 0,
-        "MagicFind": 30,
+        "MagicFind": 0,
         "GoldFind": 0,
         "FasterCastRate": 0,
         "FasterHitRecovery": 0,
-        "IncreasedAttackSpeed": 0,
-        "CrushingBlow": 20,
+        "IncreasedAttackSpeed": 50,
+        "CrushingBlow": 0,
         "OpenWounds": 0,
         "DeadlyStrike": 0,
         "DamageReduction": 30,
@@ -92920,17 +92920,16 @@
       },
       {
         "Quality": "Normal",
-        "ID": "3541555530",
+        "ID": "1877071837",
         "QualityCode": "q_runeword",
-        "Title": "Eternity",
+        "Title": "Oath",
         "Tag": "Berserker Axe",
         "TextTag": "Berserker Axe",
-        "RuneTag": "AmnBerIstSolSur",
+        "RuneTag": "ShaelPulMalLum",
         "Ethereal": "True",
         "Enhanced": "True",
-        "DamageMinimum": "156",
-        "DamageMaximum": "434",
-        "ThrowDamageMinimum": "9",
+        "DamageMinimum": "152",
+        "DamageMaximum": "448",
         "Durability": "59",
         "DurabilityMaximum": "59",
         "ItemLevel": "87",
@@ -92940,16 +92939,16 @@
             "Quality": "Unknown",
             "ID": "0",
             "QualityCode": "",
-            "Title": "Amn Rune",
-            "Tag": "Amn Rune",
-            "TextTag": "Amn Rune",
+            "Title": "Shael Rune",
+            "Tag": "Shael Rune",
+            "TextTag": "Shael Rune",
             "Ethereal": "False",
             "Enhanced": "False",
             "ItemLevel": "0",
-            "LevelReq": 25,
+            "LevelReq": 29,
             "SocketCount": "0",
             "PropertyList": [
-              "7% Life stolen per hit"
+              "+20% Increased Attack Speed"
             ],
             "Position": {
               "x": 0,
@@ -92965,16 +92964,17 @@
             "Quality": "Unknown",
             "ID": "0",
             "QualityCode": "",
-            "Title": "Ber Rune",
-            "Tag": "Ber Rune",
-            "TextTag": "Ber Rune",
+            "Title": "Pul Rune",
+            "Tag": "Pul Rune",
+            "TextTag": "Pul Rune",
             "Ethereal": "False",
             "Enhanced": "False",
             "ItemLevel": "0",
-            "LevelReq": 63,
+            "LevelReq": 45,
             "SocketCount": "0",
             "PropertyList": [
-              "20% Chance of Crushing Blow"
+              "+75% Damage to Demons",
+              "+100 to Attack Rating against Demons"
             ],
             "Position": {
               "x": 1,
@@ -92990,16 +92990,16 @@
             "Quality": "Unknown",
             "ID": "0",
             "QualityCode": "",
-            "Title": "Ist Rune",
-            "Tag": "Ist Rune",
-            "TextTag": "Ist Rune",
+            "Title": "Mal Rune",
+            "Tag": "Mal Rune",
+            "TextTag": "Mal Rune",
             "Ethereal": "False",
             "Enhanced": "False",
             "ItemLevel": "0",
-            "LevelReq": 51,
+            "LevelReq": 49,
             "SocketCount": "0",
             "PropertyList": [
-              "30% Better Chance of Getting Magic Items"
+              "Prevent Monster Heal"
             ],
             "Position": {
               "x": 2,
@@ -93015,16 +93015,16 @@
             "Quality": "Unknown",
             "ID": "0",
             "QualityCode": "",
-            "Title": "Sol Rune",
-            "Tag": "Sol Rune",
-            "TextTag": "Sol Rune",
+            "Title": "Lum Rune",
+            "Tag": "Lum Rune",
+            "TextTag": "Lum Rune",
             "Ethereal": "False",
             "Enhanced": "False",
             "ItemLevel": "0",
-            "LevelReq": 27,
+            "LevelReq": 37,
             "SocketCount": "0",
             "PropertyList": [
-              "+9 to Minimum Damage"
+              "+10 to Energy"
             ],
             "Position": {
               "x": 3,
@@ -93035,48 +93035,22 @@
               "invwidth": 1
             },
             "Worn": ""
-          },
-          {
-            "Quality": "Unknown",
-            "ID": "0",
-            "QualityCode": "",
-            "Title": "Sur Rune",
-            "Tag": "Sur Rune",
-            "TextTag": "Sur Rune",
-            "Ethereal": "False",
-            "Enhanced": "False",
-            "ItemLevel": "0",
-            "LevelReq": 61,
-            "SocketCount": "0",
-            "PropertyList": [
-              "Hit Blinds Target +1"
-            ],
-            "Position": {
-              "x": 4,
-              "y": 0
-            },
-            "Size": {
-              "invheight": 1,
-              "invwidth": 1
-            },
-            "Worn": ""
           }
         ],
-        "SocketCount": "5",
+        "SocketCount": "4",
         "PropertyList": [
+          "30% Chance to cast level 20 Bone Spirit on striking",
           "Indestructible",
-          "+310% Enhanced Damage",
-          "+9 to Minimum Damage",
-          "7% Life stolen per hit",
-          "20% Chance of Crushing Blow",
-          "+8 to Revive",
-          "Hit Blinds Target +1",
-          "Slows Target by 33%",
-          "Replenish Life 16 per second",
-          "Regenerate Mana 16%",
-          "Cannot Be Frozen",
-          "30% Better Chance of Getting Magic Items",
-          "Ethereal (Cannot be Repaired), Socketed (5)"
+          "+50% Increased Attack Speed",
+          "+323% Enhanced Damage",
+          "+75% Damage to Demons",
+          "+100 to Attack Rating against Demons",
+          "Prevent Monster Heal",
+          "+11 to Heart of Wolverine",
+          "+10 to Energy",
+          "+10 Magic Absorb",
+          "Level 17 Iron Golem (14/14 Charges)",
+          "Ethereal (Cannot be Repaired), Socketed (4)"
         ],
         "Position": {
           "x": 4,
@@ -94051,37 +94025,6 @@
         },
         "Size": {
           "invheight": 2,
-          "invwidth": 1
-        },
-        "Worn": ""
-      },
-      {
-        "Quality": "Rare",
-        "ID": "2626658671",
-        "QualityCode": "q_rare",
-        "Title": "Dread Eye",
-        "Tag": "Decomposing Settlement Relic",
-        "TextTag": "Decomposing Settlement Relic",
-        "Ethereal": "False",
-        "Enhanced": "False",
-        "ItemLevel": "87",
-        "LevelReq": 80,
-        "SocketCount": "0",
-        "PropertyList": [
-          "10% Chance to cast level 5 Decrepify on striking",
-          "+19% Faster Run/Walk",
-          "+20% Increased Poison Damage",
-          "+37% Enhanced Defense",
-          "Cold Resist +50%",
-          "Fire Absorb 13%",
-          "Cannot Be Frozen"
-        ],
-        "Position": {
-          "x": 9,
-          "y": 4
-        },
-        "Size": {
-          "invheight": 1,
           "invwidth": 1
         },
         "Worn": ""
@@ -125569,7 +125512,7 @@
     "Class": "Barbarian",
     "Stats": {
       "Level": 92,
-      "Experience": 1965699904,
+      "Experience": 1966019559,
       "Strength": 72,
       "Dexterity": 20,
       "Vitality": 346,
@@ -125578,8 +125521,8 @@
       "Life": 1793,
       "BaseMana": 203,
       "Mana": 420,
-      "Gold": 0,
-      "Stashed": 30910
+      "Gold": 822277,
+      "Stashed": 1632834
     },
     "Bonus": {
       "Strength": 66,
@@ -125834,7 +125777,7 @@
         "Ethereal": "False",
         "Enhanced": "True",
         "Defense": "36",
-        "Durability": "7",
+        "Durability": "6",
         "DurabilityMaximum": "12",
         "ItemLevel": "79",
         "LevelReq": 29,
@@ -127342,6 +127285,113 @@
         "Size": {
           "invheight": 1,
           "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Unknown",
+        "ID": "0",
+        "QualityCode": "",
+        "Title": "Flawless Ruby",
+        "Tag": "Flawless Ruby",
+        "TextTag": "Flawless Ruby",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "ItemLevel": "0",
+        "LevelReq": 15,
+        "SocketCount": "0",
+        "PropertyList": [],
+        "Position": {
+          "x": 9,
+          "y": 4
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Rare",
+        "ID": "832079043",
+        "QualityCode": "q_rare",
+        "Title": "Doom Eye",
+        "Tag": "Arrows",
+        "TextTag": "Arrows",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "ItemLevel": "85",
+        "LevelReq": 52,
+        "SocketCount": "0",
+        "PropertyList": [
+          "Adds 1-32 Lightning damage",
+          "Replenish Life 14 per second",
+          "+18 to Mana",
+          "18% Better Chance of Getting Magic Items"
+        ],
+        "Position": {
+          "x": 2,
+          "y": 0
+        },
+        "Size": {
+          "invheight": 3,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Unknown",
+        "ID": "0",
+        "QualityCode": "",
+        "Title": "Flawless Ruby",
+        "Tag": "Flawless Ruby",
+        "TextTag": "Flawless Ruby",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "ItemLevel": "0",
+        "LevelReq": 15,
+        "SocketCount": "0",
+        "PropertyList": [],
+        "Position": {
+          "x": 9,
+          "y": 3
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Rare",
+        "ID": "3483117652",
+        "QualityCode": "q_rare",
+        "Title": "Raven Emblem",
+        "Tag": "Dragon Shield",
+        "TextTag": "Dragon Shield",
+        "Ethereal": "False",
+        "Enhanced": "True",
+        "Block": "43",
+        "Defense": "68",
+        "Durability": "54",
+        "DurabilityMaximum": "76",
+        "ItemLevel": "85",
+        "LevelReq": 58,
+        "SocketCount": "0",
+        "PropertyList": [
+          "+2 to Paladin Skill Levels",
+          "+43% Enhanced Defense",
+          "+9 to Strength",
+          "Poison Resist +16%",
+          "Requirements -30%"
+        ],
+        "Position": {
+          "x": 8,
+          "y": 0
+        },
+        "Size": {
+          "invheight": 3,
+          "invwidth": 2
         },
         "Worn": ""
       }
