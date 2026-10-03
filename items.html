@@ -48,6 +48,21 @@ body.admin-mode .controls {
         .control button:hover {
             background: #333;
         }
+
+        .weapon-base-counts {
+            padding-left: 1.5em;
+        }
+
+        .item-report-columns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .item-report-columns > div {
+            flex: 1 1 0;
+            min-width: 250px;
+        }
     </style>
 </head>
 <body class="special-background">
@@ -3244,10 +3259,55 @@ function analyzeWeaponUsage(characters) {
 
             if (two_handed_bases.includes(base)) {
 
-                twoHandedUsage.set(
-                    title,
-                    (twoHandedUsage.get(title) || 0) + 1
-                );
+                const hasTeleportCharges =
+                    base.includes("staff") &&
+                    (item.PropertyList || []).some(property =>
+                        typeof property === "string" &&
+                        /\bteleport\b/i.test(property) &&
+                        /\bcharges\b/i.test(property)
+                    );
+
+                const usageItem = hasTeleportCharges
+                    ? {
+                        Title: "Magic staff of teleportation",
+                        Tag: "staff of teleportation",
+                        QualityCode: "q_magic"
+                    }
+                    : item;
+
+                const usageKey = hasTeleportCharges
+                    ? "magic-staff-of-teleportation"
+                    : item.QualityCode === "q_runeword"
+                    ? JSON.stringify({
+                        title,
+                        qualityCode: item.QualityCode
+                    })
+                    : JSON.stringify({
+                        title,
+                        qualityCode: item.QualityCode || "default",
+                        tag: item.Tag || ""
+                    });
+
+                const usage = twoHandedUsage.get(usageKey);
+
+                if (usage) {
+                    usage.count++;
+                } else {
+                    twoHandedUsage.set(usageKey, {
+                        item: usageItem,
+                        count: 1,
+                        bases: new Map()
+                    });
+                }
+
+                if (item.QualityCode === "q_runeword") {
+                    const usageBases = twoHandedUsage.get(usageKey).bases;
+                    const runewordBase = item.Tag || "Unknown base";
+                    usageBases.set(
+                        runewordBase,
+                        (usageBases.get(runewordBase) || 0) + 1
+                    );
+                }
 
             }
 
@@ -3263,10 +3323,37 @@ function analyzeWeaponUsage(characters) {
                 crossbow_bases.includes(base)
             ) {
 
-                bowUsage.set(
-                    title,
-                    (bowUsage.get(title) || 0) + 1
-                );
+                const usageKey = item.QualityCode === "q_runeword"
+                    ? JSON.stringify({
+                        title,
+                        qualityCode: item.QualityCode
+                    })
+                    : JSON.stringify({
+                        title,
+                        qualityCode: item.QualityCode || "default",
+                        tag: item.Tag || ""
+                    });
+
+                const usage = bowUsage.get(usageKey);
+
+                if (usage) {
+                    usage.count++;
+                } else {
+                    bowUsage.set(usageKey, {
+                        item,
+                        count: 1,
+                        bases: new Map()
+                    });
+                }
+
+                if (item.QualityCode === "q_runeword") {
+                    const usageBases = bowUsage.get(usageKey).bases;
+                    const runewordBase = item.Tag || "Unknown base";
+                    usageBases.set(
+                        runewordBase,
+                        (usageBases.get(runewordBase) || 0) + 1
+                    );
+                }
 
 
                 /*
@@ -3542,19 +3629,31 @@ function renderWeaponPopularityList(
         `;
     }
     const items =
-        Array.from(usageMap.entries())
-            .sort(
-                (a, b) =>
-                    b[1] - a[1]
-            );
-    const listHtml =
-        items.map(([title, count]) => `
+        Array.from(usageMap.values())
+            .sort((a, b) => b.count - a.count);
 
-            <li>
-                ${escapeHtml(title)}:
-                ${count}
-            </li>
-        `).join("");
+    const listHtml =
+        items.map(({ item, count, bases }) => {
+            const baseCountsHtml = item.QualityCode === "q_runeword"
+                ? `
+                    <ul class="weapon-base-counts">
+                        ${Array.from(bases.entries())
+                            .sort((a, b) => b[1] - a[1])
+                            .map(([base, baseCount]) => `
+                                <li>${escapeHtml(base)}: ${baseCount}</li>
+                            `)
+                            .join("")}
+                    </ul>
+                `
+                : "";
+
+            return `
+                <li>
+                    ${coloredItemTitle(item)}: ${count}
+                    ${baseCountsHtml}
+                </li>
+            `;
+        }).join("");
     return `
         ${renderSectionHeading(heading)}
         ${description
@@ -3577,11 +3676,54 @@ function renderWeaponPopularityList(
 
 function renderTwoHandedWeaponsSection(usageMap) {
 
-    return renderWeaponPopularityList(
-        usageMap,
-        "Melee Weapons That Require Two Hands",
-        "The most commonly equipped melee weapons that require two hands."
-    );
+    if (!usageMap || usageMap.size === 0) {
+        return `
+            ${renderSectionHeading("Melee Weapons That Require Two Hands")}
+            <p>No matching weapons found.</p>
+        `;
+    }
+
+    const listHtml =
+        Array.from(usageMap.values())
+            .sort((a, b) => b.count - a.count)
+            .map(({ item, count, bases }) => {
+                const baseCountsHtml = item.QualityCode === "q_runeword"
+                    ? `
+                        <ul class="weapon-base-counts">
+                            ${Array.from(bases.entries())
+                                .sort((a, b) => b[1] - a[1])
+                                .map(([base, baseCount]) => `
+                                    <li>${escapeHtml(base)}: ${baseCount}</li>
+                                `)
+                                .join("")}
+                        </ul>
+                    `
+                    : "";
+
+                return `
+                <li>
+                    ${coloredItemTitle(item)}: ${count}
+                    ${baseCountsHtml}
+                </li>
+                `;
+            })
+            .join("");
+
+    return `
+        ${renderSectionHeading("Melee Weapons That Require Two Hands")}
+        <p>The most commonly equipped melee weapons that require two hands.</p>
+        ${bigCollapsible(
+            "Special",
+            "sets-button",
+            `
+                <div class="weapon-columns">
+                    <ul>
+                        ${listHtml}
+                    </ul>
+                </div>
+            `
+        )}
+    `;
 }
 
 function renderBowsSection(usageMap) {
