@@ -143227,16 +143227,16 @@
     "Class": "Assassin",
     "Stats": {
       "Level": 94,
-      "Experience": 2286553297,
+      "Experience": 2286984884,
       "Strength": 116,
       "Dexterity": 34,
       "Vitality": 390,
       "Energy": 25,
       "BaseLife": 1406,
-      "Life": 1962,
+      "Life": 2772,
       "BaseMana": 164,
-      "Mana": 245,
-      "Gold": 29511,
+      "Mana": 331,
+      "Gold": 264561,
       "Stashed": 1018870
     },
     "Bonus": {
@@ -143628,7 +143628,7 @@
         "Ethereal": "False",
         "Enhanced": "True",
         "Defense": "66",
-        "Durability": "13",
+        "Durability": "12",
         "DurabilityMaximum": "16",
         "ItemLevel": "95",
         "LevelReq": 63,
@@ -144128,7 +144128,7 @@
         "DamageMinimum": "86",
         "DamageMaximum": "102",
         "ThrowDamageMinimum": "25",
-        "Durability": "112",
+        "Durability": "111",
         "DurabilityMaximum": "215",
         "ItemLevel": "87",
         "LevelReq": 42,
@@ -144970,20 +144970,47 @@
       },
       {
         "Quality": "Magic",
-        "ID": "4261374643",
+        "ID": "1801579162",
         "QualityCode": "q_magic",
-        "Title": "Shogukusha's Grand Charm of Life",
+        "Title": "Shogukusha's Grand Charm of Sustenance",
+        "Tag": "Grand Charm",
+        "TextTag": "Charm Large",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "AlternateGraphics": "2",
+        "ItemLevel": "87",
+        "LevelReq": 53,
+        "SocketCount": "0",
+        "PropertyList": [
+          "+1 to Martial Arts (Assassin Only)",
+          "+33 to Life"
+        ],
+        "Position": {
+          "x": 4,
+          "y": 6
+        },
+        "Size": {
+          "invheight": 3,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Magic",
+        "ID": "1000481196",
+        "QualityCode": "q_magic",
+        "Title": "Shogukusha's Grand Charm of Sustenance",
         "Tag": "Grand Charm",
         "TextTag": "Charm Large",
         "Ethereal": "False",
         "Enhanced": "False",
         "AlternateGraphics": "1",
-        "ItemLevel": "87",
+        "ItemLevel": "86",
         "LevelReq": 42,
         "SocketCount": "0",
         "PropertyList": [
           "+1 to Martial Arts (Assassin Only)",
-          "+15 to Life"
+          "+29 to Life"
         ],
         "Position": {
           "x": 6,
@@ -145013,33 +145040,6 @@
           "+7% Faster Run/Walk"
         ],
         "Position": {
-          "x": 7,
-          "y": 6
-        },
-        "Size": {
-          "invheight": 3,
-          "invwidth": 1
-        },
-        "Worn": ""
-      },
-      {
-        "Quality": "Magic",
-        "ID": "1254961454",
-        "QualityCode": "q_magic",
-        "Title": "Shogukusha's Grand Charm of Inertia",
-        "Tag": "Grand Charm",
-        "TextTag": "Charm Large",
-        "Ethereal": "False",
-        "Enhanced": "False",
-        "AlternateGraphics": "0",
-        "ItemLevel": "50",
-        "LevelReq": 42,
-        "SocketCount": "0",
-        "PropertyList": [
-          "+1 to Martial Arts (Assassin Only)",
-          "+7% Faster Run/Walk"
-        ],
-        "Position": {
           "x": 8,
           "y": 6
         },
@@ -145051,27 +145051,237 @@
       },
       {
         "Quality": "Magic",
-        "ID": "1801579162",
+        "ID": "2914185151",
         "QualityCode": "q_magic",
         "Title": "Shogukusha's Grand Charm of Sustenance",
         "Tag": "Grand Charm",
         "TextTag": "Charm Large",
         "Ethereal": "False",
         "Enhanced": "False",
-        "AlternateGraphics": "2",
+        "AlternateGraphics": "1",
         "ItemLevel": "87",
-        "LevelReq": 53,
+        "LevelReq": 42,
         "SocketCount": "0",
         "PropertyList": [
           "+1 to Martial Arts (Assassin Only)",
-          "+33 to Life"
+          "+27 to Life"
         ],
         "Position": {
-          "x": 4,
+          "x": 7,
           "y": 6
         },
         "Size": {
           "invheight": 3,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Rare",
+        "ID": "161183265",
+        "QualityCode": "q_rare",
+        "Title": "Bitter Eye",
+        "Tag": "Decomposing Settlement Relic",
+        "TextTag": "Decomposing Settlement Relic",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "ItemLevel": "99",
+        "LevelReq": 80,
+        "SocketCount": "0",
+        "PropertyList": [
+          "Replenish Life 18 per second",
+          "Fire Resist +50%",
+          "Cannot Be Frozen",
+          "Attacker Takes Damage of 15"
+        ],
+        "Position": {
+          "x": 1,
+          "y": 4
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Rare",
+        "ID": "2946920303",
+        "QualityCode": "q_rare",
+        "Title": "Viper Eye",
+        "Tag": "Baleful Alcazar Relic",
+        "TextTag": "Baleful Alcazar Relic",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "ItemLevel": "99",
+        "LevelReq": 80,
+        "SocketCount": "0",
+        "PropertyList": [
+          "+17% Faster Run/Walk",
+          "Adds 99-100 cold damage",
+          "Cold Resist +50%",
+          "Fire Absorb 17%",
+          "51% Reduced Curse Duration"
+        ],
+        "Position": {
+          "x": 2,
+          "y": 4
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Unknown",
+        "ID": "0",
+        "QualityCode": "",
+        "Title": "Super Healing Potion",
+        "Tag": "Super Healing Potion",
+        "TextTag": "Greater Healing Potion",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "ItemLevel": "0",
+        "LevelReq": 0,
+        "SocketCount": "0",
+        "PropertyList": [],
+        "Position": {
+          "x": 9,
+          "y": 4
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Unknown",
+        "ID": "0",
+        "QualityCode": "",
+        "Title": "Super Healing Potion",
+        "Tag": "Super Healing Potion",
+        "TextTag": "Greater Healing Potion",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "ItemLevel": "0",
+        "LevelReq": 0,
+        "SocketCount": "0",
+        "PropertyList": [],
+        "Position": {
+          "x": 9,
+          "y": 2
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Unknown",
+        "ID": "0",
+        "QualityCode": "",
+        "Title": "Super Healing Potion",
+        "Tag": "Super Healing Potion",
+        "TextTag": "Greater Healing Potion",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "ItemLevel": "0",
+        "LevelReq": 0,
+        "SocketCount": "0",
+        "PropertyList": [],
+        "Position": {
+          "x": 8,
+          "y": 1
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Rare",
+        "ID": "3206287643",
+        "QualityCode": "q_rare",
+        "Title": "Storm Eye",
+        "Tag": "Decomposing Settlement Relic",
+        "TextTag": "Decomposing Settlement Relic",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "ItemLevel": "99",
+        "LevelReq": 80,
+        "SocketCount": "0",
+        "PropertyList": [
+          "Adds 99-100 Fire damage",
+          "5% Deadly Strike",
+          "+28% Enhanced Defense",
+          "Magic Resist +50%",
+          "Cold Absorb 6%"
+        ],
+        "Position": {
+          "x": 9,
+          "y": 3
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Rare",
+        "ID": "2878043649",
+        "QualityCode": "q_rare",
+        "Title": "Stone Eye",
+        "Tag": "Abyssal Furnace Relic",
+        "TextTag": "Abyssal Furnace Relic",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "ItemLevel": "99",
+        "LevelReq": 80,
+        "SocketCount": "0",
+        "PropertyList": [
+          "15% Chance to cast level 25 Glacial Spike when you Die",
+          "Level 11 Redemption Aura When Equipped",
+          "+105% Increased Attack Speed",
+          "Adds 30-40 Magic damage",
+          "+40% Increased Poison Damage",
+          "Fire Resist +50%",
+          "Poison Resist +50%"
+        ],
+        "Position": {
+          "x": 8,
+          "y": 0
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Magic",
+        "ID": "1725065478",
+        "QualityCode": "q_magic",
+        "Title": "Small Charm",
+        "Tag": "Small Charm",
+        "TextTag": "Charm Small",
+        "Ethereal": "False",
+        "AlternateGraphics": "1",
+        "ItemLevel": "87",
+        "LevelReq": 32,
+        "PropertyList": [
+          "\u00ffc1Unidentified"
+        ],
+        "Position": {
+          "x": 8,
+          "y": 4
+        },
+        "Size": {
+          "invheight": 1,
           "invwidth": 1
         },
         "Worn": ""
@@ -145284,7 +145494,152 @@
           "invwidth": 2
         },
         "Worn": "helmet"
+      },
+      {
+        "Quality": "Normal",
+        "ID": "756883490",
+        "QualityCode": "q_runeword",
+        "Title": "Infinity",
+        "Tag": "Mancatcher",
+        "TextTag": "Mancatcher",
+        "RuneTag": "BerMalBerIst",
+        "Ethereal": "True",
+        "Enhanced": "True",
+        "DamageMinimum": "163",
+        "DamageMaximum": "358",
+        "Durability": "64",
+        "DurabilityMaximum": "64",
+        "ItemLevel": "87",
+        "LevelReq": 63,
+        "Sockets": [
+          {
+            "Quality": "Unknown",
+            "ID": "0",
+            "QualityCode": "",
+            "Title": "Ber Rune",
+            "Tag": "Ber Rune",
+            "TextTag": "Ber Rune",
+            "Ethereal": "False",
+            "Enhanced": "False",
+            "ItemLevel": "0",
+            "LevelReq": 63,
+            "SocketCount": "0",
+            "PropertyList": [
+              "20% Chance of Crushing Blow"
+            ],
+            "Position": {
+              "x": 0,
+              "y": 0
+            },
+            "Size": {
+              "invheight": 1,
+              "invwidth": 1
+            },
+            "Worn": ""
+          },
+          {
+            "Quality": "Unknown",
+            "ID": "0",
+            "QualityCode": "",
+            "Title": "Mal Rune",
+            "Tag": "Mal Rune",
+            "TextTag": "Mal Rune",
+            "Ethereal": "False",
+            "Enhanced": "False",
+            "ItemLevel": "0",
+            "LevelReq": 49,
+            "SocketCount": "0",
+            "PropertyList": [
+              "Prevent Monster Heal"
+            ],
+            "Position": {
+              "x": 1,
+              "y": 0
+            },
+            "Size": {
+              "invheight": 1,
+              "invwidth": 1
+            },
+            "Worn": ""
+          },
+          {
+            "Quality": "Unknown",
+            "ID": "0",
+            "QualityCode": "",
+            "Title": "Ber Rune",
+            "Tag": "Ber Rune",
+            "TextTag": "Ber Rune",
+            "Ethereal": "False",
+            "Enhanced": "False",
+            "ItemLevel": "0",
+            "LevelReq": 63,
+            "SocketCount": "0",
+            "PropertyList": [
+              "20% Chance of Crushing Blow"
+            ],
+            "Position": {
+              "x": 2,
+              "y": 0
+            },
+            "Size": {
+              "invheight": 1,
+              "invwidth": 1
+            },
+            "Worn": ""
+          },
+          {
+            "Quality": "Unknown",
+            "ID": "0",
+            "QualityCode": "",
+            "Title": "Ist Rune",
+            "Tag": "Ist Rune",
+            "TextTag": "Ist Rune",
+            "Ethereal": "False",
+            "Enhanced": "False",
+            "ItemLevel": "0",
+            "LevelReq": 51,
+            "SocketCount": "0",
+            "PropertyList": [
+              "30% Better Chance of Getting Magic Items"
+            ],
+            "Position": {
+              "x": 3,
+              "y": 0
+            },
+            "Size": {
+              "invheight": 1,
+              "invwidth": 1
+            },
+            "Worn": ""
+          }
+        ],
+        "SocketCount": "4",
+        "PropertyList": [
+          "50% Chance to cast level 20 Chain Lightning when you Kill an Enemy",
+          "Level 12 Conviction Aura When Equipped",
+          "+35% Faster Run/Walk",
+          "+160% Enhanced Damage",
+          "-46% to Enemy Lightning Resistance",
+          "40% Chance of Crushing Blow",
+          "Prevent Monster Heal",
+          "+47 to Vitality (Based on Character Level)",
+          "30% Better Chance of Getting Magic Items",
+          "Level 21 Cyclone Armor (30/30 Charges)",
+          "Ethereal (Cannot be Repaired), Socketed (4)"
+        ],
+        "Position": {
+          "x": 4,
+          "y": 0
+        },
+        "Size": {
+          "invheight": 4,
+          "invwidth": 2
+        },
+        "Worn": "weapon1"
       }
+    ],
+    "ItemCodeFailedToParse": [
+      "ItemCode: ma22 | Properties:   [34] normal_damage_reduction -> 63 [0]  [35] magic_damage_reduction -> 63 [0]  [96] item_fastermovevelocity -> 28 [0]  [111] item_normaldamage -> 150 [0]  [146] item_absorbmagic_percent -> 27 [0]  [151] item_aura -> 7 [758]  [396] item_absorbpois_percent -> 31 [0]  [511] EOF -> 0 [0]"
     ]
   },
   {
