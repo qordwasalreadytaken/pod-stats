@@ -285775,7 +285775,7 @@
       "Vitality": 47,
       "Energy": 15,
       "BaseLife": 413,
-      "Life": 682,
+      "Life": 727,
       "BaseMana": 148,
       "Mana": 196,
       "Gold": 44560,
@@ -285821,10 +285821,10 @@
         "GoldFind": 0,
         "FasterCastRate": 0,
         "FasterHitRecovery": 0,
-        "IncreasedAttackSpeed": 0,
+        "IncreasedAttackSpeed": 20,
         "CrushingBlow": 0,
         "OpenWounds": 0,
-        "DeadlyStrike": 0,
+        "DeadlyStrike": 20,
         "DamageReduction": 0,
         "CooldownReduction": 0
       },
@@ -286282,6 +286282,73 @@
       },
       {
         "Quality": "Unique",
+        "ID": "1311525958",
+        "QualityCode": "q_unique",
+        "Title": "Medusa's Gaze",
+        "Tag": "Aegis",
+        "TextTag": "Aegis",
+        "Ethereal": "False",
+        "Enhanced": "True",
+        "Block": "49",
+        "Defense": "222",
+        "Durability": "92",
+        "DurabilityMaximum": "92",
+        "ItemLevel": "88",
+        "LevelReq": 76,
+        "SocketCount": "4",
+        "PropertyList": [
+          "\u00ffc1Corrupted",
+          "+2 to Cold Skills",
+          "-13% to Enemy Cold Resistance",
+          "+2 to Shiver Armor",
+          "+199% Enhanced Defense",
+          "+5% to Maximum Cold Resist",
+          "Cold Resist +58%",
+          "Requirements -50%",
+          "Socketed (4)"
+        ],
+        "Position": {
+          "x": 12,
+          "y": 0
+        },
+        "Size": {
+          "invheight": 3,
+          "invwidth": 2
+        },
+        "Worn": "sweapon2"
+      },
+      {
+        "Quality": "Unique",
+        "ID": "3220012761",
+        "QualityCode": "q_unique",
+        "Title": "Bul-Kathos' Wedding Band",
+        "Tag": "Ring",
+        "TextTag": "ring",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "AlternateGraphics": "0",
+        "ItemLevel": "89",
+        "LevelReq": 58,
+        "SocketCount": "0",
+        "PropertyList": [
+          "\u00ffc1Corrupted",
+          "+1 to All Skills",
+          "4% Life stolen per hit",
+          "+45 to Life (Based on Character Level)",
+          "+50 Maximum Stamina"
+        ],
+        "Position": {
+          "x": 6,
+          "y": 0
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": "ring1"
+      },
+      {
+        "Quality": "Unique",
         "ID": "2756577411",
         "QualityCode": "q_unique",
         "Title": "Andariel's Visage",
@@ -286407,62 +286474,167 @@
         "Worn": "helmet"
       },
       {
-        "Quality": "Unique",
-        "ID": "1311525958",
-        "QualityCode": "q_unique",
-        "Title": "Medusa's Gaze",
-        "Tag": "Aegis",
-        "TextTag": "Aegis",
+        "Quality": "Superior",
+        "ID": "1083310110",
+        "QualityCode": "q_runeword",
+        "Title": "Ice",
+        "Tag": "Matriarchal Bow",
+        "TextTag": "Matriarchal Bow",
+        "RuneTag": "AmnShaelJahLo",
         "Ethereal": "False",
         "Enhanced": "True",
-        "Block": "49",
-        "Defense": "222",
-        "Durability": "92",
-        "DurabilityMaximum": "92",
-        "ItemLevel": "88",
-        "LevelReq": 76,
+        "DamageMinimum": "50",
+        "DamageMaximum": "118",
+        "ItemLevel": "87",
+        "LevelReq": 65,
+        "Sockets": [
+          {
+            "Quality": "Unknown",
+            "ID": "0",
+            "QualityCode": "",
+            "Title": "Amn Rune",
+            "Tag": "Amn Rune",
+            "TextTag": "Amn Rune",
+            "Ethereal": "False",
+            "Enhanced": "False",
+            "ItemLevel": "0",
+            "LevelReq": 25,
+            "SocketCount": "0",
+            "PropertyList": [
+              "7% Life stolen per hit"
+            ],
+            "Position": {
+              "x": 0,
+              "y": 0
+            },
+            "Size": {
+              "invheight": 1,
+              "invwidth": 1
+            },
+            "Worn": ""
+          },
+          {
+            "Quality": "Unknown",
+            "ID": "0",
+            "QualityCode": "",
+            "Title": "Shael Rune",
+            "Tag": "Shael Rune",
+            "TextTag": "Shael Rune",
+            "Ethereal": "False",
+            "Enhanced": "False",
+            "ItemLevel": "0",
+            "LevelReq": 29,
+            "SocketCount": "0",
+            "PropertyList": [
+              "+20% Increased Attack Speed"
+            ],
+            "Position": {
+              "x": 1,
+              "y": 0
+            },
+            "Size": {
+              "invheight": 1,
+              "invwidth": 1
+            },
+            "Worn": ""
+          },
+          {
+            "Quality": "Unknown",
+            "ID": "0",
+            "QualityCode": "",
+            "Title": "Jah Rune",
+            "Tag": "Jah Rune",
+            "TextTag": "Jah Rune",
+            "Ethereal": "False",
+            "Enhanced": "False",
+            "ItemLevel": "0",
+            "LevelReq": 65,
+            "SocketCount": "0",
+            "PropertyList": [
+              "Ignore Target's Defense"
+            ],
+            "Position": {
+              "x": 2,
+              "y": 0
+            },
+            "Size": {
+              "invheight": 1,
+              "invwidth": 1
+            },
+            "Worn": ""
+          },
+          {
+            "Quality": "Unknown",
+            "ID": "0",
+            "QualityCode": "",
+            "Title": "Lo Rune",
+            "Tag": "Lo Rune",
+            "TextTag": "Lo Rune",
+            "Ethereal": "False",
+            "Enhanced": "False",
+            "ItemLevel": "0",
+            "LevelReq": 59,
+            "SocketCount": "0",
+            "PropertyList": [
+              "20% Deadly Strike"
+            ],
+            "Position": {
+              "x": 3,
+              "y": 0
+            },
+            "Size": {
+              "invheight": 1,
+              "invwidth": 1
+            },
+            "Worn": ""
+          }
+        ],
         "SocketCount": "4",
         "PropertyList": [
-          "\u00ffc1Corrupted",
-          "+2 to Cold Skills",
-          "-13% to Enemy Cold Resistance",
-          "+2 to Shiver Armor",
-          "+199% Enhanced Defense",
-          "+5% to Maximum Cold Resist",
-          "Cold Resist +58%",
-          "Requirements -50%",
+          "100% Chance to cast level 40 Blizzard when you Level-Up",
+          "25% Chance to cast level 22 Frost Nova on striking",
+          "Level 18 Holy Freeze Aura When Equipped",
+          "+3 to Bow and Crossbow Skills (Amazon Only)",
+          "+20% Increased Attack Speed",
+          "+153% Enhanced Damage",
+          "Ignore Target's Defense",
+          "+90 to Attack Rating (Based on Character Level)",
+          "-20% to Enemy Cold Resistance",
+          "+25% Increased Cold Damage",
+          "7% Life stolen per hit",
+          "20% Deadly Strike",
+          "281% Extra Gold from Monsters (Based on Character Level)",
           "Socketed (4)"
         ],
         "Position": {
-          "x": 12,
+          "x": 4,
           "y": 0
         },
         "Size": {
-          "invheight": 3,
+          "invheight": 4,
           "invwidth": 2
         },
-        "Worn": "sweapon2"
+        "Worn": "weapon1"
       },
       {
-        "Quality": "Unique",
-        "ID": "1288409506",
-        "QualityCode": "q_unique",
-        "Title": "Swiftheart",
-        "Tag": "Bolts",
-        "TextTag": "Bolts",
+        "Quality": "Rare",
+        "ID": "1856019285",
+        "QualityCode": "q_rare",
+        "Title": "Bone Eye",
+        "Tag": "Arrows",
+        "TextTag": "Arrows",
         "Ethereal": "False",
         "Enhanced": "False",
         "ItemLevel": "88",
-        "LevelReq": 41,
+        "LevelReq": 56,
         "SocketCount": "0",
         "PropertyList": [
           "\u00ffc1Corrupted",
-          "+1 to All Skills",
-          "+14% Faster Run/Walk",
-          "+20% Piercing Attack",
-          "+6 to Strafe",
-          "Replenish Life 12 per second",
-          "+4 Mana Gained on Ranged Hit"
+          "Adds 21-22 damage",
+          "+56 to Maximum Damage (Based on Character Level)",
+          "9% Bonus to Attack Rating",
+          "Adds 1-32 Lightning damage",
+          "Adds 36-37 cold damage"
         ],
         "Position": {
           "x": 5,
