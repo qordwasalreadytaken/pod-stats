@@ -216,6 +216,25 @@
             font-family: 'armory', sans-serif;
             font-size: 0.9rem;
         }
+        .bug-confidence {
+            display: inline-block;
+            padding: 2px 7px;
+            margin-right: 6px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        .bug-confidence-definite {
+            color: #d5f2e3;
+            background-color: #285a38;
+        }
+        .bug-confidence-probable {
+            color: #fff0b3;
+            background-color: #665319;
+        }
+        .bug-confidence-possible {
+            color: #e0e0e2;
+            background-color: #555;
+        }
     </style>
 
         <h1>Advanced Character Search</h1>
@@ -235,8 +254,8 @@
 
                 <div class="form-group">
                     <label for="itemName">Item Query:</label>
-                    <input type="text" id="itemName" placeholder="e.g. doom, \"doom\", shield with skull">
-                    <small>Supports and/or, with, !with/without, and ; clauses.</small>
+                    <input type="text" id="itemName" placeholder="e.g. doom, shield with skull">
+                    <small>Supports and/or, with, !with/without, ; clauses.</small>
                 </div>
 
                 <div class="form-group">
@@ -540,6 +559,137 @@
             if (!item || !item.Sockets) return [];
             if (Array.isArray(item.Sockets)) return item.Sockets;
             return Object.values(item.Sockets);
+        }
+
+        function sumPropertyValues(properties, pattern) {
+            return (properties || []).reduce((sum, property) => {
+                const match = property.match(pattern);
+                return sum + (match ? Number(match[1]) : 0);
+            }, 0);
+        }
+
+        function jewelHasProperty(jewel, pattern) {
+            return (jewel.PropertyList || []).some(property => pattern.test(property));
+        }
+
+        function isJewelSocketable(socket) {
+            const itemType = `${socket.Tag || ''} ${socket.TextTag || ''}`;
+            return /(?:^|\s)jewel(?:\s|$)/i.test(itemType) ||
+                (socket.Title || '').toLowerCase().includes('jewel');
+        }
+
+        function classifyJewelBug(item) {
+            const sockets = getSocketArray(item);
+            const jewels = sockets
+                .map((jewel, index) => ({ jewel, index, properties: jewel.PropertyList || [] }))
+                .filter(entry => isJewelSocketable(entry.jewel));
+            if (jewels.length === 0) return null;
+
+            const edPattern = /\+(\d+)% Enhanced Damage/i;
+            const maxPattern = /\+(\d+) to Maximum Damage/i;
+            const minPattern = /\+(\d+) to Minimum Damage/i;
+            const stats = jewels.map(entry => ({
+                ...entry,
+                ed: jewelHasProperty(entry.jewel, edPattern),
+                max: jewelHasProperty(entry.jewel, maxPattern),
+                min: jewelHasProperty(entry.jewel, minPattern)
+            }));
+            const cases = [];
+
+            if (stats.some(maxJewel => maxJewel.max && !maxJewel.ed && !maxJewel.min &&
+                stats.some(edJewel => edJewel.ed && !edJewel.max && !edJewel.min &&
+                    maxJewel.index < edJewel.index))) {
+                cases.push(5);
+            }
+            if (stats.some(minJewel => minJewel.min && !minJewel.ed && !minJewel.max &&
+                stats.some(edJewel => edJewel.ed && !edJewel.max && !edJewel.min &&
+                    minJewel.index < edJewel.index))) {
+                cases.push(6);
+            }
+            if (stats.some(jewel => jewel.ed && jewel.max && !jewel.min)) cases.push(7);
+            if (stats.some(jewel => jewel.ed && jewel.min && !jewel.max)) cases.push(8);
+            if (stats.some(jewel => jewel.ed && jewel.max && jewel.min)) cases.push(9);
+
+            const base = getBaseForItem(item);
+            const itemHasWeaponDamage = item.DamageMinimum !== undefined ||
+                item.DamageMaximum !== undefined;
+            const knownWeapon = itemHasWeaponDamage || (base &&
+                (base.group === 'weapon' || base.WEAPON === true) &&
+                base.type !== 'shield' && base.shield !== true && base.group !== 'offhand');
+
+            if (knownWeapon) return null;
+
+            if (cases.length > 0) {
+                if (base) return { tier: 'Definite', cases, jewels: stats };
+                return { tier: 'Possible', cases, jewels: stats };
+            }
+
+            const totalProperties = item.PropertyList || [];
+            const socketedProperties = sockets.map(socket => socket.PropertyList || []);
+            const socketedMax = socketedProperties.reduce((sum, properties) =>
+                sum + sumPropertyValues(properties, maxPattern), 0);
+            const socketedMin = socketedProperties.reduce((sum, properties) =>
+                sum + sumPropertyValues(properties, minPattern), 0);
+            const hasSocketedEdJewel = stats.some(jewel => jewel.ed && !jewel.max && !jewel.min);
+            const nativeMax = sumPropertyValues(totalProperties, maxPattern) > socketedMax &&
+                !stats.some(maxJewel => maxJewel.max && !maxJewel.ed && !maxJewel.min &&
+                    stats.some(edJewel => edJewel.ed && !edJewel.max && !edJewel.min &&
+                        edJewel.index < maxJewel.index));
+            const nativeMin = sumPropertyValues(totalProperties, minPattern) > socketedMin &&
+                !stats.some(minJewel => minJewel.min && !minJewel.ed && !minJewel.max &&
+                    stats.some(edJewel => edJewel.ed && !edJewel.max && !edJewel.min &&
+                        edJewel.index < minJewel.index));
+
+            if (hasSocketedEdJewel && (nativeMax || nativeMin)) {
+                if (!base) {
+                    const possibleCases = [];
+                    if (nativeMax) possibleCases.push(3);
+                    if (nativeMin) possibleCases.push(4);
+                    return { tier: 'Possible', cases: possibleCases, jewels: stats };
+                }
+                if (nativeMax) cases.push(3);
+                if (nativeMin) cases.push(4);
+                return { tier: 'Probable', cases, jewels: stats };
+            }
+
+            return null;
+        }
+
+        function findJewelBugItemsForCharacter(char, includeMercenaries) {
+            const entries = (char.Equipped || char.Equipment || [])
+                .map(item => ({ item, type: 'Character' }));
+            if (includeMercenaries) {
+                entries.push(...(char.MercenaryEquipped || [])
+                    .map(item => ({ item, type: 'Mercenary' })));
+            }
+
+            const matched = [];
+            const seen = new Set();
+            for (const { item, type } of entries) {
+                if (!item || !item.Title) continue;
+                const jewelBug = classifyJewelBug(item);
+                if (!jewelBug) continue;
+                const key = `${item.Worn || '?'}|${item.Title}|${item.Tag || item.TextTag || ''}|${type}`;
+                if (seen.has(key)) continue;
+                seen.add(key);
+                matched.push({
+                    slot: item.Worn || 'Unknown',
+                    name: `${item.Title} - ${item.TextTag || item.Tag || ''}`,
+                    type,
+                    jewelBug
+                });
+            }
+            return matched;
+        }
+
+        function escapeHtml(value) {
+            return String(value).replace(/[&<>"']/g, character => ({
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#39;'
+            })[character]);
         }
 
         function parseConditionsInput(minPointsInput, skillCount) {
@@ -863,7 +1013,10 @@
                 }
 
                 let matchedItems = [];
-                if (criteria.parsedClauses && criteria.parsedClauses.length > 0) {
+                if (criteria.jewelBugSearch) {
+                    matchedItems = findJewelBugItemsForCharacter(char, criteria.includeMercenaries);
+                    if (matchedItems.length === 0) continue;
+                } else if (criteria.parsedClauses && criteria.parsedClauses.length > 0) {
                     const itemEval = evaluateItemClausesForCharacter(char, criteria.parsedClauses, criteria.includeMercenaries);
                     if (!itemEval.ok) {
                         continue;
@@ -938,6 +1091,7 @@
             const minPointsInput = document.getElementById('minPoints').value.trim();
             const includeMercenaries = document.getElementById('includeMercenaries').checked;
             const isHardcore = document.getElementById('searchHardcore').checked;
+            const jewelBugSearch = itemQueryInput.toLowerCase() === 'jewel bug';
 
             const hasAnyCriteria = !!characterNameInput || !!itemQueryInput || !!skillsInput;
             if (!hasAnyCriteria) {
@@ -946,7 +1100,7 @@
             }
 
             let parsedClauses = [];
-            if (itemQueryInput) {
+            if (itemQueryInput && !jewelBugSearch) {
                 const clauseStrings = itemQueryInput.split(';').map(s => s.trim()).filter(Boolean);
                 for (const clause of clauseStrings) {
                     const parsed = parseItemSearchQuery(clause);
@@ -974,7 +1128,8 @@
                 parsedClauses,
                 targetSkills,
                 conditionsArray,
-                includeMercenaries
+                includeMercenaries,
+                jewelBugSearch
             };
 
             const result = advancedFilterCharacters(criteria);
@@ -1005,6 +1160,7 @@
 
             let criteriaText = [];
             if (criteria.nameQuery) criteriaText.push(`name contains "${criteria.nameQuery}"`);
+            if (criteria.jewelBugSearch) criteriaText.push('items matching jewel bug cases 3-9');
             if (criteria.parsedClauses.length > 0) {
                 criteriaText.push(`item query matches "${document.getElementById('itemName').value.trim()}"`);
             }
@@ -1017,6 +1173,25 @@
             }
 
             let html = '';
+            if (criteria.jewelBugSearch) {
+                const counts = { Definite: 0, Probable: 0, Possible: 0 };
+                for (const char of result.matches) {
+                    for (const item of char.matchedItems) {
+                        counts[item.jewelBug.tier]++;
+                    }
+                }
+                html += `
+                    <div class="timing-info">
+                        <h3>Jewel Bug Match Confidence</h3>
+                        <p>Definite: cases 5-9 on a known non-weapon base. Probable: cases 3-4, where native +maximum/+minimum damage is inferred from item and socket properties. Possible: a matching pattern where the item's base could not be identified.</p>
+                        <div class="stats">
+                            <div class="stat-card"><div class="stat-number">${counts.Definite}</div><div class="stat-label">Definite item matches</div></div>
+                            <div class="stat-card"><div class="stat-number">${counts.Probable}</div><div class="stat-label">Probable item matches</div></div>
+                            <div class="stat-card"><div class="stat-number">${counts.Possible}</div><div class="stat-label">Possible item matches</div></div>
+                        </div>
+                    </div>
+                `;
+            }
             if (result.matches.length === 0) {
                 html += `
                     <div class="results">
@@ -1041,10 +1216,10 @@
 
                     html += `
                         <div class="character-card" style="margin: 8px 0; padding: 12px; border-radius: 6px; border-left: 3px solid ${classColor};">
-                            <div class="character-name">${char.name}</div>
+                            <div class="character-name">${escapeHtml(char.name)}</div>
                             <div class="character-info">
-                                Class: ${char.class} | Level: ${char.level} | League: ${leagueName} |
-                                <a href="${trendsUrl}" target="_blank">Trends Listing</a>
+                                Class: ${escapeHtml(char.class)} | Level: ${escapeHtml(char.level)} | League: ${leagueName} |
+                                <a href="${escapeHtml(trendsUrl)}" target="_blank">Trends Listing</a>
                             </div>
                     `;
 
@@ -1063,7 +1238,7 @@
                         if (charItems.length > 0) {
                             html += '<div class="equipment"><strong>Matched Character Equipment:</strong><br>';
                             for (const item of charItems) {
-                                html += `<div class="equipment-item" style="background-color:#2a4a2a;">${item.slot}: ${item.name}</div><br>`;
+                                html += `<div class="equipment-item" style="background-color:#2a4a2a;">${escapeHtml(item.slot)}: ${escapeHtml(item.name)}${formatJewelBugMatch(item)}</div><br>`;
                             }
                             html += '</div>';
                         }
@@ -1075,7 +1250,7 @@
                             html += `<div class="equipment" style="border-left-color:#d5a623;"><strong>Matched Mercenary Equipment:</strong><br>`;
                             html += `<div style="color:#d5a623; font-size:12px; margin-bottom:5px;">${mercType} "${mercName}" (Level ${mercLevel})</div>`;
                             for (const item of mercItems) {
-                                html += `<div class="equipment-item" style="background-color:#4a3a2a;">${item.slot}: ${item.name}</div><br>`;
+                                html += `<div class="equipment-item" style="background-color:#4a3a2a;">${escapeHtml(item.slot)}: ${escapeHtml(item.name)}${formatJewelBugMatch(item)}</div><br>`;
                             }
                             html += '</div>';
                         }
@@ -1108,6 +1283,30 @@
             `;
 
             resultsDiv.innerHTML = html;
+        }
+
+        const JEWEL_BUG_EFFECTS = {
+            3: { cause: 'Innate +Max Damage, then a +%ED jewel', effect: '%ED applies to minimum damage only, not maximum' },
+            4: { cause: 'Innate +Min Damage, then a +%ED jewel', effect: '%ED applies to maximum damage only, not minimum' },
+            5: { cause: '+Max Damage jewel, then a +%ED jewel', effect: '%ED applies to minimum damage only, not maximum' },
+            6: { cause: '+Min Damage jewel, then a +%ED jewel', effect: '%ED applies to maximum damage only, not minimum' },
+            7: { cause: '%ED/+Max Damage jewel', effect: '%ED applies to minimum damage only, not maximum' },
+            8: { cause: '%ED/+Min Damage jewel', effect: '%ED applies to maximum damage only, not minimum' },
+            9: { cause: '%ED/+Min/+Max Damage jewel', effect: '%ED applies to neither minimum nor maximum damage' }
+        };
+
+        function formatJewelBugMatch(item) {
+            if (!item.jewelBug) return '';
+            const { tier, cases, jewels } = item.jewelBug;
+            const effects = cases
+                .map(c => JEWEL_BUG_EFFECTS[c])
+                .filter(Boolean)
+                .map(e => `<div>${e.cause}; <strong>${e.effect}</strong></div>`)
+                .join('');
+            const sockets = jewels
+                .map(entry => `Socket ${entry.index + 1}: ${escapeHtml(entry.jewel.Title)} (${entry.properties.map(escapeHtml).join('; ')})`)
+                .join('<br>');
+            return `<div><span class="bug-confidence bug-confidence-${tier.toLowerCase()}">${tier}</span>${effects}${sockets}</div>`;
         }
 
         function clearAdvancedSearch() {
