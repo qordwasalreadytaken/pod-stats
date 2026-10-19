@@ -108050,7 +108050,7 @@
     "Class": "Sorceress",
     "Stats": {
       "Level": 96,
-      "Experience": 2845860546,
+      "Experience": 2852106152,
       "Strength": 40,
       "Dexterity": 60,
       "Vitality": 420,
@@ -108059,8 +108059,8 @@
       "Life": 1729,
       "BaseMana": 225,
       "Mana": 467,
-      "Gold": 350936,
-      "Stashed": 1370858
+      "Gold": 118172,
+      "Stashed": 2500000
     },
     "Bonus": {
       "Strength": 100,
@@ -402072,16 +402072,16 @@
     "Class": "Sorceress",
     "Stats": {
       "Level": 92,
-      "Experience": 2005248921,
+      "Experience": 2005571422,
       "Strength": 50,
       "Dexterity": 25,
       "Vitality": 440,
       "Energy": 35,
       "BaseLife": 1096,
-      "Life": 1394,
+      "Life": 1404,
       "BaseMana": 217,
       "Mana": 519,
-      "Gold": 633819,
+      "Gold": 920000,
       "Stashed": 2500000
     },
     "Bonus": {
@@ -403758,14 +403758,21 @@
         "Quality": "Rare",
         "ID": "1162544100",
         "QualityCode": "q_rare",
-        "Title": "Decomposing Settlement Relic",
+        "Title": "Bone Eye",
         "Tag": "Decomposing Settlement Relic",
         "TextTag": "Decomposing Settlement Relic",
         "Ethereal": "False",
+        "Enhanced": "False",
         "ItemLevel": "86",
         "LevelReq": 80,
+        "SocketCount": "0",
         "PropertyList": [
-          "\u00ffc1Unidentified"
+          "10% Chance to cast level 5 Decrepify on striking",
+          "+100% Increased Attack Speed",
+          "Adds 20-30 Magic damage",
+          "+14% Increased Poison Damage",
+          "Cold Resist +50%",
+          "Lightning Absorb 14%"
         ],
         "Position": {
           "x": 0,
@@ -403801,23 +403808,64 @@
         "Worn": ""
       },
       {
-        "Quality": "Rare",
-        "ID": "1674477614",
-        "QualityCode": "q_rare",
-        "Title": "Order Hold",
-        "Tag": "Ring",
-        "TextTag": "ring",
+        "Quality": "Unknown",
+        "ID": "0",
+        "QualityCode": "",
+        "Title": "Amn Rune",
+        "Tag": "Amn Rune",
+        "TextTag": "Amn Rune",
         "Ethereal": "False",
         "Enhanced": "False",
-        "AlternateGraphics": "1",
-        "ItemLevel": "81",
-        "LevelReq": 24,
+        "ItemLevel": "0",
+        "LevelReq": 25,
         "SocketCount": "0",
-        "PropertyList": [
-          "Cold Resist +11%",
-          "Poison Resist +23%",
-          "Level 4 Dim Vision (11/30 Charges)"
-        ],
+        "PropertyList": [],
+        "Position": {
+          "x": 1,
+          "y": 4
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Unknown",
+        "ID": "0",
+        "QualityCode": "",
+        "Title": "Flawless Emerald",
+        "Tag": "Flawless Emerald",
+        "TextTag": "Flawless Emerald",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "ItemLevel": "0",
+        "LevelReq": 15,
+        "SocketCount": "0",
+        "PropertyList": [],
+        "Position": {
+          "x": 7,
+          "y": 4
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Unknown",
+        "ID": "0",
+        "QualityCode": "",
+        "Title": "Flawless Diamond",
+        "Tag": "Flawless Diamond",
+        "TextTag": "Flawless Diamond",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "ItemLevel": "0",
+        "LevelReq": 15,
+        "SocketCount": "0",
+        "PropertyList": [],
         "Position": {
           "x": 7,
           "y": 3
@@ -403832,18 +403880,203 @@
         "Quality": "Unknown",
         "ID": "0",
         "QualityCode": "",
-        "Title": "Full Rejuvenation Potion",
-        "Tag": "Full Rejuvenation Potion",
-        "TextTag": "Full Rejuv Potion",
+        "Title": "Flawless Ruby",
+        "Tag": "Flawless Ruby",
+        "TextTag": "Flawless Ruby",
         "Ethereal": "False",
         "Enhanced": "False",
         "ItemLevel": "0",
-        "LevelReq": 0,
+        "LevelReq": 15,
         "SocketCount": "0",
         "PropertyList": [],
         "Position": {
           "x": 7,
           "y": 2
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Unknown",
+        "ID": "0",
+        "QualityCode": "",
+        "Title": "Flawless Sapphire",
+        "Tag": "Flawless Sapphire",
+        "TextTag": "Flawless Saphire",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "ItemLevel": "0",
+        "LevelReq": 15,
+        "SocketCount": "0",
+        "PropertyList": [],
+        "Position": {
+          "x": 7,
+          "y": 1
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Unknown",
+        "ID": "0",
+        "QualityCode": "",
+        "Title": "Flawless Amethyst",
+        "Tag": "Flawless Amethyst",
+        "TextTag": "Flawless Amethyst",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "ItemLevel": "0",
+        "LevelReq": 15,
+        "SocketCount": "0",
+        "PropertyList": [],
+        "Position": {
+          "x": 7,
+          "y": 0
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Unknown",
+        "ID": "0",
+        "QualityCode": "",
+        "Title": "Tal Rune",
+        "Tag": "Tal Rune",
+        "TextTag": "Tal Rune",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "ItemLevel": "0",
+        "LevelReq": 17,
+        "SocketCount": "0",
+        "PropertyList": [],
+        "Position": {
+          "x": 6,
+          "y": 4
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Unknown",
+        "ID": "0",
+        "QualityCode": "",
+        "Title": "Thul Rune",
+        "Tag": "Thul Rune",
+        "TextTag": "Thul Rune",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "ItemLevel": "0",
+        "LevelReq": 23,
+        "SocketCount": "0",
+        "PropertyList": [],
+        "Position": {
+          "x": 6,
+          "y": 3
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Unknown",
+        "ID": "0",
+        "QualityCode": "",
+        "Title": "Thul Rune",
+        "Tag": "Thul Rune",
+        "TextTag": "Thul Rune",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "ItemLevel": "0",
+        "LevelReq": 23,
+        "SocketCount": "0",
+        "PropertyList": [],
+        "Position": {
+          "x": 6,
+          "y": 2
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Unknown",
+        "ID": "0",
+        "QualityCode": "",
+        "Title": "Nef Rune",
+        "Tag": "Nef Rune",
+        "TextTag": "Nef Rune",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "ItemLevel": "0",
+        "LevelReq": 13,
+        "SocketCount": "0",
+        "PropertyList": [],
+        "Position": {
+          "x": 6,
+          "y": 1
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Magic",
+        "ID": "3110489939",
+        "QualityCode": "q_magic",
+        "Title": "Small Charm",
+        "Tag": "Small Charm",
+        "TextTag": "Charm Small",
+        "Ethereal": "False",
+        "AlternateGraphics": "2",
+        "ItemLevel": "78",
+        "LevelReq": 27,
+        "PropertyList": [
+          "\u00ffc1Unidentified"
+        ],
+        "Position": {
+          "x": 6,
+          "y": 0
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Unknown",
+        "ID": "0",
+        "QualityCode": "",
+        "Title": "Ort Rune",
+        "Tag": "Ort Rune",
+        "TextTag": "Ort Rune",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "ItemLevel": "0",
+        "LevelReq": 21,
+        "SocketCount": "0",
+        "PropertyList": [],
+        "Position": {
+          "x": 5,
+          "y": 4
         },
         "Size": {
           "invheight": 1,
