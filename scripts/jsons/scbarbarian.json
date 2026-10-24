@@ -103182,17 +103182,17 @@
     "Class": "Barbarian",
     "Stats": {
       "Level": 93,
-      "Experience": 2225735444,
+      "Experience": 2256768782,
       "Strength": 114,
       "Dexterity": 31,
       "Vitality": 405,
       "Energy": 10,
       "BaseLife": 1819,
-      "Life": 2483,
+      "Life": 2480,
       "BaseMana": 102,
       "Mana": 209,
-      "Gold": 0,
-      "Stashed": 2245468
+      "Gold": 809782,
+      "Stashed": 2500000
     },
     "Bonus": {
       "Strength": 41,
@@ -103366,10 +103366,10 @@
         ]
       }
     ],
-    "MercenaryExperience": 97562542,
-    "MercenaryType": "Barbarian",
-    "MercenaryName": "Tharr",
-    "MercenaryLevel": "69",
+    "MercenaryExperience": 97563264,
+    "MercenaryType": "Eastern Sorceror",
+    "MercenaryName": "Raldin",
+    "MercenaryLevel": "68",
     "Equipped": [
       {
         "Quality": "Unique",
@@ -104437,32 +104437,6 @@
       },
       {
         "Quality": "Magic",
-        "ID": "443961418",
-        "QualityCode": "q_magic",
-        "Title": "Large Charm of Vita",
-        "Tag": "Large Charm",
-        "TextTag": "Charm Medium",
-        "Ethereal": "False",
-        "Enhanced": "False",
-        "AlternateGraphics": "2",
-        "ItemLevel": "84",
-        "LevelReq": 66,
-        "SocketCount": "0",
-        "PropertyList": [
-          "+35 to Life"
-        ],
-        "Position": {
-          "x": 6,
-          "y": 7
-        },
-        "Size": {
-          "invheight": 2,
-          "invwidth": 1
-        },
-        "Worn": ""
-      },
-      {
-        "Quality": "Magic",
         "ID": "3232842218",
         "QualityCode": "q_magic",
         "Title": "Fine Small Charm",
@@ -104787,18 +104761,48 @@
         "Worn": ""
       },
       {
-        "Quality": "Unknown",
-        "ID": "0",
-        "QualityCode": "",
-        "Title": "Super Mana Potion",
-        "Tag": "Super Mana Potion",
-        "TextTag": "Greater Mana Potion",
+        "Quality": "Magic",
+        "ID": "1467775667",
+        "QualityCode": "q_magic",
+        "Title": "Steel Large Charm of Vita",
+        "Tag": "Large Charm",
+        "TextTag": "Charm Medium",
         "Ethereal": "False",
         "Enhanced": "False",
-        "ItemLevel": "0",
-        "LevelReq": 0,
+        "AlternateGraphics": "0",
+        "ItemLevel": "87",
+        "LevelReq": 66,
         "SocketCount": "0",
-        "PropertyList": [],
+        "PropertyList": [
+          "+64 to Attack Rating",
+          "+32 to Life"
+        ],
+        "Position": {
+          "x": 6,
+          "y": 7
+        },
+        "Size": {
+          "invheight": 2,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Magic",
+        "ID": "1971715380",
+        "QualityCode": "q_magic",
+        "Title": "Jewel of Daring",
+        "Tag": "Jewel",
+        "TextTag": "Jewel",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "AlternateGraphics": "2",
+        "ItemLevel": "87",
+        "LevelReq": 28,
+        "SocketCount": "0",
+        "PropertyList": [
+          "+9 to Dexterity"
+        ],
         "Position": {
           "x": 9,
           "y": 4
@@ -104813,30 +104817,27 @@
     "MercenaryEquipped": [
       {
         "Quality": "Unique",
-        "ID": "2510421246",
+        "ID": "2283308461",
         "QualityCode": "q_unique",
-        "Title": "Arreat's Face",
-        "Tag": "Slayer Guard",
-        "TextTag": "Slayer Guard",
+        "Title": "Harlequin Crest",
+        "Tag": "Shako",
+        "TextTag": "Shako",
         "Ethereal": "False",
-        "Enhanced": "True",
-        "Defense": "121",
-        "Durability": "47",
-        "DurabilityMaximum": "55",
+        "Enhanced": "False",
+        "Defense": "136",
+        "Durability": "11",
+        "DurabilityMaximum": "12",
         "ItemLevel": "88",
-        "LevelReq": 42,
+        "LevelReq": 62,
         "SocketCount": "0",
         "PropertyList": [
           "\u00ffc1Corrupted",
-          "+2 to Combat Skills (Barbarian Only)",
-          "+2 to Barbarian Skill Levels",
-          "+30% Faster Hit Recovery",
-          "20% Bonus to Attack Rating",
-          "5% Life stolen per hit",
-          "+172% Enhanced Defense",
-          "+20 to Strength",
-          "+20 to Dexterity",
-          "All Resistances +30"
+          "+2 to All Skills",
+          "+2 to all Attributes",
+          "+139 to Life (Based on Character Level)",
+          "+139 to Mana (Based on Character Level)",
+          "Physical Damage Taken Reduced by 10%",
+          "50% Better Chance of Getting Magic Items"
         ],
         "Position": {
           "x": 1,
@@ -104849,26 +104850,108 @@
         "Worn": "helmet"
       },
       {
-        "Quality": "Unique",
-        "ID": "1753250915",
-        "QualityCode": "q_unique",
-        "Title": "Leviathan",
-        "Tag": "Kraken Shell",
-        "TextTag": "Kraken Shell",
+        "Quality": "Normal",
+        "ID": "2165141391",
+        "QualityCode": "q_runeword",
+        "Title": "Lionheart",
+        "Tag": "Dusk Shroud",
+        "TextTag": "Dusk Shroud",
+        "RuneTag": "HelLumFal",
         "Ethereal": "False",
-        "Enhanced": "True",
-        "Defense": "524",
-        "Durability": "33",
-        "DurabilityMaximum": "48",
+        "Enhanced": "False",
+        "Defense": "448",
+        "Durability": "20",
+        "DurabilityMaximum": "20",
         "ItemLevel": "90",
-        "LevelReq": 65,
-        "SocketCount": "0",
+        "LevelReq": 49,
+        "Sockets": [
+          {
+            "Quality": "Unknown",
+            "ID": "0",
+            "QualityCode": "",
+            "Title": "Hel Rune",
+            "Tag": "Hel Rune",
+            "TextTag": "Hel Rune",
+            "Ethereal": "False",
+            "Enhanced": "False",
+            "ItemLevel": "0",
+            "LevelReq": 0,
+            "SocketCount": "0",
+            "PropertyList": [
+              "Requirements -15%"
+            ],
+            "Position": {
+              "x": 0,
+              "y": 0
+            },
+            "Size": {
+              "invheight": 1,
+              "invwidth": 1
+            },
+            "Worn": ""
+          },
+          {
+            "Quality": "Unknown",
+            "ID": "0",
+            "QualityCode": "",
+            "Title": "Lum Rune",
+            "Tag": "Lum Rune",
+            "TextTag": "Lum Rune",
+            "Ethereal": "False",
+            "Enhanced": "False",
+            "ItemLevel": "0",
+            "LevelReq": 37,
+            "SocketCount": "0",
+            "PropertyList": [
+              "+10 to Energy"
+            ],
+            "Position": {
+              "x": 1,
+              "y": 0
+            },
+            "Size": {
+              "invheight": 1,
+              "invwidth": 1
+            },
+            "Worn": ""
+          },
+          {
+            "Quality": "Unknown",
+            "ID": "0",
+            "QualityCode": "",
+            "Title": "Fal Rune",
+            "Tag": "Fal Rune",
+            "TextTag": "Fal Rune",
+            "Ethereal": "False",
+            "Enhanced": "False",
+            "ItemLevel": "0",
+            "LevelReq": 41,
+            "SocketCount": "0",
+            "PropertyList": [
+              "+10 to Strength"
+            ],
+            "Position": {
+              "x": 2,
+              "y": 0
+            },
+            "Size": {
+              "invheight": 1,
+              "invwidth": 1
+            },
+            "Worn": ""
+          }
+        ],
+        "SocketCount": "3",
         "PropertyList": [
-          "Indestructible",
-          "+190% Enhanced Defense",
-          "+126 Defense",
-          "+44 to Strength",
-          "Physical Damage Taken Reduced by 23%"
+          "+20% Enhanced Damage",
+          "+25 to Strength",
+          "+15 to Dexterity",
+          "+20 to Vitality",
+          "+10 to Energy",
+          "+50 to Life",
+          "All Resistances +30",
+          "Requirements -15%",
+          "Socketed (3)"
         ],
         "Position": {
           "x": 3,
@@ -104881,40 +104964,266 @@
         "Worn": "body"
       },
       {
-        "Quality": "Unique",
-        "ID": "265995667",
-        "QualityCode": "q_unique",
-        "Title": "The Grandfather",
-        "Tag": "Colossus Blade",
-        "TextTag": "Colossus Blade",
-        "Ethereal": "False",
-        "Enhanced": "True",
-        "DamageMinimum": "200",
-        "DamageMaximum": "397",
-        "Durability": "168",
-        "DurabilityMaximum": "215",
-        "ItemLevel": "86",
-        "LevelReq": 81,
-        "SocketCount": "0",
+        "Quality": "Normal",
+        "ID": "647432784",
+        "QualityCode": "q_runeword",
+        "Title": "Lawbringer",
+        "Tag": "Mythical Sword",
+        "TextTag": "Mythical Sword",
+        "RuneTag": "AmnLemKo",
+        "Ethereal": "True",
+        "Enhanced": "False",
+        "DamageMinimum": "60",
+        "DamageMaximum": "75",
+        "Durability": "100",
+        "DurabilityMaximum": "100",
+        "ItemLevel": "87",
+        "LevelReq": 66,
+        "Sockets": [
+          {
+            "Quality": "Unknown",
+            "ID": "0",
+            "QualityCode": "",
+            "Title": "Amn Rune",
+            "Tag": "Amn Rune",
+            "TextTag": "Amn Rune",
+            "Ethereal": "False",
+            "Enhanced": "False",
+            "ItemLevel": "0",
+            "LevelReq": 25,
+            "SocketCount": "0",
+            "PropertyList": [
+              "7% Life stolen per hit"
+            ],
+            "Position": {
+              "x": 0,
+              "y": 0
+            },
+            "Size": {
+              "invheight": 1,
+              "invwidth": 1
+            },
+            "Worn": ""
+          },
+          {
+            "Quality": "Unknown",
+            "ID": "0",
+            "QualityCode": "",
+            "Title": "Lem Rune",
+            "Tag": "Lem Rune",
+            "TextTag": "Lem Rune",
+            "Ethereal": "False",
+            "Enhanced": "False",
+            "ItemLevel": "0",
+            "LevelReq": 43,
+            "SocketCount": "0",
+            "PropertyList": [
+              "75% Extra Gold from Monsters"
+            ],
+            "Position": {
+              "x": 1,
+              "y": 0
+            },
+            "Size": {
+              "invheight": 1,
+              "invwidth": 1
+            },
+            "Worn": ""
+          },
+          {
+            "Quality": "Unknown",
+            "ID": "0",
+            "QualityCode": "",
+            "Title": "Ko Rune",
+            "Tag": "Ko Rune",
+            "TextTag": "Ko Rune",
+            "Ethereal": "False",
+            "Enhanced": "False",
+            "ItemLevel": "0",
+            "LevelReq": 39,
+            "SocketCount": "0",
+            "PropertyList": [
+              "+10 to Dexterity"
+            ],
+            "Position": {
+              "x": 2,
+              "y": 0
+            },
+            "Size": {
+              "invheight": 1,
+              "invwidth": 1
+            },
+            "Worn": ""
+          }
+        ],
+        "SocketCount": "3",
         "PropertyList": [
-          "Indestructible",
-          "+246% Enhanced Damage",
-          "+232 to Maximum Damage (Based on Character Level)",
-          "50% Bonus to Attack Rating",
-          "+3 to Sword Mastery",
-          "+20 to all Attributes",
-          "+80 to Life",
-          "2% of Life Regenerated per second"
+          "20% Chance to cast level 7 Decrepify on striking",
+          "Level 17 Sanctuary Aura When Equipped",
+          "-50% Target Defense",
+          "Adds 150-210 Fire damage",
+          "Adds 130-180 cold damage",
+          "7% Life stolen per hit",
+          "Slain Monsters Rest in Peace",
+          "+215 Defense vs. Missile",
+          "+10 to Dexterity",
+          "75% Extra Gold from Monsters",
+          "Ethereal (Cannot be Repaired), Socketed (3)"
         ],
         "Position": {
           "x": 4,
           "y": 0
         },
         "Size": {
-          "invheight": 4,
-          "invwidth": 2
+          "invheight": 3,
+          "invwidth": 1
         },
         "Worn": "weapon1"
+      },
+      {
+        "Quality": "Superior",
+        "ID": "371814315",
+        "QualityCode": "q_runeword",
+        "Title": "Spirit",
+        "Tag": "Monarch",
+        "TextTag": "Monarch",
+        "RuneTag": "TalThulOrtAmn",
+        "Ethereal": "False",
+        "Enhanced": "True",
+        "Block": "42",
+        "Defense": "149",
+        "Durability": "95",
+        "DurabilityMaximum": "86",
+        "ItemLevel": "87",
+        "LevelReq": 54,
+        "Sockets": [
+          {
+            "Quality": "Unknown",
+            "ID": "0",
+            "QualityCode": "",
+            "Title": "Tal Rune",
+            "Tag": "Tal Rune",
+            "TextTag": "Tal Rune",
+            "Ethereal": "False",
+            "Enhanced": "False",
+            "ItemLevel": "0",
+            "LevelReq": 17,
+            "SocketCount": "0",
+            "PropertyList": [
+              "Poison Resist +35%"
+            ],
+            "Position": {
+              "x": 0,
+              "y": 0
+            },
+            "Size": {
+              "invheight": 1,
+              "invwidth": 1
+            },
+            "Worn": ""
+          },
+          {
+            "Quality": "Unknown",
+            "ID": "0",
+            "QualityCode": "",
+            "Title": "Thul Rune",
+            "Tag": "Thul Rune",
+            "TextTag": "Thul Rune",
+            "Ethereal": "False",
+            "Enhanced": "False",
+            "ItemLevel": "0",
+            "LevelReq": 23,
+            "SocketCount": "0",
+            "PropertyList": [
+              "Cold Resist +35%"
+            ],
+            "Position": {
+              "x": 1,
+              "y": 0
+            },
+            "Size": {
+              "invheight": 1,
+              "invwidth": 1
+            },
+            "Worn": ""
+          },
+          {
+            "Quality": "Unknown",
+            "ID": "0",
+            "QualityCode": "",
+            "Title": "Ort Rune",
+            "Tag": "Ort Rune",
+            "TextTag": "Ort Rune",
+            "Ethereal": "False",
+            "Enhanced": "False",
+            "ItemLevel": "0",
+            "LevelReq": 21,
+            "SocketCount": "0",
+            "PropertyList": [
+              "Lightning Resist +35%"
+            ],
+            "Position": {
+              "x": 2,
+              "y": 0
+            },
+            "Size": {
+              "invheight": 1,
+              "invwidth": 1
+            },
+            "Worn": ""
+          },
+          {
+            "Quality": "Unknown",
+            "ID": "0",
+            "QualityCode": "",
+            "Title": "Amn Rune",
+            "Tag": "Amn Rune",
+            "TextTag": "Amn Rune",
+            "Ethereal": "False",
+            "Enhanced": "False",
+            "ItemLevel": "0",
+            "LevelReq": 25,
+            "SocketCount": "0",
+            "PropertyList": [
+              "Attacker Takes Damage of 14"
+            ],
+            "Position": {
+              "x": 3,
+              "y": 0
+            },
+            "Size": {
+              "invheight": 1,
+              "invwidth": 1
+            },
+            "Worn": ""
+          }
+        ],
+        "SocketCount": "4",
+        "PropertyList": [
+          "+2 to All Skills",
+          "+28% Faster Cast Rate",
+          "+55% Faster Hit Recovery",
+          "+8% Enhanced Defense",
+          "+250 Defense vs. Missile",
+          "+22 to Vitality",
+          "+99 to Mana",
+          "Cold Resist +35%",
+          "Lightning Resist +35%",
+          "Poison Resist +35%",
+          "+5 Magic Absorb",
+          "Attacker Takes Damage of 14",
+          "Increase Maximum Durability 11%",
+          "Socketed (4)"
+        ],
+        "Position": {
+          "x": 5,
+          "y": 0
+        },
+        "Size": {
+          "invheight": 3,
+          "invwidth": 2
+        },
+        "Worn": "weapon2"
       }
     ]
   },
