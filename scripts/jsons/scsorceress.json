@@ -33814,10 +33814,10 @@
       "Vitality": 295,
       "Energy": 146,
       "BaseLife": 814,
-      "Life": 1124,
+      "Life": 1181,
       "BaseMana": 449,
-      "Mana": 1216,
-      "Gold": 970000,
+      "Mana": 1311,
+      "Gold": 950000,
       "Stashed": 2500000
     },
     "Bonus": {
@@ -33845,20 +33845,20 @@
       "CooldownReduction": 10,
       "WeaponSetMain": {
         "Strength": 0,
-        "Dexterity": 0,
+        "Dexterity": 10,
         "Vitality": 0,
         "Energy": 0,
-        "FireResistance": 0,
+        "FireResistance": 33,
         "MaximumFireResistance": 0,
-        "ColdResistance": 0,
+        "ColdResistance": 33,
         "MaximumColdResistance": 0,
-        "LightningResistance": 0,
+        "LightningResistance": 33,
         "MaximumLightningResistance": 0,
-        "PoisonResistance": 0,
+        "PoisonResistance": 33,
         "MaximumPoisonResistance": 0,
         "MagicFind": 0,
         "GoldFind": 0,
-        "FasterCastRate": 0,
+        "FasterCastRate": 40,
         "FasterHitRecovery": 0,
         "IncreasedAttackSpeed": 0,
         "CrushingBlow": 0,
@@ -34522,34 +34522,148 @@
         "Worn": "sweapon1"
       },
       {
-        "Quality": "Magic",
-        "ID": "2856804485",
-        "QualityCode": "q_magic",
-        "Title": "Astral War Staff",
-        "Tag": "War Staff",
-        "TextTag": "War Staff",
+        "Quality": "Superior",
+        "ID": "3499573698",
+        "QualityCode": "q_runeword",
+        "Title": "Heart of the Oak",
+        "Tag": "Flail",
+        "TextTag": "Flail",
+        "RuneTag": "KoVexPulThul",
         "Ethereal": "False",
         "Enhanced": "False",
-        "DamageMinimum": "12",
-        "DamageMaximum": "28",
-        "Durability": "215",
-        "DurabilityMaximum": "215",
-        "ItemLevel": "99",
-        "LevelReq": 26,
-        "SocketCount": "0",
+        "DamageMinimum": "1",
+        "DamageMaximum": "24",
+        "Durability": "153",
+        "DurabilityMaximum": "135",
+        "ItemLevel": "87",
+        "LevelReq": 55,
+        "Sockets": [
+          {
+            "Quality": "Unknown",
+            "ID": "0",
+            "QualityCode": "",
+            "Title": "Ko Rune",
+            "Tag": "Ko Rune",
+            "TextTag": "Ko Rune",
+            "Ethereal": "False",
+            "Enhanced": "False",
+            "ItemLevel": "0",
+            "LevelReq": 39,
+            "SocketCount": "0",
+            "PropertyList": [
+              "+10 to Dexterity"
+            ],
+            "Position": {
+              "x": 0,
+              "y": 0
+            },
+            "Size": {
+              "invheight": 1,
+              "invwidth": 1
+            },
+            "Worn": ""
+          },
+          {
+            "Quality": "Unknown",
+            "ID": "0",
+            "QualityCode": "",
+            "Title": "Vex Rune",
+            "Tag": "Vex Rune",
+            "TextTag": "Vex Rune",
+            "Ethereal": "False",
+            "Enhanced": "False",
+            "ItemLevel": "0",
+            "LevelReq": 55,
+            "SocketCount": "0",
+            "PropertyList": [
+              "7% Mana stolen per hit"
+            ],
+            "Position": {
+              "x": 1,
+              "y": 0
+            },
+            "Size": {
+              "invheight": 1,
+              "invwidth": 1
+            },
+            "Worn": ""
+          },
+          {
+            "Quality": "Unknown",
+            "ID": "0",
+            "QualityCode": "",
+            "Title": "Pul Rune",
+            "Tag": "Pul Rune",
+            "TextTag": "Pul Rune",
+            "Ethereal": "False",
+            "Enhanced": "False",
+            "ItemLevel": "0",
+            "LevelReq": 45,
+            "SocketCount": "0",
+            "PropertyList": [
+              "+75% Damage to Demons",
+              "+100 to Attack Rating against Demons"
+            ],
+            "Position": {
+              "x": 2,
+              "y": 0
+            },
+            "Size": {
+              "invheight": 1,
+              "invwidth": 1
+            },
+            "Worn": ""
+          },
+          {
+            "Quality": "Unknown",
+            "ID": "0",
+            "QualityCode": "",
+            "Title": "Thul Rune",
+            "Tag": "Thul Rune",
+            "TextTag": "Thul Rune",
+            "Ethereal": "False",
+            "Enhanced": "False",
+            "ItemLevel": "0",
+            "LevelReq": 23,
+            "SocketCount": "0",
+            "PropertyList": [
+              "+3 cold damage"
+            ],
+            "Position": {
+              "x": 3,
+              "y": 0
+            },
+            "Size": {
+              "invheight": 1,
+              "invwidth": 1
+            },
+            "Worn": ""
+          }
+        ],
+        "SocketCount": "4",
         "PropertyList": [
-          "+132% Damage to Demons",
-          "+183 to Attack Rating against Demons",
+          "+3 to All Skills",
+          "+40% Faster Cast Rate",
+          "+75% Damage to Demons",
+          "+100 to Attack Rating against Demons",
           "+50% Damage to Undead",
-          "+2 to Fire Bolt (Sorceress Only)",
-          "+1 to Nova (Sorceress Only)"
+          "+3 cold damage",
+          "7% Mana stolen per hit",
+          "+10 to Dexterity",
+          "Increase Maximum Life 6%",
+          "Replenish Life 20 per second",
+          "Increase Maximum Mana 15%",
+          "All Resistances +33",
+          "Increase Maximum Durability 14%",
+          "Requirements -9%",
+          "Socketed (4)"
         ],
         "Position": {
           "x": 4,
           "y": 0
         },
         "Size": {
-          "invheight": 4,
+          "invheight": 3,
           "invwidth": 2
         },
         "Worn": "weapon1"
@@ -35210,195 +35324,35 @@
         "Worn": ""
       },
       {
-        "Quality": "Superior",
-        "ID": "3499573698",
-        "QualityCode": "q_runeword",
-        "Title": "Heart of the Oak",
-        "Tag": "Flail",
-        "TextTag": "Flail",
-        "RuneTag": "KoVexPulThul",
+        "Quality": "Magic",
+        "ID": "2856804485",
+        "QualityCode": "q_magic",
+        "Title": "Astral War Staff",
+        "Tag": "War Staff",
+        "TextTag": "War Staff",
         "Ethereal": "False",
         "Enhanced": "False",
-        "DamageMinimum": "1",
-        "DamageMaximum": "24",
-        "Durability": "153",
-        "DurabilityMaximum": "135",
-        "ItemLevel": "87",
-        "LevelReq": 55,
-        "Sockets": [
-          {
-            "Quality": "Unknown",
-            "ID": "0",
-            "QualityCode": "",
-            "Title": "Ko Rune",
-            "Tag": "Ko Rune",
-            "TextTag": "Ko Rune",
-            "Ethereal": "False",
-            "Enhanced": "False",
-            "ItemLevel": "0",
-            "LevelReq": 39,
-            "SocketCount": "0",
-            "PropertyList": [
-              "+10 to Dexterity"
-            ],
-            "Position": {
-              "x": 0,
-              "y": 0
-            },
-            "Size": {
-              "invheight": 1,
-              "invwidth": 1
-            },
-            "Worn": ""
-          },
-          {
-            "Quality": "Unknown",
-            "ID": "0",
-            "QualityCode": "",
-            "Title": "Vex Rune",
-            "Tag": "Vex Rune",
-            "TextTag": "Vex Rune",
-            "Ethereal": "False",
-            "Enhanced": "False",
-            "ItemLevel": "0",
-            "LevelReq": 55,
-            "SocketCount": "0",
-            "PropertyList": [
-              "7% Mana stolen per hit"
-            ],
-            "Position": {
-              "x": 1,
-              "y": 0
-            },
-            "Size": {
-              "invheight": 1,
-              "invwidth": 1
-            },
-            "Worn": ""
-          },
-          {
-            "Quality": "Unknown",
-            "ID": "0",
-            "QualityCode": "",
-            "Title": "Pul Rune",
-            "Tag": "Pul Rune",
-            "TextTag": "Pul Rune",
-            "Ethereal": "False",
-            "Enhanced": "False",
-            "ItemLevel": "0",
-            "LevelReq": 45,
-            "SocketCount": "0",
-            "PropertyList": [
-              "+75% Damage to Demons",
-              "+100 to Attack Rating against Demons"
-            ],
-            "Position": {
-              "x": 2,
-              "y": 0
-            },
-            "Size": {
-              "invheight": 1,
-              "invwidth": 1
-            },
-            "Worn": ""
-          },
-          {
-            "Quality": "Unknown",
-            "ID": "0",
-            "QualityCode": "",
-            "Title": "Thul Rune",
-            "Tag": "Thul Rune",
-            "TextTag": "Thul Rune",
-            "Ethereal": "False",
-            "Enhanced": "False",
-            "ItemLevel": "0",
-            "LevelReq": 23,
-            "SocketCount": "0",
-            "PropertyList": [
-              "+3 cold damage"
-            ],
-            "Position": {
-              "x": 3,
-              "y": 0
-            },
-            "Size": {
-              "invheight": 1,
-              "invwidth": 1
-            },
-            "Worn": ""
-          }
-        ],
-        "SocketCount": "4",
+        "DamageMinimum": "12",
+        "DamageMaximum": "28",
+        "Durability": "215",
+        "DurabilityMaximum": "215",
+        "ItemLevel": "99",
+        "LevelReq": 26,
+        "SocketCount": "0",
         "PropertyList": [
-          "+3 to All Skills",
-          "+40% Faster Cast Rate",
-          "+75% Damage to Demons",
-          "+100 to Attack Rating against Demons",
+          "+132% Damage to Demons",
+          "+183 to Attack Rating against Demons",
           "+50% Damage to Undead",
-          "+3 cold damage",
-          "7% Mana stolen per hit",
-          "+10 to Dexterity",
-          "Increase Maximum Life 6%",
-          "Replenish Life 20 per second",
-          "Increase Maximum Mana 15%",
-          "All Resistances +33",
-          "Increase Maximum Durability 14%",
-          "Requirements -9%",
-          "Socketed (4)"
+          "+2 to Fire Bolt (Sorceress Only)",
+          "+1 to Nova (Sorceress Only)"
         ],
         "Position": {
           "x": 6,
-          "y": 2
-        },
-        "Size": {
-          "invheight": 3,
-          "invwidth": 2
-        },
-        "Worn": ""
-      },
-      {
-        "Quality": "Unknown",
-        "ID": "0",
-        "QualityCode": "",
-        "Title": "\u00ffc;Orb of Corruption",
-        "Tag": "\u00ffc;Orb of Corruption",
-        "TextTag": "Orb of Corruption",
-        "Ethereal": "False",
-        "Enhanced": "False",
-        "ItemLevel": "0",
-        "LevelReq": 0,
-        "SocketCount": "0",
-        "PropertyList": [],
-        "Position": {
-          "x": 9,
-          "y": 8
-        },
-        "Size": {
-          "invheight": 1,
-          "invwidth": 1
-        },
-        "Worn": ""
-      },
-      {
-        "Quality": "Unknown",
-        "ID": "0",
-        "QualityCode": "",
-        "Title": "Super Healing Potion",
-        "Tag": "Super Healing Potion",
-        "TextTag": "Greater Healing Potion",
-        "Ethereal": "False",
-        "Enhanced": "False",
-        "ItemLevel": "0",
-        "LevelReq": 0,
-        "SocketCount": "0",
-        "PropertyList": [],
-        "Position": {
-          "x": 7,
           "y": 1
         },
         "Size": {
-          "invheight": 1,
-          "invwidth": 1
+          "invheight": 4,
+          "invwidth": 2
         },
         "Worn": ""
       }
@@ -107679,7 +107633,7 @@
     "Class": "Sorceress",
     "Stats": {
       "Level": 96,
-      "Experience": 2914759256,
+      "Experience": 2925873212,
       "Strength": 40,
       "Dexterity": 60,
       "Vitality": 420,
@@ -107688,8 +107642,8 @@
       "Life": 1568,
       "BaseMana": 225,
       "Mana": 444,
-      "Gold": 0,
-      "Stashed": 1025287
+      "Gold": 240604,
+      "Stashed": 2500000
     },
     "Bonus": {
       "Strength": 104,
@@ -109449,29 +109403,6 @@
         "Worn": ""
       },
       {
-        "Quality": "Normal",
-        "ID": "1465324804",
-        "QualityCode": "q_normal",
-        "Title": "Horadric Cube",
-        "Tag": "Horadric Cube",
-        "TextTag": "Horadric Cube",
-        "Ethereal": "False",
-        "Enhanced": "False",
-        "ItemLevel": "13",
-        "LevelReq": 0,
-        "SocketCount": "0",
-        "PropertyList": [],
-        "Position": {
-          "x": 0,
-          "y": 3
-        },
-        "Size": {
-          "invheight": 2,
-          "invwidth": 2
-        },
-        "Worn": ""
-      },
-      {
         "Quality": "Magic",
         "ID": "1554832541",
         "QualityCode": "q_magic",
@@ -109549,6 +109480,29 @@
         "Size": {
           "invheight": 1,
           "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Normal",
+        "ID": "1465324804",
+        "QualityCode": "q_normal",
+        "Title": "Horadric Cube",
+        "Tag": "Horadric Cube",
+        "TextTag": "Horadric Cube",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "ItemLevel": "13",
+        "LevelReq": 0,
+        "SocketCount": "0",
+        "PropertyList": [],
+        "Position": {
+          "x": 0,
+          "y": 3
+        },
+        "Size": {
+          "invheight": 2,
+          "invwidth": 2
         },
         "Worn": ""
       }
@@ -349082,7 +349036,7 @@
     "Class": "Sorceress",
     "Stats": {
       "Level": 94,
-      "Experience": 2293733707,
+      "Experience": 2311465557,
       "Strength": 68,
       "Dexterity": 25,
       "Vitality": 80,
@@ -349091,7 +349045,7 @@
       "Life": 961,
       "BaseMana": 895,
       "Mana": 1436,
-      "Gold": 322058,
+      "Gold": 940000,
       "Stashed": 2397153
     },
     "Bonus": {
@@ -349649,7 +349603,7 @@
         "Ethereal": "False",
         "Enhanced": "True",
         "Defense": "48",
-        "Durability": "48",
+        "Durability": "46",
         "DurabilityMaximum": "18",
         "ItemLevel": "91",
         "LevelReq": 42,
@@ -350169,29 +350123,6 @@
         },
         "Size": {
           "invheight": 1,
-          "invwidth": 1
-        },
-        "Worn": ""
-      },
-      {
-        "Quality": "Normal",
-        "ID": "1805954719",
-        "QualityCode": "q_normal",
-        "Title": "Tome of Identify",
-        "Tag": "Tome of Identify",
-        "TextTag": "Identify Book",
-        "Ethereal": "False",
-        "Enhanced": "False",
-        "ItemLevel": "96",
-        "LevelReq": 0,
-        "SocketCount": "0",
-        "PropertyList": [],
-        "Position": {
-          "x": 1,
-          "y": 0
-        },
-        "Size": {
-          "invheight": 2,
           "invwidth": 1
         },
         "Worn": ""
@@ -350812,205 +350743,25 @@
         "Worn": ""
       },
       {
-        "Quality": "Magic",
-        "ID": "3050282824",
-        "QualityCode": "q_magic",
-        "Title": "Grand Charm",
-        "Tag": "Grand Charm",
-        "TextTag": "Charm Large",
-        "Ethereal": "False",
-        "AlternateGraphics": "1",
-        "ItemLevel": "85",
-        "LevelReq": 1,
-        "PropertyList": [
-          "\u00ffc1Unidentified"
-        ],
-        "Position": {
-          "x": 2,
-          "y": 0
-        },
-        "Size": {
-          "invheight": 3,
-          "invwidth": 1
-        },
-        "Worn": ""
-      },
-      {
-        "Quality": "Unknown",
-        "ID": "0",
-        "QualityCode": "",
-        "Title": "Flawless Emerald",
-        "Tag": "Flawless Emerald",
-        "TextTag": "Flawless Emerald",
+        "Quality": "Normal",
+        "ID": "1805954719",
+        "QualityCode": "q_normal",
+        "Title": "Tome of Identify",
+        "Tag": "Tome of Identify",
+        "TextTag": "Identify Book",
         "Ethereal": "False",
         "Enhanced": "False",
-        "ItemLevel": "0",
-        "LevelReq": 15,
+        "ItemLevel": "96",
+        "LevelReq": 0,
         "SocketCount": "0",
         "PropertyList": [],
         "Position": {
-          "x": 9,
-          "y": 4
-        },
-        "Size": {
-          "invheight": 1,
-          "invwidth": 1
-        },
-        "Worn": ""
-      },
-      {
-        "Quality": "Rare",
-        "ID": "3330216649",
-        "QualityCode": "q_rare",
-        "Title": "Mancatcher",
-        "Tag": "Mancatcher",
-        "TextTag": "Mancatcher",
-        "Ethereal": "False",
-        "DamageMinimum": "68",
-        "DamageMaximum": "150",
-        "Durability": "95",
-        "DurabilityMaximum": "126",
-        "ItemLevel": "88",
-        "LevelReq": 55,
-        "PropertyList": [
-          "\u00ffc1Unidentified"
-        ],
-        "Position": {
-          "x": 8,
+          "x": 1,
           "y": 0
-        },
-        "Size": {
-          "invheight": 4,
-          "invwidth": 2
-        },
-        "Worn": ""
-      },
-      {
-        "Quality": "Rare",
-        "ID": "3842892056",
-        "QualityCode": "q_rare",
-        "Title": "Decapitator",
-        "Tag": "Decapitator",
-        "TextTag": "Decapitator",
-        "Ethereal": "False",
-        "DamageMinimum": "49",
-        "DamageMaximum": "137",
-        "Durability": "134",
-        "DurabilityMaximum": "180",
-        "ItemLevel": "88",
-        "LevelReq": 54,
-        "PropertyList": [
-          "\u00ffc1Unidentified"
-        ],
-        "Position": {
-          "x": 3,
-          "y": 0
-        },
-        "Size": {
-          "invheight": 3,
-          "invwidth": 2
-        },
-        "Worn": ""
-      },
-      {
-        "Quality": "Unknown",
-        "ID": "0",
-        "QualityCode": "",
-        "Title": "Flawless Emerald",
-        "Tag": "Flawless Emerald",
-        "TextTag": "Flawless Emerald",
-        "Ethereal": "False",
-        "Enhanced": "False",
-        "ItemLevel": "0",
-        "LevelReq": 15,
-        "SocketCount": "0",
-        "PropertyList": [],
-        "Position": {
-          "x": 8,
-          "y": 4
-        },
-        "Size": {
-          "invheight": 1,
-          "invwidth": 1
-        },
-        "Worn": ""
-      },
-      {
-        "Quality": "Rare",
-        "ID": "3273825639",
-        "QualityCode": "q_rare",
-        "Title": "War Gauntlets",
-        "Tag": "War Gauntlets",
-        "TextTag": "War Gauntlets",
-        "Ethereal": "False",
-        "Defense": "54",
-        "Durability": "24",
-        "DurabilityMaximum": "24",
-        "ItemLevel": "94",
-        "LevelReq": 31,
-        "PropertyList": [
-          "\u00ffc1Unidentified"
-        ],
-        "Position": {
-          "x": 2,
-          "y": 3
         },
         "Size": {
           "invheight": 2,
-          "invwidth": 2
-        },
-        "Worn": ""
-      },
-      {
-        "Quality": "Rare",
-        "ID": "2121832270",
-        "QualityCode": "q_rare",
-        "Title": "Poleaxe",
-        "Tag": "Poleaxe",
-        "TextTag": "Poleaxe",
-        "Ethereal": "False",
-        "DamageMinimum": "33",
-        "DamageMaximum": "72",
-        "Durability": "173",
-        "DurabilityMaximum": "215",
-        "ItemLevel": "86",
-        "LevelReq": 48,
-        "PropertyList": [
-          "\u00ffc1Unidentified"
-        ],
-        "Position": {
-          "x": 6,
-          "y": 0
-        },
-        "Size": {
-          "invheight": 4,
-          "invwidth": 2
-        },
-        "Worn": ""
-      },
-      {
-        "Quality": "Rare",
-        "ID": "4136573126",
-        "QualityCode": "q_rare",
-        "Title": "Totemic Mask",
-        "Tag": "Totemic Mask",
-        "TextTag": "Totemic Mask",
-        "Ethereal": "False",
-        "Defense": "99",
-        "Durability": "17",
-        "DurabilityMaximum": "20",
-        "ItemLevel": "87",
-        "LevelReq": 41,
-        "PropertyList": [
-          "\u00ffc1Unidentified"
-        ],
-        "Position": {
-          "x": 4,
-          "y": 3
-        },
-        "Size": {
-          "invheight": 2,
-          "invwidth": 2
+          "invwidth": 1
         },
         "Worn": ""
       }
