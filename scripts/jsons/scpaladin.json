@@ -104400,16 +104400,16 @@
     "Class": "Paladin",
     "Stats": {
       "Level": 92,
-      "Experience": 2029936171,
-      "Strength": 30,
-      "Dexterity": 140,
-      "Vitality": 365,
+      "Experience": 2029936462,
+      "Strength": 25,
+      "Dexterity": 20,
+      "Vitality": 25,
       "Energy": 15,
-      "BaseLife": 1362,
-      "Life": 1370,
+      "BaseLife": 342,
+      "Life": 342,
       "BaseMana": 151,
-      "Mana": 197,
-      "Gold": 553,
+      "Mana": 182,
+      "Gold": 4024,
       "Stashed": 2450000
     },
     "Bonus": {
@@ -104487,63 +104487,18 @@
     "SkillTabs": [
       {
         "Name": "Combat Skills",
-        "Total": 60,
+        "Total": 1,
         "Skills": [
           {
             "ID": 1,
             "Name": "Sacrifice",
             "Level": 1
-          },
-          {
-            "ID": 2,
-            "Name": "Smite",
-            "Level": 1
-          },
-          {
-            "ID": 6,
-            "Name": "Holy Bolt",
-            "Level": 20
-          },
-          {
-            "ID": 11,
-            "Name": "Zeal",
-            "Level": 1
-          },
-          {
-            "ID": 12,
-            "Name": "Charge",
-            "Level": 1
-          },
-          {
-            "ID": 16,
-            "Name": "Vengeance",
-            "Level": 1
-          },
-          {
-            "ID": 17,
-            "Name": "Blessed Hammer",
-            "Level": 1
-          },
-          {
-            "ID": 21,
-            "Name": "Absolution",
-            "Level": 1
-          },
-          {
-            "ID": 22,
-            "Name": "Holy Shield",
-            "Level": 13
-          },
-          {
-            "ID": 26,
-            "Name": "Fist of the Heavens",
-            "Level": 20
           }
         ]
       },
       {
         "Name": "Offensive Auras",
-        "Total": 37,
+        "Total": 41,
         "Skills": [
           {
             "ID": 3,
@@ -104551,67 +104506,21 @@
             "Level": 1
           },
           {
-            "ID": 7,
-            "Name": "Holy Fire",
-            "Level": 1
-          },
-          {
-            "ID": 8,
-            "Name": "Precision",
-            "Level": 1
-          },
-          {
-            "ID": 19,
-            "Name": "Holy Freeze",
-            "Level": 1
-          },
-          {
-            "ID": 23,
-            "Name": "Holy Shock",
+            "ID": 13,
+            "Name": "Blessed Aim",
             "Level": 20
           },
           {
-            "ID": 24,
-            "Name": "Sanctuary",
-            "Level": 1
-          },
-          {
-            "ID": 28,
-            "Name": "Conviction",
-            "Level": 12
+            "ID": 18,
+            "Name": "Concentration",
+            "Level": 20
           }
         ]
       },
       {
         "Name": "Defensive Auras",
-        "Total": 5,
-        "Skills": [
-          {
-            "ID": 4,
-            "Name": "Prayer",
-            "Level": 1
-          },
-          {
-            "ID": 9,
-            "Name": "Defiance",
-            "Level": 1
-          },
-          {
-            "ID": 14,
-            "Name": "Cleansing",
-            "Level": 1
-          },
-          {
-            "ID": 15,
-            "Name": "Resist Lightning",
-            "Level": 1
-          },
-          {
-            "ID": 20,
-            "Name": "Vigor",
-            "Level": 1
-          }
-        ]
+        "Total": 0,
+        "Skills": []
       }
     ],
     "MercenaryExperience": 86594536,
@@ -104619,39 +104528,6 @@
     "MercenaryName": "Azrael",
     "MercenaryLevel": "89",
     "Equipped": [
-      {
-        "Quality": "Unique",
-        "ID": "1341785066",
-        "QualityCode": "q_unique",
-        "Title": "Kira's Guardian",
-        "Tag": "Tiara",
-        "TextTag": "Tiara",
-        "Ethereal": "False",
-        "Enhanced": "True",
-        "Defense": "43",
-        "Durability": "20",
-        "DurabilityMaximum": "25",
-        "ItemLevel": "91",
-        "LevelReq": 77,
-        "SocketCount": "3",
-        "PropertyList": [
-          "\u00ffc1Corrupted",
-          "+20% Faster Hit Recovery",
-          "+65 Defense",
-          "All Resistances +65",
-          "Cannot Be Frozen",
-          "Socketed (3)"
-        ],
-        "Position": {
-          "x": 1,
-          "y": 0
-        },
-        "Size": {
-          "invheight": 2,
-          "invwidth": 2
-        },
-        "Worn": "helmet"
-      },
       {
         "Quality": "Rare",
         "ID": "3741762243",
@@ -104754,6 +104630,39 @@
           "invwidth": 2
         },
         "Worn": "boots"
+      },
+      {
+        "Quality": "Unique",
+        "ID": "1341785066",
+        "QualityCode": "q_unique",
+        "Title": "Kira's Guardian",
+        "Tag": "Tiara",
+        "TextTag": "Tiara",
+        "Ethereal": "False",
+        "Enhanced": "True",
+        "Defense": "43",
+        "Durability": "20",
+        "DurabilityMaximum": "25",
+        "ItemLevel": "91",
+        "LevelReq": 77,
+        "SocketCount": "3",
+        "PropertyList": [
+          "\u00ffc1Corrupted",
+          "+20% Faster Hit Recovery",
+          "+65 Defense",
+          "All Resistances +65",
+          "Cannot Be Frozen",
+          "Socketed (3)"
+        ],
+        "Position": {
+          "x": 1,
+          "y": 0
+        },
+        "Size": {
+          "invheight": 2,
+          "invwidth": 2
+        },
+        "Worn": "helmet"
       },
       {
         "Quality": "Unique",
@@ -105306,35 +105215,6 @@
         "Worn": ""
       },
       {
-        "Quality": "Magic",
-        "ID": "3900471384",
-        "QualityCode": "q_magic",
-        "Title": "Kenshi's Light Gauntlets of Alacrity",
-        "Tag": "Light Gauntlets",
-        "TextTag": "Light Gauntlets",
-        "Ethereal": "False",
-        "Enhanced": "False",
-        "Defense": "9",
-        "Durability": "18",
-        "DurabilityMaximum": "18",
-        "ItemLevel": "99",
-        "LevelReq": 45,
-        "SocketCount": "0",
-        "PropertyList": [
-          "+3 to Martial Arts (Assassin Only)",
-          "+20% Increased Attack Speed"
-        ],
-        "Position": {
-          "x": 6,
-          "y": 2
-        },
-        "Size": {
-          "invheight": 2,
-          "invwidth": 2
-        },
-        "Worn": ""
-      },
-      {
         "Quality": "Rare",
         "ID": "3644016917",
         "QualityCode": "q_rare",
@@ -105538,42 +105418,6 @@
           "invwidth": 2
         },
         "Worn": "helmet"
-      },
-      {
-        "Quality": "Unique",
-        "ID": "2556540493",
-        "QualityCode": "q_unique",
-        "Title": "War Traveler",
-        "Tag": "Battle Boots",
-        "TextTag": "Battle Boots",
-        "Ethereal": "False",
-        "Enhanced": "True",
-        "Defense": "48",
-        "Durability": "16",
-        "DurabilityMaximum": "18",
-        "ItemLevel": "87",
-        "LevelReq": 42,
-        "SocketCount": "0",
-        "PropertyList": [
-          "\u00ffc1Corrupted",
-          "+25% Faster Run/Walk",
-          "Adds 15-25 damage",
-          "+153% Enhanced Defense",
-          "+10 to Strength",
-          "+10 to Vitality",
-          "40% Slower Stamina Drain",
-          "Attacker Takes Damage of 10",
-          "49% Better Chance of Getting Magic Items"
-        ],
-        "Position": {
-          "x": 4,
-          "y": 2
-        },
-        "Size": {
-          "invheight": 2,
-          "invwidth": 2
-        },
-        "Worn": ""
       },
       {
         "Quality": "Unique",
@@ -105782,34 +105626,98 @@
         "Worn": ""
       },
       {
-        "Quality": "Craft",
-        "ID": "483082957",
-        "QualityCode": "q_crafted",
-        "Title": "Demon Visage",
-        "Tag": "Tiara",
-        "TextTag": "Tiara",
+        "Quality": "Unique",
+        "ID": "4139891172",
+        "QualityCode": "q_unique",
+        "Title": "Razortail",
+        "Tag": "Sharkskin Belt",
+        "TextTag": "Sharkskin Belt",
         "Ethereal": "False",
         "Enhanced": "True",
-        "Defense": "51",
-        "Durability": "15",
-        "DurabilityMaximum": "25",
-        "ItemLevel": "98",
-        "LevelReq": 89,
+        "Defense": "37",
+        "Durability": "10",
+        "DurabilityMaximum": "14",
+        "ItemLevel": "75",
+        "LevelReq": 32,
         "SocketCount": "0",
         "PropertyList": [
           "\u00ffc1Corrupted",
-          "+2 to Amazon Skill Levels",
-          "+19% Piercing Attack",
-          "3% Mana stolen per hit",
-          "5% Life stolen per hit",
-          "+98% Enhanced Defense",
-          "+12 to Strength",
-          "+18 to Mana",
-          "Regenerate Mana 6%"
+          "+33% Piercing Attack",
+          "+10 to Maximum Damage",
+          "75% Bonus to Attack Rating",
+          "+145% Enhanced Defense",
+          "+15 Defense",
+          "+15 to Dexterity",
+          "Attacker Takes Damage of 92 (Based on Character Level)"
+        ],
+        "Position": {
+          "x": 8,
+          "y": 8
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 2
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Magic",
+        "ID": "3900471384",
+        "QualityCode": "q_magic",
+        "Title": "Kenshi's Light Gauntlets of Alacrity",
+        "Tag": "Light Gauntlets",
+        "TextTag": "Light Gauntlets",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "Defense": "9",
+        "Durability": "18",
+        "DurabilityMaximum": "18",
+        "ItemLevel": "99",
+        "LevelReq": 45,
+        "SocketCount": "0",
+        "PropertyList": [
+          "+3 to Martial Arts (Assassin Only)",
+          "+20% Increased Attack Speed"
         ],
         "Position": {
           "x": 4,
-          "y": 0
+          "y": 2
+        },
+        "Size": {
+          "invheight": 2,
+          "invwidth": 2
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Unique",
+        "ID": "2556540493",
+        "QualityCode": "q_unique",
+        "Title": "War Traveler",
+        "Tag": "Battle Boots",
+        "TextTag": "Battle Boots",
+        "Ethereal": "False",
+        "Enhanced": "True",
+        "Defense": "48",
+        "Durability": "16",
+        "DurabilityMaximum": "18",
+        "ItemLevel": "87",
+        "LevelReq": 42,
+        "SocketCount": "0",
+        "PropertyList": [
+          "\u00ffc1Corrupted",
+          "+25% Faster Run/Walk",
+          "Adds 15-25 damage",
+          "+153% Enhanced Defense",
+          "+10 to Strength",
+          "+10 to Vitality",
+          "40% Slower Stamina Drain",
+          "Attacker Takes Damage of 10",
+          "49% Better Chance of Getting Magic Items"
+        ],
+        "Position": {
+          "x": 6,
+          "y": 2
         },
         "Size": {
           "invheight": 2,
@@ -105937,36 +105845,37 @@
         "Worn": ""
       },
       {
-        "Quality": "Unique",
-        "ID": "4139891172",
-        "QualityCode": "q_unique",
-        "Title": "Razortail",
-        "Tag": "Sharkskin Belt",
-        "TextTag": "Sharkskin Belt",
+        "Quality": "Craft",
+        "ID": "483082957",
+        "QualityCode": "q_crafted",
+        "Title": "Demon Visage",
+        "Tag": "Tiara",
+        "TextTag": "Tiara",
         "Ethereal": "False",
         "Enhanced": "True",
-        "Defense": "37",
-        "Durability": "10",
-        "DurabilityMaximum": "14",
-        "ItemLevel": "75",
-        "LevelReq": 32,
+        "Defense": "51",
+        "Durability": "14",
+        "DurabilityMaximum": "25",
+        "ItemLevel": "98",
+        "LevelReq": 89,
         "SocketCount": "0",
         "PropertyList": [
           "\u00ffc1Corrupted",
-          "+33% Piercing Attack",
-          "+10 to Maximum Damage",
-          "75% Bonus to Attack Rating",
-          "+145% Enhanced Defense",
-          "+15 Defense",
-          "+15 to Dexterity",
-          "Attacker Takes Damage of 92 (Based on Character Level)"
+          "+2 to Amazon Skill Levels",
+          "+19% Piercing Attack",
+          "3% Mana stolen per hit",
+          "5% Life stolen per hit",
+          "+98% Enhanced Defense",
+          "+12 to Strength",
+          "+18 to Mana",
+          "Regenerate Mana 6%"
         ],
         "Position": {
-          "x": 8,
-          "y": 8
+          "x": 4,
+          "y": 0
         },
         "Size": {
-          "invheight": 1,
+          "invheight": 2,
           "invwidth": 2
         },
         "Worn": ""
@@ -330538,16 +330447,16 @@
     "Class": "Paladin",
     "Stats": {
       "Level": 89,
-      "Experience": 1486822465,
+      "Experience": 1487278115,
       "Strength": 135,
       "Dexterity": 120,
       "Vitality": 250,
       "Energy": 20,
       "BaseLife": 1010,
-      "Life": 1371,
+      "Life": 1372,
       "BaseMana": 154,
       "Mana": 337,
-      "Gold": 158883,
+      "Gold": 121818,
       "Stashed": 2500000
     },
     "Bonus": {
@@ -332536,29 +332445,6 @@
         "PropertyList": [],
         "Position": {
           "x": 7,
-          "y": 0
-        },
-        "Size": {
-          "invheight": 1,
-          "invwidth": 1
-        },
-        "Worn": ""
-      },
-      {
-        "Quality": "Unknown",
-        "ID": "0",
-        "QualityCode": "",
-        "Title": "Full Rejuvenation Potion",
-        "Tag": "Full Rejuvenation Potion",
-        "TextTag": "Full Rejuv Potion",
-        "Ethereal": "False",
-        "Enhanced": "False",
-        "ItemLevel": "0",
-        "LevelReq": 0,
-        "SocketCount": "0",
-        "PropertyList": [],
-        "Position": {
-          "x": 7,
           "y": 3
         },
         "Size": {
@@ -332811,29 +332697,6 @@
         "Worn": ""
       },
       {
-        "Quality": "Unknown",
-        "ID": "0",
-        "QualityCode": "",
-        "Title": "Rejuvenation Potion",
-        "Tag": "Rejuvenation Potion",
-        "TextTag": "Rejuv Potion",
-        "Ethereal": "False",
-        "Enhanced": "False",
-        "ItemLevel": "0",
-        "LevelReq": 0,
-        "SocketCount": "0",
-        "PropertyList": [],
-        "Position": {
-          "x": 5,
-          "y": 4
-        },
-        "Size": {
-          "invheight": 1,
-          "invwidth": 1
-        },
-        "Worn": ""
-      },
-      {
         "Quality": "Magic",
         "ID": "1576775284",
         "QualityCode": "q_magic",
@@ -332855,29 +332718,6 @@
         },
         "Size": {
           "invheight": 3,
-          "invwidth": 1
-        },
-        "Worn": ""
-      },
-      {
-        "Quality": "Unknown",
-        "ID": "0",
-        "QualityCode": "",
-        "Title": "Rejuvenation Potion",
-        "Tag": "Rejuvenation Potion",
-        "TextTag": "Rejuv Potion",
-        "Ethereal": "False",
-        "Enhanced": "False",
-        "ItemLevel": "0",
-        "LevelReq": 0,
-        "SocketCount": "0",
-        "PropertyList": [],
-        "Position": {
-          "x": 4,
-          "y": 4
-        },
-        "Size": {
-          "invheight": 1,
           "invwidth": 1
         },
         "Worn": ""
@@ -333095,6 +332935,213 @@
         "Position": {
           "x": 5,
           "y": 1
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Unknown",
+        "ID": "0",
+        "QualityCode": "",
+        "Title": "Mephisto's Soulstone",
+        "Tag": "Mephisto's Soulstone",
+        "TextTag": "Mephisto SoulStone",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "ItemLevel": "0",
+        "LevelReq": 0,
+        "SocketCount": "0",
+        "PropertyList": [],
+        "Position": {
+          "x": 4,
+          "y": 1
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Unknown",
+        "ID": "0",
+        "QualityCode": "",
+        "Title": "Super Healing Potion",
+        "Tag": "Super Healing Potion",
+        "TextTag": "Greater Healing Potion",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "ItemLevel": "0",
+        "LevelReq": 0,
+        "SocketCount": "0",
+        "PropertyList": [],
+        "Position": {
+          "x": 5,
+          "y": 3
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Unknown",
+        "ID": "0",
+        "QualityCode": "",
+        "Title": "Flawless Amethyst",
+        "Tag": "Flawless Amethyst",
+        "TextTag": "Flawless Amethyst",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "ItemLevel": "0",
+        "LevelReq": 15,
+        "SocketCount": "0",
+        "PropertyList": [],
+        "Position": {
+          "x": 1,
+          "y": 4
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Unknown",
+        "ID": "0",
+        "QualityCode": "",
+        "Title": "Super Healing Potion",
+        "Tag": "Super Healing Potion",
+        "TextTag": "Greater Healing Potion",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "ItemLevel": "0",
+        "LevelReq": 0,
+        "SocketCount": "0",
+        "PropertyList": [],
+        "Position": {
+          "x": 2,
+          "y": 4
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Unknown",
+        "ID": "0",
+        "QualityCode": "",
+        "Title": "Super Healing Potion",
+        "Tag": "Super Healing Potion",
+        "TextTag": "Greater Healing Potion",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "ItemLevel": "0",
+        "LevelReq": 0,
+        "SocketCount": "0",
+        "PropertyList": [],
+        "Position": {
+          "x": 4,
+          "y": 3
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Unknown",
+        "ID": "0",
+        "QualityCode": "",
+        "Title": "Super Healing Potion",
+        "Tag": "Super Healing Potion",
+        "TextTag": "Greater Healing Potion",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "ItemLevel": "0",
+        "LevelReq": 0,
+        "SocketCount": "0",
+        "PropertyList": [],
+        "Position": {
+          "x": 3,
+          "y": 3
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Unknown",
+        "ID": "0",
+        "QualityCode": "",
+        "Title": "Full Rejuvenation Potion",
+        "Tag": "Full Rejuvenation Potion",
+        "TextTag": "Full Rejuv Potion",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "ItemLevel": "0",
+        "LevelReq": 0,
+        "SocketCount": "0",
+        "PropertyList": [],
+        "Position": {
+          "x": 7,
+          "y": 0
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Unknown",
+        "ID": "0",
+        "QualityCode": "",
+        "Title": "Full Rejuvenation Potion",
+        "Tag": "Full Rejuvenation Potion",
+        "TextTag": "Full Rejuv Potion",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "ItemLevel": "0",
+        "LevelReq": 0,
+        "SocketCount": "0",
+        "PropertyList": [],
+        "Position": {
+          "x": 5,
+          "y": 4
+        },
+        "Size": {
+          "invheight": 1,
+          "invwidth": 1
+        },
+        "Worn": ""
+      },
+      {
+        "Quality": "Unknown",
+        "ID": "0",
+        "QualityCode": "",
+        "Title": "Full Rejuvenation Potion",
+        "Tag": "Full Rejuvenation Potion",
+        "TextTag": "Full Rejuv Potion",
+        "Ethereal": "False",
+        "Enhanced": "False",
+        "ItemLevel": "0",
+        "LevelReq": 0,
+        "SocketCount": "0",
+        "PropertyList": [],
+        "Position": {
+          "x": 4,
+          "y": 4
         },
         "Size": {
           "invheight": 1,
