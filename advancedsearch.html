@@ -81,6 +81,51 @@
             color: #e0e0e2;
             font-family: 'armory', sans-serif;
         }
+        .item-query-guide {
+            margin: 0 0 18px;
+            padding: 12px 15px;
+            border: 1px solid #6c7771;
+            border-radius: 4px;
+            background-color: #232323;
+            color: #e0e0e2;
+            font-family: 'armory', sans-serif;
+        }
+        .item-query-guide summary {
+            color: #d5f2e3;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .item-query-guide summary:focus-visible {
+            outline: 2px solid #d5f2e3;
+            outline-offset: 4px;
+        }
+        .item-query-guide p {
+            margin: 10px 0;
+        }
+        .item-query-examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+            gap: 10px;
+            margin: 12px 0;
+        }
+        .item-query-example {
+            padding: 10px;
+            border-left: 3px solid #6c9e80;
+            background-color: #303638;
+        }
+        .item-query-example > code:first-child {
+            display: block;
+            margin-bottom: 5px;
+            color: #d5f2e3;
+            overflow-wrap: anywhere;
+        }
+        .item-query-guide ul {
+            margin: 8px 0 0;
+            padding-left: 22px;
+        }
+        .item-query-guide li {
+            margin-bottom: 5px;
+        }
         .search-button {
             background-color: #3a3f44;
             color: #d5f2e3;
@@ -253,12 +298,6 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="itemName">Item Query:</label>
-                    <input type="text" id="itemName" placeholder="e.g. doom, shield with skull">
-                    <small>Supports and/or, with, !with/without, ; clauses.</small>
-                </div>
-
-                <div class="form-group">
                     <label for="skills">Skills (comma-separated):</label>
                     <input type="text" id="skills" placeholder="e.g. Hydra, Frozen Orb">
                     <small>Case-insensitive. Leave blank to ignore skill filtering.</small>
@@ -269,7 +308,70 @@
                     <input type="text" id="minPoints" value="19" placeholder=">=19, >10, =0">
                     <small>Use &gt;, &gt;=, &lt;, &lt;=, =. Default behavior for plain number is &gt;=.</small>
                 </div>
+
+                <div class="form-group">
+                    <label for="itemName">Item Query:</label>
+                    <input type="text" id="itemName" placeholder="e.g. arrow [summon skills]" aria-describedby="itemQueryHint">
+                    <small id="itemQueryHint">Search item names, properties, and sockets. See the guide below for examples.</small>
+                </div>
             </div>
+
+            <details class="item-query-guide">
+                <summary>Item query guide and examples</summary>
+                <p>Enter an example in Item Query. Searches include equipped items; use the mercenary checkbox to include or exclude mercenary equipment.</p>
+                <div class="item-query-examples">
+                    <div class="item-query-example">
+                        <code>doom</code>
+                        Find items whose name or item type contains "doom". You can also search categories such as <code>shield</code>, <code>helm</code>, <code>armor</code>, or <code>weapon</code>.
+                    </div>
+                    <div class="item-query-example">
+                        <code>"arrows"</code>
+                        Match the entire item name or item type exactly, rather than part of it.
+                    </div>
+                    <div class="item-query-example">
+                        <code>[summon skills]</code>
+                        Find any item with property text containing "summon skills".
+                    </div>
+                    <div class="item-query-example">
+                        <code>arrow [summon skills] [life]</code>
+                        Find an arrow with both properties on the same item.
+                    </div>
+                    <div class="item-query-example">
+                        <code>arrow and amulet</code>
+                        Find characters with both matching items. They can be different items.
+                    </div>
+                    <div class="item-query-example">
+                        <code>arrow or amulet</code>
+                        Find characters with either matching item.
+                    </div>
+                    <div class="item-query-example">
+                        <code>arrow [life]; amulet [mana]</code>
+                        Require both clauses on the character. Each clause can match a different item.
+                    </div>
+                    <div class="item-query-example">
+                        <code>helm with skull</code>
+                        Find a helm with a skull in a socket. <code>with</code> refers to socket contents, not ordinary item properties.
+                    </div>
+                    <div class="item-query-example">
+                        <code>helm without skull</code>
+                        Find a helm with no skull in its sockets. <code>!with</code> also works in place of <code>without</code>.
+                    </div>
+<!--                    <div class="item-query-example">
+                        <code>jewel bug</code>
+                        Find items matching the supported jewel bug patterns, with a confidence rating.
+                    </div>
+                    <div class="item-query-example">
+                        <code>edminmax</code>
+                        Find items with a socketed jewel that has enhanced damage and minimum or maximum damage.
+                    </div> -->
+                </div>
+<!--                <ul>
+                    <li>Put each property in its own non-empty brackets. Matching properties are shown in the results.</li>
+                    <li>For item terms without socket conditions, <code>and</code> and <code>or</code> are evaluated left to right; parentheses are not grouping operators. Use separate <code>;</code> clauses to combine searches.</li>
+                    <li>After <code>with</code>, multiple socket terms match if any one is present. Separate <code>;</code> clauses can require multiple socket searches, but may match different items.</li>
+                    <li><code>jewel bug</code> and <code>edminmax</code> must be the entire item query. You can still combine them with the character name or skills fields.</li> 
+                </ul> -->
+            </details>
 
             <div class="form-group">
                 <label>
@@ -301,19 +403,45 @@
         let loadedLeague = null;
 
         // --- Item-query parsing helpers (adapted from itemsearch.html) ---
+        function maskPropertyExpressions(query) {
+            let masked = '';
+            let inside = false;
+            let property = '';
+            for (const character of query) {
+                if (character === '[') {
+                    if (inside) return null;
+                    inside = true;
+                    property = '';
+                    masked += '\x01';
+                } else if (character === ']') {
+                    if (!inside || !property.trim()) return null;
+                    inside = false;
+                    masked += '\x01';
+                } else if (inside) {
+                    property += character;
+                    masked += '\x01';
+                } else {
+                    masked += character;
+                }
+            }
+            return inside ? null : masked;
+        }
+
         function parseItemSearchQuery(rawQuery) {
             if (!rawQuery) return null;
 
             const lower = rawQuery.trim().toLowerCase();
             if (!lower) return null;
+            const masked = maskPropertyExpressions(lower);
+            if (masked === null) return null;
 
             let itemExpr = lower;
             let socketExpr = null;
             let socketMode = null;
 
-            const notWithMatch = lower.match(/\s+!with\s+/);
-            const withoutMatch = lower.match(/\s+without\s+/);
-            const withMatch = lower.match(/\s+with\s+/);
+            const notWithMatch = masked.match(/\s+!with\s+/);
+            const withoutMatch = masked.match(/\s+without\s+/);
+            const withMatch = masked.match(/\s+with\s+/);
 
             let negativeMatch = null;
             if (notWithMatch) negativeMatch = notWithMatch;
@@ -343,11 +471,12 @@
             let extraItemAst = null;
 
             if (socketAst && itemAst && itemAst.length > 1) {
-                const hasAnd = /\sand\s/.test(itemExpr);
-                const hasOr = /\sor\s/.test(itemExpr);
+                const maskedItemExpr = maskPropertyExpressions(itemExpr);
+                const hasAnd = /\sand\s/.test(maskedItemExpr);
+                const hasOr = /\sor\s/.test(maskedItemExpr);
 
                 if (hasAnd && !hasOr) {
-                    const lastAndIndex = itemExpr.lastIndexOf(' and ');
+                    const lastAndIndex = maskedItemExpr.lastIndexOf(' and ');
                     if (lastAndIndex !== -1) {
                         const leftPart = itemExpr.slice(0, lastAndIndex).trim();
                         const primaryTerm = itemExpr.slice(lastAndIndex + 5).trim();
@@ -375,7 +504,16 @@
             const trimmed = expr.trim();
             if (!trimmed) return null;
 
-            const parts = trimmed.split(/\s+(and|or)\s+/);
+            const masked = maskPropertyExpressions(trimmed);
+            if (masked === null) return null;
+            const parts = [];
+            const operators = /\s+(and|or)\s+/g;
+            let start = 0;
+            for (const match of masked.matchAll(operators)) {
+                parts.push(trimmed.slice(start, match.index), match[1]);
+                start = match.index + match[0].length;
+            }
+            parts.push(trimmed.slice(start));
             if (parts.length === 1) {
                 return [{ type: 'term', value: trimmed }];
             }
@@ -444,13 +582,15 @@
             return function(term) {
                 const parsedTerm = parseSearchTerm(term);
                 const t = parsedTerm.value;
+                const getMatchingItem = predicate => itemGetter(item =>
+                    propertyFieldsMatch(item, parsedTerm.properties) && predicate(item));
 
                 if (parsedTerm.exact) {
-                    return itemGetter(item => itemFieldMatches(item, parsedTerm));
+                    return getMatchingItem(item => itemFieldMatches(item, parsedTerm));
                 }
 
                 if (t === 'shield' || t === 'shields') {
-                    return itemGetter(item => {
+                    return getMatchingItem(item => {
                         const base = getBaseForItem(item);
                         if (!base) return false;
                         return base.type === 'shield' || base.shield === true || base.group === 'offhand';
@@ -458,7 +598,7 @@
                 }
 
                 if (t === 'helm' || t === 'helmet' || t === 'helms' || t === 'helmets') {
-                    return itemGetter(item => {
+                    return getMatchingItem(item => {
                         const base = getBaseForItem(item);
                         if (base && (base.group === 'helm' || base.type === 'helm')) return true;
 
@@ -478,7 +618,7 @@
                 }
 
                 if (t === 'armor' || t === 'armour' || t === 'armors' || t === 'armours') {
-                    return itemGetter(item => {
+                    return getMatchingItem(item => {
                         const base = getBaseForItem(item);
                         if (base && (base.group === 'armor' || base.type === 'armor')) return true;
 
@@ -498,7 +638,7 @@
                 }
 
                 if (t === 'weapon' || t === 'weapons') {
-                    return itemGetter(item => {
+                    return getMatchingItem(item => {
                         const base = getBaseForItem(item);
                         if (!base) return false;
                         if (base.type === 'shield' || base.shield === true || base.group === 'offhand') return false;
@@ -506,25 +646,37 @@
                     });
                 }
 
-                return itemGetter(item => itemFieldMatches(item, parsedTerm));
+                return getMatchingItem(item => itemFieldMatches(item, parsedTerm));
             };
         }
 
         function parseSearchTerm(term) {
             const normalized = (term || '').trim().toLowerCase();
-            const isDoubleQuoted = normalized.length >= 2 && normalized.startsWith('"') && normalized.endsWith('"');
-            const isSingleQuoted = normalized.length >= 2 && normalized.startsWith("'") && normalized.endsWith("'");
+            const properties = Array.from(normalized.matchAll(/\[([^\[\]]+)\]/g), match => match[1].trim());
+            const name = properties.length
+                ? normalized.replace(/\[([^\[\]]+)\]/g, ' ').trim().replace(/\s+/g, ' ')
+                : normalized;
+            const isDoubleQuoted = name.length >= 2 && name.startsWith('"') && name.endsWith('"');
+            const isSingleQuoted = name.length >= 2 && name.startsWith("'") && name.endsWith("'");
             const exact = isDoubleQuoted || isSingleQuoted;
 
             return {
                 exact,
-                value: exact ? normalized.slice(1, -1).trim() : normalized
+                value: exact ? name.slice(1, -1).trim() : name,
+                properties
             };
+        }
+
+        function propertyFieldsMatch(item, properties) {
+            return properties.every(term => (item.PropertyList || []).some(property =>
+                typeof property === 'string' && property.toLowerCase().includes(term)));
         }
 
         function itemFieldMatches(item, parsedTerm) {
             const title = (item.Title || '').toLowerCase();
             const textTag = (item.TextTag || '').toLowerCase();
+            if (!propertyFieldsMatch(item, parsedTerm.properties)) return false;
+            if (!parsedTerm.value) return parsedTerm.properties.length > 0;
 
             if (parsedTerm.exact) {
                 return title === parsedTerm.value || textTag === parsedTerm.value;
@@ -653,6 +805,44 @@
             }
 
             return null;
+        }
+
+        function findEdMinMaxJewels(item) {
+            const edPattern = /\+(\d+)% Enhanced Damage/i;
+            const maxPattern = /\+(\d+) to Maximum Damage/i;
+            const minPattern = /\+(\d+) to Minimum Damage/i;
+            return getSocketArray(item)
+                .map((jewel, index) => ({ jewel, index, properties: jewel.PropertyList || [] }))
+                .filter(entry => isJewelSocketable(entry.jewel) &&
+                    jewelHasProperty(entry.jewel, edPattern) &&
+                    (jewelHasProperty(entry.jewel, maxPattern) || jewelHasProperty(entry.jewel, minPattern)));
+        }
+
+        function findEdMinMaxItemsForCharacter(char, includeMercenaries) {
+            const entries = (char.Equipped || char.Equipment || [])
+                .map(item => ({ item, type: 'Character' }));
+            if (includeMercenaries) {
+                entries.push(...(char.MercenaryEquipped || [])
+                    .map(item => ({ item, type: 'Mercenary' })));
+            }
+
+            const matched = [];
+            const seen = new Set();
+            for (const { item, type } of entries) {
+                if (!item || !item.Title) continue;
+                const jewels = findEdMinMaxJewels(item);
+                if (jewels.length === 0) continue;
+                const key = `${item.Worn || '?'}|${item.Title}|${item.Tag || item.TextTag || ''}|${type}`;
+                if (seen.has(key)) continue;
+                seen.add(key);
+                matched.push({
+                    slot: item.Worn || 'Unknown',
+                    name: `${item.Title} - ${item.TextTag || item.Tag || ''}`,
+                    type,
+                    edMinMax: { jewels }
+                });
+            }
+            return matched;
         }
 
         function findJewelBugItemsForCharacter(char, includeMercenaries) {
@@ -798,7 +988,34 @@
             }
 
             const matchedItems = [];
-            const seenItemKeys = new Set();
+            const seenItemKeys = new Map();
+
+            const addMatchedItem = (item, type, ast) => {
+                const key = `${item.Worn || '?'}|${item.Title}|${item.TextTag || ''}|${type}`;
+                const properties = new Set();
+                for (const node of ast || []) {
+                    if (node.type !== 'term') continue;
+                    const term = parseSearchTerm(node.value);
+                    if (!term.properties.length || !buildItemMatchFn(predicate => predicate(item))(node.value)) continue;
+                    for (const property of item.PropertyList || []) {
+                        if (typeof property === 'string' && term.properties.some(value => property.toLowerCase().includes(value))) {
+                            properties.add(property);
+                        }
+                    }
+                }
+                let match = seenItemKeys.get(key);
+                if (!match) {
+                    match = {
+                        slot: item.Worn || 'Unknown',
+                        name: `${item.Title} - ${item.TextTag || ''}`,
+                        type,
+                        matchedProperties: []
+                    };
+                    seenItemKeys.set(key, match);
+                    matchedItems.push(match);
+                }
+                match.matchedProperties = [...new Set([...match.matchedProperties, ...properties])];
+            };
 
             let extraItemSatisfied = true;
             if (extraItemAst) {
@@ -844,15 +1061,7 @@
                         }
 
                         if (hasSocketTerm) {
-                            const key = `${item.Worn || '?'}|${item.Title}|${item.TextTag || ''}|${typeLabel}`;
-                            if (!seenItemKeys.has(key)) {
-                                seenItemKeys.add(key);
-                                matchedItems.push({
-                                    slot: item.Worn || 'Unknown',
-                                    name: `${item.Title} - ${item.TextTag || ''}`,
-                                    type: typeLabel
-                                });
-                            }
+                            addMatchedItem(item, typeLabel, parsedQuery.itemAst);
                         }
                     } else if (socketMode === 'notWith') {
                         const exprResult = evaluateBooleanExpression(
@@ -869,15 +1078,7 @@
                         );
 
                         if (!exprResult) {
-                            const key = `${item.Worn || '?'}|${item.Title}|${item.TextTag || ''}|${typeLabel}`;
-                            if (!seenItemKeys.has(key)) {
-                                seenItemKeys.add(key);
-                                matchedItems.push({
-                                    slot: item.Worn || 'Unknown',
-                                    name: `${item.Title} - ${item.TextTag || ''}`,
-                                    type: typeLabel
-                                });
-                            }
+                            addMatchedItem(item, typeLabel, parsedQuery.itemAst);
                         }
                     }
                 };
@@ -901,15 +1102,7 @@
 
                             if (predicate(item)) {
                                 termMatched = true;
-                                const key = `${item.Worn || '?'}|${item.Title}|${item.TextTag || ''}|${entry.type}`;
-                                if (!seenItemKeys.has(key)) {
-                                    seenItemKeys.add(key);
-                                    matchedItems.push({
-                                        slot: item.Worn || 'Unknown',
-                                        name: `${item.Title} - ${item.TextTag || ''}`,
-                                        type: entry.type
-                                    });
-                                }
+                                addMatchedItem(item, entry.type, parsedQuery.itemAst);
                             }
                         }
                         return termMatched;
@@ -935,15 +1128,7 @@
                             if (!item || !item.Title) continue;
                             if (predicate(item)) {
                                 termMatched = true;
-                                const key = `${item.Worn || '?'}|${item.Title}|${item.TextTag || ''}|${entry.type}`;
-                                if (!seenItemKeys.has(key)) {
-                                    seenItemKeys.add(key);
-                                    matchedItems.push({
-                                        slot: item.Worn || 'Unknown',
-                                        name: `${item.Title} - ${item.TextTag || ''}`,
-                                        type: entry.type
-                                    });
-                                }
+                                addMatchedItem(item, entry.type, extraItemAst);
                             }
                         }
                         return termMatched;
@@ -960,7 +1145,7 @@
             }
 
             const merged = [];
-            const seen = new Set();
+            const seen = new Map();
 
             for (const clause of parsedClauses) {
                 const clauseItems = evaluateItemClauseForCharacter(char, clause, includeMercenaries);
@@ -971,8 +1156,11 @@
                 for (const item of clauseItems) {
                     const key = `${item.slot}|${item.name}|${item.type}`;
                     if (!seen.has(key)) {
-                        seen.add(key);
+                        seen.set(key, item);
                         merged.push(item);
+                    } else {
+                        const existing = seen.get(key);
+                        existing.matchedProperties = [...new Set([...existing.matchedProperties, ...item.matchedProperties])];
                     }
                 }
             }
@@ -1013,7 +1201,10 @@
                 }
 
                 let matchedItems = [];
-                if (criteria.jewelBugSearch) {
+                if (criteria.edMinMaxSearch) {
+                    matchedItems = findEdMinMaxItemsForCharacter(char, criteria.includeMercenaries);
+                    if (matchedItems.length === 0) continue;
+                } else if (criteria.jewelBugSearch) {
                     matchedItems = findJewelBugItemsForCharacter(char, criteria.includeMercenaries);
                     if (matchedItems.length === 0) continue;
                 } else if (criteria.parsedClauses && criteria.parsedClauses.length > 0) {
@@ -1093,6 +1284,8 @@
             const isHardcore = document.getElementById('searchHardcore').checked;
             const jewelBugSearch = itemQueryInput.toLowerCase() === 'jewel bug';
 
+            const edMinMaxSearch = itemQueryInput.toLowerCase() === 'edminmax';
+
             const hasAnyCriteria = !!characterNameInput || !!itemQueryInput || !!skillsInput;
             if (!hasAnyCriteria) {
                 displayError('Enter at least one criterion: character name, item query, or skill(s).');
@@ -1100,12 +1293,25 @@
             }
 
             let parsedClauses = [];
-            if (itemQueryInput && !jewelBugSearch) {
-                const clauseStrings = itemQueryInput.split(';').map(s => s.trim()).filter(Boolean);
-                for (const clause of clauseStrings) {
+            if (itemQueryInput && !jewelBugSearch && !edMinMaxSearch) {
+                const masked = maskPropertyExpressions(itemQueryInput);
+                if (masked === null) {
+                    displayError('Invalid item query: property brackets must be balanced and non-empty.');
+                    return;
+                }
+                const clauseStrings = [];
+                let start = 0;
+                for (let i = 0; i < masked.length; i++) {
+                    if (masked[i] === ';') {
+                        clauseStrings.push(itemQueryInput.slice(start, i).trim());
+                        start = i + 1;
+                    }
+                }
+                clauseStrings.push(itemQueryInput.slice(start).trim());
+                for (const clause of clauseStrings.filter(Boolean)) {
                     const parsed = parseItemSearchQuery(clause);
                     if (!parsed || !parsed.itemAst) {
-                        displayError(`Invalid item query near: "${clause}"`);
+                        displayError(`Invalid item query near: "${escapeHtml(clause)}"`);
                         return;
                     }
                     parsedClauses.push(parsed);
@@ -1129,7 +1335,8 @@
                 targetSkills,
                 conditionsArray,
                 includeMercenaries,
-                jewelBugSearch
+                jewelBugSearch,
+                edMinMaxSearch
             };
 
             const result = advancedFilterCharacters(criteria);
@@ -1160,9 +1367,10 @@
 
             let criteriaText = [];
             if (criteria.nameQuery) criteriaText.push(`name contains "${criteria.nameQuery}"`);
+            if (criteria.edMinMaxSearch) criteriaText.push('items with a jewel having enhanced damage and +minimum/+maximum damage');
             if (criteria.jewelBugSearch) criteriaText.push('items matching jewel bug cases 3-9');
             if (criteria.parsedClauses.length > 0) {
-                criteriaText.push(`item query matches "${document.getElementById('itemName').value.trim()}"`);
+                criteriaText.push(`item query matches "${escapeHtml(document.getElementById('itemName').value.trim())}"`);
             }
             if (criteria.targetSkills.length > 0) {
                 const pieces = criteria.targetSkills.map((skill, index) => {
@@ -1238,7 +1446,7 @@
                         if (charItems.length > 0) {
                             html += '<div class="equipment"><strong>Matched Character Equipment:</strong><br>';
                             for (const item of charItems) {
-                                html += `<div class="equipment-item" style="background-color:#2a4a2a;">${escapeHtml(item.slot)}: ${escapeHtml(item.name)}${formatJewelBugMatch(item)}</div><br>`;
+                                html += `<div class="equipment-item" style="background-color:#2a4a2a;">${escapeHtml(item.slot)}: ${escapeHtml(item.name)}${formatMatchedProperties(item)}${formatJewelBugMatch(item)}</div><br>`;
                             }
                             html += '</div>';
                         }
@@ -1250,7 +1458,7 @@
                             html += `<div class="equipment" style="border-left-color:#d5a623;"><strong>Matched Mercenary Equipment:</strong><br>`;
                             html += `<div style="color:#d5a623; font-size:12px; margin-bottom:5px;">${mercType} "${mercName}" (Level ${mercLevel})</div>`;
                             for (const item of mercItems) {
-                                html += `<div class="equipment-item" style="background-color:#4a3a2a;">${escapeHtml(item.slot)}: ${escapeHtml(item.name)}${formatJewelBugMatch(item)}</div><br>`;
+                                html += `<div class="equipment-item" style="background-color:#4a3a2a;">${escapeHtml(item.slot)}: ${escapeHtml(item.name)}${formatMatchedProperties(item)}${formatJewelBugMatch(item)}</div><br>`;
                             }
                             html += '</div>';
                         }
@@ -1295,7 +1503,16 @@
             9: { cause: '%ED/+Min/+Max Damage jewel', effect: '%ED applies to neither minimum nor maximum damage' }
         };
 
+        function formatMatchedProperties(item) {
+            return (item.matchedProperties || []).map(property => `<div>${escapeHtml(property)}</div>`).join('');
+        }
+
         function formatJewelBugMatch(item) {
+            if (item.edMinMax) {
+                return '<div>' + item.edMinMax.jewels
+                    .map(entry => `Socket ${entry.index + 1}: ${escapeHtml(entry.jewel.Title)} (${entry.properties.map(escapeHtml).join('; ')})`)
+                    .join('<br>') + '</div>';
+            }
             if (!item.jewelBug) return '';
             const { tier, cases, jewels } = item.jewelBug;
             const effects = cases
