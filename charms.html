@@ -6,6 +6,8 @@
     <title>PoD Charm Analysis</title>
     <link rel="shortcut icon" type="image/x-icon" href="icons/pod.ico">
     <link rel="stylesheet" type="text/css" href="css/test-css.css">
+    <link rel="stylesheet" href="css/site-navbar.css">
+    <script defer src="js/site-navbar.js" data-site-root="./"></script>
     <script src="jsons/full-sets.js"></script>
     <style>
 
@@ -50,16 +52,9 @@ body.admin-mode .controls {
         }
     </style>
 </head>
-<body class="special-background">
+<body class="special-background has-site-navbar">
     <div class="is-clipped">
         <div id="navbar-placeholder"></div>
-<!--        <script>
-        fetch("templates/navbar.html")
-            .then(res => res.text())
-            .then(html => {
-            document.getElementById("navbar-placeholder").innerHTML = html;
-            });
-        </script> -->
 
         <div class="hamburger" onclick="toggleMenu()">
             <div class="line"></div>
@@ -195,7 +190,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Create iframe
         const iframe = document.createElement("iframe");
 
-        iframe.src = `armory/video_component.html?charName=${characterName}`;
+        iframe.src = `armory/video_component.html?charName=${encodeURIComponent(characterName)}&mode=${encodeURIComponent(chosenMode)}`;
         iframe.setAttribute("id", "popupFrame");
 
         popup.appendChild(iframe);

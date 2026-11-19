@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PoD Trends History</title>
+    <link rel="stylesheet" href="css/test-css.css">
+    <style>
+        main { max-width: 760px; margin: 3rem auto; padding: 1.5rem; background: #222; color: #eee; }
+        a { color: #f3cb76; }
+        h1, h2, h3 { color: #f3cb76; }
+        li { margin: .5rem 0; }
+    </style>
+</head>
+<body class="special-background">
+<main>
+    <p><a href="home.html">← Current data</a></p>
+    <h1>Trends History</h1>
+    <p>Historical data reflects the snapshot available at the time. Older archives may contain limited data.</p>
+    <div id="history" role="status">Loading history…</div>
+</main>
+<script>
+async function showHistory() {
+    const target = document.getElementById("history");
+    try {
+        const response = await fetch("data/history.json");
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const data = await response.json();
+        target.replaceChildren();
+        if (!data.archives.length) {
+            target.textContent = "No historical snapshots are available yet.";
+            return;
+        }
+        const seasons = [...new Set(data.archives.map(entry => entry.season))].sort((a, b) => b - a);
+        for (const season of seasons) {
+            const heading = document.createElement("h2");
+            heading.textContent = `Season ${season}`;
+            target.append(heading);
+            for (const [label, types] of [
+                ["Final ladder", ["final"]],
+                ["Post-season", ["post-season"]],
+                ["During season", ["active"]],
+                ["Older archives", ["legacy"]]
+            ]) {
+                const entries = data.archives.filter(entry => entry.season === season && types.includes(entry.kind))
+                    .sort((a, b) => (b.month || "").localeCompare(a.month || "") || a.label.localeCompare(b.label));
+                if (!entries.length) continue;
+                const subheading = document.createElement("h3");
+                subheading.textContent = label;
+                target.append(subheading);
+                const list = document.createElement("ul");
+                for (const entry of entries) {
+                    const item = document.createElement("li");
+                    const link = document.createElement("a");
+                    link.href = entry.url;
+                    link.textContent = entry.label;
+                    item.append(link);
+                    list.append(item);
+                }
+                target.append(list);
+            }
+        }
+    } catch (error) {
+        console.error("Could not load history:", error);
+        target.textContent = `Could not load history: ${error.message}`;
+    }
+}
+showHistory();
+</script>
+</body>
+</html>

@@ -1,5 +1,9 @@
 # 🚀 How to Run Manual GitHub Actions Workflows
 
+> Historical documentation: the workflows described below have been retired.
+> The current data workflow can be run manually from GitHub Actions; see the
+> [workflow overview](.github/workflows/README.md).
+
 ## 🔧 **Manual Workflow Access Issue - FIXED!**
 
 GitHub Actions requires workflows to be "discovered" before showing manual trigger buttons. I've added dummy triggers to make them discoverable.

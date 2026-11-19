@@ -4,19 +4,14 @@
     <link rel="shortcut icon" type="image/x-icon" href="icons/pod.ico">
     <title>Advanced Character Search</title>
     <link rel="stylesheet" type="text/css" href="css/test-css.css">
+    <link rel="stylesheet" href="css/site-navbar.css">
+    <script defer src="js/site-navbar.js" data-site-root="./"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="item-bases.js"></script>
 </head>
-<body class="not-main" style="background-color: #000000; background-image: none;">
+<body class="not-main has-site-navbar" style="background-color: #000000; background-image: none;">
     <div class="is-clipped">
         <div id="navbar-placeholder"></div>
-        <script>
-        fetch("templates/navbar.html")
-            .then(res => res.text())
-            .then(html => {
-                document.getElementById("navbar-placeholder").innerHTML = html;
-            });
-        </script>
 
     <div class="hamburger hamburger2" onclick="toggleMenu()">
         <div class="line"></div>

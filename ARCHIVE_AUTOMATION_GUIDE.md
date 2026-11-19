@@ -1,5 +1,10 @@
 # Path of Diablo Archive Automation System
 
+> Historical documentation: this describes the retired static-page archive
+> generator. For the current snapshot pipeline, see the
+> [README](README.md#updates-and-history) and
+> [workflow overview](.github/workflows/README.md).
+
 ## 📋 Table of Contents
 - [Overview](#overview)
 - [System Architecture](#system-architecture)

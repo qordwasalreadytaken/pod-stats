@@ -31,6 +31,40 @@ The site has gradually moved toward doing more processing in JavaScript rather t
 
 The data is intentionally snapshot-based rather than real-time, so numbers should be considered a representation of the ladder at the time the snapshot was taken.
 
+## Updates and history
+
+The demo's [site data workflow](.github/workflows/site-data.yml) runs twice daily
+using Python 3.12. It collects both leagues and their derived datasets in a
+temporary directory and publishes them only after collection succeeds and the
+season status is checked again. The workflow also runs the pipeline tests.
+When the API is unavailable or returns invalid data, the run fails rather than
+replacing the last good snapshot.
+
+On or after the 28th of each month, the first successful run creates an
+immutable archive under `Season/<season>/snapshots/YYYY-MM/`. If that window
+was missed and the last successful snapshot is from the preceding month, the
+next run archives that snapshot with its actual capture date. The top navigation
+history dropdown and history page use a generated manifest and also link to the
+existing legacy archives. The dropdown supports hover, keyboard and touch.
+New snapshots include their own pages, data and local assets. External services
+and libraries may still be needed, and links to the PoD armory can show current
+data rather than historical data.
+
+When a previously observed active season ends or a new season starts, the
+pipeline saves the last successful active snapshot as `Final`, unless a Final
+archive already exists. It cannot reconstruct an end-of-ladder snapshot from
+post-season data: an already-ended season must have an existing Final archive
+or a recorded active snapshot. GitHub schedules can be delayed or disabled, so
+failed Actions runs should be monitored.
+
+The demo's [site configuration](site_config.json) enables post-season updates
+and monthly snapshots. For a separately configured production deployment, set
+`post_season_updates` to `false` to preserve the final live snapshot until the
+next season. This repository does not change or deploy production. The
+`archive_day` value can be 1–28. Snapshot files are sizeable and will increase
+repository and Pages storage over time. The separate ranking workflow also
+respects the post-season freeze setting.
+
 ## To-do
 
 * Consolidate existing scripts

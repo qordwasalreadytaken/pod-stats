@@ -1,5 +1,8 @@
 # GitHub Actions Import Fix
 
+> Historical documentation: the workflows described below have been retired.
+> See the [current workflow overview](.github/workflows/README.md).
+
 ## 🐛 **Issue Identified**
 GitHub Actions workflows were failing with:
 ```

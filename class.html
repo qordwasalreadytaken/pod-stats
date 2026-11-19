@@ -8,6 +8,8 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="./icons/pod.ico">
     <link rel="stylesheet" type="text/css" href="./css/test-css.css">
+    <link rel="stylesheet" href="css/site-navbar.css">
+    <script defer src="js/site-navbar.js" data-site-root="./"></script>
 
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
     <style>
@@ -163,8 +165,9 @@ body.admin-mode .controls {
     </style>
 </head>
 
-<body class="main special-background-sorceress">
+<body class="main special-background-sorceress has-site-navbar">
 <div class="is-clipped">
+    <div id="navbar-placeholder"></div>
 
     <div class="hamburger hamburger2" onclick="toggleMenu()">
         <div class="line"></div>
@@ -373,7 +376,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Create iframe
         const iframe = document.createElement("iframe");
 
-        iframe.src = `./armory/video_component.html?charName=${characterName}`;
+        iframe.src = `./armory/video_component.html?charName=${encodeURIComponent(characterName)}&mode=${encodeURIComponent(chosenMode)}`;
         iframe.setAttribute("id", "popupFrame");
 
         popup.appendChild(iframe);
@@ -2993,4 +2996,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </body>
 </html>
-
